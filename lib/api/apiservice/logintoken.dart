@@ -1,5 +1,6 @@
 
 import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../model/token.dart';
@@ -10,34 +11,34 @@ try{
   SharedPreferences prefs = await SharedPreferences.getInstance();
     if(prefs.getString("Expire")!=null) {
       if(DateTime.now().isAfter(DateTime.parse(prefs.getString("Expire")!))) {
-        var headers = {'Content-Type': 'application/json'};
-        var request = http.Request('POST', Uri.parse('${url}Token'));
-        request.body = json.encode({
+        Dio dio =Dio();
+        var request = await dio.post('${url}Token',data: {
           "username": "aisoft",
           "password": "@pwAisoft2024"
-        });
-        request.headers.addAll(headers);
-        http.StreamedResponse response = await request.send();
-        if (response.statusCode == 200) {
-          var data = await response.stream.bytesToString();
-          LoginToKen token = LoginToKen.fromJson(jsonDecode(data));
+        },options: Options(headers: {
+          'Content-Type': 'application/json',
+        }));
+
+        if (request.statusCode == 200) {
+          var data = request.data;
+          LoginToKen token = LoginToKen.fromJson(data);
           prefs.setString("userData", token.accessToken!);
           prefs.setString('Expire', token.expires.toString());
           print('GETTOKEN Expire SUCCESS');
         }
       }
     }else{
-      var headers = {'Content-Type': 'application/json'};
-      var request = http.Request('POST', Uri.parse('${url}Token'));
-      request.body = json.encode({
-        "username": "admin",
-        "password": "kvEpxbfbcHB4svt"
-      });
-      request.headers.addAll(headers);
-      http.StreamedResponse response = await request.send();
-      if (response.statusCode == 200) {
-        var data = await response.stream.bytesToString();
-        LoginToKen token = LoginToKen.fromJson(jsonDecode(data));
+      Dio dio =Dio();
+      var request = await dio.post('${url}Token',data: {
+        "username": "aisoft",
+        "password": "@pwAisoft2024"
+      },options: Options(headers: {
+        'Content-Type': 'application/json',
+      }));
+
+      if (request.statusCode == 200) {
+        var data = request.data;
+        LoginToKen token = LoginToKen.fromJson(data);
         prefs.setString("userData", token.accessToken!);
         prefs.setString('Expire', token.expires.toString());
         print("TOKENAPI ${ prefs.getString("userData")}");
