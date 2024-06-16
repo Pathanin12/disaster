@@ -31,7 +31,7 @@ class DashBoard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                        child: Text('แดชบอร์ด',
+                        child: Text('แดชบอร์ด12',
                             style: textStyle(context,
                                 fontSize: 16, fontWeight: FontWeight.bold))),
                     const SizedBox(
