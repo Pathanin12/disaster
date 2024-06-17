@@ -305,7 +305,7 @@ class ContollerFireReport extends GetxController {
         double modeCal = calPage % 1;
         int sum = int.parse(calPage.toString().split('.')[0]);
         
-        print(indexNumPage.value);
+        
         if (modeCal > 0) {
           maxPage.value = sum + 1;
         } else {

@@ -439,6 +439,12 @@ class WineStormReport extends StatelessWidget {
                               ),
                               InkWell(
                                 onTap: () {
+                                  createExcel(contoller.allEvent.value,
+                                      contoller.listDate.value[0]!,
+                                      contoller.listDate.value[1]!,
+                                      contoller.selectCategory!.value,
+                                      contoller.selectLevel!.value,
+                                      contoller.selectProvince.value.nameTh!);
                                   // createExcel();
                                 },
                                 child: Container(

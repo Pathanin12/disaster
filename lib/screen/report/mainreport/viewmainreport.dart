@@ -439,7 +439,12 @@ class MainReport extends StatelessWidget {
                               ),
                               InkWell(
                                 onTap: () {
-                                  createExcel();
+                                  createExcel(contoller.allEvent.value,
+                                      contoller.listDate.value[0]!,
+                                      contoller.listDate.value[1]!,
+                                      contoller.selectCategory!.value,
+                                      contoller.selectLevel!.value,
+                                      contoller.selectProvince.value.nameTh!);
                                 },
                                 child: Container(
                                   alignment: Alignment.center,

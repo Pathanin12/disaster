@@ -84,7 +84,7 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                'ประเภทภัยพิบัคิ',
+                                'ประเภทภัยพิบัติ',
                                 style: textStyle(context,
                                     fontSize: 13, color: colorBlack),
                               ),
@@ -621,12 +621,7 @@ class Detail extends StatelessWidget {
                                         fontSize: 13, color: colorGrey),
                                   ),
                                 )),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Expanded(
-                                child: Container(
-                                )),
+
                           ],
                         ),
                       ],

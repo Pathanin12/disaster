@@ -92,7 +92,7 @@ Future<void> createPDF(GetAllEventModel allEven,DateTime startDate,DateTime endD
   ];
   List<String> status=[
     "รับเรื่อง",
-    "กำลังกำเนินการ",
+    "กำลังดำเนินการ",
     "เสร็จสิ้น"
   ];
 

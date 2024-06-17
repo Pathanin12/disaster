@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:number_paginator/number_paginator.dart';
@@ -29,7 +30,9 @@ class ContollerCreateList extends GetxController {
   final mapController = MapController().obs;
   var dataEditEvent= edit.EventByIDModel().obs;
   String? imageFile;
-  var listImage = <Uint8List>[].obs;
+  // var listImage = <Uint8List>[].obs;
+  var listConvertImage = <edit.ImageList>[].obs;
+  var listDeleteImage=<ImageDeleteList>[].obs;
   var date = DateTime.now().toString().split(" ")[0].obs;
   final nameCon = TextEditingController().obs,
       createBy = TextEditingController().obs,
@@ -67,6 +70,7 @@ class ContollerCreateList extends GetxController {
   womenInjured.value.text = data.events!.injured!.feMale.toString()??'';
   unGenderInjured.value.text = data.events!.injured!.unidentify.toString()??'';
   remark.value.text = data.events!.note??'';
+  listConvertImage.value = data.events!.imageList!;
   radio.value = data.events!.violence??1;
   date.value = data.events!.datetime!;
   // listImage.value.clear();
@@ -98,7 +102,9 @@ class ContollerCreateList extends GetxController {
     remark.value.text = '';
     radio.value = 1;
     date.value = DateTime.now().toString().split(" ")[0];
-    listImage.value.clear();
+    listDeleteImage.value.clear();
+    // listImage.value.clear();
+    listConvertImage.value.clear();
     selectCategory!.value = 'อัคคีภัย';
     selectStatusList!.value = 'รับเรื่อง';
     selectStatusResponsible!.value = 'รับเรื่อง';
@@ -159,8 +165,11 @@ class ContollerCreateList extends GetxController {
       String location =
           await getLatLong(long: lng.value.text, lat: lat.value.text);
       List<ImageList> listImageBase64 = [];
-      for (var element in listImage) {
-        listImageBase64.add(ImageList(image: base64Encode(element)));
+      for (var element in listConvertImage) {
+        if(element.imageName=='new'){
+          listImageBase64.add(ImageList(image: element.pathImage));
+        }
+
       }
       CreateEven even = CreateEven(
           eventID: uuid,
@@ -177,6 +186,7 @@ class ContollerCreateList extends GetxController {
           violence: radio.value,
           relatedAgency: relevant.value.text,
           imageList: listImageBase64,
+          imageDeleteList: listDeleteImage,
           receiveFrom: createBy.value.text,
           deceased: Deceased(
             ageRange: AgerangeList.indexOf(selectAgerangeDie!.value.toString()),
@@ -241,11 +251,12 @@ class ContollerCreateList extends GetxController {
 
   selectedFileImage(BuildContext context) async {
     List<Uint8List> image = (await ImagePickerWeb.getMultiImagesAsBytes())!;
-    if (listImage.isEmpty) {
-      listImage.value = image;
-    } else {
-      listImage.addAll(image);
-    }
+    image.forEach((element) {
+      listConvertImage.add(edit.ImageList(
+        imageName: 'new',
+        pathImage:"data:image/png;base64,${base64Encode(element)}"
+      ));
+    });
   }
 
 //   Future<void> pickImageFeed(ImageSource source, int index,
@@ -282,6 +293,6 @@ class ContollerCreateList extends GetxController {
   @override
   void dispose() {
     super.dispose();
-    listImage.clear();
+    listConvertImage.clear();
   }
 }

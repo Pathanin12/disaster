@@ -424,8 +424,8 @@ class DashBoard extends StatelessWidget {
                         const SizedBox(
                           width: 20,
                         ),
-                        (contoller.selectLevel!.value == 'จังหวัด')
-                            ? Expanded(
+                        if(contoller.selectLevel!.value == 'จังหวัด')
+                             Expanded(
                                 flex: 2,
                                 child: Container(
                                   alignment: Alignment.centerLeft,
@@ -519,10 +519,6 @@ class DashBoard extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                              )
-                            : const Expanded(
-                                flex: 2,
-                                child: SizedBox(),
                               ),
                         const SizedBox(
                           width: 20,
@@ -552,7 +548,12 @@ class DashBoard extends StatelessWidget {
                                         color: colorWhite),
                                   ),
                           ),
-                        )
+                        ),
+                        if(contoller.selectLevel!.value != 'จังหวัด')
+                          const Expanded(
+                            flex: 2,
+                            child: SizedBox(),
+                          ),
                       ],
                     ),
                     const SizedBox(

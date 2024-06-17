@@ -1,3 +1,4 @@
+import 'package:disaster/model/createevenmodel.dart';
 import 'package:disaster/stye/colors.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
@@ -1718,7 +1719,7 @@ class CreateList extends StatelessWidget {
                               decoration: BoxDecoration(
                                   color: colorWhite,
                                   borderRadius: BorderRadius.circular(5)),
-                              child: (contoller.listImage.value.isEmpty)
+                              child: (contoller.listConvertImage.value.isEmpty)
                                   ? Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -1756,89 +1757,92 @@ class CreateList extends StatelessWidget {
                                         ),
                                       ],
                                     )
-                                  : GridView.builder(
-                                      shrinkWrap: true,
-                                      gridDelegate:
-                                          const SliverGridDelegateWithMaxCrossAxisExtent(
-                                        maxCrossAxisExtent: 150,
-                                        crossAxisSpacing: 3.0,
-                                        mainAxisSpacing: 10.0,
-                                        childAspectRatio: 0.8,
+                                  :GridView.builder(
+                                shrinkWrap: true,
+                                gridDelegate:
+                                const SliverGridDelegateWithMaxCrossAxisExtent(
+                                  maxCrossAxisExtent: 150,
+                                  crossAxisSpacing: 3.0,
+                                  mainAxisSpacing: 10.0,
+                                  childAspectRatio: 0.8,
+                                ),
+                                itemCount:
+                                contoller.listConvertImage.value.length + 1,
+                                itemBuilder: (context, index) {
+                                  if (index ==
+                                      contoller.listConvertImage.value.length) {
+                                    return InkWell(
+                                      onTap: () {
+                                        contoller
+                                            .selectedFileImage(context);
+                                      },
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          height: 40,
+                                          width: 80,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                              BorderRadius.circular(
+                                                  5),
+                                              border: Border.all(
+                                                  color: colorGrey)),
+                                          child: Text(
+                                            'เลือกรูป',
+                                            style: textStyle(context,
+                                                color: colorBlue,
+                                                fontSize: 13),
+                                          ),
+                                        ),
                                       ),
-                                      itemCount:
-                                          contoller.listImage.value.length + 1,
-                                      itemBuilder: (context, index) {
-                                        if (index ==
-                                            contoller.listImage.value.length) {
-                                          return InkWell(
+                                    );
+                                  } else {
+                                    return Stack(
+                                      children: [
+                                        Container(
+                                          height: 200,
+                                          width: 200,
+                                          decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  image: NetworkImage(
+                                                      contoller.listConvertImage
+                                                          .value[index].pathImage!),
+                                                  fit: BoxFit.cover)),
+                                        ),
+                                        Positioned(
+                                          child: InkWell(
                                             onTap: () {
-                                              contoller
-                                                  .selectedFileImage(context);
+                                              if(contoller.listConvertImage.value[index].imageName!='new'){
+                                                contoller.listDeleteImage.value.add(ImageDeleteList(imageName:contoller.listConvertImage.value[index].imageName ));
+                                              }
+                                              contoller.listConvertImage
+                                                  .removeAt(index);
                                             },
                                             child: Container(
+                                              child: Icon(
+                                                Icons.clear,
+                                                size: 15,
+                                                color: colorBlack,
+                                              ),
                                               alignment: Alignment.center,
-                                              child: Container(
-                                                alignment: Alignment.center,
-                                                height: 40,
-                                                width: 80,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                    border: Border.all(
-                                                        color: colorGrey)),
-                                                child: Text(
-                                                  'เลือกรูป',
-                                                  style: textStyle(context,
-                                                      color: colorBlue,
-                                                      fontSize: 13),
-                                                ),
-                                              ),
+                                              height: 25,
+                                              width: 25,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius
+                                                      .circular(100),
+                                                  color: colorGrey),
                                             ),
-                                          );
-                                        } else {
-                                          return Stack(
-                                            children: [
-                                              Container(
-                                                height: 200,
-                                                width: 200,
-                                                decoration: BoxDecoration(
-                                                    image: DecorationImage(
-                                                        image: MemoryImage(
-                                                            contoller.listImage
-                                                                .value[index]),
-                                                        fit: BoxFit.cover)),
-                                              ),
-                                              Positioned(
-                                                child: InkWell(
-                                                  onTap: () {
-                                                    contoller.listImage
-                                                        .removeAt(index);
-                                                  },
-                                                  child: Container(
-                                                    child: Icon(
-                                                      Icons.clear,
-                                                      size: 15,
-                                                      color: colorBlack,
-                                                    ),
-                                                    alignment: Alignment.center,
-                                                    height: 25,
-                                                    width: 25,
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(100),
-                                                        color: colorGrey),
-                                                  ),
-                                                ),
-                                                right: 0,
-                                                top: 0,
-                                              )
-                                            ],
-                                          );
-                                        }
-                                      },
-                                    ),
+                                          ),
+                                          right: 0,
+                                          top: 0,
+                                        )
+                                      ],
+                                    );
+                                  }
+                                },
+                              ),
                             ),
                           ),
                           const SizedBox(
@@ -1877,6 +1881,7 @@ class CreateList extends StatelessWidget {
                                         ),
                                         height: 150,
                                         child: TextFormField(
+                                          maxLines: 300,
                                           controller: contoller.remark.value,
                                           decoration: InputDecoration.collapsed(
                                             fillColor: colorWhite,
