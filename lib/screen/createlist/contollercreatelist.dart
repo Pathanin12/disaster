@@ -193,9 +193,9 @@ class ContollerCreateList extends GetxController {
             total: int.parse(injured.value.text),
           ),
           statusRelatedAgency:
-              Statusrelevant.indexOf(selectStatusrelevant!.value),
+              Statusrelevant.indexOf(selectStatusResponsible!.value),
           statusAgency:
-              StatusResponsible.indexOf(selectStatusResponsible!.value),
+              StatusResponsible.indexOf(selectStatusrelevant!.value),
           statusItem: StatusList.indexOf(selectStatusList!.value),
           responsibleAgency: responsible.value.text);
       await createEvenApi(even).then((value) {});

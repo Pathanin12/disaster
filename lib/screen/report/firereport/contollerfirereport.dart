@@ -313,7 +313,7 @@ class ContollerFireReport extends GetxController {
             width: 80,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
-                color: Colors.yellow.shade600),
+                color: Colors.amber),
             child: Text(
               'รับเรื่อง',
               style: textStyle(context,
@@ -327,7 +327,7 @@ class ContollerFireReport extends GetxController {
                 width: 80,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    color: Colors.amber),
+                    color: Colors.red),
                 child: Text(
                   'กำลังดำเนินการ',
                   style: textStyle(context,
@@ -341,7 +341,7 @@ class ContollerFireReport extends GetxController {
                 height: 30,
                 width: 80,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5), color: colorWhite),
+                    borderRadius: BorderRadius.circular(5), color: colorGreen),
                 child: Text(
                   'ส่งแล้ว',
                   style: textStyle(context,

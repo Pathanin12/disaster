@@ -308,48 +308,48 @@ class ContollerWineStormReport extends GetxController {
   Widget statusWidget(BuildContext context, int status) {
     return (status == 0)
         ? Container(
-            alignment: Alignment.center,
-            height: 30,
-            width: 80,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: Colors.yellow.shade600),
-            child: Text(
-              'รับเรื่อง',
-              style: textStyle(context,
-                  fontSize: 15, fontWeight: FontWeight.bold, color: colorWhite),
-            ),
-          )
+      alignment: Alignment.center,
+      height: 30,
+      width: 80,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          color: Colors.amber),
+      child: Text(
+        'รับเรื่อง',
+        style: textStyle(context,
+            fontSize: 15, fontWeight: FontWeight.bold, color: colorWhite),
+      ),
+    )
         : (status == 1)
-            ? Container(
-                alignment: Alignment.center,
-                height: 30,
-                width: 80,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: Colors.amber),
-                child: Text(
-                  'กำลังดำเนินการ',
-                  style: textStyle(context,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: colorWhite),
-                ),
-              )
-            : Container(
-                alignment: Alignment.center,
-                height: 30,
-                width: 80,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5), color: colorWhite),
-                child: Text(
-                  'ส่งแล้ว',
-                  style: textStyle(context,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: colorWhite),
-                ),
-              );
+        ? Container(
+      alignment: Alignment.center,
+      height: 30,
+      width: 80,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          color: Colors.red),
+      child: Text(
+        'กำลังดำเนินการ',
+        style: textStyle(context,
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+            color: colorWhite),
+      ),
+    )
+        : Container(
+      alignment: Alignment.center,
+      height: 30,
+      width: 80,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5), color: colorGreen),
+      child: Text(
+        'ส่งแล้ว',
+        style: textStyle(context,
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+            color: colorWhite),
+      ),
+    );
   }
 
   pageTableReport(BuildContext context) {
