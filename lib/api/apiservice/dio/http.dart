@@ -11,7 +11,6 @@ class HttpRequest {
   static Future<String?> LoginToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String token ;
-    print('test=====> ${prefs.getString("userData")}');
    if(prefs.getString("userData")!=null){
      if(DateTime.now().isAfter(DateTime.parse(prefs.getString("Expire")!))){
       await getToken();
@@ -24,7 +23,7 @@ class HttpRequest {
 
      token = prefs.getString("userData")!;
    }
-    print('Token ==> $token');
+
     return token;
   }
 

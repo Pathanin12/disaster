@@ -116,6 +116,18 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "equatable",
+      "rootUri": "file:///Users/contactaisoft/.pub-cache/hosted/pub.dev/equatable-2.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "excel",
+      "rootUri": "file:///Users/contactaisoft/.pub-cache/hosted/pub.dev/excel-4.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "expansion_tile_group",
       "rootUri": "file:///Users/contactaisoft/.pub-cache/hosted/pub.dev/expansion_tile_group-1.2.4",
       "packageUri": "lib/",
@@ -252,12 +264,6 @@
       "rootUri": "file:///Users/contactaisoft/.pub-cache/hosted/pub.dev/intl-0.18.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
-    },
-    {
-      "name": "jiffy",
-      "rootUri": "file:///Users/contactaisoft/.pub-cache/hosted/pub.dev/jiffy-6.2.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.19"
     },
     {
       "name": "js",
@@ -578,18 +584,6 @@
       "languageVersion": "2.17"
     },
     {
-      "name": "syncfusion_flutter_xlsio",
-      "rootUri": "file:///Users/contactaisoft/.pub-cache/hosted/pub.dev/syncfusion_flutter_xlsio-25.2.7",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
-    },
-    {
-      "name": "syncfusion_officecore",
-      "rootUri": "file:///Users/contactaisoft/.pub-cache/hosted/pub.dev/syncfusion_officecore-25.2.7",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
-    },
-    {
       "name": "term_glyph",
       "rootUri": "file:///Users/contactaisoft/.pub-cache/hosted/pub.dev/term_glyph-1.2.1",
       "packageUri": "lib/",
@@ -692,7 +686,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2024-06-17T00:30:53.817146Z",
+  "generated": "2024-06-17T03:06:22.044367Z",
   "generator": "pub",
   "generatorVersion": "3.3.2"
 }

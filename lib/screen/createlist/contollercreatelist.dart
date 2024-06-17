@@ -22,10 +22,12 @@ import '../../../stye/font.dart';
 import '../../api/apiservice/createevenapi.dart';
 import '../../api/latlongapi.dart';
 import '../../model/createevenmodel.dart';
+import '../../model/eventbyidmodel.dart' as edit;
 
 class ContollerCreateList extends GetxController {
   final keyForm = GlobalKey<FormState>();
   final mapController = MapController().obs;
+  var dataEvent= edit.EventByIDModel().obs;
 
   String? imageFile;
   var listImage = <Uint8List>[].obs;

@@ -153,6 +153,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.9"
+  equatable:
+    dependency: transitive
+    description:
+      name: equatable
+      sha256: c2b87cb7756efdf69892005af546c56c0b5037f54d2a88269b4f347a505e3ca2
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.5"
+  excel:
+    dependency: "direct main"
+    description:
+      name: excel
+      sha256: "86958dd0771d4ce372cc8332d17d18d803bbcef6ab6d12ddd071699e4c232573"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.3"
   expansion_tile_group:
     dependency: "direct main"
     description:
@@ -325,14 +341,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.18.1"
-  jiffy:
-    dependency: transitive
-    description:
-      name: jiffy
-      sha256: cc1d4b75016a9156c29b5d61f0c9176c3e0fb0580cc5a0e0422b5d2cab3fbfff
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.2.1"
   js:
     dependency: transitive
     description:
@@ -751,22 +759,6 @@ packages:
     description:
       name: syncfusion_flutter_pdf
       sha256: "9c201a65c5e680d8af9324aba88fa0f7d9248d6085eb7fb23dd8521d714a997f"
-      url: "https://pub.dev"
-    source: hosted
-    version: "25.2.7"
-  syncfusion_flutter_xlsio:
-    dependency: "direct main"
-    description:
-      name: syncfusion_flutter_xlsio
-      sha256: "75b100b958c197732e46ad5973abfbc62ef341bf9ecf36010e8c9afde4b7b65b"
-      url: "https://pub.dev"
-    source: hosted
-    version: "25.2.7"
-  syncfusion_officecore:
-    dependency: transitive
-    description:
-      name: syncfusion_officecore
-      sha256: fdd1c99db424f78d952d20713607ed9f33e8cb428ab19871b8b1f49bdd757cb0
       url: "https://pub.dev"
     source: hosted
     version: "25.2.7"

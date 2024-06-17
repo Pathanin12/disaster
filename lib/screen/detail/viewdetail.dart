@@ -1,4 +1,5 @@
 import 'package:disaster/screen/detail/contollerdetail.dart';
+import 'package:disaster/service/config.dart';
 import 'package:disaster/stye/font.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,8 @@ import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 
 import '../../stye/colors.dart';
+import '../createlist/contollercreatelist.dart';
+import '../drawer/contollerdrawer.dart';
 
 class Detail extends StatelessWidget {
   const Detail({super.key});
@@ -33,28 +36,38 @@ class Detail extends StatelessWidget {
                         style: textStyle(context,
                             fontSize: 16, fontWeight: FontWeight.bold),
                       ),
-                      Container(
-                        height: 40,
-                        padding: const EdgeInsets.only(left: 10, right: 10),
-                        decoration: BoxDecoration(
-                            color: Colors.amber,
-                            borderRadius: BorderRadius.circular(5)),
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.edit_note,
-                              size: 20,
-                              color: Colors.white,
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              'แก้ไขรายงาน',
-                              style: textStyle(context,
-                                  fontSize: 13, color: Colors.white),
-                            ),
-                          ],
+                      InkWell(
+                        onTap: (){
+                          final ContollerCreateList contollerEdite =
+                          Get.put(ContollerCreateList(), permanent: false);
+                          final LandingPageController landingPageController =
+                          Get.put(LandingPageController(), permanent: false);
+
+
+                        },
+                        child: Container(
+                          height: 40,
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          decoration: BoxDecoration(
+                              color: Colors.amber,
+                              borderRadius: BorderRadius.circular(5)),
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.edit_note,
+                                size: 20,
+                                color: Colors.white,
+                              ),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                'แก้ไขรายงาน',
+                                style: textStyle(context,
+                                    fontSize: 13, color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
                       )
                     ],
@@ -107,7 +120,7 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                'ชื่อรายการประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิ',
+                                (contoller.dataEvent.value.events==null)?'':contoller.dataEvent.value.events!.eventName!,
                                 style: textStyle(context,
                                     fontSize: 13, color: colorGrey),
                               ),
@@ -122,7 +135,7 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                'ประเภทภัยพิบัคิ',
+                                'วันที่รับเรื่อง',
                                 style: textStyle(context,
                                     fontSize: 13, color: colorBlack),
                               ),
@@ -133,7 +146,7 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                'ชื่อรายการ',
+                                'รับเรื่องจาก',
                                 style: textStyle(context,
                                     fontSize: 13, color: colorBlack),
                               ),
@@ -148,7 +161,7 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                'ประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิ',
+                                (contoller.dataEvent.value.events==null)?'':'${DateTime.parse(contoller.dataEvent.value.events!.datetime!).day} ${mountList[DateTime.parse(contoller.dataEvent.value.events!.datetime!).month]} ${DateTime.parse(contoller.dataEvent.value.events!.datetime!).year+543}',
                                 style: textStyle(context,
                                     fontSize: 13, color: colorGrey),
                               ),
@@ -159,7 +172,7 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                'ชื่อรายการประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิ',
+                                (contoller.dataEvent.value.events==null)?'':contoller.dataEvent.value.events!.receiveFrom!,
                                 style: textStyle(context,
                                     fontSize: 13, color: colorGrey),
                               ),
@@ -174,7 +187,7 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                'ประเภทภัยพิบัคิ',
+                                'หน่วยงานที่เกียวข้อง',
                                 style: textStyle(context,
                                     fontSize: 13, color: colorBlack),
                               ),
@@ -185,7 +198,7 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                'ชื่อรายการ',
+                                'สถานะหน่วยงานที่เกี่ยวข้อง',
                                 style: textStyle(context,
                                     fontSize: 13, color: colorBlack),
                               ),
@@ -200,7 +213,7 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                'ประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิ',
+    (contoller.dataEvent.value.events==null)?'':contoller.dataEvent.value.events!.relatedAgency!,
                                 style: textStyle(context,
                                     fontSize: 13, color: colorGrey),
                               ),
@@ -211,7 +224,7 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                'ชื่อรายการประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิ',
+                                (contoller.dataEvent.value.events==null)?'':contoller.StatusList[contoller.dataEvent.value.events!.statusRelatedAgency!],
                                 style: textStyle(context,
                                     fontSize: 13, color: colorGrey),
                               ),
@@ -226,7 +239,7 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                'ประเภทภัยพิบัคิ',
+                                'หน่วยงานที่รับผิดชอบ',
                                 style: textStyle(context,
                                     fontSize: 13, color: colorBlack),
                               ),
@@ -237,7 +250,7 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                'ชื่อรายการ',
+                                'สถานะหน่วยงานที่รับผิดชอบ',
                                 style: textStyle(context,
                                     fontSize: 13, color: colorBlack),
                               ),
@@ -252,7 +265,7 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                'ประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิ',
+    (contoller.dataEvent.value.events==null)?'':contoller.dataEvent.value.events!.responsibleAgency??'',
                                 style: textStyle(context,
                                     fontSize: 13, color: colorGrey),
                               ),
@@ -263,7 +276,7 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                'ชื่อรายการประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิ',
+                                (contoller.dataEvent.value.events==null)?'':contoller.StatusList[contoller.dataEvent.value.events!.statusAgency!],
                                 style: textStyle(context,
                                     fontSize: 13, color: colorGrey),
                               ),
@@ -278,7 +291,7 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                'ประเภทภัยพิบัคิ',
+                                'ผู้ประสบภัย',
                                 style: textStyle(context,
                                     fontSize: 13, color: colorBlack),
                               ),
@@ -289,7 +302,7 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                'ชื่อรายการ',
+                                'ระดับความรุนแรง',
                                 style: textStyle(context,
                                     fontSize: 13, color: colorBlack),
                               ),
@@ -304,7 +317,7 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                'ประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิ',
+                            (contoller.dataEvent.value.events==null)?'':'ผู้เสียชีวิต ${contoller.dataEvent.value.events!.deceased!.total!} ราย เพศชาย ${contoller.dataEvent.value.events!.deceased!.male!} คน เพศหญิง ${contoller.dataEvent.value.events!.deceased!.feMale!} คน ไม่สามารถระบุเพศได้ ${contoller.dataEvent.value.events!.deceased!.unidentify!} คน\nผู้บาดเจ็บ ${contoller.dataEvent.value.events!.injured!.total!} ราย เพศชาย ${contoller.dataEvent.value.events!.injured!.male!} คน เพศหญิง ${contoller.dataEvent.value.events!.injured!.feMale!} คน ไม่สามารถระบุเพศได้ ${contoller.dataEvent.value.events!.injured!.unidentify!} คน',
                                 style: textStyle(context,
                                     fontSize: 13, color: colorGrey),
                               ),
@@ -315,11 +328,53 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                'ชื่อรายการประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิประเภทภัยพิบัคิ',
+         (contoller.dataEvent.value.events==null)?'':(contoller.dataEvent.value.events!.violence==1)?'เล็กน้อย':(contoller.dataEvent.value.events!.violence==2)?'ปานกลาง':'รุนแรง',
                                 style: textStyle(context,
                                     fontSize: 13, color: colorGrey),
                               ),
                             )),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: Container(
+                                  child: Text(
+                                    'สถานะรายงาน',
+                                    style: textStyle(context,
+                                        fontSize: 13, color: colorBlack),
+                                  ),
+                                )),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Expanded(
+                                child: Container(
+                                )),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: Container(
+                                  child: Text(
+                                    (contoller.dataEvent.value.events==null)?'':contoller.StatusList[contoller.dataEvent.value.events!.statusItem!],
+                                    style: textStyle(context,
+                                        fontSize: 13, color: colorGrey),
+                                  ),
+                                )),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Expanded(
+                                child: Container(
+                                )),
                           ],
                         ),
                         const SizedBox(
@@ -428,6 +483,150 @@ class Detail extends StatelessWidget {
                               )
                             ],
                           )),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: Container(
+                                  child: Text(
+                                    'ละติจูด',
+                                    style: textStyle(context,
+                                        fontSize: 13, color: colorBlack),
+                                  ),
+                                )),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Expanded(
+                                child: Container(
+                                  child: Text(
+                                    'ลองติจูด',
+                                    style: textStyle(context,
+                                        fontSize: 13, color: colorBlack),
+                                  ),
+                                ))
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: Container(
+                                  child: Text(
+                                    (contoller.dataEvent.value.events==null)?'':contoller.dataEvent.value.events!.latitude!,
+                                    style: textStyle(context,
+                                        fontSize: 13, color: colorGrey),
+                                  ),
+                                )),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Expanded(
+                                child: Container(
+                                  child: Text(
+                                    (contoller.dataEvent.value.events==null)?'':contoller.dataEvent.value.events!.longitude!,
+                                    style: textStyle(context,
+                                        fontSize: 13, color: colorGrey),
+                                  ),
+                                )),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: Container(
+                                  child: Text(
+                                    'รูปที่อัพโหลด',
+                                    style: textStyle(context,
+                                        fontSize: 13, color: colorBlack),
+                                  ),
+                                )),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Expanded(
+                                child: Container(
+                                ))
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                       if((contoller.dataEvent.value.events!=null))GridView.builder (
+                          shrinkWrap: true,
+                          gridDelegate:
+                          const SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 150,
+                            crossAxisSpacing: 3.0,
+                            mainAxisSpacing: 10.0,
+                            childAspectRatio: 0.8,
+                          ),
+                          itemCount:
+                          contoller.dataEvent.value.events!.imageList!.length,
+                          itemBuilder: (context, index) {
+
+                              return Container(
+                                height: 200,
+                                width: 200,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image:NetworkImage(
+                                            contoller.dataEvent.value.events!.imageList![index].pathImage!,
+                                            ),fit: BoxFit.cover),
+                              ),
+                              );
+
+                          },
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: Container(
+                                  child: Text(
+                                    'รายละเอียดเพิ่มเติม',
+                                    style: textStyle(context,
+                                        fontSize: 13, color: colorBlack),
+                                  ),
+                                )),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Expanded(
+                                child: Container(
+                                ))
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: Container(
+                                  child: Text(
+                                    (contoller.dataEvent.value.events==null)?'':contoller.dataEvent.value.events!.note!,
+                                    style: textStyle(context,
+                                        fontSize: 13, color: colorGrey),
+                                  ),
+                                )),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Expanded(
+                                child: Container(
+                                )),
+                          ],
                         ),
                       ],
                     ),

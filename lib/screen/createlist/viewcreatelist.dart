@@ -1645,7 +1645,7 @@ class CreateList extends StatelessWidget {
                                         ),
                                       ],
                                     )
-                                  : GridView.builder(
+                                  : GridView.builder (
                                       shrinkWrap: true,
                                       gridDelegate:
                                           const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -1797,24 +1797,7 @@ class CreateList extends StatelessWidget {
                           Row(
                             children: [
                               const Spacer(),
-                              Container(
-                                alignment: Alignment.center,
-                                height: 40,
-                                width: 80,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: colorAmber),
-                                child: Text(
-                                  'บันทึก',
-                                  style: textStyle(context,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: colorWhite),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 20,
-                              ),
+
                               InkWell(
                                 onTap: ()async{
                                   await contoller.submit(context);
@@ -1827,7 +1810,7 @@ class CreateList extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(5),
                                       color: colorAmber),
                                   child: Text(
-                                    'ค้นหา',
+                                    'บันทึก',
                                     style: textStyle(context,
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,
