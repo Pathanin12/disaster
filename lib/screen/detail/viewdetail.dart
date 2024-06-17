@@ -37,12 +37,13 @@ class Detail extends StatelessWidget {
                             fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       InkWell(
-                        onTap: (){
+                        onTap: ()async{
                           final ContollerCreateList contollerEdite =
                           Get.put(ContollerCreateList(), permanent: false);
                           final LandingPageController landingPageController =
                           Get.put(LandingPageController(), permanent: false);
-
+                          await contollerEdite.editEvent(contoller.dataEvent.value);
+                          landingPageController.tabIndex.value=6;
 
                         },
                         child: Container(

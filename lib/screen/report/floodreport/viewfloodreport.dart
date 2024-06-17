@@ -587,6 +587,9 @@ class FloodReport extends StatelessWidget {
                               const SizedBox(
                                 width: 40,
                               ),
+                              const SizedBox(
+                                width: 40,
+                              ),
                             ],
                           ),
                           Divider(

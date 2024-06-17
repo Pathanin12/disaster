@@ -27,8 +27,7 @@ import '../../model/eventbyidmodel.dart' as edit;
 class ContollerCreateList extends GetxController {
   final keyForm = GlobalKey<FormState>();
   final mapController = MapController().obs;
-  var dataEvent= edit.EventByIDModel().obs;
-
+  var dataEditEvent= edit.EventByIDModel().obs;
   String? imageFile;
   var listImage = <Uint8List>[].obs;
   var date = DateTime.now().toString().split(" ")[0].obs;
@@ -50,6 +49,36 @@ class ContollerCreateList extends GetxController {
   var radio = 1.obs;
   final NumberPaginatorController controllerNumPage =
       NumberPaginatorController();
+
+  editEvent(edit.EventByIDModel data)async{
+  dataEditEvent.value=data;
+  nameCon.value.text = data.events!.eventName??'';
+  createBy.value.text = data.events!.receiveFrom??'';
+  lat.value.text = data.events!.latitude!;
+  unGenderDie.value.text=data.events!.deceased!.unidentify.toString()??'';
+  lng.value.text = data.events!.longitude!;
+  responsible.value.text = data.events!.responsibleAgency??'';
+  die.value.text = data.events!.deceased!.total!.toString()??'';
+  relevant.value.text = data.events!.relatedAgency??'';
+  mandie.value.text = data.events!.deceased!.male.toString()??'';
+  womenDie.value.text = data.events!.deceased!.feMale.toString()??'';
+  injured.value.text = data.events!.injured!.total.toString()??'';
+  manInjured.value.text = data.events!.injured!.male.toString()??'';
+  womenInjured.value.text = data.events!.injured!.feMale.toString()??'';
+  unGenderInjured.value.text = data.events!.injured!.unidentify.toString()??'';
+  remark.value.text = data.events!.note??'';
+  radio.value = data.events!.violence??1;
+  date.value = data.events!.datetime!;
+  // listImage.value.clear();
+  selectCategory!.value = category[data.events!.disasterType!];
+  selectStatusList!.value = StatusList[data.events!.statusItem!];
+  selectStatusResponsible!.value = StatusList[data.events!.statusRelatedAgency!];
+  selectStatusrelevant!.value = StatusList[data.events!.statusAgency!];
+  selectAgerangeDie!.value = AgerangeList[data.events!.deceased!.ageRange!];
+  selectAgerange!.value = AgerangeList[data.events!.injured!.ageRange!];
+  mapController.value.move(
+      LatLng(double.parse(lat.value.text), double.parse(lng.value.text)), 16);
+  }
 
   clearData() async {
     nameCon.value.text = '';
@@ -78,6 +107,7 @@ class ContollerCreateList extends GetxController {
     selectAgerange!.value = '0-20';
     mapController.value.move(
         LatLng(double.parse(lat.value.text), double.parse(lng.value.text)), 16);
+    dataEditEvent= edit.EventByIDModel().obs;
   }
 
   RxString? selectCategory = 'อัคคีภัย'.obs;
@@ -120,7 +150,12 @@ class ContollerCreateList extends GetxController {
 
   Future<void> submit(BuildContext context) async {
     try {
-      String uuid = const Uuid().v4();
+      String uuid='';
+      if(dataEditEvent.value.events!=null){
+        uuid = dataEditEvent.value.events!.eventID!;
+      }else{
+        uuid = const Uuid().v4();
+      }
       String location =
           await getLatLong(long: lng.value.text, lat: lat.value.text);
       List<ImageList> listImageBase64 = [];

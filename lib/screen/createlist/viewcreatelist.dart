@@ -1,4 +1,3 @@
-
 import 'package:disaster/stye/colors.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
@@ -37,7 +36,10 @@ class CreateList extends StatelessWidget {
                         children: [
                           Container(
                               height: 20,
-                              child: Text('สร้างรายการ',
+                              child: Text(
+                                  (contoller.dataEditEvent.value.events == null)
+                                      ? 'สร้างรายการ'
+                                      : 'แก้ไขรายงาน',
                                   style: textStyle(context,
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold))),
@@ -224,14 +226,18 @@ class CreateList extends StatelessWidget {
                                     ),
                                     Expanded(
                                       flex: 5,
-                                      child: Container(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            'สถานะของรายการ',
-                                            style: textStyle(context,
-                                                color: colorBlack,
-                                                fontSize: 13),
-                                          )),
+                                      child: (contoller
+                                                  .dataEditEvent.value.events ==
+                                              null)
+                                          ? SizedBox()
+                                          : Container(
+                                              alignment: Alignment.centerLeft,
+                                              child: Text(
+                                                'สถานะของรายการ',
+                                                style: textStyle(context,
+                                                    color: colorBlack,
+                                                    fontSize: 13),
+                                              )),
                                     ),
                                   ],
                                 ),
@@ -240,20 +246,40 @@ class CreateList extends StatelessWidget {
                                     Expanded(
                                       flex: 5,
                                       child: InkWell(
-                                        onTap: ()async{
-                                          DateTime? newDateTime = await showRoundedDatePicker (
+                                        onTap: () async {
+                                          DateTime? newDateTime =
+                                              await showRoundedDatePicker(
                                             theme: ThemeData(
                                               primaryColor: Colors.amberAccent,
-                                             ),
-                                            styleDatePicker: MaterialRoundedDatePickerStyle(
+                                            ),
+                                            styleDatePicker:
+                                                MaterialRoundedDatePickerStyle(
                                               textStyleCurrentDayOnCalendar:
-                                              TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
-                                              textStyleDayOnCalendar: TextStyle(fontSize: 20, color: Colors.black),
+                                                  TextStyle(
+                                                      fontSize: 20,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                              textStyleDayOnCalendar: TextStyle(
+                                                  fontSize: 20,
+                                                  color: Colors.black),
                                               textStyleDayOnCalendarSelected:
-                                              TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
-                                              textStyleDayOnCalendarDisabled: TextStyle(fontSize: 20, color: Colors.black.withOpacity(0.1)),
+                                                  TextStyle(
+                                                      fontSize: 20,
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                              textStyleDayOnCalendarDisabled:
+                                                  TextStyle(
+                                                      fontSize: 20,
+                                                      color: Colors.black
+                                                          .withOpacity(0.1)),
                                               textStyleMonthYearHeader:
-                                              TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
+                                                  TextStyle(
+                                                      fontSize: 20,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold),
                                               sizeArrow: 50,
                                               colorArrowNext: Colors.black,
                                               colorArrowPrevious: Colors.black,
@@ -261,25 +287,44 @@ class CreateList extends StatelessWidget {
                                               marginTopArrowPrevious: 16,
                                               marginTopArrowNext: 16,
                                               marginRightArrowNext: 32,
-                                              textStyleButtonAction: TextStyle(fontSize: 20, color: Colors.black),
+                                              textStyleButtonAction: TextStyle(
+                                                  fontSize: 20,
+                                                  color: Colors.black),
                                               textStyleButtonPositive:
-                                              TextStyle(fontSize: 20, color: Colors.amber, fontWeight: FontWeight.bold),
-                                              textStyleButtonNegative: TextStyle(fontSize: 20, color: Colors.black45.withOpacity(0.5)),
-                                              decorationDateSelected: BoxDecoration(color: Colors.amber, shape: BoxShape.circle),
+                                                  TextStyle(
+                                                      fontSize: 20,
+                                                      color: Colors.amber,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                              textStyleButtonNegative:
+                                                  TextStyle(
+                                                      fontSize: 20,
+                                                      color: Colors.black45
+                                                          .withOpacity(0.5)),
+                                              decorationDateSelected:
+                                                  BoxDecoration(
+                                                      color: Colors.amber,
+                                                      shape: BoxShape.circle),
                                             ),
-                                            styleYearPicker: MaterialRoundedYearPickerStyle(
-                                              textStyleYear: TextStyle(fontSize: 30, color: Colors.black),
-                                              textStyleYearSelected:
-                                              TextStyle(fontSize: 40, color: Colors.black45, fontWeight: FontWeight.bold),
+                                            styleYearPicker:
+                                                MaterialRoundedYearPickerStyle(
+                                              textStyleYear: TextStyle(
+                                                  fontSize: 30,
+                                                  color: Colors.black),
+                                              textStyleYearSelected: TextStyle(
+                                                  fontSize: 40,
+                                                  color: Colors.black45,
+                                                  fontWeight: FontWeight.bold),
                                               heightYearRow: 100,
                                             ),
                                             context: context,
                                             locale: Locale("th", "TH"),
                                           );
-                                          if(newDateTime!=null){
-                                            contoller.date.value=newDateTime.toString().split(" ")[0];
+                                          if (newDateTime != null) {
+                                            contoller.date.value = newDateTime
+                                                .toString()
+                                                .split(" ")[0];
                                           }
-
                                         },
                                         child: Container(
                                           padding: const EdgeInsets.only(
@@ -296,10 +341,21 @@ class CreateList extends StatelessWidget {
                                           alignment: Alignment.center,
                                           child: SizedBox(
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
-                                                Text(contoller.date.value,style: textStyle(context,fontSize: 13,color: colorBlack),),
-                                                Icon(Icons.date_range,size: 20,color: Colors.grey,)
+                                                Text(
+                                                  contoller.date.value,
+                                                  style: textStyle(context,
+                                                      fontSize: 13,
+                                                      color: colorBlack),
+                                                ),
+                                                Icon(
+                                                  Icons.date_range,
+                                                  size: 20,
+                                                  color: Colors.grey,
+                                                )
                                               ],
                                             ),
                                           ),
@@ -311,84 +367,98 @@ class CreateList extends StatelessWidget {
                                     ),
                                     Expanded(
                                       flex: 5,
-                                      child: Container(
-                                        padding: const EdgeInsets.only(
-                                            left: 20, right: 5),
-                                        width: double.infinity,
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                            color: colorWhite,
-                                            border: Border.all(
-                                              color: Colors.black26,
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(5)),
-                                        alignment: Alignment.center,
-                                        child: SizedBox(
-                                          width: double.infinity,
-                                          child: DropdownButtonHideUnderline(
-                                            child: DropdownButton2<String>(
-                                              dropdownStyleData:
-                                                  DropdownStyleData(
-                                                maxHeight: 300,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                ),
-                                                scrollbarTheme:
-                                                    ScrollbarThemeData(
-                                                  radius:
-                                                      const Radius.circular(5),
-                                                  thickness:
-                                                      MaterialStateProperty.all<
-                                                          double>(6),
-                                                  thumbVisibility:
-                                                      MaterialStateProperty.all<
-                                                          bool>(true),
-                                                ),
-                                              ),
-                                              autofocus: true,
-                                              isExpanded: true,
-                                              value: contoller
-                                                  .selectStatusList!.value,
-                                              hint: Text(
-                                                'เลือกทั้งหมด',
-                                                style: TextStyle(
-                                                    fontSize: 13.0,
-                                                    color: colorGrey,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                              items: contoller.StatusList.map<
-                                                      DropdownMenuItem<String>>(
-                                                  (String? value) {
-                                                return DropdownMenuItem<String>(
-                                                  value: value!,
-                                                  child: Text(
-                                                    value,
-                                                    style: TextStyle(
-                                                        fontSize: 13.0,
-                                                        color: colorBlack,
-                                                        fontWeight:
-                                                            FontWeight.w400),
+                                      child: (contoller
+                                                  .dataEditEvent.value.events ==
+                                              null)
+                                          ? SizedBox()
+                                          : Container(
+                                              padding: const EdgeInsets.only(
+                                                  left: 20, right: 5),
+                                              width: double.infinity,
+                                              height: 40,
+                                              decoration: BoxDecoration(
+                                                  color: colorWhite,
+                                                  border: Border.all(
+                                                    color: Colors.black26,
+                                                    width: 1,
                                                   ),
-                                                );
-                                              }).toList(),
-                                              iconStyleData:
-                                                  const IconStyleData(
-                                                      icon: Icon(
-                                                Icons.keyboard_arrow_down,
-                                                size: 24,
-                                              )),
-                                              onChanged: (valueSelect) {
-                                                contoller.selectStatusList!
-                                                    .value = valueSelect!;
-                                              },
+                                                  borderRadius:
+                                                      BorderRadius.circular(5)),
+                                              alignment: Alignment.center,
+                                              child: SizedBox(
+                                                width: double.infinity,
+                                                child:
+                                                    DropdownButtonHideUnderline(
+                                                  child:
+                                                      DropdownButton2<String>(
+                                                    dropdownStyleData:
+                                                        DropdownStyleData(
+                                                      maxHeight: 300,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                      ),
+                                                      scrollbarTheme:
+                                                          ScrollbarThemeData(
+                                                        radius: const Radius
+                                                            .circular(5),
+                                                        thickness:
+                                                            MaterialStateProperty
+                                                                .all<double>(6),
+                                                        thumbVisibility:
+                                                            MaterialStateProperty
+                                                                .all<bool>(
+                                                                    true),
+                                                      ),
+                                                    ),
+                                                    autofocus: true,
+                                                    isExpanded: true,
+                                                    value: contoller
+                                                        .selectStatusList!
+                                                        .value,
+                                                    hint: Text(
+                                                      'เลือกทั้งหมด',
+                                                      style: TextStyle(
+                                                          fontSize: 13.0,
+                                                          color: colorGrey,
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    ),
+                                                    items: contoller
+                                                        .StatusList.map<
+                                                            DropdownMenuItem<
+                                                                String>>(
+                                                        (String? value) {
+                                                      return DropdownMenuItem<
+                                                          String>(
+                                                        value: value!,
+                                                        child: Text(
+                                                          value,
+                                                          style: TextStyle(
+                                                              fontSize: 13.0,
+                                                              color: colorBlack,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400),
+                                                        ),
+                                                      );
+                                                    }).toList(),
+                                                    iconStyleData:
+                                                        const IconStyleData(
+                                                            icon: Icon(
+                                                      Icons.keyboard_arrow_down,
+                                                      size: 24,
+                                                    )),
+                                                    onChanged: (valueSelect) {
+                                                      contoller
+                                                          .selectStatusList!
+                                                          .value = valueSelect!;
+                                                    },
+                                                  ),
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                      ),
                                     ),
                                   ],
                                 ),
@@ -420,14 +490,18 @@ class CreateList extends StatelessWidget {
                                     ),
                                     Expanded(
                                       flex: 5,
-                                      child: Container(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            'สถานะหน่วยงานที่รับผิดชอบ',
-                                            style: textStyle(context,
-                                                color: colorBlack,
-                                                fontSize: 13),
-                                          )),
+                                      child: (contoller
+                                                  .dataEditEvent.value.events ==
+                                              null)
+                                          ? SizedBox()
+                                          : Container(
+                                              alignment: Alignment.centerLeft,
+                                              child: Text(
+                                                'สถานะหน่วยงานที่รับผิดชอบ',
+                                                style: textStyle(context,
+                                                    color: colorBlack,
+                                                    fontSize: 13),
+                                              )),
                                     ),
                                   ],
                                 ),
@@ -470,87 +544,98 @@ class CreateList extends StatelessWidget {
                                     ),
                                     Expanded(
                                       flex: 5,
-                                      child: Container(
-                                        padding: const EdgeInsets.only(
-                                            left: 20, right: 5),
-                                        width: double.infinity,
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                            color: colorWhite,
-                                            border: Border.all(
-                                              color: Colors.black26,
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(5)),
-                                        alignment: Alignment.center,
-                                        child: SizedBox(
-                                          width: double.infinity,
-                                          child: DropdownButtonHideUnderline(
-                                            child: DropdownButton2<String>(
-                                              dropdownStyleData:
-                                                  DropdownStyleData(
-                                                maxHeight: 300,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                ),
-                                                scrollbarTheme:
-                                                    ScrollbarThemeData(
-                                                  radius:
-                                                      const Radius.circular(5),
-                                                  thickness:
-                                                      MaterialStateProperty.all<
-                                                          double>(6),
-                                                  thumbVisibility:
-                                                      MaterialStateProperty.all<
-                                                          bool>(true),
-                                                ),
-                                              ),
-                                              autofocus: true,
-                                              isExpanded: true,
-                                              value: contoller
-                                                  .selectStatusResponsible!
-                                                  .value,
-                                              hint: Text(
-                                                'เลือกทั้งหมด',
-                                                style: TextStyle(
-                                                    fontSize: 13.0,
-                                                    color: colorGrey,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                              items: contoller
-                                                  .StatusResponsible.map<
-                                                      DropdownMenuItem<String>>(
-                                                  (String? value) {
-                                                return DropdownMenuItem<String>(
-                                                  value: value!,
-                                                  child: Text(
-                                                    value,
-                                                    style: TextStyle(
-                                                        fontSize: 13.0,
-                                                        color: colorBlack,
-                                                        fontWeight:
-                                                            FontWeight.w400),
+                                      child: (contoller
+                                                  .dataEditEvent.value.events ==
+                                              null)
+                                          ? SizedBox()
+                                          : Container(
+                                              padding: const EdgeInsets.only(
+                                                  left: 20, right: 5),
+                                              width: double.infinity,
+                                              height: 40,
+                                              decoration: BoxDecoration(
+                                                  color: colorWhite,
+                                                  border: Border.all(
+                                                    color: Colors.black26,
+                                                    width: 1,
                                                   ),
-                                                );
-                                              }).toList(),
-                                              iconStyleData:
-                                                  const IconStyleData(
-                                                      icon: Icon(
-                                                Icons.keyboard_arrow_down,
-                                                size: 24,
-                                              )),
-                                              onChanged: (valueSelect) {
-                                                contoller
-                                                    .selectStatusResponsible!
-                                                    .value = valueSelect!;
-                                              },
+                                                  borderRadius:
+                                                      BorderRadius.circular(5)),
+                                              alignment: Alignment.center,
+                                              child: SizedBox(
+                                                width: double.infinity,
+                                                child:
+                                                    DropdownButtonHideUnderline(
+                                                  child:
+                                                      DropdownButton2<String>(
+                                                    dropdownStyleData:
+                                                        DropdownStyleData(
+                                                      maxHeight: 300,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                      ),
+                                                      scrollbarTheme:
+                                                          ScrollbarThemeData(
+                                                        radius: const Radius
+                                                            .circular(5),
+                                                        thickness:
+                                                            MaterialStateProperty
+                                                                .all<double>(6),
+                                                        thumbVisibility:
+                                                            MaterialStateProperty
+                                                                .all<bool>(
+                                                                    true),
+                                                      ),
+                                                    ),
+                                                    autofocus: true,
+                                                    isExpanded: true,
+                                                    value: contoller
+                                                        .selectStatusResponsible!
+                                                        .value,
+                                                    hint: Text(
+                                                      'เลือกทั้งหมด',
+                                                      style: TextStyle(
+                                                          fontSize: 13.0,
+                                                          color: colorGrey,
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    ),
+                                                    items: contoller
+                                                        .StatusResponsible.map<
+                                                            DropdownMenuItem<
+                                                                String>>(
+                                                        (String? value) {
+                                                      return DropdownMenuItem<
+                                                          String>(
+                                                        value: value!,
+                                                        child: Text(
+                                                          value,
+                                                          style: TextStyle(
+                                                              fontSize: 13.0,
+                                                              color: colorBlack,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400),
+                                                        ),
+                                                      );
+                                                    }).toList(),
+                                                    iconStyleData:
+                                                        const IconStyleData(
+                                                            icon: Icon(
+                                                      Icons.keyboard_arrow_down,
+                                                      size: 24,
+                                                    )),
+                                                    onChanged: (valueSelect) {
+                                                      contoller
+                                                          .selectStatusResponsible!
+                                                          .value = valueSelect!;
+                                                    },
+                                                  ),
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                      ),
                                     ),
                                   ],
                                 ),
@@ -719,14 +804,18 @@ class CreateList extends StatelessWidget {
                                     ),
                                     Expanded(
                                       flex: 5,
-                                      child: Container(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            'สถานะหน่วยงานที่เกี่ยวข้อง',
-                                            style: textStyle(context,
-                                                color: colorBlack,
-                                                fontSize: 13),
-                                          )),
+                                      child: (contoller
+                                                  .dataEditEvent.value.events ==
+                                              null)
+                                          ? SizedBox()
+                                          : Container(
+                                              alignment: Alignment.centerLeft,
+                                              child: Text(
+                                                'สถานะหน่วยงานที่เกี่ยวข้อง',
+                                                style: textStyle(context,
+                                                    color: colorBlack,
+                                                    fontSize: 13),
+                                              )),
                                     ),
                                   ],
                                 ),
@@ -768,85 +857,98 @@ class CreateList extends StatelessWidget {
                                     ),
                                     Expanded(
                                       flex: 5,
-                                      child: Container(
-                                        padding: const EdgeInsets.only(
-                                            left: 20, right: 5),
-                                        width: double.infinity,
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                            color: colorWhite,
-                                            border: Border.all(
-                                              color: Colors.black26,
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(5)),
-                                        alignment: Alignment.center,
-                                        child: SizedBox(
-                                          width: double.infinity,
-                                          child: DropdownButtonHideUnderline(
-                                            child: DropdownButton2<String>(
-                                              dropdownStyleData:
-                                                  DropdownStyleData(
-                                                maxHeight: 300,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                ),
-                                                scrollbarTheme:
-                                                    ScrollbarThemeData(
-                                                  radius:
-                                                      const Radius.circular(5),
-                                                  thickness:
-                                                      MaterialStateProperty.all<
-                                                          double>(6),
-                                                  thumbVisibility:
-                                                      MaterialStateProperty.all<
-                                                          bool>(true),
-                                                ),
-                                              ),
-                                              autofocus: true,
-                                              isExpanded: true,
-                                              value: contoller
-                                                  .selectStatusrelevant!.value,
-                                              hint: Text(
-                                                'เลือกทั้งหมด',
-                                                style: TextStyle(
-                                                    fontSize: 13.0,
-                                                    color: colorGrey,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                              items: contoller
-                                                  .Statusrelevant.map<
-                                                      DropdownMenuItem<String>>(
-                                                  (String? value) {
-                                                return DropdownMenuItem<String>(
-                                                  value: value!,
-                                                  child: Text(
-                                                    value,
-                                                    style: TextStyle(
-                                                        fontSize: 13.0,
-                                                        color: colorBlack,
-                                                        fontWeight:
-                                                            FontWeight.w400),
+                                      child: (contoller
+                                                  .dataEditEvent.value.events ==
+                                              null)
+                                          ? SizedBox()
+                                          : Container(
+                                              padding: const EdgeInsets.only(
+                                                  left: 20, right: 5),
+                                              width: double.infinity,
+                                              height: 40,
+                                              decoration: BoxDecoration(
+                                                  color: colorWhite,
+                                                  border: Border.all(
+                                                    color: Colors.black26,
+                                                    width: 1,
                                                   ),
-                                                );
-                                              }).toList(),
-                                              iconStyleData:
-                                                  const IconStyleData(
-                                                      icon: Icon(
-                                                Icons.keyboard_arrow_down,
-                                                size: 24,
-                                              )),
-                                              onChanged: (valueSelect) {
-                                                contoller.selectStatusrelevant!
-                                                    .value = valueSelect!;
-                                              },
+                                                  borderRadius:
+                                                      BorderRadius.circular(5)),
+                                              alignment: Alignment.center,
+                                              child: SizedBox(
+                                                width: double.infinity,
+                                                child:
+                                                    DropdownButtonHideUnderline(
+                                                  child:
+                                                      DropdownButton2<String>(
+                                                    dropdownStyleData:
+                                                        DropdownStyleData(
+                                                      maxHeight: 300,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                      ),
+                                                      scrollbarTheme:
+                                                          ScrollbarThemeData(
+                                                        radius: const Radius
+                                                            .circular(5),
+                                                        thickness:
+                                                            MaterialStateProperty
+                                                                .all<double>(6),
+                                                        thumbVisibility:
+                                                            MaterialStateProperty
+                                                                .all<bool>(
+                                                                    true),
+                                                      ),
+                                                    ),
+                                                    autofocus: true,
+                                                    isExpanded: true,
+                                                    value: contoller
+                                                        .selectStatusrelevant!
+                                                        .value,
+                                                    hint: Text(
+                                                      'เลือกทั้งหมด',
+                                                      style: TextStyle(
+                                                          fontSize: 13.0,
+                                                          color: colorGrey,
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    ),
+                                                    items: contoller
+                                                        .Statusrelevant.map<
+                                                            DropdownMenuItem<
+                                                                String>>(
+                                                        (String? value) {
+                                                      return DropdownMenuItem<
+                                                          String>(
+                                                        value: value!,
+                                                        child: Text(
+                                                          value,
+                                                          style: TextStyle(
+                                                              fontSize: 13.0,
+                                                              color: colorBlack,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400),
+                                                        ),
+                                                      );
+                                                    }).toList(),
+                                                    iconStyleData:
+                                                        const IconStyleData(
+                                                            icon: Icon(
+                                                      Icons.keyboard_arrow_down,
+                                                      size: 24,
+                                                    )),
+                                                    onChanged: (valueSelect) {
+                                                      contoller
+                                                          .selectStatusrelevant!
+                                                          .value = valueSelect!;
+                                                    },
+                                                  ),
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                      ),
                                     ),
                                   ],
                                 ),
@@ -1087,8 +1189,8 @@ class CreateList extends StatelessWidget {
                                             ),
                                             autofocus: true,
                                             isExpanded: true,
-                                            value:
-                                                contoller.selectAgerangeDie!.value,
+                                            value: contoller
+                                                .selectAgerangeDie!.value,
                                             hint: Text(
                                               'เลือกทั้งหมด',
                                               style: TextStyle(
@@ -1117,8 +1219,8 @@ class CreateList extends StatelessWidget {
                                               size: 24,
                                             )),
                                             onChanged: (valueSelect) {
-                                              contoller.selectAgerangeDie!.value =
-                                                  valueSelect!;
+                                              contoller.selectAgerangeDie!
+                                                  .value = valueSelect!;
                                             },
                                           ),
                                         ),
@@ -1429,12 +1531,15 @@ class CreateList extends StatelessWidget {
                                   mapController: contoller.mapController.value,
                                   options: MapOptions(
                                       initialCenter: LatLng(
-                                          double.parse(contoller.lat.value.text),
-                                          double.parse(contoller.lng.value.text)),
+                                          double.parse(
+                                              contoller.lat.value.text),
+                                          double.parse(
+                                              contoller.lng.value.text)),
                                       initialZoom: 14,
                                       interactionOptions: InteractionOptions(
-                                        flags: InteractiveFlag.doubleTapDragZoom |
-                                            InteractiveFlag.drag,
+                                        flags:
+                                            InteractiveFlag.doubleTapDragZoom |
+                                                InteractiveFlag.drag,
                                       ),
                                       onPositionChanged: (v, c) {
                                         contoller.lat.value.text =
@@ -1458,18 +1563,24 @@ class CreateList extends StatelessWidget {
                               Container(
                                 height: 400,
                                 child: Center(
-                                    child: Container(
-                                      height: 60,
-                                      child: Column(
-                                          children: [
-                                            SizedBox(
-                                              height: 30,
-                                              child: Icon(Icons.location_pin,color: Colors.red,size: 30,),
-                                            ),
-                                            SizedBox(height: 30,)
-                                          ],
-                                      ),
+                                  child: Container(
+                                    height: 60,
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 30,
+                                          child: Icon(
+                                            Icons.location_pin,
+                                            color: Colors.red,
+                                            size: 30,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 30,
+                                        )
+                                      ],
                                     ),
+                                  ),
                                 ),
                               )
                             ],
@@ -1645,7 +1756,7 @@ class CreateList extends StatelessWidget {
                                         ),
                                       ],
                                     )
-                                  : GridView.builder (
+                                  : GridView.builder(
                                       shrinkWrap: true,
                                       gridDelegate:
                                           const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -1796,10 +1907,70 @@ class CreateList extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              const Spacer(),
+                              const Spacer(), InkWell(
+                                onTap: () async {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'คำเตือน',
+                                            style: textStyle(context,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
+                                      ),
+                                      content: Text('คุณต้องการยกเลิกหรือไม่'),
+                                      actions: [
+                                        InkWell(
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text(
+                                              'ยกเลิก',
+                                              style: textStyle(context,
+                                                  fontSize: 14),
+                                            )),
+                                        InkWell(
+                                            onTap: () async{
+                                              await contoller.clearData();
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text(
+                                              'ตกลง',
+                                              style: textStyle(context,
+                                                  fontSize: 14),
+                                            )),
+                                      ],
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  height: 40,
+                                  width: 80,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: colorGrey),
+                                  child: Text(
+                                    'ยกเลิก',
+                                    style: textStyle(context,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: colorWhite),
+                                  ),
+                                ),
+                              ),
 
+                              const SizedBox(
+                                width: 20,
+                              ),
                               InkWell(
-                                onTap: ()async{
+                                onTap: () async {
                                   await contoller.submit(context);
                                 },
                                 child: Container(
