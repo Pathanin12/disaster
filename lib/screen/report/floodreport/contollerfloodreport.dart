@@ -219,66 +219,76 @@ class ContollerFloodReport extends GetxController {
       Widget widget = MarkerLayer(
         markers: [
           Marker(
-            point: LatLng(double.parse(element.latitude!),
-                double.parse(element.longitude!)),
-            width: 80,
-            height: 80,
-            child: (element.disasterType == 0 && element.statusItem == 0)
-                ? SvgPicture.asset(
-                    'assets/icons/svg/fire0.svg',
-                  )
-                : (element.disasterType == 0 && element.statusItem == 1)
+              point: LatLng(double.parse(element.latitude!),
+                  double.parse(element.longitude!)),
+              width: 80,
+              height: 80,
+              child: InkWell(
+                onTap: (){
+                  final LandingPageController landingPageController =
+                  Get.put(LandingPageController(), permanent: false);
+                  final ContollerDetail contollerEvent =
+                  Get.put(ContollerDetail(), permanent: false);
+                  contollerEvent.getEvent(element.eventID!);
+                  landingPageController.tabIndex.value=7;
+                },
+                child: (element.disasterType == 0 && element.statusItem == 0)
                     ? SvgPicture.asset(
-                        'assets/icons/svg/fire1.svg',
-                      )
+                  'assets/icons/svg/fire0.svg',
+                )
+                    : (element.disasterType == 0 && element.statusItem == 1)
+                    ? SvgPicture.asset(
+                  'assets/icons/svg/fire1.svg',
+                )
                     : (element.disasterType == 0 && element.statusItem == 2)
-                        ? SvgPicture.asset(
-                            'assets/icons/svg/fire2.svg',
-                          )
-                        : (element.disasterType == 1 && element.statusItem == 0)
-                            ? SvgPicture.asset(
-                                'assets/icons/svg/flood0.svg',
-                              )
-                            : (element.disasterType == 1 &&
-                                    element.statusItem == 1)
-                                ? SvgPicture.asset(
-                                    'assets/icons/svg/flood1.svg',
-                                  )
-                                : (element.disasterType == 1 &&
-                                        element.statusItem == 2)
-                                    ? SvgPicture.asset(
-                                        'assets/icons/svg/flood2.svg',
-                                      )
-                                    : (element.disasterType == 2 &&
-                                            element.statusItem == 0)
-                                        ? SvgPicture.asset(
-                                            'assets/icons/svg/windstorm0.svg',
-                                          )
-                                        : (element.disasterType == 2 &&
-                                                element.statusItem == 1)
-                                            ? SvgPicture.asset(
-                                                'assets/icons/svg/windstorm1.svg',
-                                              )
-                                            : (element.disasterType == 2 &&
-                                                    element.statusItem == 2)
-                                                ? SvgPicture.asset(
-                                                    'assets/icons/svg/windstorm2.svg',
-                                                  )
-                                                : (element.disasterType == 3 &&
-                                                        element.statusItem == 0)
-                                                    ? SvgPicture.asset(
-                                                        'assets/icons/svg/forestfire0.svg',
-                                                      )
-                                                    : (element.disasterType ==
-                                                                3 &&
-                                                            element.statusItem ==
-                                                                1)
-                                                        ? SvgPicture.asset(
-                                                            'assets/icons/svg/forestfire1.svg',
-                                                          )
-                                                        : SvgPicture.asset(
-                                                            'assets/icons/svg/forestfire2.svg',
-                                                          ),
+                    ? SvgPicture.asset(
+                  'assets/icons/svg/fire2.svg',
+                )
+                    : (element.disasterType == 1 && element.statusItem == 0)
+                    ? SvgPicture.asset(
+                  'assets/icons/svg/flood0.svg',
+                )
+                    : (element.disasterType == 1 &&
+                    element.statusItem == 1)
+                    ? SvgPicture.asset(
+                  'assets/icons/svg/flood1.svg',
+                )
+                    : (element.disasterType == 1 &&
+                    element.statusItem == 2)
+                    ? SvgPicture.asset(
+                  'assets/icons/svg/flood2.svg',
+                )
+                    : (element.disasterType == 2 &&
+                    element.statusItem == 0)
+                    ? SvgPicture.asset(
+                  'assets/icons/svg/windstorm0.svg',
+                )
+                    : (element.disasterType == 2 &&
+                    element.statusItem == 1)
+                    ? SvgPicture.asset(
+                  'assets/icons/svg/windstorm1.svg',
+                )
+                    : (element.disasterType == 2 &&
+                    element.statusItem == 2)
+                    ? SvgPicture.asset(
+                  'assets/icons/svg/windstorm2.svg',
+                )
+                    : (element.disasterType == 3 &&
+                    element.statusItem == 0)
+                    ? SvgPicture.asset(
+                  'assets/icons/svg/forestfire0.svg',
+                )
+                    : (element.disasterType ==
+                    3 &&
+                    element.statusItem ==
+                        1)
+                    ? SvgPicture.asset(
+                  'assets/icons/svg/forestfire1.svg',
+                )
+                    : SvgPicture.asset(
+                  'assets/icons/svg/forestfire2.svg',
+                ),
+              )
           ),
         ],
       );
