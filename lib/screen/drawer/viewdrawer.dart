@@ -2,6 +2,7 @@ import 'package:disaster/stye/font.dart';
 import 'package:expansion_tile_group/expansion_tile_group.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
@@ -11,9 +12,14 @@ import '../../api/latlongapi.dart';
 import '../../stye/colors.dart';
 import '../createlist/viewcreatelist.dart';
 import '../dashboard/viewdashboard.dart';
+import '../detail/viewdetail.dart';
 import '../home.dart';
+import '../report/firereport/viewfirereport.dart';
+import '../report/floodreport/viewfloodreport.dart';
+import '../report/forestfirereport/viewforestfirereport.dart';
 import '../report/mainreport/viewmainreport.dart';
 import '../report/mainreport/viewmainreport.dart';
+import '../report/winestormreport/viewwinestormreport.dart';
 import 'contollerdrawer.dart';
 
 class LandingPage extends StatefulWidget {
@@ -105,9 +111,9 @@ class _LandingPageState extends State<LandingPage> {
                         height: 40,
                         child: Row(
                           children: [
-                            Icon(CupertinoIcons.home,color: Colors.grey,size: 22,),
+                            Icon(CupertinoIcons.home,color: (landingPageController.tabIndex.value==0)?Colors.white:Color(0xfff5a607f),size: 22,),
                             const SizedBox(width: 20,),
-                             Text('แดชบอร์ด',style: textStyle(context,fontSize: 16,fontWeight: FontWeight.w200,),),
+                             Text('แดชบอร์ด',style: textStyle(context,fontSize: 16,fontWeight: FontWeight.w200,color: (landingPageController.tabIndex.value==0)?Colors.white:Color(0xfff5a607f)),),
                           ],
                         ),
                       ),
@@ -126,9 +132,12 @@ class _LandingPageState extends State<LandingPage> {
                         height: 40,
                         child: Row(
                           children: [
-                            Icon(CupertinoIcons.chart_bar_fill,color: Colors.grey,size: 22,),
+                            SvgPicture.asset(
+                              color: (landingPageController.tabIndex.value==1)?Colors.white:Color(0xfff5a607f),
+                              'assets/icons/svg/reportmain.svg',
+                            ),
                             const SizedBox(width: 20,),
-                            Text('ดูรายงาน',style: textStyle(context,fontSize: 16,fontWeight: FontWeight.w200,),),
+                            Text('ดูรายงาน',style: textStyle(context,fontSize: 16,fontWeight: FontWeight.w200,color: (landingPageController.tabIndex.value==1)?Colors.white:Color(0xfff5a607f)),),
                           ],
                         ),
                       ),
@@ -146,11 +155,14 @@ class _LandingPageState extends State<LandingPage> {
                                 color: (landingPageController.tabIndex.value==2)?Colors.amber:Colors.transparent,
                               ),
                               height: 30,
-                              child: const Row(
+                              child:  Row(
                                 children: [
-                                  Icon(CupertinoIcons.chart_bar_fill,color: Colors.grey,size: 20,),
-                                  SizedBox(width: 20,),
-                                  Text('ดูรายงาน'),
+                                  SvgPicture.asset(
+                                    color: (landingPageController.tabIndex.value==2)?Colors.white:Color(0xfff5a607f),
+                                    'assets/icons/svg/report1.svg',
+                                  ),
+                                  const SizedBox(width: 20,),
+                                  Text('รายงานอัคคีภัย',style: textStyle(context,fontSize: 16,fontWeight: FontWeight.w200,color: (landingPageController.tabIndex.value==2)?Colors.white:Color(0xfff5a607f)),),
                                 ],
                               ),
                             ),
@@ -167,11 +179,14 @@ class _LandingPageState extends State<LandingPage> {
                                 color: (landingPageController.tabIndex.value==3)?Colors.amber:Colors.transparent,
                               ),
                               height: 30,
-                              child: const Row(
+                              child:Row(
                                 children: [
-                                  Icon(CupertinoIcons.chart_bar_fill,color: Colors.grey,size: 20,),
-                                  SizedBox(width: 20,),
-                                  Text('ดูรายงาน'),
+                                  SvgPicture.asset(
+                                    color: (landingPageController.tabIndex.value==3)?Colors.white:Color(0xfff5a607f),
+                                    'assets/icons/svg/report2.svg',
+                                  ),
+                                  const SizedBox(width: 20,),
+                                  Text('รายงานอุทกภัย',style: textStyle(context,fontSize: 16,fontWeight: FontWeight.w200,color: (landingPageController.tabIndex.value==3)?Colors.white:Color(0xfff5a607f)),),
                                 ],
                               ),
                             ),
@@ -188,11 +203,14 @@ class _LandingPageState extends State<LandingPage> {
                                 color: (landingPageController.tabIndex.value==4)?Colors.amber:Colors.transparent,
                               ),
                               height: 30,
-                              child: const Row(
+                              child: Row(
                                 children: [
-                                  Icon(CupertinoIcons.chart_bar_fill,color: Colors.grey,size: 20,),
-                                  SizedBox(width: 20,),
-                                  Text('ดูรายงาน'),
+                                  SvgPicture.asset(
+                                    color: (landingPageController.tabIndex.value==4)?Colors.white:Color(0xfff5a607f),
+                                    'assets/icons/svg/report3.svg',
+                                  ),
+                                  const SizedBox(width: 20,),
+                                  Text('รายงานวาตภัย',style: textStyle(context,fontSize: 16,fontWeight: FontWeight.w200,color: (landingPageController.tabIndex.value==4)?Colors.white:Color(0xfff5a607f)),),
                                 ],
                               ),
                             ),
@@ -209,11 +227,14 @@ class _LandingPageState extends State<LandingPage> {
                               ),
                               padding: const EdgeInsets.only(left: 60,right: 10),
                               height: 30,
-                              child: const Row(
+                              child: Row(
                                 children: [
-                                  Icon(CupertinoIcons.chart_bar_fill,color: Colors.grey,size: 20,),
-                                  SizedBox(width: 20,),
-                                  Text('ดูรายงาน'),
+                                  SvgPicture.asset(
+                                    color: (landingPageController.tabIndex.value==5)?Colors.white:Color(0xfff5a607f),
+                                    'assets/icons/svg/report4.svg',
+                                  ),
+                                  const SizedBox(width: 20,),
+                                  Text('รายงานไฟป่า',style: textStyle(context,fontSize: 16,fontWeight: FontWeight.w200,color: (landingPageController.tabIndex.value==5)?Colors.white:Color(0xfff5a607f)),),
                                 ],
                               ),
                             ),
@@ -335,9 +356,9 @@ class _LandingPageState extends State<LandingPage> {
                         height: 40,
                         child: Row(
                           children: [
-                            Icon(CupertinoIcons.list_bullet,color: Colors.grey,size: 22,),
+                            Icon(CupertinoIcons.list_bullet,color: (landingPageController.tabIndex.value==6)?Colors.white:Color(0xfff5a607f),size: 22,),
                             const SizedBox(width: 20,),
-                            Text('สร้างรายการ',style: textStyle(context,fontSize: 16,fontWeight: FontWeight.w200,),),
+                            Text('สร้างรายการ',style: textStyle(context,fontSize: 16,fontWeight: FontWeight.w200,color: (landingPageController.tabIndex.value==6)?Colors.white:Color(0xfff5a607f)),),
                           ],
                         ),
                       ),
@@ -359,11 +380,12 @@ class _LandingPageState extends State<LandingPage> {
                     children:  [
                       DashBoard(),
                       MainReport(),
-                      const HomePage3(),
-                      const HomePage4(),
-                      const HomePage4(),
-                      const HomePage2(),
+                      FireReport(),
+                      FloodReport(),
+                      WineStormReport(),
+                      ForestFireReport(),
                       CreateList(),
+                      Detail()
                     ],
                   ),
                 ),

@@ -22,11 +22,13 @@ import '../../../api/report/mainreportapi.dart';
 import '../../../service/config.dart';
 import '../../../stye/colors.dart';
 import '../../../stye/font.dart';
+import '../../detail/contollerdetail.dart';
+import '../../drawer/contollerdrawer.dart';
 
 class ContollerMainReport extends GetxController {
   QrPainter? _painter;
   GlobalKey _globalKey = new GlobalKey();
-  var title = 'รายงาน'.obs;
+  var title = 'ดูรายงาน'.obs;
   RxInt Index = 0.obs;
   RxInt IndexChart = 0.obs;
   RxInt maxPage = 1.obs;
@@ -495,7 +497,7 @@ class ContollerMainReport extends GetxController {
                           eyeShape: QrEyeShape.square,
                           color: Colors.black,
                         ),
-                        data: '1234567890',
+                        data: '${pathQR}${event[index].eventID}',
                         version: QrVersions.auto,
                       );
                       showDialog(
@@ -519,8 +521,8 @@ class ContollerMainReport extends GetxController {
                                 InkWell(
                                     onTap: () async {
                                       await Clipboard.setData(
-                                          const ClipboardData(
-                                              text: "your text"));
+                                           ClipboardData(
+                                              text: '${pathQR}${event[index].eventID}'));
                                     },
                                     child: Container(
                                       height: 40,
@@ -618,7 +620,13 @@ class ContollerMainReport extends GetxController {
                     )),
                 InkWell(
                   onTap: (){
-                    dialogEdit(context);
+                    final LandingPageController landingPageController =
+                    Get.put(LandingPageController(), permanent: false);
+                    final ContollerDetail contollerEvent =
+                    Get.put(ContollerDetail(), permanent: false);
+                    contollerEvent.getEvent(event[index].eventID!);
+                    landingPageController.tabIndex.value=7;
+                    // dialogEdit(context);
                   },
                   child: SizedBox(
                     width: 40,

@@ -106,6 +106,11 @@ flutter:
       - assets/icons/svg/flood0.svg
       - assets/icons/svg/flood1.svg
       - assets/icons/svg/flood2.svg
+      - assets/icons/svg/reportmain.svg
+      - assets/icons/svg/report1.svg
+      - assets/icons/svg/report2.svg
+      - assets/icons/svg/report3.svg
+      - assets/icons/svg/report4.svg
       - assets/fonts/THSarabunNew.ttf
       - assets/data/data.json
 #      - fonts/THSarabunNew.ttf

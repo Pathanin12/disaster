@@ -31,7 +31,7 @@ class DashBoard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                        child: Text('แดชบอร์ด12',
+                        child: Text('แดชบอร์ด',
                             style: textStyle(context,
                                 fontSize: 16, fontWeight: FontWeight.bold))),
                     const SizedBox(
@@ -542,7 +542,7 @@ class DashBoard extends StatelessWidget {
                                 ? Center(
                                     child: LoadingAnimationWidget.inkDrop(
                                     color: Colors.white,
-                                    size: 200,
+                                    size: 20,
                                   ))
                                 : Text(
                                     'ค้นหา',
