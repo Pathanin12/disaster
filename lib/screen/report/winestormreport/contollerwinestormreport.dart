@@ -18,7 +18,9 @@ import 'package:number_paginator/number_paginator.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_maps/maps.dart';
+import '../../../api/map/searchmap.dart';
 import '../../../api/report/mainreportapi.dart';
+import '../../../model/searchmap.dart';
 import '../../../service/config.dart';
 import '../../../stye/colors.dart';
 import '../../../stye/font.dart';
@@ -46,6 +48,12 @@ class ContollerWineStormReport extends GetxController {
       userAgentPackageName: 'com.example.app',
     ),
   ].obs;
+  final mapController = MapController().obs;
+  var search = TextEditingController().obs;
+  var listSearchMap=<SearchMapModel>[].obs;
+  searchMap(String data)async{
+    listSearchMap.value=await searchMapApi(data);
+  }
 
   var selectProvince = provinceList[0].obs;
   RxString? selectLevel = 'ประเทศ'.obs;

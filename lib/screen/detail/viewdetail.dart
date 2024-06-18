@@ -381,109 +381,197 @@ class Detail extends StatelessWidget {
                         const SizedBox(
                           height: 30,
                         ),
-                        Container(
-                          color: Colors.blue,
-                          height: 400,
-                          child: Center(
-                              child: FlutterMap(
-                            mapController: contoller.mapController.value,
-                            options: const MapOptions(
-                              initialCenter: LatLng(18.3170581, 99.3986862),
-                              initialZoom: 14,
-                              interactionOptions: InteractionOptions(
-                                  flags: InteractiveFlag.none),
+                        Stack(
+                          children: [
+                            Container(
+                              color: Colors.blue,
+                              height: 400,
+                              child: Center(
+                                  child: FlutterMap(
+                                mapController: contoller.mapController.value,
+                                options: const MapOptions(
+                                  initialCenter: LatLng(18.3170581, 99.3986862),
+                                  initialZoom: 14,
+                                  interactionOptions: InteractionOptions(
+                                      flags: InteractiveFlag.none),
 
-                              // maxZoom: 17,
-                              // minZoom: 10
-                            ),
-                            children: [
-                              TileLayer(
-                                urlTemplate:
-                                    'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                                userAgentPackageName: 'com.example.app',
-                              ),
-                              if(contoller.dataEvent.value.events!=null)MarkerLayer(
-                                markers: [
-                                  Marker(
-                                    point: LatLng(
-                                        double.parse(contoller.dataEvent.value.events!.latitude!),
-                                        double.parse(contoller.dataEvent.value.events!.longitude!)),
-                                    width: 80,
-                                    height: 80,
-                                    child: (contoller.dataEvent.value.events!.disasterType == 0 &&
-                                        contoller.dataEvent.value.events!.statusItem == 0)
-                                        ? SvgPicture.asset(
-                                            'assets/icons/svg/fire0.svg',
-                                          )
-                                        : (contoller.dataEvent.value.events!.disasterType == 0 &&
-                                        contoller.dataEvent.value.events!.statusItem == 1)
+                                  // maxZoom: 17,
+                                  // minZoom: 10
+                                ),
+                                children: [
+                                  TileLayer(
+                                    urlTemplate:
+                                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                    userAgentPackageName: 'com.example.app',
+                                  ),
+                                  if(contoller.dataEvent.value.events!=null)MarkerLayer(
+                                    markers: [
+                                      Marker(
+                                        point: LatLng(
+                                            double.parse(contoller.dataEvent.value.events!.latitude!),
+                                            double.parse(contoller.dataEvent.value.events!.longitude!)),
+                                        width: 80,
+                                        height: 80,
+                                        child: (contoller.dataEvent.value.events!.disasterType == 0 &&
+                                            contoller.dataEvent.value.events!.statusItem == 0)
                                             ? SvgPicture.asset(
-                                                'assets/icons/svg/fire1.svg',
+                                                'assets/icons/svg/fire0.svg',
                                               )
                                             : (contoller.dataEvent.value.events!.disasterType == 0 &&
-                                        contoller.dataEvent.value.events!.statusItem == 2)
+                                            contoller.dataEvent.value.events!.statusItem == 1)
                                                 ? SvgPicture.asset(
-                                                    'assets/icons/svg/fire2.svg',
+                                                    'assets/icons/svg/fire1.svg',
                                                   )
-                                                : (contoller.dataEvent.value.events!.disasterType == 1 &&
-                                        contoller.dataEvent.value.events!.statusItem == 0)
+                                                : (contoller.dataEvent.value.events!.disasterType == 0 &&
+                                            contoller.dataEvent.value.events!.statusItem == 2)
                                                     ? SvgPicture.asset(
-                                                        'assets/icons/svg/flood0.svg',
+                                                        'assets/icons/svg/fire2.svg',
                                                       )
-                                                    : (contoller.dataEvent.value.events!.disasterType ==
-                                                                1 &&
-                                        contoller.dataEvent.value.events!.statusItem ==
-                                                                1)
+                                                    : (contoller.dataEvent.value.events!.disasterType == 1 &&
+                                            contoller.dataEvent.value.events!.statusItem == 0)
                                                         ? SvgPicture.asset(
-                                                            'assets/icons/svg/flood1.svg',
+                                                            'assets/icons/svg/flood0.svg',
                                                           )
                                                         : (contoller.dataEvent.value.events!.disasterType ==
                                                                     1 &&
-                                        contoller.dataEvent.value.events!.statusItem ==
-                                                                    2)
+                                            contoller.dataEvent.value.events!.statusItem ==
+                                                                    1)
                                                             ? SvgPicture.asset(
-                                                                'assets/icons/svg/flood2.svg',
+                                                                'assets/icons/svg/flood1.svg',
                                                               )
                                                             : (contoller.dataEvent.value.events!.disasterType ==
-                                                                        2 &&
-                                        contoller.dataEvent.value.events!.statusItem ==
-                                                                        0)
-                                                                ? SvgPicture
-                                                                    .asset(
-                                                                    'assets/icons/svg/windstorm0.svg',
+                                                                        1 &&
+                                            contoller.dataEvent.value.events!.statusItem ==
+                                                                        2)
+                                                                ? SvgPicture.asset(
+                                                                    'assets/icons/svg/flood2.svg',
                                                                   )
                                                                 : (contoller.dataEvent.value.events!.disasterType ==
                                                                             2 &&
-                                        contoller.dataEvent.value.events!.statusItem ==
-                                                                            1)
+                                            contoller.dataEvent.value.events!.statusItem ==
+                                                                            0)
                                                                     ? SvgPicture
                                                                         .asset(
-                                                                        'assets/icons/svg/windstorm1.svg',
+                                                                        'assets/icons/svg/windstorm0.svg',
                                                                       )
-                                                                    : (contoller.dataEvent.value.events!.disasterType == 2 &&
-                                        contoller.dataEvent.value.events!.statusItem ==
-                                                                                2)
+                                                                    : (contoller.dataEvent.value.events!.disasterType ==
+                                                                                2 &&
+                                            contoller.dataEvent.value.events!.statusItem ==
+                                                                                1)
                                                                         ? SvgPicture
                                                                             .asset(
-                                                                            'assets/icons/svg/windstorm2.svg',
+                                                                            'assets/icons/svg/windstorm1.svg',
                                                                           )
-                                                                        : (contoller.dataEvent.value.events!.disasterType == 3 &&
-                                        contoller.dataEvent.value.events!.statusItem == 0)
-                                                                            ? SvgPicture.asset(
-                                                                                'assets/icons/svg/forestfire0.svg',
+                                                                        : (contoller.dataEvent.value.events!.disasterType == 2 &&
+                                            contoller.dataEvent.value.events!.statusItem ==
+                                                                                    2)
+                                                                            ? SvgPicture
+                                                                                .asset(
+                                                                                'assets/icons/svg/windstorm2.svg',
                                                                               )
-                                                                            : (contoller.dataEvent.value.events!.disasterType == 3 && contoller.dataEvent.value.events!.statusItem == 1)
+                                                                            : (contoller.dataEvent.value.events!.disasterType == 3 &&
+                                            contoller.dataEvent.value.events!.statusItem == 0)
                                                                                 ? SvgPicture.asset(
-                                                                                    'assets/icons/svg/forestfire1.svg',
+                                                                                    'assets/icons/svg/forestfire0.svg',
                                                                                   )
-                                                                                : SvgPicture.asset(
-                                                                                    'assets/icons/svg/forestfire2.svg',
-                                                                                  ),
-                                  ),
+                                                                                : (contoller.dataEvent.value.events!.disasterType == 3 && contoller.dataEvent.value.events!.statusItem == 1)
+                                                                                    ? SvgPicture.asset(
+                                                                                        'assets/icons/svg/forestfire1.svg',
+                                                                                      )
+                                                                                    : SvgPicture.asset(
+                                                                                        'assets/icons/svg/forestfire2.svg',
+                                                                                      ),
+                                      ),
+                                    ],
+                                  )
                                 ],
-                              )
-                            ],
-                          )),
+                              )),
+                            ),
+                            Positioned(
+                                top: 20,
+                                left: 20,
+                                child: Container(
+                                  height: 350,
+                                  width: 300,
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        height: 40,
+                                        color: colorWhite,
+                                        child: TextFormField(
+                                          controller: contoller.search.value,
+                                          autofocus: false,
+                                          // onChanged: (value) {
+                                          //   if (value.isNotEmpty) {
+                                          //     contoller.searchMap(value);
+                                          //   }
+                                          // },
+                                          decoration: InputDecoration(
+                                            suffixIcon: InkWell(
+                                              onTap: () async {
+                                                contoller.searchMap(
+                                                    contoller
+                                                        .search.value.text);
+                                              },
+                                                child: Icon(Icons.search)),
+                                            fillColor: colorWhite,
+                                            hintText: "ค้นหา",
+                                            hintStyle: TextStyle(
+                                                fontSize: 13.0,
+                                                color: colorGrey,
+                                                fontWeight: FontWeight.w400),
+                                            filled: true,
+                                            border: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: colorGrey,
+                                                width: 2,
+                                              ),
+                                              borderRadius:
+                                              BorderRadius.circular(5),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        height: 310,
+                                        child: ListView.builder(
+                                          itemCount: contoller
+                                              .listSearchMap.value.length,
+                                          itemBuilder: (context, index) =>
+                                              InkWell(
+                                                onTap: (){
+                                                  contoller.mapController.value.move(
+                                                      LatLng(
+                                                          double.parse(contoller
+                                                              .listSearchMap.value[index].lat!),
+                                                          double.parse(contoller
+                                                              .listSearchMap.value[index].lon!)),
+                                                      16);
+                                                  contoller.listSearchMap.clear();
+                                                },
+                                                child: Container(
+                                                  padding: const EdgeInsets.only(
+                                                      left: 5,
+                                                      right: 5,
+                                                      top: 2,
+                                                      bottom: 2),
+                                                  height: 45,
+                                                  color: (index % 2 == 1)
+                                                      ? Colors.grey.shade300
+                                                      : Colors.white,
+                                                  child: Text(contoller
+                                                      .listSearchMap
+                                                      .value[index]
+                                                      .displayName
+                                                      .toString()),
+                                                ),
+                                              ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                )),
+                          ],
                         ),
                         const SizedBox(
                           height: 30,

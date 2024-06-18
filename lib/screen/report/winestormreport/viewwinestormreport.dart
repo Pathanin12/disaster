@@ -49,22 +49,111 @@ class WineStormReport extends StatelessWidget {
 
                     // Text(contoller.data[1][0],style: textStyle(context,fontSize: 15,fontWeight: FontWeight.bold,color: colorBlack),),
 
-                    Container(
-                      color: Colors.blue,
-                      height: 450,
-                      child: Center(
-                          child: FlutterMap(
-                              options: const MapOptions(
-                                // interactionOptions: InteractionOptions(
-                                //   flags: InteractiveFlag.doubleTapDragZoom |
-                                //       InteractiveFlag.drag,
-                                // ),
-                                initialCenter: LatLng(18.3170581, 99.3986862),
-                                initialZoom: 12,
-                                // maxZoom: 17,
-                                // minZoom: 10
+                    Stack(
+                      children: [
+                        Container(
+                          color: Colors.blue,
+                          height: 450,
+                          child: Center(
+                              child: FlutterMap(
+                                  mapController: contoller.mapController.value,
+                                  options: const MapOptions(
+                                    // interactionOptions: InteractionOptions(
+                                    //   flags: InteractiveFlag.doubleTapDragZoom |
+                                    //       InteractiveFlag.drag,
+                                    // ),
+                                    initialCenter: LatLng(18.3170581, 99.3986862),
+                                    initialZoom: 12,
+                                    // maxZoom: 17,
+                                    // minZoom: 10
+                                  ),
+                                  children: contoller.listWidgetMark.value)),
+                        ),
+                        Positioned(
+                            top: 20,
+                            left: 20,
+                            child: Container(
+                              height: 350,
+                              width: 300,
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: 40,
+                                    color: colorWhite,
+                                    child: TextFormField(
+                                      controller: contoller.search.value,
+                                      autofocus: false,
+                                      // onChanged: (value) {
+                                      //   if (value.isNotEmpty) {
+                                      //     contoller.searchMap(value);
+                                      //   }
+                                      // },
+                                      decoration: InputDecoration(
+                                        suffixIcon: InkWell(
+                                            onTap: () async {
+                                              contoller.searchMap(
+                                                  contoller
+                                                      .search.value.text);
+                                            },
+                                            child: Icon(Icons.search)),
+                                        fillColor: colorWhite,
+                                        hintText: "ค้นหา",
+                                        hintStyle: TextStyle(
+                                            fontSize: 13.0,
+                                            color: colorGrey,
+                                            fontWeight: FontWeight.w400),
+                                        filled: true,
+                                        border: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: colorGrey,
+                                            width: 2,
+                                          ),
+                                          borderRadius:
+                                          BorderRadius.circular(5),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 310,
+                                    child: ListView.builder(
+                                      itemCount: contoller
+                                          .listSearchMap.value.length,
+                                      itemBuilder: (context, index) =>
+                                          InkWell(
+                                            onTap: (){
+                                              contoller.mapController.value.move(
+                                                  LatLng(
+                                                      double.parse(contoller
+                                                          .listSearchMap.value[index].lat!),
+                                                      double.parse(contoller
+                                                          .listSearchMap.value[index].lon!)),
+                                                  16);
+                                              contoller.listSearchMap.clear();
+                                            },
+                                            child: Container(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5,
+                                                  right: 5,
+                                                  top: 2,
+                                                  bottom: 2),
+                                              height: 45,
+                                              color: (index % 2 == 1)
+                                                  ? Colors.grey.shade300
+                                                  : Colors.white,
+                                              child: Text(contoller
+                                                  .listSearchMap
+                                                  .value[index]
+                                                  .displayName
+                                                  .toString()),
+                                            ),
+                                          ),
+                                    ),
+                                  )
+                                ],
                               ),
-                              children: contoller.listWidgetMark.value)),
+                            )),
+                      ],
                     ),
                     const SizedBox(
                       height: 30,

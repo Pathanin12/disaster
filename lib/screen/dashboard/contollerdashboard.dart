@@ -11,6 +11,8 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_maps/maps.dart';
 
 import '../../api/dashboardapi.dart';
+import '../../api/map/searchmap.dart';
+import '../../model/searchmap.dart';
 import '../../service/config.dart';
 import '../../stye/colors.dart';
 import '../../stye/font.dart';
@@ -56,6 +58,12 @@ class ContollerDashBoard extends GetxController {
   // var listCartForestFireGenderAndInj=<Widget>[].obs;
   // var listCartForestFireAgeAndDie=<Widget>[].obs;
   // var listCartForestFireAgeAndInj=<Widget>[].obs;
+  final mapController = MapController().obs;
+  var search = TextEditingController().obs;
+  var listSearchMap=<SearchMapModel>[].obs;
+  searchMap(String data)async{
+    listSearchMap.value=await searchMapApi(data);
+  }
 
   var listWidgetMark = <Widget>[
     TileLayer(

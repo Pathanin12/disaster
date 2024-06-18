@@ -1561,6 +1561,90 @@ class CreateList extends StatelessWidget {
                                   ],
                                 )),
                               ),
+                              Positioned(
+                                  top: 20,
+                                  left: 20,
+                                  child: Container(
+                                    height: 350,
+                                    width: 300,
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          height: 40,
+                                          color: colorWhite,
+                                          child: TextFormField(
+                                            controller: contoller.search.value,
+                                            autofocus: false,
+                                            // onChanged: (value) {
+                                            //   if (value.isNotEmpty) {
+                                            //     contoller.searchMap(value);
+                                            //   }
+                                            // },
+                                            decoration: InputDecoration(
+                                              suffixIcon: InkWell(
+                                                  onTap: () async {
+                                                    contoller.searchMap(
+                                                        contoller
+                                                            .search.value.text);
+                                                  },
+                                                  child: Icon(Icons.search)),
+                                              fillColor: colorWhite,
+                                              hintText: "ค้นหา",
+                                              hintStyle: TextStyle(
+                                                  fontSize: 13.0,
+                                                  color: colorGrey,
+                                                  fontWeight: FontWeight.w400),
+                                              filled: true,
+                                              border: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: colorGrey,
+                                                  width: 2,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          height: 310,
+                                          child: ListView.builder(
+                                            itemCount: contoller
+                                                .listSearchMap.value.length,
+                                            itemBuilder: (context, index) =>
+                                                InkWell(
+                                                  onTap: (){
+                                                    contoller.mapController.value.move(
+                                                        LatLng(
+                                                            double.parse(contoller
+                                                                .listSearchMap.value[index].lat!),
+                                                            double.parse(contoller
+                                                                .listSearchMap.value[index].lon!)),
+                                                        16);
+                                                    contoller.listSearchMap.clear();
+                                                  },
+                                              child: Container(
+                                                padding: const EdgeInsets.only(
+                                                    left: 5,
+                                                    right: 5,
+                                                    top: 2,
+                                                    bottom: 2),
+                                                height: 45,
+                                                color: (index % 2 == 1)
+                                                    ? Colors.grey.shade300
+                                                    : Colors.white,
+                                                child: Text(contoller
+                                                    .listSearchMap
+                                                    .value[index]
+                                                    .displayName
+                                                    .toString()),
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  )),
                               Container(
                                 height: 400,
                                 child: Center(
@@ -1757,92 +1841,106 @@ class CreateList extends StatelessWidget {
                                         ),
                                       ],
                                     )
-                                  :GridView.builder(
-                                shrinkWrap: true,
-                                gridDelegate:
-                                const SliverGridDelegateWithMaxCrossAxisExtent(
-                                  maxCrossAxisExtent: 150,
-                                  crossAxisSpacing: 3.0,
-                                  mainAxisSpacing: 10.0,
-                                  childAspectRatio: 0.8,
-                                ),
-                                itemCount:
-                                contoller.listConvertImage.value.length + 1,
-                                itemBuilder: (context, index) {
-                                  if (index ==
-                                      contoller.listConvertImage.value.length) {
-                                    return InkWell(
-                                      onTap: () {
-                                        contoller
-                                            .selectedFileImage(context);
-                                      },
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        child: Container(
-                                          alignment: Alignment.center,
-                                          height: 40,
-                                          width: 80,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                              BorderRadius.circular(
-                                                  5),
-                                              border: Border.all(
-                                                  color: colorGrey)),
-                                          child: Text(
-                                            'เลือกรูป',
-                                            style: textStyle(context,
-                                                color: colorBlue,
-                                                fontSize: 13),
-                                          ),
-                                        ),
+                                  : GridView.builder(
+                                      shrinkWrap: true,
+                                      gridDelegate:
+                                          const SliverGridDelegateWithMaxCrossAxisExtent(
+                                        maxCrossAxisExtent: 150,
+                                        crossAxisSpacing: 3.0,
+                                        mainAxisSpacing: 10.0,
+                                        childAspectRatio: 0.8,
                                       ),
-                                    );
-                                  } else {
-                                    return Stack(
-                                      children: [
-                                        Container(
-                                          height: 200,
-                                          width: 200,
-                                          decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                  image: NetworkImage(
-                                                      contoller.listConvertImage
-                                                          .value[index].pathImage!),
-                                                  fit: BoxFit.cover)),
-                                        ),
-                                        Positioned(
-                                          child: InkWell(
+                                      itemCount: contoller
+                                              .listConvertImage.value.length +
+                                          1,
+                                      itemBuilder: (context, index) {
+                                        if (index ==
+                                            contoller.listConvertImage.value
+                                                .length) {
+                                          return InkWell(
                                             onTap: () {
-                                              if(contoller.listConvertImage.value[index].imageName!='new'){
-                                                contoller.listDeleteImage.value.add(ImageDeleteList(imageName:contoller.listConvertImage.value[index].imageName ));
-                                              }
-                                              contoller.listConvertImage
-                                                  .removeAt(index);
+                                              contoller
+                                                  .selectedFileImage(context);
                                             },
                                             child: Container(
-                                              child: Icon(
-                                                Icons.clear,
-                                                size: 15,
-                                                color: colorBlack,
-                                              ),
                                               alignment: Alignment.center,
-                                              height: 25,
-                                              width: 25,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                  BorderRadius
-                                                      .circular(100),
-                                                  color: colorGrey),
+                                              child: Container(
+                                                alignment: Alignment.center,
+                                                height: 40,
+                                                width: 80,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                    border: Border.all(
+                                                        color: colorGrey)),
+                                                child: Text(
+                                                  'เลือกรูป',
+                                                  style: textStyle(context,
+                                                      color: colorBlue,
+                                                      fontSize: 13),
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                          right: 0,
-                                          top: 0,
-                                        )
-                                      ],
-                                    );
-                                  }
-                                },
-                              ),
+                                          );
+                                        } else {
+                                          return Stack(
+                                            children: [
+                                              Container(
+                                                height: 200,
+                                                width: 200,
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                        image: NetworkImage(
+                                                            contoller
+                                                                .listConvertImage
+                                                                .value[index]
+                                                                .pathImage!),
+                                                        fit: BoxFit.cover)),
+                                              ),
+                                              Positioned(
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    if (contoller
+                                                            .listConvertImage
+                                                            .value[index]
+                                                            .imageName !=
+                                                        'new') {
+                                                      contoller
+                                                          .listDeleteImage.value
+                                                          .add(ImageDeleteList(
+                                                              imageName: contoller
+                                                                  .listConvertImage
+                                                                  .value[index]
+                                                                  .imageName));
+                                                    }
+                                                    contoller.listConvertImage
+                                                        .removeAt(index);
+                                                  },
+                                                  child: Container(
+                                                    child: Icon(
+                                                      Icons.clear,
+                                                      size: 15,
+                                                      color: colorBlack,
+                                                    ),
+                                                    alignment: Alignment.center,
+                                                    height: 25,
+                                                    width: 25,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(100),
+                                                        color: colorGrey),
+                                                  ),
+                                                ),
+                                                right: 0,
+                                                top: 0,
+                                              )
+                                            ],
+                                          );
+                                        }
+                                      },
+                                    ),
                             ),
                           ),
                           const SizedBox(
@@ -1912,14 +2010,15 @@ class CreateList extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              const Spacer(), InkWell(
+                              const Spacer(),
+                              InkWell(
                                 onTap: () async {
                                   showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(
                                       title: Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.center,
+                                            MainAxisAlignment.center,
                                         children: [
                                           Text(
                                             'คำเตือน',
@@ -1941,7 +2040,7 @@ class CreateList extends StatelessWidget {
                                                   fontSize: 14),
                                             )),
                                         InkWell(
-                                            onTap: () async{
+                                            onTap: () async {
                                               await contoller.clearData();
                                               Navigator.pop(context);
                                             },
@@ -1970,7 +2069,6 @@ class CreateList extends StatelessWidget {
                                   ),
                                 ),
                               ),
-
                               const SizedBox(
                                 width: 20,
                               ),

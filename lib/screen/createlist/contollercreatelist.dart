@@ -22,8 +22,10 @@ import '../../../stye/colors.dart';
 import '../../../stye/font.dart';
 import '../../api/apiservice/createevenapi.dart';
 import '../../api/latlongapi.dart';
+import '../../api/map/searchmap.dart';
 import '../../model/createevenmodel.dart';
 import '../../model/eventbyidmodel.dart' as edit;
+import '../../model/searchmap.dart';
 
 class ContollerCreateList extends GetxController {
   final keyForm = GlobalKey<FormState>();
@@ -48,8 +50,11 @@ class ContollerCreateList extends GetxController {
       manInjured = TextEditingController().obs,
       womenInjured = TextEditingController().obs,
       unGenderInjured = TextEditingController().obs,
-      remark = TextEditingController().obs;
+      remark = TextEditingController().obs,
+      search = TextEditingController().obs;
   var radio = 1.obs;
+
+  var listSearchMap=<SearchMapModel>[].obs;
   final NumberPaginatorController controllerNumPage =
       NumberPaginatorController();
 
@@ -99,6 +104,7 @@ class ContollerCreateList extends GetxController {
     manInjured.value.text = '';
     womenInjured.value.text = '';
     unGenderInjured.value.text = '';
+    search.value.text='';
     remark.value.text = '';
     radio.value = 1;
     date.value = DateTime.now().toString().split(" ")[0];
@@ -115,6 +121,7 @@ class ContollerCreateList extends GetxController {
         LatLng(double.parse(lat.value.text), double.parse(lng.value.text)), 16);
     dataEditEvent= edit.EventByIDModel().obs;
   }
+
 
   RxString? selectCategory = 'อัคคีภัย'.obs;
   List<String> category = [
@@ -153,6 +160,10 @@ class ContollerCreateList extends GetxController {
     "41-60",
     "61 ขึ้นไป",
   ];
+
+  searchMap(String data)async{
+    listSearchMap.value=await searchMapApi(data);
+  }
 
   Future<void> submit(BuildContext context) async {
     try {
