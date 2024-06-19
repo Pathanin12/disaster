@@ -2155,6 +2155,8 @@ file:///Users/contactaisoft/Documents/disaster/lib/model/latlongmodel.dart
 file:///Users/contactaisoft/Documents/disaster/lib/model/searchmap.dart
 file:///Users/contactaisoft/Documents/disaster/lib/model/token.dart
 file:///Users/contactaisoft/Documents/disaster/lib/router.dart
+file:///Users/contactaisoft/Documents/disaster/lib/screen/auth/contollerauth.dart
+file:///Users/contactaisoft/Documents/disaster/lib/screen/auth/viewauth.dart
 file:///Users/contactaisoft/Documents/disaster/lib/screen/createlist/contollercreatelist.dart
 file:///Users/contactaisoft/Documents/disaster/lib/screen/createlist/viewcreatelist.dart
 file:///Users/contactaisoft/Documents/disaster/lib/screen/dashboard/contollerdashboard.dart

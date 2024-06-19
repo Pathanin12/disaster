@@ -7,6 +7,6 @@ class ContollerAuth extends GetxController {
  @override
   void onInit() {
     // TODO: implement onInit
-    r.value=Get.parameters['value']??'';
+    r.value=Get.parameters['code']??'';
   }
 }
