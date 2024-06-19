@@ -25,7 +25,7 @@ import '../../../service/config.dart';
 import '../../../stye/colors.dart';
 import '../../../stye/font.dart';
 import '../../detail/contollerdetail.dart';
-import '../../drawer/contollerdrawer.dart';
+import '../../drawer/admin/contollerdraweradmin.dart';
 
 class ContollerMainReport extends GetxController {
   QrPainter? _painter;
@@ -234,8 +234,8 @@ class ContollerMainReport extends GetxController {
             height: 80,
             child: InkWell(
               onTap: (){
-                final LandingPageController landingPageController =
-                Get.put(LandingPageController(), permanent: false);
+                final LandingPageControllerAdmin landingPageController =
+                Get.put(LandingPageControllerAdmin(), permanent: false);
                 final ContollerDetail contollerEvent =
                 Get.put(ContollerDetail(), permanent: false);
                 contollerEvent.getEvent(element.eventID!);
@@ -512,12 +512,14 @@ class ContollerMainReport extends GetxController {
                     onTap: () {
                       _painter = QrPainter(
                         errorCorrectionLevel: QrErrorCorrectLevel.H,
-                        eyeStyle: const QrEyeStyle(
+                        eyeStyle:const QrEyeStyle(
                           eyeShape: QrEyeShape.square,
-                          color: Colors.black,
+                          color: Colors.black
                         ),
+                        emptyColor: Colors.white,
                         data: '${pathQR}${event[index].eventID}',
                         version: QrVersions.auto,
+                        gapless: true,
                       );
                       showDialog(
                         context: context,
@@ -639,8 +641,8 @@ class ContollerMainReport extends GetxController {
                     )),
                 InkWell(
                   onTap: (){
-                    final LandingPageController landingPageController =
-                    Get.put(LandingPageController(), permanent: false);
+                    final LandingPageControllerAdmin landingPageController =
+                    Get.put(LandingPageControllerAdmin(), permanent: false);
                     final ContollerDetail contollerEvent =
                     Get.put(ContollerDetail(), permanent: false);
                     contollerEvent.getEvent(event[index].eventID!);
@@ -669,7 +671,7 @@ class ContollerMainReport extends GetxController {
   }
 
   Future<void> _capturePng() async {
-    final picData = await _painter?.toImageData((200).toDouble(),
+    final picData = await _painter?.toImageData((878).toDouble(),
         format: ImageByteFormat.png);
     await writeToFile(picData!);
   }

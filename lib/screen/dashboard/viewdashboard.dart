@@ -15,8 +15,8 @@ import '../../service/config.dart';
 import '../../stye/font.dart';
 import 'contollerdashboard.dart';
 
-class DashBoard extends StatelessWidget {
-  DashBoard({super.key});
+class DashBoardPage extends StatelessWidget {
+  DashBoardPage({super.key});
   @override
   Widget build(BuildContext context) {
     final ContollerDashBoard contoller =
@@ -726,11 +726,15 @@ class DashBoard extends StatelessWidget {
                                     child: TextFormField(
                                       controller: contoller.search.value,
                                       autofocus: false,
-                                      // onChanged: (value) {
-                                      //   if (value.isNotEmpty) {
-                                      //     contoller.searchMap(value);
-                                      //   }
-                                      // },
+                                      onChanged: (value) {
+                                        // if (value.isNotEmpty) {
+                                        //   contoller.searchMap(value);
+                                        // }
+                                        if(value.isEmpty){
+                                          contoller.listSearchMap.clear();
+                                        }
+
+                                      },
                                       decoration: InputDecoration(
                                         suffixIcon: InkWell(
                                           onTap: () async {

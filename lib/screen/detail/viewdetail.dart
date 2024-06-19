@@ -10,7 +10,7 @@ import 'package:latlong2/latlong.dart';
 
 import '../../stye/colors.dart';
 import '../createlist/contollercreatelist.dart';
-import '../drawer/contollerdrawer.dart';
+import '../drawer/admin/contollerdraweradmin.dart';
 
 class Detail extends StatelessWidget {
   const Detail({super.key});
@@ -40,8 +40,8 @@ class Detail extends StatelessWidget {
                         onTap: ()async{
                           final ContollerCreateList contollerEdite =
                           Get.put(ContollerCreateList(), permanent: false);
-                          final LandingPageController landingPageController =
-                          Get.put(LandingPageController(), permanent: false);
+                          final LandingPageControllerAdmin landingPageController =
+                          Get.put(LandingPageControllerAdmin(), permanent: false);
                           await contollerEdite.editEvent(contoller.dataEvent.value);
                           landingPageController.tabIndex.value=6;
 
@@ -501,11 +501,15 @@ class Detail extends StatelessWidget {
                                         child: TextFormField(
                                           controller: contoller.search.value,
                                           autofocus: false,
-                                          // onChanged: (value) {
-                                          //   if (value.isNotEmpty) {
-                                          //     contoller.searchMap(value);
-                                          //   }
-                                          // },
+                                          onChanged: (value) {
+                                            // if (value.isNotEmpty) {
+                                            //   contoller.searchMap(value);
+                                            // }
+                                            if(value.isEmpty){
+                                              contoller.listSearchMap.clear();
+                                            }
+
+                                          },
                                           decoration: InputDecoration(
                                             suffixIcon: InkWell(
                                               onTap: () async {

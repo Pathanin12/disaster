@@ -25,7 +25,7 @@ import '../../../service/config.dart';
 import '../../../stye/colors.dart';
 import '../../../stye/font.dart';
 import '../../detail/contollerdetail.dart';
-import '../../drawer/contollerdrawer.dart';
+import '../../drawer/admin/contollerdraweradmin.dart';
 
 class ContollerForestFireReport extends GetxController {
   QrPainter? _painter;
@@ -233,8 +233,8 @@ class ContollerForestFireReport extends GetxController {
               height: 80,
               child: InkWell(
                 onTap: (){
-                  final LandingPageController landingPageController =
-                  Get.put(LandingPageController(), permanent: false);
+                  final LandingPageControllerAdmin landingPageController =
+                  Get.put(LandingPageControllerAdmin(), permanent: false);
                   final ContollerDetail contollerEvent =
                   Get.put(ContollerDetail(), permanent: false);
                   contollerEvent.getEvent(element.eventID!);
@@ -636,8 +636,8 @@ class ContollerForestFireReport extends GetxController {
                     )),
                 InkWell(
                   onTap: (){
-                    final LandingPageController landingPageController =
-                    Get.put(LandingPageController(), permanent: false);
+                    final LandingPageControllerAdmin landingPageController =
+                    Get.put(LandingPageControllerAdmin(), permanent: false);
                     final ContollerDetail contollerEvent =
                     Get.put(ContollerDetail(), permanent: false);
                     contollerEvent.getEvent(event[index].eventID!);

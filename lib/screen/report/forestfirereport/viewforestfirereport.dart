@@ -83,11 +83,15 @@ class ForestFireReport extends StatelessWidget {
                                     child: TextFormField(
                                       controller: contoller.search.value,
                                       autofocus: false,
-                                      // onChanged: (value) {
-                                      //   if (value.isNotEmpty) {
-                                      //     contoller.searchMap(value);
-                                      //   }
-                                      // },
+                                      onChanged: (value) {
+                                        // if (value.isNotEmpty) {
+                                        //   contoller.searchMap(value);
+                                        // }
+                                        if(value.isEmpty){
+                                          contoller.listSearchMap.clear();
+                                        }
+
+                                      },
                                       decoration: InputDecoration(
                                         suffixIcon: InkWell(
                                             onTap: () async {

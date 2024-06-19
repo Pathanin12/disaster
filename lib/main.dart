@@ -1,7 +1,10 @@
+import 'package:disaster/model/dashboardmodel.dart';
 import 'package:disaster/router.dart';
 import 'package:disaster/screen/auth/viewauth.dart';
-import 'package:disaster/screen/drawer/contollerdrawer.dart';
-import 'package:disaster/screen/drawer/viewdrawer.dart';
+import 'package:disaster/screen/dashboard/viewdashboard.dart';
+import 'package:disaster/screen/drawer/admin/contollerdraweradmin.dart';
+import 'package:disaster/screen/drawer/admin/viewdraweradmin.dart';
+import 'package:disaster/screen/drawer/user/viewdraweruser.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:disaster/screen/home.dart';
 import 'package:flutter/material.dart';
@@ -19,22 +22,30 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: RouterName.initPage,
+      initialRoute: RouterName.adminPage,
       getPages: [
         GetPage(
           name: RouterName.initPage,
-          page: () => LandingPage(),
+          page: () => LandingPageUser(),
         ),
         GetPage(
           name: RouterName.login,
           page: () => AuthPage(),
+        ),
+        GetPage(
+          name: RouterName.adminPage,
+          page: () => LandingPageAdmin(),
         )
       ],
       onGenerateRoute: (settings) {
         // Handle different named routes here
-        if (settings.name == '/') {
+        if (settings.name == RouterName.initPage) {
           return MaterialPageRoute(
-            builder: (context) => LandingPage(),
+            builder: (context) => LandingPageUser(),
+          );
+        } else if (settings.name == RouterName.adminPage) {
+          return MaterialPageRoute(
+            builder: (context) => LandingPageAdmin(),
           );
         } else if (settings.name == RouterName.login) {
           // Extract parameters from settings.arguments if needed

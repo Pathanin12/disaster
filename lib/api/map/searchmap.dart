@@ -8,7 +8,7 @@ Future<List<SearchMapModel>> searchMapApi(String search)async{
   List<SearchMapModel> listMap=[];
   try{
     Dio dio= Dio();
-    final result = await dio.get('https://nominatim.openstreetmap.org/search?q=$search&format=json&polygon_kml=1&addressdetails=1');
+    final result = await dio.get('https://nominatim.openstreetmap.org/search?q=$search&format=json&polygon_kml=1&addressdetails=1',options: Options(headers: {"Accept-Language":"th-TH"}));
     if(result.statusCode==200){
       return (result.data as List).map((element)=>SearchMapModel.fromJson(element)).toList();
     }
