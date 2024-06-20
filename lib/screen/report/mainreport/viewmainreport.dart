@@ -48,7 +48,6 @@ class MainReport extends StatelessWidget {
                     ),
                     Stack(
                       children: [
-
                         Container(
                           color: Colors.blue,
                           height: 450,

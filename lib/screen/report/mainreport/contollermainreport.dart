@@ -499,7 +499,7 @@ class ContollerMainReport extends GetxController {
                 Expanded(
                     flex: 2,
                     child: statusWidget(
-                        context, event[index].statusRelatedAgency!)),
+                        context, event[index].statusAgency!)),
                 const SizedBox(
                   width: 5,
                 ),
@@ -515,7 +515,7 @@ class ContollerMainReport extends GetxController {
                 ),
                 Expanded(
                     flex: 2,
-                    child: statusWidget(context, event[index].statusAgency!)),
+                    child: statusWidget(context, event[index].statusRelatedAgency!)),
                 const SizedBox(
                   width: 5,
                 ),
