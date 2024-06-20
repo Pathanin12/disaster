@@ -22,6 +22,8 @@ import '../../report/mainreport/viewmainreport.dart';
 import '../../report/winestormreport/viewwinestormreport.dart';
 import 'contollerdraweruser.dart';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
+
 class LandingPageUser extends StatefulWidget {
   @override
   State<LandingPageUser> createState() => _LandingPageUserState();
@@ -33,10 +35,8 @@ class _LandingPageUserState extends State<LandingPageUser> {
       fontWeight: FontWeight.w500,
       fontSize: 12);
 
-
-  final TextStyle selectedLabelStyle =
-  const TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12);
-
+  final TextStyle selectedLabelStyle = const TextStyle(
+      color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12);
 
   @override
   void initState() {
@@ -46,48 +46,56 @@ class _LandingPageUserState extends State<LandingPageUser> {
     // getToken();
     // // HttpRequest.signOutToken();
     // createEvenApi();
-
   }
-  Widget build(BuildContext context) {
 
+  Widget build(BuildContext context) {
     final LandingPageControllerUser landingPageController =
-    Get.put(LandingPageControllerUser(), permanent: false);
+        Get.put(LandingPageControllerUser(), permanent: false);
 
     return SafeArea(
         child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: colorWhite,
-            leading: Row(
+      appBar: AppBar(
+        backgroundColor: colorWhite,
+        leading: Row(
+          children: [
+            const SizedBox(
+              width: 10,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(width: 10,),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.zero,
-                      height: 50,
-                      width: 50,
-                      decoration: const BoxDecoration(
+                Container(
+                  margin: EdgeInsets.zero,
+                  height: 50,
+                  width: 50,
+                  decoration: const BoxDecoration(
                       image: DecorationImage(
-                        image:AssetImage('assets/logo/logo.png'),
-                        fit: BoxFit.cover
-                      )
-                    ),),
-                  ],
+                          image: AssetImage('assets/logo/logo.png'),
+                          fit: BoxFit.cover)),
                 ),
-                const SizedBox(width: 10,),
-                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('กระทรวงมหาดไทย',style: textStyle(context,fontWeight:FontWeight.bold,fontSize: 20),),
-                    Text('Ministry of Interior. Thailand',style: textStyle(context,fontSize: 14),),
-
-    ]
-                )
               ],
-            ),),
-          body: Obx(() => Row(
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'กระทรวงมหาดไทย',
+                    style: textStyle(context,
+                        fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                  Text(
+                    'Ministry of Interior. Thailand',
+                    style: textStyle(context, fontSize: 14),
+                  ),
+                ])
+          ],
+        ),
+      ),
+      body: Obx(() => Row(
             children: [
               // Container(
               //   width: 250,
@@ -377,7 +385,7 @@ class _LandingPageUserState extends State<LandingPageUser> {
                   width: 200,
                   child: IndexedStack(
                     index: landingPageController.tabIndex.value,
-                    children:  [
+                    children: [
                       DashBoardPage(),
                     ],
                   ),
@@ -385,6 +393,6 @@ class _LandingPageUserState extends State<LandingPageUser> {
               ),
             ],
           )),
-        ));
+    ));
   }
 }

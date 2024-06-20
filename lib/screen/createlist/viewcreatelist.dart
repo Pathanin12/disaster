@@ -1579,10 +1579,9 @@ class CreateList extends StatelessWidget {
                                               // if (value.isNotEmpty) {
                                               //   contoller.searchMap(value);
                                               // }
-                                              if(value.isEmpty){
+                                              if (value.isEmpty) {
                                                 contoller.listSearchMap.clear();
                                               }
-
                                             },
                                             decoration: InputDecoration(
                                               suffixIcon: InkWell(
@@ -1617,16 +1616,20 @@ class CreateList extends StatelessWidget {
                                                 .listSearchMap.value.length,
                                             itemBuilder: (context, index) =>
                                                 InkWell(
-                                                  onTap: (){
-                                                    contoller.mapController.value.move(
-                                                        LatLng(
-                                                            double.parse(contoller
-                                                                .listSearchMap.value[index].lat!),
-                                                            double.parse(contoller
-                                                                .listSearchMap.value[index].lon!)),
-                                                        16);
-                                                    contoller.listSearchMap.clear();
-                                                  },
+                                              onTap: () {
+                                                contoller.mapController.value.move(
+                                                    LatLng(
+                                                        double.parse(contoller
+                                                            .listSearchMap
+                                                            .value[index]
+                                                            .lat!),
+                                                        double.parse(contoller
+                                                            .listSearchMap
+                                                            .value[index]
+                                                            .lon!)),
+                                                    16);
+                                                contoller.listSearchMap.clear();
+                                              },
                                               child: Container(
                                                 padding: const EdgeInsets.only(
                                                     left: 5,

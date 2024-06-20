@@ -6,23 +6,23 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../logintoken.dart';
-class HttpRequest {
 
+class HttpRequest {
   static Future<String?> LoginToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String token ;
-   if(prefs.getString("userData")!=null){
-     if(DateTime.now().isAfter(DateTime.parse(prefs.getString("Expire")!))){
+    String token;
+    if (prefs.getString("userData") != null) {
+      if (DateTime.now().isAfter(DateTime.parse(prefs.getString("Expire")!))) {
+        await getToken();
+        token = prefs.getString("userData")!;
+      } else {
+        token = prefs.getString("userData")!;
+      }
+    } else {
       await getToken();
-       token = prefs.getString("userData")!;
-     }else{
-       token = prefs.getString("userData")!;
-     }
-   }else{
-     await getToken();
 
-     token = prefs.getString("userData")!;
-   }
+      token = prefs.getString("userData")!;
+    }
 
     return token;
   }

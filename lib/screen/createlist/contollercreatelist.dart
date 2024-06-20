@@ -30,11 +30,11 @@ import '../../model/searchmap.dart';
 class ContollerCreateList extends GetxController {
   final keyForm = GlobalKey<FormState>();
   final mapController = MapController().obs;
-  var dataEditEvent= edit.EventByIDModel().obs;
+  var dataEditEvent = edit.EventByIDModel().obs;
   String? imageFile;
   // var listImage = <Uint8List>[].obs;
   var listConvertImage = <edit.ImageList>[].obs;
-  var listDeleteImage=<ImageDeleteList>[].obs;
+  var listDeleteImage = <ImageDeleteList>[].obs;
   var date = DateTime.now().toString().split(" ")[0].obs;
   final nameCon = TextEditingController().obs,
       createBy = TextEditingController().obs,
@@ -54,39 +54,41 @@ class ContollerCreateList extends GetxController {
       search = TextEditingController().obs;
   var radio = 1.obs;
 
-  var listSearchMap=<SearchMapModel>[].obs;
+  var listSearchMap = <SearchMapModel>[].obs;
   final NumberPaginatorController controllerNumPage =
       NumberPaginatorController();
 
-  editEvent(edit.EventByIDModel data)async{
-  dataEditEvent.value=data;
-  nameCon.value.text = data.events!.eventName??'';
-  createBy.value.text = data.events!.receiveFrom??'';
-  lat.value.text = data.events!.latitude!;
-  unGenderDie.value.text=data.events!.deceased!.unidentify.toString()??'';
-  lng.value.text = data.events!.longitude!;
-  responsible.value.text = data.events!.responsibleAgency??'';
-  die.value.text = data.events!.deceased!.total!.toString()??'';
-  relevant.value.text = data.events!.relatedAgency??'';
-  mandie.value.text = data.events!.deceased!.male.toString()??'';
-  womenDie.value.text = data.events!.deceased!.feMale.toString()??'';
-  injured.value.text = data.events!.injured!.total.toString()??'';
-  manInjured.value.text = data.events!.injured!.male.toString()??'';
-  womenInjured.value.text = data.events!.injured!.feMale.toString()??'';
-  unGenderInjured.value.text = data.events!.injured!.unidentify.toString()??'';
-  remark.value.text = data.events!.note??'';
-  listConvertImage.value = data.events!.imageList!;
-  radio.value = data.events!.violence??1;
-  date.value = data.events!.datetime!;
-  // listImage.value.clear();
-  selectCategory!.value = category[data.events!.disasterType!];
-  selectStatusList!.value = StatusList[data.events!.statusItem!];
-  selectStatusResponsible!.value = StatusList[data.events!.statusRelatedAgency!];
-  selectStatusrelevant!.value = StatusList[data.events!.statusAgency!];
-  selectAgerangeDie!.value = AgerangeList[data.events!.deceased!.ageRange!];
-  selectAgerange!.value = AgerangeList[data.events!.injured!.ageRange!];
-  mapController.value.move(
-      LatLng(double.parse(lat.value.text), double.parse(lng.value.text)), 16);
+  editEvent(edit.EventByIDModel data) async {
+    dataEditEvent.value = data;
+    nameCon.value.text = data.events!.eventName ?? '';
+    createBy.value.text = data.events!.receiveFrom ?? '';
+    lat.value.text = data.events!.latitude!;
+    unGenderDie.value.text = data.events!.deceased!.unidentify.toString() ?? '';
+    lng.value.text = data.events!.longitude!;
+    responsible.value.text = data.events!.responsibleAgency ?? '';
+    die.value.text = data.events!.deceased!.total!.toString() ?? '';
+    relevant.value.text = data.events!.relatedAgency ?? '';
+    mandie.value.text = data.events!.deceased!.male.toString() ?? '';
+    womenDie.value.text = data.events!.deceased!.feMale.toString() ?? '';
+    injured.value.text = data.events!.injured!.total.toString() ?? '';
+    manInjured.value.text = data.events!.injured!.male.toString() ?? '';
+    womenInjured.value.text = data.events!.injured!.feMale.toString() ?? '';
+    unGenderInjured.value.text =
+        data.events!.injured!.unidentify.toString() ?? '';
+    remark.value.text = data.events!.note ?? '';
+    listConvertImage.value = data.events!.imageList!;
+    radio.value = data.events!.violence ?? 1;
+    date.value = data.events!.datetime!;
+    // listImage.value.clear();
+    selectCategory!.value = category[data.events!.disasterType!];
+    selectStatusList!.value = StatusList[data.events!.statusItem!];
+    selectStatusResponsible!.value =
+        StatusList[data.events!.statusRelatedAgency!];
+    selectStatusrelevant!.value = StatusList[data.events!.statusAgency!];
+    selectAgerangeDie!.value = AgerangeList[data.events!.deceased!.ageRange!];
+    selectAgerange!.value = AgerangeList[data.events!.injured!.ageRange!];
+    mapController.value.move(
+        LatLng(double.parse(lat.value.text), double.parse(lng.value.text)), 16);
   }
 
   clearData() async {
@@ -104,7 +106,7 @@ class ContollerCreateList extends GetxController {
     manInjured.value.text = '';
     womenInjured.value.text = '';
     unGenderInjured.value.text = '';
-    search.value.text='';
+    search.value.text = '';
     remark.value.text = '';
     radio.value = 1;
     date.value = DateTime.now().toString().split(" ")[0];
@@ -119,9 +121,8 @@ class ContollerCreateList extends GetxController {
     selectAgerange!.value = '0-20';
     mapController.value.move(
         LatLng(double.parse(lat.value.text), double.parse(lng.value.text)), 16);
-    dataEditEvent= edit.EventByIDModel().obs;
+    dataEditEvent = edit.EventByIDModel().obs;
   }
-
 
   RxString? selectCategory = 'อัคคีภัย'.obs;
   List<String> category = [
@@ -161,26 +162,25 @@ class ContollerCreateList extends GetxController {
     "61 ขึ้นไป",
   ];
 
-  searchMap(String data)async{
-    listSearchMap.value=await searchMapApi(data);
+  searchMap(String data) async {
+    listSearchMap.value = await searchMapApi(data);
   }
 
   Future<void> submit(BuildContext context) async {
     try {
-      String uuid='';
-      if(dataEditEvent.value.events!=null){
+      String uuid = '';
+      if (dataEditEvent.value.events != null) {
         uuid = dataEditEvent.value.events!.eventID!;
-      }else{
+      } else {
         uuid = const Uuid().v4();
       }
       String location =
           await getLatLong(long: lng.value.text, lat: lat.value.text);
       List<ImageList> listImageBase64 = [];
       for (var element in listConvertImage) {
-        if(element.imageName=='new'){
+        if (element.imageName == 'new') {
           listImageBase64.add(ImageList(image: element.pathImage));
         }
-
       }
       CreateEven even = CreateEven(
           eventID: uuid,
@@ -215,8 +215,7 @@ class ContollerCreateList extends GetxController {
           ),
           statusRelatedAgency:
               Statusrelevant.indexOf(selectStatusResponsible!.value),
-          statusAgency:
-              StatusResponsible.indexOf(selectStatusrelevant!.value),
+          statusAgency: StatusResponsible.indexOf(selectStatusrelevant!.value),
           statusItem: StatusList.indexOf(selectStatusList!.value),
           responsibleAgency: responsible.value.text);
       await createEvenApi(even).then((value) {});
@@ -229,8 +228,8 @@ class ContollerCreateList extends GetxController {
             children: [
               Text(
                 'บันทึกสำเร็จ',
-                style:
-                    textStyle(context, fontSize: 18, fontWeight: FontWeight.bold),
+                style: textStyle(context,
+                    fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -241,14 +240,13 @@ class ContollerCreateList extends GetxController {
           ),
           actions: [
             InkWell(
-              onTap: (){
-                Navigator.pop(context);
-              },
+                onTap: () {
+                  Navigator.pop(context);
+                },
                 child: Text(
-              'ตกลง',
-              style:
-                  textStyle(context, fontSize: 14),
-            )),
+                  'ตกลง',
+                  style: textStyle(context, fontSize: 14),
+                )),
           ],
         ),
       );
@@ -264,9 +262,8 @@ class ContollerCreateList extends GetxController {
     List<Uint8List> image = (await ImagePickerWeb.getMultiImagesAsBytes())!;
     image.forEach((element) {
       listConvertImage.add(edit.ImageList(
-        imageName: 'new',
-        pathImage:"data:image/png;base64,${base64Encode(element)}"
-      ));
+          imageName: 'new',
+          pathImage: "data:image/png;base64,${base64Encode(element)}"));
     });
   }
 
