@@ -123,7 +123,7 @@ class CreateList extends StatelessWidget {
                                                 ),
                                               ),
                                               openWithLongPress:
-                                                  (isAdmin) ? true : false,
+                                                  (isAdmin) ? false : true,
                                               autofocus: true,
                                               isExpanded: true,
                                               value: contoller
@@ -405,8 +405,8 @@ class CreateList extends StatelessWidget {
                                                   child:
                                                       DropdownButton2<String>(
                                                     openWithLongPress: (isAdmin)
-                                                        ? true
-                                                        : false,
+                                                        ? false
+                                                        : true,
                                                     dropdownStyleData:
                                                         DropdownStyleData(
                                                       maxHeight: 300,
@@ -529,6 +529,7 @@ class CreateList extends StatelessWidget {
                                         height: 40,
                                         color: colorWhite,
                                         child: TextFormField(
+                                          enabled: (isAdmin)?true:false,
                                           controller:
                                               contoller.responsible.value,
                                           style: TextStyle(
@@ -585,8 +586,8 @@ class CreateList extends StatelessWidget {
                                                   child:
                                                       DropdownButton2<String>(
                                                     openWithLongPress: (isAdmin)
-                                                        ? true
-                                                        : false,
+                                                        ? false
+                                                        : true,
                                                     dropdownStyleData:
                                                         DropdownStyleData(
                                                       maxHeight: 300,
@@ -707,6 +708,9 @@ class CreateList extends StatelessWidget {
                                         child: TextFormField(
                                           enabled: (isAdmin) ? true : false,
                                           controller: contoller.createBy.value,
+                                          style: textStyle(context,
+                                            color: colorBlack,
+                                            fontSize: 13),
                                           decoration: InputDecoration(
                                             fillColor: colorWhite,
                                             hintText: "รับเรื่องจาก",
@@ -856,6 +860,7 @@ class CreateList extends StatelessWidget {
                                         height: 40,
                                         color: colorWhite,
                                         child: TextFormField(
+                                          enabled: (isAdmin)?true:false,
                                           controller: contoller.relevant.value,
                                           style: TextStyle(
                                               fontSize: 13.0,
@@ -910,6 +915,7 @@ class CreateList extends StatelessWidget {
                                                     DropdownButtonHideUnderline(
                                                   child:
                                                       DropdownButton2<String>(
+                                                        openWithLongPress: (isAdmin)?false:true,
                                                     dropdownStyleData:
                                                         DropdownStyleData(
                                                       maxHeight: 300,

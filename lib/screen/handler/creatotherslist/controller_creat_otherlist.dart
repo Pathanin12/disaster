@@ -49,6 +49,7 @@ class ContollerCreateOthersList extends GetxController {
   var checkboxValues = List<bool>.filled(1, false).obs;
   var radioCount = 1.obs;
   var selectedRadio = 0.obs;
+  var listForm=<ListFormModel>[].obs;
 
   final keyForm = GlobalKey<FormState>();
   final mapController = MapController().obs;
@@ -324,5 +325,50 @@ class ContollerCreateOthersList extends GetxController {
   void dispose() {
     super.dispose();
     listConvertImage.clear();
+  }
+}
+
+class ListFormModel {
+  String? typeform;
+  Textfield? textfield;
+  List<String>? imageList;
+
+  ListFormModel({this.typeform, this.textfield, this.imageList});
+
+  ListFormModel.fromJson(Map<String, dynamic> json) {
+    typeform = json['typeform'];
+    textfield = json['textfield'] != null
+        ? new Textfield.fromJson(json['textfield'])
+        : null;
+    imageList = json['imageList'].cast<String>();
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['typeform'] = this.typeform;
+    if (this.textfield != null) {
+      data['textfield'] = this.textfield!.toJson();
+    }
+    data['imageList'] = this.imageList;
+    return data;
+  }
+}
+
+class Textfield {
+  TextEditingController? title;
+  RxList<TextEditingController>? listevent;
+
+  Textfield({this.title, this.listevent});
+
+  Textfield.fromJson(Map<String, dynamic> json) {
+    title = json['title'].cast<TextEditingController>();
+    listevent = json['listevent'].cast<TextEditingController>();
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['title'] = this.title;
+    data['listevent'] = this.listevent;
+    return data;
   }
 }

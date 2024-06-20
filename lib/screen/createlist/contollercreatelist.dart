@@ -76,7 +76,7 @@ class ContollerCreateList extends GetxController {
   ];
 
   editEvent(edit.EventByIDModel data)async{
-    clearData();
+  await  clearData();
   dataEditEvent.value=data;
   nameCon.value.text = data.events!.eventName??'';
   createBy.value.text = data.events!.receiveFrom??'';
@@ -99,8 +99,8 @@ class ContollerCreateList extends GetxController {
   // listImage.value.clear();
   selectCategory!.value = category[data.events!.disasterType!];
   selectStatusList!.value = StatusList[data.events!.statusItem!];
-  selectStatusResponsible!.value = StatusList[data.events!.statusRelatedAgency!];
-  selectStatusrelevant!.value = StatusList[data.events!.statusAgency!];
+  selectStatusResponsible!.value = StatusList[data.events!.statusAgency!];
+  selectStatusrelevant!.value = StatusList[data.events!.statusRelatedAgency!];
   address.value.text= data.events!.address.toString()??'';
   mapController.value.move(
       LatLng(double.parse(lat.value.text), double.parse(lng.value.text)), 16);
@@ -218,11 +218,8 @@ class ContollerCreateList extends GetxController {
       List<DeceaseList> listDataDie=[];
       List<DeceaseList> listDataInjured=[];
       String uuid='';
-      if(dataEditEvent.value.events!=null){
-        uuid = dataEditEvent.value.events!.eventID!;
-      }else{
-        uuid = const Uuid().v4();
-      }
+
+
       addressModel location =
           await getLatLong(long: lng.value.text, lat: lat.value.text);
       List<ImageList> listImageBase64 = [];
@@ -231,6 +228,54 @@ class ContollerCreateList extends GetxController {
           listImageBase64.add(ImageList(image: element.pathImage));
         }
 
+      }
+      UpdateBy? dataUpdate;
+      if(dataEditEvent.value.events!=null){
+        uuid = dataEditEvent.value.events!.eventID!;
+        List<LogList>? listLog=[];
+        if(category.indexOf(selectCategory!.value) != dataEditEvent.value.events!.disasterType!){
+          listLog.add(LogList(header: 'ประเภทภัยพิบัติ',
+          description: selectCategory!.value));
+        }
+        if(nameCon.value.text.trim() !=dataEditEvent.value.events!.eventName){
+          listLog.add(LogList(header: 'ชื่อรายงาน',
+              description: nameCon.value.text.trim()));
+        }
+        if(date.value !=dataEditEvent.value.events!.datetime){
+          listLog.add(LogList(header: 'วันที่รับเรื่อง',
+              description: date.value));
+        }
+        if(StatusList.indexOf(selectStatusList!.value)!= dataEditEvent.value.events!.statusItem){
+          listLog.add(LogList(header: 'สถานะรายงาน',
+              description: selectStatusList!.value));
+        }
+        if(StatusList.indexOf(selectStatusrelevant!.value)!= dataEditEvent.value.events!.statusAgency){
+          listLog.add(LogList(header: 'สถานะหน่วยงานที่เกี่ยวข้อง',
+              description: selectStatusrelevant!.value));
+        }
+        if(StatusList.indexOf(selectStatusResponsible!.value)!= dataEditEvent.value.events!.statusRelatedAgency){
+          listLog.add(LogList(header: 'สถานะหน่วยงานที่รับผิดชอบ',
+              description: selectStatusrelevant!.value));
+        }
+        if(createBy.value.text.trim()!=dataEditEvent.value.events!.receiveFrom){
+          listLog.add(LogList(header: 'รับเรื่องจาก',
+              description:createBy.value.text.trim()));
+        }
+        if(radio.value!=dataEditEvent.value.events!.violence){
+          listLog.add(LogList(header: 'ระดับความรุนแรง',
+              description:radio.value.toString()));
+        }
+
+         dataUpdate= UpdateBy(
+          name: 'nameUpdate',
+          datetime: DateTime.now().toString(),
+          staffID: '123',
+          userName: 'userName',
+          imageList: listImageBase64,
+           logList: listLog
+        );
+      }else{
+        uuid = const Uuid().v4();
       }
       for(int i=0;i<listTextNameDie.length;i++){
         listDataDie.add(DeceaseList(
@@ -252,43 +297,44 @@ class ContollerCreateList extends GetxController {
           isActive: true,
           // createBy: createBy.value.text,
           datetime: date.value,
-          eventName: nameCon.value.text,
+          eventName: nameCon.value.text.trim(),
           disasterType: category.indexOf(selectCategory.toString()),
-          longitude: lng.value.text,
-          latitude: lat.value.text,
-          note: remark.value.text,
+          longitude: lng.value.text.trim(),
+          latitude: lat.value.text.trim(),
+          note: remark.value.text.trim(),
           province: location.province,
           violence: radio.value,
-          relatedAgency: relevant.value.text,
+          relatedAgency: relevant.value.text.trim(),
           imageList: listImageBase64,
-          address: address.value.text,
+          address: address.value.text.trim(),
           amphure: location.amphure,
           tambon: location.tambon,
           zipCode: location.zipCode,
-          createBy: 'deve',
+          // updateBy:dataUpdate,
+          createBy: (dataEditEvent.value.events!=null)?null:'deve',
           imageDeleteList: listDeleteImage,
-          receiveFrom: createBy.value.text,
+          receiveFrom: createBy.value.text.trim(),
           deceased: Deceased(
-            total: int.parse(die.value.text),
-            feMale: int.parse(womenDie.value.text),
-            male: int.parse(mandie.value.text),
-            unidentify: int.parse(unGenderDie.value.text),
+            total: int.parse(die.value.text.trim()),
+            feMale: int.parse(womenDie.value.text.trim()),
+            male: int.parse(mandie.value.text.trim()),
+            unidentify: int.parse(unGenderDie.value.text.trim()),
             deceaseList: listDataDie
           ),
           injured: Injured(
-            unidentify: int.parse(unGenderInjured.value.text),
-            male: int.parse(manInjured.value.text),
-            feMale: int.parse(womenInjured.value.text),
-            total: int.parse(injured.value.text),
+            unidentify: int.parse(unGenderInjured.value.text.trim()),
+            male: int.parse(manInjured.value.text.trim()),
+            feMale: int.parse(womenInjured.value.text.trim()),
+            total: int.parse(injured.value.text.trim()),
 
             injureList:  listDataInjured
           ),
-          statusRelatedAgency:
-              Statusrelevant.indexOf(selectStatusResponsible!.value),
+          statusRelatedAgency: StatusResponsible.indexOf(selectStatusrelevant!.value),
+
           statusAgency:
-              StatusResponsible.indexOf(selectStatusrelevant!.value),
+                   Statusrelevant.indexOf(selectStatusResponsible!.value),
           statusItem: StatusList.indexOf(selectStatusList!.value),
-          responsibleAgency: responsible.value.text);
+          responsibleAgency: responsible.value.text.trim());
       await createEvenApi(even).then((value) {});
       await clearData();
       showDialog(
