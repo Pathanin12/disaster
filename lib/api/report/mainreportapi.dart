@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
@@ -10,29 +9,52 @@ import 'package:disaster/service/config.dart';
 import '../../model/createevenmodel.dart';
 import '../../model/getalleventmodel.dart';
 
-Future<GetAllEventModel>getAllDashBoardApi({required String startDate,required String endDate,required int level,required int disasterType,int? provinceID})async{
-  GetAllEventModel? dataDashBoard =GetAllEventModel();
-  try{
-    await HttpRequest.LoginToken().then((token) async{
-      Dio dio=Dio();
-      final data = await dio.post('${url}GetAllEvent',data: {
-        "disasterType":disasterType,
-        "datetimeStart":startDate,
-        "datetimeEnd":endDate,
-        "level":level,
-        if(level>0)"provinceID":provinceID
-      },
-          options: Options(headers:{"Authorization":"Bearer $token"})
-      );
-      if(data.statusCode==200){
+Future<GetAllEventModel> getAllDashBoardApi(
+    {required String startDate,
+    required String endDate,
+    required int level,
+    required int disasterType,
+      required int statusAgency,
+      required int statusItem,
+    int? provinceID,
+    String? responsibleAgency}) async {
+  GetAllEventModel? dataDashBoard = GetAllEventModel();
+  try {
+    print("hhhhhhhh");
+    print({
+      "disasterType": disasterType,
+      "datetimeStart": startDate,
+      "datetimeEnd": endDate,
+      "level": level,
+      if (level > 0) "provinceID": provinceID,
+      "responsibleAgency":responsibleAgency,
+      "statusAgency": statusAgency,
+      "statusItem": statusItem
+    });
+    await HttpRequest.LoginToken().then((token) async {
+      Dio dio = Dio();
+      final data = await dio.post('${url}GetAllEvent',
+          data: {
+            "disasterType": disasterType,
+            "datetimeStart": startDate,
+            "datetimeEnd": endDate,
+            "level": level,
+            if (level > 0) "provinceID": provinceID,
+            "responsibleAgency":responsibleAgency,
+            "statusAgency": statusAgency,
+            "statusItem": statusItem
+          },
+          options: Options(headers: {"Authorization": "Bearer $token"}));
+      if (data.statusCode == 200) {
         dataDashBoard = GetAllEventModel.fromJson(data.data);
-       if(dataDashBoard!.eventList!.isNotEmpty) {
-         dataDashBoard!.eventList!.sort((a, b) => a.seq!.compareTo(b.seq!));
-       }
+        if (dataDashBoard!.eventList!.isNotEmpty) {
+          dataDashBoard!.eventList!.sort((a, b) => a.seq!.compareTo(b.seq!));
+          print('ewewewewewewewewewewewewe');
+        }
       }
     });
     return dataDashBoard!;
-  }catch(e){
+  } catch (e) {
     print('ERROR REPORT =>$e');
     return dataDashBoard!;
   }

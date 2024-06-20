@@ -1,11 +1,13 @@
 class GetAllEventModel {
   bool? success;
+  int? totalPages;
   List<EventList>? eventList;
 
-  GetAllEventModel({this.success, this.eventList});
+  GetAllEventModel({this.success, this.totalPages, this.eventList});
 
   GetAllEventModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
+    totalPages = json['totalPages'];
     if (json['eventList'] != null) {
       eventList = <EventList>[];
       json['eventList'].forEach((v) {
@@ -17,6 +19,7 @@ class GetAllEventModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['success'] = this.success;
+    data['totalPages'] = this.totalPages;
     if (this.eventList != null) {
       data['eventList'] = this.eventList!.map((v) => v.toJson()).toList();
     }

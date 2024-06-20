@@ -4,6 +4,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:html' as html;
 
+import 'package:disaster/service/config.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,17 @@ class ContollerCreateList extends GetxController {
   final keyForm = GlobalKey<FormState>();
   final mapController = MapController().obs;
   var dataEditEvent= edit.EventByIDModel().obs;
-  String? imageFile;
+  addressModel locationAddress = addressModel();
+  // String? imageFile;
+
+  var listTextNameDie=<TextEditingController>[].obs;
+  var listTextAgeDie=<TextEditingController>[].obs;
+  var listGenderDie=<RxString>[].obs;
+
+  var listTextNameInjured=<TextEditingController>[].obs;
+  var listTextAgeInjured=<TextEditingController>[].obs;
+  var listGenderInjured=<RxString>[].obs;
+
   // var listImage = <Uint8List>[].obs;
   var listConvertImage = <edit.ImageList>[].obs;
   var listDeleteImage=<ImageDeleteList>[].obs;
@@ -39,6 +50,7 @@ class ContollerCreateList extends GetxController {
   final nameCon = TextEditingController().obs,
       createBy = TextEditingController().obs,
       lat = TextEditingController().obs,
+      address = TextEditingController().obs,
       lng = TextEditingController().obs,
       responsible = TextEditingController().obs,
       die = TextEditingController().obs,
@@ -53,12 +65,18 @@ class ContollerCreateList extends GetxController {
       remark = TextEditingController().obs,
       search = TextEditingController().obs;
   var radio = 1.obs;
-
   var listSearchMap=<SearchMapModel>[].obs;
   final NumberPaginatorController controllerNumPage =
       NumberPaginatorController();
 
+  final listGender=[
+    "ไม่ระบุ",
+    "ชาย",
+    "หญิง"
+  ];
+
   editEvent(edit.EventByIDModel data)async{
+    clearData();
   dataEditEvent.value=data;
   nameCon.value.text = data.events!.eventName??'';
   createBy.value.text = data.events!.receiveFrom??'';
@@ -75,7 +93,7 @@ class ContollerCreateList extends GetxController {
   womenInjured.value.text = data.events!.injured!.feMale.toString()??'';
   unGenderInjured.value.text = data.events!.injured!.unidentify.toString()??'';
   remark.value.text = data.events!.note??'';
-  listConvertImage.value = data.events!.imageList!;
+  if(isAdmin)listConvertImage.value = data.events!.imageList!;
   radio.value = data.events!.violence??1;
   date.value = data.events!.datetime!;
   // listImage.value.clear();
@@ -83,12 +101,42 @@ class ContollerCreateList extends GetxController {
   selectStatusList!.value = StatusList[data.events!.statusItem!];
   selectStatusResponsible!.value = StatusList[data.events!.statusRelatedAgency!];
   selectStatusrelevant!.value = StatusList[data.events!.statusAgency!];
-  selectAgerangeDie!.value = AgerangeList[data.events!.deceased!.ageRange!];
-  selectAgerange!.value = AgerangeList[data.events!.injured!.ageRange!];
+  address.value.text= data.events!.address.toString()??'';
   mapController.value.move(
       LatLng(double.parse(lat.value.text), double.parse(lng.value.text)), 16);
+  for(int i=0;i< data.events!.deceased!.deceaseList!.length;i++){
+    listGenderDie.add(listGender[data.events!.deceased!.deceaseList![i].sex!].obs);
+    listTextAgeDie.add(TextEditingController(text:data.events!.deceased!.deceaseList![i].age.toString() ));
+    listTextNameDie.add(TextEditingController(text: data.events!.deceased!.deceaseList![i].name.toString()));
+  }
+  for(int i=0;i< data.events!.injured!.injureList!.length;i++){
+    listGenderInjured.add(listGender[data.events!.injured!.injureList![i].sex!].obs);
+    listTextAgeInjured.add(TextEditingController(text:data.events!.injured!.injureList![i].age.toString() ));
+    listTextNameInjured.add(TextEditingController(text: data.events!.injured!.injureList![i].name.toString()));
   }
 
+  }
+
+  UpdateListGenderDie(String gender, int index){
+    listGenderDie[index].value=gender;
+  }
+
+
+  addDataDie(){
+    listTextAgeDie.add(TextEditingController());
+    listGenderDie.add('ไม่ระบุ'.obs);
+    listTextNameDie.add(TextEditingController());
+
+  }
+  UpdateListGenderInjured(String gender, int index){
+    listGenderInjured[index].value=gender;
+  }
+  addDataInjured(){
+    listTextAgeInjured.add(TextEditingController());
+    listGenderInjured.add('ไม่ระบุ'.obs);
+    listTextNameInjured.add(TextEditingController());
+
+  }
   clearData() async {
     nameCon.value.text = '';
     createBy.value.text = '';
@@ -105,6 +153,7 @@ class ContollerCreateList extends GetxController {
     womenInjured.value.text = '';
     unGenderInjured.value.text = '';
     search.value.text='';
+    locationAddress = addressModel();
     remark.value.text = '';
     radio.value = 1;
     date.value = DateTime.now().toString().split(" ")[0];
@@ -115,11 +164,18 @@ class ContollerCreateList extends GetxController {
     selectStatusList!.value = 'รับเรื่อง';
     selectStatusResponsible!.value = 'รับเรื่อง';
     selectStatusrelevant!.value = 'รับเรื่อง';
-    selectAgerangeDie!.value = '0-20';
-    selectAgerange!.value = '0-20';
+    address.value.text='';
     mapController.value.move(
         LatLng(double.parse(lat.value.text), double.parse(lng.value.text)), 16);
     dataEditEvent= edit.EventByIDModel().obs;
+     listTextNameDie.clear();
+     listTextAgeDie.clear();
+     listGenderDie.clear();
+    listSearchMap.clear();
+     listTextNameInjured.clear();
+     listTextAgeInjured.clear();
+     listGenderInjured.clear();
+
   }
 
 
@@ -152,14 +208,6 @@ class ContollerCreateList extends GetxController {
     "เสร็จสิ้น",
   ];
 
-  RxString? selectAgerangeDie = '0-20'.obs;
-  RxString? selectAgerange = '0-20'.obs;
-  List<String> AgerangeList = [
-    "0-20",
-    "21-40",
-    "41-60",
-    "61 ขึ้นไป",
-  ];
 
   searchMap(String data)async{
     listSearchMap.value=await searchMapApi(data);
@@ -167,13 +215,15 @@ class ContollerCreateList extends GetxController {
 
   Future<void> submit(BuildContext context) async {
     try {
+      List<DeceaseList> listDataDie=[];
+      List<DeceaseList> listDataInjured=[];
       String uuid='';
       if(dataEditEvent.value.events!=null){
         uuid = dataEditEvent.value.events!.eventID!;
       }else{
         uuid = const Uuid().v4();
       }
-      String location =
+      addressModel location =
           await getLatLong(long: lng.value.text, lat: lat.value.text);
       List<ImageList> listImageBase64 = [];
       for (var element in listConvertImage) {
@@ -181,6 +231,20 @@ class ContollerCreateList extends GetxController {
           listImageBase64.add(ImageList(image: element.pathImage));
         }
 
+      }
+      for(int i=0;i<listTextNameDie.length;i++){
+        listDataDie.add(DeceaseList(
+          name: listTextNameDie[i].text,
+          age: int.parse(listTextAgeDie[i].text),
+          sex: listGender.indexOf(listGenderDie[i].value)
+        ));
+      }
+      for(int i=0;i<listTextNameInjured.length;i++){
+        listDataInjured.add(DeceaseList(
+            name: listTextNameInjured[i].text,
+            age: int.parse(listTextAgeInjured[i].text),
+            sex: listGender.indexOf(listGenderInjured[i].value)
+        ));
       }
       CreateEven even = CreateEven(
           eventID: uuid,
@@ -193,25 +257,31 @@ class ContollerCreateList extends GetxController {
           longitude: lng.value.text,
           latitude: lat.value.text,
           note: remark.value.text,
-          province: location,
+          province: location.province,
           violence: radio.value,
           relatedAgency: relevant.value.text,
           imageList: listImageBase64,
+          address: address.value.text,
+          amphure: location.amphure,
+          tambon: location.tambon,
+          zipCode: location.zipCode,
+          createBy: 'deve',
           imageDeleteList: listDeleteImage,
           receiveFrom: createBy.value.text,
           deceased: Deceased(
-            ageRange: AgerangeList.indexOf(selectAgerangeDie!.value.toString()),
             total: int.parse(die.value.text),
             feMale: int.parse(womenDie.value.text),
             male: int.parse(mandie.value.text),
             unidentify: int.parse(unGenderDie.value.text),
+            deceaseList: listDataDie
           ),
-          injured: Deceased(
+          injured: Injured(
             unidentify: int.parse(unGenderInjured.value.text),
             male: int.parse(manInjured.value.text),
-            ageRange: AgerangeList.indexOf(selectAgerange!.value.toString()),
             feMale: int.parse(womenInjured.value.text),
             total: int.parse(injured.value.text),
+
+            injureList:  listDataInjured
           ),
           statusRelatedAgency:
               Statusrelevant.indexOf(selectStatusResponsible!.value),
@@ -300,6 +370,9 @@ class ContollerCreateList extends GetxController {
     lat.value.text = "18.3170581";
     lng.value.text = "99.3986862";
   }
+  Future<void>setLoacationAddress()async{
+
+  }
 
   @override
   void dispose() {
@@ -307,3 +380,53 @@ class ContollerCreateList extends GetxController {
     listConvertImage.clear();
   }
 }
+
+class ListDataNameModel {
+  String? name;
+  String? sex;
+  String? age;
+  String? edit;
+
+  ListDataNameModel({this.name, this.sex, this.age, this.edit});
+
+  ListDataNameModel.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    sex = json['sex'];
+    age = json['age'];
+    edit = json['edit'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['sex'] = this.sex;
+    data['age'] = this.age;
+    data['edit'] = this.edit;
+    return data;
+  }
+}
+class addressModel {
+  String? amphure;
+  String? tambon;
+  String? zipCode;
+  String? province;
+
+  addressModel(
+      { this.amphure, this.tambon, this.zipCode, this.province});
+  addressModel.fromJson(Map<String, dynamic> json) {
+    amphure = json['amphure'];
+    tambon = json['tambon'];
+    zipCode = json['zipCode'];
+    province = json['province'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['amphure'] = this.amphure;
+    data['tambon'] = this.tambon;
+    data['zipCode'] = this.zipCode;
+    data['province'] = this.province;
+    return data;
+  }
+}
+

@@ -46,17 +46,15 @@ class MainReport extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-
-                    // Text(contoller.data[1][0],style: textStyle(context,fontSize: 15,fontWeight: FontWeight.bold,color: colorBlack),),
-
                     Stack(
                       children: [
+
                         Container(
                           color: Colors.blue,
                           height: 450,
                           child: Center(
                               child: FlutterMap(
-                                  mapController: contoller.mapController.value,
+                                  mapController: contoller.mapControllers.value,
                                   options: const MapOptions(
                                     // interactionOptions: InteractionOptions(
                                     //   flags: InteractiveFlag.doubleTapDragZoom |
@@ -67,7 +65,7 @@ class MainReport extends StatelessWidget {
                                     // maxZoom: 17,
                                     // minZoom: 10
                                   ),
-                                  children: contoller.listWidgetMark.value)),
+                                  children: contoller.listWidgetMark)),
                         ),
                         Positioned(
                             top: 20,
@@ -94,11 +92,11 @@ class MainReport extends StatelessWidget {
                                       },
                                       decoration: InputDecoration(
                                         suffixIcon: InkWell(
-                                          onTap: () async {
-                                            contoller.searchMap(
-                                                contoller
-                                                    .search.value.text);
-                                          },
+                                            onTap: () async {
+                                              contoller.searchMap(
+                                                  contoller
+                                                      .search.value.text);
+                                            },
                                             child: Icon(Icons.search)),
                                         fillColor: colorWhite,
                                         hintText: "ค้นหา",
@@ -126,7 +124,7 @@ class MainReport extends StatelessWidget {
                                       itemBuilder: (context, index) =>
                                           InkWell(
                                             onTap: (){
-                                              contoller.mapController.value.move(
+                                              contoller.mapControllers.value.move(
                                                   LatLng(
                                                       double.parse(contoller
                                                           .listSearchMap.value[index].lat!),
@@ -159,6 +157,7 @@ class MainReport extends StatelessWidget {
                             )),
                       ],
                     ),
+
                     const SizedBox(
                       height: 30,
                     ),
@@ -171,48 +170,134 @@ class MainReport extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+
+                          Row(mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  createPDF(
+                                      contoller.allEvent.value,
+                                      contoller.listDate.value[0]!,
+                                      contoller.listDate.value[1]!,
+                                      contoller.selectCategory!.value,
+                                      contoller.selectLevel!.value,
+                                      contoller.selectProvince.value.nameTh!);
+                                },
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  height: 40,
+                                  width: 100,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: colorAmber),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.file_download_outlined,
+                                        size: 20,
+                                        color: colorWhite,
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                        'PDF',
+                                        style: textStyle(context,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                            color: colorWhite),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  createExcel(contoller.allEvent.value,
+                                      contoller.listDate.value[0]!,
+                                      contoller.listDate.value[1]!,
+                                      contoller.selectCategory!.value,
+                                      contoller.selectLevel!.value,
+                                      contoller.selectProvince.value.nameTh!);
+                                },
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  height: 40,
+                                  width: 100,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: colorBlue),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.file_download_outlined,
+                                        size: 20,
+                                        color: colorWhite,
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                        'XLSX',
+                                        style: textStyle(context,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                            color: colorWhite),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          SizedBox(height: 10,),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              if (contoller.listDate.value.first!.year ==
-                                      DateTime.now().year &&
-                                  contoller.listDate.value.first!.month ==
-                                      DateTime.now().month &&
-                                  contoller.listDate.value.first!.day ==
-                                      DateTime.now().day &&
-                                  contoller.listDate.value.last!.year ==
-                                      DateTime.now().year &&
-                                  contoller.listDate.value.last!.month ==
-                                      DateTime.now().month &&
-                                  contoller.listDate.value.last!.day ==
-                                      DateTime.now().day)
-                                Text(
-                                  'วันนี้',
-                                  style: TextStyle(
-                                      fontSize: 13.0,
-                                      color: colorGrey,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              if (contoller.listDate.value.first!.year ==
-                                      DateTime.now().year &&
-                                  contoller.listDate.value.first!.month ==
-                                      DateTime.now().month &&
-                                  contoller.listDate.value.first!.day ==
-                                      DateTime.now().day &&
-                                  contoller.listDate.value.last!.year ==
-                                      DateTime.now().year &&
-                                  contoller.listDate.value.last!.month ==
-                                      DateTime.now().month &&
-                                  contoller.listDate.value.last!.day ==
-                                      DateTime.now().day)
-                                const SizedBox(
-                                  width: 20,
-                                ),
+                              // if (contoller.listDate.value.first!.year ==
+                              //         DateTime.now().year &&
+                              //     contoller.listDate.value.first!.month ==
+                              //         DateTime.now().month &&
+                              //     contoller.listDate.value.first!.day ==
+                              //         DateTime.now().day &&
+                              //     contoller.listDate.value.last!.year ==
+                              //         DateTime.now().year &&
+                              //     contoller.listDate.value.last!.month ==
+                              //         DateTime.now().month &&
+                              //     contoller.listDate.value.last!.day ==
+                              //         DateTime.now().day)
+                              //   Text(
+                              //     'วันนี้',
+                              //     style: TextStyle(
+                              //         fontSize: 13.0,
+                              //         color: colorGrey,
+                              //         fontWeight: FontWeight.w400),
+                              //   ),
+                              // if (contoller.listDate.value.first!.year ==
+                              //         DateTime.now().year &&
+                              //     contoller.listDate.value.first!.month ==
+                              //         DateTime.now().month &&
+                              //     contoller.listDate.value.first!.day ==
+                              //         DateTime.now().day &&
+                              //     contoller.listDate.value.last!.year ==
+                              //         DateTime.now().year &&
+                              //     contoller.listDate.value.last!.month ==
+                              //         DateTime.now().month &&
+                              //     contoller.listDate.value.last!.day ==
+                              //         DateTime.now().day)
+                                // const SizedBox(
+                                //   width: 20,
+                                // ),
                               Expanded(
-                                flex: 4,
+                                flex: 2,
                                 child: Container(
                                   alignment: Alignment.centerLeft,
-                                  height: 50,
+                                  height: 60,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -224,7 +309,7 @@ class MainReport extends StatelessWidget {
                                         padding: const EdgeInsets.only(
                                             left: 20, right: 5),
                                         width: double.infinity,
-                                        height: 30,
+                                        height: 40,
                                         decoration: BoxDecoration(
                                             color: colorWhite,
                                             border: Border.all(
@@ -244,7 +329,7 @@ class MainReport extends StatelessWidget {
                                                 child: Row(
                                                   children: [
                                                     Text(
-                                                        '${(contoller.listDate.value.isNotEmpty) ? (contoller.listDate.value.first == contoller.listDate.value.last) ? '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year}' : '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year} - ${contoller.listDate.value.last!.day} ${mountAbbreviation[contoller.listDate.value.last!.month - 1]} ${contoller.listDate.value.last!.year}' : ''}',
+                                                        '${(contoller.listDate.value.isNotEmpty) ? (contoller.listDate.value.first == contoller.listDate.value.last) ? '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year.toString().substring(2,4)}' : '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year.toString().substring(2,4)} - ${contoller.listDate.value.last!.day} ${mountAbbreviation[contoller.listDate.value.last!.month - 1]} ${contoller.listDate.value.last!.year.toString().substring(2,4)}' : ''}',
                                                         style: textStyle(
                                                             context,
                                                             fontSize: 13))
@@ -258,13 +343,13 @@ class MainReport extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(
-                                width: 20,
+                                width: 5,
                               ),
                               Expanded(
-                                flex: 3,
+                                flex:2,
                                 child: Container(
                                   alignment: Alignment.centerLeft,
-                                  height: 50,
+                                  height: 60,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -273,10 +358,9 @@ class MainReport extends StatelessWidget {
                                           style:
                                               textStyle(context, fontSize: 13)),
                                       Container(
-                                        padding: const EdgeInsets.only(
-                                            left: 20, right: 5),
+
                                         width: double.infinity,
-                                        height: 30,
+                                        height: 40,
                                         decoration: BoxDecoration(
                                             color: colorWhite,
                                             border: Border.all(
@@ -354,14 +438,14 @@ class MainReport extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(
-                                width: 20,
+                                width: 5,
                               ),
                               if (contoller.selectLevel!.value == 'จังหวัด')
                                 Expanded(
-                                  flex: 3,
+                                  flex: 2,
                                   child: Container(
                                     alignment: Alignment.centerLeft,
-                                    height: 50,
+                                    height: 60,
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -370,10 +454,9 @@ class MainReport extends StatelessWidget {
                                             style: textStyle(context,
                                                 fontSize: 13)),
                                         Container(
-                                          padding: const EdgeInsets.only(
-                                              left: 20, right: 5),
+
                                           width: double.infinity,
-                                          height: 30,
+                                          height: 40,
                                           decoration: BoxDecoration(
                                               color: colorWhite,
                                               border: Border.all(
@@ -456,8 +539,235 @@ class MainReport extends StatelessWidget {
                                 ),
                               if (contoller.selectLevel!.value == 'จังหวัด')
                                 const SizedBox(
-                                  width: 20,
+                                  width: 5,
                                 ),
+                              Expanded(
+                                  flex: 2,
+                                  child: Container(
+                                height: 60,
+                                color: colorWhite,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('หน่วยงาน',
+                                        style:
+                                        textStyle(context, fontSize: 13)),
+                                    Container(
+                                      padding: EdgeInsets.only(left: 5,right: 5),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        border: Border.all(color: Colors.grey.shade500)
+                                      ),
+                                      alignment: Alignment.centerLeft,
+                                      height: 40,
+                                      child: TextFormField(
+                                        maxLines: 1,
+                                        scrollPadding: EdgeInsets.zero,
+                                        textAlign: TextAlign.justify,
+                                        controller:
+                                        contoller.searchAgency.value,
+                                        style: TextStyle(
+                                            fontSize: 13.0,
+                                            color: colorBlack,
+                                            fontWeight: FontWeight.w400),
+
+                                        decoration: InputDecoration.collapsed(
+
+                                          fillColor: colorWhite,
+                                          hintText: "หน่วยงาน",
+                                          hintStyle: TextStyle(
+                                              fontSize: 13.0,
+                                              color: colorGrey,
+                                              fontWeight: FontWeight.w400),
+                                          filled: true,
+                                          // enabledBorder: OutlineInputBorder(borderSide: BorderSide(
+                                          //   color: Colors.grey.shade500,
+                                          //   width: 1,
+                                          // ), ),
+                                          // border: OutlineInputBorder(
+                                          //
+                                          //   borderRadius:
+                                          //   BorderRadius.circular(5),
+                                          // ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )),
+                              SizedBox(width: 5,),
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  alignment: Alignment.centerLeft,
+                                  height: 60,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: [
+                                      Text('สถานะของหน่วยงาน',
+                                          style:
+                                          textStyle(context, fontSize: 13)),
+                                      Container(
+
+                                        width: double.infinity,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                            color: colorWhite,
+                                            border: Border.all(
+                                              color: Colors.black26,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                            BorderRadius.circular(5)),
+                                        alignment: Alignment.center,
+                                        child: SizedBox(
+                                          width: double.infinity,
+                                          child: DropdownButtonHideUnderline(
+                                            child: DropdownButton2<String>(
+                                              dropdownStyleData:
+                                              DropdownStyleData(
+                                                maxHeight: 300,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius.circular(5),
+                                                ),
+                                                scrollbarTheme:
+                                                ScrollbarThemeData(
+                                                  radius:
+                                                  const Radius.circular(5),
+                                                  thickness:
+                                                  MaterialStateProperty.all<
+                                                      double>(6),
+                                                  thumbVisibility:
+                                                  MaterialStateProperty.all<
+                                                      bool>(true),
+                                                ),
+                                              ),
+                                              autofocus: true,
+                                              value:
+                                              contoller.selectStatusAgency.value,
+                                              items: contoller.StatusList.map<
+                                                  DropdownMenuItem<String>>(
+                                                      (String? value) {
+                                                    return DropdownMenuItem<String>(
+                                                      value: value!,
+                                                      child: Text(
+                                                        value,
+                                                        style: TextStyle(
+                                                            fontSize: 13.0,
+                                                            color: colorGrey,
+                                                            fontWeight:
+                                                            FontWeight.w400),
+                                                      ),
+                                                    );
+                                                  }).toList(),
+                                              iconStyleData:
+                                              const IconStyleData(
+                                                  icon: Icon(
+                                                    Icons.keyboard_arrow_down,
+                                                    size: 24,
+                                                  )),
+                                              onChanged: (valueSelect) {
+                                                contoller.selectStatusAgency.value =
+                                                valueSelect!;
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),SizedBox(width: 5,),
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  alignment: Alignment.centerLeft,
+                                  height: 60,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: [
+                                      Text('สถานะของรายการ',
+                                          style:
+                                          textStyle(context, fontSize: 13)),
+                                      Container(
+                                        padding: const EdgeInsets.only(
+                                            left: 20, right: 5),
+                                        width: double.infinity,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                            color: colorWhite,
+                                            border: Border.all(
+                                              color: Colors.black26,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                            BorderRadius.circular(5)),
+                                        alignment: Alignment.center,
+                                        child: SizedBox(
+                                          width: double.infinity,
+                                          child: DropdownButtonHideUnderline(
+                                            child: DropdownButton2<String>(
+                                              dropdownStyleData:
+                                              DropdownStyleData(
+                                                maxHeight: 300,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius.circular(5),
+                                                ),
+                                                scrollbarTheme:
+                                                ScrollbarThemeData(
+                                                  radius:
+                                                  const Radius.circular(5),
+                                                  thickness:
+                                                  MaterialStateProperty.all<
+                                                      double>(6),
+                                                  thumbVisibility:
+                                                  MaterialStateProperty.all<
+                                                      bool>(true),
+                                                ),
+                                              ),
+                                              autofocus: true,
+                                              value:
+                                              contoller.selectStatusItem!.value,
+
+                                              items: contoller.StatusList.map<
+                                                  DropdownMenuItem<String>>(
+                                                      (String? value) {
+                                                    return DropdownMenuItem<String>(
+                                                      value: value!,
+                                                      child: Text(
+                                                        value,
+                                                        style: TextStyle(
+                                                            fontSize: 13.0,
+                                                            color: colorGrey,
+                                                            fontWeight:
+                                                            FontWeight.w400),
+                                                      ),
+                                                    );
+                                                  }).toList(),
+                                              iconStyleData:
+                                              const IconStyleData(
+                                                  icon: Icon(
+                                                    Icons.keyboard_arrow_down,
+                                                    size: 24,
+                                                  )),
+                                              onChanged: (valueSelect) {
+                                                contoller.selectStatusItem!.value =
+                                                valueSelect!;
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 5,),
                               InkWell(
                                 onTap: () {
                                   contoller.setLocation();
@@ -467,7 +777,7 @@ class MainReport extends StatelessWidget {
                                   height: 40,
                                   width: 80,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
+                                      borderRadius: BorderRadius.circular(5),
                                       color: Colors.amber),
                                   child: (contoller.loadSearch.value == true)
                                       ? Center(
@@ -484,90 +794,8 @@ class MainReport extends StatelessWidget {
                                         ),
                                 ),
                               ),
-                              const Expanded(flex: 1, child: SizedBox()),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  createPDF(
-                                      contoller.allEvent.value,
-                                      contoller.listDate.value[0]!,
-                                      contoller.listDate.value[1]!,
-                                      contoller.selectCategory!.value,
-                                      contoller.selectLevel!.value,
-                                      contoller.selectProvince.value.nameTh!);
-                                },
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  height: 40,
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: colorAmber),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.file_download_outlined,
-                                        size: 20,
-                                        color: colorWhite,
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        'PDF',
-                                        style: textStyle(context,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                            color: colorWhite),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  createExcel(contoller.allEvent.value,
-                                      contoller.listDate.value[0]!,
-                                      contoller.listDate.value[1]!,
-                                      contoller.selectCategory!.value,
-                                      contoller.selectLevel!.value,
-                                      contoller.selectProvince.value.nameTh!);
-                                },
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  height: 40,
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: colorBlue),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.file_download_outlined,
-                                        size: 20,
-                                        color: colorWhite,
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        'XLSX',
-                                        style: textStyle(context,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                            color: colorWhite),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              )
+
+
                             ],
                           ),
                           const SizedBox(

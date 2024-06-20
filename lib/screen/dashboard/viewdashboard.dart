@@ -694,24 +694,6 @@ class DashBoardPage extends StatelessWidget {
                                   ),
                                   children: contoller.listWidgetMark.value)),
                         ),
-                        Container(
-                          color: Colors.blue,
-                          height: 450,
-                          child: Center(
-                              child: FlutterMap(
-                                  mapController: contoller.mapController.value,
-                                  options: const MapOptions(
-                                    // interactionOptions: InteractionOptions(
-                                    //   flags: InteractiveFlag.doubleTapDragZoom |
-                                    //       InteractiveFlag.drag,
-                                    // ),
-                                    initialCenter: LatLng(18.3170581, 99.3986862),
-                                    initialZoom: 12,
-                                    // maxZoom: 17,
-                                    // minZoom: 10
-                                  ),
-                                  children: contoller.listWidgetMark.value)),
-                        ),
                         Positioned(
                             top: 20,
                             left: 20,

@@ -34,6 +34,7 @@ class ContollerMainReport extends GetxController {
   RxInt Index = 0.obs;
   RxInt IndexChart = 0.obs;
   RxInt maxPage = 1.obs;
+  var responsibleAgency = TextEditingController().obs;
   var indexNumPage = 0.obs;
   var loadSearch = false.obs;
   var listDate = <DateTime?>[
@@ -41,15 +42,15 @@ class ContollerMainReport extends GetxController {
     DateTime.now(),
   ].obs;
   var allEvent = GetAllEventModel().obs;
-
   var listWidgetMark = <Widget>[
     TileLayer(
       urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
       userAgentPackageName: 'com.example.app',
     ),
   ].obs;
-  final mapController = MapController().obs;
-  var search = TextEditingController().obs;
+  final mapControllers = MapController().obs;
+  var search = TextEditingController().obs,
+      searchAgency = TextEditingController().obs;
   var listSearchMap=<SearchMapModel>[].obs;
   searchMap(String data)async{
     listSearchMap.value=await searchMapApi(data);
@@ -62,7 +63,14 @@ class ContollerMainReport extends GetxController {
     "ประเทศ",
     "จังหวัด",
   ];
-
+  List<String> StatusList = [
+    "รับเรื่อง",
+    "กำลังดำเนินการ",
+    "เสร็จสิ้น",
+    "เลือกสถานะ"
+  ];
+  var selectStatusItem = 'เลือกสถานะ'.obs;
+  var selectStatusAgency = 'เลือกสถานะ'.obs;
   List<String> AgerangeList = [
     "0-20",
     "21-40",
@@ -210,99 +218,105 @@ class ContollerMainReport extends GetxController {
 
   Future<void> setLocation() async {
     loadSearch.value = true;
-    allEvent.value = await getAllDashBoardApi(
-        startDate: listDate.value.first.toString().split(" ")[0],
-        endDate: listDate.value.last.toString().split(" ")[0],
-        disasterType: 4,
-        level: level.indexOf(selectLevel.toString()),
-        provinceID: selectProvince.value.id);
-    updateMaxPage(allEvent.value);
-    listWidgetMark = <Widget>[
-      TileLayer(
-        urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-        userAgentPackageName: 'com.example.app',
-      ),
-    ].obs;
 
-    for (var element in allEvent.value.eventList!) {
-      Widget widget = MarkerLayer(
-        markers: [
-          Marker(
-            point: LatLng(double.parse(element.latitude!),
-                double.parse(element.longitude!)),
-            width: 80,
-            height: 80,
-            child: InkWell(
-              onTap: (){
-                final LandingPageControllerAdmin landingPageController =
-                Get.put(LandingPageControllerAdmin(), permanent: false);
-                final ContollerDetail contollerEvent =
-                Get.put(ContollerDetail(), permanent: false);
-                contollerEvent.getEvent(element.eventID!);
-                landingPageController.tabIndex.value=7;
-              },
-              child: (element.disasterType == 0 && element.statusItem == 0)
-                  ? SvgPicture.asset(
-                'assets/icons/svg/fire0.svg',
-              )
-                  : (element.disasterType == 0 && element.statusItem == 1)
-                  ? SvgPicture.asset(
-                'assets/icons/svg/fire1.svg',
-              )
-                  : (element.disasterType == 0 && element.statusItem == 2)
-                  ? SvgPicture.asset(
-                'assets/icons/svg/fire2.svg',
-              )
-                  : (element.disasterType == 1 && element.statusItem == 0)
-                  ? SvgPicture.asset(
-                'assets/icons/svg/flood0.svg',
-              )
-                  : (element.disasterType == 1 &&
-                  element.statusItem == 1)
-                  ? SvgPicture.asset(
-                'assets/icons/svg/flood1.svg',
-              )
-                  : (element.disasterType == 1 &&
-                  element.statusItem == 2)
-                  ? SvgPicture.asset(
-                'assets/icons/svg/flood2.svg',
-              )
-                  : (element.disasterType == 2 &&
-                  element.statusItem == 0)
-                  ? SvgPicture.asset(
-                'assets/icons/svg/windstorm0.svg',
-              )
-                  : (element.disasterType == 2 &&
-                  element.statusItem == 1)
-                  ? SvgPicture.asset(
-                'assets/icons/svg/windstorm1.svg',
-              )
-                  : (element.disasterType == 2 &&
-                  element.statusItem == 2)
-                  ? SvgPicture.asset(
-                'assets/icons/svg/windstorm2.svg',
-              )
-                  : (element.disasterType == 3 &&
-                  element.statusItem == 0)
-                  ? SvgPicture.asset(
-                'assets/icons/svg/forestfire0.svg',
-              )
-                  : (element.disasterType ==
-                  3 &&
-                  element.statusItem ==
-                      1)
-                  ? SvgPicture.asset(
-                'assets/icons/svg/forestfire1.svg',
-              )
-                  : SvgPicture.asset(
-                'assets/icons/svg/forestfire2.svg',
-              ),
-            )
-          ),
-        ],
-      );
-      listWidgetMark.add(widget);
-    }
+     allEvent.value = await getAllDashBoardApi(
+       startDate: listDate.first.toString().split(" ")[0],
+       endDate: listDate.last.toString().split(" ")[0],
+       disasterType: 4,
+       level: level.indexOf(selectLevel.toString()),
+       provinceID: selectProvince.value.id,
+       statusItem:StatusList.indexOf(selectStatusItem.value) ,
+       statusAgency:StatusList.indexOf(selectStatusAgency.value) ,
+       responsibleAgency: responsibleAgency.value.text,
+     );
+     updateMaxPage(allEvent.value);
+     listWidgetMark = <Widget>[
+       TileLayer(
+         urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+         userAgentPackageName: 'com.example.app',
+       ),
+     ].obs;
+
+     for (var element in allEvent.value.eventList!) {
+       Widget widget = MarkerLayer(
+         markers: [
+           Marker(
+               point: LatLng(double.parse(element.latitude!),
+                   double.parse(element.longitude!)),
+               width: 80,
+               height: 80,
+               child: InkWell(
+                 onTap: (){
+                   final LandingPageControllerAdmin landingPageController =
+                   Get.put(LandingPageControllerAdmin(), permanent: false);
+                   final ContollerDetail contollerEvent =
+                   Get.put(ContollerDetail(), permanent: false);
+                   contollerEvent.getEvent(element.eventID!);
+                   landingPageController.tabIndex.value=7;
+                 },
+                 child: (element.disasterType == 0 && element.statusItem == 0)
+                     ? SvgPicture.asset(
+                   'assets/icons/svg/fire0.svg',
+                 )
+                     : (element.disasterType == 0 && element.statusItem == 1)
+                     ? SvgPicture.asset(
+                   'assets/icons/svg/fire1.svg',
+                 )
+                     : (element.disasterType == 0 && element.statusItem == 2)
+                     ? SvgPicture.asset(
+                   'assets/icons/svg/fire2.svg',
+                 )
+                     : (element.disasterType == 1 && element.statusItem == 0)
+                     ? SvgPicture.asset(
+                   'assets/icons/svg/flood0.svg',
+                 )
+                     : (element.disasterType == 1 &&
+                     element.statusItem == 1)
+                     ? SvgPicture.asset(
+                   'assets/icons/svg/flood1.svg',
+                 )
+                     : (element.disasterType == 1 &&
+                     element.statusItem == 2)
+                     ? SvgPicture.asset(
+                   'assets/icons/svg/flood2.svg',
+                 )
+                     : (element.disasterType == 2 &&
+                     element.statusItem == 0)
+                     ? SvgPicture.asset(
+                   'assets/icons/svg/windstorm0.svg',
+                 )
+                     : (element.disasterType == 2 &&
+                     element.statusItem == 1)
+                     ? SvgPicture.asset(
+                   'assets/icons/svg/windstorm1.svg',
+                 )
+                     : (element.disasterType == 2 &&
+                     element.statusItem == 2)
+                     ? SvgPicture.asset(
+                   'assets/icons/svg/windstorm2.svg',
+                 )
+                     : (element.disasterType == 3 &&
+                     element.statusItem == 0)
+                     ? SvgPicture.asset(
+                   'assets/icons/svg/forestfire0.svg',
+                 )
+                     : (element.disasterType ==
+                     3 &&
+                     element.statusItem ==
+                         1)
+                     ? SvgPicture.asset(
+                   'assets/icons/svg/forestfire1.svg',
+                 )
+                     : SvgPicture.asset(
+                   'assets/icons/svg/forestfire2.svg',
+                 ),
+               )
+           ),
+         ],
+       );
+       listWidgetMark.add(widget);
+     }
+
     loadSearch.value = false;
   }
 

@@ -37,14 +37,16 @@ class Detail extends StatelessWidget {
                             fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       InkWell(
-                        onTap: ()async{
+                        onTap: () async {
                           final ContollerCreateList contollerEdite =
-                          Get.put(ContollerCreateList(), permanent: false);
-                          final LandingPageControllerAdmin landingPageController =
-                          Get.put(LandingPageControllerAdmin(), permanent: false);
-                          await contollerEdite.editEvent(contoller.dataEvent.value);
-                          landingPageController.tabIndex.value=6;
-
+                              Get.put(ContollerCreateList(), permanent: false);
+                          final LandingPageControllerAdmin
+                              landingPageController = Get.put(
+                                  LandingPageControllerAdmin(),
+                                  permanent: false);
+                          await contollerEdite
+                              .editEvent(contoller.dataEvent.value);
+                          landingPageController.tabIndex.value = 6;
                         },
                         child: Container(
                           height: 40,
@@ -110,7 +112,10 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                (contoller.dataEvent.value.events==null)?'':contoller.category[contoller.dataEvent.value.events!.disasterType!],
+                                (contoller.dataEvent.value.events == null)
+                                    ? ''
+                                    : contoller.category[contoller
+                                        .dataEvent.value.events!.disasterType!],
                                 style: textStyle(context,
                                     fontSize: 13, color: colorGrey),
                               ),
@@ -121,7 +126,10 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                (contoller.dataEvent.value.events==null)?'':contoller.dataEvent.value.events!.eventName!,
+                                (contoller.dataEvent.value.events == null)
+                                    ? ''
+                                    : contoller
+                                        .dataEvent.value.events!.eventName!,
                                 style: textStyle(context,
                                     fontSize: 13, color: colorGrey),
                               ),
@@ -162,7 +170,9 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                (contoller.dataEvent.value.events==null)?'':'${DateTime.parse(contoller.dataEvent.value.events!.datetime!).day} ${mountList[DateTime.parse(contoller.dataEvent.value.events!.datetime!).month]} ${DateTime.parse(contoller.dataEvent.value.events!.datetime!).year+543}',
+                                (contoller.dataEvent.value.events == null)
+                                    ? ''
+                                    : '${DateTime.parse(contoller.dataEvent.value.events!.datetime!).day} ${mountList[DateTime.parse(contoller.dataEvent.value.events!.datetime!).month]} ${DateTime.parse(contoller.dataEvent.value.events!.datetime!).year + 543}',
                                 style: textStyle(context,
                                     fontSize: 13, color: colorGrey),
                               ),
@@ -173,7 +183,10 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                (contoller.dataEvent.value.events==null)?'':contoller.dataEvent.value.events!.receiveFrom!,
+                                (contoller.dataEvent.value.events == null)
+                                    ? ''
+                                    : contoller
+                                        .dataEvent.value.events!.receiveFrom!,
                                 style: textStyle(context,
                                     fontSize: 13, color: colorGrey),
                               ),
@@ -214,7 +227,10 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-    (contoller.dataEvent.value.events==null)?'':contoller.dataEvent.value.events!.relatedAgency!,
+                                (contoller.dataEvent.value.events == null)
+                                    ? ''
+                                    : contoller
+                                        .dataEvent.value.events!.relatedAgency!,
                                 style: textStyle(context,
                                     fontSize: 13, color: colorGrey),
                               ),
@@ -225,7 +241,10 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                (contoller.dataEvent.value.events==null)?'':contoller.StatusList[contoller.dataEvent.value.events!.statusRelatedAgency!],
+                                (contoller.dataEvent.value.events == null)
+                                    ? ''
+                                    : contoller.StatusList[contoller.dataEvent
+                                        .value.events!.statusRelatedAgency!],
                                 style: textStyle(context,
                                     fontSize: 13, color: colorGrey),
                               ),
@@ -266,7 +285,11 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-    (contoller.dataEvent.value.events==null)?'':contoller.dataEvent.value.events!.responsibleAgency??'',
+                                (contoller.dataEvent.value.events == null)
+                                    ? ''
+                                    : contoller.dataEvent.value.events!
+                                            .responsibleAgency ??
+                                        '',
                                 style: textStyle(context,
                                     fontSize: 13, color: colorGrey),
                               ),
@@ -277,7 +300,10 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-                                (contoller.dataEvent.value.events==null)?'':contoller.StatusList[contoller.dataEvent.value.events!.statusAgency!],
+                                (contoller.dataEvent.value.events == null)
+                                    ? ''
+                                    : contoller.StatusList[contoller
+                                        .dataEvent.value.events!.statusAgency!],
                                 style: textStyle(context,
                                     fontSize: 13, color: colorGrey),
                               ),
@@ -317,10 +343,46 @@ class Detail extends StatelessWidget {
                           children: [
                             Expanded(
                                 child: Container(
-                              child: Text(
-                            (contoller.dataEvent.value.events==null)?'':'ผู้เสียชีวิต ${contoller.dataEvent.value.events!.deceased!.total!} ราย เพศชาย ${contoller.dataEvent.value.events!.deceased!.male!} คน เพศหญิง ${contoller.dataEvent.value.events!.deceased!.feMale!} คน ไม่สามารถระบุเพศได้ ${contoller.dataEvent.value.events!.deceased!.unidentify!} คน\nผู้บาดเจ็บ ${contoller.dataEvent.value.events!.injured!.total!} ราย เพศชาย ${contoller.dataEvent.value.events!.injured!.male!} คน เพศหญิง ${contoller.dataEvent.value.events!.injured!.feMale!} คน ไม่สามารถระบุเพศได้ ${contoller.dataEvent.value.events!.injured!.unidentify!} คน',
-                                style: textStyle(context,
-                                    fontSize: 13, color: colorGrey),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    (contoller.dataEvent.value.events == null)
+                                        ? ''
+                                        : 'ผู้เสียชีวิต ${contoller.dataEvent.value.events!.deceased!.total!} ราย เพศชาย ${contoller.dataEvent.value.events!.deceased!.male!} คน เพศหญิง ${contoller.dataEvent.value.events!.deceased!.feMale!} คน ไม่สามารถระบุเพศได้ ${contoller.dataEvent.value.events!.deceased!.unidentify!} คน',
+                                    style: textStyle(context,
+                                        fontSize: 13, color: colorGrey),
+                                  ),
+                                  Text(
+                                    (contoller.dataEvent.value.events == null)
+                                        ? ''
+                                        : 'ผู้บาดเจ็บ ${contoller.dataEvent.value.events!.injured!.total!} ราย เพศชาย ${contoller.dataEvent.value.events!.injured!.male!} คน เพศหญิง ${contoller.dataEvent.value.events!.injured!.feMale!} คน ไม่สามารถระบุเพศได้ ${contoller.dataEvent.value.events!.injured!.unidentify!} คน',
+                                    style: textStyle(context,
+                                        fontSize: 13, color: colorGrey),
+                                  ),
+                                  SizedBox(height: 5,),
+                                  InkWell(
+                                    onTap: (){
+                                      contoller.dialogListName(context);
+                                    },
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      height: 40,
+                                      width: 80,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color: colorGrey),
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: colorWhite
+                                      ),
+                                      child:  Text(
+                                        'ดูรายชื่อ',
+                                        style: textStyle(context,
+                                            fontSize: 13, color: colorBlue),
+                                      ),
+                                    ),
+                                  )
+                                ],
                               ),
                             )),
                             const SizedBox(
@@ -329,7 +391,17 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                               child: Text(
-         (contoller.dataEvent.value.events==null)?'':(contoller.dataEvent.value.events!.violence==1)?'เล็กน้อย':(contoller.dataEvent.value.events!.violence==2)?'ปานกลาง':'รุนแรง',
+                                (contoller.dataEvent.value.events == null)
+                                    ? ''
+                                    : (contoller.dataEvent.value.events!
+                                                .violence ==
+                                            1)
+                                        ? 'เล็กน้อย'
+                                        : (contoller.dataEvent.value.events!
+                                                    .violence ==
+                                                2)
+                                            ? 'ปานกลาง'
+                                            : 'รุนแรง',
                                 style: textStyle(context,
                                     fontSize: 13, color: colorGrey),
                               ),
@@ -343,18 +415,16 @@ class Detail extends StatelessWidget {
                           children: [
                             Expanded(
                                 child: Container(
-                                  child: Text(
-                                    'สถานะรายงาน',
-                                    style: textStyle(context,
-                                        fontSize: 13, color: colorBlack),
-                                  ),
-                                )),
+                              child: Text(
+                                'สถานะรายงาน',
+                                style: textStyle(context,
+                                    fontSize: 13, color: colorBlack),
+                              ),
+                            )),
                             const SizedBox(
                               width: 20,
                             ),
-                            Expanded(
-                                child: Container(
-                                )),
+                            Expanded(child: Container()),
                           ],
                         ),
                         const SizedBox(
@@ -364,18 +434,19 @@ class Detail extends StatelessWidget {
                           children: [
                             Expanded(
                                 child: Container(
-                                  child: Text(
-                                    (contoller.dataEvent.value.events==null)?'':contoller.StatusList[contoller.dataEvent.value.events!.statusItem!],
-                                    style: textStyle(context,
-                                        fontSize: 13, color: colorGrey),
-                                  ),
-                                )),
+                              child: Text(
+                                (contoller.dataEvent.value.events == null)
+                                    ? ''
+                                    : contoller.StatusList[contoller
+                                        .dataEvent.value.events!.statusItem!],
+                                style: textStyle(context,
+                                    fontSize: 13, color: colorGrey),
+                              ),
+                            )),
                             const SizedBox(
                               width: 20,
                             ),
-                            Expanded(
-                                child: Container(
-                                )),
+                            Expanded(child: Container()),
                           ],
                         ),
                         const SizedBox(
@@ -404,86 +475,93 @@ class Detail extends StatelessWidget {
                                         'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                                     userAgentPackageName: 'com.example.app',
                                   ),
-                                  if(contoller.dataEvent.value.events!=null)MarkerLayer(
-                                    markers: [
-                                      Marker(
-                                        point: LatLng(
-                                            double.parse(contoller.dataEvent.value.events!.latitude!),
-                                            double.parse(contoller.dataEvent.value.events!.longitude!)),
-                                        width: 80,
-                                        height: 80,
-                                        child: (contoller.dataEvent.value.events!.disasterType == 0 &&
-                                            contoller.dataEvent.value.events!.statusItem == 0)
-                                            ? SvgPicture.asset(
-                                                'assets/icons/svg/fire0.svg',
-                                              )
-                                            : (contoller.dataEvent.value.events!.disasterType == 0 &&
-                                            contoller.dataEvent.value.events!.statusItem == 1)
-                                                ? SvgPicture.asset(
-                                                    'assets/icons/svg/fire1.svg',
-                                                  )
-                                                : (contoller.dataEvent.value.events!.disasterType == 0 &&
-                                            contoller.dataEvent.value.events!.statusItem == 2)
-                                                    ? SvgPicture.asset(
-                                                        'assets/icons/svg/fire2.svg',
-                                                      )
-                                                    : (contoller.dataEvent.value.events!.disasterType == 1 &&
-                                            contoller.dataEvent.value.events!.statusItem == 0)
-                                                        ? SvgPicture.asset(
-                                                            'assets/icons/svg/flood0.svg',
-                                                          )
-                                                        : (contoller.dataEvent.value.events!.disasterType ==
-                                                                    1 &&
-                                            contoller.dataEvent.value.events!.statusItem ==
-                                                                    1)
-                                                            ? SvgPicture.asset(
-                                                                'assets/icons/svg/flood1.svg',
-                                                              )
-                                                            : (contoller.dataEvent.value.events!.disasterType ==
-                                                                        1 &&
-                                            contoller.dataEvent.value.events!.statusItem ==
-                                                                        2)
-                                                                ? SvgPicture.asset(
-                                                                    'assets/icons/svg/flood2.svg',
-                                                                  )
-                                                                : (contoller.dataEvent.value.events!.disasterType ==
-                                                                            2 &&
-                                            contoller.dataEvent.value.events!.statusItem ==
-                                                                            0)
-                                                                    ? SvgPicture
-                                                                        .asset(
-                                                                        'assets/icons/svg/windstorm0.svg',
-                                                                      )
-                                                                    : (contoller.dataEvent.value.events!.disasterType ==
-                                                                                2 &&
-                                            contoller.dataEvent.value.events!.statusItem ==
-                                                                                1)
-                                                                        ? SvgPicture
-                                                                            .asset(
-                                                                            'assets/icons/svg/windstorm1.svg',
-                                                                          )
-                                                                        : (contoller.dataEvent.value.events!.disasterType == 2 &&
-                                            contoller.dataEvent.value.events!.statusItem ==
-                                                                                    2)
-                                                                            ? SvgPicture
-                                                                                .asset(
-                                                                                'assets/icons/svg/windstorm2.svg',
-                                                                              )
-                                                                            : (contoller.dataEvent.value.events!.disasterType == 3 &&
-                                            contoller.dataEvent.value.events!.statusItem == 0)
-                                                                                ? SvgPicture.asset(
-                                                                                    'assets/icons/svg/forestfire0.svg',
-                                                                                  )
-                                                                                : (contoller.dataEvent.value.events!.disasterType == 3 && contoller.dataEvent.value.events!.statusItem == 1)
-                                                                                    ? SvgPicture.asset(
-                                                                                        'assets/icons/svg/forestfire1.svg',
-                                                                                      )
-                                                                                    : SvgPicture.asset(
-                                                                                        'assets/icons/svg/forestfire2.svg',
-                                                                                      ),
-                                      ),
-                                    ],
-                                  )
+                                  if (contoller.dataEvent.value.events != null)
+                                    MarkerLayer(
+                                      markers: [
+                                        Marker(
+                                          point: LatLng(
+                                              double.parse(contoller.dataEvent
+                                                  .value.events!.latitude!),
+                                              double.parse(contoller.dataEvent
+                                                  .value.events!.longitude!)),
+                                          width: 80,
+                                          height: 80,
+                                          child: (contoller.dataEvent.value.events!.disasterType == 0 &&
+                                                  contoller.dataEvent.value
+                                                          .events!.statusItem ==
+                                                      0)
+                                              ? SvgPicture.asset(
+                                                  'assets/icons/svg/fire0.svg',
+                                                )
+                                              : (contoller.dataEvent.value.events!.disasterType == 0 &&
+                                                      contoller
+                                                              .dataEvent
+                                                              .value
+                                                              .events!
+                                                              .statusItem ==
+                                                          1)
+                                                  ? SvgPicture.asset(
+                                                      'assets/icons/svg/fire1.svg',
+                                                    )
+                                                  : (contoller.dataEvent.value.events!.disasterType == 0 &&
+                                                          contoller
+                                                                  .dataEvent
+                                                                  .value
+                                                                  .events!
+                                                                  .statusItem ==
+                                                              2)
+                                                      ? SvgPicture.asset(
+                                                          'assets/icons/svg/fire2.svg',
+                                                        )
+                                                      : (contoller
+                                                                      .dataEvent
+                                                                      .value
+                                                                      .events!
+                                                                      .disasterType ==
+                                                                  1 &&
+                                                              contoller
+                                                                      .dataEvent
+                                                                      .value
+                                                                      .events!
+                                                                      .statusItem ==
+                                                                  0)
+                                                          ? SvgPicture.asset(
+                                                              'assets/icons/svg/flood0.svg',
+                                                            )
+                                                          : (contoller.dataEvent.value.events!.disasterType == 1 && contoller.dataEvent.value.events!.statusItem == 1)
+                                                              ? SvgPicture.asset(
+                                                                  'assets/icons/svg/flood1.svg',
+                                                                )
+                                                              : (contoller.dataEvent.value.events!.disasterType == 1 && contoller.dataEvent.value.events!.statusItem == 2)
+                                                                  ? SvgPicture.asset(
+                                                                      'assets/icons/svg/flood2.svg',
+                                                                    )
+                                                                  : (contoller.dataEvent.value.events!.disasterType == 2 && contoller.dataEvent.value.events!.statusItem == 0)
+                                                                      ? SvgPicture.asset(
+                                                                          'assets/icons/svg/windstorm0.svg',
+                                                                        )
+                                                                      : (contoller.dataEvent.value.events!.disasterType == 2 && contoller.dataEvent.value.events!.statusItem == 1)
+                                                                          ? SvgPicture.asset(
+                                                                              'assets/icons/svg/windstorm1.svg',
+                                                                            )
+                                                                          : (contoller.dataEvent.value.events!.disasterType == 2 && contoller.dataEvent.value.events!.statusItem == 2)
+                                                                              ? SvgPicture.asset(
+                                                                                  'assets/icons/svg/windstorm2.svg',
+                                                                                )
+                                                                              : (contoller.dataEvent.value.events!.disasterType == 3 && contoller.dataEvent.value.events!.statusItem == 0)
+                                                                                  ? SvgPicture.asset(
+                                                                                      'assets/icons/svg/forestfire0.svg',
+                                                                                    )
+                                                                                  : (contoller.dataEvent.value.events!.disasterType == 3 && contoller.dataEvent.value.events!.statusItem == 1)
+                                                                                      ? SvgPicture.asset(
+                                                                                          'assets/icons/svg/forestfire1.svg',
+                                                                                        )
+                                                                                      : SvgPicture.asset(
+                                                                                          'assets/icons/svg/forestfire2.svg',
+                                                                                        ),
+                                        ),
+                                      ],
+                                    )
                                 ],
                               )),
                             ),
@@ -505,18 +583,16 @@ class Detail extends StatelessWidget {
                                             // if (value.isNotEmpty) {
                                             //   contoller.searchMap(value);
                                             // }
-                                            if(value.isEmpty){
+                                            if (value.isEmpty) {
                                               contoller.listSearchMap.clear();
                                             }
-
                                           },
                                           decoration: InputDecoration(
                                             suffixIcon: InkWell(
-                                              onTap: () async {
-                                                contoller.searchMap(
-                                                    contoller
-                                                        .search.value.text);
-                                              },
+                                                onTap: () async {
+                                                  contoller.searchMap(contoller
+                                                      .search.value.text);
+                                                },
                                                 child: Icon(Icons.search)),
                                             fillColor: colorWhite,
                                             hintText: "ค้นหา",
@@ -531,7 +607,7 @@ class Detail extends StatelessWidget {
                                                 width: 2,
                                               ),
                                               borderRadius:
-                                              BorderRadius.circular(5),
+                                                  BorderRadius.circular(5),
                                             ),
                                           ),
                                         ),
@@ -543,33 +619,38 @@ class Detail extends StatelessWidget {
                                               .listSearchMap.value.length,
                                           itemBuilder: (context, index) =>
                                               InkWell(
-                                                onTap: (){
-                                                  contoller.mapController.value.move(
+                                            onTap: () {
+                                              contoller.mapController.value
+                                                  .move(
                                                       LatLng(
                                                           double.parse(contoller
-                                                              .listSearchMap.value[index].lat!),
+                                                              .listSearchMap
+                                                              .value[index]
+                                                              .lat!),
                                                           double.parse(contoller
-                                                              .listSearchMap.value[index].lon!)),
+                                                              .listSearchMap
+                                                              .value[index]
+                                                              .lon!)),
                                                       16);
-                                                  contoller.listSearchMap.clear();
-                                                },
-                                                child: Container(
-                                                  padding: const EdgeInsets.only(
-                                                      left: 5,
-                                                      right: 5,
-                                                      top: 2,
-                                                      bottom: 2),
-                                                  height: 45,
-                                                  color: (index % 2 == 1)
-                                                      ? Colors.grey.shade300
-                                                      : Colors.white,
-                                                  child: Text(contoller
-                                                      .listSearchMap
-                                                      .value[index]
-                                                      .displayName
-                                                      .toString()),
-                                                ),
-                                              ),
+                                              contoller.listSearchMap.clear();
+                                            },
+                                            child: Container(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5,
+                                                  right: 5,
+                                                  top: 2,
+                                                  bottom: 2),
+                                              height: 45,
+                                              color: (index % 2 == 1)
+                                                  ? Colors.grey.shade300
+                                                  : Colors.white,
+                                              child: Text(contoller
+                                                  .listSearchMap
+                                                  .value[index]
+                                                  .displayName
+                                                  .toString()),
+                                            ),
+                                          ),
                                         ),
                                       )
                                     ],
@@ -585,22 +666,11 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                                   child: Text(
-                                    'ละติจูด',
+                                    'ที่อยู่',
                                     style: textStyle(context,
                                         fontSize: 13, color: colorBlack),
                                   ),
                                 )),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Expanded(
-                                child: Container(
-                                  child: Text(
-                                    'ลองติจูด',
-                                    style: textStyle(context,
-                                        fontSize: 13, color: colorBlack),
-                                  ),
-                                ))
                           ],
                         ),
                         const SizedBox(
@@ -611,22 +681,76 @@ class Detail extends StatelessWidget {
                             Expanded(
                                 child: Container(
                                   child: Text(
-                                    (contoller.dataEvent.value.events==null)?'':contoller.dataEvent.value.events!.latitude!,
+                                    (contoller.dataEvent.value.events == null)
+                                        ? ''
+                                        : contoller
+                                        .dataEvent.value.events!.address??'',
                                     style: textStyle(context,
                                         fontSize: 13, color: colorGrey),
                                   ),
                                 )),
+
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: Container(
+                              child: Text(
+                                'ละติจูด',
+                                style: textStyle(context,
+                                    fontSize: 13, color: colorBlack),
+                              ),
+                            )),
                             const SizedBox(
                               width: 20,
                             ),
                             Expanded(
                                 child: Container(
-                                  child: Text(
-                                    (contoller.dataEvent.value.events==null)?'':contoller.dataEvent.value.events!.longitude!,
-                                    style: textStyle(context,
-                                        fontSize: 13, color: colorGrey),
-                                  ),
-                                )),
+                              child: Text(
+                                'ลองติจูด',
+                                style: textStyle(context,
+                                    fontSize: 13, color: colorBlack),
+                              ),
+                            ))
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: Container(
+                              child: Text(
+                                (contoller.dataEvent.value.events == null)
+                                    ? ''
+                                    : contoller
+                                        .dataEvent.value.events!.latitude!,
+                                style: textStyle(context,
+                                    fontSize: 13, color: colorGrey),
+                              ),
+                            )),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Expanded(
+                                child: Container(
+                              child: Text(
+                                (contoller.dataEvent.value.events == null)
+                                    ? ''
+                                    : contoller
+                                        .dataEvent.value.events!.longitude!,
+                                style: textStyle(context,
+                                    fontSize: 13, color: colorGrey),
+                              ),
+                            )),
                           ],
                         ),
                         const SizedBox(
@@ -636,49 +760,48 @@ class Detail extends StatelessWidget {
                           children: [
                             Expanded(
                                 child: Container(
-                                  child: Text(
-                                    'รูปที่อัพโหลด',
-                                    style: textStyle(context,
-                                        fontSize: 13, color: colorBlack),
-                                  ),
-                                )),
+                              child: Text(
+                                'รูปที่อัพโหลด',
+                                style: textStyle(context,
+                                    fontSize: 13, color: colorBlack),
+                              ),
+                            )),
                             const SizedBox(
                               width: 20,
                             ),
-                            Expanded(
-                                child: Container(
-                                ))
+                            Expanded(child: Container())
                           ],
                         ),
                         const SizedBox(
                           height: 20,
                         ),
-                       if((contoller.dataEvent.value.events!=null))GridView.builder (
-                          shrinkWrap: true,
-                          gridDelegate:
-                          const SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: 150,
-                            crossAxisSpacing: 3.0,
-                            mainAxisSpacing: 10.0,
-                            childAspectRatio: 0.8,
-                          ),
-                          itemCount:
-                          contoller.dataEvent.value.events!.imageList!.length,
-                          itemBuilder: (context, index) {
-
+                        if ((contoller.dataEvent.value.events != null))
+                          GridView.builder(
+                            shrinkWrap: true,
+                            gridDelegate:
+                                const SliverGridDelegateWithMaxCrossAxisExtent(
+                              maxCrossAxisExtent: 150,
+                              crossAxisSpacing: 3.0,
+                              mainAxisSpacing: 10.0,
+                              childAspectRatio: 0.8,
+                            ),
+                            itemCount: contoller
+                                .dataEvent.value.events!.imageList!.length,
+                            itemBuilder: (context, index) {
                               return Container(
                                 height: 200,
                                 width: 200,
                                 decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image:NetworkImage(
-                                            contoller.dataEvent.value.events!.imageList![index].pathImage!,
-                                            ),fit: BoxFit.cover),
-                              ),
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                        contoller.dataEvent.value.events!
+                                            .imageList![index].pathImage!,
+                                      ),
+                                      fit: BoxFit.cover),
+                                ),
                               );
-
-                          },
-                        ),
+                            },
+                          ),
                         const SizedBox(
                           height: 30,
                         ),
@@ -686,18 +809,16 @@ class Detail extends StatelessWidget {
                           children: [
                             Expanded(
                                 child: Container(
-                                  child: Text(
-                                    'รายละเอียดเพิ่มเติม',
-                                    style: textStyle(context,
-                                        fontSize: 13, color: colorBlack),
-                                  ),
-                                )),
+                              child: Text(
+                                'รายละเอียดเพิ่มเติม',
+                                style: textStyle(context,
+                                    fontSize: 13, color: colorBlack),
+                              ),
+                            )),
                             const SizedBox(
                               width: 20,
                             ),
-                            Expanded(
-                                child: Container(
-                                ))
+                            Expanded(child: Container())
                           ],
                         ),
                         const SizedBox(
@@ -707,13 +828,14 @@ class Detail extends StatelessWidget {
                           children: [
                             Expanded(
                                 child: Container(
-                                  child: Text(
-                                    (contoller.dataEvent.value.events==null)?'':contoller.dataEvent.value.events!.note!,
-                                    style: textStyle(context,
-                                        fontSize: 13, color: colorGrey),
-                                  ),
-                                )),
-
+                              child: Text(
+                                (contoller.dataEvent.value.events == null)
+                                    ? ''
+                                    : contoller.dataEvent.value.events!.note!,
+                                style: textStyle(context,
+                                    fontSize: 13, color: colorGrey),
+                              ),
+                            )),
                           ],
                         ),
                       ],

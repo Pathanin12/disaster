@@ -380,10 +380,14 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                     children:  [
                       DashBoardPage(),
                       MainReport(),
-                      FireReport(),
-                      FloodReport(),
-                      WineStormReport(),
-                      ForestFireReport(),
+                      MainReport(),
+                      MainReport(),
+                      MainReport(),
+                      MainReport(),
+                      // FireReport(),
+                      // FloodReport(),
+                      // WineStormReport(),
+                      // ForestFireReport(),
                       CreateList(),
                       Detail()
                     ],

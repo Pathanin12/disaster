@@ -1,6 +1,8 @@
 String url = "https://disasterapi.aicard.work/API/";
 String pathQR='https://disasterweb.netlify.app/';
 
+bool isAdmin=false;
+
 List<Province> provinceList = [
   {
     "id": 1,

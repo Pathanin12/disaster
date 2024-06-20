@@ -11,7 +11,7 @@ Future<void> createEvenApi(CreateEven even) async {
   try {
     HttpRequest.LoginToken().then((token) async {
       // print('/////////////////');
-      // print(" ${even.toJson()}");
+      print(" ${even.toJson()}");
       Dio dio = Dio();
       final data = await dio.post('${url}CreateOrUpdateEvent',
           data: even.toJson(),
@@ -21,7 +21,8 @@ Future<void> createEvenApi(CreateEven even) async {
           }));
 
       if (data.statusCode == 200) {
-        // print(jsonDecode(data.data.toString()));
+        print(data.statusCode);
+        print(data.data);
       }
     });
   } catch (e) {
