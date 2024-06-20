@@ -66,6 +66,9 @@ dependencies:
 #  syncfusion_flutter_xlsio: any
   flutter_rounded_date_picker: ^3.0.4
   qr_flutter: ^4.1.0
+  image_picker: ^1.1.2
+  scan: ^1.6.0
+  camera: ^0.10.5+9
 
 
 dev_dependencies:
