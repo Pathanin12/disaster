@@ -122,7 +122,8 @@ class CreateList extends StatelessWidget {
                                                           bool>(true),
                                                 ),
                                               ),
-                                              openWithLongPress: (isAdmin)?false:true,
+                                              openWithLongPress:
+                                                  (isAdmin) ? true : false,
                                               autofocus: true,
                                               isExpanded: true,
                                               value: contoller
@@ -174,7 +175,7 @@ class CreateList extends StatelessWidget {
                                         height: 40,
                                         color: colorWhite,
                                         child: TextFormField(
-                                          enabled: (isAdmin)?true:false,
+                                          enabled: (isAdmin) ? true : false,
                                           controller: contoller.nameCon.value,
                                           style: TextStyle(
                                               fontSize: 13.0,
@@ -251,78 +252,81 @@ class CreateList extends StatelessWidget {
                                       flex: 5,
                                       child: InkWell(
                                         onTap: () async {
-                                          if(isAdmin) {
+                                          if (isAdmin) {
                                             DateTime? newDateTime =
-                                            await showRoundedDatePicker(
+                                                await showRoundedDatePicker(
                                               theme: ThemeData(
-                                                primaryColor: Colors
-                                                    .amberAccent,
+                                                primaryColor:
+                                                    Colors.amberAccent,
                                               ),
                                               styleDatePicker:
-                                              MaterialRoundedDatePickerStyle(
+                                                  MaterialRoundedDatePickerStyle(
                                                 textStyleCurrentDayOnCalendar:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                    FontWeight.bold),
-                                                textStyleDayOnCalendar: TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black),
+                                                    TextStyle(
+                                                        fontSize: 20,
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                textStyleDayOnCalendar:
+                                                    TextStyle(
+                                                        fontSize: 20,
+                                                        color: Colors.black),
                                                 textStyleDayOnCalendarSelected:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.white,
-                                                    fontWeight:
-                                                    FontWeight.bold),
+                                                    TextStyle(
+                                                        fontSize: 20,
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold),
                                                 textStyleDayOnCalendarDisabled:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black
-                                                        .withOpacity(0.1)),
+                                                    TextStyle(
+                                                        fontSize: 20,
+                                                        color: Colors.black
+                                                            .withOpacity(0.1)),
                                                 textStyleMonthYearHeader:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                    FontWeight.bold),
+                                                    TextStyle(
+                                                        fontSize: 20,
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.bold),
                                                 sizeArrow: 50,
                                                 colorArrowNext: Colors.black,
-                                                colorArrowPrevious: Colors
-                                                    .black,
+                                                colorArrowPrevious:
+                                                    Colors.black,
                                                 marginLeftArrowPrevious: 16,
                                                 marginTopArrowPrevious: 16,
                                                 marginTopArrowNext: 16,
                                                 marginRightArrowNext: 32,
-                                                textStyleButtonAction: TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black),
+                                                textStyleButtonAction:
+                                                    TextStyle(
+                                                        fontSize: 20,
+                                                        color: Colors.black),
                                                 textStyleButtonPositive:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.amber,
-                                                    fontWeight:
-                                                    FontWeight.bold),
+                                                    TextStyle(
+                                                        fontSize: 20,
+                                                        color: Colors.amber,
+                                                        fontWeight:
+                                                            FontWeight.bold),
                                                 textStyleButtonNegative:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black45
-                                                        .withOpacity(0.5)),
+                                                    TextStyle(
+                                                        fontSize: 20,
+                                                        color: Colors.black45
+                                                            .withOpacity(0.5)),
                                                 decorationDateSelected:
-                                                BoxDecoration(
-                                                    color: Colors.amber,
-                                                    shape: BoxShape.circle),
+                                                    BoxDecoration(
+                                                        color: Colors.amber,
+                                                        shape: BoxShape.circle),
                                               ),
                                               styleYearPicker:
-                                              MaterialRoundedYearPickerStyle(
+                                                  MaterialRoundedYearPickerStyle(
                                                 textStyleYear: TextStyle(
                                                     fontSize: 30,
                                                     color: Colors.black),
-                                                textStyleYearSelected: TextStyle(
-                                                    fontSize: 40,
-                                                    color: Colors.black45,
-                                                    fontWeight: FontWeight
-                                                        .bold),
+                                                textStyleYearSelected:
+                                                    TextStyle(
+                                                        fontSize: 40,
+                                                        color: Colors.black45,
+                                                        fontWeight:
+                                                            FontWeight.bold),
                                                 heightYearRow: 100,
                                               ),
                                               context: context,
@@ -400,7 +404,9 @@ class CreateList extends StatelessWidget {
                                                     DropdownButtonHideUnderline(
                                                   child:
                                                       DropdownButton2<String>(
-                                                        openWithLongPress: (isAdmin)?false:true,
+                                                    openWithLongPress: (isAdmin)
+                                                        ? true
+                                                        : false,
                                                     dropdownStyleData:
                                                         DropdownStyleData(
                                                       maxHeight: 300,
@@ -578,6 +584,9 @@ class CreateList extends StatelessWidget {
                                                     DropdownButtonHideUnderline(
                                                   child:
                                                       DropdownButton2<String>(
+                                                    openWithLongPress: (isAdmin)
+                                                        ? true
+                                                        : false,
                                                     dropdownStyleData:
                                                         DropdownStyleData(
                                                       maxHeight: 300,
@@ -696,7 +705,7 @@ class CreateList extends StatelessWidget {
                                         height: 40,
                                         color: colorWhite,
                                         child: TextFormField(
-                                          enabled: (isAdmin)?false:true,
+                                          enabled: (isAdmin) ? true : false,
                                           controller: contoller.createBy.value,
                                           decoration: InputDecoration(
                                             fillColor: colorWhite,
@@ -728,12 +737,14 @@ class CreateList extends StatelessWidget {
                                         child: Row(
                                           children: [
                                             Radio(
-                                              toggleable: (isAdmin)?false:true,
                                                 value: 1,
                                                 groupValue:
                                                     contoller.radio.value,
                                                 onChanged: (val) {
-                                                  contoller.radio.value = val!;
+                                                  if (isAdmin) {
+                                                    contoller.radio.value =
+                                                        val!;
+                                                  }
                                                 }),
                                             const SizedBox(
                                               width: 10,
@@ -752,7 +763,10 @@ class CreateList extends StatelessWidget {
                                                 groupValue:
                                                     contoller.radio.value,
                                                 onChanged: (val) {
-                                                  contoller.radio.value = val!;
+                                                  if(isAdmin) {
+                                                    contoller.radio.value =
+                                                    val!;
+                                                  }
                                                 }),
                                             const SizedBox(
                                               width: 10,
@@ -771,7 +785,10 @@ class CreateList extends StatelessWidget {
                                                 groupValue:
                                                     contoller.radio.value,
                                                 onChanged: (val) {
-                                                  contoller.radio.value = val!;
+                                                  if(isAdmin) {
+                                                    contoller.radio.value =
+                                                    val!;
+                                                  }
                                                 }),
                                             const SizedBox(
                                               width: 10,
@@ -1168,253 +1185,405 @@ class CreateList extends StatelessWidget {
                             shrinkWrap: true,
                             itemCount: contoller.listTextNameDie.length,
                             itemBuilder: (context, index) {
-                                return Container(
-                                  margin: EdgeInsets.only(bottom: 5,top: 5),
-                                  height: 40,
-                                  child: Row(
-                                    children: [
-                                      Container(
-
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(100),
-                                          color: Color(0xfffd9e1ec)
-                                        ),
-
-                                        child: Text('${index+1}'),
-                                        alignment: Alignment.center,
-                                        width: 30,
-                                        height: 30,
-                                      ),
-                                      SizedBox(width: 20,),
-                                      Text('ชื่อ-นามสกุล',style: textStyle(context,color: colorBlack,fontSize: 13),),
-                                      SizedBox(width: 10,),
-                                      Container(
-                                        height: 40,
-                                        width: 250,
-                                        color: colorWhite,
-                                        child: TextFormField(
-                                          enabled: (isAdmin)?true:(contoller.dataEditEvent.value.events==null)?true:(index>=contoller.dataEditEvent.value.events!.deceased!.deceaseList!.length)?true:false,
-                                          controller: contoller.listTextNameDie[index],
-                                          textAlign: TextAlign.left,
-                                          keyboardType: TextInputType.number,
-                                          decoration: InputDecoration(
-                                            fillColor: colorWhite,
-                                            filled: true,
-                                            border: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: colorGrey,
-                                                width: 2,
-                                              ),
-                                              borderRadius:
-                                              BorderRadius.circular(5),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: 20,),
-                                      Text('เพศ',style: textStyle(context,color: colorBlack,fontSize: 13),),
-                                      SizedBox(width: 10,),
-                                      Container(
-                                        padding: const EdgeInsets.only(
-                                            left: 20, right: 5),
-                                        width: 150,
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                            color: colorWhite,
-                                            border: Border.all(
-                                              color: Colors.black26,
-                                              width: 1,
+                              return Container(
+                                margin: EdgeInsets.only(bottom: 5, top: 5),
+                                height: 40,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(100),
+                                          color: Color(0xfffd9e1ec)),
+                                      child: Text('${index + 1}'),
+                                      alignment: Alignment.center,
+                                      width: 30,
+                                      height: 30,
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Text(
+                                      'ชื่อ-นามสกุล',
+                                      style: textStyle(context,
+                                          color: colorBlack, fontSize: 13),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      height: 40,
+                                      width: 250,
+                                      color: colorWhite,
+                                      child: TextFormField(
+                                        enabled: (isAdmin)
+                                            ? true
+                                            : (contoller.dataEditEvent.value
+                                                        .events ==
+                                                    null)
+                                                ? true
+                                                : (index >=
+                                                        contoller
+                                                            .dataEditEvent
+                                                            .value
+                                                            .events!
+                                                            .deceased!
+                                                            .deceaseList!
+                                                            .length)
+                                                    ? true
+                                                    : false,
+                                        controller:
+                                            contoller.listTextNameDie[index],
+                                        textAlign: TextAlign.left,
+                                        keyboardType: TextInputType.number,
+                                        decoration: InputDecoration(
+                                          fillColor: colorWhite,
+                                          filled: true,
+                                          border: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: colorGrey,
+                                              width: 2,
                                             ),
                                             borderRadius:
-                                            BorderRadius.circular(5)),
-                                        alignment: Alignment.center,
-                                        child: SizedBox(
-                                          width: 100,
-                                          child: Obx(()=>DropdownButtonHideUnderline(
-                                              child: DropdownButton2<String>(
-                                                dropdownStyleData:
-                                                DropdownStyleData(
-                                                  maxHeight: 300,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                    BorderRadius.circular(5),
-                                                  ),
-                                                  scrollbarTheme:
-                                                  ScrollbarThemeData(
-                                                    radius:
-                                                    const Radius.circular(5),
-                                                    thickness:
-                                                    MaterialStateProperty.all<
-                                                        double>(6),
-                                                    thumbVisibility:
-                                                    MaterialStateProperty.all<
-                                                        bool>(true),
-                                                  ),
-                                                ),
-                                                autofocus: true,
-                                                isExpanded: true,
-                                                openWithLongPress:(isAdmin)?false: (contoller.dataEditEvent.value.events==null)?false:(index>=contoller.dataEditEvent.value.events!.deceased!.deceaseList!.length)?false:true,
-                                                value: contoller
-                                                    .listGenderDie[index].value,
-                                                items: contoller.listGender.map<
-                                                    DropdownMenuItem<String>>(
-                                                        (String? value) {
-                                                      return DropdownMenuItem<String>(
-
-                                                        value: value!,
-                                                        child: Text(
-                                                          value,
-                                                          style: TextStyle(
-                                                              fontSize: 13.0,
-                                                              color: colorBlack,
-                                                              fontWeight:
-                                                              FontWeight.w400),
-                                                        ),
-                                                      );
-                                                    }).toList(),
-                                                iconStyleData:
-                                                const IconStyleData(
-                                                    icon: Icon(
-                                                      Icons.keyboard_arrow_down,
-                                                      size: 24,
-                                                    )),
-                                                onChanged: (valueSelect) {
-                                                  contoller.UpdateListGenderDie(valueSelect!,index);
-                                                  // contoller.listGenderDie[index] = valueSelect!;
-                                                },
-                                                // enableFeedback: (contoller.dataEditEvent.value.events==null)?false:(index>=contoller.dataEditEvent.value.events!.deceased!.deceaseList!.length)?true:false,
-                                              ),
-                                            ),
+                                                BorderRadius.circular(5),
                                           ),
                                         ),
                                       ),
-                                      SizedBox(width: 20,),
-                                      Text('อายุ',style: textStyle(context,color: colorBlack,fontSize: 13),),
-                                      SizedBox(width: 10,),
-                                      Container(
-                                        height: 40,
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Text(
+                                      'เพศ',
+                                      style: textStyle(context,
+                                          color: colorBlack, fontSize: 13),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.only(
+                                          left: 20, right: 5),
+                                      width: 150,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                          color: colorWhite,
+                                          border: Border.all(
+                                            color: Colors.black26,
+                                            width: 1,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      alignment: Alignment.center,
+                                      child: SizedBox(
                                         width: 100,
-                                        color: colorWhite,
-                                        child: TextFormField(
-                                          enabled:(isAdmin)?true:(contoller.dataEditEvent.value.events==null)?true:(index>=contoller.dataEditEvent.value.events!.deceased!.deceaseList!.length)?true:false,
-                                          controller: contoller.listTextAgeDie[index],
-                                          textAlign: TextAlign.center,
-                                          keyboardType: TextInputType.number,
-                                          decoration: InputDecoration(
-                                            fillColor: colorWhite,
-                                            filled: true,
-                                            border: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: colorGrey,
-                                                width: 2,
+                                        child: Obx(
+                                          () => DropdownButtonHideUnderline(
+                                            child: DropdownButton2<String>(
+                                              dropdownStyleData:
+                                                  DropdownStyleData(
+                                                maxHeight: 300,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                ),
+                                                scrollbarTheme:
+                                                    ScrollbarThemeData(
+                                                  radius:
+                                                      const Radius.circular(5),
+                                                  thickness:
+                                                      MaterialStateProperty.all<
+                                                          double>(6),
+                                                  thumbVisibility:
+                                                      MaterialStateProperty.all<
+                                                          bool>(true),
+                                                ),
                                               ),
-                                              borderRadius:
-                                              BorderRadius.circular(5),
+                                              autofocus: true,
+                                              isExpanded: true,
+                                              openWithLongPress: (isAdmin)
+                                                  ? false
+                                                  : (contoller.dataEditEvent
+                                                              .value.events ==
+                                                          null)
+                                                      ? false
+                                                      : (index >=
+                                                              contoller
+                                                                  .dataEditEvent
+                                                                  .value
+                                                                  .events!
+                                                                  .deceased!
+                                                                  .deceaseList!
+                                                                  .length)
+                                                          ? false
+                                                          : true,
+                                              value: contoller
+                                                  .listGenderDie[index].value,
+                                              items: contoller.listGender.map<
+                                                      DropdownMenuItem<String>>(
+                                                  (String? value) {
+                                                return DropdownMenuItem<String>(
+                                                  value: value!,
+                                                  child: Text(
+                                                    value,
+                                                    style: TextStyle(
+                                                        fontSize: 13.0,
+                                                        color: colorBlack,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
+                                                );
+                                              }).toList(),
+                                              iconStyleData:
+                                                  const IconStyleData(
+                                                      icon: Icon(
+                                                Icons.keyboard_arrow_down,
+                                                size: 24,
+                                              )),
+                                              onChanged: (valueSelect) {
+                                                contoller.UpdateListGenderDie(
+                                                    valueSelect!, index);
+                                                // contoller.listGenderDie[index] = valueSelect!;
+                                              },
+                                              // enableFeedback: (contoller.dataEditEvent.value.events==null)?false:(index>=contoller.dataEditEvent.value.events!.deceased!.deceaseList!.length)?true:false,
                                             ),
                                           ),
                                         ),
                                       ),
-                                      SizedBox(width: 20,),
-                                      (isAdmin)?InkWell(
-                                        onTap: (){
-                                          contoller.listGenderDie.removeAt(index);
-                                          contoller.listTextAgeDie.removeAt(index);
-                                          contoller.listTextNameDie.removeAt(index);
-                                        },
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(5),
-                                              border: Border.all(color: colorRed),
-                                              color: Colors.white
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Text(
+                                      'อายุ',
+                                      style: textStyle(context,
+                                          color: colorBlack, fontSize: 13),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      height: 40,
+                                      width: 100,
+                                      color: colorWhite,
+                                      child: TextFormField(
+                                        enabled: (isAdmin)
+                                            ? true
+                                            : (contoller.dataEditEvent.value
+                                                        .events ==
+                                                    null)
+                                                ? true
+                                                : (index >=
+                                                        contoller
+                                                            .dataEditEvent
+                                                            .value
+                                                            .events!
+                                                            .deceased!
+                                                            .deceaseList!
+                                                            .length)
+                                                    ? true
+                                                    : false,
+                                        controller:
+                                            contoller.listTextAgeDie[index],
+                                        textAlign: TextAlign.center,
+                                        keyboardType: TextInputType.number,
+                                        decoration: InputDecoration(
+                                          fillColor: colorWhite,
+                                          filled: true,
+                                          border: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: colorGrey,
+                                              width: 2,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(5),
                                           ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Icon(CupertinoIcons.multiply,size: 17,color: Colors.red,),
-                                              SizedBox(width: 10,),
-                                              Text('ลบ',style: textStyle(context,color: colorRed,fontSize: 13),),
-                                            ],
-                                          ),
-                                          height: 40,
-                                          width: 80,
                                         ),
-                                      ):
-                                      (contoller.dataEditEvent.value.events==null)?
-                                      InkWell(
-                                        onTap: (){
-                                          contoller.listGenderDie.removeAt(index);
-                                          contoller.listTextAgeDie.removeAt(index);
-                                          contoller.listTextNameDie.removeAt(index);
-                                        },
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(5),
-                                              border: Border.all(color: colorRed),
-                                              color: Colors.white
-                                          ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Icon(CupertinoIcons.multiply,size: 17,color: Colors.red,),
-                                              SizedBox(width: 10,),
-                                              Text('ลบ',style: textStyle(context,color: colorRed,fontSize: 13),),
-                                            ],
-                                          ),
-                                          height: 40,
-                                          width: 80,
-                                        ),
-                                      )
-                                     :(index>=contoller.dataEditEvent.value.events!.deceased!.deceaseList!.length)?
-                                       InkWell(
-                                        onTap: (){
-                                          contoller.listGenderDie.removeAt(index);
-                                          contoller.listTextAgeDie.removeAt(index);
-                                          contoller.listTextNameDie.removeAt(index);
-                                        },
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(5),
-                                            border: Border.all(color: colorRed),
-                                            color: Colors.white
-                                          ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Icon(CupertinoIcons.multiply,size: 17,color: Colors.red,),
-                                              SizedBox(width: 10,),
-                                              Text('ลบ',style: textStyle(context,color: colorRed,fontSize: 13),),
-                                            ],
-                                          ),
-                                          height: 40,
-                                          width: 80,
-                                        ),
-                                      ):SizedBox()
-                                    ],
-                                  ),
-                                );
-                          },),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    (isAdmin)
+                                        ? InkWell(
+                                            onTap: () {
+                                              contoller.listGenderDie
+                                                  .removeAt(index);
+                                              contoller.listTextAgeDie
+                                                  .removeAt(index);
+                                              contoller.listTextNameDie
+                                                  .removeAt(index);
+                                            },
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  border: Border.all(
+                                                      color: colorRed),
+                                                  color: Colors.white),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    CupertinoIcons.multiply,
+                                                    size: 17,
+                                                    color: Colors.red,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Text(
+                                                    'ลบ',
+                                                    style: textStyle(context,
+                                                        color: colorRed,
+                                                        fontSize: 13),
+                                                  ),
+                                                ],
+                                              ),
+                                              height: 40,
+                                              width: 80,
+                                            ),
+                                          )
+                                        : (contoller.dataEditEvent.value
+                                                    .events ==
+                                                null)
+                                            ? InkWell(
+                                                onTap: () {
+                                                  contoller.listGenderDie
+                                                      .removeAt(index);
+                                                  contoller.listTextAgeDie
+                                                      .removeAt(index);
+                                                  contoller.listTextNameDie
+                                                      .removeAt(index);
+                                                },
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      border: Border.all(
+                                                          color: colorRed),
+                                                      color: Colors.white),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Icon(
+                                                        CupertinoIcons.multiply,
+                                                        size: 17,
+                                                        color: Colors.red,
+                                                      ),
+                                                      SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      Text(
+                                                        'ลบ',
+                                                        style: textStyle(
+                                                            context,
+                                                            color: colorRed,
+                                                            fontSize: 13),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  height: 40,
+                                                  width: 80,
+                                                ),
+                                              )
+                                            : (index >=
+                                                    contoller
+                                                        .dataEditEvent
+                                                        .value
+                                                        .events!
+                                                        .deceased!
+                                                        .deceaseList!
+                                                        .length)
+                                                ? InkWell(
+                                                    onTap: () {
+                                                      contoller.listGenderDie
+                                                          .removeAt(index);
+                                                      contoller.listTextAgeDie
+                                                          .removeAt(index);
+                                                      contoller.listTextNameDie
+                                                          .removeAt(index);
+                                                    },
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                          border: Border.all(
+                                                              color: colorRed),
+                                                          color: Colors.white),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Icon(
+                                                            CupertinoIcons
+                                                                .multiply,
+                                                            size: 17,
+                                                            color: Colors.red,
+                                                          ),
+                                                          SizedBox(
+                                                            width: 10,
+                                                          ),
+                                                          Text(
+                                                            'ลบ',
+                                                            style: textStyle(
+                                                                context,
+                                                                color: colorRed,
+                                                                fontSize: 13),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      height: 40,
+                                                      width: 80,
+                                                    ),
+                                                  )
+                                                : SizedBox()
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
                           InkWell(
-                            onTap: (){
-
+                            onTap: () {
                               contoller.addDataDie();
                             },
                             child: Container(
-                              padding: EdgeInsets.only(left: 20,right: 20,top: 7,bottom: 7),
+                              padding: EdgeInsets.only(
+                                  left: 20, right: 20, top: 7, bottom: 7),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                border: Border.all(color: Colors.grey),
-                                color: colorWhite
-                              ),
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(color: Colors.grey),
+                                  color: colorWhite),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                              Icon(Icons.add,color: colorBlue,size: 20,),
-                              SizedBox(height: 5,),
-                              Text('เพิ่มรายละเอียดผู้เสียชีวิต',style: textStyle(context,color: colorBlue,fontSize: 13),)
-                            ],),),
+                                  Icon(
+                                    Icons.add,
+                                    color: colorBlue,
+                                    size: 20,
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    'เพิ่มรายละเอียดผู้เสียชีวิต',
+                                    style: textStyle(context,
+                                        color: colorBlue, fontSize: 13),
+                                  )
+                                ],
+                              ),
+                            ),
                           ),
                           const SizedBox(
                             height: 20,
@@ -1591,7 +1760,6 @@ class CreateList extends StatelessWidget {
                                     const SizedBox(
                                       width: 10,
                                     ),
-
                                   ],
                                 ),
                               ],
@@ -1603,32 +1771,54 @@ class CreateList extends StatelessWidget {
                             itemCount: contoller.listTextNameInjured.length,
                             itemBuilder: (context, index) {
                               return Container(
-                                margin: EdgeInsets.only(bottom: 5,top: 5),
+                                margin: EdgeInsets.only(bottom: 5, top: 5),
                                 height: 40,
                                 child: Row(
                                   children: [
                                     Container(
-
                                       decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(100),
-                                          color: Color(0xfffd9e1ec)
-                                      ),
-
-                                      child: Text('${index+1}'),
+                                          borderRadius:
+                                              BorderRadius.circular(100),
+                                          color: Color(0xfffd9e1ec)),
+                                      child: Text('${index + 1}'),
                                       alignment: Alignment.center,
                                       width: 30,
                                       height: 30,
                                     ),
-                                    SizedBox(width: 20,),
-                                    Text('ชื่อ-นามสกุล',style: textStyle(context,color: colorBlack,fontSize: 13),),
-                                    SizedBox(width: 10,),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Text(
+                                      'ชื่อ-นามสกุล',
+                                      style: textStyle(context,
+                                          color: colorBlack, fontSize: 13),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
                                     Container(
                                       height: 40,
                                       width: 250,
                                       color: colorWhite,
                                       child: TextFormField(
-                                        enabled: (isAdmin)?true:(contoller.dataEditEvent.value.events==null)?true:(index>=contoller.dataEditEvent.value.events!.injured!.injureList!.length)?true:false,
-                                        controller: contoller.listTextNameInjured[index],
+                                        enabled: (isAdmin)
+                                            ? true
+                                            : (contoller.dataEditEvent.value
+                                                        .events ==
+                                                    null)
+                                                ? true
+                                                : (index >=
+                                                        contoller
+                                                            .dataEditEvent
+                                                            .value
+                                                            .events!
+                                                            .injured!
+                                                            .injureList!
+                                                            .length)
+                                                    ? true
+                                                    : false,
+                                        controller: contoller
+                                            .listTextNameInjured[index],
                                         textAlign: TextAlign.left,
                                         keyboardType: TextInputType.number,
                                         decoration: InputDecoration(
@@ -1640,14 +1830,22 @@ class CreateList extends StatelessWidget {
                                               width: 2,
                                             ),
                                             borderRadius:
-                                            BorderRadius.circular(5),
+                                                BorderRadius.circular(5),
                                           ),
                                         ),
                                       ),
                                     ),
-                                    SizedBox(width: 20,),
-                                    Text('เพศ',style: textStyle(context,color: colorBlack,fontSize: 13),),
-                                    SizedBox(width: 10,),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Text(
+                                      'เพศ',
+                                      style: textStyle(context,
+                                          color: colorBlack, fontSize: 13),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
                                     Container(
                                       padding: const EdgeInsets.only(
                                           left: 20, right: 5),
@@ -1660,77 +1858,119 @@ class CreateList extends StatelessWidget {
                                             width: 1,
                                           ),
                                           borderRadius:
-                                          BorderRadius.circular(5)),
+                                              BorderRadius.circular(5)),
                                       alignment: Alignment.center,
                                       child: SizedBox(
                                         width: 100,
-                                        child: Obx(()=>DropdownButtonHideUnderline(
-                                          child: DropdownButton2<String>(
-                                            dropdownStyleData:
-                                            DropdownStyleData(
-                                              maxHeight: 300,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                BorderRadius.circular(5),
+                                        child: Obx(
+                                          () => DropdownButtonHideUnderline(
+                                            child: DropdownButton2<String>(
+                                              dropdownStyleData:
+                                                  DropdownStyleData(
+                                                maxHeight: 300,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                ),
+                                                scrollbarTheme:
+                                                    ScrollbarThemeData(
+                                                  radius:
+                                                      const Radius.circular(5),
+                                                  thickness:
+                                                      MaterialStateProperty.all<
+                                                          double>(6),
+                                                  thumbVisibility:
+                                                      MaterialStateProperty.all<
+                                                          bool>(true),
+                                                ),
                                               ),
-                                              scrollbarTheme:
-                                              ScrollbarThemeData(
-                                                radius:
-                                                const Radius.circular(5),
-                                                thickness:
-                                                MaterialStateProperty.all<
-                                                    double>(6),
-                                                thumbVisibility:
-                                                MaterialStateProperty.all<
-                                                    bool>(true),
-                                              ),
+                                              autofocus: true,
+                                              isExpanded: true,
+                                              openWithLongPress: (isAdmin)
+                                                  ? false
+                                                  : (contoller.dataEditEvent
+                                                              .value.events ==
+                                                          null)
+                                                      ? false
+                                                      : (index >=
+                                                              contoller
+                                                                  .dataEditEvent
+                                                                  .value
+                                                                  .events!
+                                                                  .injured!
+                                                                  .injureList!
+                                                                  .length)
+                                                          ? false
+                                                          : true,
+                                              value: contoller
+                                                  .listGenderInjured[index]
+                                                  .value,
+                                              items: contoller.listGender.map<
+                                                      DropdownMenuItem<String>>(
+                                                  (String? value) {
+                                                return DropdownMenuItem<String>(
+                                                  value: value!,
+                                                  child: Text(
+                                                    value,
+                                                    style: TextStyle(
+                                                        fontSize: 13.0,
+                                                        color: colorBlack,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
+                                                );
+                                              }).toList(),
+                                              iconStyleData:
+                                                  const IconStyleData(
+                                                      icon: Icon(
+                                                Icons.keyboard_arrow_down,
+                                                size: 24,
+                                              )),
+                                              onChanged: (valueSelect) {
+                                                contoller
+                                                    .UpdateListGenderInjured(
+                                                        valueSelect!, index);
+                                              },
+                                              // enableFeedback:  (isAdmin)?false:(contoller.dataEditEvent.value.events==null)?false:(index>=contoller.dataEditEvent.value.events!.injured!.injureList!.length)?true:false,
                                             ),
-                                            autofocus: true,
-                                            isExpanded: true,
-                                            openWithLongPress:  (isAdmin)?false:(contoller.dataEditEvent.value.events==null)?false:(index>=contoller.dataEditEvent.value.events!.injured!.injureList!.length)?false:true,
-                                            value: contoller
-                                                .listGenderInjured[index].value,
-                                            items: contoller.listGender.map<
-                                                DropdownMenuItem<String>>(
-                                                    (String? value) {
-                                                  return DropdownMenuItem<String>(
-
-                                                    value: value!,
-                                                    child: Text(
-                                                      value,
-                                                      style: TextStyle(
-                                                          fontSize: 13.0,
-                                                          color: colorBlack,
-                                                          fontWeight:
-                                                          FontWeight.w400),
-                                                    ),
-                                                  );
-                                                }).toList(),
-                                            iconStyleData:
-                                            const IconStyleData(
-                                                icon: Icon(
-                                                  Icons.keyboard_arrow_down,
-                                                  size: 24,
-                                                )),
-                                            onChanged: (valueSelect) {
-                                              contoller.UpdateListGenderInjured(valueSelect!,index);
-                                            },
-                                            // enableFeedback:  (isAdmin)?false:(contoller.dataEditEvent.value.events==null)?false:(index>=contoller.dataEditEvent.value.events!.injured!.injureList!.length)?true:false,
                                           ),
-                                        ),
                                         ),
                                       ),
                                     ),
-                                    SizedBox(width: 20,),
-                                    Text('อายุ',style: textStyle(context,color: colorBlack,fontSize: 13),),
-                                    SizedBox(width: 10,),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Text(
+                                      'อายุ',
+                                      style: textStyle(context,
+                                          color: colorBlack, fontSize: 13),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
                                     Container(
                                       height: 40,
                                       width: 100,
                                       color: colorWhite,
                                       child: TextFormField(
-                                        enabled: (isAdmin)?true:(contoller.dataEditEvent.value.events==null)?true:(index>=contoller.dataEditEvent.value.events!.injured!.injureList!.length)?true:false,
-                                        controller: contoller.listTextAgeInjured[index],
+                                        enabled: (isAdmin)
+                                            ? true
+                                            : (contoller.dataEditEvent.value
+                                                        .events ==
+                                                    null)
+                                                ? true
+                                                : (index >=
+                                                        contoller
+                                                            .dataEditEvent
+                                                            .value
+                                                            .events!
+                                                            .injured!
+                                                            .injureList!
+                                                            .length)
+                                                    ? true
+                                                    : false,
+                                        controller:
+                                            contoller.listTextAgeInjured[index],
                                         textAlign: TextAlign.center,
                                         keyboardType: TextInputType.number,
                                         decoration: InputDecoration(
@@ -1742,112 +1982,198 @@ class CreateList extends StatelessWidget {
                                               width: 2,
                                             ),
                                             borderRadius:
-                                            BorderRadius.circular(5),
+                                                BorderRadius.circular(5),
                                           ),
                                         ),
                                       ),
                                     ),
-                                    SizedBox(width: 20,),
-                                    (isAdmin)? InkWell(
-                                      onTap: (){
-                                        contoller.listGenderInjured.removeAt(index);
-                                        contoller.listTextAgeInjured.removeAt(index);
-                                        contoller.listTextNameInjured.removeAt(index);
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(5),
-                                            border: Border.all(color: colorRed),
-                                            color: Colors.white
-                                        ),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Icon(CupertinoIcons.multiply,size: 17,color: Colors.red,),
-                                            SizedBox(width: 10,),
-                                            Text('ลบ',style: textStyle(context,color: colorRed,fontSize: 13),),
-                                          ],
-                                        ),
-                                        height: 40,
-                                        width: 80,
-                                      ),
-                                    ):(contoller.dataEditEvent.value.events==null)?
-                                    InkWell(
-                                      onTap: (){
-                                        contoller.listGenderInjured.removeAt(index);
-                                        contoller.listTextAgeInjured.removeAt(index);
-                                        contoller.listTextNameInjured.removeAt(index);
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(5),
-                                            border: Border.all(color: colorRed),
-                                            color: Colors.white
-                                        ),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Icon(CupertinoIcons.multiply,size: 17,color: Colors.red,),
-                                            SizedBox(width: 10,),
-                                            Text('ลบ',style: textStyle(context,color: colorRed,fontSize: 13),),
-                                          ],
-                                        ),
-                                        height: 40,
-                                        width: 80,
-                                      ),
-                                    )
-                                        :(index>=contoller.dataEditEvent.value.events!.injured!.injureList!.length)?
-                                    InkWell(
-                                      onTap: (){
-                                        contoller.listGenderInjured.removeAt(index);
-                                        contoller.listTextAgeInjured.removeAt(index);
-                                        contoller.listTextNameInjured.removeAt(index);
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(5),
-                                            border: Border.all(color: colorRed),
-                                            color: Colors.white
-                                        ),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Icon(CupertinoIcons.multiply,size: 17,color: Colors.red,),
-                                            SizedBox(width: 10,),
-                                            Text('ลบ',style: textStyle(context,color: colorRed,fontSize: 13),),
-                                          ],
-                                        ),
-                                        height: 40,
-                                        width: 80,
-                                      ),
-                                    ):SizedBox()
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    (isAdmin)
+                                        ? InkWell(
+                                            onTap: () {
+                                              contoller.listGenderInjured
+                                                  .removeAt(index);
+                                              contoller.listTextAgeInjured
+                                                  .removeAt(index);
+                                              contoller.listTextNameInjured
+                                                  .removeAt(index);
+                                            },
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  border: Border.all(
+                                                      color: colorRed),
+                                                  color: Colors.white),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    CupertinoIcons.multiply,
+                                                    size: 17,
+                                                    color: Colors.red,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Text(
+                                                    'ลบ',
+                                                    style: textStyle(context,
+                                                        color: colorRed,
+                                                        fontSize: 13),
+                                                  ),
+                                                ],
+                                              ),
+                                              height: 40,
+                                              width: 80,
+                                            ),
+                                          )
+                                        : (contoller.dataEditEvent.value
+                                                    .events ==
+                                                null)
+                                            ? InkWell(
+                                                onTap: () {
+                                                  contoller.listGenderInjured
+                                                      .removeAt(index);
+                                                  contoller.listTextAgeInjured
+                                                      .removeAt(index);
+                                                  contoller.listTextNameInjured
+                                                      .removeAt(index);
+                                                },
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      border: Border.all(
+                                                          color: colorRed),
+                                                      color: Colors.white),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Icon(
+                                                        CupertinoIcons.multiply,
+                                                        size: 17,
+                                                        color: Colors.red,
+                                                      ),
+                                                      SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      Text(
+                                                        'ลบ',
+                                                        style: textStyle(
+                                                            context,
+                                                            color: colorRed,
+                                                            fontSize: 13),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  height: 40,
+                                                  width: 80,
+                                                ),
+                                              )
+                                            : (index >=
+                                                    contoller
+                                                        .dataEditEvent
+                                                        .value
+                                                        .events!
+                                                        .injured!
+                                                        .injureList!
+                                                        .length)
+                                                ? InkWell(
+                                                    onTap: () {
+                                                      contoller
+                                                          .listGenderInjured
+                                                          .removeAt(index);
+                                                      contoller
+                                                          .listTextAgeInjured
+                                                          .removeAt(index);
+                                                      contoller
+                                                          .listTextNameInjured
+                                                          .removeAt(index);
+                                                    },
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                          border: Border.all(
+                                                              color: colorRed),
+                                                          color: Colors.white),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Icon(
+                                                            CupertinoIcons
+                                                                .multiply,
+                                                            size: 17,
+                                                            color: Colors.red,
+                                                          ),
+                                                          SizedBox(
+                                                            width: 10,
+                                                          ),
+                                                          Text(
+                                                            'ลบ',
+                                                            style: textStyle(
+                                                                context,
+                                                                color: colorRed,
+                                                                fontSize: 13),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      height: 40,
+                                                      width: 80,
+                                                    ),
+                                                  )
+                                                : SizedBox()
                                   ],
                                 ),
                               );
-                            },),
+                            },
+                          ),
                           InkWell(
-                            onTap: (){
+                            onTap: () {
                               contoller.addDataInjured();
                             },
                             child: Container(
-                              padding: EdgeInsets.only(left: 20,right: 20,top: 7,bottom: 7),
+                              padding: EdgeInsets.only(
+                                  left: 20, right: 20, top: 7, bottom: 7),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   border: Border.all(color: Colors.grey),
-                                  color: colorWhite
-                              ),
+                                  color: colorWhite),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Icon(Icons.add,color: colorBlue,size: 20,),
-                                  SizedBox(height: 5,),
-                                  Text('เพิ่มรายละเอียดผู้ได้รับบาดเจ็บ',style: textStyle(context,color: colorBlue,fontSize: 13),)
-                                ],),),
+                                  Icon(
+                                    Icons.add,
+                                    color: colorBlue,
+                                    size: 20,
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    'เพิ่มรายละเอียดผู้ได้รับบาดเจ็บ',
+                                    style: textStyle(context,
+                                        color: colorBlue, fontSize: 13),
+                                  )
+                                ],
+                              ),
+                            ),
                           ),
-
                           const SizedBox(
                             height: 20,
                           ),
@@ -1916,10 +2242,9 @@ class CreateList extends StatelessWidget {
                                               // if (value.isNotEmpty) {
                                               //   contoller.searchMap(value);
                                               // }
-                                              if(value.isEmpty){
+                                              if (value.isEmpty) {
                                                 contoller.listSearchMap.clear();
                                               }
-
                                             },
                                             decoration: InputDecoration(
                                               suffixIcon: InkWell(
@@ -1954,16 +2279,20 @@ class CreateList extends StatelessWidget {
                                                 .listSearchMap.value.length,
                                             itemBuilder: (context, index) =>
                                                 InkWell(
-                                                  onTap: (){
-                                                    contoller.mapController.value.move(
-                                                        LatLng(
-                                                            double.parse(contoller
-                                                                .listSearchMap.value[index].lat!),
-                                                            double.parse(contoller
-                                                                .listSearchMap.value[index].lon!)),
-                                                        16);
-                                                    contoller.listSearchMap.clear();
-                                                  },
+                                              onTap: () {
+                                                contoller.mapController.value.move(
+                                                    LatLng(
+                                                        double.parse(contoller
+                                                            .listSearchMap
+                                                            .value[index]
+                                                            .lat!),
+                                                        double.parse(contoller
+                                                            .listSearchMap
+                                                            .value[index]
+                                                            .lon!)),
+                                                    16);
+                                                contoller.listSearchMap.clear();
+                                              },
                                               child: Container(
                                                 padding: const EdgeInsets.only(
                                                     left: 5,
@@ -2014,7 +2343,6 @@ class CreateList extends StatelessWidget {
                           const SizedBox(
                             height: 20,
                           ),
-
                           Container(
                             height: 120,
                             child: Column(
@@ -2058,13 +2386,12 @@ class CreateList extends StatelessWidget {
                                                 width: 2,
                                               ),
                                               borderRadius:
-                                              BorderRadius.circular(5),
+                                                  BorderRadius.circular(5),
                                             ),
                                           ),
                                         ),
                                       ),
                                     ),
-
                                   ],
                                 ),
                               ],

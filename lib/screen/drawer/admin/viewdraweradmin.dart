@@ -143,7 +143,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                         ),
                       ),
                     ),
-                    if(landingPageController.tabIndex.value!=0&&landingPageController.tabIndex.value!=6)Column(
+                    if(landingPageController.tabIndex.value>0&&landingPageController.tabIndex.value<6)Column(
                         children: [
                           InkWell(
                             onTap: (){
