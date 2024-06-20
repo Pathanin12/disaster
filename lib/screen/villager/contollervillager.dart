@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:scan/scan.dart';
 
+// vil
 class HomeController extends GetxController {
   RxBool isChecked = false.obs;
   RxString qrcode = ''.obs;

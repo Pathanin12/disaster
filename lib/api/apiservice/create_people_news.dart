@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:disaster/api/apiservice/dio/http.dart';
 import 'package:disaster/service/config.dart';
 
+// api
 Future<void> createPeopleNews(
   List<String> imageList,
   String? name,

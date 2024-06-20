@@ -13,6 +13,8 @@
 // import '../createlist/contollercreatelist.dart';
 // import '../drawer/admin/contollerdraweradmin.dart';
 
+// data m
+
 // class Detail extends StatelessWidget {
 //   const Detail({super.key});
 

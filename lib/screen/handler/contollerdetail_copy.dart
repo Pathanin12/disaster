@@ -9,6 +9,8 @@
 // import '../../model/eventbyidmodel.dart';
 // import '../../model/searchmap.dart';
 
+// data
+
 // class ContollerDetail extends GetxController {
 //   final mapController = MapController().obs;
 //   var pageName='ข้อมูลรายงาน'.obs;
