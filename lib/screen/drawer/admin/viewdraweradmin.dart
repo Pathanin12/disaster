@@ -13,6 +13,7 @@ import '../../../stye/colors.dart';
 import '../../createlist/viewcreatelist.dart';
 import '../../dashboard/viewdashboard.dart';
 import '../../detail/viewdetail.dart';
+import '../../handler/view_edit_list.dart';
 import '../../home.dart';
 import '../../report/firereport/viewfirereport.dart';
 import '../../report/floodreport/viewfloodreport.dart';
@@ -363,6 +364,27 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                         ),
                       ),
                     ),
+                    InkWell(
+                      onTap: (){
+                        landingPageController.tabIndex(8);
+
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.only(left: 35,right: 10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: (landingPageController.tabIndex.value==8)?Colors.amber:Colors.transparent,
+                        ),
+                        height: 40,
+                        child: Row(
+                          children: [
+                            Icon(CupertinoIcons.list_bullet,color: (landingPageController.tabIndex.value==8)?Colors.white:Color(0xfff5a607f),size: 22,),
+                            const SizedBox(width: 20,),
+                            Text('สร้างรายการอื่นๆ',style: textStyle(context,fontSize: 16,fontWeight: FontWeight.w200,color: (landingPageController.tabIndex.value==8)?Colors.white:Color(0xfff5a607f)),),
+                          ],
+                        ),
+                      ),
+                    ),
 
                   ],
                 ),
@@ -389,7 +411,8 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                       // WineStormReport(),
                       // ForestFireReport(),
                       CreateList(),
-                      Detail()
+                      Detail(),
+                      CreateEditListOthers()
                     ],
                   ),
                 ),
