@@ -18,15 +18,14 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_maps/maps.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../../stye/colors.dart';
-import '../../../stye/font.dart';
-import '../../api/apiservice/createevenapi.dart';
-import '../../api/latlongapi.dart';
-import '../../api/map/searchmap.dart';
-import '../../model/createevenmodel.dart';
-import '../../model/eventbyidmodel.dart' as edit;
-import '../../model/searchmap.dart';
-
+import '../../../../stye/colors.dart';
+import '../../../../stye/font.dart';
+import '../../../api/apiservice/createevenapi.dart';
+import '../../../api/latlongapi.dart';
+import '../../../api/map/searchmap.dart';
+import '../../../model/createevenmodel.dart';
+import '../../../model/eventbyidmodel.dart' as edit;
+import '../../../model/searchmap.dart';
 
 class DataNa {
   DataNa(this.xData, this.yData);
@@ -41,7 +40,7 @@ List<DataNa> testData = [
   DataNa('Category 3', 40),
 ];
 
-class ContollerCreateListFreeForm extends GetxController {
+class ContollerCreateOthersList extends GetxController {
   var showDropdown = false.obs;
   var selectedField = ''.obs;
   var widgetList = <Widget>[].obs;
@@ -108,6 +107,8 @@ class ContollerCreateListFreeForm extends GetxController {
     selectStatusResponsible!.value =
         StatusList[data.events!.statusRelatedAgency!];
     selectStatusrelevant!.value = StatusList[data.events!.statusAgency!];
+    // selectAgerangeDie!.value = AgerangeList[data.events!.deceased!.ageRange!];
+    // selectAgerange!.value = AgerangeList[data.events!.injured!.ageRange!];
     mapController.value.move(
         LatLng(double.parse(lat.value.text), double.parse(lng.value.text)), 16);
   }
@@ -214,24 +215,26 @@ class ContollerCreateListFreeForm extends GetxController {
           longitude: lng.value.text,
           latitude: lat.value.text,
           note: remark.value.text,
-          province: '',
+          // province: location,
           violence: radio.value,
           relatedAgency: relevant.value.text,
           imageList: listImageBase64,
           imageDeleteList: listDeleteImage,
           receiveFrom: createBy.value.text,
           deceased: Deceased(
+            // ageRange: AgerangeList.indexOf(selectAgerangeDie!.value.toString()),
             total: int.parse(die.value.text),
             feMale: int.parse(womenDie.value.text),
             male: int.parse(mandie.value.text),
             unidentify: int.parse(unGenderDie.value.text),
           ),
-          injured: Injured(
-            unidentify: int.parse(unGenderInjured.value.text),
-            male: int.parse(manInjured.value.text),
-            feMale: int.parse(womenInjured.value.text),
-            total: int.parse(injured.value.text),
-          ),
+          // injured: Deceased(
+          //   unidentify: int.parse(unGenderInjured.value.text),
+          //   male: int.parse(manInjured.value.text),
+          //   ageRange: AgerangeList.indexOf(selectAgerange!.value.toString()),
+          //   feMale: int.parse(womenInjured.value.text),
+          //   total: int.parse(injured.value.text),
+          // ),
           statusRelatedAgency:
               Statusrelevant.indexOf(selectStatusResponsible!.value),
           statusAgency: StatusResponsible.indexOf(selectStatusrelevant!.value),
