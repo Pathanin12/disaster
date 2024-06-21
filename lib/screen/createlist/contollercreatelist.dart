@@ -6,6 +6,7 @@ import 'dart:html' as html;
 
 import 'package:disaster/service/config.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -33,6 +34,13 @@ class ContollerCreateList extends GetxController {
   final mapController = MapController().obs;
   var dataEditEvent= edit.EventByIDModel().obs;
   addressModel locationAddress = addressModel();
+
+  var listStringNameDeleteDie =<String>[].obs;
+  var listStringNameDeleteInjured =<String>[].obs;
+  var listDataIDUserDie=<String>[].obs;
+  var listDataIDUserInjured=<String>[].obs;
+  var listDataDeleteIDUserInjured=<RemoveDeceasedList>[].obs;
+  var listDataDeleteIDUserDie=<RemoveDeceasedList>[].obs;
   // String? imageFile;
 
   var listTextNameDie=<TextEditingController>[].obs;
@@ -45,12 +53,15 @@ class ContollerCreateList extends GetxController {
 
   // var listImage = <Uint8List>[].obs;
   var listConvertImage = <edit.ImageList>[].obs;
+  var listConvertImageLog = <edit.ImageList>[].obs;
+  var listConvertFileLog = <edit.ImageList>[].obs;
   var listDeleteImage=<ImageDeleteList>[].obs;
   var date = DateTime.now().toString().split(" ")[0].obs;
   final nameCon = TextEditingController().obs,
       createBy = TextEditingController().obs,
       lat = TextEditingController().obs,
       address = TextEditingController().obs,
+      remarkReport = TextEditingController().obs,
       lng = TextEditingController().obs,
       responsible = TextEditingController().obs,
       die = TextEditingController().obs,
@@ -67,7 +78,7 @@ class ContollerCreateList extends GetxController {
   var radio = 1.obs;
   var listSearchMap=<SearchMapModel>[].obs;
   final NumberPaginatorController controllerNumPage =
-      NumberPaginatorController();
+  NumberPaginatorController();
 
   final listGender=[
     "ไม่ระบุ",
@@ -76,44 +87,46 @@ class ContollerCreateList extends GetxController {
   ];
 
   editEvent(edit.EventByIDModel data)async{
-  await  clearData();
-  dataEditEvent.value=data;
-  nameCon.value.text = data.events!.eventName??'';
-  createBy.value.text = data.events!.receiveFrom??'';
-  lat.value.text = data.events!.latitude!;
-  unGenderDie.value.text=data.events!.deceased!.unidentify.toString()??'';
-  lng.value.text = data.events!.longitude!;
-  responsible.value.text = data.events!.responsibleAgency??'';
-  die.value.text = data.events!.deceased!.total!.toString()??'';
-  relevant.value.text = data.events!.relatedAgency??'';
-  mandie.value.text = data.events!.deceased!.male.toString()??'';
-  womenDie.value.text = data.events!.deceased!.feMale.toString()??'';
-  injured.value.text = data.events!.injured!.total.toString()??'';
-  manInjured.value.text = data.events!.injured!.male.toString()??'';
-  womenInjured.value.text = data.events!.injured!.feMale.toString()??'';
-  unGenderInjured.value.text = data.events!.injured!.unidentify.toString()??'';
-  remark.value.text = data.events!.note??'';
-  if(isAdmin)listConvertImage.value = data.events!.imageList!;
-  radio.value = data.events!.violence??1;
-  date.value = data.events!.datetime!;
-  // listImage.value.clear();
-  selectCategory!.value = category[data.events!.disasterType!];
-  selectStatusList!.value = StatusList[data.events!.statusItem!];
-  selectStatusResponsible!.value = StatusList[data.events!.statusAgency!];
-  selectStatusrelevant!.value = StatusList[data.events!.statusRelatedAgency!];
-  address.value.text= data.events!.address.toString()??'';
-  mapController.value.move(
-      LatLng(double.parse(lat.value.text), double.parse(lng.value.text)), 16);
-  for(int i=0;i< data.events!.deceased!.deceaseList!.length;i++){
-    listGenderDie.add(listGender[data.events!.deceased!.deceaseList![i].sex!].obs);
-    listTextAgeDie.add(TextEditingController(text:data.events!.deceased!.deceaseList![i].age.toString() ));
-    listTextNameDie.add(TextEditingController(text: data.events!.deceased!.deceaseList![i].name.toString()));
-  }
-  for(int i=0;i< data.events!.injured!.injureList!.length;i++){
-    listGenderInjured.add(listGender[data.events!.injured!.injureList![i].sex!].obs);
-    listTextAgeInjured.add(TextEditingController(text:data.events!.injured!.injureList![i].age.toString() ));
-    listTextNameInjured.add(TextEditingController(text: data.events!.injured!.injureList![i].name.toString()));
-  }
+    await  clearData();
+    dataEditEvent.value=data;
+    nameCon.value.text = data.events!.eventName??'';
+    createBy.value.text = data.events!.receiveFrom??'';
+    lat.value.text = data.events!.latitude!;
+    unGenderDie.value.text=data.events!.deceased!.unidentify.toString()??'';
+    lng.value.text = data.events!.longitude!;
+    responsible.value.text = data.events!.responsibleAgency??'';
+    die.value.text = data.events!.deceased!.total!.toString()??'';
+    relevant.value.text = data.events!.relatedAgency??'';
+    mandie.value.text = data.events!.deceased!.male.toString()??'';
+    womenDie.value.text = data.events!.deceased!.feMale.toString()??'';
+    injured.value.text = data.events!.injured!.total.toString()??'';
+    manInjured.value.text = data.events!.injured!.male.toString()??'';
+    womenInjured.value.text = data.events!.injured!.feMale.toString()??'';
+    unGenderInjured.value.text = data.events!.injured!.unidentify.toString()??'';
+    remark.value.text = data.events!.note??'';
+    if(isAdmin)listConvertImage.value = data.events!.imageList!;
+    radio.value = data.events!.violence??1;
+    date.value = data.events!.datetime!;
+    // listImage.value.clear();
+    selectCategory!.value = category[data.events!.disasterType!];
+    selectStatusList!.value = StatusList[data.events!.statusItem!];
+    selectStatusResponsible!.value = StatusList[data.events!.statusAgency!];
+    selectStatusrelevant!.value = StatusList[data.events!.statusRelatedAgency!];
+    address.value.text= data.events!.address.toString()??'';
+    mapController.value.move(
+        LatLng(double.parse(lat.value.text), double.parse(lng.value.text)), 16);
+    for(int i=0;i< data.events!.deceased!.deceaseList!.length;i++){
+      listGenderDie.add(listGender[data.events!.deceased!.deceaseList![i].sex!].obs);
+      listTextAgeDie.add(TextEditingController(text:data.events!.deceased!.deceaseList![i].age.toString() ));
+      listTextNameDie.add(TextEditingController(text: data.events!.deceased!.deceaseList![i].name.toString()));
+      listDataIDUserDie.add(data.events!.deceased!.deceaseList![i].id??'');
+    }
+    for(int i=0;i< data.events!.injured!.injureList!.length;i++){
+      listGenderInjured.add(listGender[data.events!.injured!.injureList![i].sex!].obs);
+      listTextAgeInjured.add(TextEditingController(text:data.events!.injured!.injureList![i].age.toString() ));
+      listTextNameInjured.add(TextEditingController(text: data.events!.injured!.injureList![i].name.toString()));
+      listDataIDUserInjured.add(data.events!.injured!.injureList![i].id??'');
+    }
 
   }
 
@@ -126,6 +139,7 @@ class ContollerCreateList extends GetxController {
     listTextAgeDie.add(TextEditingController());
     listGenderDie.add('ไม่ระบุ'.obs);
     listTextNameDie.add(TextEditingController());
+    listDataIDUserDie.add('new');
 
   }
   UpdateListGenderInjured(String gender, int index){
@@ -135,6 +149,7 @@ class ContollerCreateList extends GetxController {
     listTextAgeInjured.add(TextEditingController());
     listGenderInjured.add('ไม่ระบุ'.obs);
     listTextNameInjured.add(TextEditingController());
+    listDataIDUserInjured.add('new');
 
   }
   clearData() async {
@@ -157,9 +172,14 @@ class ContollerCreateList extends GetxController {
     remark.value.text = '';
     radio.value = 1;
     date.value = DateTime.now().toString().split(" ")[0];
-    listDeleteImage.value.clear();
+    listDeleteImage.clear();
+    listConvertImageLog.clear();
+    listConvertFileLog.clear();
+    listStringNameDeleteInjured.clear();
+    listStringNameDeleteDie.clear();
+    remarkReport.value.text='';
     // listImage.value.clear();
-    listConvertImage.value.clear();
+    listConvertImage.clear();
     selectCategory!.value = 'อัคคีภัย';
     selectStatusList!.value = 'รับเรื่อง';
     selectStatusResponsible!.value = 'รับเรื่อง';
@@ -168,13 +188,19 @@ class ContollerCreateList extends GetxController {
     mapController.value.move(
         LatLng(double.parse(lat.value.text), double.parse(lng.value.text)), 16);
     dataEditEvent= edit.EventByIDModel().obs;
-     listTextNameDie.clear();
-     listTextAgeDie.clear();
-     listGenderDie.clear();
+    listTextNameDie.clear();
+    listTextAgeDie.clear();
+    listGenderDie.clear();
+    listTextNameInjured.clear();
+    listTextNameDie.clear();
+    listDataIDUserInjured.clear();
+    listDataIDUserDie.clear();
     listSearchMap.clear();
-     listTextNameInjured.clear();
-     listTextAgeInjured.clear();
-     listGenderInjured.clear();
+    listDataDeleteIDUserDie.clear();
+    listDataDeleteIDUserInjured.clear();
+    listTextNameInjured.clear();
+    listTextAgeInjured.clear();
+    listGenderInjured.clear();
 
   }
 
@@ -221,21 +247,30 @@ class ContollerCreateList extends GetxController {
 
 
       addressModel location =
-          await getLatLong(long: lng.value.text, lat: lat.value.text);
-      List<ImageList> listImageBase64 = [];
+      await getLatLong(long: lng.value.text, lat: lat.value.text);
+      List<ImageList> listImageBase64 = [],listImageBase64Log=[];
+      List<FileList> listFileBase64=[];
       for (var element in listConvertImage) {
         if(element.imageName=='new'){
           listImageBase64.add(ImageList(image: element.pathImage));
         }
-
       }
+
+      for (var element in listConvertImageLog) {
+        listImageBase64Log.add(ImageList(image: element.pathImage));
+      }
+
+      for (var element in listConvertFileLog) {
+          listFileBase64.add(FileList(file: element.pathImage));
+      }
+
       UpdateBy? dataUpdate;
       if(dataEditEvent.value.events!=null){
         uuid = dataEditEvent.value.events!.eventID!;
         List<LogList>? listLog=[];
         if(category.indexOf(selectCategory!.value) != dataEditEvent.value.events!.disasterType!){
           listLog.add(LogList(header: 'ประเภทภัยพิบัติ',
-          description: selectCategory!.value));
+              description: selectCategory!.value));
         }
         if(nameCon.value.text.trim() !=dataEditEvent.value.events!.eventName){
           listLog.add(LogList(header: 'ชื่อรายงาน',
@@ -255,7 +290,7 @@ class ContollerCreateList extends GetxController {
         }
         if(StatusList.indexOf(selectStatusResponsible!.value)!= dataEditEvent.value.events!.statusRelatedAgency){
           listLog.add(LogList(header: 'สถานะหน่วยงานที่รับผิดชอบ',
-              description: selectStatusrelevant!.value));
+              description: selectStatusResponsible!.value));
         }
         if(createBy.value.text.trim()!=dataEditEvent.value.events!.receiveFrom){
           listLog.add(LogList(header: 'รับเรื่องจาก',
@@ -265,31 +300,45 @@ class ContollerCreateList extends GetxController {
           listLog.add(LogList(header: 'ระดับความรุนแรง',
               description:radio.value.toString()));
         }
+        if(lat.value.text.trim()!=dataEditEvent.value.events!.latitude||lng.value.text.trim()!=dataEditEvent.value.events!.longitude){
+          listLog.add(LogList(header: 'แก้ไขจุดพิกัด',
+              description:'${lat.value.text.trim()},${lng.value.text.trim()}'));
+        }
+        if(address.value.text.trim()!=dataEditEvent.value.events!.address){
+          listLog.add(LogList(header: 'แก้ไขที่อยู่',
+              description:address.value.text.trim()));
+        }
 
-         dataUpdate= UpdateBy(
-          name: 'nameUpdate',
-          datetime: DateTime.now().toString(),
-          staffID: '123',
-          userName: 'userName',
-          imageList: listImageBase64,
-           logList: listLog
+        dataUpdate= UpdateBy(
+            name: dataUser!.profile!.name,
+            datetime: DateTime.now().toString(),
+            staffID: dataUser!.profile!.code,
+            userName: dataUser!.profile!.username,
+            imageList: listImageBase64Log,
+            logList: listLog,
+            fileList: listFileBase64,
+          reportDetail: remarkReport.value.text.trim()
         );
       }else{
         uuid = const Uuid().v4();
       }
-      for(int i=0;i<listTextNameDie.length;i++){
-        listDataDie.add(DeceaseList(
-          name: listTextNameDie[i].text,
-          age: int.parse(listTextAgeDie[i].text),
-          sex: listGender.indexOf(listGenderDie[i].value)
-        ));
+      for(int i=0;i<listDataIDUserDie.length;i++){
+          if(listDataIDUserDie[i]=='new'){
+            listDataDie.add(DeceaseList(
+                name: listTextNameDie[i].text,
+                age: int.parse(listTextAgeDie[i].text),
+                sex: listGender.indexOf(listGenderDie[i].value)
+            ));
+          }
       }
-      for(int i=0;i<listTextNameInjured.length;i++){
-        listDataInjured.add(DeceaseList(
-            name: listTextNameInjured[i].text,
-            age: int.parse(listTextAgeInjured[i].text),
-            sex: listGender.indexOf(listGenderInjured[i].value)
-        ));
+      for(int i=0;i<listDataIDUserInjured.length;i++){
+          if(listDataIDUserInjured[i]=='new'){
+            listDataInjured.add(DeceaseList(
+                name: listTextNameInjured[i].text,
+                age: int.parse(listTextAgeInjured[i].text),
+                sex: listGender.indexOf(listGenderInjured[i].value)
+            ));
+          }
       }
       CreateEven even = CreateEven(
           eventID: uuid,
@@ -310,29 +359,31 @@ class ContollerCreateList extends GetxController {
           amphure: location.amphure,
           tambon: location.tambon,
           zipCode: location.zipCode,
-          // updateBy:dataUpdate,
-          createBy: (dataEditEvent.value.events!=null)?null:'deve',
+          updateBy:dataUpdate,
+          createBy: (dataEditEvent.value.events!=null)?null:dataUser!.profile!.name,
           imageDeleteList: listDeleteImage,
           receiveFrom: createBy.value.text.trim(),
           deceased: Deceased(
-            total: int.parse(die.value.text.trim()),
-            feMale: int.parse(womenDie.value.text.trim()),
-            male: int.parse(mandie.value.text.trim()),
-            unidentify: int.parse(unGenderDie.value.text.trim()),
-            deceaseList: listDataDie
+              total: int.parse(die.value.text.trim()),
+              feMale: int.parse(womenDie.value.text.trim()),
+              male: int.parse(mandie.value.text.trim()),
+              unidentify: int.parse(unGenderDie.value.text.trim()),
+              deceaseList: listDataDie,
+              removeDeceasedList: listDataDeleteIDUserDie
           ),
           injured: Injured(
-            unidentify: int.parse(unGenderInjured.value.text.trim()),
-            male: int.parse(manInjured.value.text.trim()),
-            feMale: int.parse(womenInjured.value.text.trim()),
-            total: int.parse(injured.value.text.trim()),
+              unidentify: int.parse(unGenderInjured.value.text.trim()),
+              male: int.parse(manInjured.value.text.trim()),
+              feMale: int.parse(womenInjured.value.text.trim()),
+              total: int.parse(injured.value.text.trim()),
+              removeInjuredList: listDataDeleteIDUserInjured,
 
-            injureList:  listDataInjured
+              injureList:  listDataInjured
           ),
           statusRelatedAgency: StatusResponsible.indexOf(selectStatusrelevant!.value),
 
           statusAgency:
-                   Statusrelevant.indexOf(selectStatusResponsible!.value),
+          Statusrelevant.indexOf(selectStatusResponsible!.value),
           statusItem: StatusList.indexOf(selectStatusList!.value),
           responsibleAgency: responsible.value.text.trim());
       await createEvenApi(even).then((value) {});
@@ -346,7 +397,7 @@ class ContollerCreateList extends GetxController {
               Text(
                 'บันทึกสำเร็จ',
                 style:
-                    textStyle(context, fontSize: 18, fontWeight: FontWeight.bold),
+                textStyle(context, fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -357,14 +408,14 @@ class ContollerCreateList extends GetxController {
           ),
           actions: [
             InkWell(
-              onTap: (){
-                Navigator.pop(context);
-              },
+                onTap: (){
+                  Navigator.pop(context);
+                },
                 child: Text(
-              'ตกลง',
-              style:
+                  'ตกลง',
+                  style:
                   textStyle(context, fontSize: 14),
-            )),
+                )),
           ],
         ),
       );
@@ -376,14 +427,63 @@ class ContollerCreateList extends GetxController {
     shapeDataField: "name",
   );
 
-  selectedFileImage(BuildContext context) async {
-    List<Uint8List> image = (await ImagePickerWeb.getMultiImagesAsBytes())!;
-    image.forEach((element) {
-      listConvertImage.add(edit.ImageList(
-        imageName: 'new',
-        pathImage:"data:image/png;base64,${base64Encode(element)}"
-      ));
-    });
+  selectedImage(BuildContext context,int index) async {
+    if(index==1){
+      List<Uint8List> image = (await ImagePickerWeb.getMultiImagesAsBytes())!;
+      image.forEach((element) {
+        listConvertImage.add(edit.ImageList(
+            imageName: 'new',
+            pathImage:"data:image/png;base64,${base64Encode(element)}"
+        ));
+      });
+    }else if(index==2){
+      List<Uint8List> image = (await ImagePickerWeb.getMultiImagesAsBytes())!;
+      image.forEach((element) {
+        listConvertImageLog.add(edit.ImageList(
+            imageName: 'new',
+            pathImage:"data:image/png;base64,${base64Encode(element)}"
+        ));
+      });
+    }
+
+  }
+  selectedFile(BuildContext context) async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf', 'xlsx', 'doc','docx'],
+    );
+    if (result != null) {
+      Uint8List fileBytes = result.files.first.bytes!;
+      String fileName = result.files.first.name;
+
+   if(result.files.first.extension=='pdf'){
+     listConvertFileLog.add(edit.ImageList(
+         imageName: fileName,
+         pathImage:"data:application/pdf;base64,${base64Encode(fileBytes)}"
+     )
+     );
+   }else if(result.files.first.extension=='xlsx'){
+     listConvertFileLog.add(edit.ImageList(
+         imageName: fileName,
+         pathImage:"data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,${base64Encode(fileBytes)}"
+     )
+     );
+   }else if(result.files.first.extension=='docx'){
+     listConvertFileLog.add(edit.ImageList(
+         imageName: fileName,
+         pathImage:"data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,${base64Encode(fileBytes)}"
+     )
+     );
+   }else if(result.files.first.extension=='doc'){
+     listConvertFileLog.add(edit.ImageList(
+         imageName: fileName,
+         pathImage:"data:application/msword;base64,${base64Encode(fileBytes)}"
+     )
+     );
+   }
+    }
+
+
   }
 
 //   Future<void> pickImageFeed(ImageSource source, int index,
