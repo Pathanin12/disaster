@@ -4,6 +4,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:html' as html;
 
+import 'package:disaster/model/createeventfreeform.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +50,7 @@ class ContollerCreateOthersList extends GetxController {
   var checkboxValues = List<bool>.filled(1, false).obs;
   var radioCount = 1.obs;
   var selectedRadio = 0.obs;
-  var listForm=<ListFormModel>[].obs;
+  var listForm = <ListFormModel>[].obs;
 
   final keyForm = GlobalKey<FormState>();
   final mapController = MapController().obs;
@@ -197,52 +198,71 @@ class ContollerCreateOthersList extends GetxController {
       } else {
         uuid = const Uuid().v4();
       }
+
+      // CreateEventFreeForm eventFreeForm = CreateEventFreeForm(
+      //   eventID: uuid,
+      //   eventName: nameCon.value.text,
+      //   statusAgency: StatusResponsible.indexOf(selectStatusrelevant!.value),
+      //   statusItem: StatusList.indexOf(selectStatusList!.value),
+      //   datetime: date.value,
+      //   responsibleAgency: responsible.value.text,
+      //   latitude: lat.value.text,
+      //   longitude: lng.value.text,
+      //   address: ,
+      //   tambon: ,
+      //   amphure: ,
+      //   province: ,
+      //   zipCode: ,
+      //   createBy: ,
+      //   freeFormDetailList: [],
+
+      // );
       // String location =
       //     await getLatLong(long: lng.value.text, lat: lat.value.text);
-      List<ImageList> listImageBase64 = [];
-      for (var element in listConvertImage) {
-        if (element.imageName == 'new') {
-          listImageBase64.add(ImageList(image: element.pathImage));
-        }
-      }
-      CreateEven even = CreateEven(
-          eventID: uuid,
-          isDelete: false,
-          isActive: true,
-          // createBy: createBy.value.text,
-          datetime: date.value,
-          eventName: nameCon.value.text,
-          disasterType: category.indexOf(selectCategory.toString()),
-          longitude: lng.value.text,
-          latitude: lat.value.text,
-          note: remark.value.text,
-          // province: location,
-          violence: radio.value,
-          relatedAgency: relevant.value.text,
-          imageList: listImageBase64,
-          imageDeleteList: listDeleteImage,
-          receiveFrom: createBy.value.text,
-          deceased: Deceased(
-            // ageRange: AgerangeList.indexOf(selectAgerangeDie!.value.toString()),
-            total: int.parse(die.value.text),
-            feMale: int.parse(womenDie.value.text),
-            male: int.parse(mandie.value.text),
-            unidentify: int.parse(unGenderDie.value.text),
-          ),
-          // injured: Deceased(
-          //   unidentify: int.parse(unGenderInjured.value.text),
-          //   male: int.parse(manInjured.value.text),
-          //   ageRange: AgerangeList.indexOf(selectAgerange!.value.toString()),
-          //   feMale: int.parse(womenInjured.value.text),
-          //   total: int.parse(injured.value.text),
-          // ),
-          statusRelatedAgency:
-              Statusrelevant.indexOf(selectStatusResponsible!.value),
-          statusAgency: StatusResponsible.indexOf(selectStatusrelevant!.value),
-          statusItem: StatusList.indexOf(selectStatusList!.value),
-          responsibleAgency: responsible.value.text);
-      await createEvenApi(even).then((value) {});
-      await clearData();
+      // List<ImageList> listImageBase64 = [];
+      // for (var element in listConvertImage) {
+      //   if (element.imageName == 'new') {
+      //     listImageBase64.add(ImageList(image: element.pathImage));
+      //   }
+      // }
+      // CreateEven even = CreateEven(
+      //     eventID: uuid,
+      //     isDelete: false,
+      //     isActive: true,
+      //     // createBy: createBy.value.text,
+      //     datetime: date.value,
+      //     eventName: nameCon.value.text,
+      //     disasterType: category.indexOf(selectCategory.toString()),
+      //     longitude: lng.value.text,
+      //     latitude: lat.value.text,
+      //     note: remark.value.text,
+      //     // province: location,
+      //     violence: radio.value,
+      //     relatedAgency: relevant.value.text,
+      //     imageList: listImageBase64,
+      //     imageDeleteList: listDeleteImage,
+      //     receiveFrom: createBy.value.text,
+      //     deceased: Deceased(
+      //       // ageRange: AgerangeList.indexOf(selectAgerangeDie!.value.toString()),
+      //       total: int.parse(die.value.text),
+      //       feMale: int.parse(womenDie.value.text),
+      //       male: int.parse(mandie.value.text),
+      //       unidentify: int.parse(unGenderDie.value.text),
+      //     ),
+      //     // injured: Deceased(
+      //     //   unidentify: int.parse(unGenderInjured.value.text),
+      //     //   male: int.parse(manInjured.value.text),
+      //     //   ageRange: AgerangeList.indexOf(selectAgerange!.value.toString()),
+      //     //   feMale: int.parse(womenInjured.value.text),
+      //     //   total: int.parse(injured.value.text),
+      //     // ),
+      //     statusRelatedAgency:
+      //         Statusrelevant.indexOf(selectStatusResponsible!.value),
+      //     statusAgency: StatusResponsible.indexOf(selectStatusrelevant!.value),
+      //     statusItem: StatusList.indexOf(selectStatusList!.value),
+      //     responsibleAgency: responsible.value.text);
+      // await createEvenApi(even).then((value) {});
+      // await clearData();
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -331,16 +351,40 @@ class ContollerCreateOthersList extends GetxController {
 class ListFormModel {
   String? typeform;
   Textfield? textfield;
-  List<String>? imageList;
+  MyDropdown? dropdown;
+  MyCheckBox? checkbox;
+  MyRadio? radio;
+  MyImg? image;
+  MyFile? file;
+  // List<String>? imageList;
+  // List<String>? fileList;
 
-  ListFormModel({this.typeform, this.textfield, this.imageList});
+  ListFormModel({
+    this.typeform,
+    this.textfield,
+    this.dropdown,
+    this.checkbox,
+    this.radio,
+    this.image,
+    this.file,
+    // this.imageList,
+    // this.fileList
+  });
 
   ListFormModel.fromJson(Map<String, dynamic> json) {
     typeform = json['typeform'];
     textfield = json['textfield'] != null
         ? new Textfield.fromJson(json['textfield'])
         : null;
-    imageList = json['imageList'].cast<String>();
+    dropdown =
+        json['dropdown'] != null ? MyDropdown.fromJson(json['dropdown']) : null;
+    checkbox =
+        json['checkbox'] != null ? MyCheckBox.fromJson(json['checkbox']) : null;
+    radio = json['radio'] != null ? MyRadio.fromJson(json['radio']) : null;
+    image = json['image'] != null ? MyImg.fromJson(json['image']) : null;
+    file = json['file'] != null ? MyFile.fromJson(json['file']) : null;
+    // imageList = json['imageList'].cast<String>();
+    // fileList = json['fileList'].cast<String>();
   }
 
   Map<String, dynamic> toJson() {
@@ -349,7 +393,23 @@ class ListFormModel {
     if (this.textfield != null) {
       data['textfield'] = this.textfield!.toJson();
     }
-    data['imageList'] = this.imageList;
+    if (this.dropdown != null) {
+      data['dropdown'] = this.dropdown!.toJson();
+    }
+    if (this.checkbox != null) {
+      data['checkbox'] = this.checkbox!.toJson();
+    }
+    if (this.radio != null) {
+      data['radio'] = this.radio!.toJson();
+    }
+    if (this.image != null) {
+      data['image'] = this.image!.toJson();
+    }
+    if (this.file != null) {
+      data['file'] = this.file!.toJson();
+    }
+    // data['imageList'] = this.imageList;
+    // data['fileList'] = this.imageList;
     return data;
   }
 }
@@ -369,6 +429,101 @@ class Textfield {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['title'] = this.title;
     data['listevent'] = this.listevent;
+    return data;
+  }
+}
+
+class MyDropdown {
+  TextEditingController? title;
+  RxList<TextEditingController>? listevent;
+
+  MyDropdown({this.title, this.listevent});
+
+  MyDropdown.fromJson(Map<String, dynamic> json) {
+    title = json['title'].cast<TextEditingController>();
+    listevent = json['listevent'].cast<TextEditingController>();
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['title'] = this.title;
+    data['listevent'] = this.listevent;
+    return data;
+  }
+}
+
+class MyCheckBox {
+  TextEditingController? title;
+  RxList<TextEditingController>? listevent;
+
+  MyCheckBox({this.title, this.listevent});
+
+  MyCheckBox.fromJson(Map<String, dynamic> json) {
+    title = json['title'].cast<TextEditingController>();
+    listevent = json['listevent'].cast<TextEditingController>();
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['title'] = this.title;
+    data['listevent'] = this.listevent;
+    return data;
+  }
+}
+
+class MyRadio {
+  TextEditingController? title;
+  RxList<TextEditingController>? listevent;
+
+  MyRadio({this.title, this.listevent});
+
+  MyRadio.fromJson(Map<String, dynamic> json) {
+    title = json['title'].cast<TextEditingController>();
+    listevent = json['listevent'].cast<TextEditingController>();
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['title'] = this.title;
+    data['listevent'] = this.listevent;
+    return data;
+  }
+}
+
+class MyImg {
+  TextEditingController? title;
+
+  MyImg({
+    this.title,
+  });
+
+  MyImg.fromJson(Map<String, dynamic> json) {
+    title = json['title'].cast<TextEditingController>();
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['title'] = this.title;
+
+    return data;
+  }
+}
+
+class MyFile {
+  TextEditingController? title;
+
+  MyFile({
+    this.title,
+  });
+
+  MyFile.fromJson(Map<String, dynamic> json) {
+    title = json['title'].cast<TextEditingController>();
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['title'] = this.title;
+
     return data;
   }
 }
