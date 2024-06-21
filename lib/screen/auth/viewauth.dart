@@ -1,5 +1,6 @@
 import 'package:disaster/router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'contollerauth.dart';
@@ -14,8 +15,11 @@ class AuthPage extends StatelessWidget {
     return Scaffold(
       body:Obx(() =>Center(
         child: InkWell(
-            onTap: (){
-              Get.toNamed(RouterName.initPage);
+            onTap: ()async{
+              await Clipboard.setData(
+                  ClipboardData(
+                      text: contoller.r.value));
+              // Get.toNamed(RouterName.initPage);
             },
             child: Text('Login : ${contoller.r.value}')),
       ),)
