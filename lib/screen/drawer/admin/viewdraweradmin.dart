@@ -13,6 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../api/apiservice/createevenapi.dart';
 import '../../../api/apiservice/logintoken.dart';
+import '../../../api/authapi/checkapikey.dart';
 import '../../../api/latlongapi.dart';
 import '../../../model/profileusermodel.dart';
 import '../../../service/recheckkeyapi.dart';
@@ -50,7 +51,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    CheckApiKeyLogin();
+    checkApiKey();
     // getToken();
     // getToken();
     // // HttpRequest.signOutToken();
