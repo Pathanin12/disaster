@@ -20,7 +20,7 @@ Future<void> checkApiKey({String? keyApi}) async {
     }
 
 
-    var result =await http.post(Uri.https('${urlApiKey}valid?apikey=$key'),headers:{
+    var result =await http.post(Uri.parse('${urlApiKey}valid?apikey=$key'),headers:{
       "Access-Control-Allow-Origin": "*",
       'Content-Type': 'application/json',
       'Accept': '*/*'} );
