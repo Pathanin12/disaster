@@ -1,7 +1,11 @@
+import '../model/profileusermodel.dart';
+
 String url = "https://disasterapi.aicard.work/API/";
 String pathQR='https://disasterweb.netlify.app/';
+String urlApiKey='http://cloud-api.win-victor.com/api/integrate/auth/';
 
 bool isAdmin=true;
+ProfileModel? dataUser;
 
 List<Province> provinceList = [
   {

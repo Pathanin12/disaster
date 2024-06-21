@@ -150,6 +150,7 @@ class UpdateBy {
   String? userName;
   String? name;
   String? datetime;
+  String?reportDetail;
   List<LogList>? logList;
   List<ImageList>? imageList;
   List<FileList>? fileList;
@@ -157,6 +158,7 @@ class UpdateBy {
   UpdateBy(
       {this.staffID,
         this.userName,
+        this.reportDetail,
         this.name,
         this.datetime,
         this.logList,
@@ -166,6 +168,7 @@ class UpdateBy {
   UpdateBy.fromJson(Map<String, dynamic> json) {
     staffID = json['staffID'];
     userName = json['userName'];
+    reportDetail=json['reportDetail'];
     name = json['name'];
     datetime = json['datetime'];
     if (json['logList'] != null) {
@@ -193,6 +196,7 @@ class UpdateBy {
     data['staffID'] = this.staffID;
     data['userName'] = this.userName;
     data['name'] = this.name;
+    data['reportDetail']=this.reportDetail;
     data['datetime'] = this.datetime;
     if (this.logList != null) {
       data['logList'] = this.logList!.map((v) => v.toJson()).toList();
@@ -280,9 +284,15 @@ class Deceased {
   int? feMale;
   int? unidentify;
   List<DeceaseList>? deceaseList;
+  List<RemoveDeceasedList>? removeDeceasedList;
 
   Deceased(
-      {this.total, this.male, this.feMale, this.unidentify, this.deceaseList});
+      {this.total,
+        this.male,
+        this.feMale,
+        this.unidentify,
+        this.deceaseList,
+        this.removeDeceasedList});
 
   Deceased.fromJson(Map<String, dynamic> json) {
     total = json['total'];
@@ -295,6 +305,12 @@ class Deceased {
         deceaseList!.add(new DeceaseList.fromJson(v));
       });
     }
+    if (json['removeDeceasedList'] != null) {
+      removeDeceasedList = <RemoveDeceasedList>[];
+      json['removeDeceasedList'].forEach((v) {
+        removeDeceasedList!.add(new RemoveDeceasedList.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -305,6 +321,10 @@ class Deceased {
     data['unidentify'] = this.unidentify;
     if (this.deceaseList != null) {
       data['deceaseList'] = this.deceaseList!.map((v) => v.toJson()).toList();
+    }
+    if (this.removeDeceasedList != null) {
+      data['removeDeceasedList'] =
+          this.removeDeceasedList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -332,15 +352,37 @@ class DeceaseList {
   }
 }
 
+class RemoveDeceasedList {
+  String? id;
+
+  RemoveDeceasedList({this.id});
+
+  RemoveDeceasedList.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    return data;
+  }
+}
+
 class Injured {
   int? total;
   int? male;
   int? feMale;
   int? unidentify;
   List<DeceaseList>? injureList;
+  List<RemoveDeceasedList>? removeInjuredList;
 
   Injured(
-      {this.total, this.male, this.feMale, this.unidentify, this.injureList});
+      {this.total,
+        this.male,
+        this.feMale,
+        this.unidentify,
+        this.injureList,
+        this.removeInjuredList});
 
   Injured.fromJson(Map<String, dynamic> json) {
     total = json['total'];
@@ -353,6 +395,12 @@ class Injured {
         injureList!.add(new DeceaseList.fromJson(v));
       });
     }
+    if (json['removeInjuredList'] != null) {
+      removeInjuredList = <RemoveDeceasedList>[];
+      json['removeInjuredList'].forEach((v) {
+        removeInjuredList!.add(new RemoveDeceasedList.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -363,6 +411,10 @@ class Injured {
     data['unidentify'] = this.unidentify;
     if (this.injureList != null) {
       data['injureList'] = this.injureList!.map((v) => v.toJson()).toList();
+    }
+    if (this.removeInjuredList != null) {
+      data['removeInjuredList'] =
+          this.removeInjuredList!.map((v) => v.toJson()).toList();
     }
     return data;
   }

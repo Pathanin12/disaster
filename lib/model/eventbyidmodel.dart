@@ -2,8 +2,9 @@ class EventByIDModel {
   bool? success;
   Events? events;
   List<PeopleNewList>? peopleNewList;
+  Graph? graph;
 
-  EventByIDModel({this.success, this.events, this.peopleNewList});
+  EventByIDModel({this.success, this.events, this.peopleNewList, this.graph});
 
   EventByIDModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
@@ -15,6 +16,7 @@ class EventByIDModel {
         peopleNewList!.add(new PeopleNewList.fromJson(v));
       });
     }
+    graph = json['graph'] != null ? new Graph.fromJson(json['graph']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -26,6 +28,9 @@ class EventByIDModel {
     if (this.peopleNewList != null) {
       data['peopleNewList'] =
           this.peopleNewList!.map((v) => v.toJson()).toList();
+    }
+    if (this.graph != null) {
+      data['graph'] = this.graph!.toJson();
     }
     return data;
   }
@@ -43,13 +48,13 @@ class Events {
   String? responsibleAgency;
   String? receiveFrom;
   int? violence;
-  String? address;
-  String? amphure;
-  String? tambon;
-  String? zipCode;
   String? latitude;
   String? longitude;
+  String? address;
+  String? tambon;
+  String? amphure;
   String? province;
+  String? zipCode;
   String? note;
   String? createBy;
   List<LogList>? logList;
@@ -71,13 +76,13 @@ class Events {
         this.responsibleAgency,
         this.receiveFrom,
         this.violence,
-        this.address,
-        this.amphure,
-        this.tambon,
-        this.zipCode,
         this.latitude,
         this.longitude,
+        this.address,
+        this.tambon,
+        this.amphure,
         this.province,
+        this.zipCode,
         this.note,
         this.createBy,
         this.logList,
@@ -99,13 +104,13 @@ class Events {
     responsibleAgency = json['responsibleAgency'];
     receiveFrom = json['receiveFrom'];
     violence = json['violence'];
-    address = json['address'];
-    amphure = json['amphure'];
-    tambon = json['tambon'];
-    zipCode = json['zipCode'];
     latitude = json['latitude'];
     longitude = json['longitude'];
+    address = json['address'];
+    tambon = json['tambon'];
+    amphure = json['amphure'];
     province = json['province'];
+    zipCode = json['zipCode'];
     note = json['note'];
     createBy = json['createBy'];
     if (json['logList'] != null) {
@@ -142,13 +147,13 @@ class Events {
     data['responsibleAgency'] = this.responsibleAgency;
     data['receiveFrom'] = this.receiveFrom;
     data['violence'] = this.violence;
-    data['address'] = this.address;
-    data['amphure'] = this.amphure;
-    data['tambon'] = this.tambon;
-    data['zipCode'] = this.zipCode;
     data['latitude'] = this.latitude;
     data['longitude'] = this.longitude;
+    data['address'] = this.address;
+    data['tambon'] = this.tambon;
+    data['amphure'] = this.amphure;
     data['province'] = this.province;
+    data['zipCode'] = this.zipCode;
     data['note'] = this.note;
     data['createBy'] = this.createBy;
     if (this.logList != null) {
@@ -323,13 +328,15 @@ class Deceased {
 }
 
 class DeceaseList {
+  String? id;
   String? name;
   int? sex;
   int? age;
 
-  DeceaseList({this.name, this.sex, this.age});
+  DeceaseList({this.id, this.name, this.sex, this.age});
 
   DeceaseList.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     name = json['name'];
     sex = json['sex'];
     age = json['age'];
@@ -337,6 +344,7 @@ class DeceaseList {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
     data['name'] = this.name;
     data['sex'] = this.sex;
     data['age'] = this.age;
@@ -385,7 +393,7 @@ class PeopleNewList {
   bool? anonymous;
   String? note;
   String? createDatetime;
-  List<ImageList>? imageNewsList;
+  List<DeceaseList>? imageNewsList;
 
   PeopleNewList(
       {this.name,
@@ -400,9 +408,9 @@ class PeopleNewList {
     note = json['note'];
     createDatetime = json['createDatetime'];
     if (json['imageNewsList'] != null) {
-      imageNewsList = <ImageList>[];
+      imageNewsList = <DeceaseList>[];
       json['imageNewsList'].forEach((v) {
-        imageNewsList!.add(new ImageList.fromJson(v));
+        imageNewsList!.add(new DeceaseList.fromJson(v));
       });
     }
   }
@@ -417,6 +425,83 @@ class PeopleNewList {
       data['imageNewsList'] =
           this.imageNewsList!.map((v) => v.toJson()).toList();
     }
+    return data;
+  }
+}
+
+class Graph {
+  Gender? gender;
+  Gender? ageRange;
+
+  Graph({this.gender, this.ageRange});
+
+  Graph.fromJson(Map<String, dynamic> json) {
+    gender =
+    json['gender'] != null ? new Gender.fromJson(json['gender']) : null;
+    ageRange =
+    json['ageRange'] != null ? new Gender.fromJson(json['ageRange']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.gender != null) {
+      data['gender'] = this.gender!.toJson();
+    }
+    if (this.ageRange != null) {
+      data['ageRange'] = this.ageRange!.toJson();
+    }
+    return data;
+  }
+}
+
+class Gender {
+  List<DeceasedList>? deceasedList;
+  List<DeceaseList>? injuredList;
+
+  Gender({this.deceasedList, this.injuredList});
+
+  Gender.fromJson(Map<String, dynamic> json) {
+    if (json['deceasedList'] != null) {
+      deceasedList = <DeceasedList>[];
+      json['deceasedList'].forEach((v) {
+        deceasedList!.add(new DeceasedList.fromJson(v));
+      });
+    }
+    if (json['injuredList'] != null) {
+      injuredList = <DeceaseList>[];
+      json['injuredList'].forEach((v) {
+        injuredList!.add(new DeceaseList.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.deceasedList != null) {
+      data['deceasedList'] = this.deceasedList!.map((v) => v.toJson()).toList();
+    }
+    if (this.injuredList != null) {
+      data['injuredList'] = this.injuredList!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class DeceasedList {
+  String? name;
+  int? amount;
+
+  DeceasedList({this.name, this.amount});
+
+  DeceasedList.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    amount = json['amount'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['amount'] = this.amount;
     return data;
   }
 }

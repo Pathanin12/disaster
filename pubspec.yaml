@@ -71,6 +71,7 @@ dependencies:
   camera: ^0.10.5+9
 
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -117,6 +118,7 @@ flutter:
       - assets/icons/svg/report4.svg
       - assets/fonts/THSarabunNew.ttf
       - assets/data/data.json
+      - assets/icons/iconlocation.svg
 #      - fonts/THSarabunNew.ttf
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

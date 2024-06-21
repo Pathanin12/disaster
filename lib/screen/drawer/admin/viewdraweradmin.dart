@@ -1,15 +1,21 @@
+import 'package:disaster/router.dart';
 import 'package:disaster/screen/handler/creatotherslist/creatotherlist.dart';
+import 'package:disaster/service/config.dart';
 import 'package:disaster/stye/font.dart';
 import 'package:expansion_tile_group/expansion_tile_group.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../api/apiservice/createevenapi.dart';
 import '../../../api/apiservice/logintoken.dart';
 import '../../../api/latlongapi.dart';
+import '../../../model/profileusermodel.dart';
+import '../../../service/recheckkeyapi.dart';
 import '../../../stye/colors.dart';
 import '../../createlist/viewcreatelist.dart';
 import '../../dashboard/viewdashboard.dart';
@@ -27,7 +33,7 @@ class LandingPageAdmin extends StatefulWidget {
   @override
   State<LandingPageAdmin> createState() => _LandingPageAdminState();
 }
-
+enum SampleItem { itemOne }
 class _LandingPageAdminState extends State<LandingPageAdmin> {
   final TextStyle unselectedLabelStyle = TextStyle(
       color: Colors.white.withOpacity(0.5),
@@ -36,11 +42,15 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
 
   final TextStyle selectedLabelStyle = const TextStyle(
       color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12);
+  SampleItem? selectedItem;
+
+
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    CheckApiKeyLogin();
     // getToken();
     // getToken();
     // // HttpRequest.signOutToken();
@@ -93,6 +103,34 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                 ])
           ],
         ),
+        actions: [
+          Obx(() =>  Row(
+              children: [
+                Text((landingPageController.dataUserAdmin.value.profile ==null)?'Unknow':landingPageController.dataUserAdmin.value.profile!.name??'Unknow',style: TextStyle(fontSize: 13)),
+                SizedBox(width: 10,),
+                PopupMenuButton<SampleItem>(
+                  initialValue: selectedItem,
+                  onSelected: (SampleItem item)async {
+                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                    dataUser=null;
+                    landingPageController.dataUserAdmin.value.profile=null;
+                    await prefs.remove('apikey');
+                    Get.offAndToNamed(RouterName.userPage);
+                  },
+                  itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
+                    const PopupMenuItem<SampleItem>(
+                      value: SampleItem.itemOne,
+                      child: Text('ออกจากระบบ',style: TextStyle(fontSize: 13),),
+                    ),
+
+                  ],
+                ),
+                SizedBox(width: 10,),
+
+              ],
+            ),
+          )
+        ],
       ),
       body: Obx(() => Row(
             children: [
