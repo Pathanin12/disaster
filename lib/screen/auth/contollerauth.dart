@@ -1,4 +1,5 @@
 import 'package:disaster/router.dart';
+import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,18 +8,18 @@ import '../../api/authapi/checkapikey.dart';
 import '../../service/recheckkeyapi.dart';
 
 class ContollerAuth extends GetxController {
- var r =  ''.obs;
+ RxString r =  ''.obs;
 checkLogin()async{
-
-  if(r.value!=null){
+  r.value=Get.parameters['code']??'';
+  if(r.value!=''){
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('apikey', r.value);
-    await CheckApiKeyLogin();
+   await prefs.setString('apikey', r.value);
+    checkApiKey(keyApi: r.value);
   }else{
     SharedPreferences prefs = await SharedPreferences.getInstance();
    String? key = prefs.getString('apikey');
    if(key!=null){
-     await CheckApiKeyLogin();
+     await checkApiKey(keyApi:key);
    }else {
      Get.toNamed(RouterName.userPage);
    }
@@ -27,9 +28,8 @@ checkLogin()async{
 
  @override
   void onInit() {
-   r.value=Get.parameters['code']??'';
     // TODO: implement onInit
-    // checkLogin();
+    checkLogin();
   }
 
 }

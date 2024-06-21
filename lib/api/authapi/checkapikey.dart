@@ -1,23 +1,57 @@
-
+import 'dart:convert';
 
 import 'package:dio/dio.dart';
-
+import 'package:disaster/router.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import '../../model/profileusermodel.dart';
+import '../../screen/drawer/admin/contollerdraweradmin.dart';
 import '../../service/config.dart';
 
-Future<String?>checkApiKey(String key)async{
-  try{
-    Dio dio=Dio();
-    final result=await dio.post('${urlApiKey}valid?apikey=$key',options: Options(headers: {
-      "Content-Type":"application/json",
-      "Accept":"application/json"
-    }));
-    if(result.statusCode==200){
-      Map<String,dynamic> data = result.data;
-      print(data['token']);
-      return data['token'];
+Future<void> checkApiKey({String? keyApi}) async {
+  try {
+    String? key = '';
+    if (keyApi == null) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      key = prefs.getString('apikey');
+    } else {
+      key = keyApi;
     }
-  }catch(e){
+
+    var headers = {
+      "Access-Control-Allow-Origin": "*",
+      'Content-Type': 'application/json',
+      'Accept': '*/*'};
+    var request = http.Request('POST', Uri.parse('${urlApiKey}valid?apikey=$key'));
+    request.headers.addAll(headers);
+    http.StreamedResponse result = await request.send();
+    print('dsdsdsdsdsdsdsd');
+    print(result.statusCode);
+    if (result.statusCode == 200) {
+      String data =await result.stream.bytesToString();
+      Map dataMap = jsonDecode(data);
+      
+
+      var headersProfile = {
+      "Access-Control-Allow-Origin": "*",
+        'Accept': '*/*',
+        "apikey": dataMap['token'].toString()};
+      var requestProfile = http.Request('GET', Uri.parse('${urlApiKey}profile'));
+      requestProfile.headers.addAll(headersProfile);
+      http.StreamedResponse resultProfile = await requestProfile.send();
+      if (resultProfile.statusCode == 200) {
+        String r =await resultProfile.stream.bytesToString();
+        ProfileModel profile = ProfileModel.fromJson(jsonDecode(r));
+        final LandingPageControllerAdmin landingPageController =
+            Get.put(LandingPageControllerAdmin(), permanent: false);
+        landingPageController.dataUserAdmin.value = profile;
+        dataUser = profile;
+        Get.toNamed(RouterName.adminPage);
+      }
+    }
+  } catch (e) {
     print('ERROR CheckApiKey => $e');
-    return null;
+    Get.toNamed(RouterName.userPage);
   }
 }

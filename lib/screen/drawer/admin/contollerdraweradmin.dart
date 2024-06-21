@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
+import '../../../api/authapi/checkapikey.dart';
 import '../../../model/profileusermodel.dart';
 import '../../../service/recheckkeyapi.dart';
 
@@ -19,7 +20,7 @@ class LandingPageControllerAdmin extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    CheckApiKeyLogin();
+    checkApiKey();
   }
 
   @override
