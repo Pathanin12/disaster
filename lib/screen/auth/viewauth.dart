@@ -39,6 +39,14 @@ class AuthPage extends StatelessWidget {
                 color: Colors.white,
                 size: 50,
               )),
+          SizedBox(height: 20,),
+          InkWell(
+              onTap: ()async{
+                await Clipboard.setData(
+                    ClipboardData(
+                        text: contoller.r.value));
+              },
+              child: Text(contoller.r.value,style: TextStyle(fontSize: 13),))
         ],
       )
     );

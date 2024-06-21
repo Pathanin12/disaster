@@ -9,7 +9,7 @@ import '../../service/recheckkeyapi.dart';
 class ContollerAuth extends GetxController {
  var r =  ''.obs;
 checkLogin()async{
-  r.value=Get.parameters['code']??'';
+
   if(r.value!=null){
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('apikey', r.value);
@@ -27,8 +27,9 @@ checkLogin()async{
 
  @override
   void onInit() {
+   r.value=Get.parameters['code']??'';
     // TODO: implement onInit
-    checkLogin();
+    // checkLogin();
   }
 
 }
