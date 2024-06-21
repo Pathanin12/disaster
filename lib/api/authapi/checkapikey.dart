@@ -1,8 +1,10 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:disaster/router.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:http/http.dart' as http;
 import '../../model/profileusermodel.dart';
 import '../../screen/drawer/admin/contollerdraweradmin.dart';
 import '../../service/config.dart';
@@ -16,22 +18,31 @@ Future<void> checkApiKey({String? keyApi}) async {
     } else {
       key = keyApi;
     }
-    Dio dio = Dio();
-    final result = await dio.post('${urlApiKey}valid?apikey=$key',
-        options: Options(headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        }));
-    if (result.statusCode == 200) {
-      Map<String, dynamic> data = result.data;
-      final resultProfile = await dio.get('${urlApiKey}profile',
-          options: Options(headers: {
-            "Accept": "application/json",
-            "apikey": data['token']
-          }));
 
+    var headers = {
+      "Access-Control-Allow-Origin": "*",
+      'Content-Type': 'application/json',
+      'Accept': '*/*'};
+    var request = http.Request('POST', Uri.parse('${urlApiKey}valid?apikey=$key'));
+    request.headers.addAll(headers);
+    http.StreamedResponse result = await request.send();
+    print('dsdsdsdsdsdsdsd');
+    print(result.statusCode);
+    if (result.statusCode == 200) {
+      String data =await result.stream.bytesToString();
+      Map dataMap = jsonDecode(data);
+      
+
+      var headersProfile = {
+      "Access-Control-Allow-Origin": "*",
+        'Accept': '*/*',
+        "apikey": dataMap['token'].toString()};
+      var requestProfile = http.Request('GET', Uri.parse('${urlApiKey}profile'));
+      requestProfile.headers.addAll(headersProfile);
+      http.StreamedResponse resultProfile = await requestProfile.send();
       if (resultProfile.statusCode == 200) {
-        ProfileModel profile = ProfileModel.fromJson(resultProfile.data);
+        String r =await resultProfile.stream.bytesToString();
+        ProfileModel profile = ProfileModel.fromJson(jsonDecode(r));
         final LandingPageControllerAdmin landingPageController =
             Get.put(LandingPageControllerAdmin(), permanent: false);
         landingPageController.dataUserAdmin.value = profile;
