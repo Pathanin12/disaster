@@ -19,17 +19,16 @@ Future<void> checkApiKey({String? keyApi}) async {
       key = keyApi;
     }
 
-    var headers = {
+
+    var result =await http.post(Uri.https('${urlApiKey}valid?apikey=$key'),headers:{
       "Access-Control-Allow-Origin": "*",
       'Content-Type': 'application/json',
-      'Accept': '*/*'};
-    var request = http.Request('POST', Uri.parse('${urlApiKey}valid?apikey=$key'));
-    request.headers.addAll(headers);
-    http.StreamedResponse result = await request.send();
+      'Accept': '*/*'} );
+
     print('dsdsdsdsdsdsdsd');
     print(result.statusCode);
     if (result.statusCode == 200) {
-      String data =await result.stream.bytesToString();
+      String data = result.body;
       Map dataMap = jsonDecode(data);
       
 

@@ -2,7 +2,7 @@ import '../model/profileusermodel.dart';
 
 String url = "https://disasterapi.aicard.work/API/";
 String pathQR='https://disasterweb.netlify.app/';
-String urlApiKey='https://cloud-api.win-victor.com/api/integrate/auth/';
+String urlApiKey='http://cloud-api.win-victor.com/api/integrate/auth/';
 
 bool isAdmin=true;
 ProfileModel? dataUser;
