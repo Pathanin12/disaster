@@ -8,28 +8,27 @@ import '../../api/authapi/checkapikey.dart';
 import '../../service/recheckkeyapi.dart';
 
 class ContollerAuth extends GetxController {
- RxString r =  ''.obs;
-checkLogin()async{
-  r.value=Get.parameters['code']??'';
-  if(r.value!=''){
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-   await prefs.setString('apikey', r.value);
-    checkApiKey(keyApi: r.value);
-  }else{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-   String? key = prefs.getString('apikey');
-   if(key!=null){
-     await checkApiKey(keyApi:key);
-   }else {
-     Get.toNamed(RouterName.userPage);
-   }
+  RxString r = ''.obs;
+  checkLogin() async {
+    r.value = Get.parameters['code'] ?? '';
+    if (r.value != '') {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('apikey', r.value);
+      checkApiKey(keyApi: r.value);
+    } else {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? key = prefs.getString('apikey');
+      if (key != null) {
+        await checkApiKey(keyApi: key);
+      } else {
+        Get.toNamed(RouterName.userPage);
+      }
+    }
   }
-}
 
- @override
+  @override
   void onInit() {
     // TODO: implement onInit
     checkLogin();
   }
-
 }

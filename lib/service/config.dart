@@ -1,10 +1,10 @@
 import '../model/profileusermodel.dart';
 
 String url = "https://disasterapi.aicard.work/API/";
-String pathQR='https://disasterweb.netlify.app/';
-String urlApiKey='http://cloud-api.win-victor.com/api/integrate/auth/';
+String pathQR = 'https://disasterweb.netlify.app/';
+String urlApiKey = 'http://cloud-api.win-victor.com/api/integrate/auth/';
 
-bool isAdmin=true;
+bool isAdmin = true;
 ProfileModel? dataUser;
 
 List<Province> provinceList = [
@@ -393,9 +393,9 @@ List<Province> provinceList = [
     "name_th": "บึงกาฬ",
     "name_en": "buogkan",
   }
-].map((e) =>Province.fromJson(e) ).toList();
+].map((e) => Province.fromJson(e)).toList();
 
-List<String> mountList=[
+List<String> mountList = [
   "มกราคม",
   "กุมภาพันธ์",
   "มีนาคม",
@@ -410,7 +410,7 @@ List<String> mountList=[
   "ธันวาคม",
 ];
 
-List<String> mountAbbreviation=[
+List<String> mountAbbreviation = [
   "ม.ค.",
   "ก.พ.",
   "มี.ค.",

@@ -1842,7 +1842,7 @@ class CreateListOthers extends StatelessWidget {
                                         height: 150,
                                         child: TextFormField(
                                           maxLines: 300,
-                                          controller: contoller.remark.value,
+                                          controller: contoller.address.value,
                                           decoration: InputDecoration.collapsed(
                                             fillColor: colorWhite,
                                             hintText: "ที่อยู่",

@@ -4,7 +4,9 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:html' as html;
 
+import 'package:disaster/api/apiservice/creatorupdateeventfreefromapi.dart';
 import 'package:disaster/model/createeventfreeform.dart';
+import 'package:disaster/screen/createlist/contollercreatelist.dart';
 import 'package:disaster/service/config.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
@@ -272,9 +274,92 @@ class ContollerCreateOthersList extends GetxController {
       } else {
         uuid = const Uuid().v4();
       }
+      List<FreeFormDetailList> detailLists = [];
+      addressModel location =
+          await getLatLong(long: lng.value.text, lat: lat.value.text);
+      for (var item in listForm) {
+        List<FreeFormSubDetailList> subDetailList = [];
+        String? section;
+        int? type;
+        if (item.radio != null) {
+          section = item.radio!.title?.text;
+          type = item.radio!.type;
+          item.radio!.listevent?.forEach((e) {
+            subDetailList.add(FreeFormSubDetailList(optionName: e.text));
+          });
+        }
+        if (item.dropdown != null) {
+          section = item.dropdown!.title?.text;
+          type = item.dropdown!.type;
+          item.dropdown!.listevent?.forEach((e) {
+            subDetailList.add(FreeFormSubDetailList(optionName: e.text));
+          });
+        }
+        if (item.checkbox != null) {
+          section = item.checkbox!.title?.text;
+          type = item.checkbox!.type;
+          item.checkbox!.listevent?.forEach((e) {
+            subDetailList.add(FreeFormSubDetailList(optionName: e.text));
+          });
+        }
+        if (item.textfield != null) {
+          section = item.textfield!.title?.text;
+          type = item.textfield!.type;
+          item.textfield!.listevent?.forEach((e) {
+            subDetailList.add(FreeFormSubDetailList(optionName: e.text));
+          });
+        }
+        if (item.image != null) {
+          section = item.image!.title?.text;
+          type = item.image!.type;
+        }
+        if (item.file != null) {
+          section = item.file!.title?.text;
+          type = item.file!.type;
+        }
+        if (section != null && type != null) {
+          detailLists.add(FreeFormDetailList(
+            description: "",
+            section: section,
+            types: type,
+            freeFormSubDetailList: subDetailList,
+          ));
+        }
+      }
 
-      addressModel addressmod = addressModel();
-      addressmod = addressModel();
+      print(detailLists.toList());
+
+      for (var item in listForm) {
+        print('Form Type: ${item.typeform}');
+        if (item.textfield != null) {
+          print('Textfield Title: ${item.textfield!.title?.text}');
+          print(
+              'Textfield Events: ${item.textfield!.listevent?.map((e) => e.text).toList()}');
+        }
+        if (item.dropdown != null) {
+          print('Dropdown Title: ${item.dropdown!.title?.text}');
+          print(
+              'Dropdown Events: ${item.dropdown!.listevent?.map((e) => e.text).toList()}');
+        }
+        if (item.checkbox != null) {
+          print('Checkbox Title: ${item.checkbox!.title?.text}');
+          print(
+              'Checkbox Events: ${item.checkbox!.listevent?.map((e) => e.text).toList()}');
+        }
+        if (item.radio != null) {
+          print('Radio Title: ${item.radio!.title?.text}');
+          print(
+              'Radio Events: ${item.radio!.listevent?.map((e) => e.text).toList()}');
+          print('Radio type: ${item.radio!.type}');
+        }
+        if (item.image != null) {
+          print('Image Title: ${item.image!.title?.text}');
+        }
+        if (item.file != null) {
+          print('File Title: ${item.file!.title?.text}');
+        }
+        print('---');
+      }
 
       CreateEventFreeForm eventFreeForm = CreateEventFreeForm(
         eventID: uuid,
@@ -286,13 +371,39 @@ class ContollerCreateOthersList extends GetxController {
         latitude: lat.value.text,
         longitude: lng.value.text,
         address: address.value.text,
-        tambon: addressmod.tambon,
-        amphure: addressmod.amphure,
-        province: addressmod.province,
-        zipCode: addressmod.zipCode,
+        tambon: location.tambon,
+        amphure: location.amphure,
+        province: location.province,
+        zipCode: location.zipCode,
         createBy: createBy.value.text,
-        freeFormDetailList: [],
+        freeFormDetailList: detailLists,
       );
+
+      print('Event ID: ${eventFreeForm.eventID}');
+      print('Event Name: ${eventFreeForm.eventName}');
+      print('Status Agency: ${eventFreeForm.statusAgency}');
+      print('Status Item: ${eventFreeForm.statusItem}');
+      print('Datetime: ${eventFreeForm.datetime}');
+      print('Responsible Agency: ${eventFreeForm.responsibleAgency}');
+      print('Latitude: ${eventFreeForm.latitude}');
+      print('Longitude: ${eventFreeForm.longitude}');
+      print('Address: ${eventFreeForm.address}');
+      print('Tambon: ${eventFreeForm.tambon}');
+      print('Amphure: ${eventFreeForm.amphure}');
+      print('Province: ${eventFreeForm.province}');
+      print('Zip Code: ${eventFreeForm.zipCode}');
+      print('Create By: ${eventFreeForm.createBy}');
+      eventFreeForm.freeFormDetailList?.forEach((detail) {
+        print('Section: ${detail.section}');
+        print('Description: ${detail.description}');
+        print('Types: ${detail.types}');
+        detail.freeFormSubDetailList?.forEach((subDetail) {
+          print('Option Name: ${subDetail.optionName}');
+        });
+      });
+
+      await creatOrUpdateEventFreeFrom(eventFreeForm).then((value) {});
+      await clearData();
 
       // await createEvenApi(even).then((value) {});
       // await clearData();
@@ -450,18 +561,21 @@ class ListFormModel {
 class Textfield {
   TextEditingController? title;
   RxList<TextEditingController>? listevent;
+  int type = 3;
 
-  Textfield({this.title, this.listevent});
+  Textfield({this.title, this.listevent, this.type = 3});
 
   Textfield.fromJson(Map<String, dynamic> json) {
     title = json['title'].cast<TextEditingController>();
     listevent = json['listevent'].cast<TextEditingController>();
+    type = json['type'] ?? 3;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['title'] = this.title;
     data['listevent'] = this.listevent;
+    data['type'] = this.type;
     return data;
   }
 }
@@ -469,18 +583,21 @@ class Textfield {
 class MyDropdown {
   TextEditingController? title;
   RxList<TextEditingController>? listevent;
+  int type = 0;
 
-  MyDropdown({this.title, this.listevent});
+  MyDropdown({this.title, this.listevent, this.type = 0});
 
   MyDropdown.fromJson(Map<String, dynamic> json) {
     title = json['title'].cast<TextEditingController>();
     listevent = json['listevent'].cast<TextEditingController>();
+    type = json['type'] ?? 0;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['title'] = this.title;
     data['listevent'] = this.listevent;
+    data['type'] = this.type;
     return data;
   }
 }
@@ -488,18 +605,21 @@ class MyDropdown {
 class MyCheckBox {
   TextEditingController? title;
   RxList<TextEditingController>? listevent;
+  int type = 1;
 
-  MyCheckBox({this.title, this.listevent});
+  MyCheckBox({this.title, this.listevent, this.type = 1});
 
   MyCheckBox.fromJson(Map<String, dynamic> json) {
     title = json['title'].cast<TextEditingController>();
     listevent = json['listevent'].cast<TextEditingController>();
+    type = json['type'] ?? 1;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['title'] = this.title;
     data['listevent'] = this.listevent;
+    data['type'] = this.type;
     return data;
   }
 }
@@ -507,36 +627,40 @@ class MyCheckBox {
 class MyRadio {
   TextEditingController? title;
   RxList<TextEditingController>? listevent;
+  int type = 2;
 
-  MyRadio({this.title, this.listevent});
+  MyRadio({this.title, this.listevent, this.type = 2});
 
   MyRadio.fromJson(Map<String, dynamic> json) {
     title = json['title'].cast<TextEditingController>();
     listevent = json['listevent'].cast<TextEditingController>();
+    type = json['type'] ?? 2;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['title'] = this.title;
     data['listevent'] = this.listevent;
+    data['type'] = this.type;
     return data;
   }
 }
 
 class MyImg {
   TextEditingController? title;
+  int type = 4;
 
-  MyImg({
-    this.title,
-  });
+  MyImg({this.title, this.type = 4});
 
   MyImg.fromJson(Map<String, dynamic> json) {
     title = json['title'].cast<TextEditingController>();
+    type = json['type'] ?? 4;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['title'] = this.title;
+    data['type'] = this.type;
 
     return data;
   }
@@ -544,43 +668,20 @@ class MyImg {
 
 class MyFile {
   TextEditingController? title;
+  int type = 5;
 
-  MyFile({
-    this.title,
-  });
+  MyFile({this.title, this.type = 5});
 
   MyFile.fromJson(Map<String, dynamic> json) {
     title = json['title'].cast<TextEditingController>();
+    type = json['type'] ?? 5;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['title'] = this.title;
+    data['type'] = this.type;
 
-    return data;
-  }
-}
-
-class addressModel {
-  String? amphure;
-  String? tambon;
-  String? zipCode;
-  String? province;
-
-  addressModel({this.amphure, this.tambon, this.zipCode, this.province});
-  addressModel.fromJson(Map<String, dynamic> json) {
-    amphure = json['amphure'];
-    tambon = json['tambon'];
-    zipCode = json['zipCode'];
-    province = json['province'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['amphure'] = this.amphure;
-    data['tambon'] = this.tambon;
-    data['zipCode'] = this.zipCode;
-    data['province'] = this.province;
     return data;
   }
 }
