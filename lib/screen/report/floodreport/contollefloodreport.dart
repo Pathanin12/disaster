@@ -30,7 +30,7 @@ import '../../drawer/admin/contollerdraweradmin.dart';
 class ContollerFloodReport extends GetxController {
   QrPainter? _painter;
   GlobalKey _globalKey = new GlobalKey();
-  var title = 'ดูรายงาน'.obs;
+  var title = 'รายงานอุทกภัย'.obs;
   RxInt Index = 0.obs;
   RxInt IndexChart = 0.obs;
   RxInt maxPage = 1.obs;

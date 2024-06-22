@@ -45,7 +45,8 @@ class _FixRoleState extends State<FixRole> {
                           refId: '67890'
                       )
                   );
-                  Get.toNamed(RouterName.adminPage);
+                  Get.offAndToNamed(RouterName.adminPage);
+                  // Get.re(RouterName.adminPage);
                 },
                 child: Container(
                   alignment: Alignment.center,
@@ -74,7 +75,7 @@ class _FixRoleState extends State<FixRole> {
                       )
                   );
 
-                  Get.toNamed(RouterName.adminPage);
+                  Get.offAndToNamed(RouterName.adminPage);
                 },
                 child: Container(
                   alignment: Alignment.center,
@@ -93,27 +94,28 @@ class _FixRoleState extends State<FixRole> {
                   ),),
                 ),
               ),
-              // InkWell(
-              //   onTap: (){
-              //     Get.toNamed(RouterName.userPage);
-              //   },
-              //   child: Container(
-              //     alignment: Alignment.center,
-              //     margin: EdgeInsets.all(15),
-              //     height: 200,
-              //     width: 200,
-              //     decoration: BoxDecoration(
-              //         border: Border.all(color: Colors.grey.shade200),
-              //         borderRadius: BorderRadius.circular(10),
-              //         color: Colors.white
-              //     ),
-              //     child: Text('ชาวบ้าน',style: TextStyle(
-              //         fontWeight: FontWeight.bold,
-              //         color: Colors.black,
-              //         fontSize: 18
-              //     ),),
-              //   ),
-              // ),
+              InkWell(
+                onTap: (){
+                  Get.offAndToNamed(RouterName.userPage);
+                  // Get.toNamed(RouterName.userPage);
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  margin: EdgeInsets.all(15),
+                  height: 200,
+                  width: 200,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey.shade200),
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white
+                  ),
+                  child: Text('ชาวบ้าน',style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 18
+                  ),),
+                ),
+              ),
 
             ],
           ),

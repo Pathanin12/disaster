@@ -379,28 +379,28 @@ class ContollerCreateOthersList extends GetxController {
         freeFormDetailList: detailLists,
       );
 
-      print('Event ID: ${eventFreeForm.eventID}');
-      print('Event Name: ${eventFreeForm.eventName}');
-      print('Status Agency: ${eventFreeForm.statusAgency}');
-      print('Status Item: ${eventFreeForm.statusItem}');
-      print('Datetime: ${eventFreeForm.datetime}');
-      print('Responsible Agency: ${eventFreeForm.responsibleAgency}');
-      print('Latitude: ${eventFreeForm.latitude}');
-      print('Longitude: ${eventFreeForm.longitude}');
-      print('Address: ${eventFreeForm.address}');
-      print('Tambon: ${eventFreeForm.tambon}');
-      print('Amphure: ${eventFreeForm.amphure}');
-      print('Province: ${eventFreeForm.province}');
-      print('Zip Code: ${eventFreeForm.zipCode}');
-      print('Create By: ${eventFreeForm.createBy}');
-      eventFreeForm.freeFormDetailList?.forEach((detail) {
-        print('Section: ${detail.section}');
-        print('Description: ${detail.description}');
-        print('Types: ${detail.types}');
-        detail.freeFormSubDetailList?.forEach((subDetail) {
-          print('Option Name: ${subDetail.optionName}');
-        });
-      });
+      // print('Event ID: ${eventFreeForm.eventID}');
+      // print('Event Name: ${eventFreeForm.eventName}');
+      // print('Status Agency: ${eventFreeForm.statusAgency}');
+      // print('Status Item: ${eventFreeForm.statusItem}');
+      // print('Datetime: ${eventFreeForm.datetime}');
+      // print('Responsible Agency: ${eventFreeForm.responsibleAgency}');
+      // print('Latitude: ${eventFreeForm.latitude}');
+      // print('Longitude: ${eventFreeForm.longitude}');
+      // print('Address: ${eventFreeForm.address}');
+      // print('Tambon: ${eventFreeForm.tambon}');
+      // print('Amphure: ${eventFreeForm.amphure}');
+      // print('Province: ${eventFreeForm.province}');
+      // print('Zip Code: ${eventFreeForm.zipCode}');
+      // print('Create By: ${eventFreeForm.createBy}');
+      // eventFreeForm.freeFormDetailList?.forEach((detail) {
+      //   print('Section: ${detail.section}');
+      //   print('Description: ${detail.description}');
+      //   print('Types: ${detail.types}');
+      //   detail.freeFormSubDetailList?.forEach((subDetail) {
+      //     print('Option Name: ${subDetail.optionName}');
+      //   });
+      // });
 
       await creatOrUpdateEventFreeFrom(eventFreeForm).then((value) {});
       await clearData();

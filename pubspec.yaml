@@ -113,6 +113,7 @@ flutter:
       - assets/icons/svg/forestfire2.svg
       - assets/icons/svg/flood0.svg
       - assets/icons/svg/flood1.svg
+      - assets/icons/svg/freeform.svg
       - assets/icons/svg/flood2.svg
       - assets/icons/svg/reportmain.svg
       - assets/icons/svg/report1.svg

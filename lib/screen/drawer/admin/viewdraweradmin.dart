@@ -25,6 +25,7 @@ import '../../home.dart';
 import '../../report/firereport/viewfirereport.dart';
 import '../../report/floodreport/viewfloodreport.dart';
 import '../../report/forestfirereport/viewforestfirereport.dart';
+import '../../report/freeformreport/viewwinestormreport.dart';
 import '../../report/mainreport/viewmainreport.dart';
 import '../../report/mainreport/viewmainreport.dart';
 import '../../report/winestormreport/viewwinestormreport.dart';
@@ -431,7 +432,51 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                               ),
                             ),
                           ),
+
                         ]),
+                      InkWell(
+                        onTap: () {
+                          landingPageController.tabIndex(9);
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.only(left: 35, right: 10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: (landingPageController.tabIndex.value == 9)
+                                ? Colors.amber
+                                : Colors.transparent,
+                          ),
+                          height: 40,
+                          child: Row(
+                            children: [
+                              SvgPicture.asset(
+                                color:
+                                (landingPageController.tabIndex.value ==
+                                    9)
+                                    ? Colors.white
+                                    : Color(0xfff5a607f),
+                                'assets/icons/svg/freeform.svg',
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              Text(
+                                'รายงานอื่นๆ',
+                                style: textStyle(context,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w200,
+                                    color:
+                                    (landingPageController.tabIndex.value ==
+                                        9)
+                                        ? Colors.white
+                                        : Color(0xfff5a607f)),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+
                       // ExpansionTileItem(
                       //   border: Border.all(color:Colors.transparent),
                       //   title: InkWell(
@@ -639,6 +684,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                       CreateList(),
                       Detail(),
                       CreateListOthers(),
+                      FreeFormReport(),
                     ],
                   ),
                 ),

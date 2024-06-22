@@ -25,10 +25,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: RouterName.fixRole,
       getPages: [
-        // GetPage(
-        //   name: RouterName.userPage,
-        //   page: () => LandingPageUser(),
-        // ),
+        GetPage(
+          name: RouterName.userPage,
+          page: () => LandingPageUser(),
+        ),
         GetPage(
           name: RouterName.fixRole,
           page: () => const FixRole(),
@@ -44,11 +44,11 @@ class MyApp extends StatelessWidget {
       ],
       onGenerateRoute: (settings) {
         // Handle different named routes here
-        // if (settings.name == RouterName.userPage) {
-        //   return MaterialPageRoute(
-        //     builder: (context) => LandingPageUser(),
-        //   );
-        // }else
+        if (settings.name == RouterName.userPage) {
+          return MaterialPageRoute(
+            builder: (context) => LandingPageUser(),
+          );
+        }else
           if (settings.name == RouterName.fixRole) {
           return MaterialPageRoute(
             builder: (context) => FixRole(),
