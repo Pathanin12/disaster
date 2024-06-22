@@ -34,7 +34,9 @@ class LandingPageAdmin extends StatefulWidget {
   @override
   State<LandingPageAdmin> createState() => _LandingPageAdminState();
 }
+
 enum SampleItem { itemOne }
+
 class _LandingPageAdminState extends State<LandingPageAdmin> {
   final TextStyle unselectedLabelStyle = TextStyle(
       color: Colors.white.withOpacity(0.5),
@@ -44,8 +46,6 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
   final TextStyle selectedLabelStyle = const TextStyle(
       color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12);
   SampleItem? selectedItem;
-
-
 
   @override
   void initState() {
@@ -112,29 +112,43 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
           ),
         ),
         actions: [
-          Obx(() =>  Row(
+          Obx(
+            () => Row(
               children: [
-                Text((landingPageController.dataUserAdmin.value.profile ==null)?'Unknow':landingPageController.dataUserAdmin.value.profile!.name??'Unknow',style: TextStyle(fontSize: 13)),
-                SizedBox(width: 10,),
+                Text(
+                    (landingPageController.dataUserAdmin.value.profile == null)
+                        ? 'Unknow'
+                        : landingPageController
+                                .dataUserAdmin.value.profile!.name ??
+                            'Unknow',
+                    style: TextStyle(fontSize: 13)),
+                SizedBox(
+                  width: 10,
+                ),
                 PopupMenuButton<SampleItem>(
                   initialValue: selectedItem,
-                  onSelected: (SampleItem item)async {
-                    SharedPreferences prefs = await SharedPreferences.getInstance();
-                    dataUser=null;
-                    landingPageController.dataUserAdmin.value.profile=null;
+                  onSelected: (SampleItem item) async {
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    dataUser = null;
+                    landingPageController.dataUserAdmin.value.profile = null;
                     await prefs.remove('apikey');
                     Get.offAndToNamed(RouterName.userPage);
                   },
-                  itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
+                  itemBuilder: (BuildContext context) =>
+                      <PopupMenuEntry<SampleItem>>[
                     const PopupMenuItem<SampleItem>(
                       value: SampleItem.itemOne,
-                      child: Text('ออกจากระบบ',style: TextStyle(fontSize: 13),),
+                      child: Text(
+                        'ออกจากระบบ',
+                        style: TextStyle(fontSize: 13),
+                      ),
                     ),
-
                   ],
                 ),
-                SizedBox(width: 10,),
-
+                SizedBox(
+                  width: 10,
+                ),
               ],
             ),
           )
