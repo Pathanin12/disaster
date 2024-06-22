@@ -11,6 +11,7 @@ import '../../../service/recheckkeyapi.dart';
 class LandingPageControllerAdmin extends GetxController {
   var tabIndex = 0.obs;
   Rx<ProfileModel> dataUserAdmin=  ProfileModel().obs;
+  var name = ''.obs;
 
   void changeTabIndex(int index) {
     tabIndex.value = index;

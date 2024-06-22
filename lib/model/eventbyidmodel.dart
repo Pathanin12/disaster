@@ -178,9 +178,10 @@ class LogList {
   String? id;
   String? userName;
   String? name;
+  String? reportDetail;
   String? datetime;
   List<LogDetailList>? logDetailList;
-  List<ImageList>? imageList;
+  List<imageListLog>? imageList;
   List<FileList>? fileList;
 
   LogList(
@@ -188,6 +189,7 @@ class LogList {
         this.userName,
         this.name,
         this.datetime,
+        this.reportDetail,
         this.logDetailList,
         this.imageList,
         this.fileList});
@@ -196,6 +198,7 @@ class LogList {
     id = json['id'];
     userName = json['userName'];
     name = json['name'];
+    reportDetail=json['reportDetail'];
     datetime = json['datetime'];
     if (json['logDetailList'] != null) {
       logDetailList = <LogDetailList>[];
@@ -204,9 +207,9 @@ class LogList {
       });
     }
     if (json['imageList'] != null) {
-      imageList = <ImageList>[];
+      imageList = <imageListLog>[];
       json['imageList'].forEach((v) {
-        imageList!.add(new ImageList.fromJson(v));
+        imageList!.add(new imageListLog.fromJson(v));
       });
     }
     if (json['fileList'] != null) {
@@ -220,6 +223,7 @@ class LogList {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
+    data['reportDetail']=this.reportDetail;
     data['userName'] = this.userName;
     data['name'] = this.name;
     data['datetime'] = this.datetime;
@@ -255,6 +259,22 @@ class LogDetailList {
     return data;
   }
 }
+class imageListLog {
+  String? image;
+
+  imageListLog({this.image});
+
+  imageListLog.fromJson(Map<String, dynamic> json) {
+    image = json['image'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['image'] = this.image;
+    return data;
+  }
+}
+
 
 class ImageList {
   String? pathImage;
@@ -277,16 +297,19 @@ class ImageList {
 
 class FileList {
   String? file;
+  String? fileName;
 
-  FileList({this.file});
+  FileList({this.file,this.fileName});
 
   FileList.fromJson(Map<String, dynamic> json) {
     file = json['file'];
+    fileName=json['fileName'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['file'] = this.file;
+    data['fileName']=this.fileName;
     return data;
   }
 }
@@ -393,7 +416,7 @@ class PeopleNewList {
   bool? anonymous;
   String? note;
   String? createDatetime;
-  List<DeceaseList>? imageNewsList;
+  List<ImageList>? imageNewsList;
 
   PeopleNewList(
       {this.name,
@@ -408,9 +431,9 @@ class PeopleNewList {
     note = json['note'];
     createDatetime = json['createDatetime'];
     if (json['imageNewsList'] != null) {
-      imageNewsList = <DeceaseList>[];
+      imageNewsList = <ImageList>[];
       json['imageNewsList'].forEach((v) {
-        imageNewsList!.add(new DeceaseList.fromJson(v));
+        imageNewsList!.add(new ImageList.fromJson(v));
       });
     }
   }
@@ -456,7 +479,7 @@ class Graph {
 
 class Gender {
   List<DeceasedList>? deceasedList;
-  List<DeceaseList>? injuredList;
+  List<DeceasedList>? injuredList;
 
   Gender({this.deceasedList, this.injuredList});
 
@@ -468,9 +491,9 @@ class Gender {
       });
     }
     if (json['injuredList'] != null) {
-      injuredList = <DeceaseList>[];
+      injuredList = <DeceasedList>[];
       json['injuredList'].forEach((v) {
-        injuredList!.add(new DeceaseList.fromJson(v));
+        injuredList!.add(new DeceasedList.fromJson(v));
       });
     }
   }

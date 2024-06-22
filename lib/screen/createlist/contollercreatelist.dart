@@ -261,7 +261,7 @@ class ContollerCreateList extends GetxController {
       }
 
       for (var element in listConvertFileLog) {
-          listFileBase64.add(FileList(file: element.pathImage));
+          listFileBase64.add(FileList(file: element.pathImage,fileName: element.imageName));
       }
 
       UpdateBy? dataUpdate;

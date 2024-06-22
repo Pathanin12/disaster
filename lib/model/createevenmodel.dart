@@ -248,16 +248,18 @@ class ImageList {
 
 class FileList {
   String? file;
-
-  FileList({this.file});
+  String? fileName;
+  FileList({this.file,this.fileName});
 
   FileList.fromJson(Map<String, dynamic> json) {
     file = json['file'];
+    fileName=json['fileName'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['file'] = this.file;
+    data['fileName']=this.fileName;
     return data;
   }
 }

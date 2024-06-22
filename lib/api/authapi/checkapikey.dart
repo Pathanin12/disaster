@@ -45,6 +45,7 @@ Future<void> checkApiKey({String? keyApi}) async {
         final LandingPageControllerAdmin landingPageController =
             Get.put(LandingPageControllerAdmin(), permanent: false);
         landingPageController.dataUserAdmin.value = profile;
+        landingPageController.name.value=dataMap['token'].toString();
         dataUser = profile;
         Get.toNamed(RouterName.adminPage);
       }

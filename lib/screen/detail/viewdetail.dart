@@ -1,6 +1,7 @@
 import 'package:disaster/screen/detail/contollerdetail.dart';
 import 'package:disaster/service/config.dart';
 import 'package:disaster/stye/font.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -805,7 +806,7 @@ class Detail extends StatelessWidget {
                         const SizedBox(
                           height: 30,
                         ),
-                        Row(
+                       if(contoller.dataEvent.value.events != null)if(contoller.dataEvent.value.events!.note!=null&&contoller.dataEvent.value.events!.note!='')Row(
                           children: [
                             Expanded(
                                 child: Container(
@@ -838,6 +839,406 @@ class Detail extends StatelessWidget {
                             )),
                           ],
                         ),
+
+                        Row(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                contoller.IndexChart.value = 0;
+                              },
+                              child: Container(
+                                width: 150,
+                                child: Column(
+                                  children: [
+                                    Text('อัพเดทสถานการณ์รายงาน',
+                                        style: textStyle(context,
+                                            fontSize: 13,
+                                            color: (contoller.IndexChart.value == 0)
+                                                ? colorAmber
+                                                : colorBlack)),
+                                    if (contoller.IndexChart.value == 0)
+                                      Divider(
+                                        height: 3,
+                                        color: colorAmber,
+                                      )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                contoller.IndexChart.value = 1;
+                              },
+                              child: Container(
+                                width: 70,
+                                child: Column(
+                                  children: [
+                                    Text('แผนภูมิแท่ง',
+                                        style: textStyle(context,
+                                            fontSize: 13,
+                                            color: (contoller.IndexChart.value == 1)
+                                                ? colorAmber
+                                                : colorBlack)),
+                                    if (contoller.IndexChart.value == 1)
+                                      Divider(
+                                        height: 3,
+                                        color: colorAmber,
+                                      )
+                                  ],
+                                ),
+                              ),
+                            ),
+
+                          ],
+                        ),
+                        if(contoller.IndexChart.value==0)if(contoller
+                            .dataEvent.value.events!=null)Container(
+                          padding: EdgeInsets.all(10),
+                            color: Colors.white,
+                          height: 600,
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount:contoller
+                                .dataEvent.value.events!.logList!.length,
+                            itemBuilder: (context, index) => Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                              SizedBox(height: 10,),
+                              Row(children: [
+                                Text('ลำดับที่ ${index+1}',
+                                    style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+                                Text(contoller
+                                    .dataEvent.value.events!.logList![index].name??'',
+                                    style: textStyle(context, fontSize: 13, color: colorBlack,fontWeight: FontWeight.bold)),SizedBox(width: 13,),
+                                Text(contoller
+                                    .dataEvent.value.events!.logList![index].userName??'',
+                                    style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+
+                              ],),
+                              SizedBox(height: 10,),
+                              Text(contoller
+                                  .dataEvent.value.events!.logList![index].logDetailList!.map((e) => e.header,).toList().join(" , ").toString(),
+                                  style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+                              SizedBox(height: 10,),
+                                SizedBox(height: 10,),
+                                Text(contoller
+                                    .dataEvent.value.events!.logList![index].reportDetail??'',
+                                    style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+                                SizedBox(height: 10,),
+                              if(contoller
+                                  .dataEvent.value.events!.logList![index].imageList!.isNotEmpty)Container(
+                                decoration: BoxDecoration(
+                                    color: colorWhite,
+                                    borderRadius: BorderRadius.circular(5)),
+                                child:GridView.builder(
+                                  shrinkWrap: true,
+                                  gridDelegate:
+                                  const SliverGridDelegateWithMaxCrossAxisExtent(
+                                    maxCrossAxisExtent: 150,
+                                    crossAxisSpacing: 3.0,
+                                    mainAxisSpacing: 10.0,
+                                    childAspectRatio: 0.8,
+                                  ),
+                                  itemCount: contoller
+                                      .dataEvent.value.events!.logList![index].imageList!.length,
+                                  itemBuilder: (context, indexImage) {
+                                    return
+                                      Container(
+                                        width: 200,
+                                        decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: NetworkImage(
+                                                    contoller
+                                                        .dataEvent.value.events!.logList![index].imageList![indexImage].image!),
+                                                fit: BoxFit.cover)),
+                                      );
+
+                                  },
+                                ),
+                              ),
+                                SizedBox(height: 10,),
+                                if(contoller
+                                    .dataEvent.value.events!.logList![index].fileList!.isNotEmpty)Container(
+                                  decoration: BoxDecoration(
+                                      color: colorWhite,
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child:GridView.builder(
+                                    shrinkWrap: true,
+                                    gridDelegate:
+                                    const SliverGridDelegateWithMaxCrossAxisExtent(
+                                      maxCrossAxisExtent: 250,
+                                      crossAxisSpacing: 3.0,
+                                      mainAxisSpacing: 5.0,
+                                      childAspectRatio: 5,
+                                    ),
+                                    itemCount: contoller
+                                        .dataEvent.value.events!.logList![index].fileList!.length,
+                                    itemBuilder: (context, indexFile) {
+                                      return
+                                        InkWell(
+                                          onTap: (){
+                                            contoller.downloadFile(contoller
+                                                .dataEvent.value.events!.logList![index].fileList![0].file!);
+                                          },
+                                          child: Container(
+                                            height: 50,
+                                            color: Colors.grey.shade100,
+                                            width: 250,
+                                            padding: EdgeInsets.all(4),
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                              Icon(CupertinoIcons.doc_text_fill,size: 20,),SizedBox(width: 10,),
+                                              Text(contoller
+                                                  .dataEvent.value.events!.logList![index].fileList![0].fileName??'',
+                                                  style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+                                              SizedBox(width: 10,),
+                                              Icon(Icons.download,size: 20,)
+                                            ],),
+                                          ),
+                                        );
+
+                                    },
+                                  ),
+                                ),
+                              SizedBox(height: 10,),
+                              Divider(height: 1,color: Colors.grey,)
+                            ],)),),
+                       if(contoller.IndexChart.value==1) Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10), color: colorWhite),
+                            height: 450,
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 20,
+                                ),
+
+                                Row(
+                                  children: [
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text('แกนY',
+                                        style: textStyle(context, fontSize: 13, color: colorBlack)),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.only(left: 20, right: 5),
+                                      width: 200,
+                                      height: 30,
+                                      decoration: BoxDecoration(
+                                          color: colorWhite,
+                                          border: Border.all(
+                                            color: Colors.black26,
+                                            width: 1,
+                                          ),
+                                          borderRadius: BorderRadius.circular(5)),
+                                      alignment: Alignment.center,
+                                      child: SizedBox(
+                                        width: double.infinity,
+                                        child: DropdownButtonHideUnderline(
+                                          child: DropdownButton2<String>(
+                                            dropdownStyleData: DropdownStyleData(
+                                              maxHeight: 300,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(5),
+                                              ),
+                                              scrollbarTheme: ScrollbarThemeData(
+                                                radius: const Radius.circular(5),
+                                                thickness: MaterialStateProperty.all<double>(6),
+                                                thumbVisibility:
+                                                MaterialStateProperty.all<bool>(true),
+                                              ),
+                                            ),
+                                            autofocus: true,
+                                            isExpanded: true,
+                                            value: contoller.selectChartY.value,
+                                            hint: Text(
+                                              'จำนวนผู้บาดเจ็บ',
+                                              style: TextStyle(
+                                                  fontSize: 13.0,
+                                                  color: colorGrey,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                            items: contoller.listChartY
+                                                .map<DropdownMenuItem<String>>((String? value) {
+                                              return DropdownMenuItem<String>(
+                                                value: value!,
+                                                child: Text(
+                                                  value,
+                                                  style: TextStyle(
+                                                      fontSize: 13.0,
+                                                      color: colorGrey,
+                                                      fontWeight: FontWeight.w400),
+                                                ),
+                                              );
+                                            }).toList(),
+                                            iconStyleData: const IconStyleData(
+                                                icon: Icon(
+                                                  Icons.keyboard_arrow_down,
+                                                  size: 24,
+                                                )),
+                                            onChanged: (valueSelect) {
+                                              contoller.selectChartY.value = valueSelect!;
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text('แกนX',
+                                        style: textStyle(context, fontSize: 13, color: colorBlack)),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.only(left: 20, right: 5),
+                                      width: 200,
+                                      height: 30,
+                                      decoration: BoxDecoration(
+                                          color: colorWhite,
+                                          border: Border.all(
+                                            color: Colors.black26,
+                                            width: 1,
+                                          ),
+                                          borderRadius: BorderRadius.circular(5)),
+                                      alignment: Alignment.center,
+                                      child: SizedBox(
+                                        width: double.infinity,
+                                        child: DropdownButtonHideUnderline(
+                                          child: DropdownButton2<String>(
+                                            dropdownStyleData: DropdownStyleData(
+                                              maxHeight: 300,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(5),
+                                              ),
+                                              scrollbarTheme: ScrollbarThemeData(
+                                                radius: const Radius.circular(5),
+                                                thickness: MaterialStateProperty.all<double>(6),
+                                                thumbVisibility:
+                                                MaterialStateProperty.all<bool>(true),
+                                              ),
+                                            ),
+                                            autofocus: true,
+                                            isExpanded: true,
+                                            value: contoller.selectChartX.value,
+                                            hint: Text(
+                                              'เพศ',
+                                              style: TextStyle(
+                                                  fontSize: 13.0,
+                                                  color: colorGrey,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                            items: contoller.listChartX
+                                                .map<DropdownMenuItem<String>>((String? value) {
+                                              return DropdownMenuItem<String>(
+                                                value: value!,
+                                                child: Text(
+                                                  value,
+                                                  style: TextStyle(
+                                                      fontSize: 13.0,
+                                                      color: colorGrey,
+                                                      fontWeight: FontWeight.w400),
+                                                ),
+                                              );
+                                            }).toList(),
+                                            iconStyleData: const IconStyleData(
+                                                icon: Icon(
+                                                  Icons.keyboard_arrow_down,
+                                                  size: 24,
+                                                )),
+                                            onChanged: (valueSelect) {
+                                              contoller.selectChartX.value = valueSelect!;
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                if(contoller.dataEvent.value.graph!=null)contoller.chart(context)
+                              ],
+                            )),
+                        SizedBox(height: 20,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text('ภาพถ่ายจากทางบ้าน',
+                                style: textStyle(context, fontSize: 16, color: colorBlack,fontWeight: FontWeight.bold)),
+                          ],
+                        ),SizedBox(width: 13,),
+                        SizedBox(height: 20,),
+                   if(contoller
+                            .dataEvent.value.peopleNewList!=null)Container(
+                          padding: EdgeInsets.all(10),
+                          color: Colors.white,
+                          height: 600,
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              itemCount:contoller
+                                  .dataEvent.value.peopleNewList!.length,
+                              itemBuilder: (context, index) => Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(height: 10,),
+                                  Row(children: [
+                                    Text('ลำดับที่ ${index+1}',
+                                        style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+                                    Text(contoller
+                                        .dataEvent.value.peopleNewList![index].name??'ไม่ระบุชื่อ',
+                                        style: textStyle(context, fontSize: 13, color: colorBlack,fontWeight: FontWeight.bold)),SizedBox(width: 13,),
+
+                                  ],),
+                                  SizedBox(height: 10,),
+                                  Text(contoller
+                                      .dataEvent.value.peopleNewList![index].note??'',
+                                      style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+                                  SizedBox(height: 10,),
+                                  if(contoller
+                                      .dataEvent.value.peopleNewList![index].imageNewsList!.isNotEmpty)Container(
+                                    decoration: BoxDecoration(
+                                        color: colorWhite,
+                                        borderRadius: BorderRadius.circular(5)),
+                                    child:GridView.builder(
+                                      shrinkWrap: true,
+                                      gridDelegate:
+                                      const SliverGridDelegateWithMaxCrossAxisExtent(
+                                        maxCrossAxisExtent: 150,
+                                        crossAxisSpacing: 3.0,
+                                        mainAxisSpacing: 10.0,
+                                        childAspectRatio: 0.8,
+                                      ),
+                                      itemCount: contoller
+                                          .dataEvent.value.peopleNewList![index].imageNewsList!.length,
+                                      itemBuilder: (context, indexImage) {
+                                        return
+                                          Container(
+                                            width: 200,
+                                            decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                    image: NetworkImage(
+                                                        contoller
+                                                            .dataEvent.value.peopleNewList![index].imageNewsList![indexImage].pathImage!),
+                                                    fit: BoxFit.cover)),
+                                          );
+
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(height: 10,),
+                                  Divider(height: 1,color: Colors.grey,)
+                                ],)),),
                       ],
                     ),
                   )
