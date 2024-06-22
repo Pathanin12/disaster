@@ -68,7 +68,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
         backgroundColor: colorWhite,
         leading: InkWell(
           onTap: (){
-            Get.toNamed(RouterName.fixRole);
+            Get.offAndToNamed(RouterName.fixRole);
           },
           child: Container(
             child: Row(
@@ -533,7 +533,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                       //     ),
                       //   ],
                       // ),
-                      InkWell(
+                     if(isAdmin) InkWell(
                         onTap: () {
                           landingPageController.tabIndex(6);
                         },
@@ -574,7 +574,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                           ),
                         ),
                       ),
-                      InkWell(
+                      if(isAdmin) InkWell(
                         onTap: () {
                           landingPageController.tabIndex(8);
                         },
@@ -632,14 +632,10 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                     children: [
                       DashBoardPage(),
                       MainReport(),
-                      MainReport(),
-                      MainReport(),
-                      MainReport(),
-                      MainReport(),
-                      // FireReport(),
-                      // FloodReport(),
-                      // WineStormReport(),
-                      // ForestFireReport(),
+                      FireReport(),
+                      FloodReport(),
+                      WineStormReport(),
+                      ForestFireReport(),
                       CreateList(),
                       Detail(),
                       CreateListOthers(),
