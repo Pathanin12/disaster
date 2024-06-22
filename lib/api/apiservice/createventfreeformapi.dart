@@ -13,7 +13,7 @@ Future<void> creatOrUpdateEventFreeFrom(CreateEventFreeForm freeform) async {
     HttpRequest.LoginToken().then((token) async {
       print(" ${freeform.toJson()}");
       Dio dio = Dio();
-      final data = await dio.post('${url}CreateOrUpdateEvent',
+      final data = await dio.post('${url}CreateOrUpdateEventFreeForm',
           data: freeform.toJson(),
           options: Options(headers: {
             "Authorization": "Bearer $token",
