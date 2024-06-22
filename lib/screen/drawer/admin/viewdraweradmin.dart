@@ -51,7 +51,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    checkApiKey();
+    // checkApiKey();
     // getToken();
     // getToken();
     // // HttpRequest.signOutToken();
@@ -66,43 +66,50 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
         child: Scaffold(
       appBar: AppBar(
         backgroundColor: colorWhite,
-        leading: Row(
-          children: [
-            const SizedBox(
-              width: 10,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+        leading: InkWell(
+          onTap: (){
+            Get.toNamed(RouterName.fixRole);
+          },
+          child: Container(
+            child: Row(
               children: [
-                Container(
-                  margin: EdgeInsets.zero,
-                  height: 50,
-                  width: 50,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('assets/logo/logo.png'),
-                          fit: BoxFit.cover)),
+                const SizedBox(
+                  width: 10,
                 ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.zero,
+                      height: 50,
+                      width: 50,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage('assets/logo/logo.png'),
+                              fit: BoxFit.cover)),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'กระทรวงมหาดไทย',
+                        style: textStyle(context,
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                      Text(
+                        'Ministry of Interior. Thailand',
+                        style: textStyle(context, fontSize: 14),
+                      ),
+                    ])
               ],
             ),
-            const SizedBox(
-              width: 10,
-            ),
-            Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'กระทรวงมหาดไทย',
-                    style: textStyle(context,
-                        fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
-                  Text(
-                    'Ministry of Interior. Thailand',
-                    style: textStyle(context, fontSize: 14),
-                  ),
-                ])
-          ],
+          ),
         ),
         actions: [
           Obx(() =>  Row(

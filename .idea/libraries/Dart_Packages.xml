@@ -303,6 +303,13 @@
             </list>
           </value>
         </entry>
+        <entry key="flutter_map_cancellable_tile_provider">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_map_cancellable_tile_provider-3.0.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="flutter_plugin_android_lifecycle">
           <value>
             <list>
@@ -1012,6 +1019,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_lints-4.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_localization-0.2.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_map-7.0.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_map_cancellable_tile_provider-3.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.19/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_rounded_date_picker-3.0.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_svg-2.0.10+1/lib" />

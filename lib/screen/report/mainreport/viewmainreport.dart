@@ -49,8 +49,8 @@ class MainReport extends StatelessWidget {
                     Stack(
                       children: [
                         Container(
-                          color: Colors.blue,
                           height: 450,
+                          width: MediaQuery.of(context).size.width*0.78,
                           child: Center(
                               child: FlutterMap(
                                   mapController: contoller.mapControllers.value,

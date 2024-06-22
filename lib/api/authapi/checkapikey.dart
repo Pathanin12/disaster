@@ -18,23 +18,19 @@ Future<void> checkApiKey({String? keyApi}) async {
     } else {
       key = keyApi;
     }
-
-
-    var result =await http.post(Uri.parse('${urlApiKey}valid?apikey=$key'),headers:{
-      "Access-Control-Allow-Origin": "*",
-      'Content-Type': 'application/json',
-      'Accept': '*/*'} );
-
+    print('............>>>>>> $key');
+    var headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json"};
+    var request = http.Request('POST', Uri.parse('${urlApiKey}valid?apikey=$key'));
+    request.headers.addAll(headers);
+    http.StreamedResponse result = await request.send();
     print('dsdsdsdsdsdsdsd');
     print(result.statusCode);
     if (result.statusCode == 200) {
-      String data = result.body;
+      String data =await result.stream.bytesToString();
       Map dataMap = jsonDecode(data);
-      
-
-      var headersProfile = {
-      "Access-Control-Allow-Origin": "*",
-        'Accept': '*/*',
+      var headersProfile = {"Accept": "application/json",
         "apikey": dataMap['token'].toString()};
       var requestProfile = http.Request('GET', Uri.parse('${urlApiKey}profile'));
       requestProfile.headers.addAll(headersProfile);
@@ -45,8 +41,8 @@ Future<void> checkApiKey({String? keyApi}) async {
         final LandingPageControllerAdmin landingPageController =
             Get.put(LandingPageControllerAdmin(), permanent: false);
         landingPageController.dataUserAdmin.value = profile;
-        landingPageController.name.value=dataMap['token'].toString();
-        dataUser = profile;
+
+        // dataUser = profile;
         Get.toNamed(RouterName.adminPage);
       }
     }

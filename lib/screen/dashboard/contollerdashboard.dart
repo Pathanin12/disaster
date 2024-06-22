@@ -319,6 +319,7 @@ var selectChartX='เพศ'.obs;
   @override
   void dispose() {
     super.dispose();
+    // mapController.value.dispose();
   }
 }
 

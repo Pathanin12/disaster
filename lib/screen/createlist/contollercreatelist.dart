@@ -524,6 +524,7 @@ class ContollerCreateList extends GetxController {
   void dispose() {
     super.dispose();
     listConvertImage.clear();
+    //mapController.value.dispose();
   }
 }
 

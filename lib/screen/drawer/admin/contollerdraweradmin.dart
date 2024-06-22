@@ -21,7 +21,7 @@ class LandingPageControllerAdmin extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    checkApiKey();
+    // checkApiKey();
   }
 
   @override

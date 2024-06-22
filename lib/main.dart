@@ -1,5 +1,6 @@
 import 'package:disaster/model/dashboardmodel.dart';
 import 'package:disaster/router.dart';
+import 'package:disaster/screen/auth/fixrole.dart';
 import 'package:disaster/screen/auth/viewauth.dart';
 import 'package:disaster/screen/dashboard/viewdashboard.dart';
 import 'package:disaster/screen/drawer/admin/contollerdraweradmin.dart';
@@ -22,11 +23,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: RouterName.login,
+      initialRoute: RouterName.fixRole,
       getPages: [
         GetPage(
           name: RouterName.initPage,
           page: () => LandingPageUser(),
+        ),
+        GetPage(
+          name: RouterName.fixRole,
+          page: () => const FixRole(),
         ),
         GetPage(
           name: RouterName.login,
@@ -42,6 +47,10 @@ class MyApp extends StatelessWidget {
         if (settings.name == RouterName.initPage) {
           return MaterialPageRoute(
             builder: (context) => LandingPageUser(),
+          );
+        }else if (settings.name == RouterName.fixRole) {
+          return MaterialPageRoute(
+            builder: (context) => FixRole(),
           );
         } else if (settings.name == RouterName.adminPage) {
           return MaterialPageRoute(

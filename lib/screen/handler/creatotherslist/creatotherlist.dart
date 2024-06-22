@@ -1664,9 +1664,9 @@ class CreateListOthers extends StatelessWidget {
                                       ),
                                       onPositionChanged: (v, c) {
                                         contoller.lat.value.text =
-                                            v.center.latitude.toString();
+                                            v.center!.latitude.toString();
                                         contoller.lng.value.text =
-                                            v.center.longitude.toString();
+                                            v.center!.longitude.toString();
                                       }
 
                                       // maxZoom: 17,

@@ -421,18 +421,16 @@ class Detailz extends StatelessWidget {
                         ),
                         Stack(
                           children: [
-                            Container(
-                              color: Colors.blue,
+                            if (contoller.dataEvent.value.events != null)  Container(
                               height: 400,
                               child: Center(
                                   child: FlutterMap(
                                 mapController: contoller.mapController.value,
-                                options: const MapOptions(
-                                  initialCenter: LatLng(18.3170581, 99.3986862),
+                                options:  MapOptions(
+                                  initialCenter: LatLng(double.parse(contoller.dataEvent.value.events!.latitude!), double.parse(contoller.dataEvent.value.events!.latitude!)),
                                   initialZoom: 14,
                                   interactionOptions: InteractionOptions(
                                       flags: InteractiveFlag.none),
-
                                   // maxZoom: 17,
                                   // minZoom: 10
                                 ),

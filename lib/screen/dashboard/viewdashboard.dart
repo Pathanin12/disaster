@@ -681,7 +681,9 @@ class DashBoardPage extends StatelessWidget {
                           color: Colors.blue,
                           height: 450,
                           child: Center(
+
                               child: FlutterMap(
+                                mapController: contoller.mapController.value,
                                   options: const MapOptions(
                                     // interactionOptions: InteractionOptions(
                                     //   flags: InteractiveFlag.doubleTapDragZoom |
@@ -692,7 +694,7 @@ class DashBoardPage extends StatelessWidget {
                                     // maxZoom: 17,
                                     // minZoom: 10
                                   ),
-                                  children: contoller.listWidgetMark.value)),
+                                  children: contoller.listWidgetMark)),
                         ),
                         Positioned(
                             top: 20,

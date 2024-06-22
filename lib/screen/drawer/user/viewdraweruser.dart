@@ -9,6 +9,7 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import '../../../api/apiservice/createevenapi.dart';
 import '../../../api/apiservice/logintoken.dart';
 import '../../../api/latlongapi.dart';
+import '../../../router.dart';
 import '../../../stye/colors.dart';
 import '../../createlist/viewcreatelist.dart';
 import '../../dashboard/viewdashboard.dart';
@@ -57,35 +58,42 @@ class _LandingPageUserState extends State<LandingPageUser> {
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: colorWhite,
-            leading: Row(
-              children: [
-                const SizedBox(width: 10,),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+            leading: InkWell(
+              onTap: (){
+                Get.toNamed(RouterName.fixRole);
+              },
+              child: Container(
+                child: Row(
                   children: [
-                    Container(
-                      margin: EdgeInsets.zero,
-                      height: 50,
-                      width: 50,
-                      decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image:AssetImage('assets/logo/logo.png'),
-                        fit: BoxFit.cover
-                      )
-                    ),),
+                    const SizedBox(width: 10,),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.zero,
+                          height: 50,
+                          width: 50,
+                          decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image:AssetImage('assets/logo/logo.png'),
+                            fit: BoxFit.cover
+                          )
+                        ),),
+                      ],
+                    ),
+                    const SizedBox(width: 10,),
+                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('กระทรวงมหาดไทย',style: textStyle(context,fontWeight:FontWeight.bold,fontSize: 20),),
+                        Text('Ministry of Interior. Thailand',style: textStyle(context,fontSize: 14),),
+
+                    ]
+                    )
                   ],
                 ),
-                const SizedBox(width: 10,),
-                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('กระทรวงมหาดไทย',style: textStyle(context,fontWeight:FontWeight.bold,fontSize: 20),),
-                    Text('Ministry of Interior. Thailand',style: textStyle(context,fontSize: 14),),
-
-    ]
-                )
-              ],
+              ),
             ),),
           body: Obx(() => Row(
             children: [

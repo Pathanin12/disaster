@@ -731,5 +731,6 @@ class ContollerMainReport extends GetxController {
   @override
   void dispose() {
     super.dispose();
+    mapControllers.value.dispose();
   }
 }
