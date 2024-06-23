@@ -21,11 +21,13 @@ import '../../../stye/colors.dart';
 import '../../createlist/viewcreatelist.dart';
 import '../../dashboard/viewdashboard.dart';
 import '../../detail/viewdetail.dart';
+import '../../detailfreeform/viewdetailform.dart';
+import '../../editfreeformuser/editfreeform.dart';
 import '../../home.dart';
 import '../../report/firereport/viewfirereport.dart';
 import '../../report/floodreport/viewfloodreport.dart';
 import '../../report/forestfirereport/viewforestfirereport.dart';
-import '../../report/freeformreport/viewwinestormreport.dart';
+import '../../report/freeformreport/viewfreeformreport.dart';
 import '../../report/mainreport/viewmainreport.dart';
 import '../../report/mainreport/viewmainreport.dart';
 import '../../report/winestormreport/viewwinestormreport.dart';
@@ -685,6 +687,8 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                       Detail(),
                       CreateListOthers(),
                       FreeFormReport(),
+                      DetailFreeForm(),
+                      EditListFreeFormOthers(),
                     ],
                   ),
                 ),

@@ -1,8 +1,6 @@
-import 'dart:io';
-import 'dart:typed_data';
+
 import 'dart:ui';
 
-import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:disaster/stye/colors.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,14 +12,11 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:qr_flutter/qr_flutter.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:syncfusion_flutter_maps/maps.dart';
 import '../../../service/config.dart';
 import '../../../stye/font.dart';
-import '../exportexcel.dart';
-import '../exportpdf.dart';
-import 'contollerwinestormreport.dart';
+import 'contollerfreeformreport.dart';
+import 'exportexcelfreeform.dart';
+import 'exportpdffreeform.dart';
 
 class FreeFormReport extends StatelessWidget {
   FreeFormReport({super.key});
@@ -217,8 +212,8 @@ class FreeFormReport extends StatelessWidget {
                               InkWell(
                                 onTap: () {
                                   createExcel(contoller.allEvent.value,
-                                      contoller.listDate.value[0]!,
-                                      contoller.listDate.value[1]!,
+                                      contoller.listDate[0]!,
+                                      contoller.listDate[1]!,
                                       contoller.selectCategory!.value,
                                       contoller.selectLevel!.value,
                                       contoller.selectProvince.value.nameTh!);
@@ -821,22 +816,12 @@ class FreeFormReport extends StatelessWidget {
                                       fontSize: 15, color: colorBlack),
                                 ),
                               ),
+
                               const SizedBox(
                                 width: 5,
                               ),
                               Expanded(
-                                flex: 1,
-                                child: Text(
-                                  'ประเภท',
-                                  style: textStyle(context,
-                                      fontSize: 15, color: colorBlack),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Expanded(
-                                flex: 1,
+                                flex: 2,
                                 child: Text(
                                   'วันที่รับเรื่อง',
                                   style: textStyle(context,
@@ -876,28 +861,7 @@ class FreeFormReport extends StatelessWidget {
                                       fontSize: 15, color: colorBlack),
                                 ),
                               ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: Text(
-                                  'หน่วยงานที่เกี่ยวข้อง',
-                                  style: textStyle(context,
-                                      fontSize: 15, color: colorBlack),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: Text(
-                                  'สถานะของหน่วยงานที่เกี่ยวข้อง',
-                                  style: textStyle(context,
-                                      fontSize: 15, color: colorBlack),
-                                ),
-                              ),
+
                               const SizedBox(
                                 width: 5,
                               ),
@@ -921,15 +885,15 @@ class FreeFormReport extends StatelessWidget {
                             height: 2,
                             color: colorGrey,
                           ),
-                          if (contoller.allEvent.value.eventList != null)
+                          if (contoller.allEvent.value!.eventList != null)
                             Container(
                               child: contoller.pageTableReport(context),
                             ),
                           const SizedBox(
                             height: 20,
                           ),
-                          if (contoller.allEvent.value.eventList != null)
-                            if (contoller.allEvent.value.eventList!.isNotEmpty)
+                          if (contoller.allEvent.value!.eventList != null)
+                            if (contoller.allEvent.value!.eventList!.isNotEmpty)
                               Container(
                                 alignment: Alignment.centerLeft,
                                 width: 500,

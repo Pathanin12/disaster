@@ -11,7 +11,7 @@ class EventAllFreeFormModel {
     if (json['eventList'] != null) {
       eventList = <EventList>[];
       json['eventList'].forEach((v) {
-        eventList!.add(new EventList.fromJson(v));
+        eventList!.add( EventList.fromJson(v));
       });
     }
   }

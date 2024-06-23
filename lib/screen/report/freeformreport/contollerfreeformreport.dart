@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'dart:ui';
 import 'dart:html' as html;
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
-import 'package:disaster/model/getalleventmodel.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,11 +20,12 @@ import 'package:syncfusion_flutter_maps/maps.dart';
 import '../../../api/map/searchmap.dart';
 import '../../../api/report/freeformgetallapi.dart';
 import '../../../api/report/mainreportapi.dart';
+import '../../../model/allfreeformmodel.dart';
 import '../../../model/searchmap.dart';
 import '../../../service/config.dart';
 import '../../../stye/colors.dart';
 import '../../../stye/font.dart';
-import '../../detail/contollerdetail.dart';
+import '../../detailfreeform/contollerfreeform.dart';
 import '../../drawer/admin/contollerdraweradmin.dart';
 
 class ContollerFreeFormReport extends GetxController {
@@ -43,7 +43,7 @@ class ContollerFreeFormReport extends GetxController {
     DateTime.now(),
     DateTime.now(),
   ].obs;
-  var allEvent = GetAllEventModel().obs;
+  Rx<EventAllFreeFormModel> allEvent = EventAllFreeFormModel().obs;
   var listWidgetMark = <Widget>[
     TileLayer(
       urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -207,7 +207,7 @@ class ContollerFreeFormReport extends GetxController {
       ),
       dialogSize: const Size(400, 450),
       borderRadius: BorderRadius.circular(15),
-      value: listDate.value,
+      value: listDate,
       dialogBackgroundColor: Colors.white,
     );
     if (values != null) {
@@ -220,17 +220,15 @@ class ContollerFreeFormReport extends GetxController {
 
   Future<void> setLocation() async {
     loadSearch.value = true;
-       GetAllFreeFormApi();
-     allEvent.value = await getAllDashBoardApi(
-       startDate: listDate.first.toString().split(" ")[0],
-       endDate: listDate.last.toString().split(" ")[0],
-       disasterType: 4,
-       level: level.indexOf(selectLevel.toString()),
-       provinceID: selectProvince.value.id,
-       statusItem:StatusList.indexOf(selectStatusItem.value) ,
-       statusAgency:StatusList.indexOf(selectStatusAgency.value) ,
-       responsibleAgency: responsibleAgency.value.text,
-     );
+    allEvent.value=await GetAllFreeFormApi(
+         startDate: listDate.first.toString().split(" ")[0],
+         endDate: listDate.last.toString().split(" ")[0],
+         level: level.indexOf(selectLevel.toString()),
+         provinceID: selectProvince.value.id,
+         statusItem:StatusList.indexOf(selectStatusItem.value) ,
+         statusAgency:StatusList.indexOf(selectStatusAgency.value) ,
+         responsibleAgency: responsibleAgency.value.text,
+       );
      updateMaxPage(allEvent.value);
      listWidgetMark = <Widget>[
        TileLayer(
@@ -238,8 +236,7 @@ class ContollerFreeFormReport extends GetxController {
          userAgentPackageName: 'com.example.app',
        ),
      ].obs;
-
-     for (var element in allEvent.value.eventList!) {
+     for (var element in allEvent.value!.eventList??[]) {
        Widget widget = MarkerLayer(
          markers: [
            Marker(
@@ -251,87 +248,42 @@ class ContollerFreeFormReport extends GetxController {
                  onTap: (){
                    final LandingPageControllerAdmin landingPageController =
                    Get.put(LandingPageControllerAdmin(), permanent: false);
-                   final ContollerDetail contollerEvent =
-                   Get.put(ContollerDetail(), permanent: false);
+                   final ContollerDetailFreeForm contollerEvent =
+                   Get.put(ContollerDetailFreeForm(), permanent: false);
                    contollerEvent.getEvent(element.eventID!);
                    landingPageController.tabIndex.value=7;
                  },
-                 child: (element.disasterType == 0 && element.statusItem == 0)
+                 child: (element.statusItem == 0)
                      ? SvgPicture.asset(
-                   'assets/icons/svg/fire0.svg',
+                   'assets/icons/svg/freeform0.svg',
                  )
-                     : (element.disasterType == 0 && element.statusItem == 1)
+                     : ( element.statusItem == 1)
                      ? SvgPicture.asset(
-                   'assets/icons/svg/fire1.svg',
-                 )
-                     : (element.disasterType == 0 && element.statusItem == 2)
-                     ? SvgPicture.asset(
-                   'assets/icons/svg/fire2.svg',
-                 )
-                     : (element.disasterType == 1 && element.statusItem == 0)
-                     ? SvgPicture.asset(
-                   'assets/icons/svg/flood0.svg',
-                 )
-                     : (element.disasterType == 1 &&
-                     element.statusItem == 1)
-                     ? SvgPicture.asset(
-                   'assets/icons/svg/flood1.svg',
-                 )
-                     : (element.disasterType == 1 &&
-                     element.statusItem == 2)
-                     ? SvgPicture.asset(
-                   'assets/icons/svg/flood2.svg',
-                 )
-                     : (element.disasterType == 2 &&
-                     element.statusItem == 0)
-                     ? SvgPicture.asset(
-                   'assets/icons/svg/windstorm0.svg',
-                 )
-                     : (element.disasterType == 2 &&
-                     element.statusItem == 1)
-                     ? SvgPicture.asset(
-                   'assets/icons/svg/windstorm1.svg',
-                 )
-                     : (element.disasterType == 2 &&
-                     element.statusItem == 2)
-                     ? SvgPicture.asset(
-                   'assets/icons/svg/windstorm2.svg',
-                 )
-                     : (element.disasterType == 3 &&
-                     element.statusItem == 0)
-                     ? SvgPicture.asset(
-                   'assets/icons/svg/forestfire0.svg',
-                 )
-                     : (element.disasterType ==
-                     3 &&
-                     element.statusItem ==
-                         1)
-                     ? SvgPicture.asset(
-                   'assets/icons/svg/forestfire1.svg',
+                   'assets/icons/svg/freeform2.svg',
                  )
                      : SvgPicture.asset(
-                   'assets/icons/svg/forestfire2.svg',
-                 ),
+                   'assets/icons/svg/freeform1.svg',
+                 )
+
+
                )
            ),
          ],
        );
        listWidgetMark.add(widget);
      }
-
     loadSearch.value = false;
   }
 
-  updateMaxPage(GetAllEventModel? even) async {
-    if (even != null) {
+  updateMaxPage(EventAllFreeFormModel? even) async {
+    print('ffffffffllllll');
+    print(even!.toJson());
+    if (even.eventList != null) {
       if (even.eventList!.length > 10) {
         double calPage = 0.0;
         calPage = even.eventList!.length / 10;
         double modeCal = calPage % 1;
         int sum = int.parse(calPage.toString().split('.')[0]);
-        print('<><><><><><><><> ${calPage}');
-        print('<><><><><><><><> ${modeCal}');
-        print('<><><><><><><><> ${sum}');
         print(indexNumPage.value);
         if (modeCal > 0) {
           maxPage.value = sum + 1;
@@ -417,9 +369,9 @@ class ContollerFreeFormReport extends GetxController {
       context: context,
       builder: (context) => StatefulBuilder(
         builder: (context, setState) {
-          return Padding(
-            padding: const EdgeInsets.all(20),
-            child: const Scaffold(
+          return const Padding(
+            padding: EdgeInsets.all(20),
+            child: Scaffold(
               body: SizedBox(),
             ),
           );
@@ -455,21 +407,12 @@ class ContollerFreeFormReport extends GetxController {
                     style: textStyle(context, fontSize: 15, color: colorBlack),
                   ),
                 ),
+
                 const SizedBox(
                   width: 5,
                 ),
                 Expanded(
-                  flex: 1,
-                  child: Text(
-                    category[event[index].disasterType!],
-                    style: textStyle(context, fontSize: 15, color: colorBlack),
-                  ),
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                Expanded(
-                  flex: 1,
+                  flex: 2,
                   child: Text(
                     '${DateTime.parse(event[index].datetime!).day} ${mountAbbreviation[DateTime.parse(event[index].datetime!).month]} ${DateTime.parse(event[index].datetime!).year + 543}',
                     style: textStyle(context, fontSize: 15, color: colorBlack),
@@ -485,9 +428,11 @@ class ContollerFreeFormReport extends GetxController {
                     style: textStyle(context, fontSize: 15, color: colorBlack),
                   ),
                 ),
+
                 const SizedBox(
                   width: 5,
                 ),
+
                 Expanded(
                   flex: 2,
                   child: Text(
@@ -495,29 +440,16 @@ class ContollerFreeFormReport extends GetxController {
                     style: textStyle(context, fontSize: 15, color: colorBlack),
                   ),
                 ),
+
                 const SizedBox(
                   width: 5,
-                ),
-                Expanded(
-                    flex: 2,
-                    child: statusWidget(
-                        context, event[index].statusAgency!)),
-                const SizedBox(
-                  width: 5,
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Text(
-                    event[index].relatedAgency!,
-                    style: textStyle(context, fontSize: 15, color: colorBlack),
-                  ),
                 ),
                 const SizedBox(
                   width: 5,
                 ),
                 Expanded(
                     flex: 2,
-                    child: statusWidget(context, event[index].statusRelatedAgency!)),
+                    child: statusWidget(context, event[index].statusAgency!)),
                 const SizedBox(
                   width: 5,
                 ),
@@ -659,10 +591,10 @@ class ContollerFreeFormReport extends GetxController {
                   onTap: (){
                     final LandingPageControllerAdmin landingPageController =
                     Get.put(LandingPageControllerAdmin(), permanent: false);
-                    final ContollerDetail contollerEvent =
-                    Get.put(ContollerDetail(), permanent: false);
+                    final ContollerDetailFreeForm contollerEvent =
+                    Get.put(ContollerDetailFreeForm(), permanent: false);
                     contollerEvent.getEvent(event[index].eventID!);
-                    landingPageController.tabIndex.value=7;
+                    landingPageController.tabIndex.value=10;
                     // dialogEdit(context);
                   },
                   child: SizedBox(

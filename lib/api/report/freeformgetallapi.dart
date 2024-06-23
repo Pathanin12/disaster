@@ -1,30 +1,45 @@
-
-
 import 'package:dio/dio.dart';
 
 import '../../model/allfreeformmodel.dart';
 import '../../service/config.dart';
+import '../apiservice/dio/http.dart';
 
-Future<EventAllFreeFormModel?>GetAllFreeFormApi()async{
+Future<EventAllFreeFormModel> GetAllFreeFormApi( {
+  required String startDate,
+  required String endDate,
+  required int level,
+  required int statusAgency,
+  required int statusItem,
+  int? provinceID,
+  String? responsibleAgency}) async {
+  EventAllFreeFormModel? dataList=EventAllFreeFormModel();
+  try {
 
-  try{
-    Dio dio=Dio();
-    final result = await dio.post('${url}GetAllEventFreeForm',data: {
-      "datetimeStart":"2024-06-13",
-      "datetimeEnd":"2024-06-14",
-      "level":0,
-      "provinceID":0,
-      "responsibleAgency":"ลาดพร้าว",
-      "statusAgency":1,
-      "statusItem":1
+    await HttpRequest.LoginToken().then((token) async {
+      Dio dio = Dio();
+      final result = await dio.post('${url}GetAllEventFreeForm',
+          data: {
+            "datetimeStart": startDate,
+            "datetimeEnd": endDate,
+            "level": level,
+            "provinceID":provinceID,
+            "responsibleAgency":responsibleAgency??'',
+            "statusAgency": statusAgency,
+            "statusItem": statusItem
+          },
+          options: Options(headers: {"Authorization": "Bearer $token"}));
+      if (result.statusCode == 200) {
+
+         dataList =
+            EventAllFreeFormModel.fromJson(result.data);
+         dataList!.eventList!.sort((a,b)=>a.seq!.compareTo(b.seq!));
+        return dataList;
+      }
     });
-    if(result.statusCode==200){
-      EventAllFreeFormModel dataList = EventAllFreeFormModel.fromJson(result.data);
-      print(dataList.toJson());
-      return dataList;
-    }
-  }catch(e){
+    return dataList!;
+  } catch (e) {
     print('ERROR GETALLFREEFORM => $e');
+    return dataList!;
   }
-  return null;
+
 }

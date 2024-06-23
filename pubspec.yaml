@@ -123,6 +123,9 @@ flutter:
       - assets/fonts/THSarabunNew.ttf
       - assets/data/data.json
       - assets/icons/iconlocation.svg
+      - assets/icons/svg/freeform0.svg
+      - assets/icons/svg/freeform1.svg
+      - assets/icons/svg/freeform2.svg
 #      - fonts/THSarabunNew.ttf
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
