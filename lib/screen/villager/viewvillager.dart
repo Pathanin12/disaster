@@ -43,16 +43,18 @@ class HomeViewWeb extends GetView<HomeController> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-     appBar: AppBar(
+      appBar: AppBar(
         backgroundColor: colorWhite,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.offAndToNamed(RouterName.userPage);
           },
           child: Container(
             child: Row(
               children: [
-                const SizedBox(width: 10,),
+                const SizedBox(
+                  width: 10,
+                ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -62,31 +64,35 @@ class HomeViewWeb extends GetView<HomeController> {
                       width: 50,
                       decoration: const BoxDecoration(
                           image: DecorationImage(
-                              image:AssetImage('assets/logo/logo.png'),
-                              fit: BoxFit.cover
-                          )
-                      ),),
+                              image: AssetImage('assets/logo/logo.png'),
+                              fit: BoxFit.cover)),
+                    ),
                   ],
                 ),
-                const SizedBox(width: 10,),
+                const SizedBox(
+                  width: 10,
+                ),
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('กระทรวงมหาดไทย',style: textStyle(context,fontWeight:FontWeight.bold,fontSize: 20),),
-                      Text('Ministry of Interior. Thailand',style: textStyle(context,fontSize: 14),),
-
-                    ]
-                )
+                      Text(
+                        'กระทรวงมหาดไทย',
+                        style: textStyle(context,
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                      Text(
+                        'Ministry of Interior. Thailand',
+                        style: textStyle(context, fontSize: 14),
+                      ),
+                    ])
               ],
             ),
           ),
         ),
-
       ),
       body: SingleChildScrollView(
           child: Column(
-
         children: [
           Align(
             alignment: Alignment.center,
@@ -478,13 +484,41 @@ class HomeViewWeb extends GetView<HomeController> {
             onPressed: () async {
               if (controller.images.isNotEmpty) {
                 // EventID
+                String eventid = controller.eventID;
                 String name = controller.nameController.text;
                 String details = controller.detailsController.text;
                 bool isChecked = controller.isChecked.value;
                 List<String> base64Images = controller.images
                     .map((image) => base64Encode(image))
                     .toList();
-                await createPeopleNews(base64Images, name, details, isChecked);
+                await createPeopleNews(
+                    base64Images, eventid, name, details, isChecked);
+                Get.dialog(
+                  AlertDialog(
+                    title: Text(
+                      'สำเร็จ',
+                      style: textStyle(Get.context!,
+                          fontSize: 14, color: colorBlack),
+                    ),
+                    content: Text(
+                      'ส่งรายการสำเร็จ',
+                      style: textStyle(Get.context!,
+                          fontSize: 14, color: colorBlack),
+                    ),
+                    actions: <Widget>[
+                      ElevatedButton(
+                        child: Text(
+                          'ตกลง',
+                          style: textStyle(Get.context!,
+                              fontSize: 14, color: colorBlack),
+                        ),
+                        onPressed: () {
+                          Get.back();
+                        },
+                      ),
+                    ],
+                  ),
+                );
               } else {
                 Get.dialog(
                   AlertDialog(
@@ -501,7 +535,7 @@ class HomeViewWeb extends GetView<HomeController> {
                     actions: <Widget>[
                       ElevatedButton(
                         child: Text(
-                          'OK',
+                          'ตกลง',
                           style: textStyle(context,
                               fontSize: 14, color: colorBlack),
                         ),

@@ -5,6 +5,7 @@ import 'package:disaster/service/config.dart';
 // api
 Future<void> createPeopleNews(
   List<String> imageList,
+  String? eventID,
   String? name,
   String? details,
   bool isChecked,
@@ -16,7 +17,7 @@ Future<void> createPeopleNews(
           imageList.map((image) => {"image": image}).toList();
       final data = await dio.post('${url}CreatePeopleNews',
           data: {
-            "eventID": "8bcfcf64-41f2-44b8-bc45-dd624d387ffc",
+            "eventID": eventID,
             "name": isChecked ? "ไม่ะบุตัวตน" : name,
             "anonymous": isChecked,
             "note": details ?? "",
@@ -29,6 +30,7 @@ Future<void> createPeopleNews(
 
       if (data.statusCode == 200) {
         print(data.data);
+
         print('createPeopleNews Status => 200');
       }
     });
