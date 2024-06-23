@@ -482,6 +482,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "msh_checkbox",
+      "rootUri": "file:///Users/contactaisoft/.pub-cache/hosted/pub.dev/msh_checkbox-2.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "nested",
       "rootUri": "file:///Users/contactaisoft/.pub-cache/hosted/pub.dev/nested-1.0.0",
       "packageUri": "lib/",
@@ -842,7 +848,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2024-06-23T10:42:30.937439Z",
+  "generated": "2024-06-23T22:04:25.900378Z",
   "generator": "pub",
   "generatorVersion": "3.3.2"
 }

@@ -1,8 +1,8 @@
-import 'package:disaster/model/createevenmodel.dart';
 import 'package:disaster/stye/colors.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart' as cu;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -14,10 +14,19 @@ import 'package:latlong2/latlong.dart';
 import 'package:syncfusion_flutter_maps/maps.dart';
 // import 'package:vph_web_date_picker/vph_web_date_picker.dart';
 import '../../../../stye/font.dart';
+import '../../model/createeventfreeform.dart';
+import '../../model/freeformbyidmodel.dart';
 import 'controllereditfreeform.dart';
 
-class EditListFreeFormOthers extends StatelessWidget {
+class EditListFreeFormOthers extends StatefulWidget {
   EditListFreeFormOthers({super.key});
+
+  @override
+  State<EditListFreeFormOthers> createState() => _EditListFreeFormOthersState();
+}
+
+class _EditListFreeFormOthersState extends State<EditListFreeFormOthers> {
+  bool _valueCheck = false;
   @override
   Widget build(BuildContext context) {
     final ContollerEditOthersList contoller =
@@ -139,7 +148,7 @@ class EditListFreeFormOthers extends StatelessWidget {
                                       child: (contoller
                                                   .dataEditEvent.value.events ==
                                               null)
-                                          ? SizedBox()
+                                          ? const SizedBox()
                                           : Container(
                                               alignment: Alignment.centerLeft,
                                               child: Text(
@@ -165,16 +174,17 @@ class EditListFreeFormOthers extends StatelessWidget {
                                             styleDatePicker:
                                                 MaterialRoundedDatePickerStyle(
                                               textStyleCurrentDayOnCalendar:
-                                                  TextStyle(
+                                                  const TextStyle(
                                                       fontSize: 20,
                                                       color: Colors.black,
                                                       fontWeight:
                                                           FontWeight.bold),
-                                              textStyleDayOnCalendar: TextStyle(
-                                                  fontSize: 20,
-                                                  color: Colors.black),
+                                              textStyleDayOnCalendar:
+                                                  const TextStyle(
+                                                      fontSize: 20,
+                                                      color: Colors.black),
                                               textStyleDayOnCalendarSelected:
-                                                  TextStyle(
+                                                  const TextStyle(
                                                       fontSize: 20,
                                                       color: Colors.white,
                                                       fontWeight:
@@ -185,7 +195,7 @@ class EditListFreeFormOthers extends StatelessWidget {
                                                       color: Colors.black
                                                           .withOpacity(0.1)),
                                               textStyleMonthYearHeader:
-                                                  TextStyle(
+                                                  const TextStyle(
                                                       fontSize: 20,
                                                       color: Colors.black,
                                                       fontWeight:
@@ -197,11 +207,12 @@ class EditListFreeFormOthers extends StatelessWidget {
                                               marginTopArrowPrevious: 16,
                                               marginTopArrowNext: 16,
                                               marginRightArrowNext: 32,
-                                              textStyleButtonAction: TextStyle(
-                                                  fontSize: 20,
-                                                  color: Colors.black),
+                                              textStyleButtonAction:
+                                                  const TextStyle(
+                                                      fontSize: 20,
+                                                      color: Colors.black),
                                               textStyleButtonPositive:
-                                                  TextStyle(
+                                                  const TextStyle(
                                                       fontSize: 20,
                                                       color: Colors.amber,
                                                       fontWeight:
@@ -212,23 +223,25 @@ class EditListFreeFormOthers extends StatelessWidget {
                                                       color: Colors.black45
                                                           .withOpacity(0.5)),
                                               decorationDateSelected:
-                                                  BoxDecoration(
+                                                  const BoxDecoration(
                                                       color: Colors.amber,
                                                       shape: BoxShape.circle),
                                             ),
                                             styleYearPicker:
                                                 MaterialRoundedYearPickerStyle(
-                                              textStyleYear: TextStyle(
+                                              textStyleYear: const TextStyle(
                                                   fontSize: 30,
                                                   color: Colors.black),
-                                              textStyleYearSelected: TextStyle(
-                                                  fontSize: 40,
-                                                  color: Colors.black45,
-                                                  fontWeight: FontWeight.bold),
+                                              textStyleYearSelected:
+                                                  const TextStyle(
+                                                      fontSize: 40,
+                                                      color: Colors.black45,
+                                                      fontWeight:
+                                                          FontWeight.bold),
                                               heightYearRow: 100,
                                             ),
                                             context: context,
-                                            locale: Locale("th", "TH"),
+                                            locale: const Locale("th", "TH"),
                                           );
                                           if (newDateTime != null) {
                                             contoller.date.value = newDateTime
@@ -261,7 +274,7 @@ class EditListFreeFormOthers extends StatelessWidget {
                                                       fontSize: 13,
                                                       color: colorBlack),
                                                 ),
-                                                Icon(
+                                                const Icon(
                                                   Icons.date_range,
                                                   size: 20,
                                                   color: Colors.grey,
@@ -280,7 +293,7 @@ class EditListFreeFormOthers extends StatelessWidget {
                                       child: (contoller
                                                   .dataEditEvent.value.events ==
                                               null)
-                                          ? SizedBox()
+                                          ? const SizedBox()
                                           : Container(
                                               padding: const EdgeInsets.only(
                                                   left: 20, right: 5),
@@ -404,7 +417,7 @@ class EditListFreeFormOthers extends StatelessWidget {
                                       child: (contoller
                                                   .dataEditEvent.value.events ==
                                               null)
-                                          ? SizedBox()
+                                          ? const SizedBox()
                                           : Container(
                                               alignment: Alignment.centerLeft,
                                               child: Text(
@@ -458,7 +471,7 @@ class EditListFreeFormOthers extends StatelessWidget {
                                       child: (contoller
                                                   .dataEditEvent.value.events ==
                                               null)
-                                          ? SizedBox()
+                                          ? const SizedBox()
                                           : Container(
                                               padding: const EdgeInsets.only(
                                                   left: 20, right: 5),
@@ -556,1091 +569,783 @@ class EditListFreeFormOthers extends StatelessWidget {
                           const SizedBox(
                             height: 20,
                           ),
-                          Obx(() {
-                            if (contoller.showDropdown.value) {
-                              return Row(
-                                children: [
-                                  Expanded(
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          "เลือกประเภท",
-                                          style: textStyle(context,
-                                              color: colorBlack, fontSize: 13),
+                          if (contoller.dataEditEvent.value.events != null)
+                            ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: contoller.dataEditEvent.value.events!
+                                  .freeFormDetailList!.length,
+                              itemBuilder: (context, index) {
+                                return (contoller.dataEditEvent.value.events!
+                                            .freeFormDetailList![index].types ==
+                                        0)
+                                    ? Container(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.4,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              contoller
+                                                  .dataEditEvent
+                                                  .value
+                                                  .events!
+                                                  .freeFormDetailList![index]
+                                                  .section!,
+                                              style: textStyle(context,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black),
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Expanded(
+                                                  flex: 5,
+                                                  child: Container(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 20, right: 5),
+                                                    width: double.infinity,
+                                                    height: 40,
+                                                    decoration: BoxDecoration(
+                                                        color: colorWhite,
+                                                        border: Border.all(
+                                                          color: Colors.black26,
+                                                          width: 1,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5)),
+                                                    alignment: Alignment.center,
+                                                    child: SizedBox(
+                                                        width: double.infinity,
+                                                        child: Obx(
+                                                          () =>
+                                                              DropdownButtonHideUnderline(
+                                                            child:
+                                                                DropdownButton2<
+                                                                    String>(
+                                                              dropdownStyleData:
+                                                                  DropdownStyleData(
+                                                                maxHeight: 300,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              5),
+                                                                ),
+                                                                scrollbarTheme:
+                                                                    ScrollbarThemeData(
+                                                                  radius: const Radius
+                                                                      .circular(
+                                                                      5),
+                                                                  thickness:
+                                                                      MaterialStateProperty
+                                                                          .all<double>(
+                                                                              6),
+                                                                  thumbVisibility:
+                                                                      MaterialStateProperty.all<
+                                                                              bool>(
+                                                                          true),
+                                                                ),
+                                                              ),
+                                                              autofocus: true,
+                                                              isExpanded: true,
+                                                              value: contoller
+                                                                  .listAnswer[
+                                                                      index]
+                                                                  .dropdown!
+                                                                  .value,
+                                                              hint: Text(
+                                                                'ตัวเลือก',
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        13.0,
+                                                                    color:
+                                                                        colorGrey,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400),
+                                                              ),
+                                                              items: contoller
+                                                                  .listAnswer[
+                                                                      index]
+                                                                  .dropdown!
+                                                                  .listoption!
+                                                                  .map<
+                                                                      DropdownMenuItem<
+                                                                          String>>((String?
+                                                                      value) {
+                                                                return DropdownMenuItem<
+                                                                    String>(
+                                                                  value: value!,
+                                                                  child: Text(
+                                                                    value,
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            13.0,
+                                                                        color:
+                                                                            colorBlack,
+                                                                        fontWeight:
+                                                                            FontWeight.w400),
+                                                                  ),
+                                                                );
+                                                              }).toList(),
+                                                              iconStyleData:
+                                                                  const IconStyleData(
+                                                                      icon:
+                                                                          Icon(
+                                                                Icons
+                                                                    .keyboard_arrow_down,
+                                                                size: 24,
+                                                              )),
+                                                              onChanged:
+                                                                  (valueSelect) {
+                                                                contoller
+                                                                        .listAnswer[
+                                                                            index]
+                                                                        .dropdown!
+                                                                        .value =
+                                                                    valueSelect!;
+                                                                contoller
+                                                                    .listAnswer[
+                                                                        index]
+                                                                    .dropdown!
+                                                                    .valueID = contoller
+                                                                        .listAnswer[
+                                                                            index]
+                                                                        .dropdown!
+                                                                        .listoptionID![
+                                                                    contoller
+                                                                        .listAnswer[
+                                                                            index]
+                                                                        .dropdown!
+                                                                        .listoption!
+                                                                        .indexOf(
+                                                                            valueSelect)];
+                                                                setState(() {});
+                                                              },
+                                                            ),
+                                                          ),
+                                                        )),
+                                                  ),
+                                                ),
+                                                const Expanded(
+                                                  flex: 5,
+                                                  child: SizedBox(),
+                                                ),
+                                              ],
+                                            ),
+                                            const SizedBox(
+                                              height: 15,
+                                            ),
+                                            cu.Divider(
+                                              height: 1,
+                                              color: Colors.grey.shade200,
+                                            ),
+                                            const SizedBox(
+                                              height: 15,
+                                            ),
+                                          ],
                                         ),
-                                        DropdownButton<String>(
-                                          hint: Text(
-                                            "เลือก",
-                                            style: textStyle(context,
-                                                color: colorBlack,
-                                                fontSize: 13),
-                                          ),
-                                          value: contoller
-                                                      .selectedField.value ==
-                                                  ''
-                                              ? null
-                                              : contoller.selectedField.value,
-                                          items: <String>[
-                                            'Dropdown',
-                                            'Checkbox',
-                                            'Radio',
-                                            'TextField',
-                                            'Image',
-                                            'File'
-                                          ].map((String value) {
-                                            return DropdownMenuItem<String>(
-                                              value: value,
-                                              child: Text(value),
-                                            );
-                                          }).toList(),
-                                          onChanged: (String? newValue) {
-                                            contoller.selectedField.value =
-                                                newValue!;
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              );
-                            } else {
-                              return Container();
-                            }
-                          }),
-                          // Obx(() {
-                          //   return ListView.builder(
-                          //     shrinkWrap: true,
-                          //     itemCount: contoller.listForm.length,
-                          //     itemBuilder: (context, index) {
-                          //       if (contoller.listForm[index].typeform ==
-                          //           'TextField') {
-                          //         return Container(
-                          //           child: Column(
-                          //             crossAxisAlignment:
-                          //                 CrossAxisAlignment.start,
-                          //             children: [
-                          //               Container(
-                          //                 width: 200,
-                          //                 child: Text('หัวข้อ'),
-                          //               ),
-                          //               Row(
-                          //                 children: [
-                          //                   Container(
-                          //                     width: 200,
-                          //                     height: 50,
-                          //                     child: TextFormField(
-                          //                       controller: contoller
-                          //                           .listForm[index]
-                          //                           .textfield!
-                          //                           .title,
-                          //                       autofocus: false,
-                          //                       decoration: InputDecoration(
-                          //                         fillColor: colorWhite,
-                          //                         hintText: "หัวข้อ",
-                          //                         hintStyle: TextStyle(
-                          //                             fontSize: 13.0,
-                          //                             color: colorGrey,
-                          //                             fontWeight:
-                          //                                 FontWeight.w400),
-                          //                         filled: true,
-                          //                         border: OutlineInputBorder(
-                          //                           borderSide: BorderSide(
-                          //                             color: colorGrey,
-                          //                             width: 2,
-                          //                           ),
-                          //                           borderRadius:
-                          //                               BorderRadius.circular(
-                          //                                   5),
-                          //                         ),
-                          //                       ),
-                          //                     ),
-                          //                   ),
-                          //                   SizedBox(
-                          //                     width: 20,
-                          //                   ),
-                          //                   OutlinedButton.icon(
-                          //                     icon: const Icon(Icons.close,
-                          //                         color: Colors.red),
-                          //                     label: const Text('ลบ',
-                          //                         style: TextStyle(
-                          //                             color: Colors.red)),
-                          //                     style: OutlinedButton.styleFrom(
-                          //                       foregroundColor: Colors.red,
-                          //                       side: const BorderSide(
-                          //                           color: Colors.red),
-                          //                       shape: RoundedRectangleBorder(
-                          //                           borderRadius:
-                          //                               BorderRadius.circular(
-                          //                                   4)),
-                          //                     ),
-                          //                     onPressed: () {
-                          //                       contoller.listForm
-                          //                           .removeAt(index);
-                          //                     },
-                          //                   ),
-                          //                 ],
-                          //               ),
-                          //               Obx(
-                          //                 () => ListView.builder(
-                          //                   shrinkWrap: true,
-                          //                   itemCount: contoller.listForm[index]
-                          //                       .textfield!.listevent!.length,
-                          //                   itemBuilder:
-                          //                       (context, indexEvenList) {
-                          //                     return Container(
-                          //                       margin: EdgeInsets.all(10),
-                          //                       width: 200,
-                          //                       height: 50,
-                          //                       child: Row(
-                          //                         children: [
-                          //                           SizedBox(
-                          //                             width: 15,
-                          //                           ),
-                          //                           Container(
-                          //                             child: TextFormField(
-                          //                               controller: contoller
-                          //                                       .listForm[index]
-                          //                                       .textfield!
-                          //                                       .listevent![
-                          //                                   indexEvenList],
-                          //                               autofocus: false,
-                          //                               decoration:
-                          //                                   InputDecoration(
-                          //                                 fillColor: colorWhite,
-                          //                                 hintText:
-                          //                                     "กล่องข้อความ",
-                          //                                 hintStyle: TextStyle(
-                          //                                     fontSize: 13.0,
-                          //                                     color: colorGrey,
-                          //                                     fontWeight:
-                          //                                         FontWeight
-                          //                                             .w400),
-                          //                                 filled: true,
-                          //                                 border:
-                          //                                     OutlineInputBorder(
-                          //                                   borderSide:
-                          //                                       BorderSide(
-                          //                                     color: colorGrey,
-                          //                                     width: 2,
-                          //                                   ),
-                          //                                   borderRadius:
-                          //                                       BorderRadius
-                          //                                           .circular(
-                          //                                               5),
-                          //                                 ),
-                          //                               ),
-                          //                             ),
-                          //                             width: 200,
-                          //                             height: 50,
-                          //                           ),
-                          //                           InkWell(
-                          //                             child: Container(
-                          //                               height: 50,
-                          //                               width: 50,
-                          //                               // color: Colors.red,
-                          //                               child: Icon(
-                          //                                 Icons.close,
-                          //                                 size: 20,
-                          //                               ),
-                          //                             ),
-                          //                             onTap: () {
-                          //                               contoller
-                          //                                   .listForm[index]
-                          //                                   .textfield!
-                          //                                   .listevent!
-                          //                                   .removeAt(
-                          //                                       indexEvenList);
-                          //                             },
-                          //                           )
-                          //                         ],
-                          //                       ),
-                          //                     );
-                          //                   },
-                          //                 ),
-                          //               ),
-                          //               SizedBox(
-                          //                 height: 20,
-                          //               ),
-                          //               Container(
-                          //                 padding: EdgeInsets.all(10),
-                          //                 child: OutlinedButton(
-                          //                   child: const Text('เพิ่มตัวเลือก',
-                          //                       style: TextStyle(
-                          //                           color: Colors.blue)),
-                          //                   style: OutlinedButton.styleFrom(
-                          //                     foregroundColor: Colors.blue,
-                          //                     side: const BorderSide(
-                          //                         color: Colors.grey),
-                          //                     shape: RoundedRectangleBorder(
-                          //                         borderRadius:
-                          //                             BorderRadius.circular(4)),
-                          //                   ),
-                          //                   onPressed: () {
-                          //                     contoller.listForm[index]
-                          //                         .textfield!.listevent!
-                          //                         .add(TextEditingController());
-                          //                   },
-                          //                 ),
-                          //               ),
-                          //               Divider(
-                          //                 thickness: 2,
-                          //               ),
-                          //               SizedBox(
-                          //                 height: 5,
-                          //               ),
-                          //             ],
-                          //           ),
-                          //         );
-                          //       } else if (contoller.listForm[index].typeform ==
-                          //           'Dropdown') {
-                          //         return Container(
-                          //           // color: Colors.amber,
-                          //           child: Column(
-                          //             crossAxisAlignment:
-                          //                 CrossAxisAlignment.start,
-                          //             children: [
-                          //               Container(
-                          //                 width: 200,
-                          //                 child: Text('หัวข้อ'),
-                          //               ),
-                          //               Row(
-                          //                 children: [
-                          //                   Container(
-                          //                     width: 200,
-                          //                     height: 50,
-                          //                     child: TextFormField(
-                          //                       controller: contoller
-                          //                           .listForm[index]
-                          //                           .dropdown!
-                          //                           .title,
-                          //                       autofocus: false,
-                          //                       decoration: InputDecoration(
-                          //                         fillColor: colorWhite,
-                          //                         hintText: "หัวข้อ",
-                          //                         hintStyle: TextStyle(
-                          //                             fontSize: 13.0,
-                          //                             color: colorGrey,
-                          //                             fontWeight:
-                          //                                 FontWeight.w400),
-                          //                         filled: true,
-                          //                         border: OutlineInputBorder(
-                          //                           borderSide: BorderSide(
-                          //                             color: colorGrey,
-                          //                             width: 2,
-                          //                           ),
-                          //                           borderRadius:
-                          //                               BorderRadius.circular(
-                          //                                   5),
-                          //                         ),
-                          //                       ),
-                          //                     ),
-                          //                   ),
-                          //                   SizedBox(
-                          //                     width: 20,
-                          //                   ),
-                          //                   OutlinedButton.icon(
-                          //                     icon: const Icon(Icons.close,
-                          //                         color: Colors.red),
-                          //                     label: const Text('ลบ',
-                          //                         style: TextStyle(
-                          //                             color: Colors.red)),
-                          //                     style: OutlinedButton.styleFrom(
-                          //                       foregroundColor: Colors.red,
-                          //                       side: const BorderSide(
-                          //                           color: Colors.red),
-                          //                       shape: RoundedRectangleBorder(
-                          //                           borderRadius:
-                          //                               BorderRadius.circular(
-                          //                                   4)),
-                          //                     ),
-                          //                     onPressed: () {
-                          //                       contoller.listForm
-                          //                           .removeAt(index);
-                          //                     },
-                          //                   ),
-                          //                 ],
-                          //               ),
-                          //               Obx(
-                          //                 () => ListView.builder(
-                          //                   shrinkWrap: true,
-                          //                   itemCount: contoller.listForm[index]
-                          //                       .dropdown!.listevent!.length,
-                          //                   itemBuilder:
-                          //                       (context, indexEvenList) {
-                          //                     return Container(
-                          //                       margin: EdgeInsets.all(10),
-                          //                       width: 200,
-                          //                       height: 50,
-                          //                       child: Row(
-                          //                         children: [
-                          //                           Text(
-                          //                               '${indexEvenList + 1}.'),
-                          //                           SizedBox(
-                          //                             width: 10,
-                          //                           ),
-                          //                           Container(
-                          //                             child: TextFormField(
-                          //                               controller: contoller
-                          //                                       .listForm[index]
-                          //                                       .dropdown!
-                          //                                       .listevent![
-                          //                                   indexEvenList],
-                          //                               autofocus: false,
-                          //                               decoration:
-                          //                                   InputDecoration(
-                          //                                 fillColor: colorWhite,
-                          //                                 hintText:
-                          //                                     "ตัวเลือก ${indexEvenList + 1}",
-                          //                                 hintStyle: TextStyle(
-                          //                                     fontSize: 13.0,
-                          //                                     color: colorGrey,
-                          //                                     fontWeight:
-                          //                                         FontWeight
-                          //                                             .w400),
-                          //                                 filled: true,
-                          //                                 border:
-                          //                                     OutlineInputBorder(
-                          //                                   borderSide:
-                          //                                       BorderSide(
-                          //                                     color: colorGrey,
-                          //                                     width: 2,
-                          //                                   ),
-                          //                                   borderRadius:
-                          //                                       BorderRadius
-                          //                                           .circular(
-                          //                                               5),
-                          //                                 ),
-                          //                               ),
-                          //                             ),
-                          //                             width: 200,
-                          //                             height: 50,
-                          //                           ),
-                          //                           InkWell(
-                          //                             child: Container(
-                          //                               height: 50,
-                          //                               width: 50,
-                          //                               // color: Colors.red,
-                          //                               child: Icon(
-                          //                                 Icons.close,
-                          //                                 size: 20,
-                          //                               ),
-                          //                             ),
-                          //                             onTap: () {
-                          //                               contoller
-                          //                                   .listForm[index]
-                          //                                   .dropdown!
-                          //                                   .listevent!
-                          //                                   .removeAt(
-                          //                                       indexEvenList);
-                          //                             },
-                          //                           )
-                          //                         ],
-                          //                       ),
-                          //                     );
-                          //                   },
-                          //                 ),
-                          //               ),
-                          //               SizedBox(
-                          //                 height: 5,
-                          //               ),
-                          //               Container(
-                          //                 padding: EdgeInsets.all(10),
-                          //                 child: OutlinedButton(
-                          //                   child: const Text('เพิ่มตัวเลือก',
-                          //                       style: TextStyle(
-                          //                           color: Colors.blue)),
-                          //                   style: OutlinedButton.styleFrom(
-                          //                     foregroundColor: Colors.blue,
-                          //                     side: const BorderSide(
-                          //                         color: Colors.grey),
-                          //                     shape: RoundedRectangleBorder(
-                          //                         borderRadius:
-                          //                             BorderRadius.circular(4)),
-                          //                   ),
-                          //                   onPressed: () {
-                          //                     contoller.listForm[index]
-                          //                         .dropdown!.listevent!
-                          //                         .add(TextEditingController());
-                          //                   },
-                          //                 ),
-                          //               ),
-                          //               Divider(
-                          //                 thickness: 2,
-                          //               ),
-                          //               SizedBox(
-                          //                 height: 5,
-                          //               ),
-                          //             ],
-                          //           ),
-                          //         );
-                          //       } else if (contoller.listForm[index].typeform ==
-                          //           'Checkbox') {
-                          //         return Container(
-                          //           // color: Colors.amber,
-                          //           child: Column(
-                          //             crossAxisAlignment:
-                          //                 CrossAxisAlignment.start,
-                          //             children: [
-                          //               Container(
-                          //                 width: 200,
-                          //                 child: Text('หัวข้อ'),
-                          //               ),
-                          //               Row(
-                          //                 children: [
-                          //                   Container(
-                          //                     width: 200,
-                          //                     height: 50,
-                          //                     child: TextFormField(
-                          //                       controller: contoller
-                          //                           .listForm[index]
-                          //                           .checkbox!
-                          //                           .title,
-                          //                       autofocus: false,
-                          //                       decoration: InputDecoration(
-                          //                         fillColor: colorWhite,
-                          //                         hintText: "หัวข้อ",
-                          //                         hintStyle: TextStyle(
-                          //                             fontSize: 13.0,
-                          //                             color: colorGrey,
-                          //                             fontWeight:
-                          //                                 FontWeight.w400),
-                          //                         filled: true,
-                          //                         border: OutlineInputBorder(
-                          //                           borderSide: BorderSide(
-                          //                             color: colorGrey,
-                          //                             width: 2,
-                          //                           ),
-                          //                           borderRadius:
-                          //                               BorderRadius.circular(
-                          //                                   5),
-                          //                         ),
-                          //                       ),
-                          //                     ),
-                          //                   ),
-                          //                   SizedBox(
-                          //                     width: 20,
-                          //                   ),
-                          //                   OutlinedButton.icon(
-                          //                     icon: const Icon(Icons.close,
-                          //                         color: Colors.red),
-                          //                     label: const Text('ลบ',
-                          //                         style: TextStyle(
-                          //                             color: Colors.red)),
-                          //                     style: OutlinedButton.styleFrom(
-                          //                       foregroundColor: Colors.red,
-                          //                       side: const BorderSide(
-                          //                           color: Colors.red),
-                          //                       shape: RoundedRectangleBorder(
-                          //                           borderRadius:
-                          //                               BorderRadius.circular(
-                          //                                   4)),
-                          //                     ),
-                          //                     onPressed: () {
-                          //                       contoller.listForm
-                          //                           .removeAt(index);
-                          //                     },
-                          //                   ),
-                          //                 ],
-                          //               ),
-                          //               Obx(
-                          //                 () => ListView.builder(
-                          //                   shrinkWrap: true,
-                          //                   itemCount: contoller.listForm[index]
-                          //                       .checkbox!.listevent!.length,
-                          //                   itemBuilder:
-                          //                       (context, indexEvenList) {
-                          //                     return Container(
-                          //                       margin: EdgeInsets.all(10),
-                          //                       width: 200,
-                          //                       height: 50,
-                          //                       child: Row(
-                          //                         children: [
-                          //                           Icon(
-                          //                             Icons
-                          //                                 .check_box_outline_blank,
-                          //                             color: Colors.grey,
-                          //                           ),
-                          //                           SizedBox(
-                          //                             width: 10,
-                          //                           ),
-                          //                           Container(
-                          //                             child: TextFormField(
-                          //                               controller: contoller
-                          //                                       .listForm[index]
-                          //                                       .checkbox!
-                          //                                       .listevent![
-                          //                                   indexEvenList],
-                          //                               autofocus: false,
-                          //                               decoration:
-                          //                                   InputDecoration(
-                          //                                 fillColor: colorWhite,
-                          //                                 hintText:
-                          //                                     "ตัวเลือก ${indexEvenList + 1}",
-                          //                                 hintStyle: TextStyle(
-                          //                                     fontSize: 13.0,
-                          //                                     color: colorGrey,
-                          //                                     fontWeight:
-                          //                                         FontWeight
-                          //                                             .w400),
-                          //                                 filled: true,
-                          //                                 border:
-                          //                                     OutlineInputBorder(
-                          //                                   borderSide:
-                          //                                       BorderSide(
-                          //                                     color: colorGrey,
-                          //                                     width: 2,
-                          //                                   ),
-                          //                                   borderRadius:
-                          //                                       BorderRadius
-                          //                                           .circular(
-                          //                                               5),
-                          //                                 ),
-                          //                               ),
-                          //                             ),
-                          //                             width: 200,
-                          //                             height: 50,
-                          //                           ),
-                          //                           InkWell(
-                          //                             child: Container(
-                          //                               height: 50,
-                          //                               width: 50,
-                          //                               // color: Colors.red,
-                          //                               child: Icon(
-                          //                                 Icons.close,
-                          //                                 size: 20,
-                          //                               ),
-                          //                             ),
-                          //                             onTap: () {
-                          //                               contoller
-                          //                                   .listForm[index]
-                          //                                   .checkbox!
-                          //                                   .listevent!
-                          //                                   .removeAt(
-                          //                                       indexEvenList);
-                          //                             },
-                          //                           )
-                          //                         ],
-                          //                       ),
-                          //                     );
-                          //                   },
-                          //                 ),
-                          //               ),
-                          //               SizedBox(
-                          //                 height: 5,
-                          //               ),
-                          //               Container(
-                          //                 padding: EdgeInsets.all(10),
-                          //                 child: OutlinedButton(
-                          //                   child: const Text('เพิ่มตัวเลือก',
-                          //                       style: TextStyle(
-                          //                           color: Colors.blue)),
-                          //                   style: OutlinedButton.styleFrom(
-                          //                     foregroundColor: Colors.blue,
-                          //                     side: const BorderSide(
-                          //                         color: Colors.grey),
-                          //                     shape: RoundedRectangleBorder(
-                          //                         borderRadius:
-                          //                             BorderRadius.circular(4)),
-                          //                   ),
-                          //                   onPressed: () {
-                          //                     contoller.listForm[index]
-                          //                         .checkbox!.listevent!
-                          //                         .add(TextEditingController());
-                          //                   },
-                          //                 ),
-                          //               ),
-                          //               Divider(
-                          //                 thickness: 2,
-                          //               ),
-                          //               SizedBox(
-                          //                 height: 5,
-                          //               ),
-                          //             ],
-                          //           ),
-                          //         );
-                          //       } else if (contoller.listForm[index].typeform ==
-                          //           'Radio') {
-                          //         return Container(
-                          //           // color: Colors.amber,
-                          //           child: Column(
-                          //             crossAxisAlignment:
-                          //                 CrossAxisAlignment.start,
-                          //             children: [
-                          //               Container(
-                          //                 width: 200,
-                          //                 child: Text('หัวข้อ'),
-                          //               ),
-                          //               Row(
-                          //                 children: [
-                          //                   Container(
-                          //                     width: 200,
-                          //                     height: 50,
-                          //                     child: TextFormField(
-                          //                       controller: contoller
-                          //                           .listForm[index]
-                          //                           .radio!
-                          //                           .title,
-                          //                       autofocus: false,
-                          //                       decoration: InputDecoration(
-                          //                         fillColor: colorWhite,
-                          //                         hintText: "หัวข้อ",
-                          //                         hintStyle: TextStyle(
-                          //                             fontSize: 13.0,
-                          //                             color: colorGrey,
-                          //                             fontWeight:
-                          //                                 FontWeight.w400),
-                          //                         filled: true,
-                          //                         border: OutlineInputBorder(
-                          //                           borderSide: BorderSide(
-                          //                             color: colorGrey,
-                          //                             width: 2,
-                          //                           ),
-                          //                           borderRadius:
-                          //                               BorderRadius.circular(
-                          //                                   5),
-                          //                         ),
-                          //                       ),
-                          //                     ),
-                          //                   ),
-                          //                   SizedBox(
-                          //                     width: 20,
-                          //                   ),
-                          //                   OutlinedButton.icon(
-                          //                     icon: const Icon(Icons.close,
-                          //                         color: Colors.red),
-                          //                     label: const Text('ลบ',
-                          //                         style: TextStyle(
-                          //                             color: Colors.red)),
-                          //                     style: OutlinedButton.styleFrom(
-                          //                       foregroundColor: Colors.red,
-                          //                       side: const BorderSide(
-                          //                           color: Colors.red),
-                          //                       shape: RoundedRectangleBorder(
-                          //                           borderRadius:
-                          //                               BorderRadius.circular(
-                          //                                   4)),
-                          //                     ),
-                          //                     onPressed: () {
-                          //                       contoller.listForm
-                          //                           .removeAt(index);
-                          //                     },
-                          //                   ),
-                          //                 ],
-                          //               ),
-                          //               Obx(
-                          //                 () => ListView.builder(
-                          //                   shrinkWrap: true,
-                          //                   itemCount: contoller.listForm[index]
-                          //                       .radio!.listevent!.length,
-                          //                   itemBuilder:
-                          //                       (context, indexEvenList) {
-                          //                     return Container(
-                          //                       margin: EdgeInsets.all(10),
-                          //                       width: 200,
-                          //                       height: 50,
-                          //                       child: Row(
-                          //                         children: [
-                          //                           Icon(
-                          //                             Icons
-                          //                                 .radio_button_unchecked, // Use Icons.radio_button_checked for checked state
-                          //                             color: Colors.grey,
-                          //                           ),
-                          //                           SizedBox(
-                          //                             width: 10,
-                          //                           ),
-                          //                           Container(
-                          //                             child: TextFormField(
-                          //                               controller: contoller
-                          //                                       .listForm[index]
-                          //                                       .radio!
-                          //                                       .listevent![
-                          //                                   indexEvenList],
-                          //                               autofocus: false,
-                          //                               decoration:
-                          //                                   InputDecoration(
-                          //                                 fillColor: colorWhite,
-                          //                                 hintText:
-                          //                                     "ตัวเลือก ${indexEvenList + 1}",
-                          //                                 hintStyle: TextStyle(
-                          //                                     fontSize: 13.0,
-                          //                                     color: colorGrey,
-                          //                                     fontWeight:
-                          //                                         FontWeight
-                          //                                             .w400),
-                          //                                 filled: true,
-                          //                                 border:
-                          //                                     OutlineInputBorder(
-                          //                                   borderSide:
-                          //                                       BorderSide(
-                          //                                     color: colorGrey,
-                          //                                     width: 2,
-                          //                                   ),
-                          //                                   borderRadius:
-                          //                                       BorderRadius
-                          //                                           .circular(
-                          //                                               5),
-                          //                                 ),
-                          //                               ),
-                          //                             ),
-                          //                             width: 200,
-                          //                             height: 50,
-                          //                           ),
-                          //                           InkWell(
-                          //                             child: Container(
-                          //                               height: 50,
-                          //                               width: 50,
-                          //                               // color: Colors.red,
-                          //                               child: Icon(
-                          //                                 Icons.close,
-                          //                                 size: 20,
-                          //                               ),
-                          //                             ),
-                          //                             onTap: () {
-                          //                               contoller
-                          //                                   .listForm[index]
-                          //                                   .radio!
-                          //                                   .listevent!
-                          //                                   .removeAt(
-                          //                                       indexEvenList);
-                          //                             },
-                          //                           )
-                          //                         ],
-                          //                       ),
-                          //                     );
-                          //                   },
-                          //                 ),
-                          //               ),
-                          //               SizedBox(
-                          //                 height: 5,
-                          //               ),
-                          //               Container(
-                          //                 padding: EdgeInsets.all(10),
-                          //                 child: OutlinedButton(
-                          //                   child: const Text('เพิ่มตัวเลือก',
-                          //                       style: TextStyle(
-                          //                           color: Colors.blue)),
-                          //                   style: OutlinedButton.styleFrom(
-                          //                     foregroundColor: Colors.blue,
-                          //                     side: const BorderSide(
-                          //                         color: Colors.grey),
-                          //                     shape: RoundedRectangleBorder(
-                          //                         borderRadius:
-                          //                             BorderRadius.circular(4)),
-                          //                   ),
-                          //                   onPressed: () {
-                          //                     contoller.listForm[index].radio!
-                          //                         .listevent!
-                          //                         .add(TextEditingController());
-                          //                   },
-                          //                 ),
-                          //               ),
-                          //               Divider(
-                          //                 thickness: 2,
-                          //               ),
-                          //               SizedBox(
-                          //                 height: 5,
-                          //               ),
-                          //             ],
-                          //           ),
-                          //         );
-                          //       } else if (contoller.listForm[index].typeform ==
-                          //           'Image') {
-                          //         return Container(
-                          //           height: 175,
-                          //           child: Column(
-                          //             mainAxisAlignment:
-                          //                 MainAxisAlignment.start,
-                          //             crossAxisAlignment:
-                          //                 CrossAxisAlignment.start,
-                          //             children: [
-                          //               Container(
-                          //                 width: 200,
-                          //                 child: Text('หัวข้อ'),
-                          //               ),
-                          //               Row(
-                          //                 children: [
-                          //                   Container(
-                          //                     width: 200,
-                          //                     height: 50,
-                          //                     child: TextFormField(
-                          //                       controller: contoller
-                          //                           .listForm[index]
-                          //                           .image!
-                          //                           .title,
-                          //                       autofocus: false,
-                          //                       decoration: InputDecoration(
-                          //                         fillColor: colorWhite,
-                          //                         hintText: "หัวข้อ",
-                          //                         hintStyle: TextStyle(
-                          //                             fontSize: 13.0,
-                          //                             color: colorGrey,
-                          //                             fontWeight:
-                          //                                 FontWeight.w400),
-                          //                         filled: true,
-                          //                         border: OutlineInputBorder(
-                          //                           borderSide: BorderSide(
-                          //                             color: colorGrey,
-                          //                             width: 2,
-                          //                           ),
-                          //                           borderRadius:
-                          //                               BorderRadius.circular(
-                          //                                   5),
-                          //                         ),
-                          //                       ),
-                          //                     ),
-                          //                   ),
-                          //                   SizedBox(
-                          //                     width: 20,
-                          //                   ),
-                          //                   OutlinedButton.icon(
-                          //                     icon: const Icon(Icons.close,
-                          //                         color: Colors.red),
-                          //                     label: const Text('ลบ',
-                          //                         style: TextStyle(
-                          //                             color: Colors.red)),
-                          //                     style: OutlinedButton.styleFrom(
-                          //                       foregroundColor: Colors.red,
-                          //                       side: const BorderSide(
-                          //                           color: Colors.red),
-                          //                       shape: RoundedRectangleBorder(
-                          //                           borderRadius:
-                          //                               BorderRadius.circular(
-                          //                                   4)),
-                          //                     ),
-                          //                     onPressed: () {
-                          //                       contoller.listForm
-                          //                           .removeAt(index);
-                          //                     },
-                          //                   ),
-                          //                 ],
-                          //               ),
-                          //               Container(
-                          //                 width: 200,
-                          //                 child: Text('เพิ่มรูป'),
-                          //               ),
-                          //               DottedBorder(
-                          //                   padding: const EdgeInsets.all(12),
-                          //                   color: Colors.grey,
-                          //                   child: Container(
-                          //                     padding: EdgeInsets.symmetric(
-                          //                         horizontal: 12, vertical: 4),
-                          //                     decoration: BoxDecoration(
-                          //                       color: Colors.white,
-                          //                       borderRadius:
-                          //                           BorderRadius.circular(4),
-                          //                     ),
-                          //                     child: Text(
-                          //                       'เลือกรูป',
-                          //                       style: textStyle(context,
-                          //                           color: Colors.blue,
-                          //                           fontSize: 13),
-                          //                     ),
-                          //                   )),
-                          //               SizedBox(
-                          //                 height: 10,
-                          //               ),
-                          //               Divider(
-                          //                 thickness: 2,
-                          //               ),
-                          //               SizedBox(
-                          //                 height: 5,
-                          //               ),
-                          //             ],
-                          //           ),
-                          //         );
-                          //       } else if (contoller.listForm[index].typeform ==
-                          //           'File') {
-                          //         return Container(
-                          //           height: 175,
-                          //           child: Column(
-                          //             mainAxisAlignment:
-                          //                 MainAxisAlignment.start,
-                          //             crossAxisAlignment:
-                          //                 CrossAxisAlignment.start,
-                          //             children: [
-                          //               Container(
-                          //                 width: 200,
-                          //                 child: Text('หัวข้อ'),
-                          //               ),
-                          //               Row(
-                          //                 children: [
-                          //                   Container(
-                          //                     width: 200,
-                          //                     height: 50,
-                          //                     child: TextFormField(
-                          //                       controller: contoller
-                          //                           .listForm[index]
-                          //                           .file!
-                          //                           .title,
-                          //                       autofocus: false,
-                          //                       decoration: InputDecoration(
-                          //                         fillColor: colorWhite,
-                          //                         hintText: "หัวข้อ",
-                          //                         hintStyle: TextStyle(
-                          //                             fontSize: 13.0,
-                          //                             color: colorGrey,
-                          //                             fontWeight:
-                          //                                 FontWeight.w400),
-                          //                         filled: true,
-                          //                         border: OutlineInputBorder(
-                          //                           borderSide: BorderSide(
-                          //                             color: colorGrey,
-                          //                             width: 2,
-                          //                           ),
-                          //                           borderRadius:
-                          //                               BorderRadius.circular(
-                          //                                   5),
-                          //                         ),
-                          //                       ),
-                          //                     ),
-                          //                   ),
-                          //                   SizedBox(
-                          //                     width: 20,
-                          //                   ),
-                          //                   OutlinedButton.icon(
-                          //                     icon: const Icon(Icons.close,
-                          //                         color: Colors.red),
-                          //                     label: const Text('ลบ',
-                          //                         style: TextStyle(
-                          //                             color: Colors.red)),
-                          //                     style: OutlinedButton.styleFrom(
-                          //                       foregroundColor: Colors.red,
-                          //                       side: const BorderSide(
-                          //                           color: Colors.red),
-                          //                       shape: RoundedRectangleBorder(
-                          //                           borderRadius:
-                          //                               BorderRadius.circular(
-                          //                                   4)),
-                          //                     ),
-                          //                     onPressed: () {
-                          //                       contoller.listForm
-                          //                           .removeAt(index);
-                          //                     },
-                          //                   ),
-                          //                 ],
-                          //               ),
-                          //               Container(
-                          //                 width: 200,
-                          //                 child: Text('เพิ่มไฟล์'),
-                          //               ),
-                          //               DottedBorder(
-                          //                   padding: const EdgeInsets.all(12),
-                          //                   color: Colors.grey,
-                          //                   child: Container(
-                          //                     padding: EdgeInsets.symmetric(
-                          //                         horizontal: 12, vertical: 4),
-                          //                     decoration: BoxDecoration(
-                          //                       color: Colors.white,
-                          //                       borderRadius:
-                          //                           BorderRadius.circular(4),
-                          //                     ),
-                          //                     child: Text(
-                          //                       'เลือกไฟล์',
-                          //                       style: textStyle(context,
-                          //                           color: Colors.blue,
-                          //                           fontSize: 13),
-                          //                     ),
-                          //                   )),
-                          //               SizedBox(
-                          //                 height: 10,
-                          //               ),
-                          //               Divider(
-                          //                 thickness: 2,
-                          //               ),
-                          //               SizedBox(
-                          //                 height: 5,
-                          //               ),
-                          //             ],
-                          //           ),
-                          //         );
-                          //       }
-                          //       return SizedBox();
-                          //     },
-                          //   );
-                          // }),
-                          // เพิ่มฟอร์ม
-                          // Row(
-                          //   children: [
-                          //     Container(
-                          //       decoration: BoxDecoration(
-                          //         color: colorWhite,
-                          //         borderRadius: BorderRadius.circular(10),
-                          //         border: Border.all(color: Colors.brown[200]!),
-                          //       ),
-                          //       height: 40,
-                          //       width: 120,
-                          //       alignment: Alignment.centerLeft,
-                          //       child: InkWell(
-                          //         onTap: () {
-                          //           contoller.showDropdown.value = true;
-                          //           if (contoller.selectedField.value ==
-                          //               'TextField') {
-                          //             contoller.listForm.add(ListFormModel(
-                          //                 typeform: 'TextField',
-                          //                 textfield: Textfield(
-                          //                     listevent:
-                          //                         [TextEditingController()].obs,
-                          //                     title: TextEditingController())));
-                          //           }
-                          //           if (contoller.selectedField.value ==
-                          //               'Dropdown') {
-                          //             contoller.listForm.add(ListFormModel(
-                          //                 typeform: 'Dropdown',
-                          //                 dropdown: MyDropdown(
-                          //                     listevent:
-                          //                         [TextEditingController()].obs,
-                          //                     title: TextEditingController())));
-                          //           }
-                          //           if (contoller.selectedField.value ==
-                          //               'Checkbox') {
-                          //             contoller.listForm.add(ListFormModel(
-                          //                 typeform: 'Checkbox',
-                          //                 checkbox: MyCheckBox(
-                          //                     listevent:
-                          //                         [TextEditingController()].obs,
-                          //                     title: TextEditingController())));
-                          //           }
-                          //           if (contoller.selectedField.value ==
-                          //               'Radio') {
-                          //             contoller.listForm.add(ListFormModel(
-                          //                 typeform: 'Radio',
-                          //                 radio: MyRadio(
-                          //                     listevent:
-                          //                         [TextEditingController()].obs,
-                          //                     title: TextEditingController())));
-                          //           }
-                          //           if (contoller.selectedField.value ==
-                          //               'Image') {
-                          //             contoller.listForm.add(ListFormModel(
-                          //                 typeform: 'Image',
-                          //                 image: MyImg(
-                          //                     title: TextEditingController())));
-                          //           }
-                          //           if (contoller.selectedField.value ==
-                          //               'File') {
-                          //             contoller.listForm.add(ListFormModel(
-                          //                 typeform: 'File',
-                          //                 file: MyFile(
-                          //                     title: TextEditingController())));
-                          //           }
-                          //         },
-                          //         child: Row(
-                          //           mainAxisAlignment: MainAxisAlignment.center,
-                          //           children: [
-                          //             Icon(Icons.edit_calendar_outlined,
-                          //                 color: colorBlack),
-                          //             SizedBox(width: 5),
-                          //             Text(
-                          //               'เพิ่มฟอร์ม',
-                          //               style: textStyle(context,
-                          //                   color: colorBlack, fontSize: 13),
-                          //             ),
-                          //           ],
-                          //         ),
-                          //       ),
-                          //     ),
-                          //   ],
-                          // ),
+                                      )
+                                    : (contoller
+                                                .dataEditEvent
+                                                .value
+                                                .events!
+                                                .freeFormDetailList![index]
+                                                .types ==
+                                            1)
+                                        ? Container(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  contoller
+                                                      .dataEditEvent
+                                                      .value
+                                                      .events!
+                                                      .freeFormDetailList![
+                                                          index]
+                                                      .section!,
+                                                  style: textStyle(context,
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.black),
+                                                ),
+                                                const SizedBox(
+                                                  height: 20,
+                                                ),
+                                                Column(
+                                                  children: listCheckBox(
+                                                      context,
+                                                      index,
+                                                      contoller
+                                                          .dataEditEvent
+                                                          .value
+                                                          .events!
+                                                          .freeFormDetailList![
+                                                              index]
+                                                          .freeFormSubDetailList!
+                                                          .length),
+                                                ),
+                                                const SizedBox(
+                                                  height: 15,
+                                                ),
+                                                cu.Divider(
+                                                  height: 1,
+                                                  color: Colors.grey.shade200,
+                                                ),
+                                                const SizedBox(
+                                                  height: 15,
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        : (contoller
+                                                    .dataEditEvent
+                                                    .value
+                                                    .events!
+                                                    .freeFormDetailList![index]
+                                                    .types ==
+                                                2)
+                                            ? Container(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      contoller
+                                                          .dataEditEvent
+                                                          .value
+                                                          .events!
+                                                          .freeFormDetailList![
+                                                              index]
+                                                          .section!,
+                                                      style: textStyle(context,
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Colors.black),
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 10,
+                                                    ),
+                                                    ListView.builder(
+                                                      shrinkWrap: true,
+                                                      itemCount: contoller
+                                                          .dataEditEvent
+                                                          .value
+                                                          .events!
+                                                          .freeFormDetailList![
+                                                              index]
+                                                          .freeFormSubDetailList!
+                                                          .length,
+                                                      itemBuilder: (context,
+                                                          indexRadio) {
+                                                        return Column(
+                                                          children: [
+                                                            Row(
+                                                              children: [
+                                                                cu.Radio(
+                                                                    value: contoller
+                                                                            .listAnswer[
+                                                                                index]
+                                                                            .radio!
+                                                                            .listoptionID![
+                                                                        indexRadio],
+                                                                    groupValue: contoller
+                                                                        .listAnswer[
+                                                                            index]
+                                                                        .radio!
+                                                                        .valueID,
+                                                                    onChanged:
+                                                                        (value) {
+                                                                      setState(
+                                                                          () {
+                                                                        contoller
+                                                                            .listAnswer[index]
+                                                                            .radio!
+                                                                            .valueID = value!;
+                                                                      });
+                                                                    }),
+                                                                const SizedBox(
+                                                                  width: 15,
+                                                                ),
+                                                                Text(
+                                                                  contoller
+                                                                      .listAnswer[
+                                                                          index]
+                                                                      .radio!
+                                                                      .listoption![indexRadio],
+                                                                  style: textStyle(
+                                                                      context,
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontSize:
+                                                                          13),
+                                                                )
+                                                              ],
+                                                            ),
+                                                            const SizedBox(
+                                                                height: 10),
+                                                          ],
+                                                        );
+                                                      },
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 15,
+                                                    ),
+                                                    cu.Divider(
+                                                      height: 1,
+                                                      color:
+                                                          Colors.grey.shade200,
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 15,
+                                                    ),
+                                                  ],
+                                                ),
+                                              )
+                                            : (contoller
+                                                        .dataEditEvent
+                                                        .value
+                                                        .events!
+                                                        .freeFormDetailList![
+                                                            index]
+                                                        .types ==
+                                                    3)
+                                                ? Container(
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          contoller
+                                                              .dataEditEvent
+                                                              .value
+                                                              .events!
+                                                              .freeFormDetailList![
+                                                                  index]
+                                                              .section!,
+                                                          style: textStyle(
+                                                              context,
+                                                              fontSize: 14,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              color:
+                                                                  Colors.black),
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 20,
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            Expanded(
+                                                              flex: 5,
+                                                              child: Container(
+                                                                height: 120,
+                                                                color:
+                                                                    colorWhite,
+                                                                child:
+                                                                    TextFormField(
+                                                                  maxLines: 30,
+                                                                  controller: contoller
+                                                                      .listAnswer[
+                                                                          index]
+                                                                      .textfield!
+                                                                      .value,
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          13.0,
+                                                                      color:
+                                                                          colorBlack,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w400),
+                                                                  decoration:
+                                                                      InputDecoration(
+                                                                    fillColor:
+                                                                        colorWhite,
+                                                                    hintText: contoller
+                                                                        .dataEditEvent
+                                                                        .value
+                                                                        .events!
+                                                                        .freeFormDetailList![
+                                                                            index]
+                                                                        .section!,
+                                                                    hintStyle: TextStyle(
+                                                                        fontSize:
+                                                                            13.0,
+                                                                        color:
+                                                                            colorGrey,
+                                                                        fontWeight:
+                                                                            FontWeight.w400),
+                                                                    filled:
+                                                                        true,
+                                                                    border:
+                                                                        OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color:
+                                                                            colorGrey,
+                                                                        width:
+                                                                            2,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            const SizedBox(
+                                                              width: 20,
+                                                            ),
+                                                            const Expanded(
+                                                              flex: 5,
+                                                              child: SizedBox(),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 15,
+                                                        ),
+                                                        cu.Divider(
+                                                          height: 1,
+                                                          color: Colors
+                                                              .grey.shade200,
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 15,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  )
+                                                : (contoller
+                                                            .dataEditEvent
+                                                            .value
+                                                            .events!
+                                                            .freeFormDetailList![
+                                                                index]
+                                                            .types ==
+                                                        4)
+                                                    ? Container(
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                              contoller
+                                                                  .dataEditEvent
+                                                                  .value
+                                                                  .events!
+                                                                  .freeFormDetailList![
+                                                                      index]
+                                                                  .section!,
+                                                              style: textStyle(
+                                                                  context,
+                                                                  fontSize: 14,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: Colors
+                                                                      .black),
+                                                            ),
+                                                            const SizedBox(
+                                                              height: 20,
+                                                            ),
+                                                            if (contoller
+                                                                        .listAnswer[
+                                                                            index]
+                                                                        .image!
+                                                                        .value !=
+                                                                    null &&
+                                                                contoller
+                                                                        .listAnswer[
+                                                                            index]
+                                                                        .image!
+                                                                        .value !=
+                                                                    '')
+                                                              Container(
+                                                                height: 250,
+                                                                width: 300,
+                                                                decoration: BoxDecoration(
+                                                                    image: DecorationImage(
+                                                                        image: NetworkImage(
+                                                                          contoller
+                                                                              .listAnswer[index]
+                                                                              .image!
+                                                                              .value!,
+                                                                        ),
+                                                                        fit: BoxFit.cover)),
+                                                              ),
+                                                            SizedBox(
+                                                              height: 10,
+                                                            ),
+                                                            DottedBorder(
+                                                              color: Colors.grey
+                                                                  .shade300,
+                                                              dashPattern: [
+                                                                8,
+                                                                4
+                                                              ],
+                                                              strokeWidth: 2,
+                                                              radius:
+                                                                  const Radius
+                                                                      .circular(
+                                                                      5),
+                                                              borderType:
+                                                                  BorderType
+                                                                      .RRect,
+                                                              strokeCap:
+                                                                  StrokeCap
+                                                                      .round,
+                                                              child: cu.InkWell(
+                                                                onTap:
+                                                                    () async {
+                                                                  await contoller
+                                                                      .selectedFileSingle(
+                                                                          context,
+                                                                          type:
+                                                                              4,
+                                                                          index:
+                                                                              index);
+                                                                  setState(
+                                                                      () {});
+                                                                },
+                                                                child:
+                                                                    Container(
+                                                                  decoration: BoxDecoration(
+                                                                      color:
+                                                                          colorWhite,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5)),
+                                                                  width: 220,
+                                                                  height: 80,
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .center,
+                                                                  child:
+                                                                      Container(
+                                                                    alignment:
+                                                                        Alignment
+                                                                            .center,
+                                                                    height: 50,
+                                                                    width: 180,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5),
+                                                                      border: Border.all(
+                                                                          color: Colors
+                                                                              .grey
+                                                                              .shade200),
+                                                                    ),
+                                                                    child: Text(
+                                                                      'เลือกรูป',
+                                                                      style: textStyle(
+                                                                          context,
+                                                                          color:
+                                                                              colorBlue,
+                                                                          fontSize:
+                                                                              14),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            const SizedBox(
+                                                              height: 15,
+                                                            ),
+                                                            cu.Divider(
+                                                              height: 1,
+                                                              color: Colors.grey
+                                                                  .shade200,
+                                                            ),
+                                                            const SizedBox(
+                                                              height: 15,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      )
+                                                    :  (contoller
+                                    .dataEditEvent
+                                    .value
+                                    .events!
+                                    .freeFormDetailList![
+                                index]
+                                    .types ==
+                                    5)?Container(
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                              contoller
+                                                                  .dataEditEvent
+                                                                  .value
+                                                                  .events!
+                                                                  .freeFormDetailList![
+                                                                      index]
+                                                                  .section!,
+                                                              style: textStyle(
+                                                                  context,
+                                                                  fontSize: 14,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: Colors
+                                                                      .black),
+                                                            ),
+                                                            const SizedBox(
+                                                              height: 20,
+                                                            ),
+                                                            if (contoller
+                                                                        .listAnswer[
+                                                                            index]
+                                                                        .file!
+                                                                        .value !=
+                                                                    null &&
+                                                                contoller
+                                                                        .listAnswer[
+                                                                            index]
+                                                                        .file!
+                                                                        .value !=
+                                                                    '')
+                                                              Container(
+                                                                height: 150,
+                                                                width: 250,
+                                                                decoration: BoxDecoration(
+                                                                  borderRadius: BorderRadius.circular(10),
+                                                                  color: Colors.grey.shade200
+                                                                ),
+                                                                child: Column(
+                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                  children: [
+                                                                    Icon(CupertinoIcons.doc_text_fill,size: 40,color: colorGrey,),
+                                                                    SizedBox(height: 20,),
+                                                                    Text(
+                                                                     contoller.listAnswer[index].file!.name!,
+                                                                      style: textStyle(
+                                                                          context,
+                                                                          color:
+                                                                          colorGrey,
+                                                                          fontSize:
+                                                                          14),
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                              ),
+
+                                                            SizedBox(
+                                                              height: 10,
+                                                            ),
+                                                            DottedBorder(
+                                                              color: Colors.grey
+                                                                  .shade300,
+                                                              dashPattern: [
+                                                                8,
+                                                                4
+                                                              ],
+                                                              strokeWidth: 2,
+                                                              radius:
+                                                                  const Radius
+                                                                      .circular(
+                                                                      5),
+                                                              borderType:
+                                                                  BorderType
+                                                                      .RRect,
+                                                              strokeCap:
+                                                                  StrokeCap
+                                                                      .round,
+                                                              child: cu.InkWell(
+                                                                onTap:
+                                                                    () async {
+                                                                  await contoller
+                                                                      .selectedFileSingle(
+                                                                          context,
+                                                                          type:
+                                                                              5,
+                                                                          index:
+                                                                              index);
+                                                                  setState(
+                                                                      () {});
+                                                                },
+                                                                child:
+                                                                    Container(
+                                                                  decoration: BoxDecoration(
+                                                                      color:
+                                                                          colorWhite,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5)),
+                                                                  width: 220,
+                                                                  height: 80,
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .center,
+                                                                  child:
+                                                                      Container(
+                                                                    alignment:
+                                                                        Alignment
+                                                                            .center,
+                                                                    height: 50,
+                                                                    width: 180,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5),
+                                                                      border: Border.all(
+                                                                          color: Colors
+                                                                              .grey
+                                                                              .shade200),
+                                                                    ),
+                                                                    child: Text(
+                                                                      'เลือกไฟล์',
+                                                                      style: textStyle(
+                                                                          context,
+                                                                          color:
+                                                                              colorBlue,
+                                                                          fontSize:
+                                                                              14),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            const SizedBox(
+                                                              height: 15,
+                                                            ),
+                                                            cu.Divider(
+                                                              height: 1,
+                                                              color: Colors.grey
+                                                                  .shade200,
+                                                            ),
+                                                            const SizedBox(
+                                                              height: 15,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ):SizedBox();
+                              },
+                            ),
+
                           Container(
                               height: 40,
                               alignment: Alignment.centerLeft,
@@ -1664,7 +1369,8 @@ class EditListFreeFormOthers extends StatelessWidget {
                                           double.parse(
                                               contoller.lng.value.text)),
                                       initialZoom: 14,
-                                      interactionOptions: InteractionOptions(
+                                      interactionOptions:
+                                          const InteractionOptions(
                                         flags:
                                             InteractiveFlag.doubleTapDragZoom |
                                                 InteractiveFlag.drag,
@@ -1717,7 +1423,8 @@ class EditListFreeFormOthers extends StatelessWidget {
                                                         contoller
                                                             .search.value.text);
                                                   },
-                                                  child: Icon(Icons.search)),
+                                                  child:
+                                                      const Icon(Icons.search)),
                                               fillColor: colorWhite,
                                               hintText: "ค้นหา",
                                               hintStyle: TextStyle(
@@ -1784,7 +1491,7 @@ class EditListFreeFormOthers extends StatelessWidget {
                                 child: Center(
                                   child: Container(
                                     height: 60,
-                                    child: Column(
+                                    child: const Column(
                                       children: [
                                         SizedBox(
                                           height: 30,
@@ -1976,8 +1683,372 @@ class EditListFreeFormOthers extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(
+                            height: 40,
+                          ),
+                          Text(
+                            'อัพเดทสถานะการณ์รายงาน',
+                            style: textStyle(context,
+                                color: colorBlack, fontSize: 16,fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(
                             height: 20,
                           ),
+                          Container(
+
+                            child: Column(
+                              children: [
+                                DottedBorder(
+                                  color: Colors.grey.shade300,
+                                  dashPattern: [8, 4],
+                                  strokeWidth: 2,
+                                  radius: const Radius.circular(5),
+                                  borderType: BorderType.RRect,
+                                  strokeCap: StrokeCap.round,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: colorWhite,
+                                        borderRadius: BorderRadius.circular(5)),
+                                    child: (contoller.listConvertImageLog.value.isEmpty)
+                                        ? Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.center,
+                                      children: [
+                                        Column(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                          children: [
+                                            InkWell(
+                                              onTap: () {
+                                                contoller
+                                                    .selectedImage(context,2);
+                                              },
+                                              child: Container(
+                                                margin: EdgeInsets.only(
+                                                    top: 80, bottom: 80),
+                                                alignment: Alignment.center,
+                                                height: 40,
+                                                width: 80,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        5),
+                                                    border: Border.all(
+                                                        color: colorGrey)),
+                                                child: Text(
+                                                  'เลือกรูป',
+                                                  style: textStyle(context,
+                                                      color: colorBlue,
+                                                      fontSize: 13),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    )
+                                        : GridView.builder(
+                                      shrinkWrap: true,
+                                      gridDelegate:
+                                      const SliverGridDelegateWithMaxCrossAxisExtent(
+                                        maxCrossAxisExtent: 150,
+                                        crossAxisSpacing: 3.0,
+                                        mainAxisSpacing: 10.0,
+                                        childAspectRatio: 0.8,
+                                      ),
+                                      itemCount: contoller
+                                          .listConvertImageLog.value.length +
+                                          1,
+                                      itemBuilder: (context, index) {
+                                        if (index ==
+                                            contoller.listConvertImageLog.value
+                                                .length) {
+                                          return InkWell(
+                                            onTap: () {
+                                              contoller
+                                                  .selectedImage(context,2);
+                                            },
+                                            child: Container(
+                                              alignment: Alignment.center,
+                                              child: Container(
+                                                alignment: Alignment.center,
+                                                height: 40,
+                                                width: 80,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        5),
+                                                    border: Border.all(
+                                                        color: colorGrey)),
+                                                child: Text(
+                                                  'เลือกรูป',
+                                                  style: textStyle(context,
+                                                      color: colorBlue,
+                                                      fontSize: 13),
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        } else {
+                                          return Stack(
+                                            children: [
+                                              Container(
+                                                height: 200,
+                                                width: 200,
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                        image: NetworkImage(
+                                                            contoller
+                                                                .listConvertImageLog
+                                                                .value[index]
+                                                                .pathImage!),
+                                                        fit: BoxFit.cover)),
+                                              ),
+                                              Positioned(
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    contoller.listConvertImageLog
+                                                        .removeAt(index);
+                                                  },
+                                                  child: Container(
+                                                    child: Icon(
+                                                      Icons.clear,
+                                                      size: 15,
+                                                      color: colorBlack,
+                                                    ),
+                                                    alignment: Alignment.center,
+                                                    height: 25,
+                                                    width: 25,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                        BorderRadius
+                                                            .circular(100),
+                                                        color: colorGrey),
+                                                  ),
+                                                ),
+                                                right: 0,
+                                                top: 0,
+                                              )
+                                            ],
+                                          );
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 10,),
+                                DottedBorder(
+                                  color: Colors.grey.shade300,
+                                  dashPattern: [8, 4],
+                                  strokeWidth: 2,
+                                  radius: const Radius.circular(5),
+                                  borderType: BorderType.RRect,
+                                  strokeCap: StrokeCap.round,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: colorWhite,
+                                        borderRadius: BorderRadius.circular(5)),
+                                    child: (contoller.listConvertFileLog.value.isEmpty)
+                                        ? Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.center,
+                                      children: [
+                                        Column(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                          children: [
+                                            InkWell(
+                                              onTap: () {
+                                                contoller
+                                                    .selectedFile(context);
+                                              },
+                                              child: Container(
+                                                margin: EdgeInsets.only(
+                                                    top: 80, bottom: 80),
+                                                alignment: Alignment.center,
+                                                height: 40,
+                                                width: 80,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        5),
+                                                    border: Border.all(
+                                                        color: colorGrey)),
+                                                child: Text(
+                                                  'เลือกไฟล์',
+                                                  style: textStyle(context,
+                                                      color: colorBlue,
+                                                      fontSize: 13),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    )
+                                        : GridView.builder(
+                                      shrinkWrap: true,
+                                      gridDelegate:
+                                      const SliverGridDelegateWithMaxCrossAxisExtent(
+                                        maxCrossAxisExtent: 150,
+                                        crossAxisSpacing: 3.0,
+                                        mainAxisSpacing: 10.0,
+                                        childAspectRatio: 0.8,
+                                      ),
+                                      itemCount: contoller
+                                          .listConvertFileLog.value.length +
+                                          1,
+                                      itemBuilder: (context, index) {
+                                        if (index ==
+                                            contoller.listConvertFileLog.value
+                                                .length) {
+                                          return InkWell(
+                                            onTap: () {
+                                              contoller
+                                                  .selectedFile(context);
+                                            },
+                                            child: Container(
+                                              alignment: Alignment.center,
+                                              child: Container(
+                                                alignment: Alignment.center,
+                                                height: 40,
+                                                width: 80,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        5),
+                                                    border: Border.all(
+                                                        color: colorGrey)),
+                                                child: Text(
+                                                  'เลือกไฟล์',
+                                                  style: textStyle(context,
+                                                      color: colorBlue,
+                                                      fontSize: 13),
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        } else {
+                                          return Stack(
+                                            children: [
+                                              Container(
+                                                alignment: Alignment.center,
+                                                height: 200,
+                                                width: 200,
+                                                color: Colors.grey.shade100,
+                                                child: Column(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Icon(CupertinoIcons.arrow_down_doc,size: 20,),
+                                                    SizedBox(width: 5,),
+                                                    Text(
+                                                      contoller.listConvertFileLog[index].imageName!,
+                                                      style: textStyle(context,
+                                                          color: colorBlue,
+                                                          fontSize: 13),
+                                                    ),
+                                                    SizedBox(width: 5,),
+
+                                                  ],
+                                                ),
+                                              ),
+                                              Positioned(
+                                                child: InkWell(
+                                                  onTap: () {
+
+                                                    contoller.listConvertFileLog
+                                                        .removeAt(index);
+                                                  },
+                                                  child: Container(
+                                                    child: Icon(
+                                                      Icons.clear,
+                                                      size: 15,
+                                                      color: colorBlack,
+                                                    ),
+                                                    alignment: Alignment.center,
+                                                    height: 25,
+                                                    width: 25,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                        BorderRadius
+                                                            .circular(100),
+                                                        color: colorGrey),
+                                                  ),
+                                                ),
+                                                right: 0,
+                                                top: 0,
+                                              )
+                                            ],
+                                          );
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Container(
+                                  height: 180,
+                                  child: Column(
+                                    children: [
+                                      Row(children: [
+                                        Expanded(
+                                          flex: 5,
+                                          child: Container(
+                                              alignment: Alignment.centerLeft,
+                                              child: Text(
+                                                'รายละเอียดรายงาน',
+                                                style: textStyle(context,
+                                                    color: colorBlack, fontSize: 13),
+                                              )),
+                                        ),
+                                      ]),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            child: Container(
+                                              padding: const EdgeInsets.all(10),
+                                              decoration: BoxDecoration(
+                                                border:
+                                                Border.all(color: Colors.grey),
+                                                borderRadius:
+                                                BorderRadius.circular(10),
+                                                color: colorWhite,
+                                              ),
+                                              height: 150,
+                                              child: TextFormField(
+                                                maxLines: 300,
+                                                controller: contoller.remarkReport.value,
+                                                decoration: InputDecoration.collapsed(
+                                                  fillColor: colorWhite,
+                                                  hintText: "รายละเอียดรายงาน",
+                                                  hintStyle: TextStyle(
+                                                      fontSize: 13.0,
+                                                      color: colorGrey,
+                                                      fontWeight: FontWeight.w400),
+                                                  filled: true,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+
                           Divider(
                             height: 2,
                             color: colorGrey,
@@ -2005,7 +2076,8 @@ class EditListFreeFormOthers extends StatelessWidget {
                                           ),
                                         ],
                                       ),
-                                      content: Text('คุณต้องการยกเลิกหรือไม่'),
+                                      content:
+                                          const Text('คุณต้องการยกเลิกหรือไม่'),
                                       actions: [
                                         InkWell(
                                             onTap: () {
@@ -2081,5 +2153,62 @@ class EditListFreeFormOthers extends StatelessWidget {
         )
       ],
     );
+  }
+
+  List<Widget> listCheckBox(BuildContext context, int index, int length) {
+    final ContollerEditOthersList contoller =
+        Get.put(ContollerEditOthersList(), permanent: false);
+
+    List<Widget> wi = [];
+    for (int i = 0; i < length; i++) {
+      wi.add(Container(
+        child: Row(
+          children: [
+            cu.Checkbox(
+              value: contoller.listAnswer[index].checkbox!.listvalueoption![i],
+              onChanged: (value) {
+                setState(() {
+                  if (contoller
+                          .listAnswer[index].checkbox!.listvalueoption![i] ==
+                      true) {
+                    contoller.listAnswer[index].checkbox!.listvalueoption![i] =
+                        false;
+                    contoller.listAnswer[index].checkbox!.listvalueoption![i] =
+                        false;
+
+                    contoller.listAnswer[index].checkbox!.valueID!.removeAt(
+                        contoller.listAnswer[index].checkbox!.valueID!.indexOf(
+                            contoller
+                                .listAnswer[index].checkbox!.listoptionID![i]));
+                  } else {
+                    contoller.listAnswer[index].checkbox!.listvalueoption![i] =
+                        true;
+                    contoller.listAnswer[index].checkbox!.listvalueoption![i] =
+                        true;
+                    contoller.listAnswer[index].checkbox!.valueID!.add(contoller
+                        .listAnswer[index].checkbox!.listoptionID![i]
+                        .toString());
+                  }
+                });
+                // setState(() {
+                //   _valueCheck=value!;
+                // });
+              },
+            ),
+            const SizedBox(
+              width: 15,
+            ),
+            Text(
+              contoller.listAnswer[index].checkbox!.listoption![i],
+              style: textStyle(context, color: Colors.black, fontSize: 13),
+            )
+          ],
+        ),
+      ));
+      wi.add(const SizedBox(
+        height: 10,
+      ));
+    }
+    return wi;
   }
 }

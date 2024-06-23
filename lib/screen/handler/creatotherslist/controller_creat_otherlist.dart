@@ -206,6 +206,7 @@ class ContollerCreateOthersList extends GetxController {
     selectStatusResponsible!.value = 'รับเรื่อง';
     selectStatusrelevant!.value = 'รับเรื่อง';
     address.value.text = '';
+    listForm.clear();
     mapController.value.move(
         LatLng(double.parse(lat.value.text), double.parse(lng.value.text)), 16);
     dataEditEvent = edit.EventByIDModel().obs;
@@ -278,35 +279,35 @@ class ContollerCreateOthersList extends GetxController {
       addressModel location =
           await getLatLong(long: lng.value.text, lat: lat.value.text);
       for (var item in listForm) {
-        List<FreeFormSubDetailList> subDetailList = [];
+        List<FreeFormSubDetaiOptionlList> subDetailList = [];
         String? section;
         int? type;
         if (item.radio != null) {
           section = item.radio!.title?.text;
           type = item.radio!.type;
           item.radio!.listevent?.forEach((e) {
-            subDetailList.add(FreeFormSubDetailList(optionName: e.text));
+            subDetailList.add(FreeFormSubDetaiOptionlList(optionName: e.text));
           });
         }
         if (item.dropdown != null) {
           section = item.dropdown!.title?.text;
           type = item.dropdown!.type;
           item.dropdown!.listevent?.forEach((e) {
-            subDetailList.add(FreeFormSubDetailList(optionName: e.text));
+            subDetailList.add(FreeFormSubDetaiOptionlList(optionName: e.text));
           });
         }
         if (item.checkbox != null) {
           section = item.checkbox!.title?.text;
           type = item.checkbox!.type;
           item.checkbox!.listevent?.forEach((e) {
-            subDetailList.add(FreeFormSubDetailList(optionName: e.text));
+            subDetailList.add(FreeFormSubDetaiOptionlList(optionName: e.text));
           });
         }
         if (item.textfield != null) {
           section = item.textfield!.title?.text;
           type = item.textfield!.type;
           item.textfield!.listevent?.forEach((e) {
-            subDetailList.add(FreeFormSubDetailList(optionName: e.text));
+            subDetailList.add(FreeFormSubDetaiOptionlList(optionName: e.text));
           });
         }
         if (item.image != null) {
