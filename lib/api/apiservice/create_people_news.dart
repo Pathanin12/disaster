@@ -16,7 +16,7 @@ Future<void> createPeopleNews(
           imageList.map((image) => {"image": image}).toList();
       final data = await dio.post('${url}CreatePeopleNews',
           data: {
-            "eventID": "0a77594f-93b3-4e6e-a23b-659072325bc7",
+            "eventID": "8bcfcf64-41f2-44b8-bc45-dd624d387ffc",
             "name": isChecked ? "ไม่ะบุตัวตน" : name,
             "anonymous": isChecked,
             "note": details ?? "",

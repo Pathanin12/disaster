@@ -39,6 +39,7 @@ class _FixRoleState extends State<FixRole> {
               InkWell(
                 onTap: (){
                   isAdmin=true;
+                  isVillager = false;
                   dataUser= ProfileModel(
                       profile: Profile(name:'Admin',
                           username: 'Admin@test.com',
@@ -68,6 +69,7 @@ class _FixRoleState extends State<FixRole> {
               InkWell(
                 onTap: (){
                   isAdmin=false;
+                  isVillager = false;
                   dataUser= ProfileModel(
                       profile: Profile(name:'เจ้าหน้าที่',
                           username: 'test@test.com',
@@ -96,6 +98,7 @@ class _FixRoleState extends State<FixRole> {
               ),
               InkWell(
                 onTap: (){
+                  isVillager = true;
                   Get.offAndToNamed(RouterName.userPage);
                   // Get.toNamed(RouterName.userPage);
                 },

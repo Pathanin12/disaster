@@ -419,7 +419,9 @@ class ContollerCreateList extends GetxController {
           ],
         ),
       );
-    } catch (_) {}
+    } catch (e) {
+      print('ERROR SUBMIT CREATE=> $e');
+    }
   }
 
   late MapShapeSource mapSource = const MapShapeSource.asset(

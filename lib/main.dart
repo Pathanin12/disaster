@@ -6,6 +6,7 @@ import 'package:disaster/screen/dashboard/viewdashboard.dart';
 import 'package:disaster/screen/drawer/admin/contollerdraweradmin.dart';
 import 'package:disaster/screen/drawer/admin/viewdraweradmin.dart';
 import 'package:disaster/screen/drawer/user/viewdraweruser.dart';
+import 'package:disaster/screen/villager/viewvillager.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:disaster/screen/home.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,10 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: RouterName.userPage,
           page: () => LandingPageUser(),
+        ),
+        GetPage(
+          name: RouterName.villager,
+          page: () => HomeViewWeb(),
         ),
         GetPage(
           name: RouterName.fixRole,
@@ -53,7 +58,12 @@ class MyApp extends StatelessWidget {
           return MaterialPageRoute(
             builder: (context) => FixRole(),
           );
-        } else if (settings.name == RouterName.adminPage) {
+        }else
+          if (settings.name == RouterName.villager) {
+            return MaterialPageRoute(
+              builder: (context) => HomeViewWeb(),
+            );
+          }  else if (settings.name == RouterName.adminPage) {
           return MaterialPageRoute(
             builder: (context) => LandingPageAdmin(),
           );

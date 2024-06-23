@@ -7,4 +7,5 @@ class RouterName{
   static String adminPage='/AdminPage';
   static String userPage='/UserPage';
   static String fixRole='/FixRole';
+  static String villager='/villager';
 }
