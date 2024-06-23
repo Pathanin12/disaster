@@ -81,9 +81,9 @@ class ContollerCreateList extends GetxController {
   NumberPaginatorController();
 
   final listGender=[
-    "ไม่ระบุ",
     "ชาย",
-    "หญิง"
+    "หญิง",
+    "ไม่ระบุ"
   ];
 
   editEvent(edit.EventByIDModel data)async{
