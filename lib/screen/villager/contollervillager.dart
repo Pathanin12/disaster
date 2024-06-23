@@ -12,9 +12,12 @@ class HomeController extends GetxController {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController detailsController = TextEditingController();
 
+  String eventID = Get.arguments['eventID'];
+
   @override
   void onInit() {
     super.onInit();
+    print("888 ${eventID.toString()}");
   }
 
   @override

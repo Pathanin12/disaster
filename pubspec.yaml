@@ -73,6 +73,7 @@ dependencies:
   http: ^1.2.1
   msh_checkbox: ^2.0.1
   flutter_map_cancellable_tile_provider: ^3.0.0
+  qrcode_reader_web: ^1.1.2
 
 
 

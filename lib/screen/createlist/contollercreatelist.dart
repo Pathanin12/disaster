@@ -81,9 +81,9 @@ class ContollerCreateList extends GetxController {
   NumberPaginatorController();
 
   final listGender=[
-    "ไม่ระบุ",
     "ชาย",
-    "หญิง"
+    "หญิง",
+    "ไม่ระบุ"
   ];
 
   editEvent(edit.EventByIDModel data)async{
@@ -419,7 +419,9 @@ class ContollerCreateList extends GetxController {
           ],
         ),
       );
-    } catch (_) {}
+    } catch (e) {
+      print('ERROR SUBMIT CREATE=> $e');
+    }
   }
 
   late MapShapeSource mapSource = const MapShapeSource.asset(

@@ -22,6 +22,7 @@
 // }
 
 import 'dart:convert';
+import 'package:disaster/router.dart';
 import 'package:disaster/screen/villager/contollervillager.dart';
 import 'package:disaster/api/apiservice/create_people_news.dart';
 import 'package:disaster/screen/villager/web_camera.dart';
@@ -43,30 +44,52 @@ class HomeViewWeb extends GetView<HomeController> {
 
     return Scaffold(
       appBar: AppBar(
-        titleSpacing: 0,
-        title: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                height: 50,
-                width: 50,
-                child: Image.asset(
-                  "assets/logo/logo.png",
-                  fit: BoxFit.cover,
+        backgroundColor: colorWhite,
+        leading: InkWell(
+          onTap: () {
+            Get.offAndToNamed(RouterName.userPage);
+          },
+          child: Container(
+            child: Row(
+              children: [
+                const SizedBox(
+                  width: 10,
                 ),
-              ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.zero,
+                      height: 50,
+                      width: 50,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage('assets/logo/logo.png'),
+                              fit: BoxFit.cover)),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'กระทรวงมหาดไทย',
+                        style: textStyle(context,
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                      Text(
+                        'Ministry of Interior. Thailand',
+                        style: textStyle(context, fontSize: 14),
+                      ),
+                    ])
+              ],
             ),
-            Text(
-              "กระทรวงมหาดไทย\nMinistry of Interior. Thailand",
-              style:
-                  textStyle(context, fontSize: 15, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.start,
-            ),
-          ],
+          ),
         ),
-        backgroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
           child: Column(
@@ -76,7 +99,6 @@ class HomeViewWeb extends GetView<HomeController> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
-                width: screenWidth * 0.5,
                 child: Text(
                   'ส่งรูปถ่าย',
                   style: textStyle(context,
@@ -462,13 +484,41 @@ class HomeViewWeb extends GetView<HomeController> {
             onPressed: () async {
               if (controller.images.isNotEmpty) {
                 // EventID
+                String eventid = controller.eventID;
                 String name = controller.nameController.text;
                 String details = controller.detailsController.text;
                 bool isChecked = controller.isChecked.value;
                 List<String> base64Images = controller.images
                     .map((image) => base64Encode(image))
                     .toList();
-                await createPeopleNews(base64Images, name, details, isChecked);
+                await createPeopleNews(
+                    base64Images, eventid, name, details, isChecked);
+                Get.dialog(
+                  AlertDialog(
+                    title: Text(
+                      'สำเร็จ',
+                      style: textStyle(Get.context!,
+                          fontSize: 14, color: colorBlack),
+                    ),
+                    content: Text(
+                      'ส่งรายการสำเร็จ',
+                      style: textStyle(Get.context!,
+                          fontSize: 14, color: colorBlack),
+                    ),
+                    actions: <Widget>[
+                      ElevatedButton(
+                        child: Text(
+                          'ตกลง',
+                          style: textStyle(Get.context!,
+                              fontSize: 14, color: colorBlack),
+                        ),
+                        onPressed: () {
+                          Get.back();
+                        },
+                      ),
+                    ],
+                  ),
+                );
               } else {
                 Get.dialog(
                   AlertDialog(
@@ -485,7 +535,7 @@ class HomeViewWeb extends GetView<HomeController> {
                     actions: <Widget>[
                       ElevatedButton(
                         child: Text(
-                          'OK',
+                          'ตกลง',
                           style: textStyle(context,
                               fontSize: 14, color: colorBlack),
                         ),

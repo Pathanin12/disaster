@@ -5,6 +5,7 @@ String pathQR = 'https://disasterweb.netlify.app/';
 String urlApiKey = 'http://cloud-api.win-victor.com/api/integrate/auth/';
 
 bool isAdmin = true;
+bool isVillager = false;
 ProfileModel? dataUser;
 
 List<Province> provinceList = [

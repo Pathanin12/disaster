@@ -30,7 +30,11 @@ class ContollerDetail extends GetxController {
 
   var selectChartY = 'จำนวนผู้บาดเจ็บ'.obs;
   var listChartY = ["จำนวนผู้บาดเจ็บ", "จำนวนผู้เสียชีวิต"].obs;
-
+  final listGender=[
+    "ชาย",
+    "หญิง",
+    "ไม่ระบุ"
+  ];
   List<String> category = [
     "อัคคีภัย",
     "อุทกภัย",
@@ -190,7 +194,7 @@ class ContollerDetail extends GetxController {
                                     child: Row(
                                       children: [
                                         Text(
-                                          '${index + 1}. ${dataEvent.value.events!.deceased!.deceaseList![index].name} เพศ ${dataEvent.value.events!.deceased!.deceaseList![index].sex} อายุ ${dataEvent.value.events!.deceased!.deceaseList![index].age} ปี',
+                                          '${index + 1}. ${dataEvent.value.events!.deceased!.deceaseList![index].name} เพศ ${listGender[dataEvent.value.events!.deceased!.deceaseList![index].sex!]} อายุ ${dataEvent.value.events!.deceased!.deceaseList![index].age} ปี',
                                           style: textStyle(
                                             context,
                                             fontSize: 13,
@@ -222,7 +226,7 @@ class ContollerDetail extends GetxController {
                                     child: Row(
                                       children: [
                                         Text(
-                                          '${index + 1}. ${dataEvent.value.events!.injured!.injureList![index].name} เพศ ${dataEvent.value.events!.injured!.injureList![index].sex} อายุ ${dataEvent.value.events!.injured!.injureList![index].age} ปี',
+                                          '${index + 1}. ${dataEvent.value.events!.injured!.injureList![index].name} เพศ ${listGender[dataEvent.value.events!.injured!.injureList![index].sex!]} อายุ ${dataEvent.value.events!.injured!.injureList![index].age} ปี',
                                           style: textStyle(
                                             context,
                                             fontSize: 13,
