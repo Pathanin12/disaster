@@ -853,6 +853,7 @@ class Detail extends StatelessWidget {
                             )),
                           ],
                         ),
+                        SizedBox(height: 40,),
                         Row(
                           children: [
                             InkWell(

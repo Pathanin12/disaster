@@ -83,7 +83,7 @@ class FreeFormDetailList {
   String? section;
   String? description;
   int? types;
-  List<FreeFormSubDetailList>? freeFormSubDetailList;
+  List<FreeFormSubDetaiOptionlList>? freeFormSubDetailList;
 
   FreeFormDetailList(
       {this.section, this.description, this.types, this.freeFormSubDetailList});
@@ -93,9 +93,9 @@ class FreeFormDetailList {
     description = json['description'];
     types = json['types'];
     if (json['freeFormSubDetailList'] != null) {
-      freeFormSubDetailList = <FreeFormSubDetailList>[];
+      freeFormSubDetailList = <FreeFormSubDetaiOptionlList>[];
       json['freeFormSubDetailList'].forEach((v) {
-        freeFormSubDetailList!.add(new FreeFormSubDetailList.fromJson(v));
+        freeFormSubDetailList!.add(new FreeFormSubDetaiOptionlList.fromJson(v));
       });
     }
   }
@@ -113,12 +113,12 @@ class FreeFormDetailList {
   }
 }
 
-class FreeFormSubDetailList {
+class FreeFormSubDetaiOptionlList {
   String? optionName;
 
-  FreeFormSubDetailList({this.optionName});
+  FreeFormSubDetaiOptionlList({this.optionName});
 
-  FreeFormSubDetailList.fromJson(Map<String, dynamic> json) {
+  FreeFormSubDetaiOptionlList.fromJson(Map<String, dynamic> json) {
     optionName = json['optionName'];
   }
 

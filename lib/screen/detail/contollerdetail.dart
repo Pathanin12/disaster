@@ -160,7 +160,7 @@ class ContollerDetail extends GetxController {
                               'รายชื่อ',
                               style: textStyle(context,
                                   fontSize: 18, fontWeight: FontWeight.bold),
-                            )),
+                            ),),
                       ),
                       SizedBox(
                         height: 10,

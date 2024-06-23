@@ -681,108 +681,147 @@ class CreateListOthers extends StatelessWidget {
                                             ),
                                           ],
                                         ),
-                                        Obx(
-                                          () => ListView.builder(
-                                            shrinkWrap: true,
-                                            itemCount: contoller.listForm[index]
-                                                .textfield!.listevent!.length,
-                                            itemBuilder:
-                                                (context, indexEvenList) {
-                                              return Container(
-                                                margin: EdgeInsets.all(10),
-                                                width: 200,
-                                                height: 50,
-                                                child: Row(
-                                                  children: [
-                                                    SizedBox(
-                                                      width: 15,
-                                                    ),
-                                                    Container(
-                                                      child: TextFormField(
-                                                        controller: contoller
-                                                                .listForm[index]
-                                                                .textfield!
-                                                                .listevent![
-                                                            indexEvenList],
-                                                        autofocus: false,
-                                                        decoration:
-                                                            InputDecoration(
-                                                          fillColor: colorWhite,
-                                                          hintText:
-                                                              "กล่องข้อความ",
-                                                          hintStyle: TextStyle(
-                                                              fontSize: 13.0,
-                                                              color: colorGrey,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400),
-                                                          filled: true,
-                                                          border:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                BorderSide(
-                                                              color: colorGrey,
-                                                              width: 2,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        5),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      width: 200,
-                                                      height: 50,
-                                                    ),
-                                                    InkWell(
-                                                      child: Container(
-                                                        height: 50,
-                                                        width: 50,
-                                                        // color: Colors.red,
-                                                        child: Icon(
-                                                          Icons.close,
-                                                          size: 20,
-                                                        ),
-                                                      ),
-                                                      onTap: () {
-                                                        contoller
-                                                            .listForm[index]
-                                                            .textfield!
-                                                            .listevent!
-                                                            .removeAt(
-                                                                indexEvenList);
-                                                      },
-                                                    )
-                                                  ],
+                                        SizedBox(height: 20),
+                                        Container(
+                                          child: TextFormField(
+                                            enabled: false,
+                                            controller: contoller
+                                                .listForm[index]
+                                                .textfield!
+                                                .listevent![
+                                            0],
+                                            autofocus: false,
+                                            decoration:
+                                            InputDecoration(
+                                              fillColor: colorWhite,
+                                              hintText:
+                                              "กล่องข้อความ",
+                                              hintStyle: TextStyle(
+                                                  fontSize: 13.0,
+                                                  color: colorGrey,
+                                                  fontWeight:
+                                                  FontWeight
+                                                      .w400),
+                                              filled: true,
+                                              border:
+                                              OutlineInputBorder(
+                                                borderSide:
+                                                BorderSide(
+                                                  color: colorGrey,
+                                                  width: 2,
                                                 ),
-                                              );
-                                            },
+                                                borderRadius:
+                                                BorderRadius
+                                                    .circular(
+                                                    5),
+                                              ),
+                                            ),
                                           ),
+                                          width: 200,
+                                          height: 50,
                                         ),
+                                        // Obx(
+                                        //   () => ListView.builder(
+                                        //     shrinkWrap: true,
+                                        //     itemCount: contoller.listForm[index]
+                                        //         .textfield!.listevent!.length,
+                                        //     itemBuilder:
+                                        //         (context, indexEvenList) {
+                                        //       return Container(
+                                        //         margin: EdgeInsets.all(10),
+                                        //         width: 200,
+                                        //         height: 50,
+                                        //         child: Row(
+                                        //           children: [
+                                        //             SizedBox(
+                                        //               width: 15,
+                                        //             ),
+                                        //             Container(
+                                        //               child: TextFormField(
+                                        //                 controller: contoller
+                                        //                         .listForm[index]
+                                        //                         .textfield!
+                                        //                         .listevent![
+                                        //                     indexEvenList],
+                                        //                 autofocus: false,
+                                        //                 decoration:
+                                        //                     InputDecoration(
+                                        //                   fillColor: colorWhite,
+                                        //                   hintText:
+                                        //                       "กล่องข้อความ",
+                                        //                   hintStyle: TextStyle(
+                                        //                       fontSize: 13.0,
+                                        //                       color: colorGrey,
+                                        //                       fontWeight:
+                                        //                           FontWeight
+                                        //                               .w400),
+                                        //                   filled: true,
+                                        //                   border:
+                                        //                       OutlineInputBorder(
+                                        //                     borderSide:
+                                        //                         BorderSide(
+                                        //                       color: colorGrey,
+                                        //                       width: 2,
+                                        //                     ),
+                                        //                     borderRadius:
+                                        //                         BorderRadius
+                                        //                             .circular(
+                                        //                                 5),
+                                        //                   ),
+                                        //                 ),
+                                        //               ),
+                                        //               width: 200,
+                                        //               height: 50,
+                                        //             ),
+                                        //             // InkWell(
+                                        //             //   child: Container(
+                                        //             //     height: 50,
+                                        //             //     width: 50,
+                                        //             //     // color: Colors.red,
+                                        //             //     child: Icon(
+                                        //             //       Icons.close,
+                                        //             //       size: 20,
+                                        //             //     ),
+                                        //             //   ),
+                                        //             //   onTap: () {
+                                        //             //     contoller
+                                        //             //         .listForm[index]
+                                        //             //         .textfield!
+                                        //             //         .listevent!
+                                        //             //         .removeAt(
+                                        //             //             indexEvenList);
+                                        //             //   },
+                                        //             // )
+                                        //           ],
+                                        //         ),
+                                        //       );
+                                        //     },
+                                        //   ),
+                                        // ),
                                         SizedBox(
                                           height: 20,
                                         ),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: OutlinedButton(
-                                            child: const Text('เพิ่มตัวเลือก',
-                                                style: TextStyle(
-                                                    color: Colors.blue)),
-                                            style: OutlinedButton.styleFrom(
-                                              foregroundColor: Colors.blue,
-                                              side: const BorderSide(
-                                                  color: Colors.grey),
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(4)),
-                                            ),
-                                            onPressed: () {
-                                              contoller.listForm[index]
-                                                  .textfield!.listevent!
-                                                  .add(TextEditingController());
-                                            },
-                                          ),
-                                        ),
+                                        // Container(
+                                        //   padding: EdgeInsets.all(10),
+                                        //   child: OutlinedButton(
+                                        //     child: const Text('เพิ่มตัวเลือก',
+                                        //         style: TextStyle(
+                                        //             color: Colors.blue)),
+                                        //     style: OutlinedButton.styleFrom(
+                                        //       foregroundColor: Colors.blue,
+                                        //       side: const BorderSide(
+                                        //           color: Colors.grey),
+                                        //       shape: RoundedRectangleBorder(
+                                        //           borderRadius:
+                                        //               BorderRadius.circular(4)),
+                                        //     ),
+                                        //     onPressed: () {
+                                        //       contoller.listForm[index]
+                                        //           .textfield!.listevent!
+                                        //           .add(TextEditingController());
+                                        //     },
+                                        //   ),
+                                        // ),
                                         Divider(
                                           thickness: 2,
                                         ),
