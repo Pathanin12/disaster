@@ -18,7 +18,7 @@ Future<void> createPeopleNews(
       final data = await dio.post('${url}CreatePeopleNews',
           data: {
             "eventID": eventID,
-            "name": isChecked ? "ไม่ะบุตัวตน" : name,
+            "name": isChecked ? "ไม่ระบุตัวตน" : name,
             "anonymous": isChecked,
             "note": details ?? "",
             "imageList": mappedImageList,

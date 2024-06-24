@@ -311,9 +311,53 @@ class DetailFreeForm extends StatelessWidget {
                                     ]
                                 ),
                               ),
+
                             ],
                           ):SizedBox();
                         },),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: contoller.dataEvent.value.events!.freeFormDetailList!.length,
+                          itemBuilder: (context, index) {
+                            TooltipBehavior _tooltipBehavior = TooltipBehavior(
+                                enable: true,
+                                tooltipPosition: TooltipPosition.pointer
+                            );
+                            return (contoller.dataEvent.value.events!.freeFormDetailList![index].types==4)?
+                            Container(
+                              padding: EdgeInsets.all(10),
+                              color: Colors.white,
+                              height: 600,
+                              child: ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount:contoller
+                                      .dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![0].textboxList!.length,
+                                  itemBuilder: (context, indexText) => Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(height: 10,),
+                                      Row(children: [
+                                        Text(contoller
+                                            .dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![0].textboxList![indexText].userName??'',
+                                            style: textStyle(context, fontSize: 13, color: colorBlack,fontWeight: FontWeight.bold)),SizedBox(width: 13,),
+
+                                      ],),
+                                      SizedBox(height: 10,),
+                                      Text(contoller
+                                          .dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![0].textboxList![indexText].userName??'',
+                                          style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+
+                                      SizedBox(height: 10,),
+                                      Divider(height: 1,color: Colors.grey,)
+                                    ],)),):SizedBox();
+                          },),
+
                         const SizedBox(
                           height: 20,
                         ),
@@ -370,10 +414,10 @@ class DetailFreeForm extends StatelessWidget {
                                           )
                                               : ( contoller.dataEvent.value.events!.statusItem == 1)
                                               ? SvgPicture.asset(
-                                            'assets/icons/svg/freeform1.svg',
+                                            'assets/icons/svg/freeform2.svg',
                                           )
                                               : SvgPicture.asset(
-                                            'assets/icons/svg/freeform2.svg',
+                                            'assets/icons/svg/freeform1.svg',
                                           )
                                         ),
                                         )

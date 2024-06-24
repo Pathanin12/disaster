@@ -175,14 +175,42 @@ class FreeFormDetailList {
 class FreeFormSubDetailList {
   String? id;
   String? optionName;
+  List<TextboxList>? textboxList;
+  List<ImageListDetail>? imageList;
+  List<FileList>? fileList;
   int? amount;
   String? color;
 
-  FreeFormSubDetailList({this.id, this.optionName, this.amount, this.color});
+  FreeFormSubDetailList(
+      {this.id,
+        this.optionName,
+        this.textboxList,
+        this.imageList,
+        this.fileList,
+        this.amount,
+        this.color});
 
   FreeFormSubDetailList.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     optionName = json['optionName'];
+    if (json['textboxList'] != null) {
+      textboxList = <TextboxList>[];
+      json['textboxList'].forEach((v) {
+        textboxList!.add(new TextboxList.fromJson(v));
+      });
+    }
+    if (json['imageList'] != null) {
+      imageList = <ImageListDetail>[];
+      json['imageList'].forEach((v) {
+        imageList!.add(new ImageListDetail.fromJson(v));
+      });
+    }
+    if (json['fileList'] != null) {
+      fileList = <FileList>[];
+      json['fileList'].forEach((v) {
+        fileList!.add(new FileList.fromJson(v));
+      });
+    }
     amount = json['amount'];
     color = json['color'];
   }
@@ -191,11 +219,75 @@ class FreeFormSubDetailList {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['optionName'] = this.optionName;
+    if (this.textboxList != null) {
+      data['textboxList'] = this.textboxList!.map((v) => v.toJson()).toList();
+    }
+    if (this.imageList != null) {
+      data['imageList'] = this.imageList!.map((v) => v.toJson()).toList();
+    }
+    if (this.fileList != null) {
+      data['fileList'] = this.fileList!.map((v) => v.toJson()).toList();
+    }
     data['amount'] = this.amount;
     data['color'] = this.color;
     return data;
   }
 }
+
+class TextboxList {
+  String? userName;
+  String? answer;
+
+  TextboxList({this.userName, this.answer});
+
+  TextboxList.fromJson(Map<String, dynamic> json) {
+    userName = json['userName'];
+    answer = json['answer'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['userName'] = this.userName;
+    data['answer'] = this.answer;
+    return data;
+  }
+}
+
+class ImageListDetail {
+  String? image;
+
+  ImageListDetail({this.image});
+
+  ImageListDetail.fromJson(Map<String, dynamic> json) {
+    image = json['image'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['image'] = this.image;
+    return data;
+  }
+}
+
+// class FileList {
+//   String? fileName;
+//   String? file;
+//
+//   FileList({this.fileName, this.file});
+//
+//   FileList.fromJson(Map<String, dynamic> json) {
+//     fileName = json['fileName'];
+//     file = json['file'];
+//   }
+//
+//   Map<String, dynamic> toJson() {
+//     final Map<String, dynamic> data = new Map<String, dynamic>();
+//     data['fileName'] = this.fileName;
+//     data['file'] = this.file;
+//     return data;
+//   }
+// }
+
 
 class LogList {
   String? staffID;

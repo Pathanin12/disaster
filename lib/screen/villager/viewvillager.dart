@@ -423,6 +423,7 @@ class HomeViewWeb extends GetView<HomeController> {
                             height: 5,
                           ),
                           TextField(
+                            controller: controller.detailsController,
                             maxLines: 5,
                             cursorColor: Colors.grey,
                             decoration: InputDecoration(
