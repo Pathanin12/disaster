@@ -9,7 +9,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../../model/freeformbyidmodel.dart';
 import '../../stye/colors.dart';
 import '../createlist/contollercreatelist.dart';
 import '../drawer/admin/contollerdraweradmin.dart';
@@ -269,6 +272,51 @@ class DetailFreeForm extends StatelessWidget {
                         const SizedBox(
                           height: 20,
                         ),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: contoller.dataEvent.value.events!.freeFormDetailList!.length,
+                          itemBuilder: (context, index) {
+                            TooltipBehavior _tooltipBehavior = TooltipBehavior(
+                                enable: true,
+                                tooltipPosition: TooltipPosition.pointer
+                            );
+                          return (contoller.dataEvent.value.events!.freeFormDetailList![index].types==0||contoller.dataEvent.value.events!.freeFormDetailList![index].types==1||contoller.dataEvent.value.events!.freeFormDetailList![index].types==2)?Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                  '${contoller.dataEvent.value.events!.freeFormDetailList![index].section}',
+                                  style: textStyle(context,
+                                      fontSize: 15,
+                                      color:  colorBlack,fontWeight: FontWeight.bold)),
+                              SizedBox(height: 10,),
+                              Container(
+                                height: 300,
+                                width: 300,
+                                child: SfCircularChart(
+                                    tooltipBehavior: _tooltipBehavior,
+                                    series: <CircularSeries>[
+                                      PieSeries<FreeFormSubDetailList, String>(
+                                          name:contoller.dataEvent.value.events!.freeFormDetailList![index].section,
+                                          dataLabelSettings: const DataLabelSettings(
+                                              isVisible: true,
+                                              // Positioning the data label
+                                              labelPosition: ChartDataLabelPosition.outside),
+                                          dataSource: contoller.dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList,
+                                          xValueMapper: (FreeFormSubDetailList data, _) => data.optionName,
+                                          yValueMapper: (FreeFormSubDetailList data, _) => data.amount,
+                                          dataLabelMapper: (FreeFormSubDetailList data, _) => data.amount.toString(),
+                                          // Radius of pie
+                                          radius: '70%'
+                                      )
+                                    ]
+                                ),
+                              ),
+                            ],
+                          ):SizedBox();
+                        },),
+                        const SizedBox(
+                          height: 20,
+                        ),
 
                         Stack(
                           children: [
@@ -308,7 +356,15 @@ class DetailFreeForm extends StatelessWidget {
                                                   .value.events!.longitude!)),
                                           width: 80,
                                           height: 80,
-                                          child: (contoller.dataEvent.value.events!.statusItem == 0)
+                                          child: InkWell(
+                                              onTap: ()async{
+                                                await launchUrl(
+                                                Uri.parse("https://www.google.co.th/maps/@${contoller.dataEvent
+                                                    .value.events!.latitude!},${contoller.dataEvent
+                                                    .value.events!.longitude!},17z?hl=th&entry=ttu"),
+                                                );
+                                              },
+                                              child:(contoller.dataEvent.value.events!.statusItem == 0)
                                               ? SvgPicture.asset(
                                             'assets/icons/svg/freeform0.svg',
                                           )
@@ -320,6 +376,7 @@ class DetailFreeForm extends StatelessWidget {
                                             'assets/icons/svg/freeform2.svg',
                                           )
                                         ),
+                                        )
                                       ],
                                     )
                                 ],
