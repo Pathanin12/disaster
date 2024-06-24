@@ -284,11 +284,11 @@ class ContollerCreateList extends GetxController {
           listLog.add(LogList(header: 'สถานะรายงาน',
               description: selectStatusList!.value));
         }
-        if(StatusList.indexOf(selectStatusrelevant!.value)!= dataEditEvent.value.events!.statusAgency){
+        if(StatusList.indexOf(selectStatusrelevant!.value)!= dataEditEvent.value.events!.statusRelatedAgency){
           listLog.add(LogList(header: 'สถานะหน่วยงานที่เกี่ยวข้อง',
               description: selectStatusrelevant!.value));
         }
-        if(StatusList.indexOf(selectStatusResponsible!.value)!= dataEditEvent.value.events!.statusRelatedAgency){
+        if(StatusList.indexOf(selectStatusResponsible!.value)!= dataEditEvent.value.events!.statusAgency){
           listLog.add(LogList(header: 'สถานะหน่วยงานที่รับผิดชอบ',
               description: selectStatusResponsible!.value));
         }
