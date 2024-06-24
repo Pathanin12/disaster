@@ -2133,7 +2133,7 @@ class _EditListFreeFormOthersState extends State<EditListFreeFormOthers> {
                                       borderRadius: BorderRadius.circular(5),
                                       color: colorAmber),
                                   child: Text(
-                                    'บันทึก',
+                                    'บันทึก1',
                                     style: textStyle(context,
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,

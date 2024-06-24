@@ -277,6 +277,7 @@ class ContollerEditOthersList extends GetxController {
               description:address.value.text.trim()));
         }
 
+        print("<><><><><><><><><><><>tet");
         dataUpdate= UpdateBy(
             name: dataUser!.profile!.name??'Unhnow',
             datetime: DateTime.now().toString(),
@@ -287,6 +288,7 @@ class ContollerEditOthersList extends GetxController {
             fileList: listFileBase64,
             reportDetail: remarkReport.value.text.trim()
         );
+        print("<><><><><><><><><><><>${dataUpdate.toJson()}");
       }else{
         uuid = const Uuid().v4();
       }
@@ -331,7 +333,6 @@ class ContollerEditOthersList extends GetxController {
           createBy: (dataEditEvent.value.events!=null)?null:dataUser!.profile!.name,
           statusItem: StatusList.indexOf(selectStatusList!.value),
           responsibleAgency: responsible.value.text.trim());
-      print(even.toJson());
       await UpdateEventFreeFrom(even).then((value) {});
       await clearData();
       showDialog(
