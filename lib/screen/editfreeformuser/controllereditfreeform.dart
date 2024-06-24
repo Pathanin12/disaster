@@ -319,6 +319,7 @@ class ContollerEditOthersList extends GetxController {
           datetime: date.value,
           eventName: nameCon.value.text.trim(),
           longitude: lng.value.text.trim(),
+          statusAgency: StatusList.indexOf(selectStatusResponsible!.value),
           latitude: lat.value.text.trim(),
           province: location.province,
           address: address.value.text.trim(),

@@ -620,6 +620,12 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "qrcode_reader_web",
+      "rootUri": "file:///Users/contactaisoft/.pub-cache/hosted/pub.dev/qrcode_reader_web-1.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "scan",
       "rootUri": "file:///Users/contactaisoft/.pub-cache/hosted/pub.dev/scan-1.6.0",
       "packageUri": "lib/",
@@ -848,7 +854,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2024-06-23T22:04:25.900378Z",
+  "generated": "2024-06-24T04:00:12.838328Z",
   "generator": "pub",
   "generatorVersion": "3.3.2"
 }
