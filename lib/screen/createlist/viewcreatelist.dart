@@ -1,3 +1,4 @@
+import 'package:disaster/api/latlongapi.dart';
 import 'package:disaster/model/createevenmodel.dart';
 import 'package:disaster/stye/colors.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -2285,11 +2286,15 @@ class CreateList extends StatelessWidget {
                                             InteractiveFlag.doubleTapDragZoom |
                                                 InteractiveFlag.drag,
                                       ),
+                                      onPointerUp: (v,c)async{
+                                        addressModel location =
+                                            await getLatLong(long: contoller.lng.value.text, lat: contoller.lat.value.text);
+                                        contoller.address.value.text=location.address!;
+                                      },
                                       onPositionChanged: (v, c) {
                                         contoller.lat.value.text =
-                                            v.center!.latitude.toString();
-                                        contoller.lng.value.text =
-                                            v.center!.longitude.toString();
+                                            contoller.mapController.value.camera.center.latitude.toString();
+                                        contoller.lng.value.text = contoller.mapController.value.camera.center.longitude.toString();
                                       }
 
                                       // maxZoom: 17,
@@ -2450,6 +2455,7 @@ class CreateList extends StatelessWidget {
                                         height: 100,
                                         color: colorWhite,
                                         child: TextFormField(
+                                          enabled: false,
                                           maxLines: 3,
                                           controller: contoller.address.value,
                                           decoration: InputDecoration(

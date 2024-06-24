@@ -279,10 +279,10 @@ class ContollerEditOthersList extends GetxController {
 
         print("<><><><><><><><><><><>tet");
         dataUpdate= UpdateBy(
-            name: dataUser!.profile!.name??'Unhnow',
+            name: (dataUser==null)?"":dataUser!.profile!.name??'Unhnow',
             datetime: DateTime.now().toString(),
-            staffID: dataUser!.profile!.code??'123',
-            userName: dataUser!.profile!.username??'test@test.com',
+            staffID: (dataUser==null)?"":dataUser!.profile!.code??'123',
+            userName: (dataUser==null)?"":dataUser!.profile!.username??'test@test.com',
             imageList: listImageBase64Log,
             logList: listLog,
             fileList: listFileBase64,
@@ -330,7 +330,7 @@ class ContollerEditOthersList extends GetxController {
           amphure: location.amphure,
           tambon: location.tambon,
           zipCode: location.zipCode,
-          createBy: (dataEditEvent.value.events!=null)?null:dataUser!.profile!.name,
+          createBy: (dataEditEvent.value.events!=null)?null:(dataUser==null)?'':dataUser!.profile!.name,
           statusItem: StatusList.indexOf(selectStatusList!.value),
           responsibleAgency: responsible.value.text.trim());
       await UpdateEventFreeFrom(even).then((value) {});

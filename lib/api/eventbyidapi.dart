@@ -21,8 +21,7 @@ Future<EventByIDModel>getEventByIDApi({required String Id})async{
       },
           options: Options(headers:{"Authorization":"Bearer $token"})
       );
-      // print('tttt ${data.statusCode}');
-      // print('tttt ${data.data}');
+
       if(data.statusCode==200){
         dataDashBoard = EventByIDModel.fromJson(data.data);
       }

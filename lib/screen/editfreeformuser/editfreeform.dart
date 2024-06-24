@@ -14,8 +14,10 @@ import 'package:latlong2/latlong.dart';
 import 'package:syncfusion_flutter_maps/maps.dart';
 // import 'package:vph_web_date_picker/vph_web_date_picker.dart';
 import '../../../../stye/font.dart';
+import '../../api/latlongapi.dart';
 import '../../model/createeventfreeform.dart';
 import '../../model/freeformbyidmodel.dart';
+import '../createlist/contollercreatelist.dart';
 import 'controllereditfreeform.dart';
 
 class EditListFreeFormOthers extends StatefulWidget {
@@ -1375,11 +1377,15 @@ class _EditListFreeFormOthersState extends State<EditListFreeFormOthers> {
                                             InteractiveFlag.doubleTapDragZoom |
                                                 InteractiveFlag.drag,
                                       ),
+                                      onPointerUp: (v,c)async{
+                                        addressModel location =
+                                        await getLatLong(long: contoller.lng.value.text, lat: contoller.lat.value.text);
+                                        contoller.address.value.text=location.address!;
+                                      },
                                       onPositionChanged: (v, c) {
                                         contoller.lat.value.text =
-                                            v.center!.latitude.toString();
-                                        contoller.lng.value.text =
-                                            v.center!.longitude.toString();
+                                            contoller.mapController.value.camera.center.latitude.toString();
+                                        contoller.lng.value.text = contoller.mapController.value.camera.center.longitude.toString();
                                       }
 
                                       // maxZoom: 17,
@@ -1547,6 +1553,7 @@ class _EditListFreeFormOthersState extends State<EditListFreeFormOthers> {
                                         ),
                                         height: 150,
                                         child: TextFormField(
+                                          enabled: false,
                                           maxLines: 300,
                                           controller: contoller.address.value,
                                           decoration: InputDecoration.collapsed(
@@ -2133,7 +2140,7 @@ class _EditListFreeFormOthersState extends State<EditListFreeFormOthers> {
                                       borderRadius: BorderRadius.circular(5),
                                       color: colorAmber),
                                   child: Text(
-                                    'บันทึก1',
+                                    'บันทึก',
                                     style: textStyle(context,
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,

@@ -10,7 +10,9 @@ Future<addressModel> getLatLong(
     {required String lat, required String long}) async {
   addressModel address = addressModel();
   try {
-    // var headers = {'Content-Type': 'application/json'};
+    var headers = {'Content-Type': 'application/json',
+      "Accept-Language": "th",
+    };
     var request = http.Request(
         'GET',
         Uri.parse(
@@ -25,10 +27,12 @@ Future<addressModel> getLatLong(
       var dataConvert = jsonDecode(jsonString);
 
       address = addressModel(
+        address: dataConvert['reversegeocode']['result'].toString(),
         province: dataConvert['reversegeocode']['addressparts']['province'].toString().split(" ")[0],
         amphure: dataConvert['reversegeocode']['addressparts']['city']??dataConvert['reversegeocode']['addressparts']['town'].toString(),
         tambon: dataConvert['reversegeocode']['addressparts']['municipality'].toString(),
         zipCode: dataConvert['reversegeocode']['addressparts']['postcode'].toString(),
+
       );
       print(address.toJson());
       // LatLongModel.

@@ -280,7 +280,8 @@ class DetailFreeForm extends StatelessWidget {
                                 enable: true,
                                 tooltipPosition: TooltipPosition.pointer
                             );
-                          return (contoller.dataEvent.value.events!.freeFormDetailList![index].types==0||contoller.dataEvent.value.events!.freeFormDetailList![index].types==1||contoller.dataEvent.value.events!.freeFormDetailList![index].types==2)?Column(
+                          return (contoller.dataEvent.value.events!.freeFormDetailList![index].types==0||contoller.dataEvent.value.events!.freeFormDetailList![index].types==1||contoller.dataEvent.value.events!.freeFormDetailList![index].types==2)?
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
@@ -318,6 +319,62 @@ class DetailFreeForm extends StatelessWidget {
                         const SizedBox(
                           height: 20,
                         ),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: contoller.dataEvent.value.events!.freeFormDetailList!.length,
+                          itemBuilder: (context, index) {
+                            return (contoller.dataEvent.value.events!.freeFormDetailList![index].types==4)?
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                    '${contoller.dataEvent.value.events!.freeFormDetailList![index].section}',
+                                    style: textStyle(context,
+                                        fontSize: 15,
+                                        color:  colorBlack,fontWeight: FontWeight.bold)),
+                                SizedBox(height: 10,),
+                                Container(
+                                  padding: EdgeInsets.all(10),
+                                  color: Colors.white,
+
+                                  child:  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                    Container(
+                                        decoration: BoxDecoration(
+                                            color: colorWhite,
+                                            borderRadius: BorderRadius.circular(5)),
+                                        child:GridView.builder(
+                                          shrinkWrap: true,
+                                          gridDelegate:
+                                          const SliverGridDelegateWithMaxCrossAxisExtent(
+                                            maxCrossAxisExtent: 150,
+                                            crossAxisSpacing: 3.0,
+                                            mainAxisSpacing: 10.0,
+                                            childAspectRatio: 0.8,
+                                          ),
+                                          itemCount: contoller.dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![0].imageList!.length,
+                                          itemBuilder: (context, indexImage) {
+                                            return
+                                              Container(
+                                                width: 200,
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                        image: NetworkImage(
+                                                            contoller.dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![0].imageList![indexImage].image!),
+                                                        fit: BoxFit.cover)),
+                                              );
+
+                                          },
+                                        ),
+                                      ),
+
+                                      SizedBox(height: 10,),
+
+                                    ],),),
+                              ],
+                            ):SizedBox();
+                          },),
                         const SizedBox(
                           height: 20,
                         ),
@@ -325,37 +382,102 @@ class DetailFreeForm extends StatelessWidget {
                           shrinkWrap: true,
                           itemCount: contoller.dataEvent.value.events!.freeFormDetailList!.length,
                           itemBuilder: (context, index) {
-                            TooltipBehavior _tooltipBehavior = TooltipBehavior(
-                                enable: true,
-                                tooltipPosition: TooltipPosition.pointer
-                            );
-                            return (contoller.dataEvent.value.events!.freeFormDetailList![index].types==4)?
-                            Container(
-                              padding: EdgeInsets.all(10),
-                              color: Colors.white,
-                              height: 600,
-                              child: ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount:contoller
-                                      .dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![0].textboxList!.length,
-                                  itemBuilder: (context, indexText) => Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(height: 10,),
-                                      Row(children: [
-                                        Text(contoller
-                                            .dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![0].textboxList![indexText].userName??'',
-                                            style: textStyle(context, fontSize: 13, color: colorBlack,fontWeight: FontWeight.bold)),SizedBox(width: 13,),
+                            return (contoller.dataEvent.value.events!.freeFormDetailList![index].types==5)?
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                             children: [
+                               Text(
+                                   '${contoller.dataEvent.value.events!.freeFormDetailList![index].section}',
+                                   style: textStyle(context,
+                                       fontSize: 15,
+                                       color:  colorBlack,fontWeight: FontWeight.bold)),
+                               SizedBox(height: 10,),
+                               Container(
+                                 padding: EdgeInsets.all(10),
+                                 color: Colors.white,
+                                 child: GridView.builder(
+                                shrinkWrap: true,
+                                gridDelegate:
+                                const SliverGridDelegateWithMaxCrossAxisExtent(
+                                  maxCrossAxisExtent: 250,
+                                  crossAxisSpacing: 3.0,
+                                  mainAxisSpacing: 5.0,
+                                  childAspectRatio: 5,
+                                ),
+                                itemCount:contoller.dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![0].fileList!.length,
+                                itemBuilder: (context, indexFile) {
+                                  return
+                                    InkWell(
+                                      onTap: (){
+                                        contoller.downloadFile(contoller.dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![0].fileList![indexFile].file!);
+                                      },
+                                      child: Container(
+                                        height: 50,
+                                        color: Colors.grey.shade100,
+                                        width: 250,
+                                        padding: EdgeInsets.all(4),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Icon(CupertinoIcons.doc_text_fill,size: 20,),SizedBox(width: 10,),
+                                            Text(contoller.dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![0].fileList![indexFile].fileName??'',
+                                                style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+                                            SizedBox(width: 10,),
+                                            Icon(Icons.download,size: 20,)
+                                          ],),
+                                      ),
+                                    );
 
-                                      ],),
-                                      SizedBox(height: 10,),
-                                      Text(contoller
-                                          .dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![0].textboxList![indexText].userName??'',
-                                          style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+                                },
+                                                            ),
+                              )
+                             ],
+                            ):SizedBox();
+                          },),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: contoller.dataEvent.value.events!.freeFormDetailList!.length,
+                          itemBuilder: (context, index) {
+                            return (contoller.dataEvent.value.events!.freeFormDetailList![index].types==3)?
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(contoller.dataEvent.value.events!.freeFormDetailList![index].section??'',
+                                    style: textStyle(context, fontSize: 15,fontWeight: FontWeight.bold, color: colorBlack)),
+                                SizedBox(height: 20,),
+                                Container(
+                                  padding: EdgeInsets.all(20),
+                                 decoration: BoxDecoration(
+                                   borderRadius: BorderRadius.circular(10),
+                                   color: Colors.white,
+                                 ),
+                                  child: ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount:contoller
+                                          .dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![0].textboxList!.length,
+                                      itemBuilder: (context, indexText) => Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          SizedBox(height: 10,),
+                                          Row(children: [
+                                            Text(contoller
+                                                .dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![0].textboxList![indexText].name??'',
+                                                style: textStyle(context, fontSize: 13, color: colorBlack,fontWeight: FontWeight.bold)),SizedBox(width: 13,),
 
-                                      SizedBox(height: 10,),
-                                      Divider(height: 1,color: Colors.grey,)
-                                    ],)),):SizedBox();
+                                          ],),
+                                          SizedBox(height: 10,),
+                                          Text(contoller
+                                              .dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![0].textboxList![indexText].answer??'',
+                                              style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+
+                                          SizedBox(height: 10,),
+                                          Divider(height: 1,color: Colors.grey,)
+                                        ],)),),
+                              ],
+                            ):SizedBox();
                           },),
 
                         const SizedBox(

@@ -235,19 +235,19 @@ class FreeFormSubDetailList {
 }
 
 class TextboxList {
-  String? userName;
+  String? name;
   String? answer;
 
-  TextboxList({this.userName, this.answer});
+  TextboxList({this.name, this.answer});
 
   TextboxList.fromJson(Map<String, dynamic> json) {
-    userName = json['userName'];
+    name = json['name'];
     answer = json['answer'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userName'] = this.userName;
+    data['name'] = this.name;
     data['answer'] = this.answer;
     return data;
   }

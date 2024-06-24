@@ -556,15 +556,17 @@ class ListDataNameModel {
 }
 class addressModel {
   String? amphure;
+  String? address;
   String? tambon;
   String? zipCode;
   String? province;
 
   addressModel(
-      { this.amphure, this.tambon, this.zipCode, this.province});
+      { this.amphure, this.tambon, this.zipCode, this.province,this.address});
   addressModel.fromJson(Map<String, dynamic> json) {
     amphure = json['amphure'];
     tambon = json['tambon'];
+    address = json['address'];
     zipCode = json['zipCode'];
     province = json['province'];
   }
@@ -573,6 +575,7 @@ class addressModel {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['amphure'] = this.amphure;
     data['tambon'] = this.tambon;
+    data['address'] = this.address;
     data['zipCode'] = this.zipCode;
     data['province'] = this.province;
     return data;
