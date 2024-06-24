@@ -323,6 +323,7 @@ class ContollerEditOthersList extends GetxController {
           latitude: lat.value.text.trim(),
           province: location.province,
           address: address.value.text.trim(),
+          updateBy:dataUpdate,
           freeFormAnswerList:listAnswerDetail,
           amphure: location.amphure,
           tambon: location.tambon,
