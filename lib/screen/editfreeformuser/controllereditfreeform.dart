@@ -294,21 +294,21 @@ class ContollerEditOthersList extends GetxController {
       for(int i=0;i<dataEditEvent.value.events!.freeFormDetailList!.length;i++){
 
         if(dataEditEvent.value.events!.freeFormDetailList![i].types==0){
-          listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,image: "",file: "",answer: "",freeFormAnswerDetailList:[FreeFormAnswerDetailList(id: listAnswer[i].dropdown!.valueID)]));
+          listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,image: "",file: "",fileName: "",answer: "",freeFormAnswerDetailList:[FreeFormAnswerDetailList(id: listAnswer[i].dropdown!.valueID)]));
         }else if(dataEditEvent.value.events!.freeFormDetailList![i].types==1){
           List<FreeFormAnswerDetailList> list =[];
           listAnswer[i].checkbox!.valueID!.forEach((element) {
             list.add(FreeFormAnswerDetailList(id: element));
           });
-          listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,image: "",file: "",answer: "", freeFormAnswerDetailList:list));
+          listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,image: "",file: "",fileName: "",answer: "", freeFormAnswerDetailList:list));
         }else if(dataEditEvent.value.events!.freeFormDetailList![i].types==2){
-          listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,image: "",file: "",answer: "",freeFormAnswerDetailList:[FreeFormAnswerDetailList(id: listAnswer[i].radio!.valueID)]));
+          listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,image: "",file: "",fileName: "",answer: "",freeFormAnswerDetailList:[FreeFormAnswerDetailList(id: listAnswer[i].radio!.valueID)]));
         }else if(dataEditEvent.value.events!.freeFormDetailList![i].types==3){
-          listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,image: "",file: "",answer: listAnswer[i].textfield!.value!.text.trim(),freeFormAnswerDetailList:[]));
+          listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,image: "",file: "",fileName: "",answer: listAnswer[i].textfield!.value!.text.trim(),freeFormAnswerDetailList:[]));
         }else if(dataEditEvent.value.events!.freeFormDetailList![i].types==4){
-          listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,image: listAnswer[i].image!.value,file: "",answer: "",freeFormAnswerDetailList:[]));
+          listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,fileName: "",image: listAnswer[i].image!.value,file: "",answer: "",freeFormAnswerDetailList:[]));
         }else if(dataEditEvent.value.events!.freeFormDetailList![i].types==5){
-          listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,image: "",file: listAnswer[i].file!.value,answer: "",freeFormAnswerDetailList:[]));
+          listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,image: "",fileName: listAnswer[i].file!.name,file: listAnswer[i].file!.value,answer: "",freeFormAnswerDetailList:[]));
         }
 
       }

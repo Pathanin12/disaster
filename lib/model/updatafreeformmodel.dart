@@ -152,6 +152,7 @@ class FreeFormSubDetailList {
 class FreeFormAnswerList {
   String? id;
   String? answer;
+  String? fileName;
   String? image;
   String? file;
   List<FreeFormAnswerDetailList>? freeFormAnswerDetailList;
@@ -159,6 +160,7 @@ class FreeFormAnswerList {
   FreeFormAnswerList(
       {this.id,
         this.answer,
+        this.fileName,
         this.image,
         this.file,
         this.freeFormAnswerDetailList});
@@ -166,6 +168,7 @@ class FreeFormAnswerList {
   FreeFormAnswerList.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     answer = json['answer'];
+    fileName = json['fileName'];
     image = json['image'];
     file = json['file'];
     if (json['freeFormAnswerDetailList'] != null) {
@@ -180,6 +183,7 @@ class FreeFormAnswerList {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['answer'] = this.answer;
+    data['fileName'] = this.fileName;
     data['image'] = this.image;
     data['file'] = this.file;
     if (this.freeFormAnswerDetailList != null) {
