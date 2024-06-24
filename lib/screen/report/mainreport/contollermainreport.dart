@@ -327,9 +327,6 @@ class ContollerMainReport extends GetxController {
         calPage = even.eventList!.length / 10;
         double modeCal = calPage % 1;
         int sum = int.parse(calPage.toString().split('.')[0]);
-        print('<><><><><><><><> ${calPage}');
-        print('<><><><><><><><> ${modeCal}');
-        print('<><><><><><><><> ${sum}');
         print(indexNumPage.value);
         if (modeCal > 0) {
           maxPage.value = sum + 1;
