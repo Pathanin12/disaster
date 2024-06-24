@@ -247,7 +247,7 @@ class ContollerCreateList extends GetxController {
 
 
       addressModel location =
-      await getLatLong(long: lng.value.text, lat: lat.value.text);
+      await getLatLong(long: lng.value.text, lat: lat.value.text,index: 1);
       List<ImageList> listImageBase64 = [],listImageBase64Log=[];
       List<FileList> listFileBase64=[];
       for (var element in listConvertImage) {

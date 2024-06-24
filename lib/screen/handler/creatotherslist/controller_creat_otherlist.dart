@@ -277,7 +277,7 @@ class ContollerCreateOthersList extends GetxController {
       }
       List<FreeFormDetailList> detailLists = [];
       addressModel location =
-          await getLatLong(long: lng.value.text, lat: lat.value.text);
+          await getLatLong(long: lng.value.text, lat: lat.value.text,index: 1);
       for (var item in listForm) {
         List<FreeFormSubDetaiOptionlList> subDetailList = [];
         String? section;

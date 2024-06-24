@@ -1379,7 +1379,7 @@ class _EditListFreeFormOthersState extends State<EditListFreeFormOthers> {
                                       ),
                                       onPointerUp: (v,c)async{
                                         addressModel location =
-                                        await getLatLong(long: contoller.lng.value.text, lat: contoller.lat.value.text);
+                                        await getLatLong(long: contoller.lng.value.text, lat: contoller.lat.value.text,index: 2);
                                         contoller.address.value.text=location.address!;
                                       },
                                       onPositionChanged: (v, c) {
