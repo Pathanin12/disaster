@@ -469,7 +469,7 @@ class ContollerFloodReport extends GetxController {
                 Expanded(
                   flex: 1,
                   child: Text(
-                    '${DateTime.parse(event[index].datetime!).day} ${mountAbbreviation[DateTime.parse(event[index].datetime!).month]} ${DateTime.parse(event[index].datetime!).year + 543}',
+                    '${DateTime.parse(event[index].datetime!).day} ${mountAbbreviation[DateTime.parse(event[index].datetime!).month-1]} ${DateTime.parse(event[index].datetime!).year + 543}',
                     style: textStyle(context, fontSize: 15, color: colorBlack),
                   ),
                 ),

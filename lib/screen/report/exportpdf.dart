@@ -52,7 +52,7 @@ pw.Row _buildHeader(pw.Font ttf, pw.MemoryImage imageProvider,DateTime startDate
                   style: pw.TextStyle(font: ttf, fontSize: 14)),
               pw.Text('ประเภท : ${type} ${(level!='จังหวัด')?'ระดับ : ประเทศ':'จังหวัด : ${province}'}',
                   style: pw.TextStyle(font: ttf, fontSize: 12)),
-              pw.Text((startDate==endDate)?'${startDate.day} ${mountList[startDate.month]} ${startDate.year+543}':'${startDate.day} ${mountList[startDate.month]} ${startDate.year+543} - ${endDate.day} ${mountList[endDate.month]} ${endDate.year+543} ',
+              pw.Text((startDate==endDate)?'${startDate.day} ${mountList[startDate.month-1]} ${startDate.year+543}':'${startDate.day} ${mountList[startDate.month-1]} ${startDate.year+543} - ${endDate.day} ${mountList[endDate.month-1]} ${endDate.year+543} ',
                   style: pw.TextStyle(font: ttf, fontSize: 12)),
             ],
           ),
