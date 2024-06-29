@@ -1,21 +1,36 @@
-class ProfileSaveModel {
-  String? code;
-  String? message;
-  ProfileSave? profile;
+class ProfileModel {
+  bool? success;
+  User? user;
 
-  ProfileSaveModel({this.code, this.message, this.profile});
+  ProfileModel({this.success, this.user});
 
-  ProfileSaveModel.fromJson(Map<String, dynamic> json) {
-    code = json['code'];
-    message = json['message'];
-    profile =
-    json['profile'] != null ? new ProfileSave.fromJson(json['profile']) : null;
+  ProfileModel.fromJson(Map<String, dynamic> json) {
+    success = json['success'];
+    user = json['user'] != null ? new User.fromJson(json['user']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['code'] = this.code;
-    data['message'] = this.message;
+    data['success'] = this.success;
+    if (this.user != null) {
+      data['user'] = this.user!.toJson();
+    }
+    return data;
+  }
+}
+
+class User {
+  Profile? profile;
+
+  User({this.profile});
+
+  User.fromJson(Map<String, dynamic> json) {
+    profile =
+    json['profile'] != null ? new Profile.fromJson(json['profile']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.profile != null) {
       data['profile'] = this.profile!.toJson();
     }
@@ -23,7 +38,7 @@ class ProfileSaveModel {
   }
 }
 
-class ProfileSave {
+class Profile {
   String? code;
   String? email;
   String? name;
@@ -32,24 +47,23 @@ class ProfileSave {
   String? username;
   String? usernameRef;
   Organization? organization;
-  int? role;
   String? roleCode;
   String? roleName;
+  int? role;
 
-  ProfileSave(
+  Profile(
       {this.code,
         this.email,
         this.name,
         this.refId,
         this.positionName,
-        this.role,
         this.username,
         this.usernameRef,
         this.organization,
         this.roleCode,
-        this.roleName});
+        this.roleName,this.role});
 
-  ProfileSave.fromJson(Map<String, dynamic> json) {
+  Profile.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     role = json['role'];
     email = json['email'];
@@ -93,8 +107,6 @@ class Organization {
   String? nameEn;
   String? fullNameEn;
   String? level;
-  OrganizationDirectParent? organizationDirectParent;
-  List<OrganizationDirectParent>? organizationsParent;
 
   Organization(
       {this.code,
@@ -104,74 +116,9 @@ class Organization {
         this.fullName,
         this.nameEn,
         this.fullNameEn,
-        this.level,
-        this.organizationDirectParent,
-        this.organizationsParent});
-
-  Organization.fromJson(Map<String, dynamic> json) {
-    code = json['code'];
-    refCode = json['refCode'];
-    refLevelCode = json['refLevelCode'];
-    name = json['name'];
-    fullName = json['fullName'];
-    nameEn = json['nameEn'];
-    fullNameEn = json['fullNameEn'];
-    level = json['level'];
-    organizationDirectParent = json['organizationDirectParent'] != null
-        ? new OrganizationDirectParent.fromJson(
-        json['organizationDirectParent'])
-        : null;
-    if (json['organizationsParent'] != null) {
-      organizationsParent = <OrganizationDirectParent>[];
-      json['organizationsParent'].forEach((v) {
-        organizationsParent!.add(new OrganizationDirectParent.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['code'] = this.code;
-    data['refCode'] = this.refCode;
-    data['refLevelCode'] = this.refLevelCode;
-    data['name'] = this.name;
-    data['fullName'] = this.fullName;
-    data['nameEn'] = this.nameEn;
-    data['fullNameEn'] = this.fullNameEn;
-    data['level'] = this.level;
-    if (this.organizationDirectParent != null) {
-      data['organizationDirectParent'] =
-          this.organizationDirectParent!.toJson();
-    }
-    if (this.organizationsParent != null) {
-      data['organizationsParent'] =
-          this.organizationsParent!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class OrganizationDirectParent {
-  String? code;
-  String? refCode;
-  String? refLevelCode;
-  String? name;
-  String? fullName;
-  String? nameEn;
-  String? fullNameEn;
-  String? level;
-
-  OrganizationDirectParent(
-      {this.code,
-        this.refCode,
-        this.refLevelCode,
-        this.name,
-        this.fullName,
-        this.nameEn,
-        this.fullNameEn,
         this.level});
 
-  OrganizationDirectParent.fromJson(Map<String, dynamic> json) {
+  Organization.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     refCode = json['refCode'];
     refLevelCode = json['refLevelCode'];

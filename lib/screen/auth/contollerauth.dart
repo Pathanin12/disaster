@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../api/authapi/checkapikey.dart';
+import '../../api/authapi/getprofile.dart';
+import '../../service/config.dart';
 import '../../service/recheckkeyapi.dart';
 
 class ContollerAuth extends GetxController {
@@ -14,13 +16,14 @@ class ContollerAuth extends GetxController {
     if (r.value != '') {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('apikey', r.value);
-      checkApiKey(keyApi: r.value);
+      checkProfile(apikey: r.value);
     } else {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? key = prefs.getString('apikey');
       if (key != null) {
-        await checkApiKey(keyApi: key);
+        await checkProfile(apikey: key);
       } else {
+        isVillager = false;
         Get.toNamed(RouterName.userPage);
       }
     }
@@ -30,5 +33,6 @@ class ContollerAuth extends GetxController {
   void onInit() {
     // TODO: implement onInit
     checkLogin();
+    // r.value = Get.parameters['code'] ?? '';
   }
 }

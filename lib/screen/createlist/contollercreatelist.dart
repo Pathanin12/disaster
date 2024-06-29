@@ -27,17 +27,22 @@ import '../../api/latlongapi.dart';
 import '../../api/map/searchmap.dart';
 import '../../model/createevenmodel.dart';
 import '../../model/eventbyidmodel.dart' as edit;
+import '../../model/listanswermodel.dart' as answer;
 import '../../model/searchmap.dart';
+import '../drawer/admin/contollerdraweradmin.dart';
 
 class ContollerCreateList extends GetxController {
   final keyForm = GlobalKey<FormState>();
-  final mapController = MapController().obs;
+  var mapController = MapController().obs;
   var dataEditEvent= edit.EventByIDModel().obs;
   addressModel locationAddress = addressModel();
-
+  var selectedField = ''.obs;
+  var listForm = <ListFormModel>[].obs;
+  var showDropdown = false.obs;
   var listStringNameDeleteDie =<String>[].obs;
   var listStringNameDeleteInjured =<String>[].obs;
   var listDataIDUserDie=<String>[].obs;
+  var listAnswer = <answer.ListAnswerModel>[].obs;
   var listDataIDUserInjured=<String>[].obs;
   var listDataDeleteIDUserInjured=<RemoveDeceasedList>[].obs;
   var listDataDeleteIDUserDie=<RemoveDeceasedList>[].obs;
@@ -87,6 +92,8 @@ class ContollerCreateList extends GetxController {
   ];
 
   editEvent(edit.EventByIDModel data)async{
+    // mapController.value.dispose();
+    // mapController = MapController().obs;
     await  clearData();
     dataEditEvent.value=data;
     nameCon.value.text = data.events!.eventName??'';
@@ -113,6 +120,7 @@ class ContollerCreateList extends GetxController {
     selectStatusResponsible!.value = StatusList[data.events!.statusAgency!];
     selectStatusrelevant!.value = StatusList[data.events!.statusRelatedAgency!];
     address.value.text= data.events!.address.toString()??'';
+
     mapController.value.move(
         LatLng(double.parse(lat.value.text), double.parse(lng.value.text)), 16);
     for(int i=0;i< data.events!.deceased!.deceaseList!.length;i++){
@@ -127,7 +135,50 @@ class ContollerCreateList extends GetxController {
       listTextNameInjured.add(TextEditingController(text: data.events!.injured!.injureList![i].name.toString()));
       listDataIDUserInjured.add(data.events!.injured!.injureList![i].id??'');
     }
-
+    for (var element in data.events!.freeFormDetailList!) {
+      if (element.types == 0) {
+        listAnswer.add(answer.ListAnswerModel(
+          dropdown: answer.Dropdown(
+            listoption: element.freeFormSubDetailList!
+                .map((e) => e.optionName ?? '')
+                .toList(),
+            listoptionID:
+            element.freeFormSubDetailList!.map((e) => e.id ?? '').toList(),
+          ),
+        ));
+      } else if (element.types == 1) {
+        List<bool> list=[];
+        for (var element in element.freeFormSubDetailList!) {
+          list.add(false);
+        }
+        listAnswer.add(answer.ListAnswerModel(
+            checkbox: answer.Checkbox(
+              listoption:
+              element.freeFormSubDetailList!.map((e) => e.optionName ?? '').toList(),
+              listoptionID:
+              element.freeFormSubDetailList!.map((e) => e.id ?? '').toList(),
+              valueID: [],
+              value: [],
+              listvalueoption:list,
+            )));
+      } else if (element.types == 2) {
+        listAnswer.add(answer.ListAnswerModel(
+          radio:  answer.Dropdown(
+            listoption: element.freeFormSubDetailList!
+                .map((e) => e.optionName ?? '')
+                .toList(),
+            listoptionID:
+            element.freeFormSubDetailList!.map((e) => e.id ?? '').toList(),
+          ),
+        ));
+      } else if (element.types == 3) {
+        listAnswer.add(answer.ListAnswerModel(textfield: answer.Textfield(value:TextEditingController())));
+      } else if (element.types == 4) {
+        listAnswer.add(answer.ListAnswerModel(image: answer.Image(value: "")));
+      } else if (element.types == 5) {
+        listAnswer.add(answer.ListAnswerModel(file: answer.Image(value: "")));
+      }
+    }
   }
 
   UpdateListGenderDie(String gender, int index){
@@ -185,8 +236,8 @@ class ContollerCreateList extends GetxController {
     selectStatusResponsible!.value = 'รับเรื่อง';
     selectStatusrelevant!.value = 'รับเรื่อง';
     address.value.text='';
-    mapController.value.move(
-        LatLng(double.parse(lat.value.text), double.parse(lng.value.text)), 16);
+    // mapController.value.move(
+    //     LatLng(latDefault, lngDefault), 16);
     dataEditEvent= edit.EventByIDModel().obs;
     listTextNameDie.clear();
     listTextAgeDie.clear();
@@ -243,8 +294,11 @@ class ContollerCreateList extends GetxController {
     try {
       List<DeceaseList> listDataDie=[];
       List<DeceaseList> listDataInjured=[];
+      List<FreeFormDetailList> detailLists = [];
+      List<FreeFormAnswerList> listAnswerDetail=[];
       String uuid='';
-
+      final LandingPageControllerAdmin landingPageController =
+      Get.put(LandingPageControllerAdmin(), permanent: false);
 
       addressModel location =
       await getLatLong(long: lng.value.text, lat: lat.value.text,index: 1);
@@ -310,17 +364,89 @@ class ContollerCreateList extends GetxController {
         }
 
         dataUpdate= UpdateBy(
-            name: dataUser!.profile!.name,
+            name: landingPageController.dataUser!.value.profile!.name,
             datetime: DateTime.now().toString(),
-            staffID: dataUser!.profile!.code,
-            userName: dataUser!.profile!.username,
+            staffID: landingPageController.dataUser!.value.profile!.code,
+            userName: landingPageController.dataUser!.value.profile!.username,
             imageList: listImageBase64Log,
             logList: listLog,
             fileList: listFileBase64,
           reportDetail: remarkReport.value.text.trim()
         );
+
+        for(int i=0;i<dataEditEvent.value.events!.freeFormDetailList!.length;i++){
+
+          if(dataEditEvent.value.events!.freeFormDetailList![i].types==0){
+            listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,image: "",file: "",fileName: "",answer: "",freeFormAnswerDetailList:[FreeFormAnswerDetailList(id: listAnswer[i].dropdown!.valueID)]));
+          }else if(dataEditEvent.value.events!.freeFormDetailList![i].types==1){
+            List<FreeFormAnswerDetailList> list =[];
+            listAnswer[i].checkbox!.valueID!.forEach((element) {
+              list.add(FreeFormAnswerDetailList(id: element));
+            });
+            listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,image: "",file: "",fileName: "",answer: "", freeFormAnswerDetailList:list));
+          }else if(dataEditEvent.value.events!.freeFormDetailList![i].types==2){
+            listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,image: "",file: "",fileName: "",answer: "",freeFormAnswerDetailList:[FreeFormAnswerDetailList(id: listAnswer[i].radio!.valueID)]));
+          }else if(dataEditEvent.value.events!.freeFormDetailList![i].types==3){
+            listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,image: "",file: "",fileName: "",answer: listAnswer[i].textfield!.value!.text.trim(),freeFormAnswerDetailList:[]));
+          }else if(dataEditEvent.value.events!.freeFormDetailList![i].types==4){
+            listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,fileName: "",image: listAnswer[i].image!.value,file: "",answer: "",freeFormAnswerDetailList:[]));
+          }else if(dataEditEvent.value.events!.freeFormDetailList![i].types==5){
+            listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,image: "",fileName: listAnswer[i].file!.name,file: listAnswer[i].file!.value,answer: "",freeFormAnswerDetailList:[]));
+          }
+
+        }
+
       }else{
         uuid = const Uuid().v4();
+        for (var item in listForm) {
+          List<FreeFormSubDetailList> subDetailList = [];
+          String? section;
+          int? type;
+          if (item.radio != null) {
+            section = item.radio!.title?.text;
+            type = item.radio!.type;
+            item.radio!.listevent?.forEach((e) {
+              subDetailList.add(FreeFormSubDetailList(optionName: e.text));
+            });
+          }
+          if (item.dropdown != null) {
+            section = item.dropdown!.title?.text;
+            type = item.dropdown!.type;
+            item.dropdown!.listevent?.forEach((e) {
+              subDetailList.add(FreeFormSubDetailList(optionName: e.text));
+            });
+          }
+          if (item.checkbox != null) {
+            section = item.checkbox!.title?.text;
+            type = item.checkbox!.type;
+            item.checkbox!.listevent?.forEach((e) {
+              subDetailList.add(FreeFormSubDetailList(optionName: e.text));
+            });
+          }
+          if (item.textfield != null) {
+            section = item.textfield!.title?.text;
+            type = item.textfield!.type;
+            item.textfield!.listevent?.forEach((e) {
+              subDetailList.add(FreeFormSubDetailList(optionName: e.text));
+            });
+          }
+          if (item.image != null) {
+            section = item.image!.title?.text;
+            type = item.image!.type;
+          }
+          if (item.file != null) {
+            section = item.file!.title?.text;
+            type = item.file!.type;
+          }
+          if (section != null && type != null) {
+            detailLists.add(FreeFormDetailList(
+              description: "",
+              section: section,
+              types: type,
+              freeFormSubDetailList: subDetailList,
+            ));
+          }
+        }
       }
       for(int i=0;i<listDataIDUserDie.length;i++){
           if(listDataIDUserDie[i]=='new'){
@@ -359,8 +485,9 @@ class ContollerCreateList extends GetxController {
           amphure: location.amphure,
           tambon: location.tambon,
           zipCode: location.zipCode,
+          freeFormAnswerList:(!isAdmin)?listAnswerDetail:null,
           updateBy:dataUpdate,
-          createBy: (dataEditEvent.value.events!=null)?null:dataUser!.profile!.name,
+          createBy: (dataEditEvent.value.events!=null)?null:landingPageController.dataUser!.value.profile!.name,
           imageDeleteList: listDeleteImage,
           receiveFrom: createBy.value.text.trim(),
           deceased: Deceased(
@@ -381,11 +508,12 @@ class ContollerCreateList extends GetxController {
               injureList:  listDataInjured
           ),
           statusRelatedAgency: StatusResponsible.indexOf(selectStatusrelevant!.value),
-
           statusAgency:
           Statusrelevant.indexOf(selectStatusResponsible!.value),
           statusItem: StatusList.indexOf(selectStatusList!.value),
-          responsibleAgency: responsible.value.text.trim());
+          responsibleAgency: responsible.value.text.trim(),
+           freeFormDetailList: detailLists,
+      );
       await createEvenApi(even).then((value) {});
       await clearData();
       showDialog(
@@ -487,6 +615,46 @@ class ContollerCreateList extends GetxController {
 
 
   }
+  selectedFileSingle(BuildContext context,{required int type,required int index}) async {
+    if(type==4){
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['png', 'jpg', 'jpeg'],
+      );
+      if (result != null) {
+        Uint8List fileBytes = result.files.first.bytes!;
+        String fileName = result.files.first.name;
+        listAnswer[index].image!.value="data:image/png;base64,${base64Encode(fileBytes)}";
+
+      }
+
+    }else if(type==5){
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['pdf', 'xlsx', 'doc','docx'],
+      );
+      if (result != null) {
+        Uint8List fileBytes = result.files.first.bytes!;
+        String fileName = result.files.first.name;
+        listAnswer[index].file!.name=fileName;
+        if(result.files.first.extension=='pdf'){
+          listAnswer[index].file!.value="data:application/pdf;base64,${base64Encode(fileBytes)}";
+
+        }else if(result.files.first.extension=='xlsx'){
+          listAnswer[index].file!.value="data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,${base64Encode(fileBytes)}";
+
+        }else if(result.files.first.extension=='docx'){
+          listAnswer[index].file!.value="data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,${base64Encode(fileBytes)}";
+
+        }else if(result.files.first.extension=='doc'){
+          listAnswer[index].file!.value="data:application/msword;base64,${base64Encode(fileBytes)}";
+
+        }
+      }
+
+    }
+
+  }
 
 //   Future<void> pickImageFeed(ImageSource source, int index,
 //       {required BuildContext context,
@@ -515,8 +683,6 @@ class ContollerCreateList extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    lat.value.text = "18.3170581";
-    lng.value.text = "99.3986862";
   }
   Future<void>setLoacationAddress()async{
 
@@ -578,6 +744,200 @@ class addressModel {
     data['address'] = this.address;
     data['zipCode'] = this.zipCode;
     data['province'] = this.province;
+    return data;
+  }
+}
+
+class ListFormModel {
+  String? typeform;
+  Textfield? textfield;
+  MyDropdown? dropdown;
+  MyCheckBox? checkbox;
+  MyRadio? radio;
+  MyImg? image;
+  MyFile? file;
+  // List<String>? imageList;
+  // List<String>? fileList;
+
+  ListFormModel({
+    this.typeform,
+    this.textfield,
+    this.dropdown,
+    this.checkbox,
+    this.radio,
+    this.image,
+    this.file,
+    // this.imageList,
+    // this.fileList
+  });
+
+  ListFormModel.fromJson(Map<String, dynamic> json) {
+    typeform = json['typeform'];
+    textfield = json['textfield'] != null
+        ? new Textfield.fromJson(json['textfield'])
+        : null;
+    dropdown =
+    json['dropdown'] != null ? MyDropdown.fromJson(json['dropdown']) : null;
+    checkbox =
+    json['checkbox'] != null ? MyCheckBox.fromJson(json['checkbox']) : null;
+    radio = json['radio'] != null ? MyRadio.fromJson(json['radio']) : null;
+    image = json['image'] != null ? MyImg.fromJson(json['image']) : null;
+    file = json['file'] != null ? MyFile.fromJson(json['file']) : null;
+    // imageList = json['imageList'].cast<String>();
+    // fileList = json['fileList'].cast<String>();
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['typeform'] = this.typeform;
+    if (this.textfield != null) {
+      data['textfield'] = this.textfield!.toJson();
+    }
+    if (this.dropdown != null) {
+      data['dropdown'] = this.dropdown!.toJson();
+    }
+    if (this.checkbox != null) {
+      data['checkbox'] = this.checkbox!.toJson();
+    }
+    if (this.radio != null) {
+      data['radio'] = this.radio!.toJson();
+    }
+    if (this.image != null) {
+      data['image'] = this.image!.toJson();
+    }
+    if (this.file != null) {
+      data['file'] = this.file!.toJson();
+    }
+    // data['imageList'] = this.imageList;
+    // data['fileList'] = this.imageList;
+    return data;
+  }
+}
+
+class Textfield {
+  TextEditingController? title;
+  RxList<TextEditingController>? listevent;
+  int type = 3;
+
+  Textfield({this.title, this.listevent, this.type = 3});
+
+  Textfield.fromJson(Map<String, dynamic> json) {
+    title = json['title'].cast<TextEditingController>();
+    listevent = json['listevent'].cast<TextEditingController>();
+    type = json['type'] ?? 3;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['title'] = this.title;
+    data['listevent'] = this.listevent;
+    data['type'] = this.type;
+    return data;
+  }
+}
+
+class MyDropdown {
+  TextEditingController? title;
+  RxList<TextEditingController>? listevent;
+  int type = 0;
+
+  MyDropdown({this.title, this.listevent, this.type = 0});
+
+  MyDropdown.fromJson(Map<String, dynamic> json) {
+    title = json['title'].cast<TextEditingController>();
+    listevent = json['listevent'].cast<TextEditingController>();
+    type = json['type'] ?? 0;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['title'] = this.title;
+    data['listevent'] = this.listevent;
+    data['type'] = this.type;
+    return data;
+  }
+}
+
+class MyCheckBox {
+  TextEditingController? title;
+  RxList<TextEditingController>? listevent;
+  int type = 1;
+
+  MyCheckBox({this.title, this.listevent, this.type = 1});
+
+  MyCheckBox.fromJson(Map<String, dynamic> json) {
+    title = json['title'].cast<TextEditingController>();
+    listevent = json['listevent'].cast<TextEditingController>();
+    type = json['type'] ?? 1;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['title'] = this.title;
+    data['listevent'] = this.listevent;
+    data['type'] = this.type;
+    return data;
+  }
+}
+
+class MyRadio {
+  TextEditingController? title;
+  RxList<TextEditingController>? listevent;
+  int type = 2;
+
+  MyRadio({this.title, this.listevent, this.type = 2});
+
+  MyRadio.fromJson(Map<String, dynamic> json) {
+    title = json['title'].cast<TextEditingController>();
+    listevent = json['listevent'].cast<TextEditingController>();
+    type = json['type'] ?? 2;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['title'] = this.title;
+    data['listevent'] = this.listevent;
+    data['type'] = this.type;
+    return data;
+  }
+}
+
+class MyImg {
+  TextEditingController? title;
+  int type = 4;
+
+  MyImg({this.title, this.type = 4});
+
+  MyImg.fromJson(Map<String, dynamic> json) {
+    title = json['title'].cast<TextEditingController>();
+    type = json['type'] ?? 4;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['title'] = this.title;
+    data['type'] = this.type;
+
+    return data;
+  }
+}
+
+class MyFile {
+  TextEditingController? title;
+  int type = 5;
+
+  MyFile({this.title, this.type = 5});
+
+  MyFile.fromJson(Map<String, dynamic> json) {
+    title = json['title'].cast<TextEditingController>();
+    type = json['type'] ?? 5;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['title'] = this.title;
+    data['type'] = this.type;
+
     return data;
   }
 }

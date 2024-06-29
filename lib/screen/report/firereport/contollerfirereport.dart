@@ -1,9 +1,11 @@
+import 'dart:io';
 import 'dart:js';
 import 'dart:typed_data';
 import 'dart:ui';
 import 'dart:html' as html;
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:disaster/model/getalleventmodel.dart';
+import 'package:disaster/screen/detail/viewdetail.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,11 +15,13 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:just_the_tooltip/just_the_tooltip.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:number_paginator/number_paginator.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_maps/maps.dart';
+import 'package:widgets_to_image/widgets_to_image.dart';
 import '../../../api/map/searchmap.dart';
 import '../../../api/report/mainreportapi.dart';
 import '../../../model/searchmap.dart';
@@ -29,8 +33,9 @@ import '../../drawer/admin/contollerdraweradmin.dart';
 
 class ContollerFireReport extends GetxController {
   QrPainter? _painter;
+  final tooltipController = JustTheController();
   GlobalKey _globalKey = new GlobalKey();
-  var title = 'รายงานอัคคีภัย'.obs;
+  var title = 'ดูรายงาน'.obs;
   RxInt Index = 0.obs;
   RxInt IndexChart = 0.obs;
   RxInt maxPage = 1.obs;
@@ -55,8 +60,13 @@ class ContollerFireReport extends GetxController {
   searchMap(String data)async{
     listSearchMap.value=await searchMapApi(data);
   }
-
-
+var selectViolence="เลือกทั้งหมด".obs;
+var listViolence=[
+  "เล็กน้อย",
+  "ปานกลาง",
+  "รุนแรง",
+  "เลือกทั้งหมด"
+].obs;
   var selectProvince = provinceList[0].obs;
   RxString? selectLevel = 'ประเทศ'.obs;
   List<String> level = [
@@ -77,7 +87,7 @@ class ContollerFireReport extends GetxController {
     "41-60",
     "61 ขึ้นไป",
   ];
-
+  WidgetsToImageController controllerImage = WidgetsToImageController();
   late MapShapeSource mapSource = const MapShapeSource.asset(
     "assets/world_map.json",
     shapeDataField: "name",
@@ -227,7 +237,8 @@ class ContollerFireReport extends GetxController {
        provinceID: selectProvince.value.id,
        statusItem:StatusList.indexOf(selectStatusItem.value) ,
        statusAgency:StatusList.indexOf(selectStatusAgency.value) ,
-       responsibleAgency: responsibleAgency.value.text,
+       responsibleAgency: searchAgency.value.text,
+       violence: listViolence.indexOf(selectViolence.value)
      );
      updateMaxPage(allEvent.value);
      listWidgetMark = <Widget>[
@@ -245,71 +256,107 @@ class ContollerFireReport extends GetxController {
                    double.parse(element.longitude!)),
                width: 80,
                height: 80,
-               child: InkWell(
-                 onTap: (){
-                   final LandingPageControllerAdmin landingPageController =
-                   Get.put(LandingPageControllerAdmin(), permanent: false);
-                   final ContollerDetail contollerEvent =
-                   Get.put(ContollerDetail(), permanent: false);
-                   contollerEvent.getEvent(element.eventID!);
-                   landingPageController.tabIndex.value=7;
-                 },
-                 child: (element.disasterType == 0 && element.statusItem == 0)
-                     ? SvgPicture.asset(
-                   'assets/icons/svg/fire0.svg',
-                 )
-                     : (element.disasterType == 0 && element.statusItem == 1)
-                     ? SvgPicture.asset(
-                   'assets/icons/svg/fire1.svg',
-                 )
-                     : (element.disasterType == 0 && element.statusItem == 2)
-                     ? SvgPicture.asset(
-                   'assets/icons/svg/fire2.svg',
-                 )
-                     : (element.disasterType == 1 && element.statusItem == 0)
-                     ? SvgPicture.asset(
-                   'assets/icons/svg/flood0.svg',
-                 )
-                     : (element.disasterType == 1 &&
-                     element.statusItem == 1)
-                     ? SvgPicture.asset(
-                   'assets/icons/svg/flood1.svg',
-                 )
-                     : (element.disasterType == 1 &&
-                     element.statusItem == 2)
-                     ? SvgPicture.asset(
-                   'assets/icons/svg/flood2.svg',
-                 )
-                     : (element.disasterType == 2 &&
-                     element.statusItem == 0)
-                     ? SvgPicture.asset(
-                   'assets/icons/svg/windstorm0.svg',
-                 )
-                     : (element.disasterType == 2 &&
-                     element.statusItem == 1)
-                     ? SvgPicture.asset(
-                   'assets/icons/svg/windstorm1.svg',
-                 )
-                     : (element.disasterType == 2 &&
-                     element.statusItem == 2)
-                     ? SvgPicture.asset(
-                   'assets/icons/svg/windstorm2.svg',
-                 )
-                     : (element.disasterType == 3 &&
-                     element.statusItem == 0)
-                     ? SvgPicture.asset(
-                   'assets/icons/svg/forestfire0.svg',
-                 )
-                     : (element.disasterType ==
-                     3 &&
-                     element.statusItem ==
-                         1)
-                     ? SvgPicture.asset(
-                   'assets/icons/svg/forestfire1.svg',
-                 )
-                     : SvgPicture.asset(
-                   'assets/icons/svg/forestfire2.svg',
+               child: JustTheTooltip(
+                 controller: tooltipController,
+                 child: InkWell(
+
+                   onTap: (){
+                     final LandingPageControllerAdmin landingPageController =
+                     Get.put(LandingPageControllerAdmin(), permanent: false);
+                     final ContollerDetail contollerEvent =
+                     Get.put(ContollerDetail(), permanent: false);
+                     contollerEvent.getEvent(element.eventID!);
+                     landingPageController.tabIndex.value=7;
+                   },
+                   child: (element.disasterType == 0 && element.statusItem == 0)
+                       ? SvgPicture.asset(
+                     'assets/icons/svg/fire0.svg',
+                   )
+                       : (element.disasterType == 0 && element.statusItem == 1)
+                       ? SvgPicture.asset(
+                     'assets/icons/svg/fire1.svg',
+                   )
+                       : (element.disasterType == 0 && element.statusItem == 2)
+                       ? SvgPicture.asset(
+                     'assets/icons/svg/fire2.svg',
+                   )
+                       : (element.disasterType == 1 && element.statusItem == 0)
+                       ? SvgPicture.asset(
+                     'assets/icons/svg/flood0.svg',
+                   )
+                       : (element.disasterType == 1 &&
+                       element.statusItem == 1)
+                       ? SvgPicture.asset(
+                     'assets/icons/svg/flood1.svg',
+                   )
+                       : (element.disasterType == 1 &&
+                       element.statusItem == 2)
+                       ? SvgPicture.asset(
+                     'assets/icons/svg/flood2.svg',
+                   )
+                       : (element.disasterType == 2 &&
+                       element.statusItem == 0)
+                       ? SvgPicture.asset(
+                     'assets/icons/svg/windstorm0.svg',
+                   )
+                       : (element.disasterType == 2 &&
+                       element.statusItem == 1)
+                       ? SvgPicture.asset(
+                     'assets/icons/svg/windstorm1.svg',
+                   )
+                       : (element.disasterType == 2 &&
+                       element.statusItem == 2)
+                       ? SvgPicture.asset(
+                     'assets/icons/svg/windstorm2.svg',
+                   )
+                       : (element.disasterType == 3 &&
+                       element.statusItem == 0)
+                       ? SvgPicture.asset(
+                     'assets/icons/svg/forestfire0.svg',
+                   )
+                       : (element.disasterType ==
+                       3 &&
+                       element.statusItem ==
+                           1)
+                       ? SvgPicture.asset(
+                     'assets/icons/svg/forestfire1.svg',
+                   )
+                       : SvgPicture.asset(
+                     'assets/icons/svg/forestfire2.svg',
+                   ),
                  ),
+                 content: Container(
+                   width: 200,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.grey.shade200,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
+                    ),
+                   child:  Padding(
+                     padding: EdgeInsets.all(8.0),
+                     child: Column(
+                       crossAxisAlignment: CrossAxisAlignment.start,
+                       mainAxisSize: MainAxisSize.min,
+                       children: [
+                         Text(
+                           '${element.province.toString()}',style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold),
+                         ),
+                         SizedBox(height: 10,),
+                         Text(
+                           '${element.eventName.toString()}',style: TextStyle(fontSize: 14),
+                         ),
+                       ],
+                     ),
+                   ),
+                 ),
+
                )
            ),
          ],
@@ -322,19 +369,18 @@ class ContollerFireReport extends GetxController {
 
   updateMaxPage(GetAllEventModel? even) async {
     if (even != null) {
-      if (even.eventList!.length > 10) {
-        double calPage = 0.0;
-        calPage = even.eventList!.length / 10;
-        double modeCal = calPage % 1;
-        int sum = int.parse(calPage.toString().split('.')[0]);
-        print('<><><><><><><><> ${calPage}');
-        print('<><><><><><><><> ${modeCal}');
-        print('<><><><><><><><> ${sum}');
-        print(indexNumPage.value);
-        if (modeCal > 0) {
-          maxPage.value = sum + 1;
-        } else {
-          maxPage.value = sum;
+      if(even.eventList!.isNotEmpty) {
+        if (even.eventList!.length > 10) {
+          double calPage = 0.0;
+          calPage = even.eventList!.length / 10;
+          double modeCal = calPage % 1;
+          int sum = int.parse(calPage.toString().split('.')[0]);
+          print(indexNumPage.value);
+          if (modeCal > 0) {
+            maxPage.value = sum + 1;
+          } else {
+            maxPage.value = sum;
+          }
         }
       }
     }
@@ -487,6 +533,16 @@ class ContollerFireReport extends GetxController {
                   width: 5,
                 ),
                 Expanded(
+                  flex: 1,
+                  child: Text(
+                    listViolence[event[index].violence!],
+                    style: textStyle(context, fontSize: 15, color: colorBlack),
+                  ),
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                Expanded(
                   flex: 2,
                   child: Text(
                     '${event[index].latitude!},${event[index].longitude!}',
@@ -527,8 +583,8 @@ class ContollerFireReport extends GetxController {
                       _painter = QrPainter(
                         errorCorrectionLevel: QrErrorCorrectLevel.H,
                         eyeStyle:const QrEyeStyle(
-                          eyeShape: QrEyeShape.square,
-                          color: Colors.black
+                            eyeShape: QrEyeShape.square,
+                            color: Colors.black
                         ),
                         emptyColor: Colors.white,
                         data: '${pathQR}${event[index].eventID}',
@@ -538,15 +594,19 @@ class ContollerFireReport extends GetxController {
                       showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
-                          content: Container(
-                            padding: const EdgeInsets.all(10),
-                            height: 250,
-                            width: 250,
-                            child: RepaintBoundary(
-                              child: CustomPaint(
-                                  size: Size.square((180).toDouble()),
-                                  key: _globalKey,
-                                  painter: _painter),
+                          content: WidgetsToImage(
+                            controller: controllerImage,
+                            child: Container(
+                              padding: const EdgeInsets.all(10),
+                              height: 250,
+                              width: 250,
+                              color: Colors.white,
+                              child: RepaintBoundary(
+                                child: CustomPaint(
+                                    size: Size.square((180).toDouble()),
+                                    key: _globalKey,
+                                    painter: _painter),
+                              ),
                             ),
                           ),
                           actions: [
@@ -591,7 +651,9 @@ class ContollerFireReport extends GetxController {
                                   width: 10,
                                 ),
                                 InkWell(
-                                    onTap: () {
+                                    onTap: () async{
+
+                                      // File('my_image.jpg').writeAsBytes(bytes!);
                                       _capturePng();
                                     },
                                     // onTap: ()async{
@@ -659,6 +721,7 @@ class ContollerFireReport extends GetxController {
                     Get.put(LandingPageControllerAdmin(), permanent: false);
                     final ContollerDetail contollerEvent =
                     Get.put(ContollerDetail(), permanent: false);
+
                     contollerEvent.getEvent(event[index].eventID!);
                     landingPageController.tabIndex.value=7;
                     // dialogEdit(context);
@@ -685,15 +748,17 @@ class ContollerFireReport extends GetxController {
   }
 
   Future<void> _capturePng() async {
-    final picData = await _painter?.toImageData((878).toDouble(),
-        format: ImageByteFormat.png);
-    await writeToFile(picData!);
+    // final picData = await _painter?.toImageData((878).toDouble(),
+    //     format: ImageByteFormat.png);
+    Uint8List? bytes = await controllerImage.capture();
+
+    await writeToFile(bytes!);
   }
 
-  Future<void> writeToFile(ByteData data) async {
-    final bytes =
-        data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-    final blob = html.Blob([bytes]);
+  Future<void> writeToFile(Uint8List data) async {
+    // final bytes =
+    //     data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+    final blob = html.Blob([data]);
     final url = html.Url.createObjectUrlFromBlob(blob);
     final anchor = html.document.createElement('a') as html.AnchorElement
       ..href = url

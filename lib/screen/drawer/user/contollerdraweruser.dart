@@ -11,6 +11,8 @@ import 'package:qrcode_reader_web/qrcode_reader_web.dart';
 import 'dart:html' as html;
 import 'dart:js' as js;
 
+import '../../detail/contollerdetail.dart';
+
 class LandingPageControllerUser extends GetxController {
   var tabIndex = 0.obs;
 
@@ -40,12 +42,23 @@ class LandingPageControllerUser extends GetxController {
           List<String> pathSegments = qrCodeUri.pathSegments;
           if (qrCodeUri.scheme == pathConfig.scheme &&
               qrCodeUri.authority == pathConfig.authority) {
-            print("ตรงกัน");
+            print("ตรงกัน ${pathSegments[pathSegments.length-2]}");
             if (pathSegments.isNotEmpty) {
               String eventID = pathSegments.last;
-              print(eventID);
-              Get.offAndToNamed(RouterName.villager,
-                  arguments: {'eventID': eventID});
+if((pathSegments[pathSegments.length-2]=='detail')){
+  // final ContollerDetail contollerEvent =
+  // Get.put(ContollerDetail(), permanent: false);
+  // contollerEvent.getEvent(eventID);
+  // Get.toNamed(RouterName.detail);
+  // print(eventID);
+  Get.offAndToNamed(RouterName.detailvalliger,
+      arguments: {'eventID': eventID});
+  // Get.offAndToNamed(RouterName.villager,
+  //     arguments: {'eventID': eventID});
+}else{
+  Get.offAndToNamed(RouterName.detailvalliger,
+      arguments: {'eventID': eventID});
+}
             }
           } else {
             Get.dialog(

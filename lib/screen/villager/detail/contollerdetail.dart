@@ -1,3 +1,4 @@
+import 'package:disaster/router.dart';
 import 'package:disaster/stye/colors.dart';
 import 'package:disaster/stye/font.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,18 +11,20 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import '../../api/eventbyidapi.dart';
-import '../../api/map/searchmap.dart';
-import '../../model/eventbyidmodel.dart';
-import '../../model/searchmap.dart';
+import '../../../api/eventbyidapi.dart';
+import '../../../api/map/searchmap.dart';
+import '../../../model/eventbyidmodel.dart';
+import '../../../model/searchmap.dart';
 
-class ContollerDetail extends GetxController {
+
+class ContollerDetailVillager extends GetxController {
   var IndexChart = 0.obs;
   var mapController = MapController().obs;
   var pageName = 'ข้อมูลรายงาน'.obs;
   var dataEvent = EventByIDModel().obs;
   var listSearchMap = <SearchMapModel>[].obs;
   var search = TextEditingController().obs;
+  String? eventID = Get.arguments['eventID'];
   searchMap(String data) async {
     listSearchMap.value = await searchMapApi(data);
   }
@@ -46,14 +49,16 @@ class ContollerDetail extends GetxController {
     "กำลังดำเนินการ",
     "เสร็จสิ้น",
   ];
-  Future<void> getEvent(String id) async {
+  Future<void> getEvent() async {
     mapController = MapController().obs;
-    dataEvent = EventByIDModel().obs;
-    dataEvent.value = await getEventByIDApi(Id: id);
-    mapController.value.move(
-        LatLng(double.parse(dataEvent.value.events!.latitude!),
-            double.parse(dataEvent.value.events!.longitude!)),
-        14);
+    if (eventID != null) {
+      dataEvent = EventByIDModel().obs;
+      dataEvent.value = await getEventByIDApi(Id: eventID!);
+      mapController.value.move(
+          LatLng(double.parse(dataEvent.value.events!.latitude!),
+              double.parse(dataEvent.value.events!.longitude!)),
+          14);
+    }
   }
   downloadFile(String base64,{String? fileName})async{
   final anchor = html.AnchorElement(
@@ -273,11 +278,15 @@ class ContollerDetail extends GetxController {
   }
 
   @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    getEvent();
+  }
+  @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-
-    // mapController.value.dispose();
 
   }
 }

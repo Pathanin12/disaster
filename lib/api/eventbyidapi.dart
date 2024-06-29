@@ -13,6 +13,7 @@ import '../model/eventbyidmodel.dart';
 Future<EventByIDModel>getEventByIDApi({required String Id})async{
   EventByIDModel? dataDashBoard =EventByIDModel();
   try{
+
     await HttpRequest.LoginToken().then((token) async{
       // print("TOKEN $token");
       Dio dio=Dio();
@@ -24,6 +25,7 @@ Future<EventByIDModel>getEventByIDApi({required String Id})async{
 
       if(data.statusCode==200){
         dataDashBoard = EventByIDModel.fromJson(data.data);
+
       }
     });
     return dataDashBoard!;

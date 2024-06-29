@@ -16,21 +16,11 @@ Future<GetAllEventModel> getAllDashBoardApi(
     required int disasterType,
       required int statusAgency,
       required int statusItem,
+      required int violence,
     int? provinceID,
     String? responsibleAgency}) async {
   GetAllEventModel? dataDashBoard = GetAllEventModel();
   try {
-    print("hhhhhhhh");
-    print({
-      "disasterType": disasterType,
-      "datetimeStart": startDate,
-      "datetimeEnd": endDate,
-      "level": level,
-      if (level > 0) "provinceID": provinceID,
-      "responsibleAgency":responsibleAgency,
-      "statusAgency": statusAgency,
-      "statusItem": statusItem
-    });
     await HttpRequest.LoginToken().then((token) async {
       Dio dio = Dio();
       final data = await dio.post('${url}GetAllEvent',
@@ -39,17 +29,18 @@ Future<GetAllEventModel> getAllDashBoardApi(
             "datetimeStart": startDate,
             "datetimeEnd": endDate,
             "level": level,
-            if (level > 0) "provinceID": provinceID,
-            "responsibleAgency":responsibleAgency,
+            "provinceID": (level>0)?provinceID:0,
+            "responsibleAgency":responsibleAgency??"",
             "statusAgency": statusAgency,
-            "statusItem": statusItem
+            "statusItem": statusItem,
+            "violence":violence
           },
           options: Options(headers: {"Authorization": "Bearer $token"}));
       if (data.statusCode == 200) {
         dataDashBoard = GetAllEventModel.fromJson(data.data);
         if (dataDashBoard!.eventList!.isNotEmpty) {
           dataDashBoard!.eventList!.sort((a, b) => a.seq!.compareTo(b.seq!));
-          print('ewewewewewewewewewewewewe');
+
         }
       }
     });

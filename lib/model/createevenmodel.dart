@@ -19,13 +19,15 @@ class CreateEven {
   String? zipCode;
   String? note;
   String? createBy;
-  UpdateBy? updateBy;
   bool? isActive;
   bool? isDelete;
   List<ImageList>? imageList;
   List<ImageDeleteList>? imageDeleteList;
   Deceased? deceased;
   Injured? injured;
+  List<FreeFormDetailList>? freeFormDetailList;
+  List<FreeFormAnswerList>? freeFormAnswerList;
+  UpdateBy? updateBy;
 
   CreateEven(
       {this.eventID,
@@ -48,13 +50,15 @@ class CreateEven {
         this.zipCode,
         this.note,
         this.createBy,
-        this.updateBy,
         this.isActive,
         this.isDelete,
         this.imageList,
         this.imageDeleteList,
         this.deceased,
-        this.injured});
+        this.injured,
+        this.freeFormDetailList,
+        this.freeFormAnswerList,
+        this.updateBy});
 
   CreateEven.fromJson(Map<String, dynamic> json) {
     eventID = json['eventID'];
@@ -77,9 +81,6 @@ class CreateEven {
     zipCode = json['zipCode'];
     note = json['note'];
     createBy = json['createBy'];
-    updateBy = json['updateBy'] != null
-        ? new UpdateBy.fromJson(json['updateBy'])
-        : null;
     isActive = json['isActive'];
     isDelete = json['isDelete'];
     if (json['imageList'] != null) {
@@ -99,6 +100,21 @@ class CreateEven {
         : null;
     injured =
     json['injured'] != null ? new Injured.fromJson(json['injured']) : null;
+    if (json['freeFormDetailList'] != null) {
+      freeFormDetailList = <FreeFormDetailList>[];
+      json['freeFormDetailList'].forEach((v) {
+        freeFormDetailList!.add(new FreeFormDetailList.fromJson(v));
+      });
+    }
+    if (json['freeFormAnswerList'] != null) {
+      freeFormAnswerList = <FreeFormAnswerList>[];
+      json['freeFormAnswerList'].forEach((v) {
+        freeFormAnswerList!.add(new FreeFormAnswerList.fromJson(v));
+      });
+    }
+    updateBy = json['updateBy'] != null
+        ? new UpdateBy.fromJson(json['updateBy'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -123,9 +139,6 @@ class CreateEven {
     data['zipCode'] = this.zipCode;
     data['note'] = this.note;
     data['createBy'] = this.createBy;
-    if (this.updateBy != null) {
-      data['updateBy'] = this.updateBy!.toJson();
-    }
     data['isActive'] = this.isActive;
     data['isDelete'] = this.isDelete;
     if (this.imageList != null) {
@@ -141,91 +154,17 @@ class CreateEven {
     if (this.injured != null) {
       data['injured'] = this.injured!.toJson();
     }
-    return data;
-  }
-}
-
-class UpdateBy {
-  String? staffID;
-  String? userName;
-  String? name;
-  String? datetime;
-  String?reportDetail;
-  List<LogList>? logList;
-  List<ImageList>? imageList;
-  List<FileList>? fileList;
-
-  UpdateBy(
-      {this.staffID,
-        this.userName,
-        this.reportDetail,
-        this.name,
-        this.datetime,
-        this.logList,
-        this.imageList,
-        this.fileList});
-
-  UpdateBy.fromJson(Map<String, dynamic> json) {
-    staffID = json['staffID'];
-    userName = json['userName'];
-    reportDetail=json['reportDetail'];
-    name = json['name'];
-    datetime = json['datetime'];
-    if (json['logList'] != null) {
-      logList = <LogList>[];
-      json['logList'].forEach((v) {
-        logList!.add(new LogList.fromJson(v));
-      });
+    if (this.freeFormDetailList != null) {
+      data['freeFormDetailList'] =
+          this.freeFormDetailList!.map((v) => v.toJson()).toList();
     }
-    if (json['imageList'] != null) {
-      imageList = <ImageList>[];
-      json['imageList'].forEach((v) {
-        imageList!.add(new ImageList.fromJson(v));
-      });
+    if (this.freeFormAnswerList != null) {
+      data['freeFormAnswerList'] =
+          this.freeFormAnswerList!.map((v) => v.toJson()).toList();
     }
-    if (json['fileList'] != null) {
-      fileList = <FileList>[];
-      json['fileList'].forEach((v) {
-        fileList!.add(new FileList.fromJson(v));
-      });
+    if (this.updateBy != null) {
+      data['updateBy'] = this.updateBy!.toJson();
     }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['staffID'] = this.staffID;
-    data['userName'] = this.userName;
-    data['name'] = this.name;
-    data['reportDetail']=this.reportDetail;
-    data['datetime'] = this.datetime;
-    if (this.logList != null) {
-      data['logList'] = this.logList!.map((v) => v.toJson()).toList();
-    }
-    if (this.imageList != null) {
-      data['imageList'] = this.imageList!.map((v) => v.toJson()).toList();
-    }
-    if (this.fileList != null) {
-      data['fileList'] = this.fileList!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class LogList {
-  String? header;
-  String? description;
-
-  LogList({this.header, this.description});
-
-  LogList.fromJson(Map<String, dynamic> json) {
-    header = json['header'];
-    description = json['description'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['header'] = this.header;
-    data['description'] = this.description;
     return data;
   }
 }
@@ -242,24 +181,6 @@ class ImageList {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['image'] = this.image;
-    return data;
-  }
-}
-
-class FileList {
-  String? file;
-  String? fileName;
-  FileList({this.file,this.fileName});
-
-  FileList.fromJson(Map<String, dynamic> json) {
-    file = json['file'];
-    fileName=json['fileName'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['file'] = this.file;
-    data['fileName']=this.fileName;
     return data;
   }
 }
@@ -286,6 +207,7 @@ class Deceased {
   int? feMale;
   int? unidentify;
   List<DeceaseList>? deceaseList;
+  List<UpdateDeceasedList>? updateDeceasedList;
   List<RemoveDeceasedList>? removeDeceasedList;
 
   Deceased(
@@ -294,6 +216,7 @@ class Deceased {
         this.feMale,
         this.unidentify,
         this.deceaseList,
+        this.updateDeceasedList,
         this.removeDeceasedList});
 
   Deceased.fromJson(Map<String, dynamic> json) {
@@ -305,6 +228,12 @@ class Deceased {
       deceaseList = <DeceaseList>[];
       json['deceaseList'].forEach((v) {
         deceaseList!.add(new DeceaseList.fromJson(v));
+      });
+    }
+    if (json['updateDeceasedList'] != null) {
+      updateDeceasedList = <UpdateDeceasedList>[];
+      json['updateDeceasedList'].forEach((v) {
+        updateDeceasedList!.add(new UpdateDeceasedList.fromJson(v));
       });
     }
     if (json['removeDeceasedList'] != null) {
@@ -323,6 +252,10 @@ class Deceased {
     data['unidentify'] = this.unidentify;
     if (this.deceaseList != null) {
       data['deceaseList'] = this.deceaseList!.map((v) => v.toJson()).toList();
+    }
+    if (this.updateDeceasedList != null) {
+      data['updateDeceasedList'] =
+          this.updateDeceasedList!.map((v) => v.toJson()).toList();
     }
     if (this.removeDeceasedList != null) {
       data['removeDeceasedList'] =
@@ -354,6 +287,31 @@ class DeceaseList {
   }
 }
 
+class UpdateDeceasedList {
+  String? id;
+  String? name;
+  String? sex;
+  String? age;
+
+  UpdateDeceasedList({this.id, this.name, this.sex, this.age});
+
+  UpdateDeceasedList.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    sex = json['sex'];
+    age = json['age'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['sex'] = this.sex;
+    data['age'] = this.age;
+    return data;
+  }
+}
+
 class RemoveDeceasedList {
   String? id;
 
@@ -376,6 +334,7 @@ class Injured {
   int? feMale;
   int? unidentify;
   List<DeceaseList>? injureList;
+  List<UpdateDeceasedList>? updateInjuredList;
   List<RemoveDeceasedList>? removeInjuredList;
 
   Injured(
@@ -384,6 +343,7 @@ class Injured {
         this.feMale,
         this.unidentify,
         this.injureList,
+        this.updateInjuredList,
         this.removeInjuredList});
 
   Injured.fromJson(Map<String, dynamic> json) {
@@ -395,6 +355,12 @@ class Injured {
       injureList = <DeceaseList>[];
       json['injureList'].forEach((v) {
         injureList!.add(new DeceaseList.fromJson(v));
+      });
+    }
+    if (json['updateInjuredList'] != null) {
+      updateInjuredList = <UpdateDeceasedList>[];
+      json['updateInjuredList'].forEach((v) {
+        updateInjuredList!.add(new UpdateDeceasedList.fromJson(v));
       });
     }
     if (json['removeInjuredList'] != null) {
@@ -414,10 +380,229 @@ class Injured {
     if (this.injureList != null) {
       data['injureList'] = this.injureList!.map((v) => v.toJson()).toList();
     }
+    if (this.updateInjuredList != null) {
+      data['updateInjuredList'] =
+          this.updateInjuredList!.map((v) => v.toJson()).toList();
+    }
     if (this.removeInjuredList != null) {
       data['removeInjuredList'] =
           this.removeInjuredList!.map((v) => v.toJson()).toList();
     }
+    return data;
+  }
+}
+class FreeFormDetailList {
+  String? section;
+  String? description;
+  int? types;
+  List<FreeFormSubDetailList>? freeFormSubDetailList;
+
+  FreeFormDetailList(
+      {this.section, this.description, this.types, this.freeFormSubDetailList});
+
+  FreeFormDetailList.fromJson(Map<String, dynamic> json) {
+    section = json['section'];
+    description = json['description'];
+    types = json['types'];
+    if (json['freeFormSubDetailList'] != null) {
+      freeFormSubDetailList = <FreeFormSubDetailList>[];
+      json['freeFormSubDetailList'].forEach((v) {
+        freeFormSubDetailList!.add(new FreeFormSubDetailList.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['section'] = this.section;
+    data['description'] = this.description;
+    data['types'] = this.types;
+    if (this.freeFormSubDetailList != null) {
+      data['freeFormSubDetailList'] =
+          this.freeFormSubDetailList!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class FreeFormSubDetailList {
+  String? optionName;
+
+  FreeFormSubDetailList({this.optionName});
+
+  FreeFormSubDetailList.fromJson(Map<String, dynamic> json) {
+    optionName = json['optionName'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['optionName'] = this.optionName;
+    return data;
+  }
+}
+
+class FreeFormAnswerList {
+  String? id;
+  String? answer;
+  String? fileName;
+  String? image;
+  String? file;
+  List<FreeFormAnswerDetailList>? freeFormAnswerDetailList;
+
+  FreeFormAnswerList(
+      {this.id,
+        this.answer,
+        this.fileName,
+        this.image,
+        this.file,
+        this.freeFormAnswerDetailList});
+
+  FreeFormAnswerList.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    answer = json['answer'];
+    fileName = json['fileName'];
+    image = json['image'];
+    file = json['file'];
+    if (json['freeFormAnswerDetailList'] != null) {
+      freeFormAnswerDetailList = <FreeFormAnswerDetailList>[];
+      json['freeFormAnswerDetailList'].forEach((v) {
+        freeFormAnswerDetailList!.add(new FreeFormAnswerDetailList.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['answer'] = this.answer;
+    data['fileName'] = this.fileName;
+    data['image'] = this.image;
+    data['file'] = this.file;
+    if (this.freeFormAnswerDetailList != null) {
+      data['freeFormAnswerDetailList'] =
+          this.freeFormAnswerDetailList!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class FreeFormAnswerDetailList {
+  String? id;
+
+  FreeFormAnswerDetailList({this.id});
+
+  FreeFormAnswerDetailList.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    return data;
+  }
+}
+
+
+class UpdateBy {
+  String? staffID;
+  String? userName;
+  String? name;
+  String? datetime;
+  List<LogList>? logList;
+  String? reportDetail;
+  List<ImageList>? imageList;
+  List<FileList>? fileList;
+
+  UpdateBy(
+      {this.staffID,
+        this.userName,
+        this.name,
+        this.datetime,
+        this.logList,
+        this.reportDetail,
+        this.imageList,
+        this.fileList});
+
+  UpdateBy.fromJson(Map<String, dynamic> json) {
+    staffID = json['staffID'];
+    userName = json['userName'];
+    name = json['name'];
+    datetime = json['datetime'];
+    if (json['logList'] != null) {
+      logList = <LogList>[];
+      json['logList'].forEach((v) {
+        logList!.add(new LogList.fromJson(v));
+      });
+    }
+    reportDetail = json['reportDetail'];
+    if (json['imageList'] != null) {
+      imageList = <ImageList>[];
+      json['imageList'].forEach((v) {
+        imageList!.add(new ImageList.fromJson(v));
+      });
+    }
+    if (json['fileList'] != null) {
+      fileList = <FileList>[];
+      json['fileList'].forEach((v) {
+        fileList!.add(new FileList.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['staffID'] = this.staffID;
+    data['userName'] = this.userName;
+    data['name'] = this.name;
+    data['datetime'] = this.datetime;
+    if (this.logList != null) {
+      data['logList'] = this.logList!.map((v) => v.toJson()).toList();
+    }
+    data['reportDetail'] = this.reportDetail;
+    if (this.imageList != null) {
+      data['imageList'] = this.imageList!.map((v) => v.toJson()).toList();
+    }
+    if (this.fileList != null) {
+      data['fileList'] = this.fileList!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class LogList {
+  String? header;
+  String? description;
+
+  LogList({this.header, this.description});
+
+  LogList.fromJson(Map<String, dynamic> json) {
+    header = json['header'];
+    description = json['description'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['header'] = this.header;
+    data['description'] = this.description;
+    return data;
+  }
+}
+
+class FileList {
+  String? fileName;
+  String? file;
+
+  FileList({this.fileName, this.file});
+
+  FileList.fromJson(Map<String, dynamic> json) {
+    fileName = json['fileName'];
+    file = json['file'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['fileName'] = this.fileName;
+    data['file'] = this.file;
     return data;
   }
 }

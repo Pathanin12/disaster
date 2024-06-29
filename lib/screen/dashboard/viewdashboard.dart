@@ -15,8 +15,22 @@ import '../../service/config.dart';
 import '../../stye/font.dart';
 import 'contollerdashboard.dart';
 
-class DashBoardPage extends StatelessWidget {
+class DashBoardPage extends StatefulWidget {
   DashBoardPage({super.key});
+
+  @override
+  State<DashBoardPage> createState() => _DashBoardPageState();
+}
+
+class _DashBoardPageState extends State<DashBoardPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final ContollerDashBoard contoller =
+    Get.put(ContollerDashBoard(), permanent: false);
+    contoller.mapController=MapController().obs;
+  }
   @override
   Widget build(BuildContext context) {
     final ContollerDashBoard contoller =
@@ -681,10 +695,10 @@ class DashBoardPage extends StatelessWidget {
                           color: Colors.blue,
                           height: 450,
                           child: Center(
-
                               child: FlutterMap(
                                 mapController: contoller.mapController.value,
                                   options: const MapOptions(
+                                    keepAlive: true,
                                     // interactionOptions: InteractionOptions(
                                     //   flags: InteractiveFlag.doubleTapDragZoom |
                                     //       InteractiveFlag.drag,

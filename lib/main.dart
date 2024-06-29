@@ -3,9 +3,13 @@ import 'package:disaster/router.dart';
 import 'package:disaster/screen/auth/fixrole.dart';
 import 'package:disaster/screen/auth/viewauth.dart';
 import 'package:disaster/screen/dashboard/viewdashboard.dart';
+import 'package:disaster/screen/detail/viewdetail.dart';
 import 'package:disaster/screen/drawer/admin/contollerdraweradmin.dart';
 import 'package:disaster/screen/drawer/admin/viewdraweradmin.dart';
 import 'package:disaster/screen/drawer/user/viewdraweruser.dart';
+import 'package:disaster/screen/report/mainreport/viewmainreport.dart';
+import 'package:disaster/screen/villager/detail/viewdetail.dart';
+import 'package:disaster/screen/villager/detailfreeform/viewdetailform.dart';
 import 'package:disaster/screen/villager/viewvillager.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:disaster/screen/home.dart';
@@ -24,20 +28,28 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: RouterName.fixRole,
+      initialRoute: RouterName.login,
       getPages: [
         GetPage(
           name: RouterName.userPage,
           page: () => LandingPageUser(),
         ),
         GetPage(
+          name: RouterName.dashbord,
+          page: () => DashBoardPage(),
+        ),
+        GetPage(
+          name: RouterName.mainreport,
+          page: () => MainReport(),
+        ),
+        GetPage(
           name: RouterName.villager,
           page: () => HomeViewWeb(),
         ),
-        GetPage(
-          name: RouterName.fixRole,
-          page: () => const FixRole(),
-        ),
+        // GetPage(
+        //   name: RouterName.fixRole,
+        //   page: () => const FixRole(),
+        // ),
         GetPage(
           name: RouterName.login,
           page: () => AuthPage(),
@@ -45,6 +57,14 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: RouterName.adminPage,
           page: () => LandingPageAdmin(),
+        ),
+        GetPage(
+          name: RouterName.detailvalliger,
+          page: () => DetailVillager(),
+        ),
+        GetPage(
+          name: RouterName.detailother,
+          page: () => DetailFreeFormVillager(),
         )
       ],
       onGenerateRoute: (settings) {
@@ -53,12 +73,26 @@ class MyApp extends StatelessWidget {
           return MaterialPageRoute(
             builder: (context) => LandingPageUser(),
           );
-        }else
-          if (settings.name == RouterName.fixRole) {
-          return MaterialPageRoute(
-            builder: (context) => FixRole(),
-          );
-        }else
+        }
+        // else
+        //   if (settings.name == RouterName.fixRole) {
+        //   return MaterialPageRoute(
+        //     builder: (context) => DetailVillager(),
+        //   );
+        // }
+          else
+          if (settings.name == RouterName.detailother) {
+            return MaterialPageRoute(
+              builder: (context) => DetailFreeFormVillager(),
+            );
+          }
+          // else
+          // if (settings.name == RouterName.detailvalliger) {
+          //   return MaterialPageRoute(
+          //     builder: (context) => FixRole(),
+          //   );
+          // }
+          else
           if (settings.name == RouterName.villager) {
             return MaterialPageRoute(
               builder: (context) => HomeViewWeb(),

@@ -22,8 +22,7 @@ Future<EventAllFreeFormByIDModel>getEventFreeFormByIDApi({required String Id})as
       },
           options: Options(headers:{"Authorization":"Bearer $token"})
       );
-      // print('tttt ${data.statusCode}');
-      // print('tttt ${data.data}');
+
       if(data.statusCode==200){
         dataDashBoard = EventAllFreeFormByIDModel.fromJson(data.data);
       }

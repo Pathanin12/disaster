@@ -170,91 +170,8 @@ class FireReport extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
 
-                          Row(mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  createPDF(
-                                      contoller.allEvent.value,
-                                      contoller.listDate.value[0]!,
-                                      contoller.listDate.value[1]!,
-                                      contoller.selectCategory!.value,
-                                      contoller.selectLevel!.value,
-                                      contoller.selectProvince.value.nameTh!);
-                                },
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  height: 40,
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: colorAmber),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.file_download_outlined,
-                                        size: 20,
-                                        color: colorWhite,
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        'PDF',
-                                        style: textStyle(context,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                            color: colorWhite),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  createExcel(contoller.allEvent.value,
-                                      contoller.listDate.value[0]!,
-                                      contoller.listDate.value[1]!,
-                                      contoller.selectCategory!.value,
-                                      contoller.selectLevel!.value,
-                                      contoller.selectProvince.value.nameTh!);
-                                },
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  height: 40,
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: colorBlue),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.file_download_outlined,
-                                        size: 20,
-                                        color: colorWhite,
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        'XLSX',
-                                        style: textStyle(context,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                            color: colorWhite),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                          SizedBox(height: 10,),
+
+
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
@@ -293,7 +210,7 @@ class FireReport extends StatelessWidget {
                                 //   width: 20,
                                 // ),
                               Expanded(
-                                flex: 2,
+                                flex: 4,
                                 child: Container(
                                   alignment: Alignment.centerLeft,
                                   height: 60,
@@ -345,7 +262,7 @@ class FireReport extends StatelessWidget {
                                 width: 5,
                               ),
                               Expanded(
-                                flex:2,
+                                flex:4,
                                 child: Container(
                                   alignment: Alignment.centerLeft,
                                   height: 60,
@@ -436,12 +353,12 @@ class FireReport extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              const SizedBox(
+                              if (contoller.selectLevel!.value == 'จังหวัด')const SizedBox(
                                 width: 5,
                               ),
                               if (contoller.selectLevel!.value == 'จังหวัด')
                                 Expanded(
-                                  flex: 2,
+                                  flex: 4,
                                   child: Container(
                                     alignment: Alignment.centerLeft,
                                     height: 60,
@@ -536,68 +453,171 @@ class FireReport extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                              if (contoller.selectLevel!.value == 'จังหวัด')
                                 const SizedBox(
                                   width: 5,
                                 ),
                               Expanded(
-                                  flex: 2,
-                                  child: Container(
-                                height: 60,
-                                color: colorWhite,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('หน่วยงาน',
-                                        style:
-                                        textStyle(context, fontSize: 13)),
-                                    Container(
-                                      padding: EdgeInsets.only(left: 5,right: 5),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
-                                        border: Border.all(color: Colors.grey.shade500)
-                                      ),
-                                      alignment: Alignment.centerLeft,
-                                      height: 40,
-                                      child: TextFormField(
-                                        maxLines: 1,
-                                        scrollPadding: EdgeInsets.zero,
-                                        textAlign: TextAlign.justify,
-                                        controller:
-                                        contoller.searchAgency.value,
-                                        style: TextStyle(
-                                            fontSize: 13.0,
-                                            color: colorBlack,
-                                            fontWeight: FontWeight.w400),
+                                flex:4,
+                                child: Container(
+                                  alignment: Alignment.centerLeft,
+                                  height: 60,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: [
+                                      Text('ระดับความรุนแรง',
+                                          style:
+                                          textStyle(context, fontSize: 13)),
+                                      Container(
 
-                                        decoration: InputDecoration.collapsed(
-
-                                          fillColor: colorWhite,
-                                          hintText: "หน่วยงาน",
-                                          hintStyle: TextStyle(
-                                              fontSize: 13.0,
-                                              color: colorGrey,
-                                              fontWeight: FontWeight.w400),
-                                          filled: true,
-                                          // enabledBorder: OutlineInputBorder(borderSide: BorderSide(
-                                          //   color: Colors.grey.shade500,
-                                          //   width: 1,
-                                          // ), ),
-                                          // border: OutlineInputBorder(
-                                          //
-                                          //   borderRadius:
-                                          //   BorderRadius.circular(5),
-                                          // ),
+                                        width: double.infinity,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                            color: colorWhite,
+                                            border: Border.all(
+                                              color: Colors.black26,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                            BorderRadius.circular(5)),
+                                        alignment: Alignment.center,
+                                        child: SizedBox(
+                                          width: double.infinity,
+                                          child: DropdownButtonHideUnderline(
+                                            child: DropdownButton2<String>(
+                                              dropdownStyleData:
+                                              DropdownStyleData(
+                                                maxHeight: 300,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius.circular(5),
+                                                ),
+                                                scrollbarTheme:
+                                                ScrollbarThemeData(
+                                                  radius:
+                                                  const Radius.circular(5),
+                                                  thickness:
+                                                  MaterialStateProperty.all<
+                                                      double>(6),
+                                                  thumbVisibility:
+                                                  MaterialStateProperty.all<
+                                                      bool>(true),
+                                                ),
+                                              ),
+                                              autofocus: true,
+                                              value:
+                                              contoller.selectViolence!.value,
+                                              hint: Text(
+                                                'เลือกทั้งหมด',
+                                                style: TextStyle(
+                                                    fontSize: 13.0,
+                                                    color: colorGrey,
+                                                    fontWeight:
+                                                    FontWeight.w400),
+                                              ),
+                                              items: contoller.listViolence.map<
+                                                  DropdownMenuItem<String>>(
+                                                      (String? value) {
+                                                    return DropdownMenuItem<String>(
+                                                      value: value!,
+                                                      child: Text(
+                                                        value,
+                                                        style: TextStyle(
+                                                            fontSize: 13.0,
+                                                            color: colorGrey,
+                                                            fontWeight:
+                                                            FontWeight.w400),
+                                                      ),
+                                                    );
+                                                  }).toList(),
+                                              iconStyleData:
+                                              const IconStyleData(
+                                                  icon: Icon(
+                                                    Icons.keyboard_arrow_down,
+                                                    size: 24,
+                                                  )),
+                                              onChanged: (valueSelect) {
+                                                contoller.selectViolence!.value =
+                                                valueSelect!;
+                                              },
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              )),
+                              ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                              if (contoller.selectLevel!.value != 'จังหวัด')
+                              Expanded(flex:4,child: SizedBox()),
+                            ],
+                          ),
+                          SizedBox(height: 10,),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                  flex: 4,
+                                  child: Container(
+                                    height: 60,
+                                    color: colorWhite,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text('หน่วยงาน',
+                                            style:
+                                            textStyle(context, fontSize: 13)),
+                                        Container(
+                                          padding: EdgeInsets.only(left: 5,right: 5),
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(5),
+                                              border: Border.all(color: Colors.grey.shade500)
+                                          ),
+                                          alignment: Alignment.centerLeft,
+                                          height: 40,
+                                          child: TextFormField(
+                                            maxLines: 1,
+                                            scrollPadding: EdgeInsets.zero,
+                                            textAlign: TextAlign.justify,
+                                            controller:
+                                            contoller.searchAgency.value,
+                                            style: TextStyle(
+                                                fontSize: 13.0,
+                                                color: colorBlack,
+                                                fontWeight: FontWeight.w400),
+
+                                            decoration: InputDecoration.collapsed(
+
+                                              fillColor: colorWhite,
+                                              hintText: "หน่วยงาน",
+                                              hintStyle: TextStyle(
+                                                  fontSize: 13.0,
+                                                  color: colorGrey,
+                                                  fontWeight: FontWeight.w400),
+                                              filled: true,
+                                              // enabledBorder: OutlineInputBorder(borderSide: BorderSide(
+                                              //   color: Colors.grey.shade500,
+                                              //   width: 1,
+                                              // ), ),
+                                              // border: OutlineInputBorder(
+                                              //
+                                              //   borderRadius:
+                                              //   BorderRadius.circular(5),
+                                              // ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )),
                               SizedBox(width: 5,),
                               Expanded(
-                                flex: 2,
+                                flex: 4,
                                 child: Container(
                                   alignment: Alignment.centerLeft,
                                   height: 60,
@@ -681,7 +701,7 @@ class FireReport extends StatelessWidget {
                                 ),
                               ),SizedBox(width: 5,),
                               Expanded(
-                                flex: 2,
+                                flex: 4,
                                 child: Container(
                                   alignment: Alignment.centerLeft,
                                   height: 60,
@@ -767,32 +787,120 @@ class FireReport extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(width: 5,),
-                              InkWell(
-                                onTap: () {
-                                  contoller.setLocation();
-                                },
+                              Expanded(
+                                flex: 4,
                                 child: Container(
-                                  alignment: Alignment.center,
-                                  height: 40,
-                                  width: 80,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: Colors.amber),
-                                  child: (contoller.loadSearch.value == true)
-                                      ? Center(
-                                          child: LoadingAnimationWidget.inkDrop(
-                                          color: Colors.white,
-                                          size: 20,
-                                        ))
-                                      : Text(
+                                  child: Row(children: [
+                                    InkWell(
+                                      onTap: () {
+                                        contoller.setLocation();
+                                      },
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        height: 40,
+                                        width: 80,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(5),
+                                            color: Colors.amber),
+                                        child: (contoller.loadSearch.value == true)
+                                            ? Center(
+                                            child: LoadingAnimationWidget.inkDrop(
+                                              color: Colors.white,
+                                              size: 20,
+                                            ))
+                                            : Text(
                                           'ค้นหา',
                                           style: textStyle(context,
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold,
                                               color: colorWhite),
                                         ),
+                                      ),
+                                    ),
+                                    Spacer(),
+                                    InkWell(
+                                      onTap: () {
+                                        createPDF(
+                                            contoller.allEvent.value,
+                                            contoller.listDate.value[0]!,
+                                            contoller.listDate.value[1]!,
+                                            contoller.selectCategory!.value,
+                                            contoller.selectLevel!.value,
+                                            contoller.selectProvince.value.nameTh!);
+                                      },
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        height: 40,
+                                        width: 80,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(5),
+                                            color: colorAmber),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.file_download_outlined,
+                                              size: 20,
+                                              color: colorWhite,
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              'PDF',
+                                              style: textStyle(context,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: colorWhite),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        createExcel(contoller.allEvent.value,
+                                            contoller.listDate.value[0]!,
+                                            contoller.listDate.value[1]!,
+                                            contoller.selectCategory!.value,
+                                            contoller.selectLevel!.value,
+                                            contoller.selectProvince.value.nameTh!);
+                                      },
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        height: 40,
+                                        width: 80,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(5),
+                                            color: colorBlue),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.file_download_outlined,
+                                              size: 20,
+                                              color: colorWhite,
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              'XLSX',
+                                              style: textStyle(context,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: colorWhite),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  ],),
                                 ),
-                              ),
+                              )
 
 
                             ],
@@ -850,6 +958,17 @@ class FireReport extends StatelessWidget {
                                 flex: 2,
                                 child: Text(
                                   'หน่วยงานที่รับผิดชอบ',
+                                  style: textStyle(context,
+                                      fontSize: 15, color: colorBlack),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Text(
+                                  'ระดับความรุนแรง',
                                   style: textStyle(context,
                                       fontSize: 15, color: colorBlack),
                                 ),

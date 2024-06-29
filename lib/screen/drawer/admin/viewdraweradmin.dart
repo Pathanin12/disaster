@@ -1,3 +1,4 @@
+import 'package:disaster/cookie/cookie.dart';
 import 'package:disaster/router.dart';
 import 'package:disaster/screen/handler/creatotherslist/creatotherlist.dart';
 import 'package:disaster/service/config.dart';
@@ -55,10 +56,22 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
     // TODO: implement initState
     super.initState();
     // checkApiKey();
+    checkUser();
     // getToken();
     // getToken();
     // // HttpRequest.signOutToken();
     // createEvenApi();
+  }
+  checkUser()async{
+    final LandingPageControllerAdmin landingPageController =
+    Get.put(LandingPageControllerAdmin(), permanent: false);
+
+    List<ProfileSaveModel>? listUser = await CookieSP().loadAllDataSetting();
+    if(listUser!.isNotEmpty){
+      landingPageController.dataUser!.value=listUser.last;
+    }else{
+      Get.offAndToNamed(RouterName.userPage);
+    }
   }
 
   Widget build(BuildContext context) {
@@ -71,7 +84,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
         backgroundColor: colorWhite,
         leading: InkWell(
           onTap: (){
-            Get.offAndToNamed(RouterName.fixRole);
+            // Get.offAndToNamed(RouterName.fixRole);
           },
           child: Container(
             child: Row(
@@ -119,10 +132,10 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
             () => Row(
               children: [
                 Text(
-                    (landingPageController.dataUserAdmin.value.profile == null)
+                    (landingPageController.dataUser!.value.profile == null)
                         ? 'Unknow'
                         : landingPageController
-                                .dataUserAdmin.value.profile!.name ??
+                                .dataUser!.value.profile!.name ??
                             'Unknow',
                     style: TextStyle(fontSize: 13)),
                 SizedBox(
@@ -131,12 +144,13 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                 PopupMenuButton<SampleItem>(
                   initialValue: selectedItem,
                   onSelected: (SampleItem item) async {
+                    Get.offAndToNamed(RouterName.userPage);
                     SharedPreferences prefs =
                         await SharedPreferences.getInstance();
-                    dataUser = null;
+                    CookieSP().delDataUser();
+                    landingPageController.dataUser = ProfileSaveModel().obs;
                     landingPageController.dataUserAdmin.value.profile = null;
                     await prefs.remove('apikey');
-                    Get.offAndToNamed(RouterName.userPage);
                   },
                   itemBuilder: (BuildContext context) =>
                       <PopupMenuEntry<SampleItem>>[
@@ -436,47 +450,47 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                           ),
 
                         ]),
-                      InkWell(
-                        onTap: () {
-                          landingPageController.tabIndex(9);
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.only(left: 35, right: 10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: (landingPageController.tabIndex.value == 9)
-                                ? Colors.amber
-                                : Colors.transparent,
-                          ),
-                          height: 40,
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(
-                                color:
-                                (landingPageController.tabIndex.value ==
-                                    9)
-                                    ? Colors.white
-                                    : Color(0xfff5a607f),
-                                'assets/icons/svg/freeform.svg',
-                              ),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                              Text(
-                                'รายงานอื่นๆ',
-                                style: textStyle(context,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w200,
-                                    color:
-                                    (landingPageController.tabIndex.value ==
-                                        9)
-                                        ? Colors.white
-                                        : Color(0xfff5a607f)),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      // InkWell(
+                      //   onTap: () {
+                      //     landingPageController.tabIndex(9);
+                      //   },
+                      //   child: Container(
+                      //     padding: const EdgeInsets.only(left: 35, right: 10),
+                      //     decoration: BoxDecoration(
+                      //       borderRadius: BorderRadius.circular(10),
+                      //       color: (landingPageController.tabIndex.value == 9)
+                      //           ? Colors.amber
+                      //           : Colors.transparent,
+                      //     ),
+                      //     height: 40,
+                      //     child: Row(
+                      //       children: [
+                      //         SvgPicture.asset(
+                      //           color:
+                      //           (landingPageController.tabIndex.value ==
+                      //               9)
+                      //               ? Colors.white
+                      //               : Color(0xfff5a607f),
+                      //           'assets/icons/svg/freeform.svg',
+                      //         ),
+                      //         const SizedBox(
+                      //           width: 20,
+                      //         ),
+                      //         Text(
+                      //           'รายงานอื่นๆ',
+                      //           style: textStyle(context,
+                      //               fontSize: 16,
+                      //               fontWeight: FontWeight.w200,
+                      //               color:
+                      //               (landingPageController.tabIndex.value ==
+                      //                   9)
+                      //                   ? Colors.white
+                      //                   : Color(0xfff5a607f)),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
 
 
                       // ExpansionTileItem(
@@ -621,47 +635,47 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                           ),
                         ),
                       ),
-                      if(isAdmin) InkWell(
-                        onTap: () {
-                          landingPageController.tabIndex(8);
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.only(left: 35, right: 10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: (landingPageController.tabIndex.value == 8)
-                                ? Colors.amber
-                                : Colors.transparent,
-                          ),
-                          height: 40,
-                          child: Row(
-                            children: [
-                              Icon(
-                                CupertinoIcons.list_bullet,
-                                color:
-                                    (landingPageController.tabIndex.value == 8)
-                                        ? Colors.white
-                                        : Color(0xfff5a607f),
-                                size: 22,
-                              ),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                              Text(
-                                'สร้างรายการอื่นๆ',
-                                style: textStyle(context,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w200,
-                                    color:
-                                        (landingPageController.tabIndex.value ==
-                                                8)
-                                            ? Colors.white
-                                            : Color(0xfff5a607f)),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      // if(isAdmin) InkWell(
+                      //   onTap: () {
+                      //     landingPageController.tabIndex(8);
+                      //   },
+                      //   child: Container(
+                      //     padding: const EdgeInsets.only(left: 35, right: 10),
+                      //     decoration: BoxDecoration(
+                      //       borderRadius: BorderRadius.circular(10),
+                      //       color: (landingPageController.tabIndex.value == 8)
+                      //           ? Colors.amber
+                      //           : Colors.transparent,
+                      //     ),
+                      //     height: 40,
+                      //     child: Row(
+                      //       children: [
+                      //         Icon(
+                      //           CupertinoIcons.list_bullet,
+                      //           color:
+                      //               (landingPageController.tabIndex.value == 8)
+                      //                   ? Colors.white
+                      //                   : Color(0xfff5a607f),
+                      //           size: 22,
+                      //         ),
+                      //         const SizedBox(
+                      //           width: 20,
+                      //         ),
+                      //         Text(
+                      //           'สร้างรายการอื่นๆ',
+                      //           style: textStyle(context,
+                      //               fontSize: 16,
+                      //               fontWeight: FontWeight.w200,
+                      //               color:
+                      //                   (landingPageController.tabIndex.value ==
+                      //                           8)
+                      //                       ? Colors.white
+                      //                       : Color(0xfff5a607f)),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
@@ -674,7 +688,8 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                 child: Container(
                   height: MediaQuery.of(context).size.height,
                   width: 200,
-                  child: IndexedStack(
+                  child:
+                  IndexedStack(
                     index: landingPageController.tabIndex.value,
                     children: [
                       DashBoardPage(),
@@ -685,10 +700,10 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                       ForestFireReport(),
                       CreateList(),
                       Detail(),
-                      CreateListOthers(),
-                      FreeFormReport(),
-                      DetailFreeForm(),
-                      EditListFreeFormOthers(),
+                      // CreateListOthers(),
+                      // FreeFormReport(),
+                      // DetailFreeForm(),
+                      // EditListFreeFormOthers(),
                     ],
                   ),
                 ),

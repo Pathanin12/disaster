@@ -10,7 +10,7 @@ import '../../../model/eventbyidmodel.dart';
 import '../../../model/searchmap.dart';
 
 class ContollerDetailz extends GetxController {
-  final mapController = MapController().obs;
+  var mapController = MapController().obs;
   var pageName = 'ข้อมูลรายงาน'.obs;
   var dataEvent = EventByIDModel().obs;
   var listSearchMap = <SearchMapModel>[].obs;
@@ -31,6 +31,8 @@ class ContollerDetailz extends GetxController {
     "เสร็จสิ้น",
   ];
   Future<void> getEvent(String id) async {
+
+    mapController = MapController().obs;
     dataEvent = EventByIDModel().obs;
     dataEvent.value = await getEventByIDApi(Id: id);
     mapController.value.move(

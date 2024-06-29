@@ -58,7 +58,7 @@ class ContollerDashBoard extends GetxController {
   // var listCartForestFireGenderAndInj=<Widget>[].obs;
   // var listCartForestFireAgeAndDie=<Widget>[].obs;
   // var listCartForestFireAgeAndInj=<Widget>[].obs;
-  final mapController = MapController().obs;
+  var mapController = MapController().obs;
   var search = TextEditingController().obs;
   var listSearchMap=<SearchMapModel>[].obs;
   searchMap(String data)async{

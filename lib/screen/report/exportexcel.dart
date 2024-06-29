@@ -12,9 +12,9 @@ Future<void> createExcel(GetAllEventModel allEven,DateTime startDate,DateTime en
 
   String jsonString = await rootBundle.loadString('data/data.json');
   final jsonResponse = jsonDecode(jsonString);
-
-  Sheet sheet = excel['Output'];
   excel.delete('Sheet1');
+  Sheet sheet = excel['Output'];
+
   for (int i = 1; i <= 9; i++) {
     sheet.setColumnAutoFit(i);
   }

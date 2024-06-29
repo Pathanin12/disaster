@@ -57,7 +57,7 @@ class _LandingPageUserState extends State<LandingPageUser> {
         backgroundColor: colorWhite,
         leading: InkWell(
           onTap: () {
-            Get.offAndToNamed(RouterName.fixRole);
+            // Get.offAndToNamed(RouterName.fixRole);
           },
           child: Container(
             child: Row(
