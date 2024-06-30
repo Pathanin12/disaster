@@ -28,13 +28,15 @@ class _DashBoardPageState extends State<DashBoardPage> {
     // TODO: implement initState
     super.initState();
     final ContollerDashBoard contoller =
-    Get.put(ContollerDashBoard(), permanent: false);
-    contoller.mapController=MapController().obs;
+        Get.put(ContollerDashBoard(), permanent: false);
+    contoller.mapController = MapController().obs;
   }
+
   @override
   Widget build(BuildContext context) {
     final ContollerDashBoard contoller =
         Get.put(ContollerDashBoard(), permanent: false);
+    double screenWidth = MediaQuery.of(context).size.width;
     return ListView(
       children: [
         Container(
@@ -51,395 +53,356 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Container(
-                          child: Expanded(
-                            flex: 2,
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              height: 50,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('ประเภท',
-                                      style: textStyle(context, fontSize: 13)),
-                                  Container(
-                                    padding: const EdgeInsets.only(
-                                        left: 20, right: 5),
-                                    width: double.infinity,
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                        color: colorWhite,
-                                        border: Border.all(
-                                          color: Colors.black26,
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(5)),
-                                    alignment: Alignment.center,
-                                    child: SizedBox(
-                                      width: double.infinity,
-                                      child: DropdownButtonHideUnderline(
-                                        child: DropdownButton2<String>(
-                                          dropdownStyleData: DropdownStyleData(
-                                            maxHeight: 300,
-                                            decoration: BoxDecoration(
+                    screenWidth >= 900
+                        ? Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Container(
+                                child: Expanded(
+                                  flex: 2,
+                                  child: Container(
+                                    alignment: Alignment.centerLeft,
+                                    height: 50,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text('ประเภท',
+                                            style: textStyle(context,
+                                                fontSize: 13)),
+                                        Container(
+                                          padding: EdgeInsets.only(
+                                              left: screenWidth >= 900 ? 0 : 5,
+                                              right:
+                                                  screenWidth >= 900 ? 0 : 5),
+                                          width: double.infinity,
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                              color: colorWhite,
+                                              border: Border.all(
+                                                color: Colors.black26,
+                                                width: 1,
+                                              ),
                                               borderRadius:
-                                                  BorderRadius.circular(5),
-                                            ),
-                                            scrollbarTheme: ScrollbarThemeData(
-                                              radius: const Radius.circular(5),
-                                              thickness: MaterialStateProperty
-                                                  .all<double>(6),
-                                              thumbVisibility:
-                                                  MaterialStateProperty.all<
-                                                      bool>(true),
-                                            ),
-                                          ),
-                                          autofocus: true,
-                                          value:
-                                              contoller.selectCategory!.value,
-                                          hint: Text(
-                                            'เลือกทั้งหมด',
-                                            style: TextStyle(
-                                                fontSize: 13.0,
-                                                color: colorGrey,
-                                                fontWeight: FontWeight.w400),
-                                          ),
-                                          items: contoller.category
-                                              .map<DropdownMenuItem<String>>(
-                                                  (String? value) {
-                                            return DropdownMenuItem<String>(
-                                              value: value!,
-                                              child: Text(
-                                                value,
-                                                style: TextStyle(
-                                                    fontSize: 13.0,
-                                                    color: colorGrey,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                            );
-                                          }).toList(),
-                                          iconStyleData: const IconStyleData(
-                                              icon: Icon(
-                                            Icons.keyboard_arrow_down,
-                                            size: 24,
-                                          )),
-                                          onChanged: (valueSelect) {
-                                            contoller.selectCategory!.value =
-                                                valueSelect!;
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: Container(
-                            alignment: Alignment.centerLeft,
-                            height: 50,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('ช่วงเวลา',
-                                    style: textStyle(context, fontSize: 13)),
-                                Container(
-                                  padding:
-                                      const EdgeInsets.only(left: 20, right: 5),
-                                  width: double.infinity,
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                      color: colorWhite,
-                                      border: Border.all(
-                                        color: Colors.black26,
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(5)),
-                                  alignment: Alignment.center,
-                                  child: SizedBox(
-                                    width: double.infinity,
-                                    child: InkWell(
-                                        onTap: () async {
-                                          final values =
-                                              await showCalendarDatePicker2Dialog(
-                                            context: context,
-                                            config:
-                                                CalendarDatePicker2WithActionButtonsConfig(
-                                              calendarViewScrollPhysics:
-                                                  const NeverScrollableScrollPhysics(),
-                                              dayTextStyle: textStyle(context,
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.w700),
-                                              calendarType:
-                                                  CalendarDatePicker2Type.range,
-                                              selectedDayHighlightColor:
-                                                  Colors.amber,
-                                              closeDialogOnCancelTapped: true,
-                                              firstDayOfWeek: 1,
-                                              weekdayLabelTextStyle:
-                                                  const TextStyle(
-                                                color: Colors.black87,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                              controlsTextStyle:
-                                                  const TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                              centerAlignModePicker: true,
-                                              customModePickerIcon:
-                                                  const SizedBox(),
-                                              selectedDayTextStyle: TextStyle(
-                                                  color: Colors.grey[500],
-                                                  fontWeight: FontWeight.w600),
-                                              dayTextStylePredicate: (
-                                                  {required date}) {
-                                                TextStyle? textStyle;
-                                                if (date.weekday ==
-                                                        DateTime.saturday ||
-                                                    date.weekday ==
-                                                        DateTime.sunday) {
-                                                  textStyle = TextStyle(
-                                                      color: Colors.grey[500],
+                                                  BorderRadius.circular(5)),
+                                          alignment: Alignment.center,
+                                          child: SizedBox(
+                                            width: double.infinity,
+                                            child: DropdownButtonHideUnderline(
+                                              child: DropdownButton2<String>(
+                                                dropdownStyleData:
+                                                    DropdownStyleData(
+                                                  maxHeight: 300,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  ),
+                                                  scrollbarTheme:
+                                                      ScrollbarThemeData(
+                                                    radius:
+                                                        const Radius.circular(
+                                                            5),
+                                                    thickness:
+                                                        MaterialStateProperty
+                                                            .all<double>(6),
+                                                    thumbVisibility:
+                                                        MaterialStateProperty
+                                                            .all<bool>(true),
+                                                  ),
+                                                ),
+                                                autofocus: true,
+                                                value: contoller
+                                                    .selectCategory!.value,
+                                                hint: Text(
+                                                  'เลือกทั้งหมด',
+                                                  style: TextStyle(
+                                                      fontSize: 13.0,
+                                                      color: colorGrey,
                                                       fontWeight:
-                                                          FontWeight.w600);
-                                                }
-                                                if (DateUtils.isSameDay(date,
-                                                    DateTime(2021, 1, 25))) {
-                                                  textStyle = TextStyle(
-                                                      color: Colors.grey[500],
-                                                      fontWeight:
-                                                          FontWeight.w600);
-                                                }
-                                                return textStyle;
-                                              },
-                                              dayBuilder: ({
-                                                required date,
-                                                textStyle,
-                                                decoration,
-                                                isSelected,
-                                                isDisabled,
-                                                isToday,
-                                              }) {
-                                                Widget? dayWidget;
-                                                if (date.day % 3 == 0 &&
-                                                    date.day % 9 != 0) {
-                                                  dayWidget = Container(
-                                                    decoration: decoration,
-                                                    child: Center(
-                                                      child: Stack(
-                                                        alignment:
-                                                            AlignmentDirectional
-                                                                .center,
-                                                        children: [
-                                                          Text(
-                                                            MaterialLocalizations
-                                                                    .of(context)
-                                                                .formatDecimal(
-                                                                    date.day),
-                                                            style: textStyle,
-                                                          ),
-                                                          // Padding(
-                                                          //   padding: const EdgeInsets.only(top: 27.5),
-                                                          //   child: Container(
-                                                          //     height: 4,
-                                                          //     width: 4,
-                                                          //     decoration: BoxDecoration(
-                                                          //       borderRadius: BorderRadius.circular(5),
-                                                          //       color: isSelected == true
-                                                          //           ? Colors.white
-                                                          //           : Colors.grey[500],
-                                                          //     ),
-                                                          //   ),
-                                                          // ),
-                                                        ],
-                                                      ),
+                                                          FontWeight.w400),
+                                                ),
+                                                items: contoller.category.map<
+                                                        DropdownMenuItem<
+                                                            String>>(
+                                                    (String? value) {
+                                                  return DropdownMenuItem<
+                                                      String>(
+                                                    value: value!,
+                                                    child: Text(
+                                                      value,
+                                                      style: TextStyle(
+                                                          fontSize: 13.0,
+                                                          color: colorGrey,
+                                                          fontWeight:
+                                                              FontWeight.w400),
                                                     ),
                                                   );
-                                                }
-                                                return dayWidget;
-                                              },
-                                              yearBuilder: ({
-                                                required year,
-                                                decoration,
-                                                isCurrentYear,
-                                                isDisabled,
-                                                isSelected,
-                                                textStyle,
-                                              }) {
-                                                return Center(
-                                                  child: Container(
-                                                    decoration: decoration,
-                                                    height: 36,
-                                                    width: 72,
-                                                    child: Center(
-                                                      child: Semantics(
-                                                        selected: isSelected,
-                                                        button: true,
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Text(
-                                                              '${year}',
-                                                              style: textStyle,
-                                                            ),
-                                                            if (isCurrentYear ==
-                                                                true)
-                                                              Container(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                        .all(5),
-                                                                margin:
-                                                                    const EdgeInsets
-                                                                        .only(
-                                                                        left:
-                                                                            5),
-                                                                decoration:
-                                                                    const BoxDecoration(
-                                                                  shape: BoxShape
-                                                                      .circle,
-                                                                  color: Colors
-                                                                      .black26,
-                                                                ),
-                                                              ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              },
+                                                }).toList(),
+                                                iconStyleData:
+                                                    const IconStyleData(
+                                                        icon: Icon(
+                                                  Icons.keyboard_arrow_down,
+                                                  size: 24,
+                                                )),
+                                                onChanged: (valueSelect) {
+                                                  contoller.selectCategory!
+                                                      .value = valueSelect!;
+                                                },
+                                              ),
                                             ),
-                                            dialogSize: const Size(400, 450),
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                            value: contoller.listDate.value,
-                                            dialogBackgroundColor: Colors.white,
-                                          );
-                                          if (values != null) {
-                                            // ignore: avoid_print
-                                            contoller.listDate.value = values;
-                                          }
-                                        },
-                                        child: Container(
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                  '${(contoller.listDate.value.isNotEmpty) ? (contoller.listDate.value.first == contoller.listDate.value.last) ? '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year}' : '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year} - ${contoller.listDate.value.last!.day} ${mountAbbreviation[contoller.listDate.value.last!.month - 1]} ${contoller.listDate.value.last!.year}' : ''}',
-                                                  style: textStyle(context,
-                                                      fontSize: 13))
-                                            ],
-                                          ),
-                                        )),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Expanded(
-                          flex: 2,
-                          child: Container(
-                            alignment: Alignment.centerLeft,
-                            height: 50,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('ระดับ',
-                                    style: textStyle(context, fontSize: 13)),
-                                Container(
-                                  padding:
-                                      const EdgeInsets.only(left: 20, right: 5),
-                                  width: double.infinity,
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                      color: colorWhite,
-                                      border: Border.all(
-                                        color: Colors.black26,
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(5)),
-                                  alignment: Alignment.center,
-                                  child: SizedBox(
-                                    width: double.infinity,
-                                    child: DropdownButtonHideUnderline(
-                                      child: DropdownButton2<String>(
-                                        dropdownStyleData: DropdownStyleData(
-                                          maxHeight: 300,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          ),
-                                          scrollbarTheme: ScrollbarThemeData(
-                                            radius: const Radius.circular(5),
-                                            thickness: MaterialStateProperty
-                                                .all<double>(6),
-                                            thumbVisibility:
-                                                MaterialStateProperty.all<bool>(
-                                                    true),
                                           ),
                                         ),
-                                        autofocus: true,
-                                        value: contoller.selectLevel!.value,
-                                        hint: Text(
-                                          'เลือกทั้งหมด',
-                                          style: TextStyle(
-                                              fontSize: 13.0,
-                                              color: colorGrey,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                        items: contoller.level
-                                            .map<DropdownMenuItem<String>>(
-                                                (String? value) {
-                                          return DropdownMenuItem<String>(
-                                            value: value!,
-                                            child: Text(
-                                              value,
-                                              style: TextStyle(
-                                                  fontSize: 13.0,
-                                                  color: colorGrey,
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          );
-                                        }).toList(),
-                                        iconStyleData: const IconStyleData(
-                                            icon: Icon(
-                                          Icons.keyboard_arrow_down,
-                                          size: 24,
-                                        )),
-                                        onChanged: (valueSelect) {
-                                          contoller.selectLevel!.value =
-                                              valueSelect!;
-                                        },
-                                      ),
+                                      ],
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        if(contoller.selectLevel!.value == 'จังหวัด')
-                             Expanded(
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              Expanded(
+                                flex: 3,
+                                child: Container(
+                                  alignment: Alignment.centerLeft,
+                                  height: 50,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text('ช่วงเวลา',
+                                          style:
+                                              textStyle(context, fontSize: 13)),
+                                      Container(
+                                        padding: EdgeInsets.only(
+                                            left: screenWidth >= 900 ? 15 : 20,
+                                            right: screenWidth >= 900 ? 0 : 5),
+                                        width: double.infinity,
+                                        height: 30,
+                                        decoration: BoxDecoration(
+                                            color: colorWhite,
+                                            border: Border.all(
+                                              color: Colors.black26,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        alignment: Alignment.center,
+                                        child: SizedBox(
+                                          width: double.infinity,
+                                          child: InkWell(
+                                              onTap: () async {
+                                                final values =
+                                                    await showCalendarDatePicker2Dialog(
+                                                  context: context,
+                                                  config:
+                                                      CalendarDatePicker2WithActionButtonsConfig(
+                                                    calendarViewScrollPhysics:
+                                                        const NeverScrollableScrollPhysics(),
+                                                    dayTextStyle: textStyle(
+                                                        context,
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.w700),
+                                                    calendarType:
+                                                        CalendarDatePicker2Type
+                                                            .range,
+                                                    selectedDayHighlightColor:
+                                                        Colors.amber,
+                                                    closeDialogOnCancelTapped:
+                                                        true,
+                                                    firstDayOfWeek: 1,
+                                                    weekdayLabelTextStyle:
+                                                        const TextStyle(
+                                                      color: Colors.black87,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                    controlsTextStyle:
+                                                        const TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                    centerAlignModePicker: true,
+                                                    customModePickerIcon:
+                                                        const SizedBox(),
+                                                    selectedDayTextStyle:
+                                                        TextStyle(
+                                                            color: Colors
+                                                                .grey[500],
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600),
+                                                    dayTextStylePredicate: (
+                                                        {required date}) {
+                                                      TextStyle? textStyle;
+                                                      if (date.weekday ==
+                                                              DateTime
+                                                                  .saturday ||
+                                                          date.weekday ==
+                                                              DateTime.sunday) {
+                                                        textStyle = TextStyle(
+                                                            color: Colors
+                                                                .grey[500],
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600);
+                                                      }
+                                                      if (DateUtils.isSameDay(
+                                                          date,
+                                                          DateTime(
+                                                              2021, 1, 25))) {
+                                                        textStyle = TextStyle(
+                                                            color: Colors
+                                                                .grey[500],
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600);
+                                                      }
+                                                      return textStyle;
+                                                    },
+                                                    dayBuilder: ({
+                                                      required date,
+                                                      textStyle,
+                                                      decoration,
+                                                      isSelected,
+                                                      isDisabled,
+                                                      isToday,
+                                                    }) {
+                                                      Widget? dayWidget;
+                                                      if (date.day % 3 == 0 &&
+                                                          date.day % 9 != 0) {
+                                                        dayWidget = Container(
+                                                          decoration:
+                                                              decoration,
+                                                          child: Center(
+                                                            child: Stack(
+                                                              alignment:
+                                                                  AlignmentDirectional
+                                                                      .center,
+                                                              children: [
+                                                                Text(
+                                                                  MaterialLocalizations.of(
+                                                                          context)
+                                                                      .formatDecimal(
+                                                                          date.day),
+                                                                  style:
+                                                                      textStyle,
+                                                                ),
+                                                                // Padding(
+                                                                //   padding: const EdgeInsets.only(top: 27.5),
+                                                                //   child: Container(
+                                                                //     height: 4,
+                                                                //     width: 4,
+                                                                //     decoration: BoxDecoration(
+                                                                //       borderRadius: BorderRadius.circular(5),
+                                                                //       color: isSelected == true
+                                                                //           ? Colors.white
+                                                                //           : Colors.grey[500],
+                                                                //     ),
+                                                                //   ),
+                                                                // ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }
+                                                      return dayWidget;
+                                                    },
+                                                    yearBuilder: ({
+                                                      required year,
+                                                      decoration,
+                                                      isCurrentYear,
+                                                      isDisabled,
+                                                      isSelected,
+                                                      textStyle,
+                                                    }) {
+                                                      return Center(
+                                                        child: Container(
+                                                          decoration:
+                                                              decoration,
+                                                          height: 36,
+                                                          width: 72,
+                                                          child: Center(
+                                                            child: Semantics(
+                                                              selected:
+                                                                  isSelected,
+                                                              button: true,
+                                                              child: Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Text(
+                                                                    '${year}',
+                                                                    style:
+                                                                        textStyle,
+                                                                  ),
+                                                                  if (isCurrentYear ==
+                                                                      true)
+                                                                    Container(
+                                                                      padding:
+                                                                          const EdgeInsets
+                                                                              .all(
+                                                                              5),
+                                                                      margin: const EdgeInsets
+                                                                          .only(
+                                                                          left:
+                                                                              5),
+                                                                      decoration:
+                                                                          const BoxDecoration(
+                                                                        shape: BoxShape
+                                                                            .circle,
+                                                                        color: Colors
+                                                                            .black26,
+                                                                      ),
+                                                                    ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  ),
+                                                  dialogSize:
+                                                      const Size(400, 450),
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                  value:
+                                                      contoller.listDate.value,
+                                                  dialogBackgroundColor:
+                                                      Colors.white,
+                                                );
+                                                if (values != null) {
+                                                  // ignore: avoid_print
+                                                  contoller.listDate.value =
+                                                      values;
+                                                }
+                                              },
+                                              child: Container(
+                                                child: Row(
+                                                  children: [
+                                                    Text(
+                                                        '${(contoller.listDate.value.isNotEmpty) ? (contoller.listDate.value.first == contoller.listDate.value.last) ? '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year}' : '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year} - ${contoller.listDate.value.last!.day} ${mountAbbreviation[contoller.listDate.value.last!.month - 1]} ${contoller.listDate.value.last!.year}' : ''}',
+                                                        style: textStyle(
+                                                            context,
+                                                            fontSize: 13))
+                                                  ],
+                                                ),
+                                              )),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              Expanded(
                                 flex: 2,
                                 child: Container(
                                   alignment: Alignment.centerLeft,
@@ -448,12 +411,13 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text('จังหวัด',
+                                      Text('ระดับ',
                                           style:
                                               textStyle(context, fontSize: 13)),
                                       Container(
-                                        padding: const EdgeInsets.only(
-                                            left: 20, right: 5),
+                                        padding: EdgeInsets.only(
+                                            left: screenWidth >= 900 ? 0 : 5,
+                                            right: screenWidth >= 900 ? 0 : 5),
                                         width: double.infinity,
                                         height: 30,
                                         decoration: BoxDecoration(
@@ -468,7 +432,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                         child: SizedBox(
                                           width: double.infinity,
                                           child: DropdownButtonHideUnderline(
-                                            child: DropdownButton2<Province>(
+                                            child: DropdownButton2<String>(
                                               dropdownStyleData:
                                                   DropdownStyleData(
                                                 maxHeight: 300,
@@ -489,8 +453,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                 ),
                                               ),
                                               autofocus: true,
-                                              value: contoller
-                                                  .selectProvince.value,
+                                              value:
+                                                  contoller.selectLevel!.value,
                                               hint: Text(
                                                 'เลือกทั้งหมด',
                                                 style: TextStyle(
@@ -499,15 +463,13 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                     fontWeight:
                                                         FontWeight.w400),
                                               ),
-                                              items: provinceList.map<
-                                                      DropdownMenuItem<
-                                                          Province>>(
-                                                  (Province? value) {
-                                                return DropdownMenuItem<
-                                                    Province>(
+                                              items: contoller.level.map<
+                                                      DropdownMenuItem<String>>(
+                                                  (String? value) {
+                                                return DropdownMenuItem<String>(
                                                   value: value!,
                                                   child: Text(
-                                                    value.nameTh!,
+                                                    value,
                                                     style: TextStyle(
                                                         fontSize: 13.0,
                                                         color: colorGrey,
@@ -523,7 +485,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                 size: 24,
                                               )),
                                               onChanged: (valueSelect) {
-                                                contoller.selectProvince.value =
+                                                contoller.selectLevel!.value =
                                                     valueSelect!;
                                               },
                                             ),
@@ -534,42 +496,995 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   ),
                                 ),
                               ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            contoller.setLocation();
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            height: 40,
-                            width: 80,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                color: Colors.amber),
-                            child: (contoller.loadSearch.value == true)
-                                ? Center(
-                                    child: LoadingAnimationWidget.inkDrop(
-                                    color: Colors.white,
-                                    size: 20,
-                                  ))
-                                : Text(
-                                    'ค้นหา',
-                                    style: textStyle(context,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                        color: colorWhite),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              if (contoller.selectLevel!.value == 'จังหวัด')
+                                Expanded(
+                                  flex: 2,
+                                  child: Container(
+                                    alignment: Alignment.centerLeft,
+                                    height: 50,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text('จังหวัด',
+                                            style: textStyle(context,
+                                                fontSize: 13)),
+                                        Container(
+                                          padding: EdgeInsets.only(
+                                              left: screenWidth >= 900 ? 0 : 5,
+                                              right:
+                                                  screenWidth >= 900 ? 0 : 5),
+                                          width: double.infinity,
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                              color: colorWhite,
+                                              border: Border.all(
+                                                color: Colors.black26,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          alignment: Alignment.center,
+                                          child: SizedBox(
+                                            width: double.infinity,
+                                            child: DropdownButtonHideUnderline(
+                                              child: DropdownButton2<Province>(
+                                                dropdownStyleData:
+                                                    DropdownStyleData(
+                                                  maxHeight: 300,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  ),
+                                                  scrollbarTheme:
+                                                      ScrollbarThemeData(
+                                                    radius:
+                                                        const Radius.circular(
+                                                            5),
+                                                    thickness:
+                                                        MaterialStateProperty
+                                                            .all<double>(6),
+                                                    thumbVisibility:
+                                                        MaterialStateProperty
+                                                            .all<bool>(true),
+                                                  ),
+                                                ),
+                                                autofocus: true,
+                                                value: contoller
+                                                    .selectProvince.value,
+                                                hint: Text(
+                                                  'เลือกทั้งหมด',
+                                                  style: TextStyle(
+                                                      fontSize: 13.0,
+                                                      color: colorGrey,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                ),
+                                                items: provinceList.map<
+                                                        DropdownMenuItem<
+                                                            Province>>(
+                                                    (Province? value) {
+                                                  return DropdownMenuItem<
+                                                      Province>(
+                                                    value: value!,
+                                                    child: Text(
+                                                      value.nameTh!,
+                                                      style: TextStyle(
+                                                          fontSize: 13.0,
+                                                          color: colorGrey,
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    ),
+                                                  );
+                                                }).toList(),
+                                                iconStyleData:
+                                                    const IconStyleData(
+                                                        icon: Icon(
+                                                  Icons.keyboard_arrow_down,
+                                                  size: 24,
+                                                )),
+                                                onChanged: (valueSelect) {
+                                                  contoller.selectProvince
+                                                      .value = valueSelect!;
+                                                },
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
+                                ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  contoller.setLocation();
+                                },
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  height: 40,
+                                  width: 80,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: Colors.amber),
+                                  child: (contoller.loadSearch.value == true)
+                                      ? Center(
+                                          child: LoadingAnimationWidget.inkDrop(
+                                          color: Colors.white,
+                                          size: 20,
+                                        ))
+                                      : Text(
+                                          'ค้นหา',
+                                          style: textStyle(context,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: colorWhite),
+                                        ),
+                                ),
+                              ),
+                              if (contoller.selectLevel!.value != 'จังหวัด')
+                                const Expanded(
+                                  flex: 2,
+                                  child: SizedBox(),
+                                ),
+                            ],
+                          )
+                        : Column(
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    child: Expanded(
+                                      flex: 2,
+                                      child: Container(
+                                        alignment: Alignment.centerLeft,
+                                        height: 50,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text('ประเภท',
+                                                style: textStyle(context,
+                                                    fontSize: 13)),
+                                            Container(
+                                              padding: const EdgeInsets.only(
+                                                  left: 20, right: 5),
+                                              width: double.infinity,
+                                              height: 30,
+                                              decoration: BoxDecoration(
+                                                  color: colorWhite,
+                                                  border: Border.all(
+                                                    color: Colors.black26,
+                                                    width: 1,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(5)),
+                                              alignment: Alignment.center,
+                                              child: SizedBox(
+                                                width: double.infinity,
+                                                child:
+                                                    DropdownButtonHideUnderline(
+                                                  child:
+                                                      DropdownButton2<String>(
+                                                    dropdownStyleData:
+                                                        DropdownStyleData(
+                                                      maxHeight: 300,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                      ),
+                                                      scrollbarTheme:
+                                                          ScrollbarThemeData(
+                                                        radius: const Radius
+                                                            .circular(5),
+                                                        thickness:
+                                                            MaterialStateProperty
+                                                                .all<double>(6),
+                                                        thumbVisibility:
+                                                            MaterialStateProperty
+                                                                .all<bool>(
+                                                                    true),
+                                                      ),
+                                                    ),
+                                                    autofocus: true,
+                                                    value: contoller
+                                                        .selectCategory!.value,
+                                                    hint: Text(
+                                                      'เลือกทั้งหมด',
+                                                      style: TextStyle(
+                                                          fontSize: 13.0,
+                                                          color: colorGrey,
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    ),
+                                                    items: contoller.category
+                                                        .map<
+                                                                DropdownMenuItem<
+                                                                    String>>(
+                                                            (String? value) {
+                                                      return DropdownMenuItem<
+                                                          String>(
+                                                        value: value!,
+                                                        child: Text(
+                                                          value,
+                                                          style: TextStyle(
+                                                              fontSize: 13.0,
+                                                              color: colorGrey,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400),
+                                                        ),
+                                                      );
+                                                    }).toList(),
+                                                    iconStyleData:
+                                                        const IconStyleData(
+                                                            icon: Icon(
+                                                      Icons.keyboard_arrow_down,
+                                                      size: 24,
+                                                    )),
+                                                    onChanged: (valueSelect) {
+                                                      contoller.selectCategory!
+                                                          .value = valueSelect!;
+                                                    },
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                  Expanded(
+                                    flex: 3,
+                                    child: Container(
+                                      alignment: Alignment.centerLeft,
+                                      height: 50,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text('ช่วงเวลา',
+                                              style: textStyle(context,
+                                                  fontSize: 13)),
+                                          Container(
+                                            padding: const EdgeInsets.only(
+                                                left: 20, right: 5),
+                                            width: double.infinity,
+                                            height: 30,
+                                            decoration: BoxDecoration(
+                                                color: colorWhite,
+                                                border: Border.all(
+                                                  color: Colors.black26,
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(5)),
+                                            alignment: Alignment.center,
+                                            child: SizedBox(
+                                              width: double.infinity,
+                                              child: InkWell(
+                                                  onTap: () async {
+                                                    final values =
+                                                        await showCalendarDatePicker2Dialog(
+                                                      context: context,
+                                                      config:
+                                                          CalendarDatePicker2WithActionButtonsConfig(
+                                                        calendarViewScrollPhysics:
+                                                            const NeverScrollableScrollPhysics(),
+                                                        dayTextStyle: textStyle(
+                                                            context,
+                                                            color: Colors.black,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w700),
+                                                        calendarType:
+                                                            CalendarDatePicker2Type
+                                                                .range,
+                                                        selectedDayHighlightColor:
+                                                            Colors.amber,
+                                                        closeDialogOnCancelTapped:
+                                                            true,
+                                                        firstDayOfWeek: 1,
+                                                        weekdayLabelTextStyle:
+                                                            const TextStyle(
+                                                          color: Colors.black87,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                        controlsTextStyle:
+                                                            const TextStyle(
+                                                          color: Colors.black,
+                                                          fontSize: 15,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                        centerAlignModePicker:
+                                                            true,
+                                                        customModePickerIcon:
+                                                            const SizedBox(),
+                                                        selectedDayTextStyle:
+                                                            TextStyle(
+                                                                color: Colors
+                                                                    .grey[500],
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600),
+                                                        dayTextStylePredicate: (
+                                                            {required date}) {
+                                                          TextStyle? textStyle;
+                                                          if (date.weekday ==
+                                                                  DateTime
+                                                                      .saturday ||
+                                                              date.weekday ==
+                                                                  DateTime
+                                                                      .sunday) {
+                                                            textStyle = TextStyle(
+                                                                color: Colors
+                                                                    .grey[500],
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600);
+                                                          }
+                                                          if (DateUtils
+                                                              .isSameDay(
+                                                                  date,
+                                                                  DateTime(2021,
+                                                                      1, 25))) {
+                                                            textStyle = TextStyle(
+                                                                color: Colors
+                                                                    .grey[500],
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600);
+                                                          }
+                                                          return textStyle;
+                                                        },
+                                                        dayBuilder: ({
+                                                          required date,
+                                                          textStyle,
+                                                          decoration,
+                                                          isSelected,
+                                                          isDisabled,
+                                                          isToday,
+                                                        }) {
+                                                          Widget? dayWidget;
+                                                          if (date.day % 3 ==
+                                                                  0 &&
+                                                              date.day % 9 !=
+                                                                  0) {
+                                                            dayWidget =
+                                                                Container(
+                                                              decoration:
+                                                                  decoration,
+                                                              child: Center(
+                                                                child: Stack(
+                                                                  alignment:
+                                                                      AlignmentDirectional
+                                                                          .center,
+                                                                  children: [
+                                                                    Text(
+                                                                      MaterialLocalizations.of(
+                                                                              context)
+                                                                          .formatDecimal(
+                                                                              date.day),
+                                                                      style:
+                                                                          textStyle,
+                                                                    ),
+                                                                    // Padding(
+                                                                    //   padding: const EdgeInsets.only(top: 27.5),
+                                                                    //   child: Container(
+                                                                    //     height: 4,
+                                                                    //     width: 4,
+                                                                    //     decoration: BoxDecoration(
+                                                                    //       borderRadius: BorderRadius.circular(5),
+                                                                    //       color: isSelected == true
+                                                                    //           ? Colors.white
+                                                                    //           : Colors.grey[500],
+                                                                    //     ),
+                                                                    //   ),
+                                                                    // ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                          return dayWidget;
+                                                        },
+                                                        yearBuilder: ({
+                                                          required year,
+                                                          decoration,
+                                                          isCurrentYear,
+                                                          isDisabled,
+                                                          isSelected,
+                                                          textStyle,
+                                                        }) {
+                                                          return Center(
+                                                            child: Container(
+                                                              decoration:
+                                                                  decoration,
+                                                              height: 36,
+                                                              width: 72,
+                                                              child: Center(
+                                                                child:
+                                                                    Semantics(
+                                                                  selected:
+                                                                      isSelected,
+                                                                  button: true,
+                                                                  child: Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .center,
+                                                                    children: [
+                                                                      Text(
+                                                                        '${year}',
+                                                                        style:
+                                                                            textStyle,
+                                                                      ),
+                                                                      if (isCurrentYear ==
+                                                                          true)
+                                                                        Container(
+                                                                          padding: const EdgeInsets
+                                                                              .all(
+                                                                              5),
+                                                                          margin: const EdgeInsets
+                                                                              .only(
+                                                                              left: 5),
+                                                                          decoration:
+                                                                              const BoxDecoration(
+                                                                            shape:
+                                                                                BoxShape.circle,
+                                                                            color:
+                                                                                Colors.black26,
+                                                                          ),
+                                                                        ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ),
+                                                      dialogSize:
+                                                          const Size(400, 450),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15),
+                                                      value: contoller
+                                                          .listDate.value,
+                                                      dialogBackgroundColor:
+                                                          Colors.white,
+                                                    );
+                                                    if (values != null) {
+                                                      // ignore: avoid_print
+                                                      contoller.listDate.value =
+                                                          values;
+                                                    }
+                                                  },
+                                                  child: Container(
+                                                    child: Row(
+                                                      children: [
+                                                        Text(
+                                                            '${(contoller.listDate.value.isNotEmpty) ? (contoller.listDate.value.first == contoller.listDate.value.last) ? '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year}' : '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year} - ${contoller.listDate.value.last!.day} ${mountAbbreviation[contoller.listDate.value.last!.month - 1]} ${contoller.listDate.value.last!.year}' : ''}',
+                                                            style: textStyle(
+                                                                context,
+                                                                fontSize: 13))
+                                                      ],
+                                                    ),
+                                                  )),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  // const SizedBox(
+                                  //   width: 20,
+                                  // ),
+                                  // Expanded(
+                                  //   flex: 2,
+                                  //   child: Container(
+                                  //     alignment: Alignment.centerLeft,
+                                  //     height: 50,
+                                  //     child: Column(
+                                  //       crossAxisAlignment:
+                                  //           CrossAxisAlignment.start,
+                                  //       children: [
+                                  //         Text('ระดับ',
+                                  //             style: textStyle(context,
+                                  //                 fontSize: 13)),
+                                  //         Container(
+                                  //           padding: const EdgeInsets.only(
+                                  //               left: 20, right: 5),
+                                  //           width: double.infinity,
+                                  //           height: 30,
+                                  //           decoration: BoxDecoration(
+                                  //               color: colorWhite,
+                                  //               border: Border.all(
+                                  //                 color: Colors.black26,
+                                  //                 width: 1,
+                                  //               ),
+                                  //               borderRadius:
+                                  //                   BorderRadius.circular(5)),
+                                  //           alignment: Alignment.center,
+                                  //           child: SizedBox(
+                                  //             width: double.infinity,
+                                  //             child:
+                                  //                 DropdownButtonHideUnderline(
+                                  //               child: DropdownButton2<String>(
+                                  //                 dropdownStyleData:
+                                  //                     DropdownStyleData(
+                                  //                   maxHeight: 300,
+                                  //                   decoration: BoxDecoration(
+                                  //                     borderRadius:
+                                  //                         BorderRadius.circular(
+                                  //                             5),
+                                  //                   ),
+                                  //                   scrollbarTheme:
+                                  //                       ScrollbarThemeData(
+                                  //                     radius:
+                                  //                         const Radius.circular(
+                                  //                             5),
+                                  //                     thickness:
+                                  //                         MaterialStateProperty
+                                  //                             .all<double>(6),
+                                  //                     thumbVisibility:
+                                  //                         MaterialStateProperty
+                                  //                             .all<bool>(true),
+                                  //                   ),
+                                  //                 ),
+                                  //                 autofocus: true,
+                                  //                 value: contoller
+                                  //                     .selectLevel!.value,
+                                  //                 hint: Text(
+                                  //                   'เลือกทั้งหมด',
+                                  //                   style: TextStyle(
+                                  //                       fontSize: 13.0,
+                                  //                       color: colorGrey,
+                                  //                       fontWeight:
+                                  //                           FontWeight.w400),
+                                  //                 ),
+                                  //                 items: contoller.level.map<
+                                  //                         DropdownMenuItem<
+                                  //                             String>>(
+                                  //                     (String? value) {
+                                  //                   return DropdownMenuItem<
+                                  //                       String>(
+                                  //                     value: value!,
+                                  //                     child: Text(
+                                  //                       value,
+                                  //                       style: TextStyle(
+                                  //                           fontSize: 13.0,
+                                  //                           color: colorGrey,
+                                  //                           fontWeight:
+                                  //                               FontWeight
+                                  //                                   .w400),
+                                  //                     ),
+                                  //                   );
+                                  //                 }).toList(),
+                                  //                 iconStyleData:
+                                  //                     const IconStyleData(
+                                  //                         icon: Icon(
+                                  //                   Icons.keyboard_arrow_down,
+                                  //                   size: 24,
+                                  //                 )),
+                                  //                 onChanged: (valueSelect) {
+                                  //                   contoller.selectLevel!
+                                  //                       .value = valueSelect!;
+                                  //                 },
+                                  //               ),
+                                  //             ),
+                                  //           ),
+                                  //         ),
+                                  //       ],
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(
+                                  //   width: 20,
+                                  // ),
+                                  // if (contoller.selectLevel!.value == 'จังหวัด')
+                                  //   Expanded(
+                                  //     flex: 2,
+                                  //     child: Container(
+                                  //       alignment: Alignment.centerLeft,
+                                  //       height: 50,
+                                  //       child: Column(
+                                  //         crossAxisAlignment:
+                                  //             CrossAxisAlignment.start,
+                                  //         children: [
+                                  //           Text('จังหวัด',
+                                  //               style: textStyle(context,
+                                  //                   fontSize: 13)),
+                                  //           Container(
+                                  //             padding: const EdgeInsets.only(
+                                  //                 left: 20, right: 5),
+                                  //             width: double.infinity,
+                                  //             height: 30,
+                                  //             decoration: BoxDecoration(
+                                  //                 color: colorWhite,
+                                  //                 border: Border.all(
+                                  //                   color: Colors.black26,
+                                  //                   width: 1,
+                                  //                 ),
+                                  //                 borderRadius:
+                                  //                     BorderRadius.circular(5)),
+                                  //             alignment: Alignment.center,
+                                  //             child: SizedBox(
+                                  //               width: double.infinity,
+                                  //               child:
+                                  //                   DropdownButtonHideUnderline(
+                                  //                 child:
+                                  //                     DropdownButton2<Province>(
+                                  //                   dropdownStyleData:
+                                  //                       DropdownStyleData(
+                                  //                     maxHeight: 300,
+                                  //                     decoration: BoxDecoration(
+                                  //                       borderRadius:
+                                  //                           BorderRadius
+                                  //                               .circular(5),
+                                  //                     ),
+                                  //                     scrollbarTheme:
+                                  //                         ScrollbarThemeData(
+                                  //                       radius: const Radius
+                                  //                           .circular(5),
+                                  //                       thickness:
+                                  //                           MaterialStateProperty
+                                  //                               .all<double>(6),
+                                  //                       thumbVisibility:
+                                  //                           MaterialStateProperty
+                                  //                               .all<bool>(
+                                  //                                   true),
+                                  //                     ),
+                                  //                   ),
+                                  //                   autofocus: true,
+                                  //                   value: contoller
+                                  //                       .selectProvince.value,
+                                  //                   hint: Text(
+                                  //                     'เลือกทั้งหมด',
+                                  //                     style: TextStyle(
+                                  //                         fontSize: 13.0,
+                                  //                         color: colorGrey,
+                                  //                         fontWeight:
+                                  //                             FontWeight.w400),
+                                  //                   ),
+                                  //                   items: provinceList.map<
+                                  //                           DropdownMenuItem<
+                                  //                               Province>>(
+                                  //                       (Province? value) {
+                                  //                     return DropdownMenuItem<
+                                  //                         Province>(
+                                  //                       value: value!,
+                                  //                       child: Text(
+                                  //                         value.nameTh!,
+                                  //                         style: TextStyle(
+                                  //                             fontSize: 13.0,
+                                  //                             color: colorGrey,
+                                  //                             fontWeight:
+                                  //                                 FontWeight
+                                  //                                     .w400),
+                                  //                       ),
+                                  //                     );
+                                  //                   }).toList(),
+                                  //                   iconStyleData:
+                                  //                       const IconStyleData(
+                                  //                           icon: Icon(
+                                  //                     Icons.keyboard_arrow_down,
+                                  //                     size: 24,
+                                  //                   )),
+                                  //                   onChanged: (valueSelect) {
+                                  //                     contoller.selectProvince
+                                  //                         .value = valueSelect!;
+                                  //                   },
+                                  //                 ),
+                                  //               ),
+                                  //             ),
+                                  //           ),
+                                  //         ],
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // const SizedBox(
+                                  //   width: 20,
+                                  // ),
+                                  // InkWell(
+                                  //   onTap: () {
+                                  //     contoller.setLocation();
+                                  //   },
+                                  //   child: Container(
+                                  //     alignment: Alignment.center,
+                                  //     height: 40,
+                                  //     width: 80,
+                                  //     decoration: BoxDecoration(
+                                  //         borderRadius:
+                                  //             BorderRadius.circular(15),
+                                  //         color: Colors.amber),
+                                  //     child: (contoller.loadSearch.value ==
+                                  //             true)
+                                  //         ? Center(
+                                  //             child: LoadingAnimationWidget
+                                  //                 .inkDrop(
+                                  //             color: Colors.white,
+                                  //             size: 20,
+                                  //           ))
+                                  //         : Text(
+                                  //             'ค้นหา',
+                                  //             style: textStyle(context,
+                                  //                 fontSize: 15,
+                                  //                 fontWeight: FontWeight.bold,
+                                  //                 color: colorWhite),
+                                  //           ),
+                                  //   ),
+                                  // ),
+                                  // if (contoller.selectLevel!.value != 'จังหวัด')
+                                  //   const Expanded(
+                                  //     flex: 2,
+                                  //     child: SizedBox(),
+                                  //   ),
+                                ],
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Expanded(
+                                    flex: 2,
+                                    child: Container(
+                                      alignment: Alignment.centerLeft,
+                                      height: 50,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text('ระดับ',
+                                              style: textStyle(context,
+                                                  fontSize: 13)),
+                                          Container(
+                                            padding: const EdgeInsets.only(
+                                                left: 20, right: 5),
+                                            width: double.infinity,
+                                            height: 30,
+                                            decoration: BoxDecoration(
+                                                color: colorWhite,
+                                                border: Border.all(
+                                                  color: Colors.black26,
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(5)),
+                                            alignment: Alignment.center,
+                                            child: SizedBox(
+                                              width: double.infinity,
+                                              child:
+                                                  DropdownButtonHideUnderline(
+                                                child: DropdownButton2<String>(
+                                                  dropdownStyleData:
+                                                      DropdownStyleData(
+                                                    maxHeight: 300,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                    ),
+                                                    scrollbarTheme:
+                                                        ScrollbarThemeData(
+                                                      radius:
+                                                          const Radius.circular(
+                                                              5),
+                                                      thickness:
+                                                          MaterialStateProperty
+                                                              .all<double>(6),
+                                                      thumbVisibility:
+                                                          MaterialStateProperty
+                                                              .all<bool>(true),
+                                                    ),
+                                                  ),
+                                                  autofocus: true,
+                                                  value: contoller
+                                                      .selectLevel!.value,
+                                                  hint: Text(
+                                                    'เลือกทั้งหมด',
+                                                    style: TextStyle(
+                                                        fontSize: 13.0,
+                                                        color: colorGrey,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
+                                                  items: contoller.level.map<
+                                                          DropdownMenuItem<
+                                                              String>>(
+                                                      (String? value) {
+                                                    return DropdownMenuItem<
+                                                        String>(
+                                                      value: value!,
+                                                      child: Text(
+                                                        value,
+                                                        style: TextStyle(
+                                                            fontSize: 13.0,
+                                                            color: colorGrey,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w400),
+                                                      ),
+                                                    );
+                                                  }).toList(),
+                                                  iconStyleData:
+                                                      const IconStyleData(
+                                                          icon: Icon(
+                                                    Icons.keyboard_arrow_down,
+                                                    size: 24,
+                                                  )),
+                                                  onChanged: (valueSelect) {
+                                                    contoller.selectLevel!
+                                                        .value = valueSelect!;
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                  if (contoller.selectLevel!.value == 'จังหวัด')
+                                    Expanded(
+                                      flex: 2,
+                                      child: Container(
+                                        alignment: Alignment.centerLeft,
+                                        height: 50,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text('จังหวัด',
+                                                style: textStyle(context,
+                                                    fontSize: 13)),
+                                            Container(
+                                              padding: EdgeInsets.only(
+                                                  left: screenWidth <= 515
+                                                      ? 10
+                                                      : 20,
+                                                  right: 5),
+                                              width: double.infinity,
+                                              height: 30,
+                                              decoration: BoxDecoration(
+                                                  color: colorWhite,
+                                                  border: Border.all(
+                                                    color: Colors.black26,
+                                                    width: 1,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(5)),
+                                              alignment: Alignment.center,
+                                              child: SizedBox(
+                                                width: double.infinity,
+                                                child:
+                                                    DropdownButtonHideUnderline(
+                                                  child:
+                                                      DropdownButton2<Province>(
+                                                    dropdownStyleData:
+                                                        DropdownStyleData(
+                                                      maxHeight: 300,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                      ),
+                                                      scrollbarTheme:
+                                                          ScrollbarThemeData(
+                                                        radius: const Radius
+                                                            .circular(5),
+                                                        thickness:
+                                                            MaterialStateProperty
+                                                                .all<double>(6),
+                                                        thumbVisibility:
+                                                            MaterialStateProperty
+                                                                .all<bool>(
+                                                                    true),
+                                                      ),
+                                                    ),
+                                                    autofocus: true,
+                                                    value: contoller
+                                                        .selectProvince.value,
+                                                    hint: Text(
+                                                      'เลือกทั้งหมด',
+                                                      style: TextStyle(
+                                                          fontSize: 13.0,
+                                                          color: colorGrey,
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    ),
+                                                    items: provinceList.map<
+                                                            DropdownMenuItem<
+                                                                Province>>(
+                                                        (Province? value) {
+                                                      return DropdownMenuItem<
+                                                          Province>(
+                                                        value: value!,
+                                                        child: Text(
+                                                          value.nameTh!,
+                                                          style: TextStyle(
+                                                              fontSize: 13.0,
+                                                              color: colorGrey,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400),
+                                                        ),
+                                                      );
+                                                    }).toList(),
+                                                    iconStyleData:
+                                                        const IconStyleData(
+                                                            icon: Icon(
+                                                      Icons.keyboard_arrow_down,
+                                                      size: 24,
+                                                    )),
+                                                    onChanged: (valueSelect) {
+                                                      contoller.selectProvince
+                                                          .value = valueSelect!;
+                                                    },
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      contoller.setLocation();
+                                    },
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      height: 40,
+                                      width: 80,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          color: Colors.amber),
+                                      child: (contoller.loadSearch.value ==
+                                              true)
+                                          ? Center(
+                                              child: LoadingAnimationWidget
+                                                  .inkDrop(
+                                              color: Colors.white,
+                                              size: 20,
+                                            ))
+                                          : Text(
+                                              'ค้นหา',
+                                              style: textStyle(context,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: colorWhite),
+                                            ),
+                                    ),
+                                  ),
+                                  if (contoller.selectLevel!.value != 'จังหวัด')
+                                    const Expanded(
+                                      flex: 2,
+                                      child: SizedBox(),
+                                    ),
+                                ],
+                              ),
+                            ],
                           ),
-                        ),
-                        if(contoller.selectLevel!.value != 'จังหวัด')
-                          const Expanded(
-                            flex: 2,
-                            child: SizedBox(),
-                          ),
-                      ],
-                    ),
                     const SizedBox(
                       height: 20,
                     ),
@@ -696,14 +1611,15 @@ class _DashBoardPageState extends State<DashBoardPage> {
                           height: 450,
                           child: Center(
                               child: FlutterMap(
-                                mapController: contoller.mapController.value,
+                                  mapController: contoller.mapController.value,
                                   options: const MapOptions(
                                     keepAlive: true,
                                     // interactionOptions: InteractionOptions(
                                     //   flags: InteractiveFlag.doubleTapDragZoom |
                                     //       InteractiveFlag.drag,
                                     // ),
-                                    initialCenter: LatLng(18.3170581, 99.3986862),
+                                    initialCenter:
+                                        LatLng(18.3170581, 99.3986862),
                                     initialZoom: 12,
                                     // maxZoom: 17,
                                     // minZoom: 10
@@ -728,18 +1644,16 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                         // if (value.isNotEmpty) {
                                         //   contoller.searchMap(value);
                                         // }
-                                        if(value.isEmpty){
+                                        if (value.isEmpty) {
                                           contoller.listSearchMap.clear();
                                         }
-
                                       },
                                       decoration: InputDecoration(
                                         suffixIcon: InkWell(
-                                          onTap: () async {
-                                            contoller.searchMap(
-                                                contoller
-                                                    .search.value.text);
-                                          },
+                                            onTap: () async {
+                                              contoller.searchMap(
+                                                  contoller.search.value.text);
+                                            },
                                             child: Icon(Icons.search)),
                                         fillColor: colorWhite,
                                         hintText: "ค้นหา",
@@ -754,7 +1668,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                             width: 2,
                                           ),
                                           borderRadius:
-                                          BorderRadius.circular(5),
+                                              BorderRadius.circular(5),
                                         ),
                                       ),
                                     ),
@@ -762,37 +1676,38 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   Container(
                                     height: 310,
                                     child: ListView.builder(
-                                      itemCount: contoller
-                                          .listSearchMap.value.length,
-                                      itemBuilder: (context, index) =>
-                                          InkWell(
-                                            onTap: (){
-                                              contoller.mapController.value.move(
-                                                  LatLng(
-                                                      double.parse(contoller
-                                                          .listSearchMap.value[index].lat!),
-                                                      double.parse(contoller
-                                                          .listSearchMap.value[index].lon!)),
-                                                  16);
-                                              contoller.listSearchMap.clear();
-                                            },
-                                            child: Container(
-                                              padding: const EdgeInsets.only(
-                                                  left: 5,
-                                                  right: 5,
-                                                  top: 2,
-                                                  bottom: 2),
-                                              height: 45,
-                                              color: (index % 2 == 1)
-                                                  ? Colors.grey.shade300
-                                                  : Colors.white,
-                                              child: Text(contoller
-                                                  .listSearchMap
-                                                  .value[index]
-                                                  .displayName
-                                                  .toString()),
-                                            ),
-                                          ),
+                                      itemCount:
+                                          contoller.listSearchMap.value.length,
+                                      itemBuilder: (context, index) => InkWell(
+                                        onTap: () {
+                                          contoller.mapController.value.move(
+                                              LatLng(
+                                                  double.parse(contoller
+                                                      .listSearchMap
+                                                      .value[index]
+                                                      .lat!),
+                                                  double.parse(contoller
+                                                      .listSearchMap
+                                                      .value[index]
+                                                      .lon!)),
+                                              16);
+                                          contoller.listSearchMap.clear();
+                                        },
+                                        child: Container(
+                                          padding: const EdgeInsets.only(
+                                              left: 5,
+                                              right: 5,
+                                              top: 2,
+                                              bottom: 2),
+                                          height: 45,
+                                          color: (index % 2 == 1)
+                                              ? Colors.grey.shade300
+                                              : Colors.white,
+                                          child: Text(contoller.listSearchMap
+                                              .value[index].displayName
+                                              .toString()),
+                                        ),
+                                      ),
                                     ),
                                   )
                                 ],
@@ -904,26 +1819,28 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     ),
                     Container(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10), color: colorWhite),
+                            borderRadius: BorderRadius.circular(10),
+                            color: colorWhite),
                         height: 450,
                         child: Column(
                           children: [
                             const SizedBox(
                               height: 20,
                             ),
-
                             Row(
                               children: [
                                 const SizedBox(
                                   width: 10,
                                 ),
                                 Text('แกนY',
-                                    style: textStyle(context, fontSize: 13, color: colorBlack)),
+                                    style: textStyle(context,
+                                        fontSize: 13, color: colorBlack)),
                                 const SizedBox(
                                   width: 10,
                                 ),
                                 Container(
-                                  padding: const EdgeInsets.only(left: 20, right: 5),
+                                  padding:
+                                      const EdgeInsets.only(left: 20, right: 5),
                                   width: 200,
                                   height: 30,
                                   decoration: BoxDecoration(
@@ -941,13 +1858,16 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                         dropdownStyleData: DropdownStyleData(
                                           maxHeight: 300,
                                           decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(5),
+                                            borderRadius:
+                                                BorderRadius.circular(5),
                                           ),
                                           scrollbarTheme: ScrollbarThemeData(
                                             radius: const Radius.circular(5),
-                                            thickness: MaterialStateProperty.all<double>(6),
+                                            thickness: MaterialStateProperty
+                                                .all<double>(6),
                                             thumbVisibility:
-                                            MaterialStateProperty.all<bool>(true),
+                                                MaterialStateProperty.all<bool>(
+                                                    true),
                                           ),
                                         ),
                                         autofocus: true,
@@ -961,7 +1881,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                               fontWeight: FontWeight.w400),
                                         ),
                                         items: contoller.listChartY
-                                            .map<DropdownMenuItem<String>>((String? value) {
+                                            .map<DropdownMenuItem<String>>(
+                                                (String? value) {
                                           return DropdownMenuItem<String>(
                                             value: value!,
                                             child: Text(
@@ -975,11 +1896,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                         }).toList(),
                                         iconStyleData: const IconStyleData(
                                             icon: Icon(
-                                              Icons.keyboard_arrow_down,
-                                              size: 24,
-                                            )),
+                                          Icons.keyboard_arrow_down,
+                                          size: 24,
+                                        )),
                                         onChanged: (valueSelect) {
-                                          contoller.selectChartY.value = valueSelect!;
+                                          contoller.selectChartY.value =
+                                              valueSelect!;
                                         },
                                       ),
                                     ),
@@ -996,12 +1918,14 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   width: 10,
                                 ),
                                 Text('แกนX',
-                                    style: textStyle(context, fontSize: 13, color: colorBlack)),
+                                    style: textStyle(context,
+                                        fontSize: 13, color: colorBlack)),
                                 const SizedBox(
                                   width: 10,
                                 ),
                                 Container(
-                                  padding: const EdgeInsets.only(left: 20, right: 5),
+                                  padding:
+                                      const EdgeInsets.only(left: 20, right: 5),
                                   width: 200,
                                   height: 30,
                                   decoration: BoxDecoration(
@@ -1019,13 +1943,16 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                         dropdownStyleData: DropdownStyleData(
                                           maxHeight: 300,
                                           decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(5),
+                                            borderRadius:
+                                                BorderRadius.circular(5),
                                           ),
                                           scrollbarTheme: ScrollbarThemeData(
                                             radius: const Radius.circular(5),
-                                            thickness: MaterialStateProperty.all<double>(6),
+                                            thickness: MaterialStateProperty
+                                                .all<double>(6),
                                             thumbVisibility:
-                                            MaterialStateProperty.all<bool>(true),
+                                                MaterialStateProperty.all<bool>(
+                                                    true),
                                           ),
                                         ),
                                         autofocus: true,
@@ -1039,7 +1966,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                               fontWeight: FontWeight.w400),
                                         ),
                                         items: contoller.listChartX
-                                            .map<DropdownMenuItem<String>>((String? value) {
+                                            .map<DropdownMenuItem<String>>(
+                                                (String? value) {
                                           return DropdownMenuItem<String>(
                                             value: value!,
                                             child: Text(
@@ -1053,11 +1981,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                         }).toList(),
                                         iconStyleData: const IconStyleData(
                                             icon: Icon(
-                                              Icons.keyboard_arrow_down,
-                                              size: 24,
-                                            )),
+                                          Icons.keyboard_arrow_down,
+                                          size: 24,
+                                        )),
                                         onChanged: (valueSelect) {
-                                          contoller.selectChartX.value = valueSelect!;
+                                          contoller.selectChartX.value =
+                                              valueSelect!;
                                         },
                                       ),
                                     ),
@@ -1065,10 +1994,10 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                 )
                               ],
                             ),
-                            if(contoller.dashboard.value.fire!=null)contoller.chart(context)
+                            if (contoller.dashboard.value.fire != null)
+                              contoller.chart(context)
                           ],
                         ))
-
                   ],
                 ))),
       ],

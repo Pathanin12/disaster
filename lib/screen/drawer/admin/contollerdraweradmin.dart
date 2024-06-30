@@ -17,15 +17,13 @@ import '../../report/mainreport/viewmainreport.dart';
 import '../../report/winestormreport/viewwinestormreport.dart';
 
 class LandingPageControllerAdmin extends GetxController {
-  var tabIndex = 6.obs;
-  Rx<ProfileSaveModel>? dataUser=ProfileSaveModel().obs;
+  var tabIndex = 0.obs;
+  Rx<ProfileSaveModel>? dataUser = ProfileSaveModel().obs;
   Rx<ProfileSaveModel> dataUserAdmin = ProfileSaveModel().obs;
-
 
   void changeTabIndex(int index) {
     tabIndex.value = index;
   }
-
 
   @override
   void onInit() {

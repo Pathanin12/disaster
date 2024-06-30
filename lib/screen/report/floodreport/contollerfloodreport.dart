@@ -56,17 +56,13 @@ class ContollerFloodReport extends GetxController {
   final mapControllers = MapController().obs;
   var search = TextEditingController().obs,
       searchAgency = TextEditingController().obs;
-  var listSearchMap=<SearchMapModel>[].obs;
-  searchMap(String data)async{
-    listSearchMap.value=await searchMapApi(data);
+  var listSearchMap = <SearchMapModel>[].obs;
+  searchMap(String data) async {
+    listSearchMap.value = await searchMapApi(data);
   }
-var selectViolence="เลือกทั้งหมด".obs;
-var listViolence=[
-  "เล็กน้อย",
-  "ปานกลาง",
-  "รุนแรง",
-  "เลือกทั้งหมด"
-].obs;
+
+  var selectViolence = "เลือกทั้งหมด".obs;
+  var listViolence = ["เล็กน้อย", "ปานกลาง", "รุนแรง", "เลือกทั้งหมด"].obs;
   var selectProvince = provinceList[0].obs;
   RxString? selectLevel = 'ประเทศ'.obs;
   List<String> level = [
@@ -229,140 +225,149 @@ var listViolence=[
   Future<void> setLocation() async {
     loadSearch.value = true;
 
-     allEvent.value = await getAllDashBoardApi(
-       startDate: listDate.first.toString().split(" ")[0],
-       endDate: listDate.last.toString().split(" ")[0],
-       disasterType: 1,
-       level: level.indexOf(selectLevel.toString()),
-       provinceID: selectProvince.value.id,
-       statusItem:StatusList.indexOf(selectStatusItem.value) ,
-       statusAgency:StatusList.indexOf(selectStatusAgency.value) ,
-       responsibleAgency: searchAgency.value.text,
-       violence: listViolence.indexOf(selectViolence.value)
-     );
-     updateMaxPage(allEvent.value);
-     listWidgetMark = <Widget>[
-       TileLayer(
-         urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-         userAgentPackageName: 'com.example.app',
-       ),
-     ].obs;
+    allEvent.value = await getAllDashBoardApi(
+        startDate: listDate.first.toString().split(" ")[0],
+        endDate: listDate.last.toString().split(" ")[0],
+        disasterType: 1,
+        level: level.indexOf(selectLevel.toString()),
+        provinceID: selectProvince.value.id,
+        statusItem: StatusList.indexOf(selectStatusItem.value),
+        statusAgency: StatusList.indexOf(selectStatusAgency.value),
+        responsibleAgency: searchAgency.value.text,
+        violence: listViolence.indexOf(selectViolence.value));
+    updateMaxPage(allEvent.value);
+    listWidgetMark = <Widget>[
+      TileLayer(
+        urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+        userAgentPackageName: 'com.example.app',
+      ),
+    ].obs;
 
-     for (var element in allEvent.value.eventList!) {
-       Widget widget = MarkerLayer(
-         markers: [
-           Marker(
-               point: LatLng(double.parse(element.latitude!),
-                   double.parse(element.longitude!)),
-               width: 80,
-               height: 80,
-               child: JustTheTooltip(
-                 controller: tooltipController,
-                 child: InkWell(
-
-                   onTap: (){
-                     final LandingPageControllerAdmin landingPageController =
-                     Get.put(LandingPageControllerAdmin(), permanent: false);
-                     final ContollerDetail contollerEvent =
-                     Get.put(ContollerDetail(), permanent: false);
-                     contollerEvent.getEvent(element.eventID!);
-                     landingPageController.tabIndex.value=7;
-                   },
-                   child: (element.disasterType == 0 && element.statusItem == 0)
-                       ? SvgPicture.asset(
-                     'assets/icons/svg/fire0.svg',
-                   )
-                       : (element.disasterType == 0 && element.statusItem == 1)
-                       ? SvgPicture.asset(
-                     'assets/icons/svg/fire1.svg',
-                   )
-                       : (element.disasterType == 0 && element.statusItem == 2)
-                       ? SvgPicture.asset(
-                     'assets/icons/svg/fire2.svg',
-                   )
-                       : (element.disasterType == 1 && element.statusItem == 0)
-                       ? SvgPicture.asset(
-                     'assets/icons/svg/flood0.svg',
-                   )
-                       : (element.disasterType == 1 &&
-                       element.statusItem == 1)
-                       ? SvgPicture.asset(
-                     'assets/icons/svg/flood1.svg',
-                   )
-                       : (element.disasterType == 1 &&
-                       element.statusItem == 2)
-                       ? SvgPicture.asset(
-                     'assets/icons/svg/flood2.svg',
-                   )
-                       : (element.disasterType == 2 &&
-                       element.statusItem == 0)
-                       ? SvgPicture.asset(
-                     'assets/icons/svg/windstorm0.svg',
-                   )
-                       : (element.disasterType == 2 &&
-                       element.statusItem == 1)
-                       ? SvgPicture.asset(
-                     'assets/icons/svg/windstorm1.svg',
-                   )
-                       : (element.disasterType == 2 &&
-                       element.statusItem == 2)
-                       ? SvgPicture.asset(
-                     'assets/icons/svg/windstorm2.svg',
-                   )
-                       : (element.disasterType == 3 &&
-                       element.statusItem == 0)
-                       ? SvgPicture.asset(
-                     'assets/icons/svg/forestfire0.svg',
-                   )
-                       : (element.disasterType ==
-                       3 &&
-                       element.statusItem ==
-                           1)
-                       ? SvgPicture.asset(
-                     'assets/icons/svg/forestfire1.svg',
-                   )
-                       : SvgPicture.asset(
-                     'assets/icons/svg/forestfire2.svg',
-                   ),
-                 ),
-                 content: Container(
-                   width: 200,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.grey.shade200,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: Offset(0, 3), // changes position of shadow
+    for (var element in allEvent.value.eventList!) {
+      Widget widget = MarkerLayer(
+        markers: [
+          Marker(
+              point: LatLng(double.parse(element.latitude!),
+                  double.parse(element.longitude!)),
+              width: 80,
+              height: 80,
+              child: JustTheTooltip(
+                controller: tooltipController,
+                child: InkWell(
+                  onTap: () {
+                    final LandingPageControllerAdmin landingPageController =
+                        Get.put(LandingPageControllerAdmin(), permanent: false);
+                    final ContollerDetail contollerEvent =
+                        Get.put(ContollerDetail(), permanent: false);
+                    contollerEvent.getEvent(element.eventID!);
+                    landingPageController.tabIndex.value = 7;
+                  },
+                  child: (element.disasterType == 0 && element.statusItem == 0)
+                      ? SvgPicture.asset(
+                          'assets/icons/svg/fire0.svg',
+                        )
+                      : (element.disasterType == 0 && element.statusItem == 1)
+                          ? SvgPicture.asset(
+                              'assets/icons/svg/fire1.svg',
+                            )
+                          : (element.disasterType == 0 &&
+                                  element.statusItem == 2)
+                              ? SvgPicture.asset(
+                                  'assets/icons/svg/fire2.svg',
+                                )
+                              : (element.disasterType == 1 &&
+                                      element.statusItem == 0)
+                                  ? SvgPicture.asset(
+                                      'assets/icons/svg/flood0.svg',
+                                    )
+                                  : (element.disasterType == 1 &&
+                                          element.statusItem == 1)
+                                      ? SvgPicture.asset(
+                                          'assets/icons/svg/flood1.svg',
+                                        )
+                                      : (element.disasterType == 1 &&
+                                              element.statusItem == 2)
+                                          ? SvgPicture.asset(
+                                              'assets/icons/svg/flood2.svg',
+                                            )
+                                          : (element.disasterType == 2 &&
+                                                  element.statusItem == 0)
+                                              ? SvgPicture.asset(
+                                                  'assets/icons/svg/windstorm0.svg',
+                                                )
+                                              : (element.disasterType == 2 &&
+                                                      element.statusItem == 1)
+                                                  ? SvgPicture.asset(
+                                                      'assets/icons/svg/windstorm1.svg',
+                                                    )
+                                                  : (element.disasterType ==
+                                                              2 &&
+                                                          element.statusItem ==
+                                                              2)
+                                                      ? SvgPicture.asset(
+                                                          'assets/icons/svg/windstorm2.svg',
+                                                        )
+                                                      : (element.disasterType ==
+                                                                  3 &&
+                                                              element.statusItem ==
+                                                                  0)
+                                                          ? SvgPicture.asset(
+                                                              'assets/icons/svg/forestfire0.svg',
+                                                            )
+                                                          : (element.disasterType ==
+                                                                      3 &&
+                                                                  element.statusItem ==
+                                                                      1)
+                                                              ? SvgPicture
+                                                                  .asset(
+                                                                  'assets/icons/svg/forestfire1.svg',
+                                                                )
+                                                              : SvgPicture
+                                                                  .asset(
+                                                                  'assets/icons/svg/forestfire2.svg',
+                                                                ),
+                ),
+                content: Container(
+                  width: 200,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.grey.shade200,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: Offset(0, 3), // changes position of shadow
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          '${element.province.toString()}',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          '${element.eventName.toString()}',
+                          style: TextStyle(fontSize: 14),
                         ),
                       ],
                     ),
-                   child:  Padding(
-                     padding: EdgeInsets.all(8.0),
-                     child: Column(
-                       crossAxisAlignment: CrossAxisAlignment.start,
-                       mainAxisSize: MainAxisSize.min,
-                       children: [
-                         Text(
-                           '${element.province.toString()}',style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold),
-                         ),
-                         SizedBox(height: 10,),
-                         Text(
-                           '${element.eventName.toString()}',style: TextStyle(fontSize: 14),
-                         ),
-                       ],
-                     ),
-                   ),
-                 ),
-
-               )
-           ),
-         ],
-       );
-       listWidgetMark.add(widget);
-     }
+                  ),
+                ),
+              )),
+        ],
+      );
+      listWidgetMark.add(widget);
+    }
 
     loadSearch.value = false;
   }
@@ -385,50 +390,54 @@ var listViolence=[
   }
 
   Widget statusWidget(BuildContext context, int status) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return (status == 0)
         ? Container(
-      alignment: Alignment.center,
-      height: 30,
-      width: 80,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          color: Colors.amber),
-      child: Text(
-        'รับเรื่อง',
-        style: textStyle(context,
-            fontSize: 15, fontWeight: FontWeight.bold, color: colorWhite),
-      ),
-    )
+            alignment: Alignment.center,
+            height: 30,
+            width: 80,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5), color: Colors.amber),
+            child: Text(
+              'รับเรื่อง',
+              textAlign: TextAlign.center,
+              style: textStyle(context,
+                  fontSize: screenWidth < 720 ? 10 : 15,
+                  fontWeight: FontWeight.bold,
+                  color: colorWhite),
+            ),
+          )
         : (status == 1)
-        ? Container(
-      alignment: Alignment.center,
-      height: 30,
-      width: 80,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          color: Colors.red),
-      child: Text(
-        'กำลังดำเนินการ',
-        style: textStyle(context,
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-            color: colorWhite),
-      ),
-    )
-        : Container(
-      alignment: Alignment.center,
-      height: 30,
-      width: 80,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5), color: colorGreen),
-      child: Text(
-        'ส่งแล้ว',
-        style: textStyle(context,
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-            color: colorWhite),
-      ),
-    );
+            ? Container(
+                alignment: Alignment.center,
+                height: 30,
+                width: 80,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5), color: Colors.red),
+                child: Text(
+                  'กำลังดำเนินการ',
+                  textAlign: TextAlign.center,
+                  style: textStyle(context,
+                      fontSize: screenWidth < 720 ? 10 : 15,
+                      fontWeight: FontWeight.bold,
+                      color: colorWhite),
+                ),
+              )
+            : Container(
+                alignment: Alignment.center,
+                height: 30,
+                width: 80,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5), color: colorGreen),
+                child: Text(
+                  'ส่งแล้ว',
+                  textAlign: TextAlign.center,
+                  style: textStyle(context,
+                      fontSize: screenWidth < 720 ? 10 : 15,
+                      fontWeight: FontWeight.bold,
+                      color: colorWhite),
+                ),
+              );
   }
 
   pageTableReport(BuildContext context) {
@@ -471,6 +480,7 @@ var listViolence=[
   }
 
   tableReport(BuildContext context, List<EventList> event) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return ListView.builder(
       shrinkWrap: true,
       itemCount: event.length,
@@ -484,7 +494,9 @@ var listViolence=[
                   flex: 1,
                   child: Text(
                     event[index].seq!.toString(),
-                    style: textStyle(context, fontSize: 15, color: colorBlack),
+                    style: textStyle(context,
+                        fontSize: screenWidth < 720 ? 10 : 15,
+                        color: colorBlack),
                   ),
                 ),
                 const SizedBox(
@@ -494,7 +506,9 @@ var listViolence=[
                   flex: 3,
                   child: Text(
                     event[index].eventName!,
-                    style: textStyle(context, fontSize: 15, color: colorBlack),
+                    style: textStyle(context,
+                        fontSize: screenWidth < 720 ? 10 : 15,
+                        color: colorBlack),
                   ),
                 ),
                 const SizedBox(
@@ -504,7 +518,9 @@ var listViolence=[
                   flex: 1,
                   child: Text(
                     category[event[index].disasterType!],
-                    style: textStyle(context, fontSize: 15, color: colorBlack),
+                    style: textStyle(context,
+                        fontSize: screenWidth < 720 ? 10 : 15,
+                        color: colorBlack),
                   ),
                 ),
                 const SizedBox(
@@ -513,8 +529,10 @@ var listViolence=[
                 Expanded(
                   flex: 1,
                   child: Text(
-                    '${DateTime.parse(event[index].datetime!).day} ${mountAbbreviation[DateTime.parse(event[index].datetime!).month-1]} ${DateTime.parse(event[index].datetime!).year + 543}',
-                    style: textStyle(context, fontSize: 15, color: colorBlack),
+                    '${DateTime.parse(event[index].datetime!).day} ${mountAbbreviation[DateTime.parse(event[index].datetime!).month - 1]} ${DateTime.parse(event[index].datetime!).year + 543}',
+                    style: textStyle(context,
+                        fontSize: screenWidth < 720 ? 10 : 15,
+                        color: colorBlack),
                   ),
                 ),
                 const SizedBox(
@@ -524,7 +542,9 @@ var listViolence=[
                   flex: 2,
                   child: Text(
                     event[index].responsibleAgency ?? '',
-                    style: textStyle(context, fontSize: 15, color: colorBlack),
+                    style: textStyle(context,
+                        fontSize: screenWidth < 720 ? 10 : 15,
+                        color: colorBlack),
                   ),
                 ),
                 const SizedBox(
@@ -534,7 +554,9 @@ var listViolence=[
                   flex: 1,
                   child: Text(
                     listViolence[event[index].violence!],
-                    style: textStyle(context, fontSize: 15, color: colorBlack),
+                    style: textStyle(context,
+                        fontSize: screenWidth < 720 ? 10 : 15,
+                        color: colorBlack),
                   ),
                 ),
                 const SizedBox(
@@ -544,7 +566,27 @@ var listViolence=[
                   flex: 2,
                   child: Text(
                     '${event[index].latitude!},${event[index].longitude!}',
-                    style: textStyle(context, fontSize: 15, color: colorBlack),
+                    style: textStyle(context,
+                        fontSize: screenWidth < 720 ? 10 : 15,
+                        color: colorBlack),
+                  ),
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                Expanded(
+                    flex: 2,
+                    child: statusWidget(context, event[index].statusAgency!)),
+                const SizedBox(
+                  width: 5,
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Text(
+                    event[index].relatedAgency!,
+                    style: textStyle(context,
+                        fontSize: screenWidth < 720 ? 10 : 15,
+                        color: colorBlack),
                   ),
                 ),
                 const SizedBox(
@@ -553,23 +595,7 @@ var listViolence=[
                 Expanded(
                     flex: 2,
                     child: statusWidget(
-                        context, event[index].statusAgency!)),
-                const SizedBox(
-                  width: 5,
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Text(
-                    event[index].relatedAgency!,
-                    style: textStyle(context, fontSize: 15, color: colorBlack),
-                  ),
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                Expanded(
-                    flex: 2,
-                    child: statusWidget(context, event[index].statusRelatedAgency!)),
+                        context, event[index].statusRelatedAgency!)),
                 const SizedBox(
                   width: 5,
                 ),
@@ -580,10 +606,8 @@ var listViolence=[
                     onTap: () {
                       _painter = QrPainter(
                         errorCorrectionLevel: QrErrorCorrectLevel.H,
-                        eyeStyle:const QrEyeStyle(
-                            eyeShape: QrEyeShape.square,
-                            color: Colors.black
-                        ),
+                        eyeStyle: const QrEyeStyle(
+                            eyeShape: QrEyeShape.square, color: Colors.black),
                         emptyColor: Colors.white,
                         data: '${pathQR}${event[index].eventID}',
                         version: QrVersions.auto,
@@ -613,9 +637,9 @@ var listViolence=[
                               children: [
                                 InkWell(
                                     onTap: () async {
-                                      await Clipboard.setData(
-                                           ClipboardData(
-                                              text: '${pathQR}${event[index].eventID}'));
+                                      await Clipboard.setData(ClipboardData(
+                                          text:
+                                              '${pathQR}${event[index].eventID}'));
                                     },
                                     child: Container(
                                       height: 40,
@@ -649,8 +673,7 @@ var listViolence=[
                                   width: 10,
                                 ),
                                 InkWell(
-                                    onTap: () async{
-
+                                    onTap: () async {
                                       // File('my_image.jpg').writeAsBytes(bytes!);
                                       _capturePng();
                                     },
@@ -714,13 +737,13 @@ var listViolence=[
                       ),
                     )),
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     final LandingPageControllerAdmin landingPageController =
-                    Get.put(LandingPageControllerAdmin(), permanent: false);
+                        Get.put(LandingPageControllerAdmin(), permanent: false);
                     final ContollerDetail contollerEvent =
-                    Get.put(ContollerDetail(), permanent: false);
+                        Get.put(ContollerDetail(), permanent: false);
                     contollerEvent.getEvent(event[index].eventID!);
-                    landingPageController.tabIndex.value=7;
+                    landingPageController.tabIndex.value = 7;
                     // dialogEdit(context);
                   },
                   child: SizedBox(

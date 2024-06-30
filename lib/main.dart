@@ -80,24 +80,22 @@ class MyApp extends StatelessWidget {
         //     builder: (context) => DetailVillager(),
         //   );
         // }
-          else
-          if (settings.name == RouterName.detailother) {
-            return MaterialPageRoute(
-              builder: (context) => DetailFreeFormVillager(),
-            );
-          }
-          // else
-          // if (settings.name == RouterName.detailvalliger) {
-          //   return MaterialPageRoute(
-          //     builder: (context) => FixRole(),
-          //   );
-          // }
-          else
-          if (settings.name == RouterName.villager) {
-            return MaterialPageRoute(
-              builder: (context) => HomeViewWeb(),
-            );
-          }  else if (settings.name == RouterName.adminPage) {
+        else if (settings.name == RouterName.detailother) {
+          return MaterialPageRoute(
+            builder: (context) => DetailFreeFormVillager(),
+          );
+        }
+        // else
+        // if (settings.name == RouterName.detailvalliger) {
+        //   return MaterialPageRoute(
+        //     builder: (context) => FixRole(),
+        //   );
+        // }
+        else if (settings.name == RouterName.villager) {
+          return MaterialPageRoute(
+            builder: (context) => HomeViewWeb(),
+          );
+        } else if (settings.name == RouterName.adminPage) {
           return MaterialPageRoute(
             builder: (context) => LandingPageAdmin(),
           );
