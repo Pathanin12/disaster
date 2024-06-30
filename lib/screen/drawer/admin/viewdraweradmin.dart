@@ -62,14 +62,15 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
     // // HttpRequest.signOutToken();
     // createEvenApi();
   }
-  checkUser()async{
+
+  checkUser() async {
     final LandingPageControllerAdmin landingPageController =
-    Get.put(LandingPageControllerAdmin(), permanent: false);
+        Get.put(LandingPageControllerAdmin(), permanent: false);
 
     List<ProfileSaveModel>? listUser = await CookieSP().loadAllDataSetting();
-    if(listUser!.isNotEmpty){
-      landingPageController.dataUser!.value=listUser.last;
-    }else{
+    if (listUser!.isNotEmpty) {
+      landingPageController.dataUser!.value = listUser.last;
+    } else {
       Get.offAndToNamed(RouterName.userPage);
     }
   }
@@ -77,13 +78,13 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
   Widget build(BuildContext context) {
     final LandingPageControllerAdmin landingPageController =
         Get.put(LandingPageControllerAdmin(), permanent: false);
-
+    double screenWidth = MediaQuery.of(context).size.width;
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
         backgroundColor: colorWhite,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             // Get.offAndToNamed(RouterName.fixRole);
           },
           child: Container(
@@ -127,569 +128,808 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
             ),
           ),
         ),
-        actions: [
-          Obx(
-            () => Row(
-              children: [
-                Text(
-                    (landingPageController.dataUser!.value.profile == null)
-                        ? 'Unknow'
-                        : landingPageController
-                                .dataUser!.value.profile!.name ??
-                            'Unknow',
-                    style: TextStyle(fontSize: 13)),
-                SizedBox(
-                  width: 10,
-                ),
-                PopupMenuButton<SampleItem>(
-                  initialValue: selectedItem,
-                  onSelected: (SampleItem item) async {
-                    Get.offAndToNamed(RouterName.userPage);
-                    SharedPreferences prefs =
-                        await SharedPreferences.getInstance();
-                    CookieSP().delDataUser();
-                    landingPageController.dataUser = ProfileSaveModel().obs;
-                    landingPageController.dataUserAdmin.value.profile = null;
-                    await prefs.remove('apikey');
-                  },
-                  itemBuilder: (BuildContext context) =>
-                      <PopupMenuEntry<SampleItem>>[
-                    const PopupMenuItem<SampleItem>(
-                      value: SampleItem.itemOne,
-                      child: Text(
-                        'ออกจากระบบ',
-                        style: TextStyle(fontSize: 13),
+        actions: screenWidth >= 1130
+            ? [
+                Obx(
+                  () => Row(
+                    children: [
+                      Text(
+                          (landingPageController.dataUser!.value.profile ==
+                                  null)
+                              ? 'Unknow'
+                              : landingPageController
+                                      .dataUser!.value.profile!.name ??
+                                  'Unknow',
+                          style: TextStyle(fontSize: 13)),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      PopupMenuButton<SampleItem>(
+                        initialValue: selectedItem,
+                        onSelected: (SampleItem item) async {
+                          Get.offAndToNamed(RouterName.userPage);
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          CookieSP().delDataUser();
+                          landingPageController.dataUser =
+                              ProfileSaveModel().obs;
+                          landingPageController.dataUserAdmin.value.profile =
+                              null;
+                          await prefs.remove('apikey');
+                        },
+                        itemBuilder: (BuildContext context) =>
+                            <PopupMenuEntry<SampleItem>>[
+                          const PopupMenuItem<SampleItem>(
+                            value: SampleItem.itemOne,
+                            child: Text(
+                              'ออกจากระบบ',
+                              style: TextStyle(fontSize: 13),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                    ],
+                  ),
+                )
+              ]
+            : null,
+        // actions: [
+        //   Obx(
+        //     () => Row(
+        //       children: [
+        //         Text(
+        //             (landingPageController.dataUser!.value.profile == null)
+        //                 ? 'Unknow'
+        //                 : landingPageController.dataUser!.value.profile!.name ??
+        //                     'Unknow',
+        //             style: TextStyle(fontSize: 13)),
+        //         SizedBox(
+        //           width: 10,
+        //         ),
+        //         PopupMenuButton<SampleItem>(
+        //           initialValue: selectedItem,
+        //           onSelected: (SampleItem item) async {
+        //             Get.offAndToNamed(RouterName.userPage);
+        //             SharedPreferences prefs =
+        //                 await SharedPreferences.getInstance();
+        //             CookieSP().delDataUser();
+        //             landingPageController.dataUser = ProfileSaveModel().obs;
+        //             landingPageController.dataUserAdmin.value.profile = null;
+        //             await prefs.remove('apikey');
+        //           },
+        //           itemBuilder: (BuildContext context) =>
+        //               <PopupMenuEntry<SampleItem>>[
+        //             const PopupMenuItem<SampleItem>(
+        //               value: SampleItem.itemOne,
+        //               child: Text(
+        //                 'ออกจากระบบ',
+        //                 style: TextStyle(fontSize: 13),
+        //               ),
+        //             ),
+        //           ],
+        //         ),
+        //         SizedBox(
+        //           width: 10,
+        //         ),
+        //       ],
+        //     ),
+        //   )
+        // ],
+      ),
+      endDrawer: screenWidth <= 1130
+          ? Padding(
+              padding: const EdgeInsets.all(16),
+              child: Drawer(
+                child: ListView(
+                  children: <Widget>[
+                    ListTile(
+                      enabled: false,
+                      title: Text(
+                        (landingPageController.dataUser!.value.profile == null)
+                            ? 'Unknow'
+                            : landingPageController
+                                    .dataUser!.value.profile!.name ??
+                                'Unknow',
+                        style: textStyle(context,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: colorBlack),
                       ),
                     ),
-                  ],
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-      body: Obx(() => Row(
-            children: [
-              Container(
-                width: 250,
-                color: colorBackground,
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    children: [
-                      const SizedBox(
-                        height: 20,
+                    ListTile(
+                      leading: Icon(
+                        CupertinoIcons.home,
+                        color: colorBlack,
+                        size: 22,
                       ),
-                      InkWell(
-                        onTap: () {
-                          landingPageController.tabIndex(0);
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: (landingPageController.tabIndex.value == 0)
-                                ? Colors.amber
-                                : Colors.transparent,
-                          ),
-                          padding: const EdgeInsets.only(left: 35, right: 10),
-                          height: 40,
-                          child: Row(
-                            children: [
-                              Icon(
-                                CupertinoIcons.home,
-                                color:
-                                    (landingPageController.tabIndex.value == 0)
-                                        ? Colors.white
-                                        : Color(0xfff5a607f),
-                                size: 22,
-                              ),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                              Text(
-                                'แดชบอร์ด',
-                                style: textStyle(context,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w200,
-                                    color:
-                                        (landingPageController.tabIndex.value ==
-                                                0)
-                                            ? Colors.white
-                                            : Color(0xfff5a607f)),
-                              ),
-                            ],
-                          ),
-                        ),
+                      title: Text(
+                        'แดชบอร์ด',
+                        style: textStyle(context,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w200,
+                            color: colorBlack),
                       ),
-                      InkWell(
-                        onTap: () {
+                      onTap: () {
+                        landingPageController.tabIndex(0);
+                      },
+                    ),
+                    ExpansionTile(
+                      leading: SvgPicture.asset(
+                        color: colorBlack,
+                        'assets/icons/svg/reportmain.svg',
+                      ),
+                      title: Text(
+                        'ดูรายงาน',
+                        style: textStyle(context,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w200,
+                            color: colorBlack),
+                      ),
+                      onExpansionChanged: (value) {
+                        if (value) {
                           landingPageController.tabIndex(1);
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: (landingPageController.tabIndex.value == 1)
-                                ? Colors.amber
-                                : Colors.transparent,
-                          ),
-                          padding: const EdgeInsets.only(left: 35, right: 10),
-                          height: 40,
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(
-                                color:
-                                    (landingPageController.tabIndex.value == 1)
-                                        ? Colors.white
-                                        : Color(0xfff5a607f),
-                                'assets/icons/svg/reportmain.svg',
-                              ),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                              Text(
-                                'ดูรายงาน',
-                                style: textStyle(context,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w200,
-                                    color:
-                                        (landingPageController.tabIndex.value ==
-                                                1)
-                                            ? Colors.white
-                                            : Color(0xfff5a607f)),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      if (landingPageController.tabIndex.value > 0 &&
-                          landingPageController.tabIndex.value < 6)
-                        Column(children: [
-                          InkWell(
+                        }
+                      },
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: ListTile(
+                            leading: SvgPicture.asset(
+                              'assets/icons/svg/report1.svg',
+                            ),
+                            title: Text(
+                              'รายงานอัคคีภัย',
+                              style: textStyle(context,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w200,
+                                  color: colorBlack),
+                            ),
                             onTap: () {
                               landingPageController.tabIndex(2);
                             },
-                            child: Container(
-                              padding:
-                                  const EdgeInsets.only(left: 60, right: 10),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color:
-                                    (landingPageController.tabIndex.value == 2)
-                                        ? Colors.amber
-                                        : Colors.transparent,
-                              ),
-                              height: 30,
-                              child: Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    color:
-                                        (landingPageController.tabIndex.value ==
-                                                2)
-                                            ? Colors.white
-                                            : Color(0xfff5a607f),
-                                    'assets/icons/svg/report1.svg',
-                                  ),
-                                  const SizedBox(
-                                    width: 20,
-                                  ),
-                                  Text(
-                                    'รายงานอัคคีภัย',
-                                    style: textStyle(context,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w200,
-                                        color: (landingPageController
-                                                    .tabIndex.value ==
-                                                2)
-                                            ? Colors.white
-                                            : Color(0xfff5a607f)),
-                                  ),
-                                ],
-                              ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: ListTile(
+                            leading: SvgPicture.asset(
+                              'assets/icons/svg/report2.svg',
                             ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          InkWell(
+                            title: Text(
+                              'รายงานอุทกภัย',
+                              style: textStyle(context,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w200,
+                                  color: colorBlack),
+                            ),
                             onTap: () {
                               landingPageController.tabIndex(3);
                             },
-                            child: Container(
-                              padding:
-                                  const EdgeInsets.only(left: 60, right: 10),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color:
-                                    (landingPageController.tabIndex.value == 3)
-                                        ? Colors.amber
-                                        : Colors.transparent,
-                              ),
-                              height: 30,
-                              child: Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    color:
-                                        (landingPageController.tabIndex.value ==
-                                                3)
-                                            ? Colors.white
-                                            : Color(0xfff5a607f),
-                                    'assets/icons/svg/report2.svg',
-                                  ),
-                                  const SizedBox(
-                                    width: 20,
-                                  ),
-                                  Text(
-                                    'รายงานอุทกภัย',
-                                    style: textStyle(context,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w200,
-                                        color: (landingPageController
-                                                    .tabIndex.value ==
-                                                3)
-                                            ? Colors.white
-                                            : Color(0xfff5a607f)),
-                                  ),
-                                ],
-                              ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: ListTile(
+                            leading: SvgPicture.asset(
+                              'assets/icons/svg/report3.svg',
                             ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          InkWell(
+                            title: Text(
+                              'รายงานวาตภัย',
+                              style: textStyle(context,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w200,
+                                  color: colorBlack),
+                            ),
                             onTap: () {
                               landingPageController.tabIndex(4);
                             },
-                            child: Container(
-                              padding:
-                                  const EdgeInsets.only(left: 60, right: 10),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color:
-                                    (landingPageController.tabIndex.value == 4)
-                                        ? Colors.amber
-                                        : Colors.transparent,
-                              ),
-                              height: 30,
-                              child: Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    color:
-                                        (landingPageController.tabIndex.value ==
-                                                4)
-                                            ? Colors.white
-                                            : Color(0xfff5a607f),
-                                    'assets/icons/svg/report3.svg',
-                                  ),
-                                  const SizedBox(
-                                    width: 20,
-                                  ),
-                                  Text(
-                                    'รายงานวาตภัย',
-                                    style: textStyle(context,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w200,
-                                        color: (landingPageController
-                                                    .tabIndex.value ==
-                                                4)
-                                            ? Colors.white
-                                            : Color(0xfff5a607f)),
-                                  ),
-                                ],
-                              ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: ListTile(
+                            leading: SvgPicture.asset(
+                              'assets/icons/svg/report4.svg',
                             ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          InkWell(
+                            title: Text(
+                              'รายงานไฟป่า',
+                              style: textStyle(context,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w200,
+                                  color: colorBlack),
+                            ),
                             onTap: () {
                               landingPageController.tabIndex(5);
                             },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color:
-                                    (landingPageController.tabIndex.value == 5)
-                                        ? Colors.amber
-                                        : Colors.transparent,
-                              ),
-                              padding:
-                                  const EdgeInsets.only(left: 60, right: 10),
-                              height: 30,
-                              child: Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    color:
-                                        (landingPageController.tabIndex.value ==
-                                                5)
-                                            ? Colors.white
-                                            : Color(0xfff5a607f),
-                                    'assets/icons/svg/report4.svg',
-                                  ),
-                                  const SizedBox(
-                                    width: 20,
-                                  ),
-                                  Text(
-                                    'รายงานไฟป่า',
-                                    style: textStyle(context,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w200,
-                                        color: (landingPageController
-                                                    .tabIndex.value ==
-                                                5)
-                                            ? Colors.white
-                                            : Color(0xfff5a607f)),
-                                  ),
-                                ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    ListTile(
+                      leading: Icon(
+                        CupertinoIcons.home,
+                        color: colorBlack,
+                        size: 22,
+                      ),
+                      title: Text(
+                        'สร้างรายการ',
+                        style: textStyle(context,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w200,
+                            color: colorBlack),
+                      ),
+                      onTap: () {
+                        landingPageController.tabIndex(6);
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(
+                        CupertinoIcons.square_arrow_right,
+                        color: colorBlack,
+                        size: 22,
+                      ),
+                      title: Text(
+                        'ออกจากระบบ',
+                        style: textStyle(context,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w200,
+                            color: colorBlack),
+                      ),
+                      onTap: () async {
+                        Get.offAndToNamed(RouterName.userPage);
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        CookieSP().delDataUser();
+                        landingPageController.dataUser = ProfileSaveModel().obs;
+                        landingPageController.dataUserAdmin.value.profile =
+                            null;
+                        await prefs.remove('apikey');
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            )
+          : null,
+      body: Obx(() => Row(
+            children: [
+              screenWidth >= 1130
+                  ? Container(
+                      width: 250,
+                      color: colorBackground,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                landingPageController.tabIndex(0);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color:
+                                      (landingPageController.tabIndex.value ==
+                                              0)
+                                          ? Colors.amber
+                                          : Colors.transparent,
+                                ),
+                                padding:
+                                    const EdgeInsets.only(left: 35, right: 10),
+                                height: 40,
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      CupertinoIcons.home,
+                                      color: (landingPageController
+                                                  .tabIndex.value ==
+                                              0)
+                                          ? Colors.white
+                                          : Color(0xfff5a607f),
+                                      size: 22,
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Text(
+                                      'แดชบอร์ด',
+                                      style: textStyle(context,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w200,
+                                          color: (landingPageController
+                                                      .tabIndex.value ==
+                                                  0)
+                                              ? Colors.white
+                                              : Color(0xfff5a607f)),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-
-                        ]),
-                      // InkWell(
-                      //   onTap: () {
-                      //     landingPageController.tabIndex(9);
-                      //   },
-                      //   child: Container(
-                      //     padding: const EdgeInsets.only(left: 35, right: 10),
-                      //     decoration: BoxDecoration(
-                      //       borderRadius: BorderRadius.circular(10),
-                      //       color: (landingPageController.tabIndex.value == 9)
-                      //           ? Colors.amber
-                      //           : Colors.transparent,
-                      //     ),
-                      //     height: 40,
-                      //     child: Row(
-                      //       children: [
-                      //         SvgPicture.asset(
-                      //           color:
-                      //           (landingPageController.tabIndex.value ==
-                      //               9)
-                      //               ? Colors.white
-                      //               : Color(0xfff5a607f),
-                      //           'assets/icons/svg/freeform.svg',
-                      //         ),
-                      //         const SizedBox(
-                      //           width: 20,
-                      //         ),
-                      //         Text(
-                      //           'รายงานอื่นๆ',
-                      //           style: textStyle(context,
-                      //               fontSize: 16,
-                      //               fontWeight: FontWeight.w200,
-                      //               color:
-                      //               (landingPageController.tabIndex.value ==
-                      //                   9)
-                      //                   ? Colors.white
-                      //                   : Color(0xfff5a607f)),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ),
-                      // ),
-
-
-                      // ExpansionTileItem(
-                      //   border: Border.all(color:Colors.transparent),
-                      //   title: InkWell(
-                      //     child: Container(
-                      //       padding: const EdgeInsets.only(left: 20,right: 10),
-                      //       height: 30,
-                      //       child: const Row(
-                      //         children: [
-                      //           Icon(CupertinoIcons.chart_bar_fill,color: Colors.grey,size: 20,),
-                      //           SizedBox(width: 20,),
-                      //           Text('ดูรายงาน'),
-                      //         ],
-                      //       ),
-                      //     ),
-                      //   ),
-                      //   children: [
-                      //     InkWell(
-                      //       onTap: (){
-                      //         landingPageController.tabIndex(1);
-                      //       },
-                      //       child: Container(
-                      //         padding: const EdgeInsets.only(left: 60,right: 10),
-                      //         decoration: BoxDecoration(
-                      //           borderRadius: BorderRadius.circular(10),
-                      //           color: (landingPageController.tabIndex.value==1)?Colors.amber:Colors.transparent,
-                      //         ),
-                      //         height: 30,
-                      //         child: const Row(
-                      //           children: [
-                      //             Icon(CupertinoIcons.chart_bar_fill,color: Colors.grey,size: 20,),
-                      //             SizedBox(width: 20,),
-                      //             Text('ดูรายงาน'),
-                      //           ],
-                      //         ),
-                      //       ),
-                      //     ),
-                      //     const SizedBox(height: 10,),
-                      //     InkWell(
-                      //       onTap: (){
-                      //         landingPageController.tabIndex(2);
-                      //       },
-                      //       child: Container(
-                      //         padding: const EdgeInsets.only(left: 60,right: 10),
-                      //         decoration: BoxDecoration(
-                      //             borderRadius: BorderRadius.circular(10),
-                      //             color: (landingPageController.tabIndex.value==2)?Colors.amber:Colors.transparent,
-                      //         ),
-                      //         height: 30,
-                      //         child: const Row(
-                      //           children: [
-                      //             Icon(CupertinoIcons.chart_bar_fill,color: Colors.grey,size: 20,),
-                      //             SizedBox(width: 20,),
-                      //             Text('ดูรายงาน'),
-                      //           ],
-                      //         ),
-                      //       ),
-                      //     ),
-                      //     const SizedBox(height: 10,),
-                      //     InkWell(
-                      //       onTap: (){
-                      //         landingPageController.tabIndex(3);
-                      //       },
-                      //       child: Container(
-                      //         padding: const EdgeInsets.only(left: 60,right: 10),
-                      //         decoration: BoxDecoration(
-                      //           borderRadius: BorderRadius.circular(10),
-                      //           color: (landingPageController.tabIndex.value==3)?Colors.amber:Colors.transparent,
-                      //         ),
-                      //         height: 30,
-                      //         child: const Row(
-                      //           children: [
-                      //             Icon(CupertinoIcons.chart_bar_fill,color: Colors.grey,size: 20,),
-                      //             SizedBox(width: 20,),
-                      //             Text('ดูรายงาน'),
-                      //           ],
-                      //         ),
-                      //       ),
-                      //     ),
-                      //     const SizedBox(height: 10,),
-                      //     InkWell(
-                      //       onTap: (){
-                      //         landingPageController.tabIndex(4);
-                      //       },
-                      //       child: Container(
-                      //         decoration: BoxDecoration(
-                      //           borderRadius: BorderRadius.circular(10),
-                      //           color: (landingPageController.tabIndex.value==4)?Colors.amber:Colors.transparent,
-                      //         ),
-                      //         padding: const EdgeInsets.only(left: 60,right: 10),
-                      //         height: 30,
-                      //         child: const Row(
-                      //           children: [
-                      //             Icon(CupertinoIcons.chart_bar_fill,color: Colors.grey,size: 20,),
-                      //             SizedBox(width: 20,),
-                      //             Text('ดูรายงาน'),
-                      //           ],
-                      //         ),
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-                     if(isAdmin) InkWell(
-                        onTap: () {
-                          landingPageController.tabIndex(6);
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.only(left: 35, right: 10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: (landingPageController.tabIndex.value == 6)
-                                ? Colors.amber
-                                : Colors.transparent,
-                          ),
-                          height: 40,
-                          child: Row(
-                            children: [
-                              Icon(
-                                CupertinoIcons.list_bullet,
-                                color:
-                                    (landingPageController.tabIndex.value == 6)
-                                        ? Colors.white
-                                        : Color(0xfff5a607f),
-                                size: 22,
+                            InkWell(
+                              onTap: () {
+                                landingPageController.tabIndex(1);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color:
+                                      (landingPageController.tabIndex.value ==
+                                              1)
+                                          ? Colors.amber
+                                          : Colors.transparent,
+                                ),
+                                padding:
+                                    const EdgeInsets.only(left: 35, right: 10),
+                                height: 40,
+                                child: Row(
+                                  children: [
+                                    SvgPicture.asset(
+                                      color: (landingPageController
+                                                  .tabIndex.value ==
+                                              1)
+                                          ? Colors.white
+                                          : Color(0xfff5a607f),
+                                      'assets/icons/svg/reportmain.svg',
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Text(
+                                      'ดูรายงาน',
+                                      style: textStyle(context,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w200,
+                                          color: (landingPageController
+                                                      .tabIndex.value ==
+                                                  1)
+                                              ? Colors.white
+                                              : Color(0xfff5a607f)),
+                                    ),
+                                  ],
+                                ),
                               ),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                              Text(
-                                'สร้างรายการ',
-                                style: textStyle(context,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w200,
+                            ),
+                            if (landingPageController.tabIndex.value > 0 &&
+                                landingPageController.tabIndex.value < 6)
+                              Column(children: [
+                                InkWell(
+                                  onTap: () {
+                                    landingPageController.tabIndex(2);
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.only(
+                                        left: 60, right: 10),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: (landingPageController
+                                                  .tabIndex.value ==
+                                              2)
+                                          ? Colors.amber
+                                          : Colors.transparent,
+                                    ),
+                                    height: 30,
+                                    child: Row(
+                                      children: [
+                                        SvgPicture.asset(
+                                          color: (landingPageController
+                                                      .tabIndex.value ==
+                                                  2)
+                                              ? Colors.white
+                                              : Color(0xfff5a607f),
+                                          'assets/icons/svg/report1.svg',
+                                        ),
+                                        const SizedBox(
+                                          width: 20,
+                                        ),
+                                        Text(
+                                          'รายงานอัคคีภัย',
+                                          style: textStyle(context,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w200,
+                                              color: (landingPageController
+                                                          .tabIndex.value ==
+                                                      2)
+                                                  ? Colors.white
+                                                  : Color(0xfff5a607f)),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    landingPageController.tabIndex(3);
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.only(
+                                        left: 60, right: 10),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: (landingPageController
+                                                  .tabIndex.value ==
+                                              3)
+                                          ? Colors.amber
+                                          : Colors.transparent,
+                                    ),
+                                    height: 30,
+                                    child: Row(
+                                      children: [
+                                        SvgPicture.asset(
+                                          color: (landingPageController
+                                                      .tabIndex.value ==
+                                                  3)
+                                              ? Colors.white
+                                              : Color(0xfff5a607f),
+                                          'assets/icons/svg/report2.svg',
+                                        ),
+                                        const SizedBox(
+                                          width: 20,
+                                        ),
+                                        Text(
+                                          'รายงานอุทกภัย',
+                                          style: textStyle(context,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w200,
+                                              color: (landingPageController
+                                                          .tabIndex.value ==
+                                                      3)
+                                                  ? Colors.white
+                                                  : Color(0xfff5a607f)),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    landingPageController.tabIndex(4);
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.only(
+                                        left: 60, right: 10),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: (landingPageController
+                                                  .tabIndex.value ==
+                                              4)
+                                          ? Colors.amber
+                                          : Colors.transparent,
+                                    ),
+                                    height: 30,
+                                    child: Row(
+                                      children: [
+                                        SvgPicture.asset(
+                                          color: (landingPageController
+                                                      .tabIndex.value ==
+                                                  4)
+                                              ? Colors.white
+                                              : Color(0xfff5a607f),
+                                          'assets/icons/svg/report3.svg',
+                                        ),
+                                        const SizedBox(
+                                          width: 20,
+                                        ),
+                                        Text(
+                                          'รายงานวาตภัย',
+                                          style: textStyle(context,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w200,
+                                              color: (landingPageController
+                                                          .tabIndex.value ==
+                                                      4)
+                                                  ? Colors.white
+                                                  : Color(0xfff5a607f)),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    landingPageController.tabIndex(5);
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: (landingPageController
+                                                  .tabIndex.value ==
+                                              5)
+                                          ? Colors.amber
+                                          : Colors.transparent,
+                                    ),
+                                    padding: const EdgeInsets.only(
+                                        left: 60, right: 10),
+                                    height: 30,
+                                    child: Row(
+                                      children: [
+                                        SvgPicture.asset(
+                                          color: (landingPageController
+                                                      .tabIndex.value ==
+                                                  5)
+                                              ? Colors.white
+                                              : Color(0xfff5a607f),
+                                          'assets/icons/svg/report4.svg',
+                                        ),
+                                        const SizedBox(
+                                          width: 20,
+                                        ),
+                                        Text(
+                                          'รายงานไฟป่า',
+                                          style: textStyle(context,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w200,
+                                              color: (landingPageController
+                                                          .tabIndex.value ==
+                                                      5)
+                                                  ? Colors.white
+                                                  : Color(0xfff5a607f)),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ]),
+                            // InkWell(
+                            //   onTap: () {
+                            //     landingPageController.tabIndex(9);
+                            //   },
+                            //   child: Container(
+                            //     padding: const EdgeInsets.only(left: 35, right: 10),
+                            //     decoration: BoxDecoration(
+                            //       borderRadius: BorderRadius.circular(10),
+                            //       color: (landingPageController.tabIndex.value == 9)
+                            //           ? Colors.amber
+                            //           : Colors.transparent,
+                            //     ),
+                            //     height: 40,
+                            //     child: Row(
+                            //       children: [
+                            //         SvgPicture.asset(
+                            //           color:
+                            //           (landingPageController.tabIndex.value ==
+                            //               9)
+                            //               ? Colors.white
+                            //               : Color(0xfff5a607f),
+                            //           'assets/icons/svg/freeform.svg',
+                            //         ),
+                            //         const SizedBox(
+                            //           width: 20,
+                            //         ),
+                            //         Text(
+                            //           'รายงานอื่นๆ',
+                            //           style: textStyle(context,
+                            //               fontSize: 16,
+                            //               fontWeight: FontWeight.w200,
+                            //               color:
+                            //               (landingPageController.tabIndex.value ==
+                            //                   9)
+                            //                   ? Colors.white
+                            //                   : Color(0xfff5a607f)),
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   ),
+                            // ),
+                            // ExpansionTileItem(
+                            //   border: Border.all(color:Colors.transparent),
+                            //   title: InkWell(
+                            //     child: Container(
+                            //       padding: const EdgeInsets.only(left: 20,right: 10),
+                            //       height: 30,
+                            //       child: const Row(
+                            //         children: [
+                            //           Icon(CupertinoIcons.chart_bar_fill,color: Colors.grey,size: 20,),
+                            //           SizedBox(width: 20,),
+                            //           Text('ดูรายงาน'),
+                            //         ],
+                            //       ),
+                            //     ),
+                            //   ),
+                            //   children: [
+                            //     InkWell(
+                            //       onTap: (){
+                            //         landingPageController.tabIndex(1);
+                            //       },
+                            //       child: Container(
+                            //         padding: const EdgeInsets.only(left: 60,right: 10),
+                            //         decoration: BoxDecoration(
+                            //           borderRadius: BorderRadius.circular(10),
+                            //           color: (landingPageController.tabIndex.value==1)?Colors.amber:Colors.transparent,
+                            //         ),
+                            //         height: 30,
+                            //         child: const Row(
+                            //           children: [
+                            //             Icon(CupertinoIcons.chart_bar_fill,color: Colors.grey,size: 20,),
+                            //             SizedBox(width: 20,),
+                            //             Text('ดูรายงาน'),
+                            //           ],
+                            //         ),
+                            //       ),
+                            //     ),
+                            //     const SizedBox(height: 10,),
+                            //     InkWell(
+                            //       onTap: (){
+                            //         landingPageController.tabIndex(2);
+                            //       },
+                            //       child: Container(
+                            //         padding: const EdgeInsets.only(left: 60,right: 10),
+                            //         decoration: BoxDecoration(
+                            //             borderRadius: BorderRadius.circular(10),
+                            //             color: (landingPageController.tabIndex.value==2)?Colors.amber:Colors.transparent,
+                            //         ),
+                            //         height: 30,
+                            //         child: const Row(
+                            //           children: [
+                            //             Icon(CupertinoIcons.chart_bar_fill,color: Colors.grey,size: 20,),
+                            //             SizedBox(width: 20,),
+                            //             Text('ดูรายงาน'),
+                            //           ],
+                            //         ),
+                            //       ),
+                            //     ),
+                            //     const SizedBox(height: 10,),
+                            //     InkWell(
+                            //       onTap: (){
+                            //         landingPageController.tabIndex(3);
+                            //       },
+                            //       child: Container(
+                            //         padding: const EdgeInsets.only(left: 60,right: 10),
+                            //         decoration: BoxDecoration(
+                            //           borderRadius: BorderRadius.circular(10),
+                            //           color: (landingPageController.tabIndex.value==3)?Colors.amber:Colors.transparent,
+                            //         ),
+                            //         height: 30,
+                            //         child: const Row(
+                            //           children: [
+                            //             Icon(CupertinoIcons.chart_bar_fill,color: Colors.grey,size: 20,),
+                            //             SizedBox(width: 20,),
+                            //             Text('ดูรายงาน'),
+                            //           ],
+                            //         ),
+                            //       ),
+                            //     ),
+                            //     const SizedBox(height: 10,),
+                            //     InkWell(
+                            //       onTap: (){
+                            //         landingPageController.tabIndex(4);
+                            //       },
+                            //       child: Container(
+                            //         decoration: BoxDecoration(
+                            //           borderRadius: BorderRadius.circular(10),
+                            //           color: (landingPageController.tabIndex.value==4)?Colors.amber:Colors.transparent,
+                            //         ),
+                            //         padding: const EdgeInsets.only(left: 60,right: 10),
+                            //         height: 30,
+                            //         child: const Row(
+                            //           children: [
+                            //             Icon(CupertinoIcons.chart_bar_fill,color: Colors.grey,size: 20,),
+                            //             SizedBox(width: 20,),
+                            //             Text('ดูรายงาน'),
+                            //           ],
+                            //         ),
+                            //       ),
+                            //     ),
+                            //   ],
+                            // ),
+                            if (isAdmin)
+                              InkWell(
+                                onTap: () {
+                                  landingPageController.tabIndex(6);
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.only(
+                                      left: 35, right: 10),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
                                     color:
                                         (landingPageController.tabIndex.value ==
                                                 6)
+                                            ? Colors.amber
+                                            : Colors.transparent,
+                                  ),
+                                  height: 40,
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        CupertinoIcons.list_bullet,
+                                        color: (landingPageController
+                                                    .tabIndex.value ==
+                                                6)
                                             ? Colors.white
-                                            : Color(0xfff5a607f)),
+                                            : Color(0xfff5a607f),
+                                        size: 22,
+                                      ),
+                                      const SizedBox(
+                                        width: 20,
+                                      ),
+                                      Text(
+                                        'สร้างรายการ',
+                                        style: textStyle(context,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w200,
+                                            color: (landingPageController
+                                                        .tabIndex.value ==
+                                                    6)
+                                                ? Colors.white
+                                                : Color(0xfff5a607f)),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
-                            ],
-                          ),
+                            // if(isAdmin) InkWell(
+                            //   onTap: () {
+                            //     landingPageController.tabIndex(8);
+                            //   },
+                            //   child: Container(
+                            //     padding: const EdgeInsets.only(left: 35, right: 10),
+                            //     decoration: BoxDecoration(
+                            //       borderRadius: BorderRadius.circular(10),
+                            //       color: (landingPageController.tabIndex.value == 8)
+                            //           ? Colors.amber
+                            //           : Colors.transparent,
+                            //     ),
+                            //     height: 40,
+                            //     child: Row(
+                            //       children: [
+                            //         Icon(
+                            //           CupertinoIcons.list_bullet,
+                            //           color:
+                            //               (landingPageController.tabIndex.value == 8)
+                            //                   ? Colors.white
+                            //                   : Color(0xfff5a607f),
+                            //           size: 22,
+                            //         ),
+                            //         const SizedBox(
+                            //           width: 20,
+                            //         ),
+                            //         Text(
+                            //           'สร้างรายการอื่นๆ',
+                            //           style: textStyle(context,
+                            //               fontSize: 16,
+                            //               fontWeight: FontWeight.w200,
+                            //               color:
+                            //                   (landingPageController.tabIndex.value ==
+                            //                           8)
+                            //                       ? Colors.white
+                            //                       : Color(0xfff5a607f)),
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   ),
+                            // ),
+                          ],
                         ),
                       ),
-                      // if(isAdmin) InkWell(
-                      //   onTap: () {
-                      //     landingPageController.tabIndex(8);
-                      //   },
-                      //   child: Container(
-                      //     padding: const EdgeInsets.only(left: 35, right: 10),
-                      //     decoration: BoxDecoration(
-                      //       borderRadius: BorderRadius.circular(10),
-                      //       color: (landingPageController.tabIndex.value == 8)
-                      //           ? Colors.amber
-                      //           : Colors.transparent,
-                      //     ),
-                      //     height: 40,
-                      //     child: Row(
-                      //       children: [
-                      //         Icon(
-                      //           CupertinoIcons.list_bullet,
-                      //           color:
-                      //               (landingPageController.tabIndex.value == 8)
-                      //                   ? Colors.white
-                      //                   : Color(0xfff5a607f),
-                      //           size: 22,
-                      //         ),
-                      //         const SizedBox(
-                      //           width: 20,
-                      //         ),
-                      //         Text(
-                      //           'สร้างรายการอื่นๆ',
-                      //           style: textStyle(context,
-                      //               fontSize: 16,
-                      //               fontWeight: FontWeight.w200,
-                      //               color:
-                      //                   (landingPageController.tabIndex.value ==
-                      //                           8)
-                      //                       ? Colors.white
-                      //                       : Color(0xfff5a607f)),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ),
-                      // ),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                width: 2,
-                color: Colors.black12,
-              ),
+                    )
+                  : Container(),
+              screenWidth >= 1130
+                  ? Container(
+                      width: 2,
+                      color: Colors.black12,
+                    )
+                  : Container(),
               Expanded(
                 child: Container(
                   height: MediaQuery.of(context).size.height,
                   width: 200,
-                  child:
-                  IndexedStack(
+                  child: IndexedStack(
                     index: landingPageController.tabIndex.value,
                     children: [
                       DashBoardPage(),
