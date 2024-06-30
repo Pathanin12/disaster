@@ -32,6 +32,7 @@ import '../../report/freeformreport/viewfreeformreport.dart';
 import '../../report/mainreport/viewmainreport.dart';
 import '../../report/mainreport/viewmainreport.dart';
 import '../../report/winestormreport/viewwinestormreport.dart';
+import '../../systemadmin/viewsystemadmin.dart';
 import 'contollerdraweradmin.dart';
 
 class LandingPageAdmin extends StatefulWidget {
@@ -70,6 +71,9 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
     List<ProfileSaveModel>? listUser = await CookieSP().loadAllDataSetting();
     if (listUser!.isNotEmpty) {
       landingPageController.dataUser!.value = listUser.last;
+      setState(() {
+        isAdmin = (listUser.last.profile!.role==3)?false:true;
+      });
     } else {
       Get.offAndToNamed(RouterName.userPage);
     }
@@ -873,6 +877,52 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                                   ),
                                 ),
                               ),
+                            if (isAdmin)
+                              InkWell(
+                                onTap: () {
+                                  landingPageController.tabIndex(8);
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.only(
+                                      left: 35, right: 10),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color:
+                                    (landingPageController.tabIndex.value ==
+                                        8)
+                                        ? Colors.amber
+                                        : Colors.transparent,
+                                  ),
+                                  height: 40,
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.supervised_user_circle,
+                                        color: (landingPageController
+                                            .tabIndex.value ==
+                                            8)
+                                            ? Colors.white
+                                            : Color(0xfff5a607f),
+                                        size: 22,
+                                      ),
+                                      const SizedBox(
+                                        width: 20,
+                                      ),
+                                      Text(
+                                        'จัดการผู้ใช้งาน',
+                                        style: textStyle(context,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w200,
+                                            color: (landingPageController
+                                                .tabIndex.value ==
+                                                8)
+                                                ? Colors.white
+                                                : Color(0xfff5a607f)),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             // if(isAdmin) InkWell(
                             //   onTap: () {
                             //     landingPageController.tabIndex(8);
@@ -927,6 +977,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                   : Container(),
               Expanded(
                 child: Container(
+                  color: colorBackground,
                   height: MediaQuery.of(context).size.height,
                   width: 200,
                   child: IndexedStack(
@@ -940,6 +991,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                       ForestFireReport(),
                       CreateList(),
                       Detail(),
+                      SystemAdminPage(),
                       // CreateListOthers(),
                       // FreeFormReport(),
                       // DetailFreeForm(),

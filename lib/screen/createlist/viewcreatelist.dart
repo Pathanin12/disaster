@@ -5,6 +5,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
@@ -27,13 +28,21 @@ class CreateList extends StatefulWidget {
 
 class _CreateListState extends State<CreateList> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+  }
+
+  @override
   Widget build(BuildContext context) {
     final ContollerCreateList contoller =
         Get.put(ContollerCreateList(), permanent: false);
     return ListView(
       children: [
         Form(
-          // key: contoller.textFieldKey.value,
+          // autovalidateMode: AutovalidateMode.onUserInteraction,
+          key: contoller.formKey,
           child: Column(
             children: [
               Container(
@@ -55,7 +64,7 @@ class _CreateListState extends State<CreateList> {
                           const SizedBox(
                             height: 20,
                           ),
-                          Container(
+                          if(MediaQuery.of(context).size.width>899)Container(
                             height: 60,
                             child: Column(
                               children: [
@@ -179,16 +188,31 @@ class _CreateListState extends State<CreateList> {
                                     Expanded(
                                       flex: 5,
                                       child: Container(
+                                        padding: EdgeInsets.only(left: 10,right: 10),
+                                        alignment: Alignment.centerLeft,
                                         height: 40,
-                                        color: colorWhite,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(5),
+                                          border: Border.all(color: Colors.grey),
+                                          color: colorWhite,
+                                        ),
+
                                         child: TextFormField(
+                                          //key: contoller.formKey,
+
                                           enabled: (isAdmin) ? true : false,
                                           controller: contoller.nameCon.value,
+                                          validator: (value){
+                                            if(value!.isEmpty){
+                                              return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                            }
+                                            return null;
+                                          },
                                           style: TextStyle(
                                               fontSize: 13.0,
                                               color: colorBlack,
                                               fontWeight: FontWeight.w400),
-                                          decoration: InputDecoration(
+                                          decoration: InputDecoration.collapsed(
                                             fillColor: colorWhite,
                                             hintText: "ชื่อรายการ",
                                             hintStyle: TextStyle(
@@ -196,14 +220,197 @@ class _CreateListState extends State<CreateList> {
                                                 color: colorGrey,
                                                 fontWeight: FontWeight.w400),
                                             filled: true,
-                                            border: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: colorGrey,
-                                                width: 2,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
+                                            // border: OutlineInputBorder(
+                                            //   borderSide: BorderSide(
+                                            //     color: colorGrey,
+                                            //     width: 2,
+                                            //   ),
+                                            //   borderRadius:
+                                            //       BorderRadius.circular(5),
+                                            // ),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          if(MediaQuery.of(context).size.width<900)Container(
+                            height: 60,
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            'ประเภทภัยพิบัติ',
+                                            style: textStyle(context,
+                                                color: colorBlack,
+                                                fontSize: 13),
+                                          )),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                        padding: const EdgeInsets.only(
+                                            left: 20, right: 5),
+                                        width: double.infinity,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                            color: colorWhite,
+                                            border: Border.all(
+                                              color: Colors.black26,
+                                              width: 1,
                                             ),
+                                            borderRadius:
+                                            BorderRadius.circular(5)),
+                                        alignment: Alignment.center,
+                                        child: SizedBox(
+                                          width: double.infinity,
+                                          child: DropdownButtonHideUnderline(
+                                            child: DropdownButton2<String>(
+                                              dropdownStyleData:
+                                              DropdownStyleData(
+                                                maxHeight: 300,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius.circular(5),
+                                                ),
+                                                scrollbarTheme:
+                                                ScrollbarThemeData(
+                                                  radius:
+                                                  const Radius.circular(5),
+                                                  thickness:
+                                                  MaterialStateProperty.all<
+                                                      double>(6),
+                                                  thumbVisibility:
+                                                  MaterialStateProperty.all<
+                                                      bool>(true),
+                                                ),
+                                              ),
+                                              openWithLongPress:
+                                              (isAdmin) ? false : true,
+                                              autofocus: true,
+                                              isExpanded: true,
+                                              value: contoller
+                                                  .selectCategory!.value,
+                                              hint: Text(
+                                                'เลือกทั้งหมด',
+                                                style: TextStyle(
+                                                    fontSize: 13.0,
+                                                    color: colorGrey,
+                                                    fontWeight:
+                                                    FontWeight.w400),
+                                              ),
+                                              items: contoller.category.map<
+                                                  DropdownMenuItem<String>>(
+                                                      (String? value) {
+                                                    return DropdownMenuItem<String>(
+                                                      value: value!,
+                                                      child: Text(
+                                                        value,
+                                                        style: TextStyle(
+                                                            fontSize: 13.0,
+                                                            color: colorBlack,
+                                                            fontWeight:
+                                                            FontWeight.w400),
+                                                      ),
+                                                    );
+                                                  }).toList(),
+                                              iconStyleData:
+                                              const IconStyleData(
+                                                  icon: Icon(
+                                                    Icons.keyboard_arrow_down,
+                                                    size: 24,
+                                                  )),
+                                              onChanged: (valueSelect) {
+                                                contoller.selectCategory!
+                                                    .value = valueSelect!;
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          if(MediaQuery.of(context).size.width<900)const SizedBox(height: 20,),
+                          if(MediaQuery.of(context).size.width<900)Container(
+                            height: 60,
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            'ชื่อรายการ',
+                                            style: textStyle(context,
+                                                color: colorBlack,
+                                                fontSize: 13),
+                                          )),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                        padding: EdgeInsets.only(left: 10,right: 10),
+                                        alignment: Alignment.centerLeft,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(5),
+                                          border: Border.all(color: Colors.grey),
+                                          color: colorWhite,
+                                        ),
+
+                                        child: TextFormField(
+                                          //key: contoller.formKey,
+
+                                          enabled: (isAdmin) ? true : false,
+                                          controller: contoller.nameCon.value,
+                                          validator: (value){
+                                            if(value!.isEmpty){
+                                              return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                            }
+                                            return null;
+                                          },
+                                          style: TextStyle(
+                                              fontSize: 13.0,
+                                              color: colorBlack,
+                                              fontWeight: FontWeight.w400),
+                                          decoration: InputDecoration.collapsed(
+                                            fillColor: colorWhite,
+                                            hintText: "ชื่อรายการ",
+                                            hintStyle: TextStyle(
+                                                fontSize: 13.0,
+                                                color: colorGrey,
+                                                fontWeight: FontWeight.w400),
+                                            filled: true,
+                                            // border: OutlineInputBorder(
+                                            //   borderSide: BorderSide(
+                                            //     color: colorGrey,
+                                            //     width: 2,
+                                            //   ),
+                                            //   borderRadius:
+                                            //       BorderRadius.circular(5),
+                                            // ),
                                           ),
                                         ),
                                       ),
@@ -216,7 +423,8 @@ class _CreateListState extends State<CreateList> {
                           const SizedBox(
                             height: 30,
                           ),
-                          Container(
+
+                          if(MediaQuery.of(context).size.width>899)Container(
                             height: 60,
                             child: Column(
                               children: [
@@ -488,7 +696,7 @@ class _CreateListState extends State<CreateList> {
                               ],
                             ),
                           ),
-                          Container(
+                          if(MediaQuery.of(context).size.width<900) Container(
                             height: 60,
                             child: Column(
                               children: [
@@ -500,24 +708,6 @@ class _CreateListState extends State<CreateList> {
                                           alignment: Alignment.centerLeft,
                                           child: Text(
                                             'วันที่รับเรื่อง',
-                                            style: textStyle(context,
-                                                color: colorBlack,
-                                                fontSize: 13),
-                                          )),
-                                    ),
-                                    const SizedBox(
-                                      width: 20,
-                                    ),
-                                    Expanded(
-                                      flex: 5,
-                                      child: (contoller
-                                          .dataEditEvent.value.events ==
-                                          null)
-                                          ? SizedBox()
-                                          : Container(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            'สถานะของรายการ',
                                             style: textStyle(context,
                                                 color: colorBlack,
                                                 fontSize: 13),
@@ -654,132 +844,22 @@ class _CreateListState extends State<CreateList> {
                                         ),
                                       ),
                                     ),
-                                    const SizedBox(
-                                      width: 20,
-                                    ),
-                                    Expanded(
-                                      flex: 5,
-                                      child: (contoller
-                                          .dataEditEvent.value.events ==
-                                          null)
-                                          ? SizedBox()
-                                          : Container(
-                                        padding: const EdgeInsets.only(
-                                            left: 20, right: 5),
-                                        width: double.infinity,
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                            color: colorWhite,
-                                            border: Border.all(
-                                              color: Colors.black26,
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                            BorderRadius.circular(5)),
-                                        alignment: Alignment.center,
-                                        child: SizedBox(
-                                          width: double.infinity,
-                                          child:
-                                          DropdownButtonHideUnderline(
-                                            child:
-                                            DropdownButton2<String>(
-                                              openWithLongPress: (isAdmin)
-                                                  ? false
-                                                  : true,
-                                              dropdownStyleData:
-                                              DropdownStyleData(
-                                                maxHeight: 300,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                  BorderRadius
-                                                      .circular(5),
-                                                ),
-                                                scrollbarTheme:
-                                                ScrollbarThemeData(
-                                                  radius: const Radius
-                                                      .circular(5),
-                                                  thickness:
-                                                  MaterialStateProperty
-                                                      .all<double>(6),
-                                                  thumbVisibility:
-                                                  MaterialStateProperty
-                                                      .all<bool>(
-                                                      true),
-                                                ),
-                                              ),
-                                              autofocus: true,
-                                              isExpanded: true,
-                                              value: contoller
-                                                  .selectStatusList!
-                                                  .value,
-                                              hint: Text(
-                                                'เลือกทั้งหมด',
-                                                style: TextStyle(
-                                                    fontSize: 13.0,
-                                                    color: colorGrey,
-                                                    fontWeight:
-                                                    FontWeight.w400),
-                                              ),
-                                              items: contoller
-                                                  .StatusList.map<
-                                                  DropdownMenuItem<
-                                                      String>>(
-                                                      (String? value) {
-                                                    return DropdownMenuItem<
-                                                        String>(
-                                                      value: value!,
-                                                      child: Text(
-                                                        value,
-                                                        style: TextStyle(
-                                                            fontSize: 13.0,
-                                                            color: colorBlack,
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .w400),
-                                                      ),
-                                                    );
-                                                  }).toList(),
-                                              iconStyleData:
-                                              const IconStyleData(
-                                                  icon: Icon(
-                                                    Icons.keyboard_arrow_down,
-                                                    size: 24,
-                                                  )),
-                                              onChanged: (valueSelect) {
-                                                contoller
-                                                    .selectStatusList!
-                                                    .value = valueSelect!;
-                                              },
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
                                   ],
                                 ),
                               ],
                             ),
                           ),
-                          Container(
+                          if(MediaQuery.of(context).size.width<900)if(contoller
+                              .dataEditEvent.value.events !=
+                              null)const SizedBox(height: 20,),
+                          if(MediaQuery.of(context).size.width<900)if(contoller
+                              .dataEditEvent.value.events !=
+                              null)Container(
                             height: 60,
                             child: Column(
                               children: [
                                 Row(
                                   children: [
-                                    Expanded(
-                                      flex: 5,
-                                      child: Container(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            'วันที่รับเรื่อง',
-                                            style: textStyle(context,
-                                                color: colorBlack,
-                                                fontSize: 13),
-                                          )),
-                                    ),
-                                    const SizedBox(
-                                      width: 20,
-                                    ),
                                     Expanded(
                                       flex: 5,
                                       child: (contoller
@@ -801,136 +881,6 @@ class _CreateListState extends State<CreateList> {
                                   children: [
                                     Expanded(
                                       flex: 5,
-                                      child: InkWell(
-                                        onTap: () async {
-                                          if (isAdmin) {
-                                            DateTime? newDateTime =
-                                            await showRoundedDatePicker(
-                                              theme: ThemeData(
-                                                primaryColor:
-                                                Colors.amberAccent,
-                                              ),
-                                              styleDatePicker:
-                                              MaterialRoundedDatePickerStyle(
-                                                textStyleCurrentDayOnCalendar:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                    FontWeight.bold),
-                                                textStyleDayOnCalendar:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black),
-                                                textStyleDayOnCalendarSelected:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.white,
-                                                    fontWeight:
-                                                    FontWeight.bold),
-                                                textStyleDayOnCalendarDisabled:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black
-                                                        .withOpacity(0.1)),
-                                                textStyleMonthYearHeader:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                    FontWeight.bold),
-                                                sizeArrow: 50,
-                                                colorArrowNext: Colors.black,
-                                                colorArrowPrevious:
-                                                Colors.black,
-                                                marginLeftArrowPrevious: 16,
-                                                marginTopArrowPrevious: 16,
-                                                marginTopArrowNext: 16,
-                                                marginRightArrowNext: 32,
-                                                textStyleButtonAction:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black),
-                                                textStyleButtonPositive:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.amber,
-                                                    fontWeight:
-                                                    FontWeight.bold),
-                                                textStyleButtonNegative:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black45
-                                                        .withOpacity(0.5)),
-                                                decorationDateSelected:
-                                                BoxDecoration(
-                                                    color: Colors.amber,
-                                                    shape: BoxShape.circle),
-                                              ),
-                                              styleYearPicker:
-                                              MaterialRoundedYearPickerStyle(
-                                                textStyleYear: TextStyle(
-                                                    fontSize: 30,
-                                                    color: Colors.black),
-                                                textStyleYearSelected:
-                                                TextStyle(
-                                                    fontSize: 40,
-                                                    color: Colors.black45,
-                                                    fontWeight:
-                                                    FontWeight.bold),
-                                                heightYearRow: 100,
-                                              ),
-                                              context: context,
-                                              locale: Locale("th", "TH"),
-                                            );
-                                            if (newDateTime != null) {
-                                              contoller.date.value = newDateTime
-                                                  .toString()
-                                                  .split(" ")[0];
-                                            }
-                                          }
-                                        },
-                                        child: Container(
-                                          padding: const EdgeInsets.only(
-                                              left: 20, right: 5),
-                                          height: 40,
-                                          decoration: BoxDecoration(
-                                              color: colorWhite,
-                                              border: Border.all(
-                                                color: Colors.black26,
-                                                width: 1,
-                                              ),
-                                              borderRadius:
-                                              BorderRadius.circular(5)),
-                                          alignment: Alignment.center,
-                                          child: SizedBox(
-                                            child: Row(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment
-                                                  .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  contoller.date.value,
-                                                  style: textStyle(context,
-                                                      fontSize: 13,
-                                                      color: colorBlack),
-                                                ),
-                                                Icon(
-                                                  Icons.date_range,
-                                                  size: 20,
-                                                  color: Colors.grey,
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 20,
-                                    ),
-                                    Expanded(
-                                      flex: 5,
                                       child: (contoller
                                           .dataEditEvent.value.events ==
                                           null)
@@ -1032,558 +982,11 @@ class _CreateListState extends State<CreateList> {
                               ],
                             ),
                           ),
-                          Container(
-                            height: 60,
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      flex: 5,
-                                      child: Container(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            'วันที่รับเรื่อง',
-                                            style: textStyle(context,
-                                                color: colorBlack,
-                                                fontSize: 13),
-                                          )),
-                                    ),
-                                    const SizedBox(
-                                      width: 20,
-                                    ),
-                                    Expanded(
-                                      flex: 5,
-                                      child: (contoller
-                                          .dataEditEvent.value.events ==
-                                          null)
-                                          ? SizedBox()
-                                          : Container(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            'สถานะของรายการ',
-                                            style: textStyle(context,
-                                                color: colorBlack,
-                                                fontSize: 13),
-                                          )),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      flex: 5,
-                                      child: InkWell(
-                                        onTap: () async {
-                                          if (isAdmin) {
-                                            DateTime? newDateTime =
-                                            await showRoundedDatePicker(
-                                              theme: ThemeData(
-                                                primaryColor:
-                                                Colors.amberAccent,
-                                              ),
-                                              styleDatePicker:
-                                              MaterialRoundedDatePickerStyle(
-                                                textStyleCurrentDayOnCalendar:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                    FontWeight.bold),
-                                                textStyleDayOnCalendar:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black),
-                                                textStyleDayOnCalendarSelected:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.white,
-                                                    fontWeight:
-                                                    FontWeight.bold),
-                                                textStyleDayOnCalendarDisabled:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black
-                                                        .withOpacity(0.1)),
-                                                textStyleMonthYearHeader:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                    FontWeight.bold),
-                                                sizeArrow: 50,
-                                                colorArrowNext: Colors.black,
-                                                colorArrowPrevious:
-                                                Colors.black,
-                                                marginLeftArrowPrevious: 16,
-                                                marginTopArrowPrevious: 16,
-                                                marginTopArrowNext: 16,
-                                                marginRightArrowNext: 32,
-                                                textStyleButtonAction:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black),
-                                                textStyleButtonPositive:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.amber,
-                                                    fontWeight:
-                                                    FontWeight.bold),
-                                                textStyleButtonNegative:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black45
-                                                        .withOpacity(0.5)),
-                                                decorationDateSelected:
-                                                BoxDecoration(
-                                                    color: Colors.amber,
-                                                    shape: BoxShape.circle),
-                                              ),
-                                              styleYearPicker:
-                                              MaterialRoundedYearPickerStyle(
-                                                textStyleYear: TextStyle(
-                                                    fontSize: 30,
-                                                    color: Colors.black),
-                                                textStyleYearSelected:
-                                                TextStyle(
-                                                    fontSize: 40,
-                                                    color: Colors.black45,
-                                                    fontWeight:
-                                                    FontWeight.bold),
-                                                heightYearRow: 100,
-                                              ),
-                                              context: context,
-                                              locale: Locale("th", "TH"),
-                                            );
-                                            if (newDateTime != null) {
-                                              contoller.date.value = newDateTime
-                                                  .toString()
-                                                  .split(" ")[0];
-                                            }
-                                          }
-                                        },
-                                        child: Container(
-                                          padding: const EdgeInsets.only(
-                                              left: 20, right: 5),
-                                          height: 40,
-                                          decoration: BoxDecoration(
-                                              color: colorWhite,
-                                              border: Border.all(
-                                                color: Colors.black26,
-                                                width: 1,
-                                              ),
-                                              borderRadius:
-                                              BorderRadius.circular(5)),
-                                          alignment: Alignment.center,
-                                          child: SizedBox(
-                                            child: Row(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment
-                                                  .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  contoller.date.value,
-                                                  style: textStyle(context,
-                                                      fontSize: 13,
-                                                      color: colorBlack),
-                                                ),
-                                                Icon(
-                                                  Icons.date_range,
-                                                  size: 20,
-                                                  color: Colors.grey,
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 20,
-                                    ),
-                                    Expanded(
-                                      flex: 5,
-                                      child: (contoller
-                                          .dataEditEvent.value.events ==
-                                          null)
-                                          ? SizedBox()
-                                          : Container(
-                                        padding: const EdgeInsets.only(
-                                            left: 20, right: 5),
-                                        width: double.infinity,
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                            color: colorWhite,
-                                            border: Border.all(
-                                              color: Colors.black26,
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                            BorderRadius.circular(5)),
-                                        alignment: Alignment.center,
-                                        child: SizedBox(
-                                          width: double.infinity,
-                                          child:
-                                          DropdownButtonHideUnderline(
-                                            child:
-                                            DropdownButton2<String>(
-                                              openWithLongPress: (isAdmin)
-                                                  ? false
-                                                  : true,
-                                              dropdownStyleData:
-                                              DropdownStyleData(
-                                                maxHeight: 300,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                  BorderRadius
-                                                      .circular(5),
-                                                ),
-                                                scrollbarTheme:
-                                                ScrollbarThemeData(
-                                                  radius: const Radius
-                                                      .circular(5),
-                                                  thickness:
-                                                  MaterialStateProperty
-                                                      .all<double>(6),
-                                                  thumbVisibility:
-                                                  MaterialStateProperty
-                                                      .all<bool>(
-                                                      true),
-                                                ),
-                                              ),
-                                              autofocus: true,
-                                              isExpanded: true,
-                                              value: contoller
-                                                  .selectStatusList!
-                                                  .value,
-                                              hint: Text(
-                                                'เลือกทั้งหมด',
-                                                style: TextStyle(
-                                                    fontSize: 13.0,
-                                                    color: colorGrey,
-                                                    fontWeight:
-                                                    FontWeight.w400),
-                                              ),
-                                              items: contoller
-                                                  .StatusList.map<
-                                                  DropdownMenuItem<
-                                                      String>>(
-                                                      (String? value) {
-                                                    return DropdownMenuItem<
-                                                        String>(
-                                                      value: value!,
-                                                      child: Text(
-                                                        value,
-                                                        style: TextStyle(
-                                                            fontSize: 13.0,
-                                                            color: colorBlack,
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .w400),
-                                                      ),
-                                                    );
-                                                  }).toList(),
-                                              iconStyleData:
-                                              const IconStyleData(
-                                                  icon: Icon(
-                                                    Icons.keyboard_arrow_down,
-                                                    size: 24,
-                                                  )),
-                                              onChanged: (valueSelect) {
-                                                contoller
-                                                    .selectStatusList!
-                                                    .value = valueSelect!;
-                                              },
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            height: 60,
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      flex: 5,
-                                      child: Container(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            'วันที่รับเรื่อง',
-                                            style: textStyle(context,
-                                                color: colorBlack,
-                                                fontSize: 13),
-                                          )),
-                                    ),
-                                    const SizedBox(
-                                      width: 20,
-                                    ),
-                                    Expanded(
-                                      flex: 5,
-                                      child: (contoller
-                                          .dataEditEvent.value.events ==
-                                          null)
-                                          ? SizedBox()
-                                          : Container(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            'สถานะของรายการ',
-                                            style: textStyle(context,
-                                                color: colorBlack,
-                                                fontSize: 13),
-                                          )),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      flex: 5,
-                                      child: InkWell(
-                                        onTap: () async {
-                                          if (isAdmin) {
-                                            DateTime? newDateTime =
-                                            await showRoundedDatePicker(
-                                              theme: ThemeData(
-                                                primaryColor:
-                                                Colors.amberAccent,
-                                              ),
-                                              styleDatePicker:
-                                              MaterialRoundedDatePickerStyle(
-                                                textStyleCurrentDayOnCalendar:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                    FontWeight.bold),
-                                                textStyleDayOnCalendar:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black),
-                                                textStyleDayOnCalendarSelected:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.white,
-                                                    fontWeight:
-                                                    FontWeight.bold),
-                                                textStyleDayOnCalendarDisabled:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black
-                                                        .withOpacity(0.1)),
-                                                textStyleMonthYearHeader:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                    FontWeight.bold),
-                                                sizeArrow: 50,
-                                                colorArrowNext: Colors.black,
-                                                colorArrowPrevious:
-                                                Colors.black,
-                                                marginLeftArrowPrevious: 16,
-                                                marginTopArrowPrevious: 16,
-                                                marginTopArrowNext: 16,
-                                                marginRightArrowNext: 32,
-                                                textStyleButtonAction:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black),
-                                                textStyleButtonPositive:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.amber,
-                                                    fontWeight:
-                                                    FontWeight.bold),
-                                                textStyleButtonNegative:
-                                                TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black45
-                                                        .withOpacity(0.5)),
-                                                decorationDateSelected:
-                                                BoxDecoration(
-                                                    color: Colors.amber,
-                                                    shape: BoxShape.circle),
-                                              ),
-                                              styleYearPicker:
-                                              MaterialRoundedYearPickerStyle(
-                                                textStyleYear: TextStyle(
-                                                    fontSize: 30,
-                                                    color: Colors.black),
-                                                textStyleYearSelected:
-                                                TextStyle(
-                                                    fontSize: 40,
-                                                    color: Colors.black45,
-                                                    fontWeight:
-                                                    FontWeight.bold),
-                                                heightYearRow: 100,
-                                              ),
-                                              context: context,
-                                              locale: Locale("th", "TH"),
-                                            );
-                                            if (newDateTime != null) {
-                                              contoller.date.value = newDateTime
-                                                  .toString()
-                                                  .split(" ")[0];
-                                            }
-                                          }
-                                        },
-                                        child: Container(
-                                          padding: const EdgeInsets.only(
-                                              left: 20, right: 5),
-                                          height: 40,
-                                          decoration: BoxDecoration(
-                                              color: colorWhite,
-                                              border: Border.all(
-                                                color: Colors.black26,
-                                                width: 1,
-                                              ),
-                                              borderRadius:
-                                              BorderRadius.circular(5)),
-                                          alignment: Alignment.center,
-                                          child: SizedBox(
-                                            child: Row(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment
-                                                  .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  contoller.date.value,
-                                                  style: textStyle(context,
-                                                      fontSize: 13,
-                                                      color: colorBlack),
-                                                ),
-                                                Icon(
-                                                  Icons.date_range,
-                                                  size: 20,
-                                                  color: Colors.grey,
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 20,
-                                    ),
-                                    Expanded(
-                                      flex: 5,
-                                      child: (contoller
-                                          .dataEditEvent.value.events ==
-                                          null)
-                                          ? SizedBox()
-                                          : Container(
-                                        padding: const EdgeInsets.only(
-                                            left: 20, right: 5),
-                                        width: double.infinity,
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                            color: colorWhite,
-                                            border: Border.all(
-                                              color: Colors.black26,
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                            BorderRadius.circular(5)),
-                                        alignment: Alignment.center,
-                                        child: SizedBox(
-                                          width: double.infinity,
-                                          child:
-                                          DropdownButtonHideUnderline(
-                                            child:
-                                            DropdownButton2<String>(
-                                              openWithLongPress: (isAdmin)
-                                                  ? false
-                                                  : true,
-                                              dropdownStyleData:
-                                              DropdownStyleData(
-                                                maxHeight: 300,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                  BorderRadius
-                                                      .circular(5),
-                                                ),
-                                                scrollbarTheme:
-                                                ScrollbarThemeData(
-                                                  radius: const Radius
-                                                      .circular(5),
-                                                  thickness:
-                                                  MaterialStateProperty
-                                                      .all<double>(6),
-                                                  thumbVisibility:
-                                                  MaterialStateProperty
-                                                      .all<bool>(
-                                                      true),
-                                                ),
-                                              ),
-                                              autofocus: true,
-                                              isExpanded: true,
-                                              value: contoller
-                                                  .selectStatusList!
-                                                  .value,
-                                              hint: Text(
-                                                'เลือกทั้งหมด',
-                                                style: TextStyle(
-                                                    fontSize: 13.0,
-                                                    color: colorGrey,
-                                                    fontWeight:
-                                                    FontWeight.w400),
-                                              ),
-                                              items: contoller
-                                                  .StatusList.map<
-                                                  DropdownMenuItem<
-                                                      String>>(
-                                                      (String? value) {
-                                                    return DropdownMenuItem<
-                                                        String>(
-                                                      value: value!,
-                                                      child: Text(
-                                                        value,
-                                                        style: TextStyle(
-                                                            fontSize: 13.0,
-                                                            color: colorBlack,
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .w400),
-                                                      ),
-                                                    );
-                                                  }).toList(),
-                                              iconStyleData:
-                                              const IconStyleData(
-                                                  icon: Icon(
-                                                    Icons.keyboard_arrow_down,
-                                                    size: 24,
-                                                  )),
-                                              onChanged: (valueSelect) {
-                                                contoller
-                                                    .selectStatusList!
-                                                    .value = valueSelect!;
-                                              },
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-
-
-
-
                           const SizedBox(
                             height: 30,
                           ),
-                          Container(
+
+                          if(MediaQuery.of(context).size.width>899)Container(
                             height: 60,
                             child: Column(
                               children: [
@@ -1625,9 +1028,22 @@ class _CreateListState extends State<CreateList> {
                                     Expanded(
                                       flex: 5,
                                       child: Container(
+                                        padding: EdgeInsets.only(left: 10,right: 10),
+                                        alignment: Alignment.centerLeft,
                                         height: 40,
-                                        color: colorWhite,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(5),
+                                          border: Border.all(color: Colors.grey),
+                                          color: colorWhite,
+                                        ),
                                         child: TextFormField(
+                                          //key: contoller.formKey,
+                                          validator: (value){
+                                            if(value!.isEmpty){
+                                              return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                            }
+                                            return null;
+                                          },
                                           enabled: (isAdmin)?true:false,
                                           controller:
                                               contoller.responsible.value,
@@ -1635,7 +1051,7 @@ class _CreateListState extends State<CreateList> {
                                               fontSize: 13.0,
                                               color: colorBlack,
                                               fontWeight: FontWeight.w400),
-                                          decoration: InputDecoration(
+                                          decoration: InputDecoration.collapsed(
                                             fillColor: colorWhite,
                                             hintText: "หน่วยงานที่รับผิดชอบ",
                                             hintStyle: TextStyle(
@@ -1643,14 +1059,14 @@ class _CreateListState extends State<CreateList> {
                                                 color: colorGrey,
                                                 fontWeight: FontWeight.w400),
                                             filled: true,
-                                            border: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: colorGrey,
-                                                width: 2,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                            ),
+                                            // border: OutlineInputBorder(
+                                            //   borderSide: BorderSide(
+                                            //     color: colorGrey,
+                                            //     width: 2,
+                                            //   ),
+                                            //   borderRadius:
+                                            //       BorderRadius.circular(5),
+                                            // ),
                                           ),
                                         ),
                                       ),
@@ -1761,10 +1177,213 @@ class _CreateListState extends State<CreateList> {
                               ],
                             ),
                           ),
+                          if(MediaQuery.of(context).size.width<900)Container(
+                            height: 60,
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            'หน่วยงานที่รับผิดชอบ',
+                                            style: textStyle(context,
+                                                color: colorBlack,
+                                                fontSize: 13),
+                                          )),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                        padding: EdgeInsets.only(left: 10,right: 10),
+                                        alignment: Alignment.centerLeft,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(5),
+                                          border: Border.all(color: Colors.grey),
+                                          color: colorWhite,
+                                        ),
+                                        child: TextFormField(
+                                          //key: contoller.formKey,
+                                          validator: (value){
+                                            if(value!.isEmpty){
+                                              return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                            }
+                                            return null;
+                                          },
+                                          enabled: (isAdmin)?true:false,
+                                          controller:
+                                          contoller.responsible.value,
+                                          style: TextStyle(
+                                              fontSize: 13.0,
+                                              color: colorBlack,
+                                              fontWeight: FontWeight.w400),
+                                          decoration: InputDecoration.collapsed(
+                                            fillColor: colorWhite,
+                                            hintText: "หน่วยงานที่รับผิดชอบ",
+                                            hintStyle: TextStyle(
+                                                fontSize: 13.0,
+                                                color: colorGrey,
+                                                fontWeight: FontWeight.w400),
+                                            filled: true,
+                                            // border: OutlineInputBorder(
+                                            //   borderSide: BorderSide(
+                                            //     color: colorGrey,
+                                            //     width: 2,
+                                            //   ),
+                                            //   borderRadius:
+                                            //       BorderRadius.circular(5),
+                                            // ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          if(MediaQuery.of(context).size.width<900)if(contoller.dataEditEvent.value.events != null)const SizedBox(height: 20,),
+                          if(MediaQuery.of(context).size.width<900)if(contoller.dataEditEvent.value.events != null)Container(
+                            height: 60,
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: (contoller
+                                          .dataEditEvent.value.events ==
+                                          null)
+                                          ? SizedBox()
+                                          : Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            'สถานะหน่วยงานที่รับผิดชอบ',
+                                            style: textStyle(context,
+                                                color: colorBlack,
+                                                fontSize: 13),
+                                          )),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: (contoller
+                                          .dataEditEvent.value.events ==
+                                          null)
+                                          ? SizedBox()
+                                          : Container(
+                                        padding: const EdgeInsets.only(
+                                            left: 20, right: 5),
+                                        width: double.infinity,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                            color: colorWhite,
+                                            border: Border.all(
+                                              color: Colors.black26,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                            BorderRadius.circular(5)),
+                                        alignment: Alignment.center,
+                                        child: SizedBox(
+                                          width: double.infinity,
+                                          child:
+                                          DropdownButtonHideUnderline(
+                                            child:
+                                            DropdownButton2<String>(
+                                              openWithLongPress: (isAdmin)
+                                                  ? false
+                                                  : true,
+                                              dropdownStyleData:
+                                              DropdownStyleData(
+                                                maxHeight: 300,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius
+                                                      .circular(5),
+                                                ),
+                                                scrollbarTheme:
+                                                ScrollbarThemeData(
+                                                  radius: const Radius
+                                                      .circular(5),
+                                                  thickness:
+                                                  MaterialStateProperty
+                                                      .all<double>(6),
+                                                  thumbVisibility:
+                                                  MaterialStateProperty
+                                                      .all<bool>(
+                                                      true),
+                                                ),
+                                              ),
+                                              autofocus: true,
+                                              isExpanded: true,
+                                              value: contoller
+                                                  .selectStatusResponsible!
+                                                  .value,
+                                              hint: Text(
+                                                'เลือกทั้งหมด',
+                                                style: TextStyle(
+                                                    fontSize: 13.0,
+                                                    color: colorGrey,
+                                                    fontWeight:
+                                                    FontWeight.w400),
+                                              ),
+                                              items: contoller
+                                                  .StatusResponsible.map<
+                                                  DropdownMenuItem<
+                                                      String>>(
+                                                      (String? value) {
+                                                    return DropdownMenuItem<
+                                                        String>(
+                                                      value: value!,
+                                                      child: Text(
+                                                        value,
+                                                        style: TextStyle(
+                                                            fontSize: 13.0,
+                                                            color: colorBlack,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w400),
+                                                      ),
+                                                    );
+                                                  }).toList(),
+                                              iconStyleData:
+                                              const IconStyleData(
+                                                  icon: Icon(
+                                                    Icons.keyboard_arrow_down,
+                                                    size: 24,
+                                                  )),
+                                              onChanged: (valueSelect) {
+                                                contoller
+                                                    .selectStatusResponsible!
+                                                    .value = valueSelect!;
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+
                           const SizedBox(
                             height: 30,
                           ),
-                          Container(
+
+                          if(MediaQuery.of(context).size.width>899)Container(
                             height: 60,
                             child: Column(
                               children: [
@@ -1802,15 +1421,28 @@ class _CreateListState extends State<CreateList> {
                                     Expanded(
                                       flex: 5,
                                       child: Container(
+                                        padding: EdgeInsets.only(left: 10,right: 10),
+                                        alignment: Alignment.centerLeft,
                                         height: 40,
-                                        color: colorWhite,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(5),
+                                          border: Border.all(color: Colors.grey),
+                                          color: colorWhite,
+                                        ),
                                         child: TextFormField(
+                                            //key: contoller.formKey,
+                                          validator: (value){
+                                            if(value!.isEmpty){
+                                              return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                            }
+                                            return null;
+                                          },
                                           enabled: (isAdmin) ? true : false,
                                           controller: contoller.createBy.value,
                                           style: textStyle(context,
                                             color: colorBlack,
                                             fontSize: 13),
-                                          decoration: InputDecoration(
+                                          decoration: InputDecoration.collapsed(
                                             fillColor: colorWhite,
                                             hintText: "รับเรื่องจาก",
                                             hintStyle: TextStyle(
@@ -1818,14 +1450,14 @@ class _CreateListState extends State<CreateList> {
                                                 color: colorGrey,
                                                 fontWeight: FontWeight.w400),
                                             filled: true,
-                                            border: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: colorGrey,
-                                                width: 2,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                            ),
+                                            // border: OutlineInputBorder(
+                                            //   borderSide: BorderSide(
+                                            //     color: colorGrey,
+                                            //     width: 2,
+                                            //   ),
+                                            //   borderRadius:
+                                            //       BorderRadius.circular(5),
+                                            // ),
                                           ),
                                         ),
                                       ),
@@ -1911,10 +1543,183 @@ class _CreateListState extends State<CreateList> {
                               ],
                             ),
                           ),
+                          if(MediaQuery.of(context).size.width<900)Container(
+                            height: 60,
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            'รับเรื่องจาก',
+                                            style: textStyle(context,
+                                                color: colorBlack,
+                                                fontSize: 13),
+                                          )),
+                                    ),
+
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                        padding: EdgeInsets.only(left: 10,right: 10),
+                                        alignment: Alignment.centerLeft,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(5),
+                                          border: Border.all(color: Colors.grey),
+                                          color: colorWhite,
+                                        ),
+                                        child: TextFormField(
+                                          //key: contoller.formKey,
+                                          validator: (value){
+                                            if(value!.isEmpty){
+                                              return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                            }
+                                            return null;
+                                          },
+                                          enabled: (isAdmin) ? true : false,
+                                          controller: contoller.createBy.value,
+                                          style: textStyle(context,
+                                              color: colorBlack,
+                                              fontSize: 13),
+                                          decoration: InputDecoration.collapsed(
+                                            fillColor: colorWhite,
+                                            hintText: "รับเรื่องจาก",
+                                            hintStyle: TextStyle(
+                                                fontSize: 13.0,
+                                                color: colorGrey,
+                                                fontWeight: FontWeight.w400),
+                                            filled: true,
+                                            // border: OutlineInputBorder(
+                                            //   borderSide: BorderSide(
+                                            //     color: colorGrey,
+                                            //     width: 2,
+                                            //   ),
+                                            //   borderRadius:
+                                            //       BorderRadius.circular(5),
+                                            // ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          if(MediaQuery.of(context).size.width<900)const SizedBox(height: 20,),
+                          if(MediaQuery.of(context).size.width<900)Container(
+                            height: 60,
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            'ระดับความรุนแรง',
+                                            style: textStyle(context,
+                                                color: colorBlack,
+                                                fontSize: 13),
+                                          )),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                        height: 40,
+                                        child: Row(
+                                          children: [
+                                            Radio(
+                                                value: 0,
+                                                groupValue:
+                                                contoller.radio.value,
+                                                onChanged: (val) {
+                                                  if (isAdmin) {
+                                                    contoller.radio.value =
+                                                    val!;
+                                                  }
+                                                }),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(
+                                              'เล็กน้อย',
+                                              style: textStyle(context,
+                                                  color: colorBlack,
+                                                  fontSize: 13),
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Radio(
+                                                value: 1,
+                                                groupValue:
+                                                contoller.radio.value,
+                                                onChanged: (val) {
+                                                  if(isAdmin) {
+                                                    contoller.radio.value =
+                                                    val!;
+                                                  }
+                                                }),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(
+                                              'ปานกลาง',
+                                              style: textStyle(context,
+                                                  color: colorBlack,
+                                                  fontSize: 13),
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Radio(
+                                                value: 2,
+                                                groupValue:
+                                                contoller.radio.value,
+                                                onChanged: (val) {
+                                                  if(isAdmin) {
+                                                    contoller.radio.value =
+                                                    val!;
+                                                  }
+                                                }),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(
+                                              'รุนแรง',
+                                              style: textStyle(context,
+                                                  color: colorBlack,
+                                                  fontSize: 13),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+
                           const SizedBox(
                             height: 30,
                           ),
-                          Container(
+
+                          if(MediaQuery.of(context).size.width>899)Container(
                             height: 60,
                             child: Column(
                               children: [
@@ -1956,16 +1761,29 @@ class _CreateListState extends State<CreateList> {
                                     Expanded(
                                       flex: 5,
                                       child: Container(
+                                        padding: EdgeInsets.only(left: 10,right: 10),
+                                        alignment: Alignment.centerLeft,
                                         height: 40,
-                                        color: colorWhite,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(5),
+                                          border: Border.all(color: Colors.grey),
+                                          color: colorWhite,
+                                        ),
                                         child: TextFormField(
+                                            //key: contoller.formKey,
+                                          validator: (value){
+                                            if(value!.isEmpty){
+                                              return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                            }
+                                            return null;
+                                          },
                                           enabled: (isAdmin)?true:false,
                                           controller: contoller.relevant.value,
                                           style: TextStyle(
                                               fontSize: 13.0,
                                               color: colorBlack,
                                               fontWeight: FontWeight.w400),
-                                          decoration: InputDecoration(
+                                          decoration: InputDecoration.collapsed(
                                             fillColor: colorWhite,
                                             hintText: "หน่วยงานที่เกี่ยวข้อง",
                                             hintStyle: TextStyle(
@@ -1973,14 +1791,14 @@ class _CreateListState extends State<CreateList> {
                                                 color: colorGrey,
                                                 fontWeight: FontWeight.w400),
                                             filled: true,
-                                            border: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: colorGrey,
-                                                width: 2,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                            ),
+                                            // border: OutlineInputBorder(
+                                            //   borderSide: BorderSide(
+                                            //     color: colorGrey,
+                                            //     width: 2,
+                                            //   ),
+                                            //   borderRadius:
+                                            //       BorderRadius.circular(5),
+                                            // ),
                                           ),
                                         ),
                                       ),
@@ -2089,10 +1907,213 @@ class _CreateListState extends State<CreateList> {
                               ],
                             ),
                           ),
+                          if(MediaQuery.of(context).size.width<900)Container(
+                            height: 60,
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            'หน่วยงานที่เกี่ยวข้อง',
+                                            style: textStyle(context,
+                                                color: colorBlack,
+                                                fontSize: 13),
+                                          )),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                        padding: EdgeInsets.only(left: 10,right: 10),
+                                        alignment: Alignment.centerLeft,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(5),
+                                          border: Border.all(color: Colors.grey),
+                                          color: colorWhite,
+                                        ),
+                                        child: TextFormField(
+                                          //key: contoller.formKey,
+                                          validator: (value){
+                                            if(value!.isEmpty){
+                                              return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                            }
+                                            return null;
+                                          },
+                                          enabled: (isAdmin)?true:false,
+                                          controller: contoller.relevant.value,
+                                          style: TextStyle(
+                                              fontSize: 13.0,
+                                              color: colorBlack,
+                                              fontWeight: FontWeight.w400),
+                                          decoration: InputDecoration.collapsed(
+                                            fillColor: colorWhite,
+                                            hintText: "หน่วยงานที่เกี่ยวข้อง",
+                                            hintStyle: TextStyle(
+                                                fontSize: 13.0,
+                                                color: colorGrey,
+                                                fontWeight: FontWeight.w400),
+                                            filled: true,
+                                            // border: OutlineInputBorder(
+                                            //   borderSide: BorderSide(
+                                            //     color: colorGrey,
+                                            //     width: 2,
+                                            //   ),
+                                            //   borderRadius:
+                                            //       BorderRadius.circular(5),
+                                            // ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          if(MediaQuery.of(context).size.width<900)if(contoller.dataEditEvent.value.events != null)const SizedBox(height: 20,),
+                          if(MediaQuery.of(context).size.width<900)if(contoller.dataEditEvent.value.events != null)Container(
+                            height: 60,
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+
+                                    Expanded(
+                                      flex: 5,
+                                      child: (contoller
+                                          .dataEditEvent.value.events ==
+                                          null)
+                                          ? SizedBox()
+                                          : Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            'สถานะหน่วยงานที่เกี่ยวข้อง',
+                                            style: textStyle(context,
+                                                color: colorBlack,
+                                                fontSize: 13),
+                                          )),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+
+                                    Expanded(
+                                      flex: 5,
+                                      child: (contoller
+                                          .dataEditEvent.value.events ==
+                                          null)
+                                          ? SizedBox()
+                                          : Container(
+                                        padding: const EdgeInsets.only(
+                                            left: 20, right: 5),
+                                        width: double.infinity,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                            color: colorWhite,
+                                            border: Border.all(
+                                              color: Colors.black26,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                            BorderRadius.circular(5)),
+                                        alignment: Alignment.center,
+                                        child: SizedBox(
+                                          width: double.infinity,
+                                          child:
+                                          DropdownButtonHideUnderline(
+                                            child:
+                                            DropdownButton2<String>(
+                                              openWithLongPress: (isAdmin)?false:true,
+                                              dropdownStyleData:
+                                              DropdownStyleData(
+                                                maxHeight: 300,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius
+                                                      .circular(5),
+                                                ),
+                                                scrollbarTheme:
+                                                ScrollbarThemeData(
+                                                  radius: const Radius
+                                                      .circular(5),
+                                                  thickness:
+                                                  MaterialStateProperty
+                                                      .all<double>(6),
+                                                  thumbVisibility:
+                                                  MaterialStateProperty
+                                                      .all<bool>(
+                                                      true),
+                                                ),
+                                              ),
+                                              autofocus: true,
+                                              isExpanded: true,
+                                              value: contoller
+                                                  .selectStatusrelevant!
+                                                  .value,
+                                              hint: Text(
+                                                'เลือกทั้งหมด',
+                                                style: TextStyle(
+                                                    fontSize: 13.0,
+                                                    color: colorGrey,
+                                                    fontWeight:
+                                                    FontWeight.w400),
+                                              ),
+                                              items: contoller
+                                                  .Statusrelevant.map<
+                                                  DropdownMenuItem<
+                                                      String>>(
+                                                      (String? value) {
+                                                    return DropdownMenuItem<
+                                                        String>(
+                                                      value: value!,
+                                                      child: Text(
+                                                        value,
+                                                        style: TextStyle(
+                                                            fontSize: 13.0,
+                                                            color: colorBlack,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w400),
+                                                      ),
+                                                    );
+                                                  }).toList(),
+                                              iconStyleData:
+                                              const IconStyleData(
+                                                  icon: Icon(
+                                                    Icons.keyboard_arrow_down,
+                                                    size: 24,
+                                                  )),
+                                              onChanged: (valueSelect) {
+                                                contoller
+                                                    .selectStatusrelevant!
+                                                    .value = valueSelect!;
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+
+
                           const SizedBox(
                             height: 30,
                           ),
-                          Container(
+
+                          if(MediaQuery.of(context).size.width>899) Container(
                             height: 60,
                             child: Column(
                               children: [
@@ -2129,6 +2150,16 @@ class _CreateListState extends State<CreateList> {
                                         controller: contoller.die.value,
                                         textAlign: TextAlign.center,
                                         keyboardType: TextInputType.number,
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                          FilteringTextInputFormatter.digitsOnly
+
+                                        ],
+                                        onChanged: (value){
+                                          if(value.isEmpty){
+                                            contoller.die.value.text='0';
+                                          }
+                                        },
                                         decoration: InputDecoration(
                                           fillColor: colorWhite,
                                           filled: true,
@@ -2168,8 +2199,18 @@ class _CreateListState extends State<CreateList> {
                                       color: colorWhite,
                                       child: TextFormField(
                                         controller: contoller.womenDie.value,
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                          FilteringTextInputFormatter.digitsOnly
+
+                                        ],
                                         textAlign: TextAlign.center,
                                         keyboardType: TextInputType.number,
+                                        onChanged: (value){
+                                          if(value.isEmpty){
+                                            contoller.womenDie.value.text='0';
+                                          }
+                                        },
                                         decoration: InputDecoration(
                                           fillColor: colorWhite,
                                           filled: true,
@@ -2209,8 +2250,18 @@ class _CreateListState extends State<CreateList> {
                                       color: colorWhite,
                                       child: TextFormField(
                                         controller: contoller.mandie.value,
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                          FilteringTextInputFormatter.digitsOnly
+
+                                        ],
                                         textAlign: TextAlign.center,
                                         keyboardType: TextInputType.number,
+                                        onChanged: (value){
+                                          if(value.isEmpty){
+                                            contoller.mandie.value.text='0';
+                                          }
+                                        },
                                         decoration: InputDecoration(
                                           fillColor: colorWhite,
                                           filled: true,
@@ -2249,8 +2300,18 @@ class _CreateListState extends State<CreateList> {
                                       width: 80,
                                       color: colorWhite,
                                       child: TextFormField(
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                          FilteringTextInputFormatter.digitsOnly
+
+                                        ],
                                         controller: contoller.unGenderDie.value,
                                         textAlign: TextAlign.center,
+                                        onChanged: (value){
+                                          if(value.isEmpty){
+                                            contoller.unGenderDie.value.text='0';
+                                          }
+                                        },
                                         keyboardType: TextInputType.number,
                                         decoration: InputDecoration(
                                           fillColor: colorWhite,
@@ -2282,6 +2343,243 @@ class _CreateListState extends State<CreateList> {
                               ],
                             ),
                           ),
+                          if(MediaQuery.of(context).size.width<900)Container(
+                            height: 60,
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            'ผู้ประสบภัย',
+                                            style: textStyle(context,
+                                                color: colorBlack,
+                                                fontSize: 13),
+                                          )),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'ผู้เสียชีวิต',
+                                      style: textStyle(context,
+                                          color: colorBlack, fontSize: 13),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      height: 40,
+                                      width: 80,
+                                      color: colorWhite,
+                                      child: TextFormField(
+                                        controller: contoller.die.value,
+                                        textAlign: TextAlign.center,
+                                        keyboardType: TextInputType.number,
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                          FilteringTextInputFormatter.digitsOnly
+
+                                        ],
+                                        onChanged: (value){
+                                          if(value.isEmpty){
+                                            contoller.die.value.text='0';
+                                          }
+                                        },
+                                        decoration: InputDecoration(
+                                          fillColor: colorWhite,
+                                          filled: true,
+                                          border: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: colorGrey,
+                                              width: 2,
+                                            ),
+                                            borderRadius:
+                                            BorderRadius.circular(5),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      'คน',
+                                      style: textStyle(context,
+                                          color: colorBlack, fontSize: 13),
+                                    ),
+                                   SizedBox(width: 30,),
+                                    Text(
+                                      'เพศหญิง',
+                                      style: textStyle(context,
+                                          color: colorBlack, fontSize: 13),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      height: 40,
+                                      width: 80,
+                                      color: colorWhite,
+                                      child: TextFormField(
+                                        controller: contoller.womenDie.value,
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                          FilteringTextInputFormatter.digitsOnly
+
+                                        ],
+                                        textAlign: TextAlign.center,
+                                        keyboardType: TextInputType.number,
+                                        onChanged: (value){
+                                          if(value.isEmpty){
+                                            contoller.womenDie.value.text='0';
+                                          }
+                                        },
+                                        decoration: InputDecoration(
+                                          fillColor: colorWhite,
+                                          filled: true,
+                                          border: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: colorGrey,
+                                              width: 2,
+                                            ),
+                                            borderRadius:
+                                            BorderRadius.circular(5),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      'คน',
+                                      style: textStyle(context,
+                                          color: colorBlack, fontSize: 13),
+                                    ),
+
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          if(MediaQuery.of(context).size.width<900)SizedBox(height: 20,),
+                          if(MediaQuery.of(context).size.width<900)Container(
+                            height: 60,
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+
+                                    Text(
+                                      'เพศชาย',
+                                      style: textStyle(context,
+                                          color: colorBlack, fontSize: 13),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Container(
+                                      height: 40,
+                                      width: 80,
+                                      color: colorWhite,
+                                      child: TextFormField(
+                                        controller: contoller.mandie.value,
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                          FilteringTextInputFormatter.digitsOnly
+
+                                        ],
+                                        textAlign: TextAlign.center,
+                                        keyboardType: TextInputType.number,
+                                        onChanged: (value){
+                                          if(value.isEmpty){
+                                            contoller.mandie.value.text='0';
+                                          }
+                                        },
+                                        decoration: InputDecoration(
+                                          fillColor: colorWhite,
+                                          filled: true,
+                                          border: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: colorGrey,
+                                              width: 2,
+                                            ),
+                                            borderRadius:
+                                            BorderRadius.circular(5),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      'คน',
+                                      style: textStyle(context,
+                                          color: colorBlack, fontSize: 13),
+                                    ),
+                                    SizedBox(width: 30,),
+                                    Text(
+                                      'ไม่สามารถระบุเพศ',
+                                      style: textStyle(context,
+                                          color: colorBlack, fontSize: 13),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      height: 40,
+                                      width: 80,
+                                      color: colorWhite,
+                                      child: TextFormField(
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                          FilteringTextInputFormatter.digitsOnly
+
+                                        ],
+                                        controller: contoller.unGenderDie.value,
+                                        textAlign: TextAlign.center,
+                                        onChanged: (value){
+                                          if(value.isEmpty){
+                                            contoller.unGenderDie.value.text='0';
+                                          }
+                                        },
+                                        keyboardType: TextInputType.number,
+                                        decoration: InputDecoration(
+                                          fillColor: colorWhite,
+                                          filled: true,
+                                          border: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: colorGrey,
+                                              width: 2,
+                                            ),
+                                            borderRadius:
+                                            BorderRadius.circular(5),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      'คน',
+                                      style: textStyle(context,
+                                          color: colorBlack, fontSize: 13),
+                                    ),
+
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+
+
                           const SizedBox(
                             height: 10,
                           ),
@@ -2290,7 +2588,451 @@ class _CreateListState extends State<CreateList> {
                             shrinkWrap: true,
                             itemCount: contoller.listTextNameDie.length,
                             itemBuilder: (context, index) {
-                              return Container(
+                              return (MediaQuery.of(context).size.width<900)?Container(
+                                margin: EdgeInsets.only(bottom: 5, top: 5),
+                                height: 100,
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                              BorderRadius.circular(100),
+                                              color: Color(0xfffd9e1ec)),
+                                          child: Text('${index + 1}'),
+                                          alignment: Alignment.center,
+                                          width: 30,
+                                          height: 30,
+                                        ),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        Text(
+                                          'ชื่อ-นามสกุล',
+                                          style: textStyle(context,
+                                              color: colorBlack, fontSize: 13),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.only(left: 10,right: 10),
+                                          alignment: Alignment.centerLeft,
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(5),
+                                            border: Border.all(color: Colors.grey),
+                                            color: colorWhite,
+                                          ),
+                                          width: 250,
+                                          child: TextFormField(
+                                            enabled: (isAdmin)
+                                                ? true
+                                                : (contoller.dataEditEvent.value
+                                                .events ==
+                                                null)
+                                                ? true
+                                                : (index >=
+                                                contoller
+                                                    .dataEditEvent
+                                                    .value
+                                                    .events!
+                                                    .deceased!
+                                                    .deceaseList!
+                                                    .length)
+                                                ? true
+                                                : false,
+                                            controller:
+                                            contoller.listTextNameDie[index],
+                                            //key: contoller.formKey,
+                                            validator: (value){
+                                              if(value!.isEmpty){
+                                                return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                              }
+                                              return null;
+                                            },
+                                            textAlign: TextAlign.left,
+                                            keyboardType: TextInputType.number,
+                                            decoration: InputDecoration.collapsed(
+                                              fillColor: colorWhite,
+                                              filled: true, hintText: '',
+                                              // border: OutlineInputBorder(
+                                              //   borderSide: BorderSide(
+                                              //     color: colorGrey,
+                                              //     width: 2,
+                                              //   ),
+                                              //   borderRadius:
+                                              //       BorderRadius.circular(5),
+                                              // ),
+                                            ),
+                                          ),
+                                        ),
+
+                                      ],
+                                    ),
+                                    SizedBox(height: 20,),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'เพศ',
+                                          style: textStyle(context,
+                                              color: colorBlack, fontSize: 13),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          padding: const EdgeInsets.only(
+                                              left: 20, right: 5),
+                                          width: 150,
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                              color: colorWhite,
+                                              border: Border.all(
+                                                color: Colors.black26,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                              BorderRadius.circular(5)),
+                                          alignment: Alignment.center,
+                                          child: SizedBox(
+                                            width: 100,
+                                            child: Obx(
+                                                  () => DropdownButtonHideUnderline(
+                                                child: DropdownButton2<String>(
+                                                  dropdownStyleData:
+                                                  DropdownStyleData(
+                                                    maxHeight: 300,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                      BorderRadius.circular(5),
+                                                    ),
+                                                    scrollbarTheme:
+                                                    ScrollbarThemeData(
+                                                      radius:
+                                                      const Radius.circular(5),
+                                                      thickness:
+                                                      MaterialStateProperty.all<
+                                                          double>(6),
+                                                      thumbVisibility:
+                                                      MaterialStateProperty.all<
+                                                          bool>(true),
+                                                    ),
+                                                  ),
+                                                  autofocus: true,
+                                                  isExpanded: true,
+                                                  openWithLongPress: (isAdmin)
+                                                      ? false
+                                                      : (contoller.dataEditEvent
+                                                      .value.events ==
+                                                      null)
+                                                      ? false
+                                                      : (index >=
+                                                      contoller
+                                                          .dataEditEvent
+                                                          .value
+                                                          .events!
+                                                          .deceased!
+                                                          .deceaseList!
+                                                          .length)
+                                                      ? false
+                                                      : true,
+                                                  value: contoller
+                                                      .listGenderDie[index].value,
+                                                  items: contoller.listGender.map<
+                                                      DropdownMenuItem<String>>(
+                                                          (String? value) {
+                                                        return DropdownMenuItem<String>(
+                                                          value: value!,
+                                                          child: Text(
+                                                            value,
+                                                            style: TextStyle(
+                                                                fontSize: 13.0,
+                                                                color: colorBlack,
+                                                                fontWeight:
+                                                                FontWeight.w400),
+                                                          ),
+                                                        );
+                                                      }).toList(),
+                                                  iconStyleData:
+                                                  const IconStyleData(
+                                                      icon: Icon(
+                                                        Icons.keyboard_arrow_down,
+                                                        size: 24,
+                                                      )),
+                                                  onChanged: (valueSelect) {
+                                                    contoller.UpdateListGenderDie(
+                                                        valueSelect!, index);
+                                                    // contoller.listGenderDie[index] = valueSelect!;
+                                                  },
+                                                  // enableFeedback: (contoller.dataEditEvent.value.events==null)?false:(index>=contoller.dataEditEvent.value.events!.deceased!.deceaseList!.length)?true:false,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        Text(
+                                          'อายุ',
+                                          style: textStyle(context,
+                                              color: colorBlack, fontSize: 13),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.only(left: 10,right: 10),
+                                          alignment: Alignment.centerLeft,
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(5),
+                                            border: Border.all(color: Colors.grey),
+                                            color: colorWhite,
+                                          ),
+                                          width: 100,
+
+                                          child: TextFormField(
+                                            enabled: (isAdmin)
+                                                ? true
+                                                : (contoller.dataEditEvent.value
+                                                .events ==
+                                                null)
+                                                ? true
+                                                : (index >=
+                                                contoller
+                                                    .dataEditEvent
+                                                    .value
+                                                    .events!
+                                                    .deceased!
+                                                    .deceaseList!
+                                                    .length)
+                                                ? true
+                                                : false,
+                                            controller:
+                                            contoller.listTextAgeDie[index],
+                                            inputFormatters: <TextInputFormatter>[
+                                              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                              FilteringTextInputFormatter.digitsOnly
+
+                                            ],
+                                            // //key: contoller.formKey,
+                                            validator: (value){
+                                              if(value!.isEmpty){
+                                                return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                              }
+                                              return null;
+                                            },
+                                            textAlign: TextAlign.center,
+                                            keyboardType: TextInputType.number,
+                                            decoration: InputDecoration.collapsed(
+                                              fillColor: colorWhite,
+                                              filled: true,
+                                              // border: OutlineInputBorder(
+                                              //   borderSide: BorderSide(
+                                              //     color: colorGrey,
+                                              //     width: 2,
+                                              //   ),
+                                              //   borderRadius:
+                                              //       BorderRadius.circular(5),
+                                              // ),
+                                              hintText: '',
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        (isAdmin)
+                                            ? InkWell(
+                                          onTap: () {
+                                            if(contoller.listDataIDUserDie[index]!='new'){
+                                              contoller.listStringNameDeleteDie.add('ชื่อ ${contoller.listTextNameDie[index].value.text} เพศ ${contoller.listGenderInjured[index]} อายุ ${contoller.listTextAgeDie[index].value.text}');
+
+                                              contoller.listDataDeleteIDUserDie.add(
+                                                  RemoveDeceasedList(
+                                                      id:
+                                                      contoller
+                                                          .listDataIDUserDie[index]));
+                                            }
+                                            contoller.listGenderDie
+                                                .removeAt(index);
+                                            contoller.listTextAgeDie
+                                                .removeAt(index);
+                                            contoller.listTextNameDie
+                                                .removeAt(index);
+                                            contoller
+                                                .listDataIDUserDie
+                                                .removeAt(index);
+
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(5),
+                                                border: Border.all(
+                                                    color: colorRed),
+                                                color: Colors.white),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                              children: [
+                                                Icon(
+                                                  CupertinoIcons.multiply,
+                                                  size: 17,
+                                                  color: Colors.red,
+                                                ),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Text(
+                                                  'ลบ',
+                                                  style: textStyle(context,
+                                                      color: colorRed,
+                                                      fontSize: 13),
+                                                ),
+                                              ],
+                                            ),
+                                            height: 40,
+                                            width: 80,
+                                          ),
+                                        )
+                                            : (contoller.dataEditEvent.value
+                                            .events ==
+                                            null)
+                                            ? InkWell(
+                                          onTap: () {
+                                            if(contoller.listDataIDUserDie[index]!='new'){
+                                              contoller.listStringNameDeleteDie.add('ชื่อ ${contoller.listTextNameDie[index].value.text} เพศ ${contoller.listGenderInjured[index]} อายุ ${contoller.listTextAgeDie[index].value.text}');
+
+                                              contoller.listDataDeleteIDUserDie.add(
+                                                  RemoveDeceasedList(
+                                                      id:
+                                                      contoller
+                                                          .listDataIDUserDie[index]));
+                                            }
+                                            contoller.listGenderDie
+                                                .removeAt(index);
+                                            contoller.listTextAgeDie
+                                                .removeAt(index);
+                                            contoller.listTextNameDie
+                                                .removeAt(index);
+                                            contoller
+                                                .listDataIDUserDie
+                                                .removeAt(index);
+
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(
+                                                    5),
+                                                border: Border.all(
+                                                    color: colorRed),
+                                                color: Colors.white),
+                                            child: Row(
+                                              mainAxisSize:
+                                              MainAxisSize.min,
+                                              mainAxisAlignment:
+                                              MainAxisAlignment
+                                                  .center,
+                                              children: [
+                                                Icon(
+                                                  CupertinoIcons.multiply,
+                                                  size: 17,
+                                                  color: Colors.red,
+                                                ),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Text(
+                                                  'ลบ',
+                                                  style: textStyle(
+                                                      context,
+                                                      color: colorRed,
+                                                      fontSize: 13),
+                                                ),
+                                              ],
+                                            ),
+                                            height: 40,
+                                            width: 80,
+                                          ),
+                                        )
+                                            : (index >=
+                                            contoller
+                                                .dataEditEvent
+                                                .value
+                                                .events!
+                                                .deceased!
+                                                .deceaseList!
+                                                .length)
+                                            ? InkWell(
+                                          onTap: () {
+                                            if(contoller.listDataIDUserDie[index]!='new'){
+                                              contoller.listStringNameDeleteDie.add('ชื่อ ${contoller.listTextNameDie[index].value.text} เพศ ${contoller.listGenderInjured[index]} อายุ ${contoller.listTextAgeDie[index].value.text}');
+                                              contoller.listDataDeleteIDUserDie.add(
+                                                  RemoveDeceasedList(
+                                                      id:
+                                                      contoller
+                                                          .listDataIDUserDie[index]));
+                                            }
+                                            contoller.listGenderDie
+                                                .removeAt(index);
+                                            contoller.listTextAgeDie
+                                                .removeAt(index);
+                                            contoller.listTextNameDie
+                                                .removeAt(index);
+                                            contoller
+                                                .listDataIDUserDie
+                                                .removeAt(index);
+
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius
+                                                    .circular(5),
+                                                border: Border.all(
+                                                    color: colorRed),
+                                                color: Colors.white),
+                                            child: Row(
+                                              mainAxisSize:
+                                              MainAxisSize.min,
+                                              mainAxisAlignment:
+                                              MainAxisAlignment
+                                                  .center,
+                                              children: [
+                                                Icon(
+                                                  CupertinoIcons
+                                                      .multiply,
+                                                  size: 17,
+                                                  color: Colors.red,
+                                                ),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Text(
+                                                  'ลบ',
+                                                  style: textStyle(
+                                                      context,
+                                                      color: colorRed,
+                                                      fontSize: 13),
+                                                ),
+                                              ],
+                                            ),
+                                            height: 40,
+                                            width: 80,
+                                          ),
+                                        )
+                                            : SizedBox()
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ):Container(
                                 margin: EdgeInsets.only(bottom: 5, top: 5),
                                 height: 40,
                                 child: Row(
@@ -2317,9 +3059,15 @@ class _CreateListState extends State<CreateList> {
                                       width: 10,
                                     ),
                                     Container(
+                                      padding: EdgeInsets.only(left: 10,right: 10),
+                                      alignment: Alignment.centerLeft,
                                       height: 40,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        border: Border.all(color: Colors.grey),
+                                        color: colorWhite,
+                                      ),
                                       width: 250,
-                                      color: colorWhite,
                                       child: TextFormField(
                                         enabled: (isAdmin)
                                             ? true
@@ -2339,19 +3087,26 @@ class _CreateListState extends State<CreateList> {
                                                     : false,
                                         controller:
                                             contoller.listTextNameDie[index],
+                                        //key: contoller.formKey,
+                                        validator: (value){
+                                          if(value!.isEmpty){
+                                            return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                          }
+                                          return null;
+                                        },
                                         textAlign: TextAlign.left,
                                         keyboardType: TextInputType.number,
-                                        decoration: InputDecoration(
+                                        decoration: InputDecoration.collapsed(
                                           fillColor: colorWhite,
-                                          filled: true,
-                                          border: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: colorGrey,
-                                              width: 2,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          ),
+                                          filled: true, hintText: '',
+                                          // border: OutlineInputBorder(
+                                          //   borderSide: BorderSide(
+                                          //     color: colorGrey,
+                                          //     width: 2,
+                                          //   ),
+                                          //   borderRadius:
+                                          //       BorderRadius.circular(5),
+                                          // ),
                                         ),
                                       ),
                                     ),
@@ -2468,9 +3223,16 @@ class _CreateListState extends State<CreateList> {
                                       width: 10,
                                     ),
                                     Container(
+                                      padding: EdgeInsets.only(left: 10,right: 10),
+                                      alignment: Alignment.centerLeft,
                                       height: 40,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        border: Border.all(color: Colors.grey),
+                                        color: colorWhite,
+                                      ),
                                       width: 100,
-                                      color: colorWhite,
+
                                       child: TextFormField(
                                         enabled: (isAdmin)
                                             ? true
@@ -2490,19 +3252,32 @@ class _CreateListState extends State<CreateList> {
                                                     : false,
                                         controller:
                                             contoller.listTextAgeDie[index],
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                          FilteringTextInputFormatter.digitsOnly
+
+                                        ],
+                                        // //key: contoller.formKey,
+                                        validator: (value){
+                                          if(value!.isEmpty){
+                                            return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                          }
+                                          return null;
+                                        },
                                         textAlign: TextAlign.center,
                                         keyboardType: TextInputType.number,
-                                        decoration: InputDecoration(
+                                        decoration: InputDecoration.collapsed(
                                           fillColor: colorWhite,
                                           filled: true,
-                                          border: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: colorGrey,
-                                              width: 2,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          ),
+                                          // border: OutlineInputBorder(
+                                          //   borderSide: BorderSide(
+                                          //     color: colorGrey,
+                                          //     width: 2,
+                                          //   ),
+                                          //   borderRadius:
+                                          //       BorderRadius.circular(5),
+                                          // ),
+                                          hintText: '',
                                         ),
                                       ),
                                     ),
@@ -2731,7 +3506,8 @@ class _CreateListState extends State<CreateList> {
                           const SizedBox(
                             height: 20,
                           ),
-                          Container(
+
+                          if(MediaQuery.of(context).size.width>899)Container(
                             height: 60,
                             child: Column(
                               children: [
@@ -2750,9 +3526,20 @@ class _CreateListState extends State<CreateList> {
                                       width: 80,
                                       color: colorWhite,
                                       child: TextFormField(
+
                                         controller: contoller.injured.value,
                                         textAlign: TextAlign.center,
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                          FilteringTextInputFormatter.digitsOnly
+
+                                        ],
                                         keyboardType: TextInputType.number,
+                                        onChanged: (value){
+                                          if(value.isEmpty){
+                                            contoller.injured.value.text='0';
+                                          }
+                                        },
                                         decoration: InputDecoration(
                                           fillColor: colorWhite,
                                           filled: true,
@@ -2787,25 +3574,50 @@ class _CreateListState extends State<CreateList> {
                                       width: 10,
                                     ),
                                     Container(
+                                      padding: EdgeInsets.only(left: 10,right: 10),
+                                      alignment: Alignment.centerLeft,
                                       height: 40,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        border: Border.all(color: Colors.grey),
+                                        color: colorWhite,
+                                      ),
                                       width: 80,
-                                      color: colorWhite,
                                       child: TextFormField(
+                                        // //key: contoller.formKey,
+                                        validator: (value){
+                                          if(value!.isEmpty){
+                                            return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                          }
+                                          return null;
+                                        },
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                          FilteringTextInputFormatter.digitsOnly
+
+                                        ],
+                                        onChanged: (value){
+                                          if(value.isEmpty){
+                                            contoller.womenInjured.value.text='0';
+                                          }
+                                        },
                                         controller:
                                             contoller.womenInjured.value,
                                         textAlign: TextAlign.center,
                                         keyboardType: TextInputType.number,
-                                        decoration: InputDecoration(
+
+                                        decoration: InputDecoration.collapsed(
                                           fillColor: colorWhite,
                                           filled: true,
-                                          border: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: colorGrey,
-                                              width: 2,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          ),
+                                          // border: OutlineInputBorder(
+                                          //   borderSide: BorderSide(
+                                          //     color: colorGrey,
+                                          //     width: 2,
+                                          //   ),
+                                          //   borderRadius:
+                                          //       BorderRadius.circular(5),
+                                          // ),
+                                          hintText: '',
                                         ),
                                       ),
                                     ),
@@ -2829,24 +3641,47 @@ class _CreateListState extends State<CreateList> {
                                       width: 10,
                                     ),
                                     Container(
+                                      padding: EdgeInsets.only(left: 10,right: 10),
+                                      alignment: Alignment.centerLeft,
                                       height: 40,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        border: Border.all(color: Colors.grey),
+                                        color: colorWhite,
+                                      ),
                                       width: 80,
-                                      color: colorWhite,
                                       child: TextFormField(
+                                        // //key: contoller.formKey,
+                                        validator: (value){
+                                          if(value!.isEmpty){
+                                            return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                          }
+                                          return null;
+                                        },
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                          FilteringTextInputFormatter.digitsOnly
+
+                                        ],
                                         controller: contoller.manInjured.value,
                                         textAlign: TextAlign.center,
                                         keyboardType: TextInputType.number,
-                                        decoration: InputDecoration(
+                                        onChanged: (value){
+                                          if(value.isEmpty){
+                                            contoller.manInjured.value.text='0';
+                                          }
+                                        },
+                                        decoration: InputDecoration.collapsed(
                                           fillColor: colorWhite,
-                                          filled: true,
-                                          border: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: colorGrey,
-                                              width: 2,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          ),
+                                          filled: true, hintText: '',
+                                          // border: OutlineInputBorder(
+                                          //   borderSide: BorderSide(
+                                          //     color: colorGrey,
+                                          //     width: 2,
+                                          //   ),
+                                          //   borderRadius:
+                                          //       BorderRadius.circular(5),
+                                          // ),
                                         ),
                                       ),
                                     ),
@@ -2870,23 +3705,46 @@ class _CreateListState extends State<CreateList> {
                                       width: 10,
                                     ),
                                     Container(
+                                      padding: EdgeInsets.only(left: 10,right: 10),
+                                      alignment: Alignment.centerLeft,
                                       height: 40,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        border: Border.all(color: Colors.grey),
+                                        color: colorWhite,
+                                      ),
                                       width: 80,
-                                      color: colorWhite,
                                       child: TextFormField(
+                                        //key: contoller.formKey,
+                                        validator: (value){
+                                          if(value!.isEmpty){
+                                            return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                          }
+                                          return null;
+                                        },
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                          FilteringTextInputFormatter.digitsOnly
+
+                                        ],
                                         controller:
                                             contoller.unGenderInjured.value,
-                                        decoration: InputDecoration(
+                                        onChanged: (value){
+                                          if(value.isEmpty){
+                                            contoller.unGenderInjured.value.text='0';
+                                          }
+                                        },
+                                        decoration: InputDecoration.collapsed(
                                           fillColor: colorWhite,
-                                          filled: true,
-                                          border: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: colorGrey,
-                                              width: 2,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          ),
+                                          filled: true, hintText: '',
+                                          // border: OutlineInputBorder(
+                                          //   borderSide: BorderSide(
+                                          //     color: colorGrey,
+                                          //     width: 2,
+                                          //   ),
+                                          //   borderRadius:
+                                          //       BorderRadius.circular(5),
+                                          // ),
                                         ),
                                         textAlign: TextAlign.center,
                                         keyboardType: TextInputType.number,
@@ -2908,12 +3766,727 @@ class _CreateListState extends State<CreateList> {
                               ],
                             ),
                           ),
+                          if(MediaQuery.of(context).size.width<900)Container(
+                            height: 60,
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      'ผู้บาดเจ็บ',
+                                      style: textStyle(context,
+                                          color: colorBlack, fontSize: 13),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      height: 40,
+                                      width: 80,
+                                      color: colorWhite,
+                                      child: TextFormField(
+
+                                        controller: contoller.injured.value,
+                                        textAlign: TextAlign.center,
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                          FilteringTextInputFormatter.digitsOnly
+
+                                        ],
+                                        keyboardType: TextInputType.number,
+                                        onChanged: (value){
+                                          if(value.isEmpty){
+                                            contoller.injured.value.text='0';
+                                          }
+                                        },
+                                        decoration: InputDecoration(
+                                          fillColor: colorWhite,
+                                          filled: true,
+                                          border: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: colorGrey,
+                                              width: 2,
+                                            ),
+                                            borderRadius:
+                                            BorderRadius.circular(5),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      'คน',
+                                      style: textStyle(context,
+                                          color: colorBlack, fontSize: 13),
+                                    ),
+                                   SizedBox(width: 30,),
+                                    Text(
+                                      'เพศหญิง',
+                                      style: textStyle(context,
+                                          color: colorBlack, fontSize: 13),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.only(left: 10,right: 10),
+                                      alignment: Alignment.centerLeft,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        border: Border.all(color: Colors.grey),
+                                        color: colorWhite,
+                                      ),
+                                      width: 80,
+                                      child: TextFormField(
+                                        // //key: contoller.formKey,
+                                        validator: (value){
+                                          if(value!.isEmpty){
+                                            return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                          }
+                                          return null;
+                                        },
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                          FilteringTextInputFormatter.digitsOnly
+
+                                        ],
+                                        onChanged: (value){
+                                          if(value.isEmpty){
+                                            contoller.womenInjured.value.text='0';
+                                          }
+                                        },
+                                        controller:
+                                        contoller.womenInjured.value,
+                                        textAlign: TextAlign.center,
+                                        keyboardType: TextInputType.number,
+
+                                        decoration: InputDecoration.collapsed(
+                                          fillColor: colorWhite,
+                                          filled: true,
+                                          // border: OutlineInputBorder(
+                                          //   borderSide: BorderSide(
+                                          //     color: colorGrey,
+                                          //     width: 2,
+                                          //   ),
+                                          //   borderRadius:
+                                          //       BorderRadius.circular(5),
+                                          // ),
+                                          hintText: '',
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      'คน',
+                                      style: textStyle(context,
+                                          color: colorBlack, fontSize: 13),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          if(MediaQuery.of(context).size.width<900)SizedBox(height: 20,),
+                          if(MediaQuery.of(context).size.width<900)Container(
+                            height: 60,
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+
+                                    Text(
+                                      'เพศชาย',
+                                      style: textStyle(context,
+                                          color: colorBlack, fontSize: 13),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.only(left: 10,right: 10),
+                                      alignment: Alignment.centerLeft,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        border: Border.all(color: Colors.grey),
+                                        color: colorWhite,
+                                      ),
+                                      width: 80,
+                                      child: TextFormField(
+                                        // //key: contoller.formKey,
+                                        validator: (value){
+                                          if(value!.isEmpty){
+                                            return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                          }
+                                          return null;
+                                        },
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                          FilteringTextInputFormatter.digitsOnly
+
+                                        ],
+                                        controller: contoller.manInjured.value,
+                                        textAlign: TextAlign.center,
+                                        keyboardType: TextInputType.number,
+                                        onChanged: (value){
+                                          if(value.isEmpty){
+                                            contoller.manInjured.value.text='0';
+                                          }
+                                        },
+                                        decoration: InputDecoration.collapsed(
+                                          fillColor: colorWhite,
+                                          filled: true, hintText: '',
+                                          // border: OutlineInputBorder(
+                                          //   borderSide: BorderSide(
+                                          //     color: colorGrey,
+                                          //     width: 2,
+                                          //   ),
+                                          //   borderRadius:
+                                          //       BorderRadius.circular(5),
+                                          // ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      'คน',
+                                      style: textStyle(context,
+                                          color: colorBlack, fontSize: 13),
+                                    ),
+                                    SizedBox(width: 30,),
+                                    Text(
+                                      'ไม่สามารถระบุเพศ',
+                                      style: textStyle(context,
+                                          color: colorBlack, fontSize: 13),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.only(left: 10,right: 10),
+                                      alignment: Alignment.centerLeft,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        border: Border.all(color: Colors.grey),
+                                        color: colorWhite,
+                                      ),
+                                      width: 80,
+                                      child: TextFormField(
+                                        //key: contoller.formKey,
+                                        validator: (value){
+                                          if(value!.isEmpty){
+                                            return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                          }
+                                          return null;
+                                        },
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                          FilteringTextInputFormatter.digitsOnly
+
+                                        ],
+                                        controller:
+                                        contoller.unGenderInjured.value,
+                                        onChanged: (value){
+                                          if(value.isEmpty){
+                                            contoller.unGenderInjured.value.text='0';
+                                          }
+                                        },
+                                        decoration: InputDecoration.collapsed(
+                                          fillColor: colorWhite,
+                                          filled: true, hintText: '',
+                                          // border: OutlineInputBorder(
+                                          //   borderSide: BorderSide(
+                                          //     color: colorGrey,
+                                          //     width: 2,
+                                          //   ),
+                                          //   borderRadius:
+                                          //       BorderRadius.circular(5),
+                                          // ),
+                                        ),
+                                        textAlign: TextAlign.center,
+                                        keyboardType: TextInputType.number,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      'คน',
+                                      style: textStyle(context,
+                                          color: colorBlack, fontSize: 13),
+                                    ),
+
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+
+
                           ListView.builder(
                             padding: EdgeInsets.only(bottom: 20),
                             shrinkWrap: true,
                             itemCount: contoller.listTextNameInjured.length,
                             itemBuilder: (context, index) {
-                              return Container(
+                              return (MediaQuery.of(context).size.width<900)?Container(
+                                margin: EdgeInsets.only(bottom: 5, top: 5),
+                                height: 100,
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                              BorderRadius.circular(100),
+                                              color: Color(0xfffd9e1ec)),
+                                          child: Text('${index + 1}'),
+                                          alignment: Alignment.center,
+                                          width: 30,
+                                          height: 30,
+                                        ),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        Text(
+                                          'ชื่อ-นามสกุล',
+                                          style: textStyle(context,
+                                              color: colorBlack, fontSize: 13),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.only(left: 10,right: 10),
+                                          alignment: Alignment.centerLeft,
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(5),
+                                            border: Border.all(color: Colors.grey),
+                                            color: colorWhite,
+                                          ),
+                                          width: 250,
+                                          child: TextFormField(
+                                            enabled: (isAdmin)
+                                                ? true
+                                                : (contoller.dataEditEvent.value
+                                                .events ==
+                                                null)
+                                                ? true
+                                                : (index >=
+                                                contoller
+                                                    .dataEditEvent
+                                                    .value
+                                                    .events!
+                                                    .injured!
+                                                    .injureList!
+                                                    .length)
+                                                ? true
+                                                : false,
+                                            //key: contoller.formKey,
+                                            validator: (value){
+                                              if(value!.isEmpty){
+                                                return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                              }
+                                              return null;
+                                            },
+
+                                            controller: contoller
+                                                .listTextNameInjured[index],
+                                            textAlign: TextAlign.left,
+                                            keyboardType: TextInputType.number,
+                                            decoration: InputDecoration.collapsed(
+                                              fillColor: colorWhite,
+                                              filled: true, hintText: '',
+                                              // border: OutlineInputBorder(
+                                              //   borderSide: BorderSide(
+                                              //     color: colorGrey,
+                                              //     width: 2,
+                                              //   ),
+                                              //   borderRadius:
+                                              //       BorderRadius.circular(5),
+                                              // ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 20,),
+                                    Row(
+                                      children: [
+
+                                        Text(
+                                          'เพศ',
+                                          style: textStyle(context,
+                                              color: colorBlack, fontSize: 13),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          padding: const EdgeInsets.only(
+                                              left: 20, right: 5),
+                                          width: 150,
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                              color: colorWhite,
+                                              border: Border.all(
+                                                color: Colors.black26,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                              BorderRadius.circular(5)),
+                                          alignment: Alignment.center,
+                                          child: SizedBox(
+                                            width: 100,
+                                            child: Obx(
+                                                  () => DropdownButtonHideUnderline(
+                                                child: DropdownButton2<String>(
+                                                  dropdownStyleData:
+                                                  DropdownStyleData(
+                                                    maxHeight: 300,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                      BorderRadius.circular(5),
+                                                    ),
+                                                    scrollbarTheme:
+                                                    ScrollbarThemeData(
+                                                      radius:
+                                                      const Radius.circular(5),
+                                                      thickness:
+                                                      MaterialStateProperty.all<
+                                                          double>(6),
+                                                      thumbVisibility:
+                                                      MaterialStateProperty.all<
+                                                          bool>(true),
+                                                    ),
+                                                  ),
+                                                  autofocus: true,
+                                                  isExpanded: true,
+                                                  openWithLongPress: (isAdmin)
+                                                      ? false
+                                                      : (contoller.dataEditEvent
+                                                      .value.events ==
+                                                      null)
+                                                      ? false
+                                                      : (index >=
+                                                      contoller
+                                                          .dataEditEvent
+                                                          .value
+                                                          .events!
+                                                          .injured!
+                                                          .injureList!
+                                                          .length)
+                                                      ? false
+                                                      : true,
+                                                  value: contoller
+                                                      .listGenderInjured[index]
+                                                      .value,
+                                                  items: contoller.listGender.map<
+                                                      DropdownMenuItem<String>>(
+                                                          (String? value) {
+                                                        return DropdownMenuItem<String>(
+                                                          value: value!,
+                                                          child: Text(
+                                                            value,
+                                                            style: TextStyle(
+                                                                fontSize: 13.0,
+                                                                color: colorBlack,
+                                                                fontWeight:
+                                                                FontWeight.w400),
+                                                          ),
+                                                        );
+                                                      }).toList(),
+                                                  iconStyleData:
+                                                  const IconStyleData(
+                                                      icon: Icon(
+                                                        Icons.keyboard_arrow_down,
+                                                        size: 24,
+                                                      )),
+                                                  onChanged: (valueSelect) {
+                                                    contoller
+                                                        .UpdateListGenderInjured(
+                                                        valueSelect!, index);
+                                                  },
+                                                  // enableFeedback:  (isAdmin)?false:(contoller.dataEditEvent.value.events==null)?false:(index>=contoller.dataEditEvent.value.events!.injured!.injureList!.length)?true:false,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        Text(
+                                          'อายุ',
+                                          style: textStyle(context,
+                                              color: colorBlack, fontSize: 13),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.only(left: 10,right: 10),
+                                          alignment: Alignment.centerLeft,
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(5),
+                                            border: Border.all(color: Colors.grey),
+                                            color: colorWhite,
+                                          ),
+                                          width: 100,
+                                          child: TextFormField(
+                                            enabled: (isAdmin)
+                                                ? true
+                                                : (contoller.dataEditEvent.value
+                                                .events ==
+                                                null)
+                                                ? true
+                                                : (index >=
+                                                contoller
+                                                    .dataEditEvent
+                                                    .value
+                                                    .events!
+                                                    .injured!
+                                                    .injureList!
+                                                    .length)
+                                                ? true
+                                                : false,
+                                            //key: contoller.formKey,
+                                            validator: (value){
+                                              if(value!.isEmpty){
+                                                return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                              }
+                                              return null;
+                                            },
+                                            inputFormatters: <TextInputFormatter>[
+                                              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                              FilteringTextInputFormatter.digitsOnly
+
+                                            ],
+                                            onChanged: (value){
+                                              if(value.isEmpty){
+                                                contoller.womenDie.value.text='0';
+                                              }
+                                            },
+                                            controller:
+                                            contoller.listTextAgeInjured[index],
+                                            textAlign: TextAlign.center,
+                                            keyboardType: TextInputType.number,
+                                            decoration: InputDecoration.collapsed(
+                                              fillColor: colorWhite,
+                                              filled: true, hintText: '',
+                                              // border: OutlineInputBorder(
+                                              //   borderSide: BorderSide(
+                                              //     color: colorGrey,
+                                              //     width: 2,
+                                              //   ),
+                                              //   borderRadius:
+                                              //       BorderRadius.circular(5),
+                                              // ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        (isAdmin)
+                                            ? InkWell(
+                                          onTap: () {
+                                            if(contoller.listDataIDUserInjured[index]!='new'){
+                                              contoller.listStringNameDeleteInjured.add('ชื่อ ${contoller.listTextNameInjured[index].value.text} เพศ ${contoller.listGenderInjured[index]} อายุ ${contoller.listTextAgeInjured[index].value.text}');
+                                              contoller.listDataDeleteIDUserInjured.add(
+                                                  RemoveDeceasedList(id:
+                                                  contoller
+                                                      .listDataIDUserInjured[index]));
+                                            }
+                                            contoller
+                                                .listGenderInjured
+                                                .removeAt(index);
+                                            contoller
+                                                .listTextAgeInjured
+                                                .removeAt(index);
+                                            contoller
+                                                .listTextNameInjured
+                                                .removeAt(index);
+                                            contoller
+                                                .listDataIDUserInjured
+                                                .removeAt(index);
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(5),
+                                                border: Border.all(
+                                                    color: colorRed),
+                                                color: Colors.white),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                              children: [
+                                                Icon(
+                                                  CupertinoIcons.multiply,
+                                                  size: 17,
+                                                  color: Colors.red,
+                                                ),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Text(
+                                                  'ลบ',
+                                                  style: textStyle(context,
+                                                      color: colorRed,
+                                                      fontSize: 13),
+                                                ),
+                                              ],
+                                            ),
+                                            height: 40,
+                                            width: 80,
+                                          ),
+                                        )
+                                            : (contoller.dataEditEvent.value
+                                            .events ==
+                                            null)
+                                            ? InkWell(
+                                          onTap: () {
+                                            if(contoller.listDataIDUserInjured[index]!='new'){
+                                              contoller.listStringNameDeleteInjured.add('ชื่อ ${contoller.listTextNameInjured[index].value.text} เพศ ${contoller.listGenderInjured[index]} อายุ ${contoller.listTextAgeInjured[index].value.text}');
+                                              contoller.listDataDeleteIDUserInjured.add(
+                                                  RemoveDeceasedList(id:
+                                                  contoller
+                                                      .listDataIDUserInjured[index]));
+                                            }
+                                            contoller
+                                                .listGenderInjured
+                                                .removeAt(index);
+                                            contoller
+                                                .listTextAgeInjured
+                                                .removeAt(index);
+                                            contoller
+                                                .listTextNameInjured
+                                                .removeAt(index);
+                                            contoller
+                                                .listDataIDUserInjured
+                                                .removeAt(index);
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(
+                                                    5),
+                                                border: Border.all(
+                                                    color: colorRed),
+                                                color: Colors.white),
+                                            child: Row(
+                                              mainAxisSize:
+                                              MainAxisSize.min,
+                                              mainAxisAlignment:
+                                              MainAxisAlignment
+                                                  .center,
+                                              children: [
+                                                Icon(
+                                                  CupertinoIcons.multiply,
+                                                  size: 17,
+                                                  color: Colors.red,
+                                                ),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Text(
+                                                  'ลบ',
+                                                  style: textStyle(
+                                                      context,
+                                                      color: colorRed,
+                                                      fontSize: 13),
+                                                ),
+                                              ],
+                                            ),
+                                            height: 40,
+                                            width: 80,
+                                          ),
+                                        )
+                                            : (index >=
+                                            contoller
+                                                .dataEditEvent
+                                                .value
+                                                .events!
+                                                .injured!
+                                                .injureList!
+                                                .length)
+                                            ? InkWell(
+                                          onTap: () {
+                                            if(contoller.listDataIDUserInjured[index]!='new'){
+                                              contoller.listStringNameDeleteInjured.add('ชื่อ ${contoller.listTextNameInjured[index].value.text} เพศ ${contoller.listGenderInjured[index]} อายุ ${contoller.listTextAgeInjured[index].value.text}');
+                                              contoller.listDataDeleteIDUserInjured.add(
+                                                  RemoveDeceasedList(id:
+                                                  contoller
+                                                      .listDataIDUserInjured[index]));
+                                            }
+                                            contoller
+                                                .listGenderInjured
+                                                .removeAt(index);
+                                            contoller
+                                                .listTextAgeInjured
+                                                .removeAt(index);
+                                            contoller
+                                                .listTextNameInjured
+                                                .removeAt(index);
+                                            contoller
+                                                .listDataIDUserInjured
+                                                .removeAt(index);
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius
+                                                    .circular(5),
+                                                border: Border.all(
+                                                    color: colorRed),
+                                                color: Colors.white),
+                                            child: Row(
+                                              mainAxisSize:
+                                              MainAxisSize.min,
+                                              mainAxisAlignment:
+                                              MainAxisAlignment
+                                                  .center,
+                                              children: [
+                                                Icon(
+                                                  CupertinoIcons
+                                                      .multiply,
+                                                  size: 17,
+                                                  color: Colors.red,
+                                                ),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Text(
+                                                  'ลบ',
+                                                  style: textStyle(
+                                                      context,
+                                                      color: colorRed,
+                                                      fontSize: 13),
+                                                ),
+                                              ],
+                                            ),
+                                            height: 40,
+                                            width: 80,
+                                          ),
+                                        )
+                                            : SizedBox()
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ):Container(
                                 margin: EdgeInsets.only(bottom: 5, top: 5),
                                 height: 40,
                                 child: Row(
@@ -2940,9 +4513,15 @@ class _CreateListState extends State<CreateList> {
                                       width: 10,
                                     ),
                                     Container(
+                                      padding: EdgeInsets.only(left: 10,right: 10),
+                                      alignment: Alignment.centerLeft,
                                       height: 40,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        border: Border.all(color: Colors.grey),
+                                        color: colorWhite,
+                                      ),
                                       width: 250,
-                                      color: colorWhite,
                                       child: TextFormField(
                                         enabled: (isAdmin)
                                             ? true
@@ -2960,21 +4539,29 @@ class _CreateListState extends State<CreateList> {
                                                             .length)
                                                     ? true
                                                     : false,
+                                        //key: contoller.formKey,
+                                        validator: (value){
+                                          if(value!.isEmpty){
+                                            return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                          }
+                                          return null;
+                                        },
+
                                         controller: contoller
                                             .listTextNameInjured[index],
                                         textAlign: TextAlign.left,
                                         keyboardType: TextInputType.number,
-                                        decoration: InputDecoration(
+                                        decoration: InputDecoration.collapsed(
                                           fillColor: colorWhite,
-                                          filled: true,
-                                          border: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: colorGrey,
-                                              width: 2,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          ),
+                                          filled: true, hintText: '',
+                                          // border: OutlineInputBorder(
+                                          //   borderSide: BorderSide(
+                                          //     color: colorGrey,
+                                          //     width: 2,
+                                          //   ),
+                                          //   borderRadius:
+                                          //       BorderRadius.circular(5),
+                                          // ),
                                         ),
                                       ),
                                     ),
@@ -3092,9 +4679,15 @@ class _CreateListState extends State<CreateList> {
                                       width: 10,
                                     ),
                                     Container(
+                                      padding: EdgeInsets.only(left: 10,right: 10),
+                                      alignment: Alignment.centerLeft,
                                       height: 40,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        border: Border.all(color: Colors.grey),
+                                        color: colorWhite,
+                                      ),
                                       width: 100,
-                                      color: colorWhite,
                                       child: TextFormField(
                                         enabled: (isAdmin)
                                             ? true
@@ -3112,21 +4705,38 @@ class _CreateListState extends State<CreateList> {
                                                             .length)
                                                     ? true
                                                     : false,
+                                        //key: contoller.formKey,
+                                        validator: (value){
+                                          if(value!.isEmpty){
+                                            return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                          }
+                                          return null;
+                                        },
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                          FilteringTextInputFormatter.digitsOnly
+
+                                        ],
+                                        onChanged: (value){
+                                          if(value.isEmpty){
+                                            contoller.womenDie.value.text='0';
+                                          }
+                                        },
                                         controller:
                                             contoller.listTextAgeInjured[index],
                                         textAlign: TextAlign.center,
                                         keyboardType: TextInputType.number,
-                                        decoration: InputDecoration(
+                                        decoration: InputDecoration.collapsed(
                                           fillColor: colorWhite,
-                                          filled: true,
-                                          border: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: colorGrey,
-                                              width: 2,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          ),
+                                          filled: true, hintText: '',
+                                          // border: OutlineInputBorder(
+                                          //   borderSide: BorderSide(
+                                          //     color: colorGrey,
+                                          //     width: 2,
+                                          //   ),
+                                          //   borderRadius:
+                                          //       BorderRadius.circular(5),
+                                          // ),
                                         ),
                                       ),
                                     ),
@@ -3743,10 +5353,22 @@ class _CreateListState extends State<CreateList> {
                                           flex: 5,
                                           child: Container(
                                             height: 120,
-                                            color:
-                                            colorWhite,
+                                            padding: EdgeInsets.only(left: 10,right: 10),
+                                            alignment: Alignment.centerLeft,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(5),
+                                              border: Border.all(color: Colors.grey),
+                                              color: colorWhite,
+                                            ),
                                             child:
                                             TextFormField(
+                                              //key: contoller.formKey,
+                                              validator: (value){
+                                                if(value!.isEmpty){
+                                                  return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                                }
+                                                return null;
+                                              },
                                               maxLines: 30,
                                               controller: contoller
                                                   .listAnswer[
@@ -3762,7 +5384,7 @@ class _CreateListState extends State<CreateList> {
                                                   FontWeight
                                                       .w400),
                                               decoration:
-                                              InputDecoration(
+                                              InputDecoration.collapsed(
                                                 fillColor:
                                                 colorWhite,
                                                 hintText: contoller
@@ -3781,19 +5403,19 @@ class _CreateListState extends State<CreateList> {
                                                     FontWeight.w400),
                                                 filled:
                                                 true,
-                                                border:
-                                                OutlineInputBorder(
-                                                  borderSide:
-                                                  BorderSide(
-                                                    color:
-                                                    colorGrey,
-                                                    width:
-                                                    2,
-                                                  ),
-                                                  borderRadius:
-                                                  BorderRadius.circular(
-                                                      5),
-                                                ),
+                                                // border:
+                                                // OutlineInputBorder(
+                                                //   borderSide:
+                                                //   BorderSide(
+                                                //     color:
+                                                //     colorGrey,
+                                                //     width:
+                                                //     2,
+                                                //   ),
+                                                //   borderRadius:
+                                                //   BorderRadius.circular(
+                                                //       5),
+                                                // ),
                                               ),
                                             ),
                                           ),
@@ -4136,57 +5758,57 @@ class _CreateListState extends State<CreateList> {
                           ),
 
                           if(isAdmin)if(contoller.dataEditEvent.value.events==null) SizedBox(height: 40,),
-                          if(isAdmin)if(contoller.dataEditEvent.value.events==null) Obx(() {
-                            if (contoller.showDropdown.value) {
-                              return Row(
-                                children: [
-                                  Expanded(
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          "เลือกประเภท",
-                                          style: textStyle(context,
-                                              color: colorBlack, fontSize: 13),
-                                        ),
-                                        DropdownButton<String>(
-                                          hint: Text(
-                                            "เลือก",
-                                            style: textStyle(context,
-                                                color: colorBlack,
-                                                fontSize: 13),
-                                          ),
-                                          value: contoller
-                                              .selectedField.value ==
-                                              ''
-                                              ? null
-                                              : contoller.selectedField.value,
-                                          items: <String>[
-                                            'Dropdown',
-                                            'Checkbox',
-                                            'Radio',
-                                            'TextField',
-                                            'Image',
-                                            'File'
-                                          ].map((String value) {
-                                            return DropdownMenuItem<String>(
-                                              value: value,
-                                              child: Text(value),
-                                            );
-                                          }).toList(),
-                                          onChanged: (String? newValue) {
-                                            contoller.selectedField.value =
-                                            newValue!;
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              );
-                            } else {
-                              return Container();
-                            }
-                          }),
+                          // if(isAdmin)if(contoller.dataEditEvent.value.events==null) Obx(() {
+                          //   if (contoller.showDropdown.value) {
+                          //     return Row(
+                          //       children: [
+                          //         Expanded(
+                          //           child: Column(
+                          //             children: [
+                          //               Text(
+                          //                 "เลือกประเภท",
+                          //                 style: textStyle(context,
+                          //                     color: colorBlack, fontSize: 13),
+                          //               ),
+                          //               DropdownButton<String>(
+                          //                 hint: Text(
+                          //                   "เลือก",
+                          //                   style: textStyle(context,
+                          //                       color: colorBlack,
+                          //                       fontSize: 13),
+                          //                 ),
+                          //                 value: contoller
+                          //                     .selectedField.value ==
+                          //                     ''
+                          //                     ? null
+                          //                     : contoller.selectedField.value,
+                          //                 items: <String>[
+                          //                   'Dropdown',
+                          //                   'Checkbox',
+                          //                   'Radio',
+                          //                   'TextField',
+                          //                   'Image',
+                          //                   'File'
+                          //                 ].map((String value) {
+                          //                   return DropdownMenuItem<String>(
+                          //                     value: value,
+                          //                     child: Text(value),
+                          //                   );
+                          //                 }).toList(),
+                          //                 onChanged: (String? newValue) {
+                          //                   contoller.selectedField.value =
+                          //                   newValue!;
+                          //                 },
+                          //               ),
+                          //             ],
+                          //           ),
+                          //         ),
+                          //       ],
+                          //     );
+                          //   } else {
+                          //     return Container();
+                          //   }
+                          // }),
                           if(isAdmin)if(contoller.dataEditEvent.value.events==null)Obx(() {
                             return ListView.builder(
                               shrinkWrap: true,
@@ -4207,14 +5829,28 @@ class _CreateListState extends State<CreateList> {
                                           children: [
                                             Container(
                                               width: 200,
-                                              height: 50,
+                                              padding: EdgeInsets.only(left: 10,right: 10),
+                                              alignment: Alignment.centerLeft,
+                                              height: 40,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(5),
+                                                border: Border.all(color: Colors.grey),
+                                                color: colorWhite,
+                                              ),
                                               child: TextFormField(
+                                                //key: contoller.formKey,
+                                                validator: (value){
+                                                  if(value!.isEmpty){
+                                                    return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                                  }
+                                                  return null;
+                                                },
                                                 controller: contoller
                                                     .listForm[index]
                                                     .textfield!
                                                     .title,
                                                 autofocus: false,
-                                                decoration: InputDecoration(
+                                                decoration: InputDecoration.collapsed(
                                                   fillColor: colorWhite,
                                                   hintText: "หัวข้อ",
                                                   hintStyle: TextStyle(
@@ -4223,15 +5859,15 @@ class _CreateListState extends State<CreateList> {
                                                       fontWeight:
                                                       FontWeight.w400),
                                                   filled: true,
-                                                  border: OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                      color: colorGrey,
-                                                      width: 2,
-                                                    ),
-                                                    borderRadius:
-                                                    BorderRadius.circular(
-                                                        5),
-                                                  ),
+                                                  // border: OutlineInputBorder(
+                                                  //   borderSide: BorderSide(
+                                                  //     color: colorGrey,
+                                                  //     width: 2,
+                                                  //   ),
+                                                  //   borderRadius:
+                                                  //   BorderRadius.circular(
+                                                  //       5),
+                                                  // ),
                                                 ),
                                               ),
                                             ),
@@ -4426,14 +6062,28 @@ class _CreateListState extends State<CreateList> {
                                           children: [
                                             Container(
                                               width: 200,
+                                              padding: EdgeInsets.only(left: 10,right: 10),
+                                              alignment: Alignment.centerLeft,
                                               height: 50,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(5),
+                                                border: Border.all(color: Colors.grey),
+                                                color: colorWhite,
+                                              ),
                                               child: TextFormField(
+                                                //key: contoller.formKey,
+                                                validator: (value){
+                                                  if(value!.isEmpty){
+                                                    return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                                  }
+                                                  return null;
+                                                },
                                                 controller: contoller
                                                     .listForm[index]
                                                     .dropdown!
                                                     .title,
                                                 autofocus: false,
-                                                decoration: InputDecoration(
+                                                decoration: InputDecoration.collapsed(
                                                   fillColor: colorWhite,
                                                   hintText: "หัวข้อ",
                                                   hintStyle: TextStyle(
@@ -4442,15 +6092,15 @@ class _CreateListState extends State<CreateList> {
                                                       fontWeight:
                                                       FontWeight.w400),
                                                   filled: true,
-                                                  border: OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                      color: colorGrey,
-                                                      width: 2,
-                                                    ),
-                                                    borderRadius:
-                                                    BorderRadius.circular(
-                                                        5),
-                                                  ),
+                                                  // border: OutlineInputBorder(
+                                                  //   borderSide: BorderSide(
+                                                  //     color: colorGrey,
+                                                  //     width: 2,
+                                                  //   ),
+                                                  //   borderRadius:
+                                                  //   BorderRadius.circular(
+                                                  //       5),
+                                                  // ),
                                                 ),
                                               ),
                                             ),
@@ -4499,6 +6149,13 @@ class _CreateListState extends State<CreateList> {
                                                     ),
                                                     Container(
                                                       child: TextFormField(
+                                                        //key: contoller.formKey,
+                                                        validator: (value){
+                                                          if(value!.isEmpty){
+                                                            return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                                          }
+                                                          return null;
+                                                        },
                                                         controller: contoller
                                                             .listForm[index]
                                                             .dropdown!
@@ -4608,14 +6265,28 @@ class _CreateListState extends State<CreateList> {
                                           children: [
                                             Container(
                                               width: 200,
+                                              padding: EdgeInsets.only(left: 10,right: 10),
+                                              alignment: Alignment.centerLeft,
                                               height: 50,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(5),
+                                                border: Border.all(color: Colors.grey),
+                                                color: colorWhite,
+                                              ),
                                               child: TextFormField(
+                                                //key: contoller.formKey,
+                                                validator: (value){
+                                                  if(value!.isEmpty){
+                                                    return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                                  }
+                                                  return null;
+                                                },
                                                 controller: contoller
                                                     .listForm[index]
                                                     .checkbox!
                                                     .title,
                                                 autofocus: false,
-                                                decoration: InputDecoration(
+                                                decoration: InputDecoration.collapsed(
                                                   fillColor: colorWhite,
                                                   hintText: "หัวข้อ",
                                                   hintStyle: TextStyle(
@@ -4624,15 +6295,15 @@ class _CreateListState extends State<CreateList> {
                                                       fontWeight:
                                                       FontWeight.w400),
                                                   filled: true,
-                                                  border: OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                      color: colorGrey,
-                                                      width: 2,
-                                                    ),
-                                                    borderRadius:
-                                                    BorderRadius.circular(
-                                                        5),
-                                                  ),
+                                                  // border: OutlineInputBorder(
+                                                  //   borderSide: BorderSide(
+                                                  //     color: colorGrey,
+                                                  //     width: 2,
+                                                  //   ),
+                                                  //   borderRadius:
+                                                  //   BorderRadius.circular(
+                                                  //       5),
+                                                  // ),
                                                 ),
                                               ),
                                             ),
@@ -4684,6 +6355,13 @@ class _CreateListState extends State<CreateList> {
                                                     ),
                                                     Container(
                                                       child: TextFormField(
+
+                                                        validator: (value){
+                                                          if(value!.isEmpty){
+                                                            return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                                          }
+                                                          return null;
+                                                        },
                                                         controller: contoller
                                                             .listForm[index]
                                                             .checkbox!
@@ -4793,14 +6471,28 @@ class _CreateListState extends State<CreateList> {
                                           children: [
                                             Container(
                                               width: 200,
+                                              padding: EdgeInsets.only(left: 10,right: 10),
+                                              alignment: Alignment.centerLeft,
                                               height: 50,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(5),
+                                                border: Border.all(color: Colors.grey),
+                                                color: colorWhite,
+                                              ),
                                               child: TextFormField(
+                                                //key: contoller.formKey,
+                                                validator: (value){
+                                                  if(value!.isEmpty){
+                                                    return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                                  }
+                                                  return null;
+                                                },
                                                 controller: contoller
                                                     .listForm[index]
                                                     .radio!
                                                     .title,
                                                 autofocus: false,
-                                                decoration: InputDecoration(
+                                                decoration: InputDecoration.collapsed(
                                                   fillColor: colorWhite,
                                                   hintText: "หัวข้อ",
                                                   hintStyle: TextStyle(
@@ -4809,15 +6501,15 @@ class _CreateListState extends State<CreateList> {
                                                       fontWeight:
                                                       FontWeight.w400),
                                                   filled: true,
-                                                  border: OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                      color: colorGrey,
-                                                      width: 2,
-                                                    ),
-                                                    borderRadius:
-                                                    BorderRadius.circular(
-                                                        5),
-                                                  ),
+                                                  // border: OutlineInputBorder(
+                                                  //   borderSide: BorderSide(
+                                                  //     color: colorGrey,
+                                                  //     width: 2,
+                                                  //   ),
+                                                  //   borderRadius:
+                                                  //   BorderRadius.circular(
+                                                  //       5),
+                                                  // ),
                                                 ),
                                               ),
                                             ),
@@ -4869,6 +6561,13 @@ class _CreateListState extends State<CreateList> {
                                                     ),
                                                     Container(
                                                       child: TextFormField(
+                                                        //key: contoller.formKey,
+                                                        validator: (value){
+                                                          if(value!.isEmpty){
+                                                            return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                                          }
+                                                          return null;
+                                                        },
                                                         controller: contoller
                                                             .listForm[index]
                                                             .radio!
@@ -4980,14 +6679,28 @@ class _CreateListState extends State<CreateList> {
                                           children: [
                                             Container(
                                               width: 200,
+                                              padding: EdgeInsets.only(left: 10,right: 10),
+                                              alignment: Alignment.centerLeft,
                                               height: 50,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(5),
+                                                border: Border.all(color: Colors.grey),
+                                                color: colorWhite,
+                                              ),
                                               child: TextFormField(
+                                                //key: contoller.formKey,
+                                                validator: (value){
+                                                  if(value!.isEmpty){
+                                                    return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                                  }
+                                                  return null;
+                                                },
                                                 controller: contoller
                                                     .listForm[index]
                                                     .image!
                                                     .title,
                                                 autofocus: false,
-                                                decoration: InputDecoration(
+                                                decoration: InputDecoration.collapsed(
                                                   fillColor: colorWhite,
                                                   hintText: "หัวข้อ",
                                                   hintStyle: TextStyle(
@@ -4996,15 +6709,15 @@ class _CreateListState extends State<CreateList> {
                                                       fontWeight:
                                                       FontWeight.w400),
                                                   filled: true,
-                                                  border: OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                      color: colorGrey,
-                                                      width: 2,
-                                                    ),
-                                                    borderRadius:
-                                                    BorderRadius.circular(
-                                                        5),
-                                                  ),
+                                                  // border: OutlineInputBorder(
+                                                  //   borderSide: BorderSide(
+                                                  //     color: colorGrey,
+                                                  //     width: 2,
+                                                  //   ),
+                                                  //   borderRadius:
+                                                  //   BorderRadius.circular(
+                                                  //       5),
+                                                  // ),
                                                 ),
                                               ),
                                             ),
@@ -5084,15 +6797,29 @@ class _CreateListState extends State<CreateList> {
                                         Row(
                                           children: [
                                             Container(
-                                              width: 200,
-                                              height: 50,
+                                                width: 200,
+                                                padding: EdgeInsets.only(left: 10,right: 10),
+                                                alignment: Alignment.centerLeft,
+                                                height: 50,
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(5),
+                                                  border: Border.all(color: Colors.grey),
+                                                  color: colorWhite,
+                                                ),
                                               child: TextFormField(
+                                                //key: contoller.formKey,
+                                                validator: (value){
+                                                  if(value!.isEmpty){
+                                                    return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                                  }
+                                                  return null;
+                                                },
                                                 controller: contoller
                                                     .listForm[index]
                                                     .file!
                                                     .title,
                                                 autofocus: false,
-                                                decoration: InputDecoration(
+                                                decoration: InputDecoration.collapsed(
                                                   fillColor: colorWhite,
                                                   hintText: "หัวข้อ",
                                                   hintStyle: TextStyle(
@@ -5101,15 +6828,15 @@ class _CreateListState extends State<CreateList> {
                                                       fontWeight:
                                                       FontWeight.w400),
                                                   filled: true,
-                                                  border: OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                      color: colorGrey,
-                                                      width: 2,
-                                                    ),
-                                                    borderRadius:
-                                                    BorderRadius.circular(
-                                                        5),
-                                                  ),
+                                                  // border: OutlineInputBorder(
+                                                  //   borderSide: BorderSide(
+                                                  //     color: colorGrey,
+                                                  //     width: 2,
+                                                  //   ),
+                                                  //   borderRadius:
+                                                  //   BorderRadius.circular(
+                                                  //       5),
+                                                  // ),
                                                 ),
                                               ),
                                             ),
@@ -5258,6 +6985,52 @@ class _CreateListState extends State<CreateList> {
                                   ),
                                 ),
                               ),
+                              SizedBox(width: 30,),
+                              if(isAdmin)if(contoller.dataEditEvent.value.events==null) Obx(() {
+                                if (contoller.showDropdown.value) {
+                                  return Column(
+                                    children: [
+                                      Text(
+                                        "เลือกประเภท",
+                                        style: textStyle(context,
+                                            color: colorBlack, fontSize: 13),
+                                      ),
+                                      DropdownButton<String>(
+                                        hint: Text(
+                                          "เลือก",
+                                          style: textStyle(context,
+                                              color: colorBlack,
+                                              fontSize: 13),
+                                        ),
+                                        value: contoller
+                                            .selectedField.value ==
+                                            ''
+                                            ? null
+                                            : contoller.selectedField.value,
+                                        items: <String>[
+                                          'Dropdown',
+                                          'Checkbox',
+                                          'Radio',
+                                          'TextField',
+                                          'Image',
+                                          'File'
+                                        ].map((String value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: Text(value),
+                                          );
+                                        }).toList(),
+                                        onChanged: (String? newValue) {
+                                          contoller.selectedField.value =
+                                          newValue!;
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                } else {
+                                  return Container();
+                                }
+                              }),
                             ],
                           ),
                           SizedBox(height: 20,),
@@ -5280,8 +7053,8 @@ class _CreateListState extends State<CreateList> {
                                   options: MapOptions(
                                     keepAlive: true,
                                       initialCenter: LatLng(
-                                          latDefault,
-                                         lngDefault),
+                                          double.parse((contoller.lat.value.text.isNotEmpty)?contoller.lat.value.text:"18.3170581"),
+                                          double.parse((contoller.lng.value.text.isNotEmpty)?contoller.lng.value.text:"99.3986862")),
                                       initialZoom: 14,
                                       interactionOptions: InteractionOptions(
                                         flags:
@@ -6251,8 +8024,11 @@ class _CreateListState extends State<CreateList> {
                                 width: 20,
                               ),
                               InkWell(
+
                                 onTap: () async {
+                                  if(contoller.formKey.currentState!.validate()){
                                   await contoller.submit(context);
+                                  }
                                 },
                                 child: Container(
                                   alignment: Alignment.center,

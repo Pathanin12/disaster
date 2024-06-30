@@ -32,9 +32,9 @@ import '../../model/searchmap.dart';
 import '../drawer/admin/contollerdraweradmin.dart';
 
 class ContollerCreateList extends GetxController {
-  final keyForm = GlobalKey<FormState>();
   var mapController = MapController().obs;
   var dataEditEvent= edit.EventByIDModel().obs;
+  final formKey = GlobalKey<FormState>();
   addressModel locationAddress = addressModel();
   var selectedField = ''.obs;
   var listForm = <ListFormModel>[].obs;
@@ -69,18 +69,18 @@ class ContollerCreateList extends GetxController {
       remarkReport = TextEditingController().obs,
       lng = TextEditingController().obs,
       responsible = TextEditingController().obs,
-      die = TextEditingController().obs,
+      die = TextEditingController(text: '0').obs,
       relevant = TextEditingController().obs,
-      mandie = TextEditingController().obs,
-      womenDie = TextEditingController().obs,
-      unGenderDie = TextEditingController().obs,
-      injured = TextEditingController().obs,
-      manInjured = TextEditingController().obs,
-      womenInjured = TextEditingController().obs,
-      unGenderInjured = TextEditingController().obs,
+      mandie = TextEditingController(text: '0').obs,
+      womenDie = TextEditingController(text: '0').obs,
+      unGenderDie = TextEditingController(text: '0').obs,
+      injured = TextEditingController(text: '0').obs,
+      manInjured = TextEditingController(text: '0').obs,
+      womenInjured = TextEditingController(text: '0').obs,
+      unGenderInjured = TextEditingController(text: '0').obs,
       remark = TextEditingController().obs,
       search = TextEditingController().obs;
-  var radio = 1.obs;
+  var radio = 0.obs;
   var listSearchMap=<SearchMapModel>[].obs;
   final NumberPaginatorController controllerNumPage =
   NumberPaginatorController();
@@ -93,7 +93,9 @@ class ContollerCreateList extends GetxController {
 
   editEvent(edit.EventByIDModel data)async{
     // mapController.value.dispose();
-    // mapController = MapController().obs;
+   if(lat.value.text==''){
+     mapController = MapController().obs;
+   }
     await  clearData();
     dataEditEvent.value=data;
     nameCon.value.text = data.events!.eventName??'';
@@ -121,8 +123,7 @@ class ContollerCreateList extends GetxController {
     selectStatusrelevant!.value = StatusList[data.events!.statusRelatedAgency!];
     address.value.text= data.events!.address.toString()??'';
 
-    mapController.value.move(
-        LatLng(double.parse(lat.value.text), double.parse(lng.value.text)), 16);
+
     for(int i=0;i< data.events!.deceased!.deceaseList!.length;i++){
       listGenderDie.add(listGender[data.events!.deceased!.deceaseList![i].sex!].obs);
       listTextAgeDie.add(TextEditingController(text:data.events!.deceased!.deceaseList![i].age.toString() ));
@@ -179,6 +180,8 @@ class ContollerCreateList extends GetxController {
         listAnswer.add(answer.ListAnswerModel(file: answer.Image(value: "")));
       }
     }
+    mapController.value.move(
+        LatLng(double.parse(lat.value.text), double.parse(lng.value.text)), 16);
   }
 
   UpdateListGenderDie(String gender, int index){
@@ -209,23 +212,25 @@ class ContollerCreateList extends GetxController {
     lat.value.text = "18.3170581";
     lng.value.text = "99.3986862";
     responsible.value.text = '';
-    die.value.text = '';
+    die.value.text = '0';
     relevant.value.text = '';
-    mandie.value.text = '';
-    womenDie.value.text = '';
-    unGenderDie.value.text = '';
-    injured.value.text = '';
-    manInjured.value.text = '';
-    womenInjured.value.text = '';
-    unGenderInjured.value.text = '';
+    mandie.value.text = '0';
+    womenDie.value.text = '0';
+    unGenderDie.value.text = '0';
+    injured.value.text = '0';
+    manInjured.value.text = '0';
+    womenInjured.value.text = '0';
+    unGenderInjured.value.text = '0';
     search.value.text='';
     locationAddress = addressModel();
     remark.value.text = '';
-    radio.value = 1;
+    radio.value = 0;
     date.value = DateTime.now().toString().split(" ")[0];
     listDeleteImage.clear();
     listConvertImageLog.clear();
     listConvertFileLog.clear();
+    listAnswer.clear();
+    listForm.clear();
     listStringNameDeleteInjured.clear();
     listStringNameDeleteDie.clear();
     remarkReport.value.text='';
