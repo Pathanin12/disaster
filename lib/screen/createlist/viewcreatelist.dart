@@ -488,6 +488,1098 @@ class _CreateListState extends State<CreateList> {
                               ],
                             ),
                           ),
+                          Container(
+                            height: 60,
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            'วันที่รับเรื่อง',
+                                            style: textStyle(context,
+                                                color: colorBlack,
+                                                fontSize: 13),
+                                          )),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Expanded(
+                                      flex: 5,
+                                      child: (contoller
+                                          .dataEditEvent.value.events ==
+                                          null)
+                                          ? SizedBox()
+                                          : Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            'สถานะของรายการ',
+                                            style: textStyle(context,
+                                                color: colorBlack,
+                                                fontSize: 13),
+                                          )),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: InkWell(
+                                        onTap: () async {
+                                          if (isAdmin) {
+                                            DateTime? newDateTime =
+                                            await showRoundedDatePicker(
+                                              theme: ThemeData(
+                                                primaryColor:
+                                                Colors.amberAccent,
+                                              ),
+                                              styleDatePicker:
+                                              MaterialRoundedDatePickerStyle(
+                                                textStyleCurrentDayOnCalendar:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                    FontWeight.bold),
+                                                textStyleDayOnCalendar:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black),
+                                                textStyleDayOnCalendarSelected:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                    FontWeight.bold),
+                                                textStyleDayOnCalendarDisabled:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black
+                                                        .withOpacity(0.1)),
+                                                textStyleMonthYearHeader:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                    FontWeight.bold),
+                                                sizeArrow: 50,
+                                                colorArrowNext: Colors.black,
+                                                colorArrowPrevious:
+                                                Colors.black,
+                                                marginLeftArrowPrevious: 16,
+                                                marginTopArrowPrevious: 16,
+                                                marginTopArrowNext: 16,
+                                                marginRightArrowNext: 32,
+                                                textStyleButtonAction:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black),
+                                                textStyleButtonPositive:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.amber,
+                                                    fontWeight:
+                                                    FontWeight.bold),
+                                                textStyleButtonNegative:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black45
+                                                        .withOpacity(0.5)),
+                                                decorationDateSelected:
+                                                BoxDecoration(
+                                                    color: Colors.amber,
+                                                    shape: BoxShape.circle),
+                                              ),
+                                              styleYearPicker:
+                                              MaterialRoundedYearPickerStyle(
+                                                textStyleYear: TextStyle(
+                                                    fontSize: 30,
+                                                    color: Colors.black),
+                                                textStyleYearSelected:
+                                                TextStyle(
+                                                    fontSize: 40,
+                                                    color: Colors.black45,
+                                                    fontWeight:
+                                                    FontWeight.bold),
+                                                heightYearRow: 100,
+                                              ),
+                                              context: context,
+                                              locale: Locale("th", "TH"),
+                                            );
+                                            if (newDateTime != null) {
+                                              contoller.date.value = newDateTime
+                                                  .toString()
+                                                  .split(" ")[0];
+                                            }
+                                          }
+                                        },
+                                        child: Container(
+                                          padding: const EdgeInsets.only(
+                                              left: 20, right: 5),
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                              color: colorWhite,
+                                              border: Border.all(
+                                                color: Colors.black26,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                              BorderRadius.circular(5)),
+                                          alignment: Alignment.center,
+                                          child: SizedBox(
+                                            child: Row(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment
+                                                  .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  contoller.date.value,
+                                                  style: textStyle(context,
+                                                      fontSize: 13,
+                                                      color: colorBlack),
+                                                ),
+                                                Icon(
+                                                  Icons.date_range,
+                                                  size: 20,
+                                                  color: Colors.grey,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Expanded(
+                                      flex: 5,
+                                      child: (contoller
+                                          .dataEditEvent.value.events ==
+                                          null)
+                                          ? SizedBox()
+                                          : Container(
+                                        padding: const EdgeInsets.only(
+                                            left: 20, right: 5),
+                                        width: double.infinity,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                            color: colorWhite,
+                                            border: Border.all(
+                                              color: Colors.black26,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                            BorderRadius.circular(5)),
+                                        alignment: Alignment.center,
+                                        child: SizedBox(
+                                          width: double.infinity,
+                                          child:
+                                          DropdownButtonHideUnderline(
+                                            child:
+                                            DropdownButton2<String>(
+                                              openWithLongPress: (isAdmin)
+                                                  ? false
+                                                  : true,
+                                              dropdownStyleData:
+                                              DropdownStyleData(
+                                                maxHeight: 300,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius
+                                                      .circular(5),
+                                                ),
+                                                scrollbarTheme:
+                                                ScrollbarThemeData(
+                                                  radius: const Radius
+                                                      .circular(5),
+                                                  thickness:
+                                                  MaterialStateProperty
+                                                      .all<double>(6),
+                                                  thumbVisibility:
+                                                  MaterialStateProperty
+                                                      .all<bool>(
+                                                      true),
+                                                ),
+                                              ),
+                                              autofocus: true,
+                                              isExpanded: true,
+                                              value: contoller
+                                                  .selectStatusList!
+                                                  .value,
+                                              hint: Text(
+                                                'เลือกทั้งหมด',
+                                                style: TextStyle(
+                                                    fontSize: 13.0,
+                                                    color: colorGrey,
+                                                    fontWeight:
+                                                    FontWeight.w400),
+                                              ),
+                                              items: contoller
+                                                  .StatusList.map<
+                                                  DropdownMenuItem<
+                                                      String>>(
+                                                      (String? value) {
+                                                    return DropdownMenuItem<
+                                                        String>(
+                                                      value: value!,
+                                                      child: Text(
+                                                        value,
+                                                        style: TextStyle(
+                                                            fontSize: 13.0,
+                                                            color: colorBlack,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w400),
+                                                      ),
+                                                    );
+                                                  }).toList(),
+                                              iconStyleData:
+                                              const IconStyleData(
+                                                  icon: Icon(
+                                                    Icons.keyboard_arrow_down,
+                                                    size: 24,
+                                                  )),
+                                              onChanged: (valueSelect) {
+                                                contoller
+                                                    .selectStatusList!
+                                                    .value = valueSelect!;
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            height: 60,
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            'วันที่รับเรื่อง',
+                                            style: textStyle(context,
+                                                color: colorBlack,
+                                                fontSize: 13),
+                                          )),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Expanded(
+                                      flex: 5,
+                                      child: (contoller
+                                          .dataEditEvent.value.events ==
+                                          null)
+                                          ? SizedBox()
+                                          : Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            'สถานะของรายการ',
+                                            style: textStyle(context,
+                                                color: colorBlack,
+                                                fontSize: 13),
+                                          )),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: InkWell(
+                                        onTap: () async {
+                                          if (isAdmin) {
+                                            DateTime? newDateTime =
+                                            await showRoundedDatePicker(
+                                              theme: ThemeData(
+                                                primaryColor:
+                                                Colors.amberAccent,
+                                              ),
+                                              styleDatePicker:
+                                              MaterialRoundedDatePickerStyle(
+                                                textStyleCurrentDayOnCalendar:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                    FontWeight.bold),
+                                                textStyleDayOnCalendar:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black),
+                                                textStyleDayOnCalendarSelected:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                    FontWeight.bold),
+                                                textStyleDayOnCalendarDisabled:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black
+                                                        .withOpacity(0.1)),
+                                                textStyleMonthYearHeader:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                    FontWeight.bold),
+                                                sizeArrow: 50,
+                                                colorArrowNext: Colors.black,
+                                                colorArrowPrevious:
+                                                Colors.black,
+                                                marginLeftArrowPrevious: 16,
+                                                marginTopArrowPrevious: 16,
+                                                marginTopArrowNext: 16,
+                                                marginRightArrowNext: 32,
+                                                textStyleButtonAction:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black),
+                                                textStyleButtonPositive:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.amber,
+                                                    fontWeight:
+                                                    FontWeight.bold),
+                                                textStyleButtonNegative:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black45
+                                                        .withOpacity(0.5)),
+                                                decorationDateSelected:
+                                                BoxDecoration(
+                                                    color: Colors.amber,
+                                                    shape: BoxShape.circle),
+                                              ),
+                                              styleYearPicker:
+                                              MaterialRoundedYearPickerStyle(
+                                                textStyleYear: TextStyle(
+                                                    fontSize: 30,
+                                                    color: Colors.black),
+                                                textStyleYearSelected:
+                                                TextStyle(
+                                                    fontSize: 40,
+                                                    color: Colors.black45,
+                                                    fontWeight:
+                                                    FontWeight.bold),
+                                                heightYearRow: 100,
+                                              ),
+                                              context: context,
+                                              locale: Locale("th", "TH"),
+                                            );
+                                            if (newDateTime != null) {
+                                              contoller.date.value = newDateTime
+                                                  .toString()
+                                                  .split(" ")[0];
+                                            }
+                                          }
+                                        },
+                                        child: Container(
+                                          padding: const EdgeInsets.only(
+                                              left: 20, right: 5),
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                              color: colorWhite,
+                                              border: Border.all(
+                                                color: Colors.black26,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                              BorderRadius.circular(5)),
+                                          alignment: Alignment.center,
+                                          child: SizedBox(
+                                            child: Row(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment
+                                                  .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  contoller.date.value,
+                                                  style: textStyle(context,
+                                                      fontSize: 13,
+                                                      color: colorBlack),
+                                                ),
+                                                Icon(
+                                                  Icons.date_range,
+                                                  size: 20,
+                                                  color: Colors.grey,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Expanded(
+                                      flex: 5,
+                                      child: (contoller
+                                          .dataEditEvent.value.events ==
+                                          null)
+                                          ? SizedBox()
+                                          : Container(
+                                        padding: const EdgeInsets.only(
+                                            left: 20, right: 5),
+                                        width: double.infinity,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                            color: colorWhite,
+                                            border: Border.all(
+                                              color: Colors.black26,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                            BorderRadius.circular(5)),
+                                        alignment: Alignment.center,
+                                        child: SizedBox(
+                                          width: double.infinity,
+                                          child:
+                                          DropdownButtonHideUnderline(
+                                            child:
+                                            DropdownButton2<String>(
+                                              openWithLongPress: (isAdmin)
+                                                  ? false
+                                                  : true,
+                                              dropdownStyleData:
+                                              DropdownStyleData(
+                                                maxHeight: 300,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius
+                                                      .circular(5),
+                                                ),
+                                                scrollbarTheme:
+                                                ScrollbarThemeData(
+                                                  radius: const Radius
+                                                      .circular(5),
+                                                  thickness:
+                                                  MaterialStateProperty
+                                                      .all<double>(6),
+                                                  thumbVisibility:
+                                                  MaterialStateProperty
+                                                      .all<bool>(
+                                                      true),
+                                                ),
+                                              ),
+                                              autofocus: true,
+                                              isExpanded: true,
+                                              value: contoller
+                                                  .selectStatusList!
+                                                  .value,
+                                              hint: Text(
+                                                'เลือกทั้งหมด',
+                                                style: TextStyle(
+                                                    fontSize: 13.0,
+                                                    color: colorGrey,
+                                                    fontWeight:
+                                                    FontWeight.w400),
+                                              ),
+                                              items: contoller
+                                                  .StatusList.map<
+                                                  DropdownMenuItem<
+                                                      String>>(
+                                                      (String? value) {
+                                                    return DropdownMenuItem<
+                                                        String>(
+                                                      value: value!,
+                                                      child: Text(
+                                                        value,
+                                                        style: TextStyle(
+                                                            fontSize: 13.0,
+                                                            color: colorBlack,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w400),
+                                                      ),
+                                                    );
+                                                  }).toList(),
+                                              iconStyleData:
+                                              const IconStyleData(
+                                                  icon: Icon(
+                                                    Icons.keyboard_arrow_down,
+                                                    size: 24,
+                                                  )),
+                                              onChanged: (valueSelect) {
+                                                contoller
+                                                    .selectStatusList!
+                                                    .value = valueSelect!;
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            height: 60,
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            'วันที่รับเรื่อง',
+                                            style: textStyle(context,
+                                                color: colorBlack,
+                                                fontSize: 13),
+                                          )),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Expanded(
+                                      flex: 5,
+                                      child: (contoller
+                                          .dataEditEvent.value.events ==
+                                          null)
+                                          ? SizedBox()
+                                          : Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            'สถานะของรายการ',
+                                            style: textStyle(context,
+                                                color: colorBlack,
+                                                fontSize: 13),
+                                          )),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: InkWell(
+                                        onTap: () async {
+                                          if (isAdmin) {
+                                            DateTime? newDateTime =
+                                            await showRoundedDatePicker(
+                                              theme: ThemeData(
+                                                primaryColor:
+                                                Colors.amberAccent,
+                                              ),
+                                              styleDatePicker:
+                                              MaterialRoundedDatePickerStyle(
+                                                textStyleCurrentDayOnCalendar:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                    FontWeight.bold),
+                                                textStyleDayOnCalendar:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black),
+                                                textStyleDayOnCalendarSelected:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                    FontWeight.bold),
+                                                textStyleDayOnCalendarDisabled:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black
+                                                        .withOpacity(0.1)),
+                                                textStyleMonthYearHeader:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                    FontWeight.bold),
+                                                sizeArrow: 50,
+                                                colorArrowNext: Colors.black,
+                                                colorArrowPrevious:
+                                                Colors.black,
+                                                marginLeftArrowPrevious: 16,
+                                                marginTopArrowPrevious: 16,
+                                                marginTopArrowNext: 16,
+                                                marginRightArrowNext: 32,
+                                                textStyleButtonAction:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black),
+                                                textStyleButtonPositive:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.amber,
+                                                    fontWeight:
+                                                    FontWeight.bold),
+                                                textStyleButtonNegative:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black45
+                                                        .withOpacity(0.5)),
+                                                decorationDateSelected:
+                                                BoxDecoration(
+                                                    color: Colors.amber,
+                                                    shape: BoxShape.circle),
+                                              ),
+                                              styleYearPicker:
+                                              MaterialRoundedYearPickerStyle(
+                                                textStyleYear: TextStyle(
+                                                    fontSize: 30,
+                                                    color: Colors.black),
+                                                textStyleYearSelected:
+                                                TextStyle(
+                                                    fontSize: 40,
+                                                    color: Colors.black45,
+                                                    fontWeight:
+                                                    FontWeight.bold),
+                                                heightYearRow: 100,
+                                              ),
+                                              context: context,
+                                              locale: Locale("th", "TH"),
+                                            );
+                                            if (newDateTime != null) {
+                                              contoller.date.value = newDateTime
+                                                  .toString()
+                                                  .split(" ")[0];
+                                            }
+                                          }
+                                        },
+                                        child: Container(
+                                          padding: const EdgeInsets.only(
+                                              left: 20, right: 5),
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                              color: colorWhite,
+                                              border: Border.all(
+                                                color: Colors.black26,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                              BorderRadius.circular(5)),
+                                          alignment: Alignment.center,
+                                          child: SizedBox(
+                                            child: Row(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment
+                                                  .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  contoller.date.value,
+                                                  style: textStyle(context,
+                                                      fontSize: 13,
+                                                      color: colorBlack),
+                                                ),
+                                                Icon(
+                                                  Icons.date_range,
+                                                  size: 20,
+                                                  color: Colors.grey,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Expanded(
+                                      flex: 5,
+                                      child: (contoller
+                                          .dataEditEvent.value.events ==
+                                          null)
+                                          ? SizedBox()
+                                          : Container(
+                                        padding: const EdgeInsets.only(
+                                            left: 20, right: 5),
+                                        width: double.infinity,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                            color: colorWhite,
+                                            border: Border.all(
+                                              color: Colors.black26,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                            BorderRadius.circular(5)),
+                                        alignment: Alignment.center,
+                                        child: SizedBox(
+                                          width: double.infinity,
+                                          child:
+                                          DropdownButtonHideUnderline(
+                                            child:
+                                            DropdownButton2<String>(
+                                              openWithLongPress: (isAdmin)
+                                                  ? false
+                                                  : true,
+                                              dropdownStyleData:
+                                              DropdownStyleData(
+                                                maxHeight: 300,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius
+                                                      .circular(5),
+                                                ),
+                                                scrollbarTheme:
+                                                ScrollbarThemeData(
+                                                  radius: const Radius
+                                                      .circular(5),
+                                                  thickness:
+                                                  MaterialStateProperty
+                                                      .all<double>(6),
+                                                  thumbVisibility:
+                                                  MaterialStateProperty
+                                                      .all<bool>(
+                                                      true),
+                                                ),
+                                              ),
+                                              autofocus: true,
+                                              isExpanded: true,
+                                              value: contoller
+                                                  .selectStatusList!
+                                                  .value,
+                                              hint: Text(
+                                                'เลือกทั้งหมด',
+                                                style: TextStyle(
+                                                    fontSize: 13.0,
+                                                    color: colorGrey,
+                                                    fontWeight:
+                                                    FontWeight.w400),
+                                              ),
+                                              items: contoller
+                                                  .StatusList.map<
+                                                  DropdownMenuItem<
+                                                      String>>(
+                                                      (String? value) {
+                                                    return DropdownMenuItem<
+                                                        String>(
+                                                      value: value!,
+                                                      child: Text(
+                                                        value,
+                                                        style: TextStyle(
+                                                            fontSize: 13.0,
+                                                            color: colorBlack,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w400),
+                                                      ),
+                                                    );
+                                                  }).toList(),
+                                              iconStyleData:
+                                              const IconStyleData(
+                                                  icon: Icon(
+                                                    Icons.keyboard_arrow_down,
+                                                    size: 24,
+                                                  )),
+                                              onChanged: (valueSelect) {
+                                                contoller
+                                                    .selectStatusList!
+                                                    .value = valueSelect!;
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            height: 60,
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            'วันที่รับเรื่อง',
+                                            style: textStyle(context,
+                                                color: colorBlack,
+                                                fontSize: 13),
+                                          )),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Expanded(
+                                      flex: 5,
+                                      child: (contoller
+                                          .dataEditEvent.value.events ==
+                                          null)
+                                          ? SizedBox()
+                                          : Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            'สถานะของรายการ',
+                                            style: textStyle(context,
+                                                color: colorBlack,
+                                                fontSize: 13),
+                                          )),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 5,
+                                      child: InkWell(
+                                        onTap: () async {
+                                          if (isAdmin) {
+                                            DateTime? newDateTime =
+                                            await showRoundedDatePicker(
+                                              theme: ThemeData(
+                                                primaryColor:
+                                                Colors.amberAccent,
+                                              ),
+                                              styleDatePicker:
+                                              MaterialRoundedDatePickerStyle(
+                                                textStyleCurrentDayOnCalendar:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                    FontWeight.bold),
+                                                textStyleDayOnCalendar:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black),
+                                                textStyleDayOnCalendarSelected:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                    FontWeight.bold),
+                                                textStyleDayOnCalendarDisabled:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black
+                                                        .withOpacity(0.1)),
+                                                textStyleMonthYearHeader:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                    FontWeight.bold),
+                                                sizeArrow: 50,
+                                                colorArrowNext: Colors.black,
+                                                colorArrowPrevious:
+                                                Colors.black,
+                                                marginLeftArrowPrevious: 16,
+                                                marginTopArrowPrevious: 16,
+                                                marginTopArrowNext: 16,
+                                                marginRightArrowNext: 32,
+                                                textStyleButtonAction:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black),
+                                                textStyleButtonPositive:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.amber,
+                                                    fontWeight:
+                                                    FontWeight.bold),
+                                                textStyleButtonNegative:
+                                                TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black45
+                                                        .withOpacity(0.5)),
+                                                decorationDateSelected:
+                                                BoxDecoration(
+                                                    color: Colors.amber,
+                                                    shape: BoxShape.circle),
+                                              ),
+                                              styleYearPicker:
+                                              MaterialRoundedYearPickerStyle(
+                                                textStyleYear: TextStyle(
+                                                    fontSize: 30,
+                                                    color: Colors.black),
+                                                textStyleYearSelected:
+                                                TextStyle(
+                                                    fontSize: 40,
+                                                    color: Colors.black45,
+                                                    fontWeight:
+                                                    FontWeight.bold),
+                                                heightYearRow: 100,
+                                              ),
+                                              context: context,
+                                              locale: Locale("th", "TH"),
+                                            );
+                                            if (newDateTime != null) {
+                                              contoller.date.value = newDateTime
+                                                  .toString()
+                                                  .split(" ")[0];
+                                            }
+                                          }
+                                        },
+                                        child: Container(
+                                          padding: const EdgeInsets.only(
+                                              left: 20, right: 5),
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                              color: colorWhite,
+                                              border: Border.all(
+                                                color: Colors.black26,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                              BorderRadius.circular(5)),
+                                          alignment: Alignment.center,
+                                          child: SizedBox(
+                                            child: Row(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment
+                                                  .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  contoller.date.value,
+                                                  style: textStyle(context,
+                                                      fontSize: 13,
+                                                      color: colorBlack),
+                                                ),
+                                                Icon(
+                                                  Icons.date_range,
+                                                  size: 20,
+                                                  color: Colors.grey,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Expanded(
+                                      flex: 5,
+                                      child: (contoller
+                                          .dataEditEvent.value.events ==
+                                          null)
+                                          ? SizedBox()
+                                          : Container(
+                                        padding: const EdgeInsets.only(
+                                            left: 20, right: 5),
+                                        width: double.infinity,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                            color: colorWhite,
+                                            border: Border.all(
+                                              color: Colors.black26,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                            BorderRadius.circular(5)),
+                                        alignment: Alignment.center,
+                                        child: SizedBox(
+                                          width: double.infinity,
+                                          child:
+                                          DropdownButtonHideUnderline(
+                                            child:
+                                            DropdownButton2<String>(
+                                              openWithLongPress: (isAdmin)
+                                                  ? false
+                                                  : true,
+                                              dropdownStyleData:
+                                              DropdownStyleData(
+                                                maxHeight: 300,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius
+                                                      .circular(5),
+                                                ),
+                                                scrollbarTheme:
+                                                ScrollbarThemeData(
+                                                  radius: const Radius
+                                                      .circular(5),
+                                                  thickness:
+                                                  MaterialStateProperty
+                                                      .all<double>(6),
+                                                  thumbVisibility:
+                                                  MaterialStateProperty
+                                                      .all<bool>(
+                                                      true),
+                                                ),
+                                              ),
+                                              autofocus: true,
+                                              isExpanded: true,
+                                              value: contoller
+                                                  .selectStatusList!
+                                                  .value,
+                                              hint: Text(
+                                                'เลือกทั้งหมด',
+                                                style: TextStyle(
+                                                    fontSize: 13.0,
+                                                    color: colorGrey,
+                                                    fontWeight:
+                                                    FontWeight.w400),
+                                              ),
+                                              items: contoller
+                                                  .StatusList.map<
+                                                  DropdownMenuItem<
+                                                      String>>(
+                                                      (String? value) {
+                                                    return DropdownMenuItem<
+                                                        String>(
+                                                      value: value!,
+                                                      child: Text(
+                                                        value,
+                                                        style: TextStyle(
+                                                            fontSize: 13.0,
+                                                            color: colorBlack,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w400),
+                                                      ),
+                                                    );
+                                                  }).toList(),
+                                              iconStyleData:
+                                              const IconStyleData(
+                                                  icon: Icon(
+                                                    Icons.keyboard_arrow_down,
+                                                    size: 24,
+                                                  )),
+                                              onChanged: (valueSelect) {
+                                                contoller
+                                                    .selectStatusList!
+                                                    .value = valueSelect!;
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+
+
+
+
                           const SizedBox(
                             height: 30,
                           ),
@@ -4188,10 +5280,8 @@ class _CreateListState extends State<CreateList> {
                                   options: MapOptions(
                                     keepAlive: true,
                                       initialCenter: LatLng(
-                                          double.parse(
-                                              contoller.lat.value.text),
-                                          double.parse(
-                                              contoller.lng.value.text)),
+                                          latDefault,
+                                         lngDefault),
                                       initialZoom: 14,
                                       interactionOptions: InteractionOptions(
                                         flags:
