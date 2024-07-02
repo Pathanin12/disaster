@@ -139,8 +139,11 @@ class _SystemAdminPageState extends State<SystemAdminPage> {
                                             flex: 4,
                                             child: Container(
                                               child: Text(
-                                                contoller.dataAdmin.value
-                                                    .userList![index].positionName!,
+                                                contoller
+                                                    .dataAdmin
+                                                    .value
+                                                    .userList![index]
+                                                    .positionName!,
                                                 style: textStyle(context,
                                                     fontSize: 14),
                                               ),
@@ -166,28 +169,48 @@ class _SystemAdminPageState extends State<SystemAdminPage> {
                                             child: Container(
                                               child: Row(
                                                 children: [
-                                                Obx(() =>   Switch(
-                                                  // This bool value toggles the switch.
-                                                  value: contoller.dataAdmin.value
-                                                      .userList![index].isAccept!,
-                                                  activeColor: Colors.green,
-                                                  onChanged: (bool value) async{
-                                                   await updateAdmin(id:contoller.dataAdmin.value.userList![index].id!,status: value );
-                                                    contoller.dataAdmin.value.userList![index].isAccept = value;
-                                                    setState(() {
-
-                                                    });
-
-                                                  },
-                                                ))
+                                                  Obx(() => Switch(
+                                                        // This bool value toggles the switch.
+                                                        value: contoller
+                                                            .dataAdmin
+                                                            .value
+                                                            .userList![index]
+                                                            .isAccept!,
+                                                        activeColor:
+                                                            Colors.green,
+                                                        onChanged:
+                                                            (bool value) async {
+                                                          await updateAdmin(
+                                                              id: contoller
+                                                                  .dataAdmin
+                                                                  .value
+                                                                  .userList![
+                                                                      index]
+                                                                  .id!,
+                                                              status: value);
+                                                          contoller
+                                                              .dataAdmin
+                                                              .value
+                                                              .userList![index]
+                                                              .isAccept = value;
+                                                          setState(() {});
+                                                        },
+                                                      ))
                                                 ],
                                               ),
                                             )),
                                       ],
                                     ),
-                                    SizedBox(height: 5,),
-                                    Divider(height: 1,color: Colors.grey.shade200,),
-                                    SizedBox(height: 5,),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Divider(
+                                      height: 1,
+                                      color: Colors.grey.shade200,
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
                                   ],
                                 );
                               },
