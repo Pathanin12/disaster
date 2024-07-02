@@ -72,7 +72,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
     if (listUser!.isNotEmpty) {
       landingPageController.dataUser!.value = listUser.last;
       setState(() {
-        isAdmin = (listUser.last.profile!.role==3)?false:true;
+        isAdmin = (listUser.last.profile!.role == 3) ? false : true;
       });
     } else {
       Get.offAndToNamed(RouterName.userPage);
@@ -352,23 +352,42 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                         ),
                       ],
                     ),
-                    ListTile(
-                      leading: Icon(
-                        CupertinoIcons.home,
-                        color: colorBlack,
-                        size: 22,
+                    if (isAdmin)
+                      ListTile(
+                        leading: Icon(
+                          CupertinoIcons.home,
+                          color: colorBlack,
+                          size: 22,
+                        ),
+                        title: Text(
+                          'สร้างรายการ',
+                          style: textStyle(context,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w200,
+                              color: colorBlack),
+                        ),
+                        onTap: () {
+                          landingPageController.tabIndex(6);
+                        },
                       ),
-                      title: Text(
-                        'สร้างรายการ',
-                        style: textStyle(context,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w200,
-                            color: colorBlack),
+                    if (isAdmin)
+                      ListTile(
+                        leading: Icon(
+                          Icons.supervised_user_circle,
+                          color: colorBlack,
+                          size: 22,
+                        ),
+                        title: Text(
+                          'จัดการผู้ใช้งาน',
+                          style: textStyle(context,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w200,
+                              color: colorBlack),
+                        ),
+                        onTap: () {
+                          landingPageController.tabIndex(8);
+                        },
                       ),
-                      onTap: () {
-                        landingPageController.tabIndex(6);
-                      },
-                    ),
                     ListTile(
                       leading: Icon(
                         CupertinoIcons.square_arrow_right,
@@ -888,10 +907,10 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     color:
-                                    (landingPageController.tabIndex.value ==
-                                        8)
-                                        ? Colors.amber
-                                        : Colors.transparent,
+                                        (landingPageController.tabIndex.value ==
+                                                8)
+                                            ? Colors.amber
+                                            : Colors.transparent,
                                   ),
                                   height: 40,
                                   child: Row(
@@ -899,8 +918,8 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                                       Icon(
                                         Icons.supervised_user_circle,
                                         color: (landingPageController
-                                            .tabIndex.value ==
-                                            8)
+                                                    .tabIndex.value ==
+                                                8)
                                             ? Colors.white
                                             : Color(0xfff5a607f),
                                         size: 22,
@@ -914,8 +933,8 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                                             fontSize: 16,
                                             fontWeight: FontWeight.w200,
                                             color: (landingPageController
-                                                .tabIndex.value ==
-                                                8)
+                                                        .tabIndex.value ==
+                                                    8)
                                                 ? Colors.white
                                                 : Color(0xfff5a607f)),
                                       ),
