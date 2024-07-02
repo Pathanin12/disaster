@@ -24,7 +24,7 @@ class ContollerDetailVillager extends GetxController {
   var dataEvent = EventByIDModel().obs;
   var listSearchMap = <SearchMapModel>[].obs;
   var search = TextEditingController().obs;
-  String? eventID = Get.arguments['eventID'];
+  String? eventID = Get.parameters['id'] ;
   searchMap(String data) async {
     listSearchMap.value = await searchMapApi(data);
   }
@@ -50,6 +50,7 @@ class ContollerDetailVillager extends GetxController {
     "เสร็จสิ้น",
   ];
   Future<void> getEvent() async {
+
     mapController = MapController().obs;
     if (eventID != null) {
       dataEvent = EventByIDModel().obs;

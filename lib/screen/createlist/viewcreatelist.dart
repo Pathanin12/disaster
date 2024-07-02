@@ -5363,12 +5363,12 @@ class _CreateListState extends State<CreateList> {
                                             child:
                                             TextFormField(
                                               //key: contoller.formKey,
-                                              validator: (value){
-                                                if(value!.isEmpty){
-                                                  return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
-                                                }
-                                                return null;
-                                              },
+                                              // validator: (value){
+                                              //   if(value!.isEmpty){
+                                              //     return 'กรุณาใส่ข้อมูลให้ถูกต้อง';
+                                              //   }
+                                              //   return null;
+                                              // },
                                               maxLines: 30,
                                               controller: contoller
                                                   .listAnswer[

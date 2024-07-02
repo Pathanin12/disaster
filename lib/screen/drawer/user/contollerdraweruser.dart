@@ -51,13 +51,11 @@ if((pathSegments[pathSegments.length-2]=='detail')){
   // contollerEvent.getEvent(eventID);
   // Get.toNamed(RouterName.detail);
   // print(eventID);
-  Get.offAndToNamed(RouterName.detailvalliger,
-      arguments: {'eventID': eventID});
+  Get.offAndToNamed('${RouterName.detailvalliger}?id=$eventID');
   // Get.offAndToNamed(RouterName.villager,
   //     arguments: {'eventID': eventID});
 }else{
-  Get.offAndToNamed(RouterName.detailvalliger,
-      arguments: {'eventID': eventID});
+  Get.offAndToNamed('${RouterName.detailvalliger}?id=$eventID');
 }
             }
           } else {

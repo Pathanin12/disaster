@@ -485,7 +485,7 @@ class HomeViewWeb extends GetView<HomeController> {
             onPressed: () async {
               if (controller.images.isNotEmpty) {
                 // EventID
-                String eventid = controller.eventID;
+                String eventid = controller.eventID!;
                 String name = controller.nameController.text;
                 String details = controller.detailsController.text;
                 bool isChecked = controller.isChecked.value;

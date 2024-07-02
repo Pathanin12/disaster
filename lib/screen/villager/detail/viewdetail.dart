@@ -899,8 +899,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                           Spacer(),
                           InkWell(
                             onTap: (){
-                              Get.offAndToNamed(RouterName.villager,
-                                  arguments: {'eventID': contoller.eventID});
+                              Get.offAndToNamed('${RouterName.villager}?id=${contoller.eventID}');
                             },
                             child: Container(
                               height: 40,

@@ -28,7 +28,7 @@ Future<addressModel> getLatLong(
 
       address = addressModel(
         address: dataConvert['reversegeocode']['result'].toString(),
-        province: dataConvert['reversegeocode']['addressparts']['province'].toString().split(" ")[0],
+        province: dataConvert['reversegeocode']['addressparts']['province'].toString(),
         amphure: dataConvert['reversegeocode']['addressparts']['city']??dataConvert['reversegeocode']['addressparts']['town'].toString(),
         tambon: dataConvert['reversegeocode']['addressparts']['municipality'].toString(),
         zipCode: dataConvert['reversegeocode']['addressparts']['postcode'].toString(),
