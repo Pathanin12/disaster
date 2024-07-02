@@ -82,7 +82,7 @@ class EventList {
     violence = json['violence'];
     latitude = json['latitude'];
     longitude = json['longitude'];
-    province = json['province'];
+    province = json['province']??'';
     note = json['note'];
     isActive = json['isActive'];
     isDelete = json['isDelete'];

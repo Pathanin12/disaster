@@ -37,6 +37,7 @@ Future<GetAllEventModel> getAllDashBoardApi(
           },
           options: Options(headers: {"Authorization": "Bearer $token"}));
       if (data.statusCode == 200) {
+        // print(data.data);
         dataDashBoard = GetAllEventModel.fromJson(data.data);
         if (dataDashBoard!.eventList!.isNotEmpty) {
           dataDashBoard!.eventList!.sort((a, b) => a.seq!.compareTo(b.seq!));
