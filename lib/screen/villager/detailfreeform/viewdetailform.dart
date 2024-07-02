@@ -235,6 +235,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                           height: 20,
                         ),
                         ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemCount: contoller.dataEvent.value.events!.freeFormDetailList!.length,
                           itemBuilder: (context, index) {
@@ -282,6 +283,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                           height: 20,
                         ),
                         ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemCount: contoller.dataEvent.value.events!.freeFormDetailList!.length,
                           itemBuilder: (context, index) {
@@ -342,6 +344,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                         ),
 
                         ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemCount: contoller.dataEvent.value.events!.freeFormDetailList!.length,
                           itemBuilder: (context, index) {
@@ -359,6 +362,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                                    color: Colors.white,
                                  ),
                                   child: ListView.builder(
+                                      physics: const NeverScrollableScrollPhysics(),
                                       shrinkWrap: true,
                                       itemCount:contoller
                                           .dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![0].textboxList!.length,
@@ -456,7 +460,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                                 top: 20,
                                 left: 20,
                                 child: Container(
-                                  height: 350,
+                                  height: (contoller.listSearchMap.isEmpty)?45:350,
                                   width: 300,
                                   child: Column(
                                     children: [
@@ -502,6 +506,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                                       Container(
                                         height: 310,
                                         child: ListView.builder(
+                                          physics: const NeverScrollableScrollPhysics(),
                                           itemCount: contoller
                                               .listSearchMap.value.length,
                                           itemBuilder: (context, index) =>
@@ -684,6 +689,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                           color: Colors.white,
                           height: 600,
                           child: ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount:contoller
                                   .dataEvent.value.peopleNewList!.length,

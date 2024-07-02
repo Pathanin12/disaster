@@ -192,6 +192,7 @@ class ContollerDetailVillager extends GetxController {
                                         fontWeight: FontWeight.bold),
                                   )),
                               ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
                                 itemCount: dataEvent.value.events!.deceased!
                                     .deceaseList!.length,
@@ -224,6 +225,7 @@ class ContollerDetailVillager extends GetxController {
                                         fontWeight: FontWeight.bold),
                                   )),
                               ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
                                 itemCount: dataEvent
                                     .value.events!.injured!.injureList!.length,

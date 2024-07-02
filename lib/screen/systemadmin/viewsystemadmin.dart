@@ -101,6 +101,7 @@ class _SystemAdminPageState extends State<SystemAdminPage> {
                           ),
                           Container(
                             child: ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount:
                                   contoller.dataAdmin.value.userList!.length,

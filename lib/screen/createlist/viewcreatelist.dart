@@ -2584,6 +2584,7 @@ class _CreateListState extends State<CreateList> {
                             height: 10,
                           ),
                           ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
                             padding: EdgeInsets.only(bottom: 20),
                             shrinkWrap: true,
                             itemCount: contoller.listTextNameDie.length,
@@ -4032,6 +4033,7 @@ class _CreateListState extends State<CreateList> {
 
 
                           ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
                             padding: EdgeInsets.only(bottom: 20),
                             shrinkWrap: true,
                             itemCount: contoller.listTextNameInjured.length,
@@ -4970,6 +4972,7 @@ class _CreateListState extends State<CreateList> {
                             height: 20,
                           ),
                           if(!isAdmin)if(contoller.dataEditEvent.value.events!=null) ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: contoller.dataEditEvent.value.events!
                                 .freeFormDetailList!.length,
@@ -5238,6 +5241,7 @@ class _CreateListState extends State<CreateList> {
                                       height: 10,
                                     ),
                                     ListView.builder(
+                                      physics: const NeverScrollableScrollPhysics(),
                                       shrinkWrap: true,
                                       itemCount: contoller
                                           .dataEditEvent
@@ -5811,6 +5815,7 @@ class _CreateListState extends State<CreateList> {
                           // }),
                           if(isAdmin)if(contoller.dataEditEvent.value.events==null)Obx(() {
                             return ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: contoller.listForm.length,
                               itemBuilder: (context, index) {
@@ -6131,6 +6136,7 @@ class _CreateListState extends State<CreateList> {
                                         ),
                                         Obx(
                                               () => ListView.builder(
+                                                physics: const NeverScrollableScrollPhysics(),
                                             shrinkWrap: true,
                                             itemCount: contoller.listForm[index]
                                                 .dropdown!.listevent!.length,
@@ -6334,6 +6340,7 @@ class _CreateListState extends State<CreateList> {
                                         ),
                                         Obx(
                                               () => ListView.builder(
+                                                physics: const NeverScrollableScrollPhysics(),
                                             shrinkWrap: true,
                                             itemCount: contoller.listForm[index]
                                                 .checkbox!.listevent!.length,
@@ -6540,6 +6547,7 @@ class _CreateListState extends State<CreateList> {
                                         ),
                                         Obx(
                                               () => ListView.builder(
+                                                physics: const NeverScrollableScrollPhysics(),
                                             shrinkWrap: true,
                                             itemCount: contoller.listForm[index]
                                                 .radio!.listevent!.length,
@@ -7088,7 +7096,7 @@ class _CreateListState extends State<CreateList> {
                                   top: 20,
                                   left: 20,
                                   child: Container(
-                                    height: 350,
+                                    height: (contoller.listSearchMap.isEmpty)?45:350,
                                     width: 300,
                                     child: Column(
                                       children: [
@@ -7135,6 +7143,7 @@ class _CreateListState extends State<CreateList> {
                                         Container(
                                           height: 310,
                                           child: ListView.builder(
+                                            physics: const NeverScrollableScrollPhysics(),
                                             itemCount: contoller
                                                 .listSearchMap.value.length,
                                             itemBuilder: (context, index) =>
