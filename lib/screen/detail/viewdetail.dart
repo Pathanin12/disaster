@@ -472,6 +472,7 @@ class Detail extends StatelessWidget {
                          Container(
                             padding: EdgeInsets.all(20),
                             child: ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: contoller.dataEvent.value.events!
                                   .freeFormDetailList!.length,
@@ -644,6 +645,7 @@ class Detail extends StatelessWidget {
                                           height: 300,
                                           width: 300,
                                           child: ListView.builder(
+                                            physics: const NeverScrollableScrollPhysics(),
                                             shrinkWrap: true,
                                             itemCount: contoller
                                                 .dataEvent
@@ -672,6 +674,7 @@ class Detail extends StatelessWidget {
                                           height: 300,
                                           width: 300,
                                           child: ListView.builder(
+                                            physics: const NeverScrollableScrollPhysics(),
                                             shrinkWrap: true,
                                             itemCount: contoller
                                                 .dataEvent
@@ -774,6 +777,7 @@ class Detail extends StatelessWidget {
                             height: 40,
                           ),
                           ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: contoller.dataEvent.value.events!
                                 .freeFormDetailList!.length,
@@ -870,6 +874,7 @@ class Detail extends StatelessWidget {
                             height: 20,
                           ),
                           ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: contoller.dataEvent.value.events!
                                 .freeFormDetailList!.length,
@@ -992,6 +997,7 @@ class Detail extends StatelessWidget {
                             height: 20,
                           ),
                           ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: contoller.dataEvent.value.events!
                                 .freeFormDetailList!.length,
@@ -1033,6 +1039,7 @@ class Detail extends StatelessWidget {
                                       color: Colors.white,
                                     ),
                                     child: ListView.builder(
+                                        physics: const NeverScrollableScrollPhysics(),
                                         shrinkWrap: true,
                                         itemCount: contoller
                                             .dataEvent
@@ -1270,7 +1277,7 @@ class Detail extends StatelessWidget {
                                   top: 20,
                                   left: 20,
                                   child: Container(
-                                    height: 350,
+                                    height: (contoller.listSearchMap.isEmpty)?45:350,
                                     width: 300,
                                     child: Column(
                                       children: [
@@ -1317,6 +1324,7 @@ class Detail extends StatelessWidget {
                                         Container(
                                           height: 310,
                                           child: ListView.builder(
+                                            physics: const NeverScrollableScrollPhysics(),
                                             itemCount: contoller
                                                 .listSearchMap.value.length,
                                             itemBuilder: (context, index) =>
@@ -1608,6 +1616,7 @@ class Detail extends StatelessWidget {
                                 color: Colors.white,
                                 height: 600,
                                 child: ListView.builder(
+                                    physics: const NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,
                                     itemCount: contoller.dataEvent.value.events!
                                         .logList!.length,
@@ -2105,6 +2114,7 @@ class Detail extends StatelessWidget {
                               color: Colors.white,
                               height: 600,
                               child: ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
                                   itemCount: contoller
                                       .dataEvent.value.peopleNewList!.length,

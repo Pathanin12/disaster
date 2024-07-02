@@ -534,7 +534,7 @@ class Detailz extends StatelessWidget {
                                 top: 20,
                                 left: 20,
                                 child: Container(
-                                  height: 350,
+                                  height: (contoller.listSearchMap.isEmpty)?45:350,
                                   width: 300,
                                   child: Column(
                                     children: [
@@ -580,6 +580,7 @@ class Detailz extends StatelessWidget {
                                       Container(
                                         height: 310,
                                         child: ListView.builder(
+                                          physics: const NeverScrollableScrollPhysics(),
                                           itemCount: contoller
                                               .listSearchMap.value.length,
                                           itemBuilder: (context, index) =>

@@ -16,7 +16,7 @@ Future<addressModel> getLatLong(
     var request = http.Request(
         'GET',
         Uri.parse(
-            'https://nominatim.openstreetmap.org/reverse?format=xml&lat=$lat&lon=$long${(index==2)?'&accept-language=th':''}'));
+            'https://nominatim.openstreetmap.org/reverse?format=xml&lat=$lat&lon=$long&accept-language=th'));
     // request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {

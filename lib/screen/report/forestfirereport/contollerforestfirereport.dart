@@ -481,6 +481,7 @@ class ContollerForestFileReport extends GetxController {
   tableReport(BuildContext context, List<EventList> event) {
     double screenWidth = MediaQuery.of(context).size.width;
     return ListView.builder(
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: event.length,
       itemBuilder: (context, index) => Container(
