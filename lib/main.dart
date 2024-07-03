@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: RouterName.adminPage,
+      initialRoute: RouterName.login,
       getPages: [
         GetPage(
           name: RouterName.userPage,

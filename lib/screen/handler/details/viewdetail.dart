@@ -580,8 +580,7 @@ class Detailz extends StatelessWidget {
                                       Container(
                                         height: 310,
                                         child: ListView.builder(
-                                          physics: const NeverScrollableScrollPhysics(),
-                                          itemCount: contoller
+                                         itemCount: contoller
                                               .listSearchMap.value.length,
                                           itemBuilder: (context, index) =>
                                               InkWell(

@@ -1676,8 +1676,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   Container(
                                     height: 310,
                                     child: ListView.builder(
-                                      physics: const NeverScrollableScrollPhysics(),
-                                      itemCount:
+                                    itemCount:
                                           contoller.listSearchMap.value.length,
                                       itemBuilder: (context, index) => InkWell(
                                         onTap: () {

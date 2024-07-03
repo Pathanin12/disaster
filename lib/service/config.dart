@@ -1,7 +1,7 @@
 import '../model/profileusermodel.dart';
 
 String url = "https://disasterapi.aicard.work/API/";
-String pathQR = 'https://disasterweb.netlify.app/detail/';
+String pathQR = 'https://disastermoi.aicard.work/#/Detail?id=';
 String pathQRfreeform = 'https://disasterweb.netlify.app/detailfreeform/';
 String urlApiKey = 'http://cloud-api.win-victor.com/api/integrate/auth/';
 double latDefault=18.3170581;
