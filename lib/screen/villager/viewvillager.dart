@@ -102,7 +102,7 @@ class HomeViewWeb extends GetView<HomeController> {
                 child: Text(
                   'ส่งรูปถ่าย',
                   style: textStyle(context,
-                      fontSize: 15, fontWeight: FontWeight.bold),
+                      fontSize: 30, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -145,7 +145,7 @@ class HomeViewWeb extends GetView<HomeController> {
                                         'อัพโหลดรูป',
                                         style: textStyle(
                                           context,
-                                          fontSize: 15,
+                                          fontSize: 25,
                                         ),
                                       )),
                                   GridView.builder(
@@ -222,7 +222,7 @@ class HomeViewWeb extends GetView<HomeController> {
                                 'เพิ่มรูป',
                                 style: textStyle(
                                   context,
-                                  fontSize: 15,
+                                  fontSize: 25,
                                 ),
                               ),
                             ),
@@ -245,7 +245,7 @@ class HomeViewWeb extends GetView<HomeController> {
                                   child: Text(
                                     'ถ่ายรูป',
                                     style: textStyle(context,
-                                        fontSize: 15, color: colorBlue),
+                                        fontSize: 25, color: colorBlue),
                                   ),
                                   onPressed: () async {
                                     showDialog(
@@ -286,7 +286,7 @@ class HomeViewWeb extends GetView<HomeController> {
                                   child: Text(
                                     'เลือกไฟล์',
                                     style: textStyle(context,
-                                        fontSize: 15, color: colorBlue),
+                                        fontSize: 25, color: colorBlue),
                                   ),
                                   onPressed: () {
                                     controller.getPicture();
@@ -312,7 +312,7 @@ class HomeViewWeb extends GetView<HomeController> {
                                 'ชื่อผู้ส่ง',
                                 style: textStyle(
                                   context,
-                                  fontSize: 15,
+                                  fontSize: 25,
                                 ),
                               ),
                             ),
@@ -337,13 +337,13 @@ class HomeViewWeb extends GetView<HomeController> {
                                   ),
                                   labelStyle: textStyle(
                                     context,
-                                    fontSize: 15,
+                                    fontSize: 25,
                                   ),
                                   border: const OutlineInputBorder(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(1))),
                                   hintStyle: textStyle(context,
-                                      fontSize: 15,
+                                      fontSize: 25,
                                       color: const Color(0xff515151)),
                                   contentPadding: const EdgeInsets.only(
                                       bottom: 5, left: 10),
@@ -388,7 +388,7 @@ class HomeViewWeb extends GetView<HomeController> {
                                         'ไม่ระบุชื่อ',
                                         style: textStyle(
                                           context,
-                                          fontSize: 15,
+                                          fontSize: 25,
                                         ),
                                       ),
                                     ),
@@ -414,7 +414,7 @@ class HomeViewWeb extends GetView<HomeController> {
                                 'รายละเอียด (ไม่บังคับ)',
                                 style: textStyle(
                                   context,
-                                  fontSize: 15,
+                                  fontSize: 25,
                                 ),
                               ),
                             ),
@@ -437,13 +437,13 @@ class HomeViewWeb extends GetView<HomeController> {
                                 ),
                                 labelStyle: textStyle(
                                   context,
-                                  fontSize: 15,
+                                  fontSize: 25,
                                 ),
                                 border: const OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(1))),
                                 hintStyle: textStyle(context,
-                                    fontSize: 15,
+                                    fontSize: 25,
                                     color: const Color(0xff515151)),
                                 contentPadding:
                                     const EdgeInsets.only(left: 10, top: 15),
@@ -478,7 +478,7 @@ class HomeViewWeb extends GetView<HomeController> {
                 SizedBox(width: screenWidth * 0.01),
                 Text(
                   'ส่งรูป',
-                  style: textStyle(context, fontSize: 15, color: colorWhite),
+                  style: textStyle(context, fontSize: 25, color: colorWhite),
                 ),
               ],
             ),
@@ -499,19 +499,19 @@ class HomeViewWeb extends GetView<HomeController> {
                     title: Text(
                       'สำเร็จ',
                       style: textStyle(Get.context!,
-                          fontSize: 15, color: colorBlack),
+                          fontSize: 30, color: colorBlack),
                     ),
                     content: Text(
                       'ส่งรายการสำเร็จ',
                       style: textStyle(Get.context!,
-                          fontSize: 15, color: colorBlack),
+                          fontSize: 25, color: colorBlack),
                     ),
                     actions: <Widget>[
                       ElevatedButton(
                         child: Text(
                           'ตกลง',
                           style: textStyle(Get.context!,
-                              fontSize: 15, color: colorBlack),
+                              fontSize: 25, color: colorBlack),
                         ),
                         onPressed: () {
                           Get.back();
@@ -526,19 +526,19 @@ class HomeViewWeb extends GetView<HomeController> {
                     title: Text(
                       'คำเตือน',
                       style:
-                          textStyle(context, fontSize: 15, color: colorBlack),
+                          textStyle(context, fontSize: 30, color: colorBlack),
                     ),
                     content: Text(
                       'กรุณาเพิ่มรูปอย่างน้อย 1 รูป',
                       style:
-                          textStyle(context, fontSize: 15, color: colorBlack),
+                          textStyle(context, fontSize: 25, color: colorBlack),
                     ),
                     actions: <Widget>[
                       ElevatedButton(
                         child: Text(
                           'ตกลง',
                           style: textStyle(context,
-                              fontSize: 15, color: colorBlack),
+                              fontSize: 25, color: colorBlack),
                         ),
                         onPressed: () {
                           Get.back();

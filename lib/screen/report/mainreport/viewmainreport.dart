@@ -32,7 +32,7 @@ class MainReport extends StatelessWidget {
     final ContollerMainReport contoller =
         Get.put(ContollerMainReport(), permanent: false);
     final LandingPageControllerAdmin landingPageController =
-    Get.put(LandingPageControllerAdmin(), permanent: false);
+        Get.put(LandingPageControllerAdmin(), permanent: false);
     double screenWidth = MediaQuery.of(context).size.width;
     return ListView(
       children: [
@@ -46,7 +46,7 @@ class MainReport extends StatelessWidget {
                     Container(
                         child: Text(contoller.title.value,
                             style: textStyle(context,
-                                fontSize: 16, fontWeight: FontWeight.bold))),
+                                fontSize: 30, fontWeight: FontWeight.bold))),
                     const SizedBox(
                       height: 20,
                     ),
@@ -76,7 +76,8 @@ class MainReport extends StatelessWidget {
                             top: 20,
                             left: 20,
                             child: Container(
-                              height: (contoller.listSearchMap.isEmpty)?45:350,
+                              height:
+                                  (contoller.listSearchMap.isEmpty) ? 45 : 350,
                               width: 300,
                               child: Column(
                                 children: [
@@ -103,8 +104,8 @@ class MainReport extends StatelessWidget {
                                             child: Icon(Icons.search)),
                                         fillColor: colorWhite,
                                         hintText: "ค้นหา",
-                                        hintStyle: TextStyle(
-                                            fontSize: 15.0,
+                                        hintStyle: textStyle(context,
+                                            fontSize: 25,
                                             color: colorGrey,
                                             fontWeight: FontWeight.w400),
                                         filled: true,
@@ -122,7 +123,6 @@ class MainReport extends StatelessWidget {
                                   Container(
                                     height: 310,
                                     child: ListView.builder(
-
                                       itemCount:
                                           contoller.listSearchMap.value.length,
                                       itemBuilder: (context, index) => InkWell(
@@ -223,7 +223,7 @@ class MainReport extends StatelessWidget {
                                           children: [
                                             Text('ช่วงเวลา',
                                                 style: textStyle(context,
-                                                    fontSize: 15)),
+                                                    fontSize: 25)),
                                             Container(
                                               padding: const EdgeInsets.only(
                                                   left: 20, right: 5),
@@ -252,7 +252,7 @@ class MainReport extends StatelessWidget {
                                                               '${(contoller.listDate.value.isNotEmpty) ? (contoller.listDate.value.first == contoller.listDate.value.last) ? '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year.toString().substring(2, 4)}' : '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year.toString().substring(2, 4)} - ${contoller.listDate.value.last!.day} ${mountAbbreviation[contoller.listDate.value.last!.month - 1]} ${contoller.listDate.value.last!.year.toString().substring(2, 4)}' : ''}',
                                                               style: textStyle(
                                                                   context,
-                                                                  fontSize: 15))
+                                                                  fontSize: 25))
                                                         ],
                                                       ),
                                                     )),
@@ -276,7 +276,7 @@ class MainReport extends StatelessWidget {
                                           children: [
                                             Text('ระดับ',
                                                 style: textStyle(context,
-                                                    fontSize: 15)),
+                                                    fontSize: 25)),
                                             Container(
                                               width: double.infinity,
                                               height: 40,
@@ -321,8 +321,8 @@ class MainReport extends StatelessWidget {
                                                         .selectLevel!.value,
                                                     hint: Text(
                                                       'เลือกทั้งหมด',
-                                                      style: TextStyle(
-                                                          fontSize: 15.0,
+                                                      style: textStyle(context,
+                                                          fontSize: 25,
                                                           color: colorGrey,
                                                           fontWeight:
                                                               FontWeight.w400),
@@ -336,8 +336,9 @@ class MainReport extends StatelessWidget {
                                                         value: value!,
                                                         child: Text(
                                                           value,
-                                                          style: TextStyle(
-                                                              fontSize: 15.0,
+                                                          style: textStyle(
+                                                              context,
+                                                              fontSize: 25,
                                                               color: colorGrey,
                                                               fontWeight:
                                                                   FontWeight
@@ -381,7 +382,7 @@ class MainReport extends StatelessWidget {
                                             children: [
                                               Text('จังหวัด',
                                                   style: textStyle(context,
-                                                      fontSize: 15)),
+                                                      fontSize: 25)),
                                               Container(
                                                 width: double.infinity,
                                                 height: 40,
@@ -429,8 +430,9 @@ class MainReport extends StatelessWidget {
                                                           .selectProvince.value,
                                                       hint: Text(
                                                         'เลือกทั้งหมด',
-                                                        style: TextStyle(
-                                                            fontSize: 15.0,
+                                                        style: textStyle(
+                                                            context,
+                                                            fontSize: 25,
                                                             color: colorGrey,
                                                             fontWeight:
                                                                 FontWeight
@@ -445,8 +447,9 @@ class MainReport extends StatelessWidget {
                                                           value: value!,
                                                           child: Text(
                                                             value.nameTh!,
-                                                            style: TextStyle(
-                                                                fontSize: 15.0,
+                                                            style: textStyle(
+                                                                context,
+                                                                fontSize: 25,
                                                                 color:
                                                                     colorGrey,
                                                                 fontWeight:
@@ -490,7 +493,7 @@ class MainReport extends StatelessWidget {
                                           children: [
                                             Text('ค้นหา',
                                                 style: textStyle(context,
-                                                    fontSize: 15)),
+                                                    fontSize: 25)),
                                             Container(
                                               width: double.infinity,
                                               height: 40,
@@ -504,19 +507,23 @@ class MainReport extends StatelessWidget {
                                                       BorderRadius.circular(5)),
                                               alignment: Alignment.center,
                                               child: Padding(
-                                                padding: const EdgeInsets.all(8.0),
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
                                                 child: TextFormField(
-                                                  controller: contoller.searchEven.value,
+                                                  controller: contoller
+                                                      .searchEven.value,
                                                   autofocus: false,
-                                                  decoration: InputDecoration.collapsed(
+                                                  decoration:
+                                                      InputDecoration.collapsed(
                                                     fillColor: colorWhite,
                                                     hintText: "ค้นหา",
-                                                    hintStyle: TextStyle(
-                                                        fontSize: 15.0,
+                                                    hintStyle: textStyle(
+                                                        context,
+                                                        fontSize: 25,
                                                         color: colorGrey,
-                                                        fontWeight: FontWeight.w400),
+                                                        fontWeight:
+                                                            FontWeight.w400),
                                                     filled: true,
-
                                                   ),
                                                 ),
                                               ),
@@ -550,7 +557,7 @@ class MainReport extends StatelessWidget {
                                               children: [
                                                 Text('ช่วงเวลา',
                                                     style: textStyle(context,
-                                                        fontSize: 15)),
+                                                        fontSize: 25)),
                                                 Container(
                                                   padding:
                                                       const EdgeInsets.only(
@@ -582,7 +589,7 @@ class MainReport extends StatelessWidget {
                                                                   style: textStyle(
                                                                       context,
                                                                       fontSize:
-                                                                          13))
+                                                                          25))
                                                             ],
                                                           ),
                                                         )),
@@ -597,7 +604,312 @@ class MainReport extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                    if(landingPageController.dataUser!.value.profile!=null)if(landingPageController.dataUser!.value.profile!.role==1)   Row(
+                                    if (landingPageController
+                                            .dataUser!.value.profile !=
+                                        null)
+                                      if (landingPageController
+                                              .dataUser!.value.profile!.role ==
+                                          1)
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          children: [
+                                            Expanded(
+                                              flex: 4,
+                                              child: Container(
+                                                alignment: Alignment.centerLeft,
+                                                height: 65,
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text('ระดับ',
+                                                        style: textStyle(
+                                                            context,
+                                                            fontSize: 25)),
+                                                    Container(
+                                                      width: double.infinity,
+                                                      height: 40,
+                                                      decoration: BoxDecoration(
+                                                          color: colorWhite,
+                                                          border: Border.all(
+                                                            color:
+                                                                Colors.black26,
+                                                            width: 1,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5)),
+                                                      alignment:
+                                                          Alignment.center,
+                                                      child: SizedBox(
+                                                        width: double.infinity,
+                                                        child:
+                                                            DropdownButtonHideUnderline(
+                                                          child:
+                                                              DropdownButton2<
+                                                                  String>(
+                                                            dropdownStyleData:
+                                                                DropdownStyleData(
+                                                              maxHeight: 300,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5),
+                                                              ),
+                                                              scrollbarTheme:
+                                                                  ScrollbarThemeData(
+                                                                radius:
+                                                                    const Radius
+                                                                        .circular(
+                                                                        5),
+                                                                thickness:
+                                                                    MaterialStateProperty
+                                                                        .all<double>(
+                                                                            6),
+                                                                thumbVisibility:
+                                                                    MaterialStateProperty
+                                                                        .all<bool>(
+                                                                            true),
+                                                              ),
+                                                            ),
+                                                            autofocus: true,
+                                                            value: contoller
+                                                                .selectLevel!
+                                                                .value,
+                                                            hint: Text(
+                                                              'เลือกทั้งหมด',
+                                                              style: textStyle(
+                                                                  context,
+                                                                  fontSize: 25,
+                                                                  color:
+                                                                      colorGrey,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400),
+                                                            ),
+                                                            items: contoller.level.map<
+                                                                DropdownMenuItem<
+                                                                    String>>((String?
+                                                                value) {
+                                                              return DropdownMenuItem<
+                                                                  String>(
+                                                                value: value!,
+                                                                child: Text(
+                                                                  value,
+                                                                  style: textStyle(
+                                                                      context,
+                                                                      fontSize:
+                                                                          25,
+                                                                      color:
+                                                                          colorGrey,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w400),
+                                                                ),
+                                                              );
+                                                            }).toList(),
+                                                            iconStyleData:
+                                                                const IconStyleData(
+                                                                    icon: Icon(
+                                                              Icons
+                                                                  .keyboard_arrow_down,
+                                                              size: 24,
+                                                            )),
+                                                            onChanged:
+                                                                (valueSelect) {
+                                                              contoller
+                                                                      .selectLevel!
+                                                                      .value =
+                                                                  valueSelect!;
+                                                            },
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            if (landingPageController
+                                                    .dataUser!.value.profile !=
+                                                null)
+                                              if (landingPageController
+                                                      .dataUser!
+                                                      .value
+                                                      .profile!
+                                                      .role ==
+                                                  1)
+                                                if (contoller
+                                                        .selectLevel!.value ==
+                                                    'จังหวัด')
+                                                  const SizedBox(
+                                                    width: 5,
+                                                  ),
+                                            if (landingPageController
+                                                    .dataUser!.value.profile !=
+                                                null)
+                                              if (landingPageController
+                                                      .dataUser!
+                                                      .value
+                                                      .profile!
+                                                      .role ==
+                                                  1)
+                                                if (contoller
+                                                        .selectLevel!.value ==
+                                                    'จังหวัด')
+                                                  Expanded(
+                                                    flex: 4,
+                                                    child: Container(
+                                                      alignment:
+                                                          Alignment.centerLeft,
+                                                      height: 65,
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text('จังหวัด',
+                                                              style: textStyle(
+                                                                  context,
+                                                                  fontSize:
+                                                                      25)),
+                                                          Container(
+                                                            width:
+                                                                double.infinity,
+                                                            height: 40,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                                    color:
+                                                                        colorWhite,
+                                                                    border:
+                                                                        Border
+                                                                            .all(
+                                                                      color: Colors
+                                                                          .black26,
+                                                                      width: 1,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            5)),
+                                                            alignment: Alignment
+                                                                .center,
+                                                            child: SizedBox(
+                                                              width: double
+                                                                  .infinity,
+                                                              child:
+                                                                  DropdownButtonHideUnderline(
+                                                                child:
+                                                                    DropdownButton2<
+                                                                        Province>(
+                                                                  dropdownStyleData:
+                                                                      DropdownStyleData(
+                                                                    maxHeight:
+                                                                        300,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5),
+                                                                    ),
+                                                                    scrollbarTheme:
+                                                                        ScrollbarThemeData(
+                                                                      radius: const Radius
+                                                                          .circular(
+                                                                          5),
+                                                                      thickness:
+                                                                          MaterialStateProperty.all<double>(
+                                                                              6),
+                                                                      thumbVisibility:
+                                                                          MaterialStateProperty.all<bool>(
+                                                                              true),
+                                                                    ),
+                                                                  ),
+                                                                  autofocus:
+                                                                      true,
+                                                                  value: contoller
+                                                                      .selectProvince
+                                                                      .value,
+                                                                  hint: Text(
+                                                                    'เลือกทั้งหมด',
+                                                                    style: textStyle(
+                                                                        context,
+                                                                        fontSize:
+                                                                            25,
+                                                                        color:
+                                                                            colorGrey,
+                                                                        fontWeight:
+                                                                            FontWeight.w400),
+                                                                  ),
+                                                                  items: provinceList.map<
+                                                                      DropdownMenuItem<
+                                                                          Province>>((Province?
+                                                                      value) {
+                                                                    return DropdownMenuItem<
+                                                                        Province>(
+                                                                      value:
+                                                                          value!,
+                                                                      child:
+                                                                          Text(
+                                                                        value
+                                                                            .nameTh!,
+                                                                        style: textStyle(
+                                                                            context,
+                                                                            fontSize:
+                                                                                25,
+                                                                            color:
+                                                                                colorGrey,
+                                                                            fontWeight:
+                                                                                FontWeight.w400),
+                                                                      ),
+                                                                    );
+                                                                  }).toList(),
+                                                                  iconStyleData:
+                                                                      const IconStyleData(
+                                                                          icon:
+                                                                              Icon(
+                                                                    Icons
+                                                                        .keyboard_arrow_down,
+                                                                    size: 24,
+                                                                  )),
+                                                                  onChanged:
+                                                                      (valueSelect) {
+                                                                    contoller
+                                                                            .selectProvince
+                                                                            .value =
+                                                                        valueSelect!;
+                                                                  },
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            if (landingPageController
+                                                    .dataUser!.value.profile !=
+                                                null)
+                                              if (landingPageController
+                                                      .dataUser!
+                                                      .value
+                                                      .profile!
+                                                      .role ==
+                                                  1)
+                                                if (contoller
+                                                        .selectLevel!.value !=
+                                                    'จังหวัด')
+                                                  Expanded(
+                                                      flex: 4,
+                                                      child: SizedBox()),
+                                          ],
+                                        ),
+                                    Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
                                       children: [
@@ -610,9 +922,9 @@ class MainReport extends StatelessWidget {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text('ระดับ',
+                                                Text('ค้นหา',
                                                     style: textStyle(context,
-                                                        fontSize: 15)),
+                                                        fontSize: 25)),
                                                 Container(
                                                   width: double.infinity,
                                                   height: 40,
@@ -626,260 +938,27 @@ class MainReport extends StatelessWidget {
                                                           BorderRadius.circular(
                                                               5)),
                                                   alignment: Alignment.center,
-                                                  child: SizedBox(
-                                                    width: double.infinity,
-                                                    child:
-                                                        DropdownButtonHideUnderline(
-                                                      child: DropdownButton2<
-                                                          String>(
-                                                        dropdownStyleData:
-                                                            DropdownStyleData(
-                                                          maxHeight: 300,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        5),
-                                                          ),
-                                                          scrollbarTheme:
-                                                              ScrollbarThemeData(
-                                                            radius: const Radius
-                                                                .circular(5),
-                                                            thickness:
-                                                                MaterialStateProperty
-                                                                    .all<double>(
-                                                                        6),
-                                                            thumbVisibility:
-                                                                MaterialStateProperty
-                                                                    .all<bool>(
-                                                                        true),
-                                                          ),
-                                                        ),
-                                                        autofocus: true,
-                                                        value: contoller
-                                                            .selectLevel!.value,
-                                                        hint: Text(
-                                                          'เลือกทั้งหมด',
-                                                          style: TextStyle(
-                                                              fontSize: 15.0,
-                                                              color: colorGrey,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400),
-                                                        ),
-                                                        items: contoller.level.map<
-                                                                DropdownMenuItem<
-                                                                    String>>(
-                                                            (String? value) {
-                                                          return DropdownMenuItem<
-                                                              String>(
-                                                            value: value!,
-                                                            child: Text(
-                                                              value,
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                      13.0,
-                                                                  color:
-                                                                      colorGrey,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400),
-                                                            ),
-                                                          );
-                                                        }).toList(),
-                                                        iconStyleData:
-                                                            const IconStyleData(
-                                                                icon: Icon(
-                                                          Icons
-                                                              .keyboard_arrow_down,
-                                                          size: 24,
-                                                        )),
-                                                        onChanged:
-                                                            (valueSelect) {
-                                                          contoller.selectLevel!
-                                                                  .value =
-                                                              valueSelect!;
-                                                        },
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        if(landingPageController.dataUser!.value.profile!=null)if(landingPageController.dataUser!.value.profile!.role==1)  if (contoller.selectLevel!.value ==
-                                            'จังหวัด')
-                                          const SizedBox(
-                                            width: 5,
-                                          ),
-                                        if(landingPageController.dataUser!.value.profile!=null) if(landingPageController.dataUser!.value.profile!.role==1) if (contoller.selectLevel!.value ==
-                                            'จังหวัด')
-                                          Expanded(
-                                            flex: 4,
-                                            child: Container(
-                                              alignment: Alignment.centerLeft,
-                                              height: 65,
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('จังหวัด',
-                                                      style: textStyle(context,
-                                                          fontSize: 15)),
-                                                  Container(
-                                                    width: double.infinity,
-                                                    height: 40,
-                                                    decoration: BoxDecoration(
-                                                        color: colorWhite,
-                                                        border: Border.all(
-                                                          color: Colors.black26,
-                                                          width: 1,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5)),
-                                                    alignment: Alignment.center,
-                                                    child: SizedBox(
-                                                      width: double.infinity,
-                                                      child:
-                                                          DropdownButtonHideUnderline(
-                                                        child: DropdownButton2<
-                                                            Province>(
-                                                          dropdownStyleData:
-                                                              DropdownStyleData(
-                                                            maxHeight: 300,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5),
-                                                            ),
-                                                            scrollbarTheme:
-                                                                ScrollbarThemeData(
-                                                              radius:
-                                                                  const Radius
-                                                                      .circular(
-                                                                      5),
-                                                              thickness:
-                                                                  MaterialStateProperty
-                                                                      .all<double>(
-                                                                          6),
-                                                              thumbVisibility:
-                                                                  MaterialStateProperty
-                                                                      .all<bool>(
-                                                                          true),
-                                                            ),
-                                                          ),
-                                                          autofocus: true,
-                                                          value: contoller
-                                                              .selectProvince
-                                                              .value,
-                                                          hint: Text(
-                                                            'เลือกทั้งหมด',
-                                                            style: TextStyle(
-                                                                fontSize: 15.0,
-                                                                color:
-                                                                    colorGrey,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400),
-                                                          ),
-                                                          items: provinceList.map<
-                                                                  DropdownMenuItem<
-                                                                      Province>>(
-                                                              (Province?
-                                                                  value) {
-                                                            return DropdownMenuItem<
-                                                                Province>(
-                                                              value: value!,
-                                                              child: Text(
-                                                                value.nameTh!,
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        13.0,
-                                                                    color:
-                                                                        colorGrey,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400),
-                                                              ),
-                                                            );
-                                                          }).toList(),
-                                                          iconStyleData:
-                                                              const IconStyleData(
-                                                                  icon: Icon(
-                                                            Icons
-                                                                .keyboard_arrow_down,
-                                                            size: 24,
-                                                          )),
-                                                          onChanged:
-                                                              (valueSelect) {
-                                                            contoller
-                                                                    .selectProvince
-                                                                    .value =
-                                                                valueSelect!;
-                                                          },
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        const SizedBox(
-                                          width: 5,
-                                        ),
-                                        if(landingPageController.dataUser!.value.profile!=null) if(landingPageController.dataUser!.value.profile!.role==1) if (contoller.selectLevel!.value !=
-                                            'จังหวัด')
-                                          Expanded(flex: 4, child: SizedBox()),
-                                      ],
-                                    ),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        Expanded(
-                                          flex: 4,
-                                          child: Container(
-                                            alignment: Alignment.centerLeft,
-                                            height: 65,
-                                            child: Column(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              children: [
-                                                Text('ค้นหา',
-                                                    style: textStyle(context,
-                                                        fontSize: 15)),
-                                                Container(
-                                                  width: double.infinity,
-                                                  height: 40,
-                                                  decoration: BoxDecoration(
-                                                      color: colorWhite,
-                                                      border: Border.all(
-                                                        color: Colors.black26,
-                                                        width: 1,
-                                                      ),
-                                                      borderRadius:
-                                                      BorderRadius.circular(5)),
-                                                  alignment: Alignment.center,
                                                   child: Padding(
-                                                    padding: const EdgeInsets.all(8.0),
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            8.0),
                                                     child: TextFormField(
-                                                      controller: contoller.searchEven.value,
+                                                      controller: contoller
+                                                          .searchEven.value,
                                                       autofocus: false,
-                                                      decoration: InputDecoration.collapsed(
+                                                      decoration:
+                                                          InputDecoration
+                                                              .collapsed(
                                                         fillColor: colorWhite,
                                                         hintText: "ค้นหา",
-                                                        hintStyle: TextStyle(
-                                                            fontSize: 15.0,
+                                                        hintStyle: textStyle(
+                                                            context,
+                                                            fontSize: 25,
                                                             color: colorGrey,
-                                                            fontWeight: FontWeight.w400),
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w400),
                                                         filled: true,
-
                                                       ),
                                                     ),
                                                   ),
@@ -913,7 +992,7 @@ class MainReport extends StatelessWidget {
                                             children: [
                                               Text('หน่วยงาน',
                                                   style: textStyle(context,
-                                                      fontSize: 15)),
+                                                      fontSize: 25)),
                                               Container(
                                                 padding: EdgeInsets.only(
                                                     left: 5, right: 5),
@@ -933,8 +1012,8 @@ class MainReport extends StatelessWidget {
                                                   textAlign: TextAlign.justify,
                                                   controller: contoller
                                                       .searchAgency.value,
-                                                  style: TextStyle(
-                                                      fontSize: 15.0,
+                                                  style: textStyle(context,
+                                                      fontSize: 25,
                                                       color: colorBlack,
                                                       fontWeight:
                                                           FontWeight.w400),
@@ -942,8 +1021,9 @@ class MainReport extends StatelessWidget {
                                                       InputDecoration.collapsed(
                                                     fillColor: colorWhite,
                                                     hintText: "หน่วยงาน",
-                                                    hintStyle: TextStyle(
-                                                        fontSize: 15.0,
+                                                    hintStyle: textStyle(
+                                                        context,
+                                                        fontSize: 25,
                                                         color: colorGrey,
                                                         fontWeight:
                                                             FontWeight.w400),
@@ -977,7 +1057,7 @@ class MainReport extends StatelessWidget {
                                           children: [
                                             Text('สถานะของหน่วยงาน',
                                                 style: textStyle(context,
-                                                    fontSize: 15)),
+                                                    fontSize: 25)),
                                             Container(
                                               width: double.infinity,
                                               height: 40,
@@ -1031,8 +1111,9 @@ class MainReport extends StatelessWidget {
                                                         value: value!,
                                                         child: Text(
                                                           value,
-                                                          style: TextStyle(
-                                                              fontSize: 15.0,
+                                                          style: textStyle(
+                                                              context,
+                                                              fontSize: 25,
                                                               color: colorGrey,
                                                               fontWeight:
                                                                   FontWeight
@@ -1073,7 +1154,7 @@ class MainReport extends StatelessWidget {
                                           children: [
                                             Text('สถานะของรายการ',
                                                 style: textStyle(context,
-                                                    fontSize: 15)),
+                                                    fontSize: 25)),
                                             Container(
                                               padding: const EdgeInsets.only(
                                                   left: 20, right: 5),
@@ -1129,8 +1210,9 @@ class MainReport extends StatelessWidget {
                                                         value: value!,
                                                         child: Text(
                                                           value,
-                                                          style: TextStyle(
-                                                              fontSize: 15.0,
+                                                          style: textStyle(
+                                                              context,
+                                                              fontSize: 25,
                                                               color: colorGrey,
                                                               fontWeight:
                                                                   FontWeight
@@ -1192,7 +1274,7 @@ class MainReport extends StatelessWidget {
                                                         'ค้นหา',
                                                         style: textStyle(
                                                             context,
-                                                            fontSize: 15,
+                                                            fontSize: 25,
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                             color: colorWhite),
@@ -1243,7 +1325,7 @@ class MainReport extends StatelessWidget {
                                                     Text(
                                                       'PDF',
                                                       style: textStyle(context,
-                                                          fontSize: 15,
+                                                          fontSize: 25,
                                                           fontWeight:
                                                               FontWeight.bold,
                                                           color: colorWhite),
@@ -1295,7 +1377,7 @@ class MainReport extends StatelessWidget {
                                                     Text(
                                                       'XLSX',
                                                       style: textStyle(context,
-                                                          fontSize: 15,
+                                                          fontSize: 25,
                                                           fontWeight:
                                                               FontWeight.bold,
                                                           color: colorWhite),
@@ -1330,7 +1412,7 @@ class MainReport extends StatelessWidget {
                                                 children: [
                                                   Text('หน่วยงาน',
                                                       style: textStyle(context,
-                                                          fontSize: 15)),
+                                                          fontSize: 25)),
                                                   Container(
                                                     padding: EdgeInsets.only(
                                                         left: 5, right: 5),
@@ -1352,8 +1434,8 @@ class MainReport extends StatelessWidget {
                                                           TextAlign.justify,
                                                       controller: contoller
                                                           .searchAgency.value,
-                                                      style: TextStyle(
-                                                          fontSize: 15.0,
+                                                      style: textStyle(context,
+                                                          fontSize: 25,
                                                           color: colorBlack,
                                                           fontWeight:
                                                               FontWeight.w400),
@@ -1362,8 +1444,9 @@ class MainReport extends StatelessWidget {
                                                               .collapsed(
                                                         fillColor: colorWhite,
                                                         hintText: "หน่วยงาน",
-                                                        hintStyle: TextStyle(
-                                                            fontSize: 15.0,
+                                                        hintStyle: textStyle(
+                                                            context,
+                                                            fontSize: 25,
                                                             color: colorGrey,
                                                             fontWeight:
                                                                 FontWeight
@@ -1405,7 +1488,7 @@ class MainReport extends StatelessWidget {
                                               children: [
                                                 Text('สถานะของหน่วยงาน',
                                                     style: textStyle(context,
-                                                        fontSize: 15)),
+                                                        fontSize: 25)),
                                                 Container(
                                                   width: double.infinity,
                                                   height: 40,
@@ -1463,9 +1546,9 @@ class MainReport extends StatelessWidget {
                                                             value: value!,
                                                             child: Text(
                                                               value,
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                      13.0,
+                                                              style: textStyle(
+                                                                  context,
+                                                                  fontSize: 25,
                                                                   color:
                                                                       colorGrey,
                                                                   fontWeight:
@@ -1516,7 +1599,7 @@ class MainReport extends StatelessWidget {
                                               children: [
                                                 Text('สถานะของรายการ',
                                                     style: textStyle(context,
-                                                        fontSize: 15)),
+                                                        fontSize: 25)),
                                                 Container(
                                                   padding:
                                                       const EdgeInsets.only(
@@ -1577,9 +1660,9 @@ class MainReport extends StatelessWidget {
                                                             value: value!,
                                                             child: Text(
                                                               value,
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                      13.0,
+                                                              style: textStyle(
+                                                                  context,
+                                                                  fontSize: 25,
                                                                   color:
                                                                       colorGrey,
                                                                   fontWeight:
@@ -1654,7 +1737,7 @@ class MainReport extends StatelessWidget {
                                                             'ค้นหา',
                                                             style: textStyle(
                                                                 context,
-                                                                fontSize: 15,
+                                                                fontSize: 25,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
@@ -1711,7 +1794,7 @@ class MainReport extends StatelessWidget {
                                                           'PDF',
                                                           style: textStyle(
                                                               context,
-                                                              fontSize: 15,
+                                                              fontSize: 25,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold,
@@ -1769,7 +1852,7 @@ class MainReport extends StatelessWidget {
                                                           'XLSX',
                                                           style: textStyle(
                                                               context,
-                                                              fontSize: 15,
+                                                              fontSize: 25,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold,
@@ -1787,8 +1870,10 @@ class MainReport extends StatelessWidget {
                                       ],
                                     )
                                   ],
-                                ),  
-                            SizedBox(height: 20,),
+                                ),
+                          SizedBox(
+                            height: 20,
+                          ),
                           if (contoller.allEvent.value.eventList != null)
                             Container(
                               child: contoller.pageTableReport(context),

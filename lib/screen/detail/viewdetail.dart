@@ -45,7 +45,7 @@ class Detail extends StatelessWidget {
                         Text(
                           contoller.pageName.value,
                           style: textStyle(context,
-                              fontSize: 16, fontWeight: FontWeight.bold),
+                              fontSize: 30, fontWeight: FontWeight.bold),
                         ),
                         InkWell(
                           onTap: () async {
@@ -81,7 +81,7 @@ class Detail extends StatelessWidget {
                                 Text(
                                   'แก้ไขรายงาน',
                                   style: textStyle(context,
-                                      fontSize: 15, color: Colors.white),
+                                      fontSize: 25, color: Colors.white),
                                 ),
                               ],
                             ),
@@ -97,22 +97,18 @@ class Detail extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-
                               Expanded(
                                   child: Container(
                                 child: Text(
                                   'ชื่อรายการ',
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorBlack),
+                                      fontSize: 25, color: colorBlack),
                                 ),
                               )),
                               const SizedBox(
                                 width: 20,
                               ),
-                              Expanded(
-                                  child: Container(
-                                  )),
-
+                              Expanded(child: Container()),
                             ],
                           ),
                           const SizedBox(
@@ -120,8 +116,6 @@ class Detail extends StatelessWidget {
                           ),
                           Row(
                             children: [
-
-
                               Expanded(
                                   child: Container(
                                 child: Text(
@@ -130,7 +124,7 @@ class Detail extends StatelessWidget {
                                       : contoller
                                           .dataEvent.value.events!.eventName!,
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorGrey),
+                                      fontSize: 25, color: colorGrey),
                                 ),
                               )),
                               const SizedBox(
@@ -138,15 +132,15 @@ class Detail extends StatelessWidget {
                               ),
                               Expanded(
                                   child: Container(
-                                    // child: Text(
-                                    //   (contoller.dataEvent.value.events == null)
-                                    //       ? ''
-                                    //       : contoller.category[contoller.dataEvent
-                                    //       .value.events!.disasterType!],
-                                    //   style: textStyle(context,
-                                    //       fontSize: 15, color: colorGrey),
-                                    // ),
-                                  )),
+                                      // child: Text(
+                                      //   (contoller.dataEvent.value.events == null)
+                                      //       ? ''
+                                      //       : contoller.category[contoller.dataEvent
+                                      //       .value.events!.disasterType!],
+                                      //   style: textStyle(context,
+                                      //       fontSize: 15, color: colorGrey),
+                                      // ),
+                                      )),
                             ],
                           ),
                           const SizedBox(
@@ -159,7 +153,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   'วันที่รับเรื่อง',
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorBlack),
+                                      fontSize: 25, color: colorBlack),
                                 ),
                               )),
                               const SizedBox(
@@ -170,7 +164,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   'รับเรื่องจาก',
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorBlack),
+                                      fontSize: 25, color: colorBlack),
                                 ),
                               ))
                             ],
@@ -187,7 +181,7 @@ class Detail extends StatelessWidget {
                                       ? ''
                                       : '${DateTime.parse(contoller.dataEvent.value.events!.datetime!).day} ${mountList[DateTime.parse(contoller.dataEvent.value.events!.datetime!).month - 1]} ${DateTime.parse(contoller.dataEvent.value.events!.datetime!).year + 543}',
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorGrey),
+                                      fontSize: 25, color: colorGrey),
                                 ),
                               )),
                               const SizedBox(
@@ -201,7 +195,7 @@ class Detail extends StatelessWidget {
                                       : contoller
                                           .dataEvent.value.events!.receiveFrom!,
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorGrey),
+                                      fontSize: 25, color: colorGrey),
                                 ),
                               )),
                             ],
@@ -216,7 +210,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   'หน่วยงานที่เกียวข้อง',
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorBlack),
+                                      fontSize: 25, color: colorBlack),
                                 ),
                               )),
                               const SizedBox(
@@ -227,7 +221,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   'สถานะหน่วยงานที่เกี่ยวข้อง',
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorBlack),
+                                      fontSize: 25, color: colorBlack),
                                 ),
                               ))
                             ],
@@ -245,7 +239,7 @@ class Detail extends StatelessWidget {
                                       : contoller.dataEvent.value.events!
                                           .relatedAgency!,
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorGrey),
+                                      fontSize: 25, color: colorGrey),
                                 ),
                               )),
                               const SizedBox(
@@ -259,7 +253,7 @@ class Detail extends StatelessWidget {
                                       : contoller.StatusList[contoller.dataEvent
                                           .value.events!.statusRelatedAgency!],
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorGrey),
+                                      fontSize: 25, color: colorGrey),
                                 ),
                               )),
                             ],
@@ -274,7 +268,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   'หน่วยงานที่รับผิดชอบ',
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorBlack),
+                                      fontSize: 25, color: colorBlack),
                                 ),
                               )),
                               const SizedBox(
@@ -285,7 +279,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   'สถานะหน่วยงานที่รับผิดชอบ',
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorBlack),
+                                      fontSize: 25, color: colorBlack),
                                 ),
                               ))
                             ],
@@ -304,7 +298,7 @@ class Detail extends StatelessWidget {
                                               .responsibleAgency ??
                                           '',
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorGrey),
+                                      fontSize: 25, color: colorGrey),
                                 ),
                               )),
                               const SizedBox(
@@ -318,7 +312,7 @@ class Detail extends StatelessWidget {
                                       : contoller.StatusList[contoller.dataEvent
                                           .value.events!.statusAgency!],
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorGrey),
+                                      fontSize: 25, color: colorGrey),
                                 ),
                               )),
                             ],
@@ -434,7 +428,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   'สถานะรายงาน',
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorBlack),
+                                      fontSize: 25, color: colorBlack),
                                 ),
                               )),
                               const SizedBox(
@@ -456,7 +450,7 @@ class Detail extends StatelessWidget {
                                       : contoller.StatusList[contoller
                                           .dataEvent.value.events!.statusItem!],
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorGrey),
+                                      fontSize: 25, color: colorGrey),
                                 ),
                               )),
                               const SizedBox(
@@ -465,414 +459,488 @@ class Detail extends StatelessWidget {
                               Expanded(child: Container()),
                             ],
                           ),
-                         if(contoller.dataEvent.value.events == null) if(contoller.dataEvent.value.events!
-                              .freeFormDetailList!.isNotEmpty)   const SizedBox(
-                            width: 40,
-                          ),
-                          if(contoller.dataEvent.value.events == null)  if(contoller.dataEvent.value.events!
-                            .freeFormDetailList!.isNotEmpty) Container(
-                            padding: EdgeInsets.all(20),
-                            child: ListView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: contoller.dataEvent.value.events!
-                                  .freeFormDetailList!.length,
-                              itemBuilder: (context, index) {
-                                TooltipBehavior _tooltipBehavior =
-                                TooltipBehavior(
-                                    enable: true,
-                                    tooltipPosition:
-                                    TooltipPosition.pointer);
-                                return (contoller
-                                    .dataEvent
-                                    .value
-                                    .events!
-                                    .freeFormDetailList![index]
-                                    .types ==
-                                    0 ||
-                                    contoller
-                                        .dataEvent
-                                        .value
-                                        .events!
-                                        .freeFormDetailList![index]
-                                        .types ==
-                                        1 ||
-                                    contoller
-                                        .dataEvent
-                                        .value
-                                        .events!
-                                        .freeFormDetailList![index]
-                                        .types ==
-                                        2)
-                                    ? Column(
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                        '${contoller.dataEvent.value.events!.freeFormDetailList![index].section}',
-                                        style: textStyle(context,
-                                            fontSize: 15,
-                                            color: colorBlack,
-                                            fontWeight: FontWeight.bold)),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Row(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        (contoller
-                                            .dataEvent
-                                            .value
-                                            .events!
-                                            .freeFormDetailList![
-                                        index]
-                                            .types ==
-                                            0)
-                                            ?Container(
-                                          width: 300,
-                                          height: 40,
-                                          decoration: BoxDecoration(
-                                              color: colorWhite,
-                                              border: Border.all(
-                                                color:
-                                                Colors.black26,
-                                                width: 1,
-                                              ),
-                                              borderRadius:
-                                              BorderRadius
-                                                  .circular(5)),
-                                          alignment:
-                                          Alignment.center,
-                                          child: SizedBox(
-                                            width: double.infinity,
-                                            child:
-                                            DropdownButtonHideUnderline(
-                                              child: DropdownButton2<
-                                                  FreeFormSubDetailList>(
-                                                dropdownStyleData:
-                                                DropdownStyleData(
-                                                  maxHeight: 300,
-                                                  decoration:
-                                                  BoxDecoration(
-                                                    borderRadius:
-                                                    BorderRadius
-                                                        .circular(
-                                                        5),
-                                                  ),
-                                                  scrollbarTheme:
-                                                  ScrollbarThemeData(
-                                                    radius:
-                                                    const Radius
-                                                        .circular(
-                                                        5),
-                                                    thickness:
-                                                    MaterialStateProperty
-                                                        .all<double>(
-                                                        6),
-                                                    thumbVisibility:
-                                                    MaterialStateProperty
-                                                        .all<bool>(
-                                                        true),
-                                                  ),
-                                                ),
-                                                autofocus: true,
-                                                value: contoller
+                          if (contoller.dataEvent.value.events == null)
+                            if (contoller.dataEvent.value.events!
+                                .freeFormDetailList!.isNotEmpty)
+                              const SizedBox(
+                                width: 40,
+                              ),
+                          if (contoller.dataEvent.value.events == null)
+                            if (contoller.dataEvent.value.events!
+                                .freeFormDetailList!.isNotEmpty)
+                              Container(
+                                padding: EdgeInsets.all(20),
+                                child: ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: contoller.dataEvent.value.events!
+                                      .freeFormDetailList!.length,
+                                  itemBuilder: (context, index) {
+                                    TooltipBehavior _tooltipBehavior =
+                                        TooltipBehavior(
+                                            enable: true,
+                                            tooltipPosition:
+                                                TooltipPosition.pointer);
+                                    return (contoller
                                                     .dataEvent
                                                     .value
                                                     .events!
-                                                    .freeFormDetailList![
-                                                index]
-                                                    .freeFormSubDetailList![0],
-                                                hint: Text(
-                                                  'เลือกทั้งหมด',
-                                                  style: TextStyle(
-                                                      fontSize:
-                                                      13.0,
-                                                      color:
-                                                      colorGrey,
+                                                    .freeFormDetailList![index]
+                                                    .types ==
+                                                0 ||
+                                            contoller
+                                                    .dataEvent
+                                                    .value
+                                                    .events!
+                                                    .freeFormDetailList![index]
+                                                    .types ==
+                                                1 ||
+                                            contoller
+                                                    .dataEvent
+                                                    .value
+                                                    .events!
+                                                    .freeFormDetailList![index]
+                                                    .types ==
+                                                2)
+                                        ? Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                  '${contoller.dataEvent.value.events!.freeFormDetailList![index].section}',
+                                                  style: textStyle(context,
+                                                      fontSize: 25,
+                                                      color: colorBlack,
                                                       fontWeight:
-                                                      FontWeight
-                                                          .w400),
-                                                ),
-                                                items: contoller
-                                                    .dataEvent
-                                                    .value
-                                                    .events!
-                                                    .freeFormDetailList![
-                                                index]
-                                                    .freeFormSubDetailList!
-                                                    .map<
-                                                    DropdownMenuItem<
-                                                        FreeFormSubDetailList>>(
-                                                        (FreeFormSubDetailList?
-                                                    value) {
-                                                      return DropdownMenuItem<
-                                                          FreeFormSubDetailList>(
-                                                        value: value!,
-                                                        child: Text(
-                                                          value
-                                                              .optionName!,
-                                                          style: TextStyle(
-                                                              fontSize:
-                                                              13.0,
-                                                              color:
-                                                              colorGrey,
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w400),
-                                                        ),
-                                                      );
-                                                    }).toList(),
-                                                iconStyleData:
-                                                const IconStyleData(
-                                                    icon: Icon(
-                                                      Icons
-                                                          .keyboard_arrow_down,
-                                                      size: 24,
-                                                    )),
+                                                          FontWeight.bold)),
+                                              SizedBox(
+                                                height: 10,
                                               ),
-                                            ),
-                                          ),
-                                        )
-                                            :(contoller
-                                            .dataEvent
-                                            .value
-                                            .events!
-                                            .freeFormDetailList![
-                                        index]
-                                            .types ==
-                                            1)?Container(
-                                          height: 300,
-                                          width: 300,
-                                          child: ListView.builder(
-                                            physics: const NeverScrollableScrollPhysics(),
-                                            shrinkWrap: true,
-                                            itemCount: contoller
-                                                .dataEvent
-                                                .value
-                                                .events!
-                                                .freeFormDetailList![
-                                            index]
-                                                .freeFormSubDetailList!
-                                                .length,
-                                            itemBuilder:
-                                                (context, indexCheck) {
-                                              return Container(
-                                                  height: 40,
-                                                  width: 300,
-                                                  padding: EdgeInsets.all(5),
-                                                  child: Row(
+                                              Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  (contoller
+                                                              .dataEvent
+                                                              .value
+                                                              .events!
+                                                              .freeFormDetailList![
+                                                                  index]
+                                                              .types ==
+                                                          0)
+                                                      ? Container(
+                                                          width: 300,
+                                                          height: 40,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                                  color:
+                                                                      colorWhite,
+                                                                  border: Border
+                                                                      .all(
+                                                                    color: Colors
+                                                                        .black26,
+                                                                    width: 1,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              5)),
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child: SizedBox(
+                                                            width:
+                                                                double.infinity,
+                                                            child:
+                                                                DropdownButtonHideUnderline(
+                                                              child: DropdownButton2<
+                                                                  FreeFormSubDetailList>(
+                                                                dropdownStyleData:
+                                                                    DropdownStyleData(
+                                                                  maxHeight:
+                                                                      300,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(5),
+                                                                  ),
+                                                                  scrollbarTheme:
+                                                                      ScrollbarThemeData(
+                                                                    radius: const Radius
+                                                                        .circular(
+                                                                        5),
+                                                                    thickness:
+                                                                        MaterialStateProperty.all<
+                                                                            double>(6),
+                                                                    thumbVisibility:
+                                                                        MaterialStateProperty.all<bool>(
+                                                                            true),
+                                                                  ),
+                                                                ),
+                                                                autofocus: true,
+                                                                value: contoller
+                                                                    .dataEvent
+                                                                    .value
+                                                                    .events!
+                                                                    .freeFormDetailList![
+                                                                        index]
+                                                                    .freeFormSubDetailList![0],
+                                                                hint: Text(
+                                                                  'เลือกทั้งหมด',
+                                                                  style: textStyle(
+                                                                      context,
+                                                                      fontSize:
+                                                                          25,
+                                                                      color:
+                                                                          colorGrey,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w400),
+                                                                ),
+                                                                items: contoller
+                                                                    .dataEvent
+                                                                    .value
+                                                                    .events!
+                                                                    .freeFormDetailList![
+                                                                        index]
+                                                                    .freeFormSubDetailList!
+                                                                    .map<
+                                                                        DropdownMenuItem<
+                                                                            FreeFormSubDetailList>>((FreeFormSubDetailList?
+                                                                        value) {
+                                                                  return DropdownMenuItem<
+                                                                      FreeFormSubDetailList>(
+                                                                    value:
+                                                                        value!,
+                                                                    child: Text(
+                                                                      value
+                                                                          .optionName!,
+                                                                      style: textStyle(
+                                                                          context,
+                                                                          fontSize:
+                                                                              25,
+                                                                          color:
+                                                                              colorGrey,
+                                                                          fontWeight:
+                                                                              FontWeight.w400),
+                                                                    ),
+                                                                  );
+                                                                }).toList(),
+                                                                iconStyleData:
+                                                                    const IconStyleData(
+                                                                        icon:
+                                                                            Icon(
+                                                                  Icons
+                                                                      .keyboard_arrow_down,
+                                                                  size: 24,
+                                                                )),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )
+                                                      : (contoller
+                                                                  .dataEvent
+                                                                  .value
+                                                                  .events!
+                                                                  .freeFormDetailList![
+                                                                      index]
+                                                                  .types ==
+                                                              1)
+                                                          ? Container(
+                                                              height: 300,
+                                                              width: 300,
+                                                              child: ListView
+                                                                  .builder(
+                                                                physics:
+                                                                    const NeverScrollableScrollPhysics(),
+                                                                shrinkWrap:
+                                                                    true,
+                                                                itemCount: contoller
+                                                                    .dataEvent
+                                                                    .value
+                                                                    .events!
+                                                                    .freeFormDetailList![
+                                                                        index]
+                                                                    .freeFormSubDetailList!
+                                                                    .length,
+                                                                itemBuilder:
+                                                                    (context,
+                                                                        indexCheck) {
+                                                                  return Container(
+                                                                      height:
+                                                                          40,
+                                                                      width:
+                                                                          300,
+                                                                      padding:
+                                                                          EdgeInsets.all(
+                                                                              5),
+                                                                      child:
+                                                                          Row(
+                                                                        children: [
+                                                                          Icon(
+                                                                            Icons.check_box_outline_blank,
+                                                                            size:
+                                                                                20,
+                                                                          ),
+                                                                          SizedBox(
+                                                                            width:
+                                                                                20,
+                                                                          ),
+                                                                          Text(
+                                                                            contoller.dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![indexCheck].optionName ??
+                                                                                'cfdf',
+                                                                            style: textStyle(context,
+                                                                                fontSize: 25,
+                                                                                color: Colors.grey),
+                                                                          ),
+                                                                        ],
+                                                                      ));
+                                                                },
+                                                              ),
+                                                            )
+                                                          : Container(
+                                                              height: 300,
+                                                              width: 300,
+                                                              child: ListView
+                                                                  .builder(
+                                                                physics:
+                                                                    const NeverScrollableScrollPhysics(),
+                                                                shrinkWrap:
+                                                                    true,
+                                                                itemCount: contoller
+                                                                    .dataEvent
+                                                                    .value
+                                                                    .events!
+                                                                    .freeFormDetailList![
+                                                                        index]
+                                                                    .freeFormSubDetailList!
+                                                                    .length,
+                                                                itemBuilder:
+                                                                    (context,
+                                                                        indexCheck) {
+                                                                  return Container(
+                                                                      height:
+                                                                          40,
+                                                                      width:
+                                                                          300,
+                                                                      padding:
+                                                                          EdgeInsets.all(
+                                                                              5),
+                                                                      child:
+                                                                          Row(
+                                                                        children: [
+                                                                          Icon(
+                                                                            Icons.radio_button_off,
+                                                                            size:
+                                                                                20,
+                                                                          ),
+                                                                          SizedBox(
+                                                                            width:
+                                                                                20,
+                                                                          ),
+                                                                          Text(
+                                                                            contoller.dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![indexCheck].optionName ??
+                                                                                'cfdf',
+                                                                            style: textStyle(context,
+                                                                                fontSize: 25,
+                                                                                color: Colors.grey),
+                                                                          ),
+                                                                        ],
+                                                                      ));
+                                                                },
+                                                              ),
+                                                            ),
+                                                  SizedBox(
+                                                    width: 100,
+                                                  ),
+                                                  Container(
+                                                    height: 300,
+                                                    width: 300,
+                                                    child: SfCircularChart(
+                                                        tooltipBehavior:
+                                                            _tooltipBehavior,
+                                                        series: <CircularSeries>[
+                                                          PieSeries<FreeFormSubDetailList,
+                                                                  String>(
+                                                              name: contoller
+                                                                  .dataEvent
+                                                                  .value
+                                                                  .events!
+                                                                  .freeFormDetailList![
+                                                                      index]
+                                                                  .section,
+                                                              dataLabelSettings:
+                                                                  const DataLabelSettings(
+                                                                      isVisible:
+                                                                          true,
+                                                                      // Positioning the data label
+                                                                      labelPosition:
+                                                                          ChartDataLabelPosition
+                                                                              .outside),
+                                                              dataSource: contoller
+                                                                  .dataEvent
+                                                                  .value
+                                                                  .events!
+                                                                  .freeFormDetailList![
+                                                                      index]
+                                                                  .freeFormSubDetailList,
+                                                              xValueMapper:
+                                                                  (FreeFormSubDetailList
+                                                                              data,
+                                                                          _) =>
+                                                                      data
+                                                                          .optionName,
+                                                              yValueMapper:
+                                                                  (FreeFormSubDetailList
+                                                                              data,
+                                                                          _) =>
+                                                                      data
+                                                                          .amount,
+                                                              dataLabelMapper:
+                                                                  (FreeFormSubDetailList
+                                                                              data,
+                                                                          _) =>
+                                                                      data.amount
+                                                                          .toString(),
+                                                              // Radius of pie
+                                                              radius: '70%')
+                                                        ]),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 20,
+                                              ),
+                                              Divider(
+                                                height: 1,
+                                                color: Colors.grey.shade200,
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                            ],
+                                          )
+                                        : SizedBox();
+                                  },
+                                ),
+                              ),
+                          if (contoller.dataEvent.value.events == null)
+                            if (contoller.dataEvent.value.events!
+                                .freeFormDetailList!.isNotEmpty)
+                              const SizedBox(
+                                height: 40,
+                              ),
+                          if (contoller.dataEvent.value.events == null)
+                            if (contoller.dataEvent.value.events!
+                                .freeFormDetailList!.isNotEmpty)
+                              ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: contoller.dataEvent.value.events!
+                                    .freeFormDetailList!.length,
+                                itemBuilder: (context, index) {
+                                  return (contoller
+                                              .dataEvent
+                                              .value
+                                              .events!
+                                              .freeFormDetailList![index]
+                                              .types ==
+                                          4)
+                                      ? (contoller
+                                              .dataEvent
+                                              .value
+                                              .events!
+                                              .freeFormDetailList![index]
+                                              .freeFormSubDetailList![0]
+                                              .imageList!
+                                              .isNotEmpty)
+                                          ? Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                    '${contoller.dataEvent.value.events!.freeFormDetailList![index].section}',
+                                                    style: textStyle(context,
+                                                        fontSize: 30,
+                                                        color: colorBlack,
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                                SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Container(
+                                                  padding: EdgeInsets.all(10),
+                                                  color: Colors.white,
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
-                                                      Icon(Icons.check_box_outline_blank,size: 20,),
-                                                      SizedBox(width: 20,),
-                                                      Text( contoller.dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![indexCheck].optionName??'cfdf',style: TextStyle(fontSize: 15,color: Colors.grey),),
+                                                      Container(
+                                                        decoration: BoxDecoration(
+                                                            color: colorWhite,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5)),
+                                                        child: GridView.builder(
+                                                          shrinkWrap: true,
+                                                          gridDelegate:
+                                                              const SliverGridDelegateWithMaxCrossAxisExtent(
+                                                            maxCrossAxisExtent:
+                                                                150,
+                                                            crossAxisSpacing:
+                                                                3.0,
+                                                            mainAxisSpacing:
+                                                                10.0,
+                                                            childAspectRatio:
+                                                                0.8,
+                                                          ),
+                                                          itemCount: contoller
+                                                              .dataEvent
+                                                              .value
+                                                              .events!
+                                                              .freeFormDetailList![
+                                                                  index]
+                                                              .freeFormSubDetailList![
+                                                                  0]
+                                                              .imageList!
+                                                              .length,
+                                                          itemBuilder: (context,
+                                                              indexImage) {
+                                                            return Container(
+                                                              width: 200,
+                                                              decoration: BoxDecoration(
+                                                                  image: DecorationImage(
+                                                                      image: NetworkImage(contoller
+                                                                          .dataEvent
+                                                                          .value
+                                                                          .events!
+                                                                          .freeFormDetailList![
+                                                                              index]
+                                                                          .freeFormSubDetailList![
+                                                                              0]
+                                                                          .imageList![
+                                                                              indexImage]
+                                                                          .image!),
+                                                                      fit: BoxFit
+                                                                          .cover)),
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
                                                     ],
-                                                  ));
-                                            },
-                                          ),
-                                        ):Container(
-                                          height: 300,
-                                          width: 300,
-                                          child: ListView.builder(
-                                            physics: const NeverScrollableScrollPhysics(),
-                                            shrinkWrap: true,
-                                            itemCount: contoller
-                                                .dataEvent
-                                                .value
-                                                .events!
-                                                .freeFormDetailList![
-                                            index]
-                                                .freeFormSubDetailList!
-                                                .length,
-                                            itemBuilder:
-                                                (context, indexCheck) {
-                                              return   Container(
-                                                  height: 40,
-                                                  width: 300,
-                                                  padding: EdgeInsets.all(5),
-                                                  child: Row(
-                                                    children: [
-                                                      Icon(Icons.radio_button_off,size: 20,),
-                                                      SizedBox(width: 20,),
-                                                      Text( contoller.dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![indexCheck].optionName??'cfdf',style: TextStyle(fontSize: 15,color: Colors.grey),),
-                                                    ],
-                                                  ));
-
-                                            },
-                                          ),
-                                        ) ,
-                                        SizedBox(
-                                          width: 100,
-                                        ),
-                                        Container(
-                                          height: 300,
-                                          width: 300,
-                                          child: SfCircularChart(
-                                              tooltipBehavior:
-                                              _tooltipBehavior,
-                                              series: <CircularSeries>[
-                                                PieSeries<
-                                                    FreeFormSubDetailList,
-                                                    String>(
-                                                    name: contoller
-                                                        .dataEvent
-                                                        .value
-                                                        .events!
-                                                        .freeFormDetailList![
-                                                    index]
-                                                        .section,
-                                                    dataLabelSettings:
-                                                    const DataLabelSettings(
-                                                        isVisible:
-                                                        true,
-                                                        // Positioning the data label
-                                                        labelPosition:
-                                                        ChartDataLabelPosition
-                                                            .outside),
-                                                    dataSource: contoller
-                                                        .dataEvent
-                                                        .value
-                                                        .events!
-                                                        .freeFormDetailList![
-                                                    index]
-                                                        .freeFormSubDetailList,
-                                                    xValueMapper: (FreeFormSubDetailList
-                                                    data,
-                                                        _) =>
-                                                    data.optionName,
-                                                    yValueMapper:
-                                                        (FreeFormSubDetailList
-                                                    data,
-                                                        _) =>
-                                                    data.amount,
-                                                    dataLabelMapper:
-                                                        (FreeFormSubDetailList
-                                                    data,
-                                                        _) =>
-                                                        data.amount
-                                                            .toString(),
-                                                    // Radius of pie
-                                                    radius: '70%')
-                                              ]),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Divider(
-                                      height: 1,
-                                      color: Colors.grey.shade200,
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                  ],
-                                )
-                                    : SizedBox();
-                              },
-                            ),
-                          ),
-                          if(contoller.dataEvent.value.events == null)if(contoller.dataEvent.value.events!
-                              .freeFormDetailList!.isNotEmpty)const SizedBox(
-                            height: 40,
-                          ),
-                          if(contoller.dataEvent.value.events == null) if(contoller.dataEvent.value.events!
-                             .freeFormDetailList!.isNotEmpty) ListView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: contoller.dataEvent.value.events!
-                                .freeFormDetailList!.length,
-                            itemBuilder: (context, index) {
-                              return (contoller.dataEvent.value.events!
-                                  .freeFormDetailList![index].types ==
-                                  4)
-                                  ?(contoller
-                                  .dataEvent
-                                  .value
-                                  .events!
-                                  .freeFormDetailList![
-                              index]
-                                  .freeFormSubDetailList![0]
-                                  .imageList!.isNotEmpty)? Column(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                      '${contoller.dataEvent.value.events!.freeFormDetailList![index].section}',
-                                      style: textStyle(context,
-                                          fontSize: 15,
-                                          color: colorBlack,
-                                          fontWeight: FontWeight.bold)),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.all(10),
-                                    color: Colors.white,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              color: colorWhite,
-                                              borderRadius:
-                                              BorderRadius.circular(
-                                                  5)),
-                                          child: GridView.builder(
-                                            shrinkWrap: true,
-                                            gridDelegate:
-                                            const SliverGridDelegateWithMaxCrossAxisExtent(
-                                              maxCrossAxisExtent: 150,
-                                              crossAxisSpacing: 3.0,
-                                              mainAxisSpacing: 10.0,
-                                              childAspectRatio: 0.8,
-                                            ),
-                                            itemCount: contoller
-                                                .dataEvent
-                                                .value
-                                                .events!
-                                                .freeFormDetailList![
-                                            index]
-                                                .freeFormSubDetailList![0]
-                                                .imageList!
-                                                .length,
-                                            itemBuilder:
-                                                (context, indexImage) {
-                                              return Container(
-                                                width: 200,
-                                                decoration: BoxDecoration(
-                                                    image: DecorationImage(
-                                                        image: NetworkImage(contoller
-                                                            .dataEvent
-                                                            .value
-                                                            .events!
-                                                            .freeFormDetailList![
-                                                        index]
-                                                            .freeFormSubDetailList![
-                                                        0]
-                                                            .imageList![
-                                                        indexImage]
-                                                            .image!),
-                                                        fit: BoxFit
-                                                            .cover)),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ):SizedBox()
-                                  : SizedBox();
-                            },
-                          ),
+                                                  ),
+                                                ),
+                                              ],
+                                            )
+                                          : SizedBox()
+                                      : SizedBox();
+                                },
+                              ),
                           const SizedBox(
                             height: 20,
                           ),
@@ -883,116 +951,123 @@ class Detail extends StatelessWidget {
                                 .freeFormDetailList!.length,
                             itemBuilder: (context, index) {
                               return (contoller.dataEvent.value.events!
-                                  .freeFormDetailList![index].types ==
-                                  5)
-                                  ?( contoller
-                                  .dataEvent
-                                  .value
-                                  .events!
-                                  .freeFormDetailList![index]
-                                  .freeFormSubDetailList![0]
-                                  .fileList!
-                                  .isNotEmpty)? Column(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                      '${contoller.dataEvent.value.events!.freeFormDetailList![index].section}',
-                                      style: textStyle(context,
-                                          fontSize: 15,
-                                          color: colorBlack,
-                                          fontWeight: FontWeight.bold)),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.all(10),
-                                    color: Colors.white,
-                                    child: GridView.builder(
-                                      shrinkWrap: true,
-                                      gridDelegate:
-                                      const SliverGridDelegateWithMaxCrossAxisExtent(
-                                        maxCrossAxisExtent: 250,
-                                        crossAxisSpacing: 3.0,
-                                        mainAxisSpacing: 5.0,
-                                        childAspectRatio: 5,
-                                      ),
-                                      itemCount: contoller
+                                          .freeFormDetailList![index].types ==
+                                      5)
+                                  ? (contoller
                                           .dataEvent
                                           .value
                                           .events!
                                           .freeFormDetailList![index]
                                           .freeFormSubDetailList![0]
                                           .fileList!
-                                          .length,
-                                      itemBuilder: (context, indexFile) {
-                                        return InkWell(
-                                          onTap: () {
-                                            contoller.downloadFile(contoller
-                                                .dataEvent
-                                                .value
-                                                .events!
-                                                .freeFormDetailList![
-                                            index]
-                                                .freeFormSubDetailList![0]
-                                                .fileList![indexFile]
-                                                .file!);
-                                          },
-                                          child: Container(
-                                            height: 50,
-                                            color: Colors.grey.shade100,
-                                            width: 250,
-                                            padding: EdgeInsets.all(4),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment
-                                                  .center,
-                                              children: [
-                                                Icon(
-                                                  CupertinoIcons
-                                                      .doc_text_fill,
-                                                  size: 20,
-                                                ),
-                                                SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text(
-                                                    contoller
-                                                        .dataEvent
-                                                        .value
-                                                        .events!
-                                                        .freeFormDetailList![
-                                                    index]
-                                                        .freeFormSubDetailList![
-                                                    0]
-                                                        .fileList![
-                                                    indexFile]
-                                                        .fileName ??
-                                                        '',
-                                                    style: textStyle(
-                                                        context,
-                                                        fontSize: 15,
-                                                        color:
-                                                        colorBlack)),
-                                                SizedBox(
-                                                  width: 13,
-                                                ),
-                                                SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Icon(
-                                                  Icons.download,
-                                                  size: 20,
-                                                )
-                                              ],
+                                          .isNotEmpty)
+                                      ? Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                                '${contoller.dataEvent.value.events!.freeFormDetailList![index].section}',
+                                                style: textStyle(context,
+                                                    fontSize: 25,
+                                                    color: colorBlack,
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                            SizedBox(
+                                              height: 10,
                                             ),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  )
-                                ],
-                              ):SizedBox()
+                                            Container(
+                                              padding: EdgeInsets.all(10),
+                                              color: Colors.white,
+                                              child: GridView.builder(
+                                                shrinkWrap: true,
+                                                gridDelegate:
+                                                    const SliverGridDelegateWithMaxCrossAxisExtent(
+                                                  maxCrossAxisExtent: 250,
+                                                  crossAxisSpacing: 3.0,
+                                                  mainAxisSpacing: 5.0,
+                                                  childAspectRatio: 5,
+                                                ),
+                                                itemCount: contoller
+                                                    .dataEvent
+                                                    .value
+                                                    .events!
+                                                    .freeFormDetailList![index]
+                                                    .freeFormSubDetailList![0]
+                                                    .fileList!
+                                                    .length,
+                                                itemBuilder:
+                                                    (context, indexFile) {
+                                                  return InkWell(
+                                                    onTap: () {
+                                                      contoller.downloadFile(contoller
+                                                          .dataEvent
+                                                          .value
+                                                          .events!
+                                                          .freeFormDetailList![
+                                                              index]
+                                                          .freeFormSubDetailList![
+                                                              0]
+                                                          .fileList![indexFile]
+                                                          .file!);
+                                                    },
+                                                    child: Container(
+                                                      height: 50,
+                                                      color:
+                                                          Colors.grey.shade100,
+                                                      width: 250,
+                                                      padding:
+                                                          EdgeInsets.all(4),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Icon(
+                                                            CupertinoIcons
+                                                                .doc_text_fill,
+                                                            size: 20,
+                                                          ),
+                                                          SizedBox(
+                                                            width: 10,
+                                                          ),
+                                                          Text(
+                                                              contoller
+                                                                      .dataEvent
+                                                                      .value
+                                                                      .events!
+                                                                      .freeFormDetailList![
+                                                                          index]
+                                                                      .freeFormSubDetailList![
+                                                                          0]
+                                                                      .fileList![
+                                                                          indexFile]
+                                                                      .fileName ??
+                                                                  '',
+                                                              style: textStyle(
+                                                                  context,
+                                                                  fontSize: 25,
+                                                                  color:
+                                                                      colorBlack)),
+                                                          SizedBox(
+                                                            width: 13,
+                                                          ),
+                                                          SizedBox(
+                                                            width: 10,
+                                                          ),
+                                                          Icon(
+                                                            Icons.download,
+                                                            size: 20,
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                            )
+                                          ],
+                                        )
+                                      : SizedBox()
                                   : SizedBox();
                             },
                           ),
@@ -1006,126 +1081,132 @@ class Detail extends StatelessWidget {
                                 .freeFormDetailList!.length,
                             itemBuilder: (context, index) {
                               return (contoller.dataEvent.value.events!
-                                  .freeFormDetailList![index].types ==
-                                  3)
+                                          .freeFormDetailList![index].types ==
+                                      3)
                                   ? (contoller
-                                  .dataEvent
-                                  .value
-                                  .events!
-                                  .freeFormDetailList![index]
-                                  .freeFormSubDetailList![0]
-                                  .textboxList!
-                                  .isNotEmpty)?Column(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                      contoller
                                           .dataEvent
                                           .value
                                           .events!
                                           .freeFormDetailList![index]
-                                          .section ??
-                                          '',
-                                      style: textStyle(context,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: colorBlack)),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.all(20),
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                      BorderRadius.circular(10),
-                                      color: Colors.white,
-                                    ),
-                                    child: ListView.builder(
-                                        physics: const NeverScrollableScrollPhysics(),
-                                        shrinkWrap: true,
-                                        itemCount: contoller
-                                            .dataEvent
-                                            .value
-                                            .events!
-                                            .freeFormDetailList![index]
-                                            .freeFormSubDetailList![0]
-                                            .textboxList!
-                                            .length,
-                                        itemBuilder: (context,
-                                            indexText) =>
-                                            Column(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment
-                                                  .start,
-                                              children: [
-                                                SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Text(
-                                                        contoller
-                                                            .dataEvent
-                                                            .value
-                                                            .events!
-                                                            .freeFormDetailList![
-                                                        index]
-                                                            .freeFormSubDetailList![
-                                                        0]
-                                                            .textboxList![
-                                                        indexText]
-                                                            .name ??
-                                                            '',
-                                                        style: textStyle(
-                                                            context,
-                                                            fontSize: 15,
-                                                            color:
-                                                            colorBlack,
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .bold)),
-                                                    SizedBox(
-                                                      width: 13,
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Text(
-                                                    contoller
+                                          .freeFormSubDetailList![0]
+                                          .textboxList!
+                                          .isNotEmpty)
+                                      ? Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                                contoller
                                                         .dataEvent
                                                         .value
                                                         .events!
                                                         .freeFormDetailList![
-                                                    index]
-                                                        .freeFormSubDetailList![
-                                                    0]
-                                                        .textboxList![
-                                                    indexText]
-                                                        .answer ??
-                                                        '',
-                                                    style: textStyle(
-                                                        context,
-                                                        fontSize: 15,
-                                                        color:
-                                                        colorBlack)),
-                                                SizedBox(
-                                                  width: 13,
-                                                ),
-                                                SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Divider(
-                                                  height: 1,
-                                                  color: Colors.grey,
-                                                )
-                                              ],
-                                            )),
-                                  ),
-                                ],
-                              ):SizedBox()
+                                                            index]
+                                                        .section ??
+                                                    '',
+                                                style: textStyle(context,
+                                                    fontSize: 30,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: colorBlack)),
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+                                            Container(
+                                              padding: EdgeInsets.all(20),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: Colors.white,
+                                              ),
+                                              child: ListView.builder(
+                                                  physics:
+                                                      const NeverScrollableScrollPhysics(),
+                                                  shrinkWrap: true,
+                                                  itemCount: contoller
+                                                      .dataEvent
+                                                      .value
+                                                      .events!
+                                                      .freeFormDetailList![
+                                                          index]
+                                                      .freeFormSubDetailList![0]
+                                                      .textboxList!
+                                                      .length,
+                                                  itemBuilder: (context,
+                                                          indexText) =>
+                                                      Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          SizedBox(
+                                                            height: 10,
+                                                          ),
+                                                          Row(
+                                                            children: [
+                                                              Text(
+                                                                  contoller
+                                                                          .dataEvent
+                                                                          .value
+                                                                          .events!
+                                                                          .freeFormDetailList![
+                                                                              index]
+                                                                          .freeFormSubDetailList![
+                                                                              0]
+                                                                          .textboxList![
+                                                                              indexText]
+                                                                          .name ??
+                                                                      '',
+                                                                  style: textStyle(
+                                                                      context,
+                                                                      fontSize:
+                                                                          30,
+                                                                      color:
+                                                                          colorBlack,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold)),
+                                                              SizedBox(
+                                                                width: 13,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          SizedBox(
+                                                            height: 10,
+                                                          ),
+                                                          Text(
+                                                              contoller
+                                                                      .dataEvent
+                                                                      .value
+                                                                      .events!
+                                                                      .freeFormDetailList![
+                                                                          index]
+                                                                      .freeFormSubDetailList![
+                                                                          0]
+                                                                      .textboxList![
+                                                                          indexText]
+                                                                      .answer ??
+                                                                  '',
+                                                              style: textStyle(
+                                                                  context,
+                                                                  fontSize: 25,
+                                                                  color:
+                                                                      colorBlack)),
+                                                          SizedBox(
+                                                            width: 13,
+                                                          ),
+                                                          SizedBox(
+                                                            height: 10,
+                                                          ),
+                                                          Divider(
+                                                            height: 1,
+                                                            color: Colors.grey,
+                                                          )
+                                                        ],
+                                                      )),
+                                            ),
+                                          ],
+                                        )
+                                      : SizedBox()
                                   : SizedBox();
                             },
                           ),
@@ -1135,178 +1216,209 @@ class Detail extends StatelessWidget {
                           const SizedBox(
                             height: 30,
                           ),
-                        if(contoller
-                            .dataEvent.value.events!=null)  Stack(
-                            children: [
-                              Container(
-                                color: Colors.blue,
-                                height: 400,
-                                child: Center(
-                                    child: FlutterMap(
-                                  mapController: contoller.mapController.value,
-                                  options: MapOptions(
-                                    keepAlive: true,
-                                    initialCenter: LatLng(
-                                        double.parse(contoller
-                                            .dataEvent.value.events!.latitude!),
-                                        double.parse(contoller.dataEvent.value
-                                            .events!.longitude!)),
-                                    initialZoom: 14,
-                                    interactionOptions: InteractionOptions(
-                                        flags: InteractiveFlag.none),
+                          if (contoller.dataEvent.value.events != null)
+                            Stack(
+                              children: [
+                                Container(
+                                  color: Colors.blue,
+                                  height: 400,
+                                  child: Center(
+                                      child: FlutterMap(
+                                    mapController:
+                                        contoller.mapController.value,
+                                    options: MapOptions(
+                                      keepAlive: true,
+                                      initialCenter: LatLng(
+                                          double.parse(contoller.dataEvent.value
+                                              .events!.latitude!),
+                                          double.parse(contoller.dataEvent.value
+                                              .events!.longitude!)),
+                                      initialZoom: 14,
+                                      interactionOptions: InteractionOptions(
+                                          flags: InteractiveFlag.none),
 
-                                    // maxZoom: 17,
-                                    // minZoom: 10
-                                  ),
-                                  children: [
-                                    TileLayer(
-                                      urlTemplate:
-                                          'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                                      userAgentPackageName: 'com.example.app',
+                                      // maxZoom: 17,
+                                      // minZoom: 10
                                     ),
-                                    if (contoller.dataEvent.value.events !=
-                                        null)
-                                      MarkerLayer(
-                                        markers: [
-                                          Marker(
-                                              point: LatLng(
-                                                  double.parse(contoller
-                                                      .dataEvent
-                                                      .value
-                                                      .events!
-                                                      .latitude!),
-                                                  double.parse(contoller
-                                                      .dataEvent
-                                                      .value
-                                                      .events!
-                                                      .longitude!)),
-                                              width: 80,
-                                              height: 80,
-                                              child: InkWell(
-                                                onTap: () async {
-                                                  await launchUrl(
-                                                    Uri.parse(
-                                                        "https://www.google.co.th/maps/@${contoller.dataEvent.value.events!.latitude!},${contoller.dataEvent.value.events!.longitude!},17z?hl=th&entry=ttu"),
-                                                  );
-                                                  //
-                                                },
-                                                child: Stack(
-                                                  children: [
-                                                    Center(
-                                                      child: SvgPicture.asset(
-                                                        'assets/icons/svg/fire0.svg',color:(contoller.dataEvent.value.events!.statusItem==0)?Colors.amber:(contoller.dataEvent.value.events!.statusItem==1)?Colors.red:Colors.green,
-                                                        width: 80,height: 80,
-                                                      ),
-                                                    ),
-                                                    Positioned(
-                                                        top:15,
-                                                        left: 25,
-                                                        child:  SvgPicture.asset(
-                                                          listIconType[contoller.dataEvent.value.events!.iconMap??0],
-                                                          width: 30,height: 30,
-                                                        ))
-
-                                                  ],
-                                                )
-                                              )),
-                                        ],
-                                      )
-                                  ],
-                                )),
-                              ),
-                              Positioned(
-                                  top: 20,
-                                  left: 20,
-                                  child: Container(
-                                    height: (contoller.listSearchMap.isEmpty)?45:350,
-                                    width: 300,
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          height: 40,
-                                          color: colorWhite,
-                                          child: TextFormField(
-                                            controller: contoller.search.value,
-                                            autofocus: false,
-                                            onChanged: (value) {
-                                              // if (value.isNotEmpty) {
-                                              //   contoller.searchMap(value);
-                                              // }
-                                              if (value.isEmpty) {
-                                                contoller.listSearchMap.clear();
-                                              }
-                                            },
-                                            decoration: InputDecoration(
-                                              suffixIcon: InkWell(
-                                                  onTap: () async {
-                                                    contoller.searchMap(
-                                                        contoller
-                                                            .search.value.text);
-                                                  },
-                                                  child: Icon(Icons.search)),
-                                              fillColor: colorWhite,
-                                              hintText: "ค้นหา",
-                                              hintStyle: TextStyle(
-                                                  fontSize: 15.0,
-                                                  color: colorGrey,
-                                                  fontWeight: FontWeight.w400),
-                                              filled: true,
-                                              border: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: colorGrey,
-                                                  width: 2,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          height: 310,
-                                          child: ListView.builder(
-                                            itemCount: contoller
-                                                .listSearchMap.value.length,
-                                            itemBuilder: (context, index) =>
-                                                InkWell(
-                                              onTap: () {
-                                                contoller.mapController.value.move(
-                                                    LatLng(
-                                                        double.parse(contoller
-                                                            .listSearchMap
-                                                            .value[index]
-                                                            .lat!),
-                                                        double.parse(contoller
-                                                            .listSearchMap
-                                                            .value[index]
-                                                            .lon!)),
-                                                    16);
-                                                contoller.listSearchMap.clear();
-                                              },
-                                              child: Container(
-                                                padding: const EdgeInsets.only(
-                                                    left: 5,
-                                                    right: 5,
-                                                    top: 2,
-                                                    bottom: 2),
-                                                height: 45,
-                                                color: (index % 2 == 1)
-                                                    ? Colors.grey.shade300
-                                                    : Colors.white,
-                                                child: Text(contoller
-                                                    .listSearchMap
-                                                    .value[index]
-                                                    .displayName
-                                                    .toString()),
-                                              ),
-                                            ),
-                                          ),
+                                    children: [
+                                      TileLayer(
+                                        urlTemplate:
+                                            'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                        userAgentPackageName: 'com.example.app',
+                                      ),
+                                      if (contoller.dataEvent.value.events !=
+                                          null)
+                                        MarkerLayer(
+                                          markers: [
+                                            Marker(
+                                                point: LatLng(
+                                                    double.parse(contoller
+                                                        .dataEvent
+                                                        .value
+                                                        .events!
+                                                        .latitude!),
+                                                    double.parse(contoller
+                                                        .dataEvent
+                                                        .value
+                                                        .events!
+                                                        .longitude!)),
+                                                width: 80,
+                                                height: 80,
+                                                child: InkWell(
+                                                    onTap: () async {
+                                                      await launchUrl(
+                                                        Uri.parse(
+                                                            "https://www.google.co.th/maps/@${contoller.dataEvent.value.events!.latitude!},${contoller.dataEvent.value.events!.longitude!},17z?hl=th&entry=ttu"),
+                                                      );
+                                                      //
+                                                    },
+                                                    child: Stack(
+                                                      children: [
+                                                        Center(
+                                                          child:
+                                                              SvgPicture.asset(
+                                                            'assets/icons/svg/fire0.svg',
+                                                            color: (contoller
+                                                                        .dataEvent
+                                                                        .value
+                                                                        .events!
+                                                                        .statusItem ==
+                                                                    0)
+                                                                ? Colors.amber
+                                                                : (contoller
+                                                                            .dataEvent
+                                                                            .value
+                                                                            .events!
+                                                                            .statusItem ==
+                                                                        1)
+                                                                    ? Colors.red
+                                                                    : Colors
+                                                                        .green,
+                                                            width: 80,
+                                                            height: 80,
+                                                          ),
+                                                        ),
+                                                        Positioned(
+                                                            top: 15,
+                                                            left: 25,
+                                                            child: SvgPicture
+                                                                .asset(
+                                                              listIconType[contoller
+                                                                      .dataEvent
+                                                                      .value
+                                                                      .events!
+                                                                      .iconMap ??
+                                                                  0],
+                                                              width: 30,
+                                                              height: 30,
+                                                            ))
+                                                      ],
+                                                    ))),
+                                          ],
                                         )
-                                      ],
-                                    ),
+                                    ],
                                   )),
-                            ],
-                          ),
+                                ),
+                                Positioned(
+                                    top: 20,
+                                    left: 20,
+                                    child: Container(
+                                      height: (contoller.listSearchMap.isEmpty)
+                                          ? 45
+                                          : 350,
+                                      width: 300,
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            height: 40,
+                                            color: colorWhite,
+                                            child: TextFormField(
+                                              controller:
+                                                  contoller.search.value,
+                                              autofocus: false,
+                                              onChanged: (value) {
+                                                // if (value.isNotEmpty) {
+                                                //   contoller.searchMap(value);
+                                                // }
+                                                if (value.isEmpty) {
+                                                  contoller.listSearchMap
+                                                      .clear();
+                                                }
+                                              },
+                                              decoration: InputDecoration(
+                                                suffixIcon: InkWell(
+                                                    onTap: () async {
+                                                      contoller.searchMap(
+                                                          contoller.search.value
+                                                              .text);
+                                                    },
+                                                    child: Icon(Icons.search)),
+                                                fillColor: colorWhite,
+                                                hintText: "ค้นหา",
+                                                hintStyle: textStyle(context,
+                                                    fontSize: 25,
+                                                    color: colorGrey,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                                filled: true,
+                                                border: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: colorGrey,
+                                                    width: 2,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            height: 310,
+                                            child: ListView.builder(
+                                              itemCount: contoller
+                                                  .listSearchMap.value.length,
+                                              itemBuilder: (context, index) =>
+                                                  InkWell(
+                                                onTap: () {
+                                                  contoller.mapController.value.move(
+                                                      LatLng(
+                                                          double.parse(contoller
+                                                              .listSearchMap
+                                                              .value[index]
+                                                              .lat!),
+                                                          double.parse(contoller
+                                                              .listSearchMap
+                                                              .value[index]
+                                                              .lon!)),
+                                                      16);
+                                                  contoller.listSearchMap
+                                                      .clear();
+                                                },
+                                                child: Container(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 5,
+                                                          right: 5,
+                                                          top: 2,
+                                                          bottom: 2),
+                                                  height: 45,
+                                                  color: (index % 2 == 1)
+                                                      ? Colors.grey.shade300
+                                                      : Colors.white,
+                                                  child: Text(contoller
+                                                      .listSearchMap
+                                                      .value[index]
+                                                      .displayName
+                                                      .toString()),
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    )),
+                              ],
+                            ),
                           const SizedBox(
                             height: 30,
                           ),
@@ -1317,7 +1429,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   'ที่อยู่',
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorBlack),
+                                      fontSize: 25, color: colorBlack),
                                 ),
                               )),
                             ],
@@ -1336,7 +1448,7 @@ class Detail extends StatelessWidget {
                                               .address ??
                                           '',
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorGrey),
+                                      fontSize: 25, color: colorGrey),
                                 ),
                               )),
                             ],
@@ -1354,7 +1466,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   'ละติจูด',
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorBlack),
+                                      fontSize: 25, color: colorBlack),
                                 ),
                               )),
                               const SizedBox(
@@ -1365,7 +1477,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   'ลองติจูด',
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorBlack),
+                                      fontSize: 25, color: colorBlack),
                                 ),
                               ))
                             ],
@@ -1383,7 +1495,7 @@ class Detail extends StatelessWidget {
                                       : contoller
                                           .dataEvent.value.events!.latitude!,
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorGrey),
+                                      fontSize: 25, color: colorGrey),
                                 ),
                               )),
                               const SizedBox(
@@ -1397,7 +1509,7 @@ class Detail extends StatelessWidget {
                                       : contoller
                                           .dataEvent.value.events!.longitude!,
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorGrey),
+                                      fontSize: 25, color: colorGrey),
                                 ),
                               )),
                             ],
@@ -1412,7 +1524,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   'รูปที่อัพโหลด',
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorBlack),
+                                      fontSize: 25, color: colorBlack),
                                 ),
                               )),
                               const SizedBox(
@@ -1465,7 +1577,7 @@ class Detail extends StatelessWidget {
                                     child: Text(
                                       'รายละเอียดเพิ่มเติม',
                                       style: textStyle(context,
-                                          fontSize: 15, color: colorBlack),
+                                          fontSize: 25, color: colorBlack),
                                     ),
                                   )),
                                   const SizedBox(
@@ -1486,7 +1598,7 @@ class Detail extends StatelessWidget {
                                       ? ''
                                       : contoller.dataEvent.value.events!.note!,
                                   style: textStyle(context,
-                                      fontSize: 15, color: colorGrey),
+                                      fontSize: 25, color: colorGrey),
                                 ),
                               )),
                             ],
@@ -1507,7 +1619,7 @@ class Detail extends StatelessWidget {
                                     children: [
                                       Text('อัพเดทสถานการณ์รายงาน',
                                           style: textStyle(context,
-                                              fontSize: 15,
+                                              fontSize: 25,
                                               color:
                                                   (contoller.IndexChart.value ==
                                                           0)
@@ -1532,7 +1644,7 @@ class Detail extends StatelessWidget {
                                     children: [
                                       Text('แผนภูมิแท่ง',
                                           style: textStyle(context,
-                                              fontSize: 15,
+                                              fontSize: 25,
                                               color:
                                                   (contoller.IndexChart.value ==
                                                           1)
@@ -1556,7 +1668,6 @@ class Detail extends StatelessWidget {
                                 color: Colors.white,
                                 height: 600,
                                 child: ListView.builder(
-
                                     shrinkWrap: true,
                                     itemCount: contoller.dataEvent.value.events!
                                         .logList!.length,
@@ -1571,7 +1682,7 @@ class Detail extends StatelessWidget {
                                               children: [
                                                 Text('ลำดับที่ ${index + 1}',
                                                     style: textStyle(context,
-                                                        fontSize: 15,
+                                                        fontSize: 25,
                                                         color: colorBlack)),
                                                 SizedBox(
                                                   width: 13,
@@ -1585,7 +1696,7 @@ class Detail extends StatelessWidget {
                                                             .name ??
                                                         '',
                                                     style: textStyle(context,
-                                                        fontSize: 15,
+                                                        fontSize: 25,
                                                         color: colorBlack,
                                                         fontWeight:
                                                             FontWeight.bold)),
@@ -1601,13 +1712,13 @@ class Detail extends StatelessWidget {
                                                             .userName ??
                                                         '',
                                                     style: textStyle(context,
-                                                        fontSize: 15,
+                                                        fontSize: 25,
                                                         color: colorBlack)),
                                                 Spacer(),
                                                 Text(
                                                     "${contoller.dataEvent.value.events!.logList![index].datetime!.split("T")[0]} ${contoller.dataEvent.value.events!.logList![index].datetime!.split("T")[1]}",
                                                     style: textStyle(context,
-                                                        fontSize: 15,
+                                                        fontSize: 25,
                                                         color: colorBlack)),
                                                 SizedBox(
                                                   width: 13,
@@ -1631,7 +1742,7 @@ class Detail extends StatelessWidget {
                                                     .join(" , ")
                                                     .toString(),
                                                 style: textStyle(context,
-                                                    fontSize: 15,
+                                                    fontSize: 25,
                                                     color: colorBlack)),
                                             SizedBox(
                                               width: 13,
@@ -1651,7 +1762,7 @@ class Detail extends StatelessWidget {
                                                         .reportDetail ??
                                                     '',
                                                 style: textStyle(context,
-                                                    fontSize: 15,
+                                                    fontSize: 25,
                                                     color: colorBlack)),
                                             SizedBox(
                                               width: 13,
@@ -1789,7 +1900,7 @@ class Detail extends StatelessWidget {
                                                                 style: textStyle(
                                                                     context,
                                                                     fontSize:
-                                                                        13,
+                                                                        25,
                                                                     color:
                                                                         colorBlack)),
                                                             SizedBox(
@@ -1837,7 +1948,7 @@ class Detail extends StatelessWidget {
                                         ),
                                         Text('แกนY',
                                             style: textStyle(context,
-                                                fontSize: 15,
+                                                fontSize: 25,
                                                 color: colorBlack)),
                                         const SizedBox(
                                           width: 10,
@@ -1887,8 +1998,8 @@ class Detail extends StatelessWidget {
                                                     .selectChartY.value,
                                                 hint: Text(
                                                   'จำนวนผู้บาดเจ็บ',
-                                                  style: TextStyle(
-                                                      fontSize: 15.0,
+                                                  style: textStyle(context,
+                                                      fontSize: 25,
                                                       color: colorGrey,
                                                       fontWeight:
                                                           FontWeight.w400),
@@ -1902,8 +2013,8 @@ class Detail extends StatelessWidget {
                                                     value: value!,
                                                     child: Text(
                                                       value,
-                                                      style: TextStyle(
-                                                          fontSize: 15.0,
+                                                      style: textStyle(context,
+                                                          fontSize: 25,
                                                           color: colorGrey,
                                                           fontWeight:
                                                               FontWeight.w400),
@@ -1936,7 +2047,7 @@ class Detail extends StatelessWidget {
                                         ),
                                         Text('แกนX',
                                             style: textStyle(context,
-                                                fontSize: 15,
+                                                fontSize: 25,
                                                 color: colorBlack)),
                                         const SizedBox(
                                           width: 10,
@@ -1986,8 +2097,8 @@ class Detail extends StatelessWidget {
                                                     .selectChartX.value,
                                                 hint: Text(
                                                   'เพศ',
-                                                  style: TextStyle(
-                                                      fontSize: 15.0,
+                                                  style: textStyle(context,
+                                                      fontSize: 25,
                                                       color: colorGrey,
                                                       fontWeight:
                                                           FontWeight.w400),
@@ -2001,8 +2112,8 @@ class Detail extends StatelessWidget {
                                                     value: value!,
                                                     child: Text(
                                                       value,
-                                                      style: TextStyle(
-                                                          fontSize: 15.0,
+                                                      style: textStyle(context,
+                                                          fontSize: 25,
                                                           color: colorGrey,
                                                           fontWeight:
                                                               FontWeight.w400),
@@ -2032,29 +2143,31 @@ class Detail extends StatelessWidget {
                           SizedBox(
                             height: 20,
                           ),
-                          if (contoller.dataEvent.value.peopleNewList!.isNotEmpty)  Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text('ภาพถ่ายจากทางบ้าน',
-                                  style: textStyle(context,
-                                      fontSize: 16,
-                                      color: colorBlack,
-                                      fontWeight: FontWeight.bold)),
-                            ],
-                          ),
+                          if (contoller
+                              .dataEvent.value.peopleNewList!.isNotEmpty)
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text('ภาพถ่ายจากทางบ้าน',
+                                    style: textStyle(context,
+                                        fontSize: 30,
+                                        color: colorBlack,
+                                        fontWeight: FontWeight.bold)),
+                              ],
+                            ),
                           SizedBox(
                             width: 13,
                           ),
                           SizedBox(
                             height: 20,
                           ),
-                          if (contoller.dataEvent.value.peopleNewList!.isNotEmpty)
+                          if (contoller
+                              .dataEvent.value.peopleNewList!.isNotEmpty)
                             Container(
                               padding: EdgeInsets.all(10),
                               color: Colors.white,
                               height: 600,
                               child: ListView.builder(
-
                                   shrinkWrap: true,
                                   itemCount: contoller
                                       .dataEvent.value.peopleNewList!.length,
@@ -2069,7 +2182,7 @@ class Detail extends StatelessWidget {
                                             children: [
                                               Text('ลำดับที่ ${index + 1}',
                                                   style: textStyle(context,
-                                                      fontSize: 15,
+                                                      fontSize: 25,
                                                       color: colorBlack)),
                                               SizedBox(
                                                 width: 13,
@@ -2082,7 +2195,7 @@ class Detail extends StatelessWidget {
                                                           .name ??
                                                       'ไม่ระบุชื่อ',
                                                   style: textStyle(context,
-                                                      fontSize: 15,
+                                                      fontSize: 30,
                                                       color: colorBlack,
                                                       fontWeight:
                                                           FontWeight.bold)),
@@ -2093,7 +2206,7 @@ class Detail extends StatelessWidget {
                                               Text(
                                                   "${contoller.dataEvent.value.peopleNewList![index].createDatetime!.split("T")[0]} ${contoller.dataEvent.value.peopleNewList![index].createDatetime!.split("T")[1]}",
                                                   style: textStyle(context,
-                                                      fontSize: 15,
+                                                      fontSize: 25,
                                                       color: colorBlack)),
                                               SizedBox(
                                                 width: 13,
@@ -2111,7 +2224,7 @@ class Detail extends StatelessWidget {
                                                       .note ??
                                                   '',
                                               style: textStyle(context,
-                                                  fontSize: 15,
+                                                  fontSize: 25,
                                                   color: colorBlack)),
                                           SizedBox(
                                             width: 13,

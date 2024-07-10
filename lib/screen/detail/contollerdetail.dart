@@ -25,16 +25,13 @@ class ContollerDetail extends GetxController {
   searchMap(String data) async {
     listSearchMap.value = await searchMapApi(data);
   }
+
   var selectChartX = 'เพศ'.obs;
   var listChartX = ["เพศ", "ช่วงอายุ"].obs;
 
   var selectChartY = 'จำนวนผู้บาดเจ็บ'.obs;
   var listChartY = ["จำนวนผู้บาดเจ็บ", "จำนวนผู้เสียชีวิต"].obs;
-  final listGender=[
-    "ชาย",
-    "หญิง",
-    "ไม่ระบุ"
-  ];
+  final listGender = ["ชาย", "หญิง", "ไม่ระบุ"];
   List<String> category = [
     "อัคคีภัย",
     "อุทกภัย",
@@ -55,23 +52,22 @@ class ContollerDetail extends GetxController {
             double.parse(dataEvent.value.events!.longitude!)),
         14);
   }
-  downloadFile(String base64,{String? fileName})async{
-  final anchor = html.AnchorElement(
-      href: base64)
-    ..target = 'blank';
+
+  downloadFile(String base64, {String? fileName}) async {
+    final anchor = html.AnchorElement(href: base64)..target = 'blank';
 
 // add the name and extension
-  anchor.download = fileName??'download';
+    anchor.download = fileName ?? 'download';
 
 // add the anchor to the document body
-  html.document.body?.append(anchor);
+    html.document.body?.append(anchor);
 
 // trigger download
-  anchor.click();
+    anchor.click();
 
 // remove the anchor
-  anchor.remove();
-}
+    anchor.remove();
+  }
 
   List<Color> listColorChart = <Color>[
     const Color(0xfffffbd28),
@@ -99,7 +95,8 @@ class ContollerDetail extends GetxController {
                 : (selectChartX == 'เพศ' && selectChartY == 'จำนวนผู้เสียชีวิต')
                     ? ColumnSeries<DeceasedList, String>(
                         width: 0.2,
-                        dataSource: dataEvent.value.graph!.gender!.deceasedList!,
+                        dataSource:
+                            dataEvent.value.graph!.gender!.deceasedList!,
                         xValueMapper: (DeceasedList data, _) => data.name,
                         yValueMapper: (DeceasedList data, _) => data.amount,
                         pointColorMapper: (datum, index) =>
@@ -109,7 +106,8 @@ class ContollerDetail extends GetxController {
                             selectChartY == 'จำนวนผู้บาดเจ็บ')
                         ? ColumnSeries<DeceasedList, String>(
                             width: 0.2,
-                            dataSource: dataEvent.value.graph!.ageRange!.injuredList!,
+                            dataSource:
+                                dataEvent.value.graph!.ageRange!.injuredList!,
                             xValueMapper: (DeceasedList data, _) => data.name,
                             yValueMapper: (DeceasedList data, _) => data.amount,
                             pointColorMapper: (datum, index) =>
@@ -117,7 +115,8 @@ class ContollerDetail extends GetxController {
                           )
                         : ColumnSeries<DeceasedList, String>(
                             width: 0.2,
-                            dataSource: dataEvent.value.graph!.ageRange!.deceasedList!,
+                            dataSource:
+                                dataEvent.value.graph!.ageRange!.deceasedList!,
                             xValueMapper: (DeceasedList data, _) => data.name,
                             yValueMapper: (DeceasedList data, _) => data.amount,
                             pointColorMapper: (datum, index) =>
@@ -160,12 +159,13 @@ class ContollerDetail extends GetxController {
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
                         child: Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              'รายชื่อ',
-                              style: textStyle(context,
-                                  fontSize: 18, fontWeight: FontWeight.bold),
-                            ),),
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            'รายชื่อ',
+                            style: textStyle(context,
+                                fontSize: 30, fontWeight: FontWeight.bold),
+                          ),
+                        ),
                       ),
                       SizedBox(
                         height: 10,
@@ -182,7 +182,7 @@ class ContollerDetail extends GetxController {
                                   child: Text(
                                     'ผู้เสียชีวิต',
                                     style: textStyle(context,
-                                        fontSize: 15,
+                                        fontSize: 25,
                                         fontWeight: FontWeight.bold),
                                   )),
                               ListView.builder(
@@ -199,7 +199,7 @@ class ContollerDetail extends GetxController {
                                           '${index + 1}. ${dataEvent.value.events!.deceased!.deceaseList![index].name} เพศ ${listGender[dataEvent.value.events!.deceased!.deceaseList![index].sex!]} อายุ ${dataEvent.value.events!.deceased!.deceaseList![index].age} ปี',
                                           style: textStyle(
                                             context,
-                                            fontSize: 15,
+                                            fontSize: 25,
                                           ),
                                         )
                                       ],
@@ -215,7 +215,7 @@ class ContollerDetail extends GetxController {
                                   child: Text(
                                     'ผู้ได้รับบาดเจ็บ',
                                     style: textStyle(context,
-                                        fontSize: 15,
+                                        fontSize: 25,
                                         fontWeight: FontWeight.bold),
                                   )),
                               ListView.builder(
@@ -232,7 +232,7 @@ class ContollerDetail extends GetxController {
                                           '${index + 1}. ${dataEvent.value.events!.injured!.injureList![index].name} เพศ ${listGender[dataEvent.value.events!.injured!.injureList![index].sex!]} อายุ ${dataEvent.value.events!.injured!.injureList![index].age} ปี',
                                           style: textStyle(
                                             context,
-                                            fontSize: 15,
+                                            fontSize: 25,
                                           ),
                                         )
                                       ],
@@ -262,7 +262,7 @@ class ContollerDetail extends GetxController {
                             child: Text(
                               'ปิด',
                               style: textStyle(context,
-                                  fontSize: 15, color: Colors.white),
+                                  fontSize: 25, color: Colors.white),
                             ),
                           ),
                         ),
@@ -280,6 +280,5 @@ class ContollerDetail extends GetxController {
     super.dispose();
 
     // mapController.value.dispose();
-
   }
 }

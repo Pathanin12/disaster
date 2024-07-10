@@ -106,9 +106,10 @@ class ContollerFloodReport extends GetxController {
           color: Colors.black87,
           fontWeight: FontWeight.bold,
         ),
-        controlsTextStyle: const TextStyle(
+        controlsTextStyle: textStyle(
+          context,
           color: Colors.black,
-          fontSize: 15,
+          fontSize: 25,
           fontWeight: FontWeight.bold,
         ),
         centerAlignModePicker: true,
@@ -349,15 +350,15 @@ class ContollerFloodReport extends GetxController {
                       children: [
                         Text(
                           '${element.province.toString()}',
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
+                          style: textStyle(Get.context!,
+                              fontSize: 25, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
                           height: 10,
                         ),
                         Text(
                           '${element.eventName.toString()}',
-                          style: TextStyle(fontSize: 15),
+                          style: textStyle(Get.context!, fontSize: 25),
                         ),
                       ],
                     ),
@@ -483,13 +484,14 @@ class ContollerFloodReport extends GetxController {
     double screenWidth = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
         scrollDirection: Axis.horizontal,
-        child:
-        Row(
+        child: Row(
           children: [
             Container(
-                width: (MediaQuery.of(context).size.width<1130)?MediaQuery.of(context).size.width*0.95:MediaQuery.of(context).size.width*0.79,
+                width: (MediaQuery.of(context).size.width < 1130)
+                    ? MediaQuery.of(context).size.width * 0.95
+                    : MediaQuery.of(context).size.width * 0.79,
                 height: 470,
-                child:  ScrollConfiguration(
+                child: ScrollConfiguration(
                   behavior: ScrollConfiguration.of(context).copyWith(
                     dragDevices: {
                       PointerDeviceKind.touch,
@@ -501,7 +503,6 @@ class ContollerFloodReport extends GetxController {
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     children: [
-
                       // Column(
                       //   children: [
                       //
@@ -944,303 +945,305 @@ class ContollerFloodReport extends GetxController {
                       //     ),
                       //   ],
                       // ),
-                      SizedBox(width: 40,)
+                      SizedBox(
+                        width: 40,
+                      )
                     ],
                   ),
                 )),
           ],
         )
-      // Container(
-      //   child: ListView.builder(itemBuilder: (context, index) => Container(width: 250,),)
-      //
-      // )
-      //   ListView.builder(
-      //     physics: const NeverScrollableScrollPhysics(),
-      //     shrinkWrap: true,
-      //     itemCount: event.length,
-      //     itemBuilder: (context, index) => Container(
-      //       child: Column(
-      //         mainAxisAlignment: MainAxisAlignment.end,
-      //         children: [
-      //           Row(
-      //             children: [
-      //               Expanded(
-      //                 flex: 1,
-      //                 child: Text(
-      //                   event[index].seq!.toString(),
-      //                   style: textStyle(context,
-      //                       fontSize: 15,
-      //                       color: colorBlack),
-      //                 ),
-      //               ),
-      //               const SizedBox(
-      //                 width: 5,
-      //               ),
-      //               Expanded(
-      //                 flex: 3,
-      //                 child: Text(
-      //                   event[index].eventName!,
-      //                   style: textStyle(context,
-      //                       fontSize: 15,
-      //                       color: colorBlack),
-      //                 ),
-      //               ),
-      //               const SizedBox(
-      //                 width: 5,
-      //               ),
-      //               Expanded(
-      //                 flex: 1,
-      //                 child: Text(
-      //                   category[event[index].disasterType!],
-      //                   style: textStyle(context,
-      //                       fontSize: 15,
-      //                       color: colorBlack),
-      //                 ),
-      //               ),
-      //               const SizedBox(
-      //                 width: 5,
-      //               ),
-      //               Expanded(
-      //                 flex: 1,
-      //                 child: Text(
-      //                   '${DateTime.parse(event[index].datetime!).day} ${mountAbbreviation[DateTime.parse(event[index].datetime!).month - 1]} ${DateTime.parse(event[index].datetime!).year + 543}',
-      //                   style: textStyle(context,
-      //                       fontSize: 15,
-      //                       color: colorBlack),
-      //                 ),
-      //               ),
-      //               const SizedBox(
-      //                 width: 5,
-      //               ),
-      //               Expanded(
-      //                 flex: 2,
-      //                 child: Text(
-      //                   event[index].responsibleAgency ?? '',
-      //                   style: textStyle(context,
-      //                       fontSize: 15,
-      //                       color: colorBlack),
-      //                 ),
-      //               ),
-      //               const SizedBox(
-      //                 width: 5,
-      //               ),
-      //               Expanded(
-      //                 flex: 1,
-      //                 child: Text(
-      //                   listViolence[event[index].violence!],
-      //                   style: textStyle(context,
-      //                       fontSize: 15,
-      //                       color: colorBlack),
-      //                 ),
-      //               ),
-      //               const SizedBox(
-      //                 width: 5,
-      //               ),
-      //               Expanded(
-      //                 flex: 2,
-      //                 child: Text(
-      //                   '${event[index].latitude!},${event[index].longitude!}',
-      //                   style: textStyle(context,
-      //                       fontSize: 15,
-      //                       color: colorBlack),
-      //                 ),
-      //               ),
-      //               const SizedBox(
-      //                 width: 5,
-      //               ),
-      //               Expanded(
-      //                   flex: 2,
-      //                   child: statusWidget(context, event[index].statusAgency!)),
-      //               const SizedBox(
-      //                 width: 5,
-      //               ),
-      //               Expanded(
-      //                 flex: 2,
-      //                 child: Text(
-      //                   event[index].relatedAgency!,
-      //                   style: textStyle(context,
-      //                       fontSize: 15,
-      //                       color: colorBlack),
-      //                 ),
-      //               ),
-      //               const SizedBox(
-      //                 width: 5,
-      //               ),
-      //               Expanded(
-      //                   flex: 2,
-      //                   child: statusWidget(
-      //                       context, event[index].statusRelatedAgency!)),
-      //               const SizedBox(
-      //                 width: 5,
-      //               ),
-      //               Expanded(
-      //                   flex: 2,
-      //                   child: statusWidget(context, event[index].statusItem!)),
-      //               InkWell(
-      //                   onTap: () {
-      //                     _painter = QrPainter(
-      //                       errorCorrectionLevel: QrErrorCorrectLevel.H,
-      //                       eyeStyle: const QrEyeStyle(
-      //                           eyeShape: QrEyeShape.square, color: Colors.black),
-      //                       emptyColor: Colors.white,
-      //                       data: '${pathQR}${event[index].eventID}',
-      //                       version: QrVersions.auto,
-      //                       gapless: true,
-      //                     );
-      //                     showDialog(
-      //                       context: context,
-      //                       builder: (context) => AlertDialog(
-      //                         content: WidgetsToImage(
-      //                           controller: controllerImage,
-      //                           child: Container(
-      //                             padding: const EdgeInsets.all(10),
-      //                             height: 250,
-      //                             width: 250,
-      //                             color: Colors.white,
-      //                             child: RepaintBoundary(
-      //                               child: CustomPaint(
-      //                                   size: Size.square((180).toDouble()),
-      //                                   key: _globalKey,
-      //                                   painter: _painter),
-      //                             ),
-      //                           ),
-      //                         ),
-      //                         actions: [
-      //                           Row(
-      //                             mainAxisAlignment: MainAxisAlignment.center,
-      //                             children: [
-      //                               InkWell(
-      //                                   onTap: () async {
-      //                                     await Clipboard.setData(ClipboardData(
-      //                                         text:
-      //                                             '${pathQR}${event[index].eventID}'));
-      //                                   },
-      //                                   child: Container(
-      //                                     height: 40,
-      //                                     width: 100,
-      //                                     decoration: BoxDecoration(
-      //                                         borderRadius:
-      //                                             BorderRadius.circular(5),
-      //                                         color: Colors.amber),
-      //                                     child: Row(
-      //                                       mainAxisAlignment:
-      //                                           MainAxisAlignment.center,
-      //                                       children: [
-      //                                         const Icon(
-      //                                           Icons.copy,
-      //                                           size: 20,
-      //                                           color: Colors.white,
-      //                                         ),
-      //                                         const SizedBox(
-      //                                           width: 4,
-      //                                         ),
-      //                                         Text(
-      //                                           'คัดลอก',
-      //                                           style: textStyle(context,
-      //                                               fontSize: 15,
-      //                                               color: colorWhite),
-      //                                         ),
-      //                                       ],
-      //                                     ),
-      //                                   )),
-      //                               const SizedBox(
-      //                                 width: 10,
-      //                               ),
-      //                               InkWell(
-      //                                   onTap: () async {
-      //                                     // File('my_image.jpg').writeAsBytes(bytes!);
-      //                                     _capturePng();
-      //                                   },
-      //                                   // onTap: ()async{
-      //                                   //   dynamic externalDir='/Storage/emulated/0/Download/QR_Code';
-      //                                   //   RenderRepaintBoundary bounndary = _qrKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
-      //                                   //   var image =await bounndary.toImage(pixelRatio: 3.0);
-      //                                   //   final whitePaint = Paint()..color=Colors.white;
-      //                                   //   final recorder=PictureRecorder();
-      //                                   //   final canvas =Canvas(recorder,Rect.fromLTWH(0,0,image.width.toDouble(),image.height.toDouble(),));
-      //                                   //   canvas.drawRect(Rect.fromLTWH(0, 0, image.width.toDouble(), image.height.toDouble()), whitePaint);
-      //                                   //   canvas.drawImage(image, Offset.zero, Paint());
-      //                                   //   final picture = recorder.endRecording();
-      //                                   //   final img = await picture.toImage(image.width, image.height);
-      //                                   //   ByteData? byteData=await img.toByteData(format: ImageByteFormat.png);
-      //                                   //   Uint8List pngBytes = byteData!.buffer.asUint8List();
-      //                                   //   String fileName='qr_code';
-      //                                   //   final file = await File('$externalDir/$fileName.png').create();
-      //                                   //   Navigator.pop(context);
-      //                                   // },
-      //                                   child: Container(
-      //                                     height: 40,
-      //                                     width: 100,
-      //                                     decoration: BoxDecoration(
-      //                                         borderRadius:
-      //                                             BorderRadius.circular(5),
-      //                                         color: const Color(0xfff1e5eff)),
-      //                                     child: Row(
-      //                                       mainAxisAlignment:
-      //                                           MainAxisAlignment.center,
-      //                                       children: [
-      //                                         const Icon(
-      //                                           Icons.save_alt_rounded,
-      //                                           size: 20,
-      //                                           color: Colors.white,
-      //                                         ),
-      //                                         const SizedBox(
-      //                                           width: 4,
-      //                                         ),
-      //                                         Text(
-      //                                           'บันทึก',
-      //                                           style: textStyle(context,
-      //                                               fontSize: 15,
-      //                                               color: colorWhite),
-      //                                         ),
-      //                                       ],
-      //                                     ),
-      //                                   )),
-      //                             ],
-      //                           ),
-      //                         ],
-      //                       ),
-      //                     );
-      //                   },
-      //                   child: SizedBox(
-      //                     width: 40,
-      //                     child: Icon(
-      //                       CupertinoIcons.share,
-      //                       color: colorGrey,
-      //                       size: 20,
-      //                     ),
-      //                   )),
-      //               InkWell(
-      //                 onTap: () {
-      //                   final LandingPageControllerAdmin landingPageController =
-      //                       Get.put(LandingPageControllerAdmin(), permanent: false);
-      //                   final ContollerDetail contollerEvent =
-      //                       Get.put(ContollerDetail(), permanent: false);
-      //                   contollerEvent.getEvent(event[index].eventID!);
-      //                   landingPageController.tabIndex.value = 7;
-      //                   // dialogEdit(context);
-      //                 },
-      //                 child: SizedBox(
-      //                   width: 40,
-      //                   child: Icon(
-      //                     Icons.edit_note,
-      //                     color: colorGrey,
-      //                     size: 20,
-      //                   ),
-      //                 ),
-      //               ),
-      //             ],
-      //           ),
-      //           Divider(
-      //             height: 2,
-      //             color: colorGrey,
-      //           )
-      //         ],
-      //       ),
-      //     ),
-      //   ),
-      // ),
-    );
+        // Container(
+        //   child: ListView.builder(itemBuilder: (context, index) => Container(width: 250,),)
+        //
+        // )
+        //   ListView.builder(
+        //     physics: const NeverScrollableScrollPhysics(),
+        //     shrinkWrap: true,
+        //     itemCount: event.length,
+        //     itemBuilder: (context, index) => Container(
+        //       child: Column(
+        //         mainAxisAlignment: MainAxisAlignment.end,
+        //         children: [
+        //           Row(
+        //             children: [
+        //               Expanded(
+        //                 flex: 1,
+        //                 child: Text(
+        //                   event[index].seq!.toString(),
+        //                   style: textStyle(context,
+        //                       fontSize: 15,
+        //                       color: colorBlack),
+        //                 ),
+        //               ),
+        //               const SizedBox(
+        //                 width: 5,
+        //               ),
+        //               Expanded(
+        //                 flex: 3,
+        //                 child: Text(
+        //                   event[index].eventName!,
+        //                   style: textStyle(context,
+        //                       fontSize: 15,
+        //                       color: colorBlack),
+        //                 ),
+        //               ),
+        //               const SizedBox(
+        //                 width: 5,
+        //               ),
+        //               Expanded(
+        //                 flex: 1,
+        //                 child: Text(
+        //                   category[event[index].disasterType!],
+        //                   style: textStyle(context,
+        //                       fontSize: 15,
+        //                       color: colorBlack),
+        //                 ),
+        //               ),
+        //               const SizedBox(
+        //                 width: 5,
+        //               ),
+        //               Expanded(
+        //                 flex: 1,
+        //                 child: Text(
+        //                   '${DateTime.parse(event[index].datetime!).day} ${mountAbbreviation[DateTime.parse(event[index].datetime!).month - 1]} ${DateTime.parse(event[index].datetime!).year + 543}',
+        //                   style: textStyle(context,
+        //                       fontSize: 15,
+        //                       color: colorBlack),
+        //                 ),
+        //               ),
+        //               const SizedBox(
+        //                 width: 5,
+        //               ),
+        //               Expanded(
+        //                 flex: 2,
+        //                 child: Text(
+        //                   event[index].responsibleAgency ?? '',
+        //                   style: textStyle(context,
+        //                       fontSize: 15,
+        //                       color: colorBlack),
+        //                 ),
+        //               ),
+        //               const SizedBox(
+        //                 width: 5,
+        //               ),
+        //               Expanded(
+        //                 flex: 1,
+        //                 child: Text(
+        //                   listViolence[event[index].violence!],
+        //                   style: textStyle(context,
+        //                       fontSize: 15,
+        //                       color: colorBlack),
+        //                 ),
+        //               ),
+        //               const SizedBox(
+        //                 width: 5,
+        //               ),
+        //               Expanded(
+        //                 flex: 2,
+        //                 child: Text(
+        //                   '${event[index].latitude!},${event[index].longitude!}',
+        //                   style: textStyle(context,
+        //                       fontSize: 15,
+        //                       color: colorBlack),
+        //                 ),
+        //               ),
+        //               const SizedBox(
+        //                 width: 5,
+        //               ),
+        //               Expanded(
+        //                   flex: 2,
+        //                   child: statusWidget(context, event[index].statusAgency!)),
+        //               const SizedBox(
+        //                 width: 5,
+        //               ),
+        //               Expanded(
+        //                 flex: 2,
+        //                 child: Text(
+        //                   event[index].relatedAgency!,
+        //                   style: textStyle(context,
+        //                       fontSize: 15,
+        //                       color: colorBlack),
+        //                 ),
+        //               ),
+        //               const SizedBox(
+        //                 width: 5,
+        //               ),
+        //               Expanded(
+        //                   flex: 2,
+        //                   child: statusWidget(
+        //                       context, event[index].statusRelatedAgency!)),
+        //               const SizedBox(
+        //                 width: 5,
+        //               ),
+        //               Expanded(
+        //                   flex: 2,
+        //                   child: statusWidget(context, event[index].statusItem!)),
+        //               InkWell(
+        //                   onTap: () {
+        //                     _painter = QrPainter(
+        //                       errorCorrectionLevel: QrErrorCorrectLevel.H,
+        //                       eyeStyle: const QrEyeStyle(
+        //                           eyeShape: QrEyeShape.square, color: Colors.black),
+        //                       emptyColor: Colors.white,
+        //                       data: '${pathQR}${event[index].eventID}',
+        //                       version: QrVersions.auto,
+        //                       gapless: true,
+        //                     );
+        //                     showDialog(
+        //                       context: context,
+        //                       builder: (context) => AlertDialog(
+        //                         content: WidgetsToImage(
+        //                           controller: controllerImage,
+        //                           child: Container(
+        //                             padding: const EdgeInsets.all(10),
+        //                             height: 250,
+        //                             width: 250,
+        //                             color: Colors.white,
+        //                             child: RepaintBoundary(
+        //                               child: CustomPaint(
+        //                                   size: Size.square((180).toDouble()),
+        //                                   key: _globalKey,
+        //                                   painter: _painter),
+        //                             ),
+        //                           ),
+        //                         ),
+        //                         actions: [
+        //                           Row(
+        //                             mainAxisAlignment: MainAxisAlignment.center,
+        //                             children: [
+        //                               InkWell(
+        //                                   onTap: () async {
+        //                                     await Clipboard.setData(ClipboardData(
+        //                                         text:
+        //                                             '${pathQR}${event[index].eventID}'));
+        //                                   },
+        //                                   child: Container(
+        //                                     height: 40,
+        //                                     width: 100,
+        //                                     decoration: BoxDecoration(
+        //                                         borderRadius:
+        //                                             BorderRadius.circular(5),
+        //                                         color: Colors.amber),
+        //                                     child: Row(
+        //                                       mainAxisAlignment:
+        //                                           MainAxisAlignment.center,
+        //                                       children: [
+        //                                         const Icon(
+        //                                           Icons.copy,
+        //                                           size: 20,
+        //                                           color: Colors.white,
+        //                                         ),
+        //                                         const SizedBox(
+        //                                           width: 4,
+        //                                         ),
+        //                                         Text(
+        //                                           'คัดลอก',
+        //                                           style: textStyle(context,
+        //                                               fontSize: 15,
+        //                                               color: colorWhite),
+        //                                         ),
+        //                                       ],
+        //                                     ),
+        //                                   )),
+        //                               const SizedBox(
+        //                                 width: 10,
+        //                               ),
+        //                               InkWell(
+        //                                   onTap: () async {
+        //                                     // File('my_image.jpg').writeAsBytes(bytes!);
+        //                                     _capturePng();
+        //                                   },
+        //                                   // onTap: ()async{
+        //                                   //   dynamic externalDir='/Storage/emulated/0/Download/QR_Code';
+        //                                   //   RenderRepaintBoundary bounndary = _qrKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+        //                                   //   var image =await bounndary.toImage(pixelRatio: 3.0);
+        //                                   //   final whitePaint = Paint()..color=Colors.white;
+        //                                   //   final recorder=PictureRecorder();
+        //                                   //   final canvas =Canvas(recorder,Rect.fromLTWH(0,0,image.width.toDouble(),image.height.toDouble(),));
+        //                                   //   canvas.drawRect(Rect.fromLTWH(0, 0, image.width.toDouble(), image.height.toDouble()), whitePaint);
+        //                                   //   canvas.drawImage(image, Offset.zero, Paint());
+        //                                   //   final picture = recorder.endRecording();
+        //                                   //   final img = await picture.toImage(image.width, image.height);
+        //                                   //   ByteData? byteData=await img.toByteData(format: ImageByteFormat.png);
+        //                                   //   Uint8List pngBytes = byteData!.buffer.asUint8List();
+        //                                   //   String fileName='qr_code';
+        //                                   //   final file = await File('$externalDir/$fileName.png').create();
+        //                                   //   Navigator.pop(context);
+        //                                   // },
+        //                                   child: Container(
+        //                                     height: 40,
+        //                                     width: 100,
+        //                                     decoration: BoxDecoration(
+        //                                         borderRadius:
+        //                                             BorderRadius.circular(5),
+        //                                         color: const Color(0xfff1e5eff)),
+        //                                     child: Row(
+        //                                       mainAxisAlignment:
+        //                                           MainAxisAlignment.center,
+        //                                       children: [
+        //                                         const Icon(
+        //                                           Icons.save_alt_rounded,
+        //                                           size: 20,
+        //                                           color: Colors.white,
+        //                                         ),
+        //                                         const SizedBox(
+        //                                           width: 4,
+        //                                         ),
+        //                                         Text(
+        //                                           'บันทึก',
+        //                                           style: textStyle(context,
+        //                                               fontSize: 15,
+        //                                               color: colorWhite),
+        //                                         ),
+        //                                       ],
+        //                                     ),
+        //                                   )),
+        //                             ],
+        //                           ),
+        //                         ],
+        //                       ),
+        //                     );
+        //                   },
+        //                   child: SizedBox(
+        //                     width: 40,
+        //                     child: Icon(
+        //                       CupertinoIcons.share,
+        //                       color: colorGrey,
+        //                       size: 20,
+        //                     ),
+        //                   )),
+        //               InkWell(
+        //                 onTap: () {
+        //                   final LandingPageControllerAdmin landingPageController =
+        //                       Get.put(LandingPageControllerAdmin(), permanent: false);
+        //                   final ContollerDetail contollerEvent =
+        //                       Get.put(ContollerDetail(), permanent: false);
+        //                   contollerEvent.getEvent(event[index].eventID!);
+        //                   landingPageController.tabIndex.value = 7;
+        //                   // dialogEdit(context);
+        //                 },
+        //                 child: SizedBox(
+        //                   width: 40,
+        //                   child: Icon(
+        //                     Icons.edit_note,
+        //                     color: colorGrey,
+        //                     size: 20,
+        //                   ),
+        //                 ),
+        //               ),
+        //             ],
+        //           ),
+        //           Divider(
+        //             height: 2,
+        //             color: colorGrey,
+        //           )
+        //         ],
+        //       ),
+        //     ),
+        //   ),
+        // ),
+        );
   }
 
   Future<void> _capturePng() async {

@@ -107,9 +107,10 @@ class ContollerMainReport extends GetxController {
           color: Colors.black87,
           fontWeight: FontWeight.bold,
         ),
-        controlsTextStyle: const TextStyle(
+        controlsTextStyle: textStyle(
+          context,
           color: Colors.black,
-          fontSize: 15,
+          fontSize: 25,
           fontWeight: FontWeight.bold,
         ),
         centerAlignModePicker: true,
@@ -225,8 +226,8 @@ class ContollerMainReport extends GetxController {
 
   Future<void> setLocation() async {
     final LandingPageControllerAdmin landingPageController =
-    Get.put(LandingPageControllerAdmin(), permanent: false);
-    if(landingPageController.dataUser!.value.profile!=null) {
+        Get.put(LandingPageControllerAdmin(), permanent: false);
+    if (landingPageController.dataUser!.value.profile != null) {
       loadSearch.value = true;
       allEvent.value = await getAllDashBoardApi(
           startDate: listDate.first.toString().split(" ")[0],
@@ -238,10 +239,13 @@ class ContollerMainReport extends GetxController {
               : 1,
           provinceID: (landingPageController.dataUser!.value.profile!.role == 1)
               ? selectProvince.value.id
-              : provinceList.where((element) =>
-          element.nameTh ==
-              landingPageController.dataUser!.value.profile!.provinceName)
-              .toList()[0].id,
+              : provinceList
+                  .where((element) =>
+                      element.nameTh ==
+                      landingPageController
+                          .dataUser!.value.profile!.provinceName)
+                  .toList()[0]
+                  .id,
           statusItem: StatusList.indexOf(selectStatusItem.value),
           statusAgency: StatusList.indexOf(selectStatusAgency.value),
           responsibleAgency: searchAgency.value.text,
@@ -269,9 +273,10 @@ class ContollerMainReport extends GetxController {
                   child: InkWell(
                     onTap: () {
                       final LandingPageControllerAdmin landingPageController =
-                      Get.put(LandingPageControllerAdmin(), permanent: false);
+                          Get.put(LandingPageControllerAdmin(),
+                              permanent: false);
                       final ContollerDetail contollerEvent =
-                      Get.put(ContollerDetail(), permanent: false);
+                          Get.put(ContollerDetail(), permanent: false);
                       contollerEvent.getEvent(element.eventID!);
                       landingPageController.tabIndex.value = 3;
                     },
@@ -279,10 +284,14 @@ class ContollerMainReport extends GetxController {
                       children: [
                         Center(
                           child: SvgPicture.asset(
-                            'assets/icons/svg/fire0.svg', color: (element
-                              .statusItem == 0) ? Colors.amber : (element
-                              .statusItem == 1) ? Colors.red : Colors.green,
-                            width: 80, height: 80,
+                            'assets/icons/svg/fire0.svg',
+                            color: (element.statusItem == 0)
+                                ? Colors.amber
+                                : (element.statusItem == 1)
+                                    ? Colors.red
+                                    : Colors.green,
+                            width: 80,
+                            height: 80,
                           ),
                         ),
                         Positioned(
@@ -290,9 +299,9 @@ class ContollerMainReport extends GetxController {
                             left: 25,
                             child: SvgPicture.asset(
                               listIconType[element.iconMap ?? 0],
-                              width: 30, height: 30,
+                              width: 30,
+                              height: 30,
                             ))
-
                       ],
                     ),
                   ),
@@ -318,15 +327,15 @@ class ContollerMainReport extends GetxController {
                         children: [
                           Text(
                             '${element.province.toString()}',
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
+                            style: textStyle(Get.context!,
+                                fontSize: 25, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: 10,
                           ),
                           Text(
                             '${element.eventName.toString()}',
-                            style: TextStyle(fontSize: 15),
+                            style: textStyle(Get.context!, fontSize: 25),
                           ),
                         ],
                       ),
@@ -339,9 +348,9 @@ class ContollerMainReport extends GetxController {
       }
 
       loadSearch.value = false;
-    }else{
+    } else {
       loadSearch.value = true;
-      do{
+      do {
         allEvent.value = await getAllDashBoardApi(
             startDate: listDate.first.toString().split(" ")[0],
             endDate: listDate.last.toString().split(" ")[0],
@@ -349,12 +358,16 @@ class ContollerMainReport extends GetxController {
             level: (landingPageController.dataUser!.value.profile!.role == 1)
                 ? level.indexOf(selectLevel.toString())
                 : 1,
-            provinceID: (landingPageController.dataUser!.value.profile!.role == 1)
-                ? selectProvince.value.id
-                : provinceList.where((element) =>
-            element.nameTh ==
-                landingPageController.dataUser!.value.profile!.provinceName)
-                .toList()[0].id,
+            provinceID:
+                (landingPageController.dataUser!.value.profile!.role == 1)
+                    ? selectProvince.value.id
+                    : provinceList
+                        .where((element) =>
+                            element.nameTh ==
+                            landingPageController
+                                .dataUser!.value.profile!.provinceName)
+                        .toList()[0]
+                        .id,
             statusItem: StatusList.indexOf(selectStatusItem.value),
             statusAgency: StatusList.indexOf(selectStatusAgency.value),
             responsibleAgency: searchAgency.value.text,
@@ -382,9 +395,10 @@ class ContollerMainReport extends GetxController {
                     child: InkWell(
                       onTap: () {
                         final LandingPageControllerAdmin landingPageController =
-                        Get.put(LandingPageControllerAdmin(), permanent: false);
+                            Get.put(LandingPageControllerAdmin(),
+                                permanent: false);
                         final ContollerDetail contollerEvent =
-                        Get.put(ContollerDetail(), permanent: false);
+                            Get.put(ContollerDetail(), permanent: false);
                         contollerEvent.getEvent(element.eventID!);
                         landingPageController.tabIndex.value = 3;
                       },
@@ -392,10 +406,14 @@ class ContollerMainReport extends GetxController {
                         children: [
                           Center(
                             child: SvgPicture.asset(
-                              'assets/icons/svg/fire0.svg', color: (element
-                                .statusItem == 0) ? Colors.amber : (element
-                                .statusItem == 1) ? Colors.red : Colors.green,
-                              width: 80, height: 80,
+                              'assets/icons/svg/fire0.svg',
+                              color: (element.statusItem == 0)
+                                  ? Colors.amber
+                                  : (element.statusItem == 1)
+                                      ? Colors.red
+                                      : Colors.green,
+                              width: 80,
+                              height: 80,
                             ),
                           ),
                           Positioned(
@@ -403,9 +421,9 @@ class ContollerMainReport extends GetxController {
                               left: 25,
                               child: SvgPicture.asset(
                                 listIconType[element.iconMap ?? 0],
-                                width: 30, height: 30,
+                                width: 30,
+                                height: 30,
                               ))
-
                         ],
                       ),
                     ),
@@ -431,15 +449,15 @@ class ContollerMainReport extends GetxController {
                           children: [
                             Text(
                               '${element.province.toString()}',
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold),
+                              style: textStyle(Get.context!,
+                                  fontSize: 25, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(
                               height: 10,
                             ),
                             Text(
                               '${element.eventName.toString()}',
-                              style: TextStyle(fontSize: 15),
+                              style: textStyle(Get.context!, fontSize: 25),
                             ),
                           ],
                         ),
@@ -450,10 +468,7 @@ class ContollerMainReport extends GetxController {
           );
           listWidgetMark.add(widget);
         }
-
-
-      }
-      while(landingPageController.dataUser!.value.profile==null);
+      } while (landingPageController.dataUser!.value.profile == null);
       loadSearch.value = false;
     }
   }
@@ -473,7 +488,6 @@ class ContollerMainReport extends GetxController {
         }
       }
     }
-
   }
 
   Widget statusWidget(BuildContext context, int status) {
@@ -489,9 +503,7 @@ class ContollerMainReport extends GetxController {
               'รับเรื่อง',
               textAlign: TextAlign.center,
               style: textStyle(context,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: colorWhite),
+                  fontSize: 25, fontWeight: FontWeight.bold, color: colorWhite),
             ),
           )
         : (status == 1)
@@ -505,7 +517,7 @@ class ContollerMainReport extends GetxController {
                   'กำลังดำเนินการ',
                   textAlign: TextAlign.center,
                   style: textStyle(context,
-                      fontSize: 15,
+                      fontSize: 25,
                       fontWeight: FontWeight.bold,
                       color: colorWhite),
                 ),
@@ -520,7 +532,7 @@ class ContollerMainReport extends GetxController {
                   'ส่งแล้ว',
                   textAlign: TextAlign.center,
                   style: textStyle(context,
-                      fontSize: 15,
+                      fontSize: 25,
                       fontWeight: FontWeight.bold,
                       color: colorWhite),
                 ),
@@ -569,720 +581,748 @@ class ContollerMainReport extends GetxController {
   tableReport(BuildContext context, List<EventList> event) {
     double screenWidth = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child:
-      Row(
-        children: [
-          Container(
-              width: (MediaQuery.of(context).size.width<1130)?MediaQuery.of(context).size.width*0.95:MediaQuery.of(context).size.width*0.79,
-              height: 470,
-              child:  ScrollConfiguration(
-                behavior: ScrollConfiguration.of(context).copyWith(
-                  dragDevices: {
-                    PointerDeviceKind.touch,
-                    PointerDeviceKind.mouse,
-                    PointerDeviceKind.trackpad,
-                  },
-                ),
-                child: ListView(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  children: [
-
-                    Column(
-                      children: [
-
-                        Container(
-                          width: 1800,
-                          height: 50,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Expanded(
-                                flex: 1,
-                                child: Text(
-                                  'ลำดับที่',
-                                  style: textStyle(context,
-                                      fontSize: 15,
-                                      color: colorBlack),
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            Container(
+                width: (MediaQuery.of(context).size.width < 1130)
+                    ? MediaQuery.of(context).size.width * 0.95
+                    : MediaQuery.of(context).size.width * 0.79,
+                height: 470,
+                child: ScrollConfiguration(
+                  behavior: ScrollConfiguration.of(context).copyWith(
+                    dragDevices: {
+                      PointerDeviceKind.touch,
+                      PointerDeviceKind.mouse,
+                      PointerDeviceKind.trackpad,
+                    },
+                  ),
+                  child: ListView(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            width: 1800,
+                            height: 50,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Expanded(
+                                  flex: 1,
+                                  child: Text(
+                                    'ลำดับที่',
+                                    style: textStyle(context,
+                                        fontSize: 25, color: colorBlack),
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Expanded(
-                                flex: 3,
-                                child: Text(
-                                  'ชื่อรายการ',
-                                  style: textStyle(context,
-                                      fontSize: 15,
-                                      color: colorBlack),
+                                const SizedBox(
+                                  width: 5,
                                 ),
-                              ),
-
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: Text(
-                                  'วันที่รับเรื่อง',
-                                  style: textStyle(context,
-                                      fontSize: 15,
-                                      color: colorBlack),
+                                Expanded(
+                                  flex: 3,
+                                  child: Text(
+                                    'ชื่อรายการ',
+                                    style: textStyle(context,
+                                        fontSize: 25, color: colorBlack),
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: Text(
-                                  'หน่วยงานที่รับผิดชอบ',
-                                  style: textStyle(context,
-                                      fontSize: 15,
-                                      color: colorBlack),
+                                const SizedBox(
+                                  width: 5,
                                 ),
-                              ),
-
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: Text(
-                                  'พิกัด',
-                                  style: textStyle(context,
-                                      fontSize: 15,
-                                      color: colorBlack),
+                                Expanded(
+                                  flex: 1,
+                                  child: Text(
+                                    'วันที่รับเรื่อง',
+                                    style: textStyle(context,
+                                        fontSize: 25, color: colorBlack),
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: Text(
-                                  'สถานะหน่วยงาน',
-                                  style: textStyle(context,
-                                      fontSize: 15,
-                                      color: colorBlack),
+                                const SizedBox(
+                                  width: 5,
                                 ),
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: Text(
-                                  'หน่วยงานที่เกี่ยวข้อง',
-                                  style: textStyle(context,
-                                      fontSize: 15,
-                                      color: colorBlack),
+                                Expanded(
+                                  flex: 2,
+                                  child: Text(
+                                    'หน่วยงานที่รับผิดชอบ',
+                                    style: textStyle(context,
+                                        fontSize: 25, color: colorBlack),
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: Text(
-                                  'สถานะของหน่วยงานที่เกี่ยวข้อง',
-                                  style: textStyle(context,
-                                      fontSize: 15,
-                                      color: colorBlack),
+                                const SizedBox(
+                                  width: 5,
                                 ),
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: Text(
-                                  'สถานะของรายการ',
-                                  style: textStyle(context,
-                                      fontSize: 15,
-                                      color: colorBlack),
+                                Expanded(
+                                  flex: 2,
+                                  child: Text(
+                                    'พิกัด',
+                                    style: textStyle(context,
+                                        fontSize: 25, color: colorBlack),
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(
-                                width: 40,
-                              ),
-                              const SizedBox(
-                                width: 40,
-                              ),
-                            ],
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Text(
+                                    'สถานะหน่วยงาน',
+                                    style: textStyle(context,
+                                        fontSize: 25, color: colorBlack),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: Text(
+                                    'หน่วยงานที่เกี่ยวข้อง',
+                                    style: textStyle(context,
+                                        fontSize: 25, color: colorBlack),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Text(
+                                    'สถานะของหน่วยงานที่เกี่ยวข้อง',
+                                    style: textStyle(context,
+                                        fontSize: 25, color: colorBlack),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Text(
+                                    'สถานะของรายการ',
+                                    style: textStyle(context,
+                                        fontSize: 25, color: colorBlack),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 40,
+                                ),
+                                const SizedBox(
+                                  width: 40,
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        Divider(
-                          height: 2,
-                          color: colorGrey,
-                        ),
-                        Container(
-                          child:  ListView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: event.length,
-                            itemBuilder: (context, index) => Container(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        flex: 1,
-                                        child: Text(
-                                          event[index].seq!.toString(),
-                                          style: textStyle(context,
-                                              fontSize: 15,
-                                              color: colorBlack),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Expanded(
-                                        flex: 3,
-                                        child: Text(
-                                          event[index].eventName!,
-                                          style: textStyle(context,
-                                              fontSize: 15,
-                                              color: colorBlack),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Expanded(
-                                        flex: 1,
-                                        child: Text(
-                                          '${DateTime.parse(event[index].datetime!).day} ${mountAbbreviation[DateTime.parse(event[index].datetime!).month - 1]} ${DateTime.parse(event[index].datetime!).year + 543}',
-                                          style: textStyle(context,
-                                              fontSize: 15,
-                                              color: colorBlack),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Expanded(
-                                        flex: 2,
-                                        child: Text(
-                                          event[index].responsibleAgency ?? '',
-                                          style: textStyle(context,
-                                              fontSize: 15,
-                                              color: colorBlack),
-                                        ),
-                                      ),
-
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Expanded(
-                                        flex: 2,
-                                        child: Text(
-                                          '${event[index].latitude!},${event[index].longitude!}',
-                                          style: textStyle(context,
-                                              fontSize: 15,
-                                              color: colorBlack),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Expanded(
+                          Divider(
+                            height: 2,
+                            color: colorGrey,
+                          ),
+                          Container(
+                            child: ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: event.length,
+                              itemBuilder: (context, index) => Container(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Expanded(
                                           flex: 1,
-                                          child: statusWidget(context, event[index].statusAgency!)),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Expanded(
-                                        flex: 2,
-                                        child: Text(
-                                          event[index].relatedAgency!,
-                                          style: textStyle(context,
-                                              fontSize: 15,
-                                              color: colorBlack),
+                                          child: Text(
+                                            event[index].seq!.toString(),
+                                            style: textStyle(context,
+                                                fontSize: 25,
+                                                color: colorBlack),
+                                          ),
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Expanded(
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
+                                        Expanded(
+                                          flex: 3,
+                                          child: Text(
+                                            event[index].eventName!,
+                                            style: textStyle(context,
+                                                fontSize: 25,
+                                                color: colorBlack),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
+                                        Expanded(
                                           flex: 1,
-                                          child: statusWidget(
-                                              context, event[index].statusRelatedAgency!)),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Expanded(
-                                          flex: 1,
-                                          child: statusWidget(context, event[index].statusItem!)),
-                                      InkWell(
-                                          onTap: () {
-                                            _painter = QrPainter(
-                                              errorCorrectionLevel: QrErrorCorrectLevel.H,
-                                              eyeStyle: const QrEyeStyle(
-                                                  eyeShape: QrEyeShape.square, color: Colors.black),
-                                              emptyColor: Colors.white,
-                                              data: '${pathQR}${event[index].eventID}',
-                                              version: QrVersions.auto,
-                                              gapless: true,
-                                            );
-                                            showDialog(
-                                              context: context,
-                                              builder: (context) => AlertDialog(
-                                                content: WidgetsToImage(
-                                                  controller: controllerImage,
-                                                  child: Container(
-                                                    padding: const EdgeInsets.all(10),
-                                                    height: 250,
-                                                    width: 250,
-                                                    color: Colors.white,
-                                                    child: RepaintBoundary(
-                                                      child: CustomPaint(
-                                                          size: Size.square((180).toDouble()),
-                                                          key: _globalKey,
-                                                          painter: _painter),
+                                          child: Text(
+                                            '${DateTime.parse(event[index].datetime!).day} ${mountAbbreviation[DateTime.parse(event[index].datetime!).month - 1]} ${DateTime.parse(event[index].datetime!).year + 543}',
+                                            style: textStyle(context,
+                                                fontSize: 25,
+                                                color: colorBlack),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
+                                        Expanded(
+                                          flex: 2,
+                                          child: Text(
+                                            event[index].responsibleAgency ??
+                                                '',
+                                            style: textStyle(context,
+                                                fontSize: 25,
+                                                color: colorBlack),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
+                                        Expanded(
+                                          flex: 2,
+                                          child: Text(
+                                            '${event[index].latitude!},${event[index].longitude!}',
+                                            style: textStyle(context,
+                                                fontSize: 25,
+                                                color: colorBlack),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
+                                        Expanded(
+                                            flex: 1,
+                                            child: statusWidget(context,
+                                                event[index].statusAgency!)),
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
+                                        Expanded(
+                                          flex: 2,
+                                          child: Text(
+                                            event[index].relatedAgency!,
+                                            style: textStyle(context,
+                                                fontSize: 25,
+                                                color: colorBlack),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
+                                        Expanded(
+                                            flex: 1,
+                                            child: statusWidget(
+                                                context,
+                                                event[index]
+                                                    .statusRelatedAgency!)),
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
+                                        Expanded(
+                                            flex: 1,
+                                            child: statusWidget(context,
+                                                event[index].statusItem!)),
+                                        InkWell(
+                                            onTap: () {
+                                              _painter = QrPainter(
+                                                errorCorrectionLevel:
+                                                    QrErrorCorrectLevel.H,
+                                                eyeStyle: const QrEyeStyle(
+                                                    eyeShape: QrEyeShape.square,
+                                                    color: Colors.black),
+                                                emptyColor: Colors.white,
+                                                data:
+                                                    '${pathQR}${event[index].eventID}',
+                                                version: QrVersions.auto,
+                                                gapless: true,
+                                              );
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) =>
+                                                    AlertDialog(
+                                                  content: WidgetsToImage(
+                                                    controller: controllerImage,
+                                                    child: Container(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              10),
+                                                      height: 250,
+                                                      width: 250,
+                                                      color: Colors.white,
+                                                      child: RepaintBoundary(
+                                                        child: CustomPaint(
+                                                            size: Size.square(
+                                                                (180)
+                                                                    .toDouble()),
+                                                            key: _globalKey,
+                                                            painter: _painter),
+                                                      ),
                                                     ),
                                                   ),
+                                                  actions: [
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        InkWell(
+                                                            onTap: () async {
+                                                              await Clipboard.setData(
+                                                                  ClipboardData(
+                                                                      text:
+                                                                          '${pathQR}${event[index].eventID}'));
+                                                            },
+                                                            child: Container(
+                                                              height: 40,
+                                                              width: 100,
+                                                              decoration: BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              5),
+                                                                  color: Colors
+                                                                      .amber),
+                                                              child: Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  const Icon(
+                                                                    Icons.copy,
+                                                                    size: 20,
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
+                                                                  const SizedBox(
+                                                                    width: 4,
+                                                                  ),
+                                                                  Text(
+                                                                    'คัดลอก',
+                                                                    style: textStyle(
+                                                                        context,
+                                                                        fontSize:
+                                                                            25,
+                                                                        color:
+                                                                            colorWhite),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            )),
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        InkWell(
+                                                            onTap: () async {
+                                                              // File('my_image.jpg').writeAsBytes(bytes!);
+                                                              _capturePng();
+                                                            },
+                                                            // onTap: ()async{
+                                                            //   dynamic externalDir='/Storage/emulated/0/Download/QR_Code';
+                                                            //   RenderRepaintBoundary bounndary = _qrKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+                                                            //   var image =await bounndary.toImage(pixelRatio: 3.0);
+                                                            //   final whitePaint = Paint()..color=Colors.white;
+                                                            //   final recorder=PictureRecorder();
+                                                            //   final canvas =Canvas(recorder,Rect.fromLTWH(0,0,image.width.toDouble(),image.height.toDouble(),));
+                                                            //   canvas.drawRect(Rect.fromLTWH(0, 0, image.width.toDouble(), image.height.toDouble()), whitePaint);
+                                                            //   canvas.drawImage(image, Offset.zero, Paint());
+                                                            //   final picture = recorder.endRecording();
+                                                            //   final img = await picture.toImage(image.width, image.height);
+                                                            //   ByteData? byteData=await img.toByteData(format: ImageByteFormat.png);
+                                                            //   Uint8List pngBytes = byteData!.buffer.asUint8List();
+                                                            //   String fileName='qr_code';
+                                                            //   final file = await File('$externalDir/$fileName.png').create();
+                                                            //   Navigator.pop(context);
+                                                            // },
+                                                            child: Container(
+                                                              height: 40,
+                                                              width: 100,
+                                                              decoration: BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              5),
+                                                                  color: const Color(
+                                                                      0xfff1e5eff)),
+                                                              child: Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  const Icon(
+                                                                    Icons
+                                                                        .save_alt_rounded,
+                                                                    size: 20,
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
+                                                                  const SizedBox(
+                                                                    width: 4,
+                                                                  ),
+                                                                  Text(
+                                                                    'บันทึก',
+                                                                    style: textStyle(
+                                                                        context,
+                                                                        fontSize:
+                                                                            25,
+                                                                        color:
+                                                                            colorWhite),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            )),
+                                                      ],
+                                                    ),
+                                                  ],
                                                 ),
-                                                actions: [
-                                                  Row(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                    children: [
-                                                      InkWell(
-                                                          onTap: () async {
-                                                            await Clipboard.setData(ClipboardData(
-                                                                text:
-                                                                '${pathQR}${event[index].eventID}'));
-                                                          },
-                                                          child: Container(
-                                                            height: 40,
-                                                            width: 100,
-                                                            decoration: BoxDecoration(
-                                                                borderRadius:
-                                                                BorderRadius.circular(5),
-                                                                color: Colors.amber),
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                              MainAxisAlignment.center,
-                                                              children: [
-                                                                const Icon(
-                                                                  Icons.copy,
-                                                                  size: 20,
-                                                                  color: Colors.white,
-                                                                ),
-                                                                const SizedBox(
-                                                                  width: 4,
-                                                                ),
-                                                                Text(
-                                                                  'คัดลอก',
-                                                                  style: textStyle(context,
-                                                                      fontSize: 15,
-                                                                      color: colorWhite),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          )),
-                                                      const SizedBox(
-                                                        width: 10,
-                                                      ),
-                                                      InkWell(
-                                                          onTap: () async {
-                                                            // File('my_image.jpg').writeAsBytes(bytes!);
-                                                            _capturePng();
-                                                          },
-                                                          // onTap: ()async{
-                                                          //   dynamic externalDir='/Storage/emulated/0/Download/QR_Code';
-                                                          //   RenderRepaintBoundary bounndary = _qrKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
-                                                          //   var image =await bounndary.toImage(pixelRatio: 3.0);
-                                                          //   final whitePaint = Paint()..color=Colors.white;
-                                                          //   final recorder=PictureRecorder();
-                                                          //   final canvas =Canvas(recorder,Rect.fromLTWH(0,0,image.width.toDouble(),image.height.toDouble(),));
-                                                          //   canvas.drawRect(Rect.fromLTWH(0, 0, image.width.toDouble(), image.height.toDouble()), whitePaint);
-                                                          //   canvas.drawImage(image, Offset.zero, Paint());
-                                                          //   final picture = recorder.endRecording();
-                                                          //   final img = await picture.toImage(image.width, image.height);
-                                                          //   ByteData? byteData=await img.toByteData(format: ImageByteFormat.png);
-                                                          //   Uint8List pngBytes = byteData!.buffer.asUint8List();
-                                                          //   String fileName='qr_code';
-                                                          //   final file = await File('$externalDir/$fileName.png').create();
-                                                          //   Navigator.pop(context);
-                                                          // },
-                                                          child: Container(
-                                                            height: 40,
-                                                            width: 100,
-                                                            decoration: BoxDecoration(
-                                                                borderRadius:
-                                                                BorderRadius.circular(5),
-                                                                color: const Color(0xfff1e5eff)),
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                              MainAxisAlignment.center,
-                                                              children: [
-                                                                const Icon(
-                                                                  Icons.save_alt_rounded,
-                                                                  size: 20,
-                                                                  color: Colors.white,
-                                                                ),
-                                                                const SizedBox(
-                                                                  width: 4,
-                                                                ),
-                                                                Text(
-                                                                  'บันทึก',
-                                                                  style: textStyle(context,
-                                                                      fontSize: 15,
-                                                                      color: colorWhite),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          )),
-                                                    ],
-                                                  ),
-                                                ],
+                                              );
+                                            },
+                                            child: SizedBox(
+                                              width: 40,
+                                              child: Icon(
+                                                CupertinoIcons.share,
+                                                color: colorGrey,
+                                                size: 20,
                                               ),
-                                            );
+                                            )),
+                                        InkWell(
+                                          onTap: () {
+                                            final LandingPageControllerAdmin
+                                                landingPageController = Get.put(
+                                                    LandingPageControllerAdmin(),
+                                                    permanent: false);
+                                            final ContollerDetail
+                                                contollerEvent = Get.put(
+                                                    ContollerDetail(),
+                                                    permanent: false);
+                                            contollerEvent.getEvent(
+                                                event[index].eventID!);
+                                            landingPageController
+                                                .tabIndex.value = 3;
+                                            // dialogEdit(context);
                                           },
                                           child: SizedBox(
                                             width: 40,
                                             child: Icon(
-                                              CupertinoIcons.share,
+                                              Icons.edit_note,
                                               color: colorGrey,
                                               size: 20,
                                             ),
-                                          )),
-                                      InkWell(
-                                        onTap: () {
-                                          final LandingPageControllerAdmin landingPageController =
-                                          Get.put(LandingPageControllerAdmin(), permanent: false);
-                                          final ContollerDetail contollerEvent =
-                                          Get.put(ContollerDetail(), permanent: false);
-                                          contollerEvent.getEvent(event[index].eventID!);
-                                          landingPageController.tabIndex.value = 3;
-                                          // dialogEdit(context);
-                                        },
-                                        child: SizedBox(
-                                          width: 40,
-                                          child: Icon(
-                                            Icons.edit_note,
-                                            color: colorGrey,
-                                            size: 20,
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  Divider(
-                                    height: 2,
-                                    color: colorGrey,
-                                  )
-                                ],
+                                      ],
+                                    ),
+                                    Divider(
+                                      height: 2,
+                                      color: colorGrey,
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
+                            width: 1800,
+                            // height: 200,
                           ),
-                          width: 1800,
-                          // height: 200,
-                        ),
-                      ],
-                    ),
-                    SizedBox(width: 40,)
-                  ],
-                ),
-              )),
-        ],
-      )
-      // Container(
-      //   child: ListView.builder(itemBuilder: (context, index) => Container(width: 250,),)
-      //
-      // )
-      //   ListView.builder(
-      //     physics: const NeverScrollableScrollPhysics(),
-      //     shrinkWrap: true,
-      //     itemCount: event.length,
-      //     itemBuilder: (context, index) => Container(
-      //       child: Column(
-      //         mainAxisAlignment: MainAxisAlignment.end,
-      //         children: [
-      //           Row(
-      //             children: [
-      //               Expanded(
-      //                 flex: 1,
-      //                 child: Text(
-      //                   event[index].seq!.toString(),
-      //                   style: textStyle(context,
-      //                       fontSize: 15,
-      //                       color: colorBlack),
-      //                 ),
-      //               ),
-      //               const SizedBox(
-      //                 width: 5,
-      //               ),
-      //               Expanded(
-      //                 flex: 3,
-      //                 child: Text(
-      //                   event[index].eventName!,
-      //                   style: textStyle(context,
-      //                       fontSize: 15,
-      //                       color: colorBlack),
-      //                 ),
-      //               ),
-      //               const SizedBox(
-      //                 width: 5,
-      //               ),
-      //               Expanded(
-      //                 flex: 1,
-      //                 child: Text(
-      //                   category[event[index].disasterType!],
-      //                   style: textStyle(context,
-      //                       fontSize: 15,
-      //                       color: colorBlack),
-      //                 ),
-      //               ),
-      //               const SizedBox(
-      //                 width: 5,
-      //               ),
-      //               Expanded(
-      //                 flex: 1,
-      //                 child: Text(
-      //                   '${DateTime.parse(event[index].datetime!).day} ${mountAbbreviation[DateTime.parse(event[index].datetime!).month - 1]} ${DateTime.parse(event[index].datetime!).year + 543}',
-      //                   style: textStyle(context,
-      //                       fontSize: 15,
-      //                       color: colorBlack),
-      //                 ),
-      //               ),
-      //               const SizedBox(
-      //                 width: 5,
-      //               ),
-      //               Expanded(
-      //                 flex: 2,
-      //                 child: Text(
-      //                   event[index].responsibleAgency ?? '',
-      //                   style: textStyle(context,
-      //                       fontSize: 15,
-      //                       color: colorBlack),
-      //                 ),
-      //               ),
-      //               const SizedBox(
-      //                 width: 5,
-      //               ),
-      //               Expanded(
-      //                 flex: 1,
-      //                 child: Text(
-      //                   listViolence[event[index].violence!],
-      //                   style: textStyle(context,
-      //                       fontSize: 15,
-      //                       color: colorBlack),
-      //                 ),
-      //               ),
-      //               const SizedBox(
-      //                 width: 5,
-      //               ),
-      //               Expanded(
-      //                 flex: 2,
-      //                 child: Text(
-      //                   '${event[index].latitude!},${event[index].longitude!}',
-      //                   style: textStyle(context,
-      //                       fontSize: 15,
-      //                       color: colorBlack),
-      //                 ),
-      //               ),
-      //               const SizedBox(
-      //                 width: 5,
-      //               ),
-      //               Expanded(
-      //                   flex: 2,
-      //                   child: statusWidget(context, event[index].statusAgency!)),
-      //               const SizedBox(
-      //                 width: 5,
-      //               ),
-      //               Expanded(
-      //                 flex: 2,
-      //                 child: Text(
-      //                   event[index].relatedAgency!,
-      //                   style: textStyle(context,
-      //                       fontSize: 15,
-      //                       color: colorBlack),
-      //                 ),
-      //               ),
-      //               const SizedBox(
-      //                 width: 5,
-      //               ),
-      //               Expanded(
-      //                   flex: 2,
-      //                   child: statusWidget(
-      //                       context, event[index].statusRelatedAgency!)),
-      //               const SizedBox(
-      //                 width: 5,
-      //               ),
-      //               Expanded(
-      //                   flex: 2,
-      //                   child: statusWidget(context, event[index].statusItem!)),
-      //               InkWell(
-      //                   onTap: () {
-      //                     _painter = QrPainter(
-      //                       errorCorrectionLevel: QrErrorCorrectLevel.H,
-      //                       eyeStyle: const QrEyeStyle(
-      //                           eyeShape: QrEyeShape.square, color: Colors.black),
-      //                       emptyColor: Colors.white,
-      //                       data: '${pathQR}${event[index].eventID}',
-      //                       version: QrVersions.auto,
-      //                       gapless: true,
-      //                     );
-      //                     showDialog(
-      //                       context: context,
-      //                       builder: (context) => AlertDialog(
-      //                         content: WidgetsToImage(
-      //                           controller: controllerImage,
-      //                           child: Container(
-      //                             padding: const EdgeInsets.all(10),
-      //                             height: 250,
-      //                             width: 250,
-      //                             color: Colors.white,
-      //                             child: RepaintBoundary(
-      //                               child: CustomPaint(
-      //                                   size: Size.square((180).toDouble()),
-      //                                   key: _globalKey,
-      //                                   painter: _painter),
-      //                             ),
-      //                           ),
-      //                         ),
-      //                         actions: [
-      //                           Row(
-      //                             mainAxisAlignment: MainAxisAlignment.center,
-      //                             children: [
-      //                               InkWell(
-      //                                   onTap: () async {
-      //                                     await Clipboard.setData(ClipboardData(
-      //                                         text:
-      //                                             '${pathQR}${event[index].eventID}'));
-      //                                   },
-      //                                   child: Container(
-      //                                     height: 40,
-      //                                     width: 100,
-      //                                     decoration: BoxDecoration(
-      //                                         borderRadius:
-      //                                             BorderRadius.circular(5),
-      //                                         color: Colors.amber),
-      //                                     child: Row(
-      //                                       mainAxisAlignment:
-      //                                           MainAxisAlignment.center,
-      //                                       children: [
-      //                                         const Icon(
-      //                                           Icons.copy,
-      //                                           size: 20,
-      //                                           color: Colors.white,
-      //                                         ),
-      //                                         const SizedBox(
-      //                                           width: 4,
-      //                                         ),
-      //                                         Text(
-      //                                           'คัดลอก',
-      //                                           style: textStyle(context,
-      //                                               fontSize: 15,
-      //                                               color: colorWhite),
-      //                                         ),
-      //                                       ],
-      //                                     ),
-      //                                   )),
-      //                               const SizedBox(
-      //                                 width: 10,
-      //                               ),
-      //                               InkWell(
-      //                                   onTap: () async {
-      //                                     // File('my_image.jpg').writeAsBytes(bytes!);
-      //                                     _capturePng();
-      //                                   },
-      //                                   // onTap: ()async{
-      //                                   //   dynamic externalDir='/Storage/emulated/0/Download/QR_Code';
-      //                                   //   RenderRepaintBoundary bounndary = _qrKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
-      //                                   //   var image =await bounndary.toImage(pixelRatio: 3.0);
-      //                                   //   final whitePaint = Paint()..color=Colors.white;
-      //                                   //   final recorder=PictureRecorder();
-      //                                   //   final canvas =Canvas(recorder,Rect.fromLTWH(0,0,image.width.toDouble(),image.height.toDouble(),));
-      //                                   //   canvas.drawRect(Rect.fromLTWH(0, 0, image.width.toDouble(), image.height.toDouble()), whitePaint);
-      //                                   //   canvas.drawImage(image, Offset.zero, Paint());
-      //                                   //   final picture = recorder.endRecording();
-      //                                   //   final img = await picture.toImage(image.width, image.height);
-      //                                   //   ByteData? byteData=await img.toByteData(format: ImageByteFormat.png);
-      //                                   //   Uint8List pngBytes = byteData!.buffer.asUint8List();
-      //                                   //   String fileName='qr_code';
-      //                                   //   final file = await File('$externalDir/$fileName.png').create();
-      //                                   //   Navigator.pop(context);
-      //                                   // },
-      //                                   child: Container(
-      //                                     height: 40,
-      //                                     width: 100,
-      //                                     decoration: BoxDecoration(
-      //                                         borderRadius:
-      //                                             BorderRadius.circular(5),
-      //                                         color: const Color(0xfff1e5eff)),
-      //                                     child: Row(
-      //                                       mainAxisAlignment:
-      //                                           MainAxisAlignment.center,
-      //                                       children: [
-      //                                         const Icon(
-      //                                           Icons.save_alt_rounded,
-      //                                           size: 20,
-      //                                           color: Colors.white,
-      //                                         ),
-      //                                         const SizedBox(
-      //                                           width: 4,
-      //                                         ),
-      //                                         Text(
-      //                                           'บันทึก',
-      //                                           style: textStyle(context,
-      //                                               fontSize: 15,
-      //                                               color: colorWhite),
-      //                                         ),
-      //                                       ],
-      //                                     ),
-      //                                   )),
-      //                             ],
-      //                           ),
-      //                         ],
-      //                       ),
-      //                     );
-      //                   },
-      //                   child: SizedBox(
-      //                     width: 40,
-      //                     child: Icon(
-      //                       CupertinoIcons.share,
-      //                       color: colorGrey,
-      //                       size: 20,
-      //                     ),
-      //                   )),
-      //               InkWell(
-      //                 onTap: () {
-      //                   final LandingPageControllerAdmin landingPageController =
-      //                       Get.put(LandingPageControllerAdmin(), permanent: false);
-      //                   final ContollerDetail contollerEvent =
-      //                       Get.put(ContollerDetail(), permanent: false);
-      //                   contollerEvent.getEvent(event[index].eventID!);
-      //                   landingPageController.tabIndex.value = 7;
-      //                   // dialogEdit(context);
-      //                 },
-      //                 child: SizedBox(
-      //                   width: 40,
-      //                   child: Icon(
-      //                     Icons.edit_note,
-      //                     color: colorGrey,
-      //                     size: 20,
-      //                   ),
-      //                 ),
-      //               ),
-      //             ],
-      //           ),
-      //           Divider(
-      //             height: 2,
-      //             color: colorGrey,
-      //           )
-      //         ],
-      //       ),
-      //     ),
-      //   ),
-      // ),
-    );
+                        ],
+                      ),
+                      SizedBox(
+                        width: 40,
+                      )
+                    ],
+                  ),
+                )),
+          ],
+        )
+        // Container(
+        //   child: ListView.builder(itemBuilder: (context, index) => Container(width: 250,),)
+        //
+        // )
+        //   ListView.builder(
+        //     physics: const NeverScrollableScrollPhysics(),
+        //     shrinkWrap: true,
+        //     itemCount: event.length,
+        //     itemBuilder: (context, index) => Container(
+        //       child: Column(
+        //         mainAxisAlignment: MainAxisAlignment.end,
+        //         children: [
+        //           Row(
+        //             children: [
+        //               Expanded(
+        //                 flex: 1,
+        //                 child: Text(
+        //                   event[index].seq!.toString(),
+        //                   style: textStyle(context,
+        //                       fontSize: 15,
+        //                       color: colorBlack),
+        //                 ),
+        //               ),
+        //               const SizedBox(
+        //                 width: 5,
+        //               ),
+        //               Expanded(
+        //                 flex: 3,
+        //                 child: Text(
+        //                   event[index].eventName!,
+        //                   style: textStyle(context,
+        //                       fontSize: 15,
+        //                       color: colorBlack),
+        //                 ),
+        //               ),
+        //               const SizedBox(
+        //                 width: 5,
+        //               ),
+        //               Expanded(
+        //                 flex: 1,
+        //                 child: Text(
+        //                   category[event[index].disasterType!],
+        //                   style: textStyle(context,
+        //                       fontSize: 15,
+        //                       color: colorBlack),
+        //                 ),
+        //               ),
+        //               const SizedBox(
+        //                 width: 5,
+        //               ),
+        //               Expanded(
+        //                 flex: 1,
+        //                 child: Text(
+        //                   '${DateTime.parse(event[index].datetime!).day} ${mountAbbreviation[DateTime.parse(event[index].datetime!).month - 1]} ${DateTime.parse(event[index].datetime!).year + 543}',
+        //                   style: textStyle(context,
+        //                       fontSize: 15,
+        //                       color: colorBlack),
+        //                 ),
+        //               ),
+        //               const SizedBox(
+        //                 width: 5,
+        //               ),
+        //               Expanded(
+        //                 flex: 2,
+        //                 child: Text(
+        //                   event[index].responsibleAgency ?? '',
+        //                   style: textStyle(context,
+        //                       fontSize: 15,
+        //                       color: colorBlack),
+        //                 ),
+        //               ),
+        //               const SizedBox(
+        //                 width: 5,
+        //               ),
+        //               Expanded(
+        //                 flex: 1,
+        //                 child: Text(
+        //                   listViolence[event[index].violence!],
+        //                   style: textStyle(context,
+        //                       fontSize: 15,
+        //                       color: colorBlack),
+        //                 ),
+        //               ),
+        //               const SizedBox(
+        //                 width: 5,
+        //               ),
+        //               Expanded(
+        //                 flex: 2,
+        //                 child: Text(
+        //                   '${event[index].latitude!},${event[index].longitude!}',
+        //                   style: textStyle(context,
+        //                       fontSize: 15,
+        //                       color: colorBlack),
+        //                 ),
+        //               ),
+        //               const SizedBox(
+        //                 width: 5,
+        //               ),
+        //               Expanded(
+        //                   flex: 2,
+        //                   child: statusWidget(context, event[index].statusAgency!)),
+        //               const SizedBox(
+        //                 width: 5,
+        //               ),
+        //               Expanded(
+        //                 flex: 2,
+        //                 child: Text(
+        //                   event[index].relatedAgency!,
+        //                   style: textStyle(context,
+        //                       fontSize: 15,
+        //                       color: colorBlack),
+        //                 ),
+        //               ),
+        //               const SizedBox(
+        //                 width: 5,
+        //               ),
+        //               Expanded(
+        //                   flex: 2,
+        //                   child: statusWidget(
+        //                       context, event[index].statusRelatedAgency!)),
+        //               const SizedBox(
+        //                 width: 5,
+        //               ),
+        //               Expanded(
+        //                   flex: 2,
+        //                   child: statusWidget(context, event[index].statusItem!)),
+        //               InkWell(
+        //                   onTap: () {
+        //                     _painter = QrPainter(
+        //                       errorCorrectionLevel: QrErrorCorrectLevel.H,
+        //                       eyeStyle: const QrEyeStyle(
+        //                           eyeShape: QrEyeShape.square, color: Colors.black),
+        //                       emptyColor: Colors.white,
+        //                       data: '${pathQR}${event[index].eventID}',
+        //                       version: QrVersions.auto,
+        //                       gapless: true,
+        //                     );
+        //                     showDialog(
+        //                       context: context,
+        //                       builder: (context) => AlertDialog(
+        //                         content: WidgetsToImage(
+        //                           controller: controllerImage,
+        //                           child: Container(
+        //                             padding: const EdgeInsets.all(10),
+        //                             height: 250,
+        //                             width: 250,
+        //                             color: Colors.white,
+        //                             child: RepaintBoundary(
+        //                               child: CustomPaint(
+        //                                   size: Size.square((180).toDouble()),
+        //                                   key: _globalKey,
+        //                                   painter: _painter),
+        //                             ),
+        //                           ),
+        //                         ),
+        //                         actions: [
+        //                           Row(
+        //                             mainAxisAlignment: MainAxisAlignment.center,
+        //                             children: [
+        //                               InkWell(
+        //                                   onTap: () async {
+        //                                     await Clipboard.setData(ClipboardData(
+        //                                         text:
+        //                                             '${pathQR}${event[index].eventID}'));
+        //                                   },
+        //                                   child: Container(
+        //                                     height: 40,
+        //                                     width: 100,
+        //                                     decoration: BoxDecoration(
+        //                                         borderRadius:
+        //                                             BorderRadius.circular(5),
+        //                                         color: Colors.amber),
+        //                                     child: Row(
+        //                                       mainAxisAlignment:
+        //                                           MainAxisAlignment.center,
+        //                                       children: [
+        //                                         const Icon(
+        //                                           Icons.copy,
+        //                                           size: 20,
+        //                                           color: Colors.white,
+        //                                         ),
+        //                                         const SizedBox(
+        //                                           width: 4,
+        //                                         ),
+        //                                         Text(
+        //                                           'คัดลอก',
+        //                                           style: textStyle(context,
+        //                                               fontSize: 15,
+        //                                               color: colorWhite),
+        //                                         ),
+        //                                       ],
+        //                                     ),
+        //                                   )),
+        //                               const SizedBox(
+        //                                 width: 10,
+        //                               ),
+        //                               InkWell(
+        //                                   onTap: () async {
+        //                                     // File('my_image.jpg').writeAsBytes(bytes!);
+        //                                     _capturePng();
+        //                                   },
+        //                                   // onTap: ()async{
+        //                                   //   dynamic externalDir='/Storage/emulated/0/Download/QR_Code';
+        //                                   //   RenderRepaintBoundary bounndary = _qrKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+        //                                   //   var image =await bounndary.toImage(pixelRatio: 3.0);
+        //                                   //   final whitePaint = Paint()..color=Colors.white;
+        //                                   //   final recorder=PictureRecorder();
+        //                                   //   final canvas =Canvas(recorder,Rect.fromLTWH(0,0,image.width.toDouble(),image.height.toDouble(),));
+        //                                   //   canvas.drawRect(Rect.fromLTWH(0, 0, image.width.toDouble(), image.height.toDouble()), whitePaint);
+        //                                   //   canvas.drawImage(image, Offset.zero, Paint());
+        //                                   //   final picture = recorder.endRecording();
+        //                                   //   final img = await picture.toImage(image.width, image.height);
+        //                                   //   ByteData? byteData=await img.toByteData(format: ImageByteFormat.png);
+        //                                   //   Uint8List pngBytes = byteData!.buffer.asUint8List();
+        //                                   //   String fileName='qr_code';
+        //                                   //   final file = await File('$externalDir/$fileName.png').create();
+        //                                   //   Navigator.pop(context);
+        //                                   // },
+        //                                   child: Container(
+        //                                     height: 40,
+        //                                     width: 100,
+        //                                     decoration: BoxDecoration(
+        //                                         borderRadius:
+        //                                             BorderRadius.circular(5),
+        //                                         color: const Color(0xfff1e5eff)),
+        //                                     child: Row(
+        //                                       mainAxisAlignment:
+        //                                           MainAxisAlignment.center,
+        //                                       children: [
+        //                                         const Icon(
+        //                                           Icons.save_alt_rounded,
+        //                                           size: 20,
+        //                                           color: Colors.white,
+        //                                         ),
+        //                                         const SizedBox(
+        //                                           width: 4,
+        //                                         ),
+        //                                         Text(
+        //                                           'บันทึก',
+        //                                           style: textStyle(context,
+        //                                               fontSize: 15,
+        //                                               color: colorWhite),
+        //                                         ),
+        //                                       ],
+        //                                     ),
+        //                                   )),
+        //                             ],
+        //                           ),
+        //                         ],
+        //                       ),
+        //                     );
+        //                   },
+        //                   child: SizedBox(
+        //                     width: 40,
+        //                     child: Icon(
+        //                       CupertinoIcons.share,
+        //                       color: colorGrey,
+        //                       size: 20,
+        //                     ),
+        //                   )),
+        //               InkWell(
+        //                 onTap: () {
+        //                   final LandingPageControllerAdmin landingPageController =
+        //                       Get.put(LandingPageControllerAdmin(), permanent: false);
+        //                   final ContollerDetail contollerEvent =
+        //                       Get.put(ContollerDetail(), permanent: false);
+        //                   contollerEvent.getEvent(event[index].eventID!);
+        //                   landingPageController.tabIndex.value = 7;
+        //                   // dialogEdit(context);
+        //                 },
+        //                 child: SizedBox(
+        //                   width: 40,
+        //                   child: Icon(
+        //                     Icons.edit_note,
+        //                     color: colorGrey,
+        //                     size: 20,
+        //                   ),
+        //                 ),
+        //               ),
+        //             ],
+        //           ),
+        //           Divider(
+        //             height: 2,
+        //             color: colorGrey,
+        //           )
+        //         ],
+        //       ),
+        //     ),
+        //   ),
+        // ),
+        );
   }
 
   Future<void> _capturePng() async {

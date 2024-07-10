@@ -34,10 +34,10 @@ import '../drawer/admin/contollerdraweradmin.dart';
 
 class ContollerCreateList extends GetxController {
   var mapController = MapController().obs;
-  var dataEditEvent= edit.EventByIDModel().obs;
+  var dataEditEvent = edit.EventByIDModel().obs;
   final tooltipController = JustTheController();
   final formKey = GlobalKey<FormState>();
-  var selectIcon=0.obs;
+  var selectIcon = 0.obs;
   addressModel locationAddress = addressModel();
   var selectedField = ''.obs;
   var listForm = <ListFormModel>[].obs;
@@ -63,7 +63,7 @@ class ContollerCreateList extends GetxController {
   var listConvertImage = <edit.ImageList>[].obs;
   var listConvertImageLog = <edit.ImageList>[].obs;
   var listConvertFileLog = <edit.ImageList>[].obs;
-  var listDeleteImage=<ImageDeleteList>[].obs;
+  var listDeleteImage = <ImageDeleteList>[].obs;
   var date = DateTime.now().toString().split(" ")[0].obs;
   final nameCon = TextEditingController().obs,
       createBy = TextEditingController().obs,
@@ -83,39 +83,35 @@ class ContollerCreateList extends GetxController {
       // unGenderInjured = TextEditingController(text: '0').obs,
       remark = TextEditingController().obs,
       search = TextEditingController().obs;
-  var listSearchMap=<SearchMapModel>[].obs;
+  var listSearchMap = <SearchMapModel>[].obs;
   final NumberPaginatorController controllerNumPage =
-  NumberPaginatorController();
+      NumberPaginatorController();
 
-  final listGender=[
-    "ชาย",
-    "หญิง",
-    "ไม่ระบุ"
-  ];
+  final listGender = ["ชาย", "หญิง", "ไม่ระบุ"];
 
-  editEvent(edit.EventByIDModel data)async{
+  editEvent(edit.EventByIDModel data) async {
     // mapController.value.dispose();
-   if(lat.value.text==''){
-     mapController = MapController().obs;
-   }
-    await  clearData();
-    dataEditEvent.value=data;
-    nameCon.value.text = data.events!.eventName??'';
-    createBy.value.text = data.events!.receiveFrom??'';
+    if (lat.value.text == '') {
+      mapController = MapController().obs;
+    }
+    await clearData();
+    dataEditEvent.value = data;
+    nameCon.value.text = data.events!.eventName ?? '';
+    createBy.value.text = data.events!.receiveFrom ?? '';
     lat.value.text = double.parse(data.events!.latitude!).toStringAsFixed(6);
     // unGenderDie.value.text=data.events!.deceased!.unidentify.toString()??'';
     lng.value.text = double.parse(data.events!.longitude!).toStringAsFixed(6);
-    responsible.value.text = data.events!.responsibleAgency??'';
+    responsible.value.text = data.events!.responsibleAgency ?? '';
     // die.value.text = data.events!.deceased!.total!.toString()??'';
-    relevant.value.text = data.events!.relatedAgency??'';
+    relevant.value.text = data.events!.relatedAgency ?? '';
     // mandie.value.text = data.events!.deceased!.male.toString()??'';
     // womenDie.value.text = data.events!.deceased!.feMale.toString()??'';
     // injured.value.text = data.events!.injured!.total.toString()??'';
     // manInjured.value.text = data.events!.injured!.male.toString()??'';
     // womenInjured.value.text = data.events!.injured!.feMale.toString()??'';
     // unGenderInjured.value.text = data.events!.injured!.unidentify.toString()??'';
-    remark.value.text = data.events!.note??'';
-    if(isAdmin)listConvertImage.value = data.events!.imageList!;
+    remark.value.text = data.events!.note ?? '';
+    if (isAdmin) listConvertImage.value = data.events!.imageList!;
     // radio.value = data.events!.violence??1;
     date.value = data.events!.datetime!;
     // listImage.value.clear();
@@ -123,8 +119,7 @@ class ContollerCreateList extends GetxController {
     selectStatusList!.value = StatusList[data.events!.statusItem!];
     selectStatusResponsible!.value = StatusList[data.events!.statusAgency!];
     selectStatusrelevant!.value = StatusList[data.events!.statusRelatedAgency!];
-    address.value.text= data.events!.address.toString()??'';
-
+    address.value.text = data.events!.address.toString() ?? '';
 
     // for(int i=0;i< data.events!.deceased!.deceaseList!.length;i++){
     //   // listGenderDie.add(listGender[data.events!.deceased!.deceaseList![i].sex!].obs);
@@ -146,36 +141,38 @@ class ContollerCreateList extends GetxController {
                 .map((e) => e.optionName ?? '')
                 .toList(),
             listoptionID:
-            element.freeFormSubDetailList!.map((e) => e.id ?? '').toList(),
+                element.freeFormSubDetailList!.map((e) => e.id ?? '').toList(),
           ),
         ));
       } else if (element.types == 1) {
-        List<bool> list=[];
+        List<bool> list = [];
         for (var element in element.freeFormSubDetailList!) {
           list.add(false);
         }
         listAnswer.add(answer.ListAnswerModel(
             checkbox: answer.Checkbox(
-              listoption:
-              element.freeFormSubDetailList!.map((e) => e.optionName ?? '').toList(),
-              listoptionID:
+          listoption: element.freeFormSubDetailList!
+              .map((e) => e.optionName ?? '')
+              .toList(),
+          listoptionID:
               element.freeFormSubDetailList!.map((e) => e.id ?? '').toList(),
-              valueID: [],
-              value: [],
-              listvalueoption:list,
-            )));
+          valueID: [],
+          value: [],
+          listvalueoption: list,
+        )));
       } else if (element.types == 2) {
         listAnswer.add(answer.ListAnswerModel(
-          radio:  answer.Dropdown(
+          radio: answer.Dropdown(
             listoption: element.freeFormSubDetailList!
                 .map((e) => e.optionName ?? '')
                 .toList(),
             listoptionID:
-            element.freeFormSubDetailList!.map((e) => e.id ?? '').toList(),
+                element.freeFormSubDetailList!.map((e) => e.id ?? '').toList(),
           ),
         ));
       } else if (element.types == 3) {
-        listAnswer.add(answer.ListAnswerModel(textfield: answer.Textfield(value:TextEditingController())));
+        listAnswer.add(answer.ListAnswerModel(
+            textfield: answer.Textfield(value: TextEditingController())));
       } else if (element.types == 4) {
         listAnswer.add(answer.ListAnswerModel(image: answer.Image(value: "")));
       } else if (element.types == 5) {
@@ -189,7 +186,6 @@ class ContollerCreateList extends GetxController {
   // UpdateListGenderDie(String gender, int index){
   //   listGenderDie[index].value=gender;
   // }
-
 
   // addDataDie(){
   //   listTextAgeDie.add(TextEditingController());
@@ -215,7 +211,7 @@ class ContollerCreateList extends GetxController {
     lng.value.text = "99.398686";
     responsible.value.text = '';
     // die.value.text = '0';
-    selectIcon.value=0;
+    selectIcon.value = 0;
     relevant.value.text = '';
     // mandie.value.text = '0';
     // womenDie.value.text = '0';
@@ -224,7 +220,7 @@ class ContollerCreateList extends GetxController {
     // manInjured.value.text = '0';
     // womenInjured.value.text = '0';
     // unGenderInjured.value.text = '0';
-    search.value.text='';
+    search.value.text = '';
     locationAddress = addressModel();
     remark.value.text = '';
     // radio.value = 0;
@@ -236,17 +232,17 @@ class ContollerCreateList extends GetxController {
     listForm.clear();
     // listStringNameDeleteInjured.clear();
     // listStringNameDeleteDie.clear();
-    remarkReport.value.text='';
+    remarkReport.value.text = '';
     // listImage.value.clear();
     listConvertImage.clear();
     selectCategory!.value = 'อัคคีภัย';
     selectStatusList!.value = 'รับเรื่อง';
     selectStatusResponsible!.value = 'รับเรื่อง';
     selectStatusrelevant!.value = 'รับเรื่อง';
-    address.value.text='';
+    address.value.text = '';
     // mapController.value.move(
     //     LatLng(latDefault, lngDefault), 16);
-    dataEditEvent= edit.EventByIDModel().obs;
+    dataEditEvent = edit.EventByIDModel().obs;
     // listTextNameDie.clear();
     // listTextAgeDie.clear();
     // listGenderDie.clear();
@@ -260,9 +256,7 @@ class ContollerCreateList extends GetxController {
     // listTextNameInjured.clear();
     // listTextAgeInjured.clear();
     // listGenderInjured.clear();
-
   }
-
 
   RxString? selectCategory = 'อัคคีภัย'.obs;
   List<String> category = [
@@ -293,27 +287,26 @@ class ContollerCreateList extends GetxController {
     "เสร็จสิ้น",
   ];
 
-
-  searchMap(String data)async{
-    listSearchMap.value=await searchMapApi(data);
+  searchMap(String data) async {
+    listSearchMap.value = await searchMapApi(data);
   }
 
   Future<void> submit(BuildContext context) async {
     try {
-      List<DeceaseList> listDataDie=[];
-      List<DeceaseList> listDataInjured=[];
+      List<DeceaseList> listDataDie = [];
+      List<DeceaseList> listDataInjured = [];
       List<FreeFormDetailList> detailLists = [];
-      List<FreeFormAnswerList> listAnswerDetail=[];
-      String uuid='';
+      List<FreeFormAnswerList> listAnswerDetail = [];
+      String uuid = '';
       final LandingPageControllerAdmin landingPageController =
-      Get.put(LandingPageControllerAdmin(), permanent: false);
+          Get.put(LandingPageControllerAdmin(), permanent: false);
 
       addressModel location =
-      await getLatLong(long: lng.value.text, lat: lat.value.text,index: 1);
-      List<ImageList> listImageBase64 = [],listImageBase64Log=[];
-      List<FileList> listFileBase64=[];
+          await getLatLong(long: lng.value.text, lat: lat.value.text, index: 1);
+      List<ImageList> listImageBase64 = [], listImageBase64Log = [];
+      List<FileList> listFileBase64 = [];
       for (var element in listConvertImage) {
-        if(element.imageName=='new'){
+        if (element.imageName == 'new') {
           listImageBase64.add(ImageList(image: element.pathImage));
         }
       }
@@ -323,55 +316,67 @@ class ContollerCreateList extends GetxController {
       }
 
       for (var element in listConvertFileLog) {
-          listFileBase64.add(FileList(file: element.pathImage,fileName: element.imageName));
+        listFileBase64.add(
+            FileList(file: element.pathImage, fileName: element.imageName));
       }
 
       UpdateBy? dataUpdate;
-      if(dataEditEvent.value.events!=null){
+      if (dataEditEvent.value.events != null) {
         uuid = dataEditEvent.value.events!.eventID!;
-        List<LogList>? listLog=[];
-        if(category.indexOf(selectCategory!.value) != dataEditEvent.value.events!.disasterType!){
-          listLog.add(LogList(header: 'ประเภทภัยพิบัติ',
-              description: selectCategory!.value));
+        List<LogList>? listLog = [];
+        if (category.indexOf(selectCategory!.value) !=
+            dataEditEvent.value.events!.disasterType!) {
+          listLog.add(LogList(
+              header: 'ประเภทภัยพิบัติ', description: selectCategory!.value));
         }
-        if(nameCon.value.text.trim() !=dataEditEvent.value.events!.eventName){
-          listLog.add(LogList(header: 'ชื่อรายงาน',
-              description: nameCon.value.text.trim()));
+        if (nameCon.value.text.trim() !=
+            dataEditEvent.value.events!.eventName) {
+          listLog.add(LogList(
+              header: 'ชื่อรายงาน', description: nameCon.value.text.trim()));
         }
-        if(date.value !=dataEditEvent.value.events!.datetime){
-          listLog.add(LogList(header: 'วันที่รับเรื่อง',
-              description: date.value));
+        if (date.value != dataEditEvent.value.events!.datetime) {
+          listLog
+              .add(LogList(header: 'วันที่รับเรื่อง', description: date.value));
         }
-        if(StatusList.indexOf(selectStatusList!.value)!= dataEditEvent.value.events!.statusItem){
-          listLog.add(LogList(header: 'สถานะรายงาน',
-              description: selectStatusList!.value));
+        if (StatusList.indexOf(selectStatusList!.value) !=
+            dataEditEvent.value.events!.statusItem) {
+          listLog.add(LogList(
+              header: 'สถานะรายงาน', description: selectStatusList!.value));
         }
-        if(StatusList.indexOf(selectStatusrelevant!.value)!= dataEditEvent.value.events!.statusRelatedAgency){
-          listLog.add(LogList(header: 'สถานะหน่วยงานที่เกี่ยวข้อง',
+        if (StatusList.indexOf(selectStatusrelevant!.value) !=
+            dataEditEvent.value.events!.statusRelatedAgency) {
+          listLog.add(LogList(
+              header: 'สถานะหน่วยงานที่เกี่ยวข้อง',
               description: selectStatusrelevant!.value));
         }
-        if(StatusList.indexOf(selectStatusResponsible!.value)!= dataEditEvent.value.events!.statusAgency){
-          listLog.add(LogList(header: 'สถานะหน่วยงานที่รับผิดชอบ',
+        if (StatusList.indexOf(selectStatusResponsible!.value) !=
+            dataEditEvent.value.events!.statusAgency) {
+          listLog.add(LogList(
+              header: 'สถานะหน่วยงานที่รับผิดชอบ',
               description: selectStatusResponsible!.value));
         }
-        if(createBy.value.text.trim()!=dataEditEvent.value.events!.receiveFrom){
-          listLog.add(LogList(header: 'รับเรื่องจาก',
-              description:createBy.value.text.trim()));
+        if (createBy.value.text.trim() !=
+            dataEditEvent.value.events!.receiveFrom) {
+          listLog.add(LogList(
+              header: 'รับเรื่องจาก', description: createBy.value.text.trim()));
         }
         // if(radio.value!=dataEditEvent.value.events!.violence){
         //   listLog.add(LogList(header: 'ระดับความรุนแรง',
         //       description:radio.value.toString()));
         // }
-        if(lat.value.text.trim()!=dataEditEvent.value.events!.latitude||lng.value.text.trim()!=dataEditEvent.value.events!.longitude){
-          listLog.add(LogList(header: 'แก้ไขจุดพิกัด',
-              description:'${lat.value.text.trim()},${lng.value.text.trim()}'));
+        if (lat.value.text.trim() != dataEditEvent.value.events!.latitude ||
+            lng.value.text.trim() != dataEditEvent.value.events!.longitude) {
+          listLog.add(LogList(
+              header: 'แก้ไขจุดพิกัด',
+              description:
+                  '${lat.value.text.trim()},${lng.value.text.trim()}'));
         }
-        if(address.value.text.trim()!=dataEditEvent.value.events!.address){
-          listLog.add(LogList(header: 'แก้ไขที่อยู่',
-              description:address.value.text.trim()));
+        if (address.value.text.trim() != dataEditEvent.value.events!.address) {
+          listLog.add(LogList(
+              header: 'แก้ไขที่อยู่', description: address.value.text.trim()));
         }
 
-        dataUpdate= UpdateBy(
+        dataUpdate = UpdateBy(
             name: landingPageController.dataUser!.value.profile!.name,
             datetime: DateTime.now().toString(),
             staffID: landingPageController.dataUser!.value.profile!.code,
@@ -379,32 +384,75 @@ class ContollerCreateList extends GetxController {
             imageList: listImageBase64Log,
             logList: listLog,
             fileList: listFileBase64,
-          reportDetail: remarkReport.value.text.trim()
-        );
+            reportDetail: remarkReport.value.text.trim());
 
-        for(int i=0;i<dataEditEvent.value.events!.freeFormDetailList!.length;i++){
-
-          if(dataEditEvent.value.events!.freeFormDetailList![i].types==0){
-            listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,image: "",file: "",fileName: "",answer: "",freeFormAnswerDetailList:[FreeFormAnswerDetailList(id: listAnswer[i].dropdown!.valueID)]));
-          }else if(dataEditEvent.value.events!.freeFormDetailList![i].types==1){
-            List<FreeFormAnswerDetailList> list =[];
+        for (int i = 0;
+            i < dataEditEvent.value.events!.freeFormDetailList!.length;
+            i++) {
+          if (dataEditEvent.value.events!.freeFormDetailList![i].types == 0) {
+            listAnswerDetail.add(FreeFormAnswerList(
+                id: dataEditEvent.value.events!.freeFormDetailList![i].id,
+                image: "",
+                file: "",
+                fileName: "",
+                answer: "",
+                freeFormAnswerDetailList: [
+                  FreeFormAnswerDetailList(id: listAnswer[i].dropdown!.valueID)
+                ]));
+          } else if (dataEditEvent.value.events!.freeFormDetailList![i].types ==
+              1) {
+            List<FreeFormAnswerDetailList> list = [];
             listAnswer[i].checkbox!.valueID!.forEach((element) {
               list.add(FreeFormAnswerDetailList(id: element));
             });
-            listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,image: "",file: "",fileName: "",answer: "", freeFormAnswerDetailList:list));
-          }else if(dataEditEvent.value.events!.freeFormDetailList![i].types==2){
-            listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,image: "",file: "",fileName: "",answer: "",freeFormAnswerDetailList:[FreeFormAnswerDetailList(id: listAnswer[i].radio!.valueID)]));
-          }else if(dataEditEvent.value.events!.freeFormDetailList![i].types==3){
-            listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,image: "",file: "",fileName: "",answer: listAnswer[i].textfield!.value!.text.trim(),freeFormAnswerDetailList:[]));
-          }else if(dataEditEvent.value.events!.freeFormDetailList![i].types==4){
-            listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,fileName: "",image: listAnswer[i].image!.value,file: "",answer: "",freeFormAnswerDetailList:[]));
-          }else if(dataEditEvent.value.events!.freeFormDetailList![i].types==5){
-            listAnswerDetail.add(FreeFormAnswerList(id:dataEditEvent.value.events!.freeFormDetailList![i].id ,image: "",fileName: listAnswer[i].file!.name,file: listAnswer[i].file!.value,answer: "",freeFormAnswerDetailList:[]));
+            listAnswerDetail.add(FreeFormAnswerList(
+                id: dataEditEvent.value.events!.freeFormDetailList![i].id,
+                image: "",
+                file: "",
+                fileName: "",
+                answer: "",
+                freeFormAnswerDetailList: list));
+          } else if (dataEditEvent.value.events!.freeFormDetailList![i].types ==
+              2) {
+            listAnswerDetail.add(FreeFormAnswerList(
+                id: dataEditEvent.value.events!.freeFormDetailList![i].id,
+                image: "",
+                file: "",
+                fileName: "",
+                answer: "",
+                freeFormAnswerDetailList: [
+                  FreeFormAnswerDetailList(id: listAnswer[i].radio!.valueID)
+                ]));
+          } else if (dataEditEvent.value.events!.freeFormDetailList![i].types ==
+              3) {
+            listAnswerDetail.add(FreeFormAnswerList(
+                id: dataEditEvent.value.events!.freeFormDetailList![i].id,
+                image: "",
+                file: "",
+                fileName: "",
+                answer: listAnswer[i].textfield!.value!.text.trim(),
+                freeFormAnswerDetailList: []));
+          } else if (dataEditEvent.value.events!.freeFormDetailList![i].types ==
+              4) {
+            listAnswerDetail.add(FreeFormAnswerList(
+                id: dataEditEvent.value.events!.freeFormDetailList![i].id,
+                fileName: "",
+                image: listAnswer[i].image!.value,
+                file: "",
+                answer: "",
+                freeFormAnswerDetailList: []));
+          } else if (dataEditEvent.value.events!.freeFormDetailList![i].types ==
+              5) {
+            listAnswerDetail.add(FreeFormAnswerList(
+                id: dataEditEvent.value.events!.freeFormDetailList![i].id,
+                image: "",
+                fileName: listAnswer[i].file!.name,
+                file: listAnswer[i].file!.value,
+                answer: "",
+                freeFormAnswerDetailList: []));
           }
-
         }
-
-      }else{
+      } else {
         uuid = const Uuid().v4();
         for (var item in listForm) {
           List<FreeFormSubDetailList> subDetailList = [];
@@ -475,53 +523,55 @@ class ContollerCreateList extends GetxController {
       //     }
       // }
       CreateEven even = CreateEven(
-          eventID: uuid,
-          isDelete: false,
-          isActive: true,
-          // createBy: createBy.value.text,
-          datetime: date.value,
-          iconMap: selectIcon.value,
-          eventName: nameCon.value.text.trim(),
-          // disasterType: category.indexOf(selectCategory.toString()),
-          longitude: lng.value.text.trim(),
-          latitude: lat.value.text.trim(),
-          note: remark.value.text.trim(),
-          province: location.province,
-          // violence: radio.value,
-          relatedAgency: relevant.value.text.trim(),
-          imageList: listImageBase64,
-          address: address.value.text.trim(),
-          amphure: location.amphure,
-          tambon: location.tambon,
-          zipCode: location.zipCode,
-          freeFormAnswerList:(!isAdmin)?listAnswerDetail:null,
-          updateBy:dataUpdate,
-          createBy: (dataEditEvent.value.events!=null)?null:landingPageController.dataUser!.value.profile!.name,
-          imageDeleteList: listDeleteImage,
-          receiveFrom: createBy.value.text.trim(),
-          // deceased: Deceased(
-          //     total: int.parse(die.value.text.trim()),
-          //     feMale: int.parse(womenDie.value.text.trim()),
-          //     male: int.parse(mandie.value.text.trim()),
-          //     unidentify: int.parse(unGenderDie.value.text.trim()),
-          //     deceaseList: listDataDie,
-          //     removeDeceasedList: listDataDeleteIDUserDie
-          // ),
-          // injured: Injured(
-          //     unidentify: int.parse(unGenderInjured.value.text.trim()),
-          //     male: int.parse(manInjured.value.text.trim()),
-          //     feMale: int.parse(womenInjured.value.text.trim()),
-          //     total: int.parse(injured.value.text.trim()),
-          //     removeInjuredList: listDataDeleteIDUserInjured,
-          //
-          //     injureList:  listDataInjured
-          // ),
-          statusRelatedAgency: StatusResponsible.indexOf(selectStatusrelevant!.value),
-          statusAgency:
-          Statusrelevant.indexOf(selectStatusResponsible!.value),
-          statusItem: StatusList.indexOf(selectStatusList!.value),
-          responsibleAgency: responsible.value.text.trim(),
-           freeFormDetailList: detailLists,
+        eventID: uuid,
+        isDelete: false,
+        isActive: true,
+        // createBy: createBy.value.text,
+        datetime: date.value,
+        iconMap: selectIcon.value,
+        eventName: nameCon.value.text.trim(),
+        // disasterType: category.indexOf(selectCategory.toString()),
+        longitude: lng.value.text.trim(),
+        latitude: lat.value.text.trim(),
+        note: remark.value.text.trim(),
+        province: location.province,
+        // violence: radio.value,
+        relatedAgency: relevant.value.text.trim(),
+        imageList: listImageBase64,
+        address: address.value.text.trim(),
+        amphure: location.amphure,
+        tambon: location.tambon,
+        zipCode: location.zipCode,
+        freeFormAnswerList: (!isAdmin) ? listAnswerDetail : null,
+        updateBy: dataUpdate,
+        createBy: (dataEditEvent.value.events != null)
+            ? null
+            : landingPageController.dataUser!.value.profile!.name,
+        imageDeleteList: listDeleteImage,
+        receiveFrom: createBy.value.text.trim(),
+        // deceased: Deceased(
+        //     total: int.parse(die.value.text.trim()),
+        //     feMale: int.parse(womenDie.value.text.trim()),
+        //     male: int.parse(mandie.value.text.trim()),
+        //     unidentify: int.parse(unGenderDie.value.text.trim()),
+        //     deceaseList: listDataDie,
+        //     removeDeceasedList: listDataDeleteIDUserDie
+        // ),
+        // injured: Injured(
+        //     unidentify: int.parse(unGenderInjured.value.text.trim()),
+        //     male: int.parse(manInjured.value.text.trim()),
+        //     feMale: int.parse(womenInjured.value.text.trim()),
+        //     total: int.parse(injured.value.text.trim()),
+        //     removeInjuredList: listDataDeleteIDUserInjured,
+        //
+        //     injureList:  listDataInjured
+        // ),
+        statusRelatedAgency:
+            StatusResponsible.indexOf(selectStatusrelevant!.value),
+        statusAgency: Statusrelevant.indexOf(selectStatusResponsible!.value),
+        statusItem: StatusList.indexOf(selectStatusList!.value),
+        responsibleAgency: responsible.value.text.trim(),
+        freeFormDetailList: detailLists,
       );
       await createEvenApi(even).then((value) {});
       await clearData();
@@ -533,8 +583,8 @@ class ContollerCreateList extends GetxController {
             children: [
               Text(
                 'บันทึกสำเร็จ',
-                style:
-                textStyle(context, fontSize: 30, fontWeight: FontWeight.bold),
+                style: textStyle(context,
+                    fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -545,13 +595,12 @@ class ContollerCreateList extends GetxController {
           ),
           actions: [
             InkWell(
-                onTap: (){
+                onTap: () {
                   Navigator.pop(context);
                 },
                 child: Text(
                   'ตกลง',
-                  style:
-                  textStyle(context, fontSize: 26),
+                  style: textStyle(context, fontSize: 25),
                 )),
           ],
         ),
@@ -566,66 +615,60 @@ class ContollerCreateList extends GetxController {
     shapeDataField: "name",
   );
 
-  selectedImage(BuildContext context,int index) async {
-    if(index==1){
+  selectedImage(BuildContext context, int index) async {
+    if (index == 1) {
       List<Uint8List> image = (await ImagePickerWeb.getMultiImagesAsBytes())!;
       image.forEach((element) {
         listConvertImage.add(edit.ImageList(
             imageName: 'new',
-            pathImage:"data:image/png;base64,${base64Encode(element)}"
-        ));
+            pathImage: "data:image/png;base64,${base64Encode(element)}"));
       });
-    }else if(index==2){
+    } else if (index == 2) {
       List<Uint8List> image = (await ImagePickerWeb.getMultiImagesAsBytes())!;
       image.forEach((element) {
         listConvertImageLog.add(edit.ImageList(
             imageName: 'new',
-            pathImage:"data:image/png;base64,${base64Encode(element)}"
-        ));
+            pathImage: "data:image/png;base64,${base64Encode(element)}"));
       });
     }
-
   }
+
   selectedFile(BuildContext context) async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      allowedExtensions: ['pdf', 'xlsx', 'doc','docx'],
+      allowedExtensions: ['pdf', 'xlsx', 'doc', 'docx'],
     );
     if (result != null) {
       Uint8List fileBytes = result.files.first.bytes!;
       String fileName = result.files.first.name;
 
-   if(result.files.first.extension=='pdf'){
-     listConvertFileLog.add(edit.ImageList(
-         imageName: fileName,
-         pathImage:"data:application/pdf;base64,${base64Encode(fileBytes)}"
-     )
-     );
-   }else if(result.files.first.extension=='xlsx'){
-     listConvertFileLog.add(edit.ImageList(
-         imageName: fileName,
-         pathImage:"data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,${base64Encode(fileBytes)}"
-     )
-     );
-   }else if(result.files.first.extension=='docx'){
-     listConvertFileLog.add(edit.ImageList(
-         imageName: fileName,
-         pathImage:"data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,${base64Encode(fileBytes)}"
-     )
-     );
-   }else if(result.files.first.extension=='doc'){
-     listConvertFileLog.add(edit.ImageList(
-         imageName: fileName,
-         pathImage:"data:application/msword;base64,${base64Encode(fileBytes)}"
-     )
-     );
-   }
+      if (result.files.first.extension == 'pdf') {
+        listConvertFileLog.add(edit.ImageList(
+            imageName: fileName,
+            pathImage:
+                "data:application/pdf;base64,${base64Encode(fileBytes)}"));
+      } else if (result.files.first.extension == 'xlsx') {
+        listConvertFileLog.add(edit.ImageList(
+            imageName: fileName,
+            pathImage:
+                "data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,${base64Encode(fileBytes)}"));
+      } else if (result.files.first.extension == 'docx') {
+        listConvertFileLog.add(edit.ImageList(
+            imageName: fileName,
+            pathImage:
+                "data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,${base64Encode(fileBytes)}"));
+      } else if (result.files.first.extension == 'doc') {
+        listConvertFileLog.add(edit.ImageList(
+            imageName: fileName,
+            pathImage:
+                "data:application/msword;base64,${base64Encode(fileBytes)}"));
+      }
     }
-
-
   }
-  selectedFileSingle(BuildContext context,{required int type,required int index}) async {
-    if(type==4){
+
+  selectedFileSingle(BuildContext context,
+      {required int type, required int index}) async {
+    if (type == 4) {
       FilePickerResult? result = await FilePicker.platform.pickFiles(
         type: FileType.custom,
         allowedExtensions: ['png', 'jpg', 'jpeg'],
@@ -633,36 +676,33 @@ class ContollerCreateList extends GetxController {
       if (result != null) {
         Uint8List fileBytes = result.files.first.bytes!;
         String fileName = result.files.first.name;
-        listAnswer[index].image!.value="data:image/png;base64,${base64Encode(fileBytes)}";
-
+        listAnswer[index].image!.value =
+            "data:image/png;base64,${base64Encode(fileBytes)}";
       }
-
-    }else if(type==5){
+    } else if (type == 5) {
       FilePickerResult? result = await FilePicker.platform.pickFiles(
         type: FileType.custom,
-        allowedExtensions: ['pdf', 'xlsx', 'doc','docx'],
+        allowedExtensions: ['pdf', 'xlsx', 'doc', 'docx'],
       );
       if (result != null) {
         Uint8List fileBytes = result.files.first.bytes!;
         String fileName = result.files.first.name;
-        listAnswer[index].file!.name=fileName;
-        if(result.files.first.extension=='pdf'){
-          listAnswer[index].file!.value="data:application/pdf;base64,${base64Encode(fileBytes)}";
-
-        }else if(result.files.first.extension=='xlsx'){
-          listAnswer[index].file!.value="data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,${base64Encode(fileBytes)}";
-
-        }else if(result.files.first.extension=='docx'){
-          listAnswer[index].file!.value="data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,${base64Encode(fileBytes)}";
-
-        }else if(result.files.first.extension=='doc'){
-          listAnswer[index].file!.value="data:application/msword;base64,${base64Encode(fileBytes)}";
-
+        listAnswer[index].file!.name = fileName;
+        if (result.files.first.extension == 'pdf') {
+          listAnswer[index].file!.value =
+              "data:application/pdf;base64,${base64Encode(fileBytes)}";
+        } else if (result.files.first.extension == 'xlsx') {
+          listAnswer[index].file!.value =
+              "data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,${base64Encode(fileBytes)}";
+        } else if (result.files.first.extension == 'docx') {
+          listAnswer[index].file!.value =
+              "data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,${base64Encode(fileBytes)}";
+        } else if (result.files.first.extension == 'doc') {
+          listAnswer[index].file!.value =
+              "data:application/msword;base64,${base64Encode(fileBytes)}";
         }
       }
-
     }
-
   }
 
 //   Future<void> pickImageFeed(ImageSource source, int index,
@@ -693,9 +733,8 @@ class ContollerCreateList extends GetxController {
   void onInit() {
     super.onInit();
   }
-  Future<void>setLoacationAddress()async{
 
-  }
+  Future<void> setLoacationAddress() async {}
 
   @override
   void dispose() {
@@ -729,6 +768,7 @@ class ListDataNameModel {
     return data;
   }
 }
+
 class addressModel {
   String? amphure;
   String? address;
@@ -737,7 +777,7 @@ class addressModel {
   String? province;
 
   addressModel(
-      { this.amphure, this.tambon, this.zipCode, this.province,this.address});
+      {this.amphure, this.tambon, this.zipCode, this.province, this.address});
   addressModel.fromJson(Map<String, dynamic> json) {
     amphure = json['amphure'];
     tambon = json['tambon'];
@@ -786,9 +826,9 @@ class ListFormModel {
         ? new Textfield.fromJson(json['textfield'])
         : null;
     dropdown =
-    json['dropdown'] != null ? MyDropdown.fromJson(json['dropdown']) : null;
+        json['dropdown'] != null ? MyDropdown.fromJson(json['dropdown']) : null;
     checkbox =
-    json['checkbox'] != null ? MyCheckBox.fromJson(json['checkbox']) : null;
+        json['checkbox'] != null ? MyCheckBox.fromJson(json['checkbox']) : null;
     radio = json['radio'] != null ? MyRadio.fromJson(json['radio']) : null;
     image = json['image'] != null ? MyImg.fromJson(json['image']) : null;
     file = json['file'] != null ? MyFile.fromJson(json['file']) : null;
@@ -950,4 +990,3 @@ class MyFile {
     return data;
   }
 }
-
