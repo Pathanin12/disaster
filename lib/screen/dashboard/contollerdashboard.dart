@@ -1,3 +1,4 @@
+import 'package:disaster/api/dashboard/geteventname.dart';
 import 'package:disaster/api/map/heatmapapi.dart';
 import 'package:disaster/model/dashboardmodel.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
@@ -13,23 +14,28 @@ import 'package:syncfusion_flutter_maps/maps.dart';
 
 import '../../api/dashboardapi.dart';
 import '../../api/map/searchmap.dart';
+import '../../model/eventnamemodel.dart';
 import '../../model/heatmapmodel.dart';
 import '../../model/searchmap.dart';
 import '../../service/config.dart';
 import '../../stye/colors.dart';
 import '../../stye/font.dart';
+import '../drawer/admin/contollerdraweradmin.dart';
 
 class ContollerDashBoard extends GetxController {
   RxInt Index = 0.obs;
   RxInt IndexChart = 0.obs;
   var loadSearch = false.obs;
   var dataHeatMap=HeatMapModel().obs;
+  var dataListEventName=EvenNameModel().obs;
+  var listStringName=<String>[].obs;
+  var selectEventName=''.obs;
+  var selectIDEventName=''.obs;
   var listDate = <DateTime?>[
     DateTime.now(),
     DateTime.now(),
   ].obs;
   var dashboard = Dashboard().obs;
-
   var total = "0".obs;
   var waiting = "0".obs;
   var progress = "0".obs;
@@ -140,103 +146,13 @@ var selectChartX='เพศ'.obs;
                   primaryXAxis: const CategoryAxis(),
                   series: <CartesianSeries<DeceasedList, String>>[
                     // Renders column chart
-                    (selectChartX=='เพศ'&&selectChartY=='จำนวนผู้บาดเจ็บ'&&IndexChart.value==0)?ColumnSeries<DeceasedList, String>(
+                    ColumnSeries<DeceasedList, String>(
                       width: 0.2,
                       dataSource: dashboard.value.fire!.gender!.injuredList!,
                       xValueMapper: (DeceasedList data, _) => data.name,
                       yValueMapper: (DeceasedList data, _) => data.amount,
-                      pointColorMapper:(datum, index) => listColorChart[index],
-                    ): (selectChartX=='เพศ'&&selectChartY=='จำนวนผู้เสียชีวิต'&&IndexChart.value==0)?ColumnSeries<DeceasedList, String>(
-                      width: 0.2,
-                      dataSource: dashboard.value.fire!.gender!.deceasedList!,
-                      xValueMapper: (DeceasedList data, _) => data.name,
-                      yValueMapper: (DeceasedList data, _) => data.amount,
-                      pointColorMapper:(datum, index) => listColorChart[index],
-                    ): (selectChartX=='ช่วงอายุ'&&selectChartY=='จำนวนผู้บาดเจ็บ'&&IndexChart.value==0)?ColumnSeries<DeceasedList, String>(
-                      width: 0.2,
-                      dataSource: dashboard.value.fire!.ageRange!.injuredList!,
-                      xValueMapper: (DeceasedList data, _) => data.name,
-                      yValueMapper: (DeceasedList data, _) => data.amount,
-                      pointColorMapper:(datum, index) => listColorChart[index],
-                    ): (selectChartX=='ช่วงอายุ'&&selectChartY=='จำนวนผู้เสียชีวิต'&&IndexChart.value==0)?ColumnSeries<DeceasedList, String>(
-                      width: 0.2,
-                      dataSource: dashboard.value.fire!.ageRange!.deceasedList!,
-                      xValueMapper: (DeceasedList data, _) => data.name,
-                      yValueMapper: (DeceasedList data, _) => data.amount,
-                      pointColorMapper:(datum, index) => listColorChart[index],
-                    ): (selectChartX=='เพศ'&&selectChartY=='จำนวนผู้บาดเจ็บ'&&IndexChart.value==1)?ColumnSeries<DeceasedList, String>(
-                      width: 0.2,
-                      dataSource: dashboard.value.flood!.gender!.injuredList!,
-                      xValueMapper: (DeceasedList data, _) => data.name,
-                      yValueMapper: (DeceasedList data, _) => data.amount,
-                      pointColorMapper:(datum, index) => listColorChart[index],
-                    ): (selectChartX=='เพศ'&&selectChartY=='จำนวนผู้เสียชีวิต'&&IndexChart.value==1)?ColumnSeries<DeceasedList, String>(
-                      width: 0.2,
-                      dataSource: dashboard.value.flood!.gender!.deceasedList!,
-                      xValueMapper: (DeceasedList data, _) => data.name,
-                      yValueMapper: (DeceasedList data, _) => data.amount,
-                      pointColorMapper:(datum, index) => listColorChart[index],
-                    ): (selectChartX=='ช่วงอายุ'&&selectChartY=='จำนวนผู้บาดเจ็บ'&&IndexChart.value==1)?ColumnSeries<DeceasedList, String>(
-                      width: 0.2,
-                      dataSource: dashboard.value.flood!.ageRange!.injuredList!,
-                      xValueMapper: (DeceasedList data, _) => data.name,
-                      yValueMapper: (DeceasedList data, _) => data.amount,
-                      pointColorMapper:(datum, index) => listColorChart[index],
-                    ): (selectChartX=='ช่วงอายุ'&&selectChartY=='จำนวนผู้เสียชีวิต'&&IndexChart.value==1)?ColumnSeries<DeceasedList, String>(
-                      width: 0.2,
-                      dataSource: dashboard.value.flood!.ageRange!.deceasedList!,
-                      xValueMapper: (DeceasedList data, _) => data.name,
-                      yValueMapper: (DeceasedList data, _) => data.amount,
-                      pointColorMapper:(datum, index) => listColorChart[index],
-                    ): (selectChartX=='เพศ'&&selectChartY=='จำนวนผู้บาดเจ็บ'&&IndexChart.value==2)?ColumnSeries<DeceasedList, String>(
-                      width: 0.2,
-                      dataSource: dashboard.value.windstorm!.gender!.injuredList!,
-                      xValueMapper: (DeceasedList data, _) => data.name,
-                      yValueMapper: (DeceasedList data, _) => data.amount,
-                      pointColorMapper:(datum, index) => listColorChart[index],
-                    ): (selectChartX=='เพศ'&&selectChartY=='จำนวนผู้เสียชีวิต'&&IndexChart.value==2)?ColumnSeries<DeceasedList, String>(
-                      width: 0.2,
-                      dataSource: dashboard.value.windstorm!.gender!.deceasedList!,
-                      xValueMapper: (DeceasedList data, _) => data.name,
-                      yValueMapper: (DeceasedList data, _) => data.amount,
-                      pointColorMapper:(datum, index) => listColorChart[index],
-                    ): (selectChartX=='ช่วงอายุ'&&selectChartY=='จำนวนผู้บาดเจ็บ'&&IndexChart.value==2)?ColumnSeries<DeceasedList, String>(
-                      width: 0.2,
-                      dataSource: dashboard.value.windstorm!.ageRange!.injuredList!,
-                      xValueMapper: (DeceasedList data, _) => data.name,
-                      yValueMapper: (DeceasedList data, _) => data.amount,
-                      pointColorMapper:(datum, index) => listColorChart[index],
-                    ): (selectChartX=='ช่วงอายุ'&&selectChartY=='จำนวนผู้เสียชีวิต'&&IndexChart.value==2)?ColumnSeries<DeceasedList, String>(
-                      width: 0.2,
-                      dataSource: dashboard.value.windstorm!.ageRange!.deceasedList!,
-                      xValueMapper: (DeceasedList data, _) => data.name,
-                      yValueMapper: (DeceasedList data, _) => data.amount,
-                      pointColorMapper:(datum, index) => listColorChart[index],
-                    ): (selectChartX=='เพศ'&&selectChartY=='จำนวนผู้บาดเจ็บ'&&IndexChart.value==3)?ColumnSeries<DeceasedList, String>(
-                      width: 0.2,
-                      dataSource: dashboard.value.forestFire!.gender!.injuredList!,
-                      xValueMapper: (DeceasedList data, _) => data.name,
-                      yValueMapper: (DeceasedList data, _) => data.amount,
-                      pointColorMapper:(datum, index) => listColorChart[index],
-                    ): (selectChartX=='เพศ'&&selectChartY=='จำนวนผู้เสียชีวิต'&&IndexChart.value==3)?ColumnSeries<DeceasedList, String>(
-                      width: 0.2,
-                      dataSource: dashboard.value.forestFire!.gender!.deceasedList!,
-                      xValueMapper: (DeceasedList data, _) => data.name,
-                      yValueMapper: (DeceasedList data, _) => data.amount,
-                      pointColorMapper:(datum, index) => listColorChart[index],
-                    ): (selectChartX=='ช่วงอายุ'&&selectChartY=='จำนวนผู้บาดเจ็บ'&&IndexChart.value==3)?ColumnSeries<DeceasedList, String>(
-                      width: 0.2,
-                      dataSource: dashboard.value.forestFire!.ageRange!.injuredList!,
-                      xValueMapper: (DeceasedList data, _) => data.name,
-                      yValueMapper: (DeceasedList data, _) => data.amount,
-                      pointColorMapper:(datum, index) => listColorChart[index],
-                    ):ColumnSeries<DeceasedList, String>(
-                      width: 0.2,
-                      dataSource: dashboard.value.forestFire!.ageRange!.deceasedList!,
-                      xValueMapper: (DeceasedList data, _) => data.name,
-                      yValueMapper: (DeceasedList data, _) => data.amount,
-                      pointColorMapper:(datum, index) => listColorChart[index],
                     )
+
                   ]
               )
           )),
@@ -264,6 +180,7 @@ var selectChartX='เพศ'.obs;
         disasterType: category.indexOf(selectCategory.toString()),
         level: level.indexOf(selectLevel.toString()),
         provinceID: selectProvince.value.id);
+    setEventName();
     listWidgetMark = <Widget>[
       TileLayer(
         urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -315,8 +232,6 @@ var selectChartX='เพศ'.obs;
         userAgentPackageName: 'com.example.app',
       ),
     ].obs;
-    print('??????');
-print(dataHeatMap.value.provincesList!.length);
   dataHeatMap.value.provincesList!.forEach((element) {
     Widget widget = MarkerLayer(
       markers: [
@@ -342,6 +257,21 @@ print(dataHeatMap.value.provincesList!.length);
       listHeatMapWidgetMark.add(widget);
     }
   });
+  }
+  Future<void> setEventName()async{
+    final LandingPageControllerAdmin landingPageController =
+    Get.put(LandingPageControllerAdmin(), permanent: false);
+    listStringName=<String>[].obs;
+    List<String>listname=[];
+    dataListEventName.value =await getEventNameApi((landingPageController.dataUser!.value.profile==null)?selectProvince.value.id:(landingPageController.dataUser!.value.profile!.role!=1)?selectProvince.value.id:provinceList.where((element) => element.nameTh==landingPageController.dataUser!.value.profile!.provinceName).toList().first.id);
+    dataListEventName.value.eventList!.forEach((element) {
+      if(!listname.contains(element.eventName)) {
+        listname.add(element.eventName!);
+      }
+    });
+  selectEventName.value=dataListEventName.value.eventList!.first.eventName!;
+  selectIDEventName.value=dataListEventName.value.eventList!.first.eventID!;
+  print(">>>><< ${selectIDEventName}");
   }
 
   Future<void> calChart()async{

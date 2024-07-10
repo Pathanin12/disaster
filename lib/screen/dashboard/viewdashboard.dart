@@ -564,7 +564,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                 },
                                 child: Container(
                                   alignment: Alignment.center,
-                                  height: 45,
+                                  height: 50,
                                   width: 80,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15),
@@ -601,7 +601,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                       flex: 2,
                                       child: Container(
                                         alignment: Alignment.centerLeft,
-                                        height: 60,
+                                        height: 65,
                                         child: Column(
                                           crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -1359,7 +1359,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                     },
                                     child: Container(
                                       alignment: Alignment.center,
-                                      height: 45,
+                                      height: 50,
                                       width: 80,
                                       decoration: BoxDecoration(
                                           borderRadius:
@@ -1402,7 +1402,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                         borderRadius: BorderRadius.circular(5),
                         color: colorWhite,
                       ),
-                      height: 100,
+                      height: 105,
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -1541,6 +1541,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                               child: Column(
                                 children: [
                                   Container(
+                                    alignment: Alignment.center,
                                     height: 40,
                                     color: colorWhite,
                                     child: TextFormField(
@@ -1624,289 +1625,80 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     const SizedBox(
                       height: 30,
                     ),
-                    Row(
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            contoller.IndexChart.value = 0;
-                          },
-                          child: Container(
-                            width: 70,
-                            child: Column(
-                              children: [
-                                Text('อัคคีภัย',
-                                    style: textStyle(context,
-                                        fontSize: 25,
-                                        color: (contoller.IndexChart.value == 0)
-                                            ? colorAmber
-                                            : colorBlack)),
-                                if (contoller.IndexChart.value == 0)
-                                  Divider(
-                                    height: 3,
-                                    color: colorAmber,
-                                  )
-                              ],
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            contoller.IndexChart.value = 1;
-                          },
-                          child: Container(
-                            width: 70,
-                            child: Column(
-                              children: [
-                                Text('อุทกภัย',
-                                    style: textStyle(context,
-                                        fontSize: 25,
-                                        color: (contoller.IndexChart.value == 1)
-                                            ? colorAmber
-                                            : colorBlack)),
-                                if (contoller.IndexChart.value == 1)
-                                  Divider(
-                                    height: 3,
-                                    color: colorAmber,
-                                  )
-                              ],
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            contoller.IndexChart.value = 2;
-                          },
-                          child: Container(
-                            width: 70,
-                            child: Column(
-                              children: [
-                                Text('วาตภัย',
-                                    style: textStyle(context,
-                                        fontSize: 25,
-                                        color: (contoller.IndexChart.value == 2)
-                                            ? colorAmber
-                                            : colorBlack)),
-                                if (contoller.IndexChart.value == 2)
-                                  Divider(
-                                    height: 3,
-                                    color: colorAmber,
-                                  )
-                              ],
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            contoller.IndexChart.value = 3;
-                          },
-                          child: Container(
-                            width: 70,
-                            child: Column(
-                              children: [
-                                Text('ไฟป่า',
-                                    style: textStyle(context,
-                                        fontSize: 25,
-                                        color: (contoller.IndexChart.value == 3)
-                                            ? colorAmber
-                                            : colorBlack)),
-                                if (contoller.IndexChart.value == 3)
-                                  Divider(
-                                    height: 3,
-                                    color: colorAmber,
-                                  )
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
                     Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: colorWhite),
-                        height: 450,
-                        child: Column(
-                          children: [
-                            const SizedBox(
-                              height: 20,
+                      padding:
+                      const EdgeInsets.only(left: 20, right: 5),
+                      width: 400,
+                      height: 30,
+                      decoration: BoxDecoration(
+                          color: colorWhite,
+                          border: Border.all(
+                            color: Colors.black26,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(5)),
+                      alignment: Alignment.center,
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton2<String>(
+                            dropdownStyleData: DropdownStyleData(
+                              maxHeight: 300,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                BorderRadius.circular(5),
+                              ),
+                              scrollbarTheme: ScrollbarThemeData(
+                                radius: const Radius.circular(5),
+                                thickness: MaterialStateProperty
+                                    .all<double>(6),
+                                thumbVisibility:
+                                MaterialStateProperty.all<bool>(
+                                    true),
+                              ),
                             ),
-                            Row(
-                              children: [
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Text('แกนY',
-                                    style: textStyle(context,
-                                        fontSize: 25, color: colorBlack)),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Container(
-                                  padding:
-                                      const EdgeInsets.only(left: 20, right: 5),
-                                  width: 200,
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                      color: colorWhite,
-                                      border: Border.all(
-                                        color: Colors.black26,
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(5)),
-                                  alignment: Alignment.center,
-                                  child: SizedBox(
-                                    width: double.infinity,
-                                    child: DropdownButtonHideUnderline(
-                                      child: DropdownButton2<String>(
-                                        dropdownStyleData: DropdownStyleData(
-                                          maxHeight: 300,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          ),
-                                          scrollbarTheme: ScrollbarThemeData(
-                                            radius: const Radius.circular(5),
-                                            thickness: MaterialStateProperty
-                                                .all<double>(6),
-                                            thumbVisibility:
-                                                MaterialStateProperty.all<bool>(
-                                                    true),
-                                          ),
-                                        ),
-                                        autofocus: true,
-                                        isExpanded: true,
-                                        value: contoller.selectChartY.value,
-                                        hint: Text(
-                                          'จำนวนผู้บาดเจ็บ',
-                                          style: textStyle(
-                                            context,
-                                              fontSize: 25.0,
-                                              color: colorGrey,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                        items: contoller.listChartY
-                                            .map<DropdownMenuItem<String>>(
-                                                (String? value) {
-                                          return DropdownMenuItem<String>(
-                                            value: value!,
-                                            child: Text(
-                                              value,
-                                              style: textStyle(context,
-                                                  fontSize: 25.0,
-                                                  color: colorGrey,
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          );
-                                        }).toList(),
-                                        iconStyleData: const IconStyleData(
-                                            icon: Icon(
-                                          Icons.keyboard_arrow_down,
-                                          size: 24,
-                                        )),
-                                        onChanged: (valueSelect) {
-                                          contoller.selectChartY.value =
-                                              valueSelect!;
-                                        },
-                                      ),
+                            autofocus: true,
+                            isExpanded: true,
+                            value: contoller.selectEventName.value,
+                            hint: Text(
+                              'เลือกชื่อรายการ',
+                              style: textStyle(
+                                  context,
+                                  fontSize: 25.0,
+                                  color: colorGrey,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                            items: contoller.listStringName
+                                .map<DropdownMenuItem<String>>(
+                                    (String? value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value!,
+                                    child: Text(
+                                      value,
+                                      style: textStyle(context,
+                                          fontSize: 25.0,
+                                          color: colorGrey,
+                                          fontWeight: FontWeight.w400),
                                     ),
-                                  ),
-                                )
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              children: [
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Text('แกนX',
-                                    style: textStyle(context,
-                                        fontSize: 25, color: colorBlack)),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Container(
-                                  padding:
-                                      const EdgeInsets.only(left: 20, right: 5),
-                                  width: 200,
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                      color: colorWhite,
-                                      border: Border.all(
-                                        color: Colors.black26,
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(5)),
-                                  alignment: Alignment.center,
-                                  child: SizedBox(
-                                    width: double.infinity,
-                                    child: DropdownButtonHideUnderline(
-                                      child: DropdownButton2<String>(
-                                        dropdownStyleData: DropdownStyleData(
-                                          maxHeight: 300,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          ),
-                                          scrollbarTheme: ScrollbarThemeData(
-                                            radius: const Radius.circular(5),
-                                            thickness: MaterialStateProperty
-                                                .all<double>(6),
-                                            thumbVisibility:
-                                                MaterialStateProperty.all<bool>(
-                                                    true),
-                                          ),
-                                        ),
-                                        autofocus: true,
-                                        isExpanded: true,
-                                        value: contoller.selectChartX.value,
-                                        hint: Text(
-                                          'เพศ',
-                                          style: textStyle(
-                                            context,
-                                              fontSize: 25.0,
-                                              color: colorGrey,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                        items: contoller.listChartX
-                                            .map<DropdownMenuItem<String>>(
-                                                (String? value) {
-                                          return DropdownMenuItem<String>(
-                                            value: value!,
-                                            child: Text(
-                                              value,
-                                              style: textStyle(
-                                                context,
-                                                  fontSize: 25.0,
-                                                  color: colorGrey,
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          );
-                                        }).toList(),
-                                        iconStyleData: const IconStyleData(
-                                            icon: Icon(
-                                          Icons.keyboard_arrow_down,
-                                          size: 24,
-                                        )),
-                                        onChanged: (valueSelect) {
-                                          contoller.selectChartX.value =
-                                              valueSelect!;
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                            if (contoller.dashboard.value.fire != null)
-                              contoller.chart(context)
-                          ],
-                        )),
+                                  );
+                                }).toList(),
+                            iconStyleData: const IconStyleData(
+                                icon: Icon(
+                                  Icons.keyboard_arrow_down,
+                                  size: 24,
+                                )),
+                            onChanged: (valueSelect) {
+                              print('dsdsdsdsdsdsdsdsd');
+                              print(valueSelect);
+                              contoller.selectEventName.value =
+                              valueSelect!;
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                    // if (contoller.dashboard.value.fire != null)
+                    //   contoller.chart(context),
                     const SizedBox(
                       height: 20,
                     ),
