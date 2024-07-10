@@ -79,14 +79,14 @@ Future<void> createExcel(GetAllEventModel allEven, DateTime startDate,
     sheet.appendRow([
       TextCellValue(row.seq.toString()),
       TextCellValue(row.eventName.toString()),
-      TextCellValue(category[row.disasterType!]),
+      TextCellValue(category[row.disasterType!].toString()),
       TextCellValue(row.datetime.toString()),
       TextCellValue(row.responsibleAgency.toString() ?? ''),
-      TextCellValue('${row.latitude},${row.longitude}'),
-      TextCellValue(status[row.statusRelatedAgency!]),
+      TextCellValue('${row.latitude.toString()},${row.longitude.toString()}'),
+      TextCellValue(status[row.statusRelatedAgency!].toString()),
       TextCellValue(row.relatedAgency!.toString()),
-      TextCellValue(status[row.statusAgency!]),
-      TextCellValue(status[row.statusItem!]),
+      TextCellValue(status[row.statusAgency!].toString()),
+      TextCellValue(status[row.statusItem!].toString()),
     ]);
   }
 
