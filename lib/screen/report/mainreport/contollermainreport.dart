@@ -226,6 +226,7 @@ class ContollerMainReport extends GetxController {
     final LandingPageControllerAdmin landingPageController =
         Get.put(LandingPageControllerAdmin(), permanent: false);
     if (landingPageController.dataUser!.value.profile != null) {
+      print('1111111111');
       loadSearch.value = true;
       allEvent.value = await getAllDashBoardApi(
           startDate: listDate.first.toString().split(" ")[0],
@@ -347,7 +348,9 @@ class ContollerMainReport extends GetxController {
 
       loadSearch.value = false;
     } else {
+      print('22222222');
       loadSearch.value = true;
+
       do {
         allEvent.value = await getAllDashBoardApi(
             startDate: listDate.first.toString().split(" ")[0],
@@ -358,21 +361,22 @@ class ContollerMainReport extends GetxController {
                 ? level.indexOf(selectLevel.toString())
                 : 1,
             provinceID:
-                (landingPageController.dataUser!.value.profile!.role == 1)
-                    ? selectProvince.value.id
-                    : provinceList
-                        .where((element) =>
-                            element.nameTh ==
-                            landingPageController
-                                .dataUser!.value.profile!.provinceName)
-                        .toList()[0]
-                        .id,
+            (landingPageController.dataUser!.value.profile!.role == 1)
+                ? selectProvince.value.id
+                : provinceList
+                .where((element) =>
+            element.nameTh ==
+                landingPageController
+                    .dataUser!.value.profile!.provinceName)
+                .toList()[0]
+                .id,
             statusItem: StatusList.indexOf(selectStatusItem.value),
             statusAgency: StatusList.indexOf(selectStatusAgency.value),
             responsibleAgency: searchAgency.value.text,
             violence: listViolence.indexOf(selectViolence.value));
-        // print('/////////////');
-        // print(allEvent.value.eventList!.map((e) => e.province));
+
+        print('/////////////');
+        print(allEvent.value.eventList!.map((e) => e.province));
         updateMaxPage(allEvent.value);
         listWidgetMark = <Widget>[
           TileLayer(
@@ -394,10 +398,10 @@ class ContollerMainReport extends GetxController {
                     child: InkWell(
                       onTap: () {
                         final LandingPageControllerAdmin landingPageController =
-                            Get.put(LandingPageControllerAdmin(),
-                                permanent: false);
+                        Get.put(LandingPageControllerAdmin(),
+                            permanent: false);
                         final ContollerDetail contollerEvent =
-                            Get.put(ContollerDetail(), permanent: false);
+                        Get.put(ContollerDetail(), permanent: false);
                         contollerEvent.getEvent(element.eventID!);
                         landingPageController.tabIndex.value = 3;
                       },
@@ -409,8 +413,8 @@ class ContollerMainReport extends GetxController {
                               color: (element.statusItem == 0)
                                   ? Colors.amber
                                   : (element.statusItem == 1)
-                                      ? Colors.red
-                                      : Colors.green,
+                                  ? Colors.red
+                                  : Colors.green,
                               width: 80,
                               height: 80,
                             ),
@@ -468,6 +472,7 @@ class ContollerMainReport extends GetxController {
           listWidgetMark.add(widget);
         }
       } while (landingPageController.dataUser!.value.profile == null);
+
       loadSearch.value = false;
     }
   }

@@ -32,7 +32,7 @@ class ContollerAuth extends GetxController {
   @override
   void onInit() {
     // TODO: implement onInit
-    // checkLogin();
-    r.value = Get.parameters['code'] ?? '';
+    checkLogin();
+    // r.value = Get.parameters['code'] ?? '';
   }
 }

@@ -1014,13 +1014,13 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                   : Container(),
               Expanded(
                 child:
-                // (landingPageController.dataUser!.value.profile==null)?Center(
-                //     child:
-                //     LoadingAnimationWidget
-                //         .inkDrop(
-                //       color: Colors.white,
-                //       size: 20,
-                //     )):
+                (landingPageController.dataUser!.value.profile==null)?Center(
+                    child:
+                    LoadingAnimationWidget
+                        .inkDrop(
+                      color: Colors.white,
+                      size: 20,
+                    )):
                 Container(
                   color: colorBackground,
                   height: MediaQuery.of(context).size.height,

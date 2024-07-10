@@ -1625,78 +1625,78 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     const SizedBox(
                       height: 30,
                     ),
-                   if(contoller.listStringName.isNotEmpty) Container(
-                      padding:
-                      const EdgeInsets.only(left: 20, right: 5),
-                      width: 400,
-                      height: 30,
-                      decoration: BoxDecoration(
-                          color: colorWhite,
-                          border: Border.all(
-                            color: Colors.black26,
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.circular(5)),
-                      alignment: Alignment.center,
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton2<String>(
-                            dropdownStyleData: DropdownStyleData(
-                              maxHeight: 300,
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                BorderRadius.circular(5),
-                              ),
-                              scrollbarTheme: ScrollbarThemeData(
-                                radius: const Radius.circular(5),
-                                thickness: MaterialStateProperty
-                                    .all<double>(6),
-                                thumbVisibility:
-                                MaterialStateProperty.all<bool>(
-                                    true),
-                              ),
-                            ),
-                            autofocus: true,
-                            isExpanded: true,
-                            value: contoller.selectEventName.value,
-                            hint: Text(
-                              'เลือกชื่อรายการ',
-                              style: textStyle(
-                                  context,
-                                  fontSize: 25.0,
-                                  color: colorGrey,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                            items: contoller.listStringName
-                                .map<DropdownMenuItem<String>>(
-                                    (String? value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value!,
-                                    child: Text(
-                                      value,
-                                      style: textStyle(context,
-                                          fontSize: 25.0,
-                                          color: colorGrey,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                  );
-                                }).toList(),
-                            iconStyleData: const IconStyleData(
-                                icon: Icon(
-                                  Icons.keyboard_arrow_down,
-                                  size: 24,
-                                )),
-                            onChanged: (valueSelect) {
-                              // print('dsdsdsdsdsdsdsdsd');
-                              // print(valueSelect);
-                              contoller.selectEventName.value =
-                              valueSelect!;
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
+                   // if(contoller.listStringName.isNotEmpty) Container(
+                   //    padding:
+                   //    const EdgeInsets.only(left: 20, right: 5),
+                   //    width: 400,
+                   //    height: 30,
+                   //    decoration: BoxDecoration(
+                   //        color: colorWhite,
+                   //        border: Border.all(
+                   //          color: Colors.black26,
+                   //          width: 1,
+                   //        ),
+                   //        borderRadius: BorderRadius.circular(5)),
+                   //    alignment: Alignment.center,
+                   //    child: SizedBox(
+                   //      width: double.infinity,
+                   //      child: DropdownButtonHideUnderline(
+                   //        child: DropdownButton2<String>(
+                   //          dropdownStyleData: DropdownStyleData(
+                   //            maxHeight: 300,
+                   //            decoration: BoxDecoration(
+                   //              borderRadius:
+                   //              BorderRadius.circular(5),
+                   //            ),
+                   //            scrollbarTheme: ScrollbarThemeData(
+                   //              radius: const Radius.circular(5),
+                   //              thickness: MaterialStateProperty
+                   //                  .all<double>(6),
+                   //              thumbVisibility:
+                   //              MaterialStateProperty.all<bool>(
+                   //                  true),
+                   //            ),
+                   //          ),
+                   //          autofocus: true,
+                   //          isExpanded: true,
+                   //          value: contoller.selectEventName.value,
+                   //          hint: Text(
+                   //            'เลือกชื่อรายการ',
+                   //            style: textStyle(
+                   //                context,
+                   //                fontSize: 25.0,
+                   //                color: colorGrey,
+                   //                fontWeight: FontWeight.w400),
+                   //          ),
+                   //          items: contoller.listStringName
+                   //              .map<DropdownMenuItem<String>>(
+                   //                  (String? value) {
+                   //                return DropdownMenuItem<String>(
+                   //                  value: value!,
+                   //                  child: Text(
+                   //                    value,
+                   //                    style: textStyle(context,
+                   //                        fontSize: 25.0,
+                   //                        color: colorGrey,
+                   //                        fontWeight: FontWeight.w400),
+                   //                  ),
+                   //                );
+                   //              }).toList(),
+                   //          iconStyleData: const IconStyleData(
+                   //              icon: Icon(
+                   //                Icons.keyboard_arrow_down,
+                   //                size: 24,
+                   //              )),
+                   //          onChanged: (valueSelect) {
+                   //            // print('dsdsdsdsdsdsdsdsd');
+                   //            // print(valueSelect);
+                   //            contoller.selectEventName.value =
+                   //            valueSelect!;
+                   //          },
+                   //        ),
+                   //      ),
+                   //    ),
+                   //  ),
                     // if (contoller.dashboard.value.fire != null)
                     //   contoller.chart(context),
                     const SizedBox(
