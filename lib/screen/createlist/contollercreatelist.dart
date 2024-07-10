@@ -390,21 +390,21 @@ class ContollerCreateList extends GetxController {
             i < dataEditEvent.value.events!.freeFormDetailList!.length;
             i++) {
           if (dataEditEvent.value.events!.freeFormDetailList![i].types == 0) {
-            print('>>>>>>>>>>>>>>>>>>>>>>>>');
-            print(dataEditEvent.value.events!.freeFormDetailList![i].id);
-            listAnswerDetail.add(FreeFormAnswerList(
-                id: dataEditEvent.value.events!.freeFormDetailList![i].id,
-                image: "",
-                file: "",
-                fileName: "",
-                answer: "",
-                freeFormAnswerDetailList: [
-                  FreeFormAnswerDetailList(id: listAnswer[i].dropdown!.valueID)
-                ]));
+            if(listAnswer[i].dropdown!.valueID!=null) {
+              listAnswerDetail.add(FreeFormAnswerList(
+                  id: dataEditEvent.value.events!.freeFormDetailList![i].id,
+                  image: "",
+                  file: "",
+                  fileName: "",
+                  answer: "",
+                  freeFormAnswerDetailList: [
+                    FreeFormAnswerDetailList(
+                        id: listAnswer[i].dropdown!.valueID)
+                  ]));
+            }
           } else if (dataEditEvent.value.events!.freeFormDetailList![i].types ==
               1) {
-            print('>>>>>>>>>>>>>>>>>>>>>>>>');
-            print(dataEditEvent.value.events!.freeFormDetailList![i].id);
+
             List<FreeFormAnswerDetailList> list = [];
             listAnswer[i].checkbox!.valueID!.forEach((element) {
               list.add(FreeFormAnswerDetailList(id: element));
@@ -418,8 +418,6 @@ class ContollerCreateList extends GetxController {
                 freeFormAnswerDetailList: list));
           } else if (dataEditEvent.value.events!.freeFormDetailList![i].types ==
               2) {
-            print('>>>>>>>>>>>>>>>>>>>>>>>>');
-            print(dataEditEvent.value.events!.freeFormDetailList![i].id);
             listAnswerDetail.add(FreeFormAnswerList(
                 id: dataEditEvent.value.events!.freeFormDetailList![i].id,
                 image: "",
@@ -431,8 +429,6 @@ class ContollerCreateList extends GetxController {
                 ]));
           } else if (dataEditEvent.value.events!.freeFormDetailList![i].types ==
               3) {
-            print('>>>>>>>>>>>>>>>>>>>>>>>>');
-            print(dataEditEvent.value.events!.freeFormDetailList![i].id);
             listAnswerDetail.add(FreeFormAnswerList(
                 id: dataEditEvent.value.events!.freeFormDetailList![i].id,
                 image: "",
@@ -442,8 +438,7 @@ class ContollerCreateList extends GetxController {
                 freeFormAnswerDetailList: []));
           } else if (dataEditEvent.value.events!.freeFormDetailList![i].types ==
               4) {
-            print('>>>>>>>>>>>>>>>>>>>>>>>>');
-            print(dataEditEvent.value.events!.freeFormDetailList![i].id);
+
             listAnswerDetail.add(FreeFormAnswerList(
                 id: dataEditEvent.value.events!.freeFormDetailList![i].id,
                 fileName: "",
@@ -453,8 +448,7 @@ class ContollerCreateList extends GetxController {
                 freeFormAnswerDetailList: []));
           } else if (dataEditEvent.value.events!.freeFormDetailList![i].types ==
               5) {
-            print('>>>>>>>>>>>>>>>>>>>>>>>>');
-            print(dataEditEvent.value.events!.freeFormDetailList![i].id);
+
             listAnswerDetail.add(FreeFormAnswerList(
                 id: dataEditEvent.value.events!.freeFormDetailList![i].id,
                 image: "",
