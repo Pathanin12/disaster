@@ -42,21 +42,21 @@ class LandingPageControllerUser extends GetxController {
           List<String> pathSegments = qrCodeUri.pathSegments;
           if (qrCodeUri.scheme == pathConfig.scheme &&
               qrCodeUri.authority == pathConfig.authority) {
-            print("ตรงกัน ${pathSegments[pathSegments.length-2]}");
+            print("ตรงกัน ${pathSegments[pathSegments.length - 2]}");
             if (pathSegments.isNotEmpty) {
               String eventID = pathSegments.last;
-if((pathSegments[pathSegments.length-2]=='detail')){
-  // final ContollerDetail contollerEvent =
-  // Get.put(ContollerDetail(), permanent: false);
-  // contollerEvent.getEvent(eventID);
-  // Get.toNamed(RouterName.detail);
-  // print(eventID);
-  Get.offAndToNamed('${RouterName.detailvalliger}?id=$eventID');
-  // Get.offAndToNamed(RouterName.villager,
-  //     arguments: {'eventID': eventID});
-}else{
-  Get.offAndToNamed('${RouterName.detailvalliger}?id=$eventID');
-}
+              if ((pathSegments[pathSegments.length - 2] == 'detail')) {
+                // final ContollerDetail contollerEvent =
+                // Get.put(ContollerDetail(), permanent: false);
+                // contollerEvent.getEvent(eventID);
+                // Get.toNamed(RouterName.detail);
+                // print(eventID);
+                Get.offAndToNamed('${RouterName.detailvalliger}?id=$eventID');
+                // Get.offAndToNamed(RouterName.villager,
+                //     arguments: {'eventID': eventID});
+              } else {
+                Get.offAndToNamed('${RouterName.detailvalliger}?id=$eventID');
+              }
             }
           } else {
             Get.dialog(
@@ -64,19 +64,19 @@ if((pathSegments[pathSegments.length-2]=='detail')){
                 title: Text(
                   'ผิดพลาด',
                   style:
-                      textStyle(Get.context!, fontSize: 15, color: colorBlack),
+                      textStyle(Get.context!, fontSize: 30, color: colorBlack),
                 ),
                 content: Text(
                   'มีข้อผิดพลาดเกิดขึ้น กรุณาลองใหม่อีกครั้ง',
                   style:
-                      textStyle(Get.context!, fontSize: 15, color: colorBlack),
+                      textStyle(Get.context!, fontSize: 25, color: colorBlack),
                 ),
                 actions: <Widget>[
                   ElevatedButton(
                     child: Text(
                       'ตกลง',
                       style: textStyle(Get.context!,
-                          fontSize: 15, color: colorBlack),
+                          fontSize: 25, color: colorBlack),
                     ),
                     onPressed: () {
                       Get.back();
@@ -94,19 +94,19 @@ if((pathSegments[pathSegments.length-2]=='detail')){
                 title: Text(
                   'ผิดพลาด',
                   style:
-                      textStyle(Get.context!, fontSize: 15, color: colorBlack),
+                      textStyle(Get.context!, fontSize: 30, color: colorBlack),
                 ),
                 content: Text(
                   'ไม่พบ EventID',
                   style:
-                      textStyle(Get.context!, fontSize: 15, color: colorBlack),
+                      textStyle(Get.context!, fontSize: 25, color: colorBlack),
                 ),
                 actions: <Widget>[
                   ElevatedButton(
                     child: Text(
                       'ตกลง',
                       style: textStyle(Get.context!,
-                          fontSize: 15, color: colorBlack),
+                          fontSize: 25, color: colorBlack),
                     ),
                     onPressed: () {
                       Get.back();
@@ -121,18 +121,18 @@ if((pathSegments[pathSegments.length-2]=='detail')){
             AlertDialog(
               title: Text(
                 'คำเตือน',
-                style: textStyle(Get.context!, fontSize: 15, color: colorBlack),
+                style: textStyle(Get.context!, fontSize: 30, color: colorBlack),
               ),
               content: Text(
                 'ไม่พบ QR code',
-                style: textStyle(Get.context!, fontSize: 15, color: colorBlack),
+                style: textStyle(Get.context!, fontSize: 25, color: colorBlack),
               ),
               actions: <Widget>[
                 ElevatedButton(
                   child: Text(
                     'ตกลง',
                     style: textStyle(Get.context!,
-                        fontSize: 15, color: colorBlack),
+                        fontSize: 25, color: colorBlack),
                   ),
                   onPressed: () {
                     Get.back();

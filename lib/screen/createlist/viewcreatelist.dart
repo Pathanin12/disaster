@@ -60,7 +60,7 @@ class _CreateListState extends State<CreateList> {
                                       ? 'สร้างรายการ'
                                       : 'แก้ไขรายงาน',
                                   style: textStyle(context,
-                                      fontSize: 26,
+                                      fontSize: 30,
                                       fontWeight: FontWeight.bold))),
                           const SizedBox(
                             height: 20,
@@ -80,7 +80,7 @@ class _CreateListState extends State<CreateList> {
                                               'ชื่อรายการ',
                                               style: textStyle(context,
                                                   color: colorBlack,
-                                                  fontSize: 15),
+                                                  fontSize: 25),
                                             )),
                                       ),
                                       const SizedBox(
@@ -121,16 +121,16 @@ class _CreateListState extends State<CreateList> {
                                               }
                                               return null;
                                             },
-                                            style: TextStyle(
-                                                fontSize: 15.0,
+                                            style: textStyle(context,
+                                                fontSize: 25,
                                                 color: colorBlack,
                                                 fontWeight: FontWeight.w400),
                                             decoration:
                                                 InputDecoration.collapsed(
                                               fillColor: colorWhite,
                                               hintText: "ชื่อรายการ",
-                                              hintStyle: TextStyle(
-                                                  fontSize: 15.0,
+                                              hintStyle: textStyle(context,
+                                                  fontSize: 25,
                                                   color: colorGrey,
                                                   fontWeight: FontWeight.w400),
                                               filled: true,
@@ -352,7 +352,7 @@ class _CreateListState extends State<CreateList> {
                                               'ชื่อรายการ',
                                               style: textStyle(context,
                                                   color: colorBlack,
-                                                  fontSize: 15),
+                                                  fontSize: 25),
                                             )),
                                       ),
                                     ],
@@ -384,16 +384,16 @@ class _CreateListState extends State<CreateList> {
                                               }
                                               return null;
                                             },
-                                            style: TextStyle(
-                                                fontSize: 15.0,
+                                            style: textStyle(context,
+                                                fontSize: 25,
                                                 color: colorBlack,
                                                 fontWeight: FontWeight.w400),
                                             decoration:
                                                 InputDecoration.collapsed(
                                               fillColor: colorWhite,
                                               hintText: "ชื่อรายการ",
-                                              hintStyle: TextStyle(
-                                                  fontSize: 15.0,
+                                              hintStyle: textStyle(context,
+                                                  fontSize: 25,
                                                   color: colorGrey,
                                                   fontWeight: FontWeight.w400),
                                               filled: true,
@@ -433,7 +433,7 @@ class _CreateListState extends State<CreateList> {
                                               'วันที่รับเรื่อง',
                                               style: textStyle(context,
                                                   color: colorBlack,
-                                                  fontSize: 15),
+                                                  fontSize: 25),
                                             )),
                                       ),
                                       const SizedBox(
@@ -451,7 +451,7 @@ class _CreateListState extends State<CreateList> {
                                                   'สถานะของรายการ',
                                                   style: textStyle(context,
                                                       color: colorBlack,
-                                                      fontSize: 15),
+                                                      fontSize: 25),
                                                 )),
                                       ),
                                     ],
@@ -472,30 +472,30 @@ class _CreateListState extends State<CreateList> {
                                                 styleDatePicker:
                                                     MaterialRoundedDatePickerStyle(
                                                   textStyleCurrentDayOnCalendar:
-                                                      const TextStyle(
-                                                          fontSize: 20,
+                                                      textStyle(context,
+                                                          fontSize: 25,
                                                           color: Colors.black,
                                                           fontWeight:
                                                               FontWeight.bold),
                                                   textStyleDayOnCalendar:
-                                                      const TextStyle(
-                                                          fontSize: 20,
+                                                      textStyle(context,
+                                                          fontSize: 25,
                                                           color: Colors.black),
                                                   textStyleDayOnCalendarSelected:
-                                                      const TextStyle(
-                                                          fontSize: 20,
+                                                      textStyle(context,
+                                                          fontSize: 25,
                                                           color: Colors.white,
                                                           fontWeight:
                                                               FontWeight.bold),
                                                   textStyleDayOnCalendarDisabled:
-                                                      TextStyle(
-                                                          fontSize: 20,
+                                                      textStyle(context,
+                                                          fontSize: 25,
                                                           color: Colors.black
                                                               .withOpacity(
                                                                   0.1)),
                                                   textStyleMonthYearHeader:
-                                                      const TextStyle(
-                                                          fontSize: 20,
+                                                      textStyle(context,
+                                                          fontSize: 25,
                                                           color: Colors.black,
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -508,18 +508,18 @@ class _CreateListState extends State<CreateList> {
                                                   marginTopArrowNext: 16,
                                                   marginRightArrowNext: 32,
                                                   textStyleButtonAction:
-                                                      const TextStyle(
-                                                          fontSize: 20,
+                                                      textStyle(context,
+                                                          fontSize: 25,
                                                           color: Colors.black),
                                                   textStyleButtonPositive:
-                                                      const TextStyle(
-                                                          fontSize: 20,
+                                                      textStyle(context,
+                                                          fontSize: 25,
                                                           color: Colors.amber,
                                                           fontWeight:
                                                               FontWeight.bold),
                                                   textStyleButtonNegative:
-                                                      TextStyle(
-                                                          fontSize: 20,
+                                                      textStyle(context,
+                                                          fontSize: 25,
                                                           color: Colors.black45
                                                               .withOpacity(
                                                                   0.5)),
@@ -531,13 +531,13 @@ class _CreateListState extends State<CreateList> {
                                                 ),
                                                 styleYearPicker:
                                                     MaterialRoundedYearPickerStyle(
-                                                  textStyleYear:
-                                                      const TextStyle(
-                                                          fontSize: 30,
-                                                          color: Colors.black),
+                                                  textStyleYear: textStyle(
+                                                      context,
+                                                      fontSize: 25,
+                                                      color: Colors.black),
                                                   textStyleYearSelected:
-                                                      const TextStyle(
-                                                          fontSize: 40,
+                                                      textStyle(context,
+                                                          fontSize: 25,
                                                           color: Colors.black45,
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -577,7 +577,7 @@ class _CreateListState extends State<CreateList> {
                                                   Text(
                                                     contoller.date.value,
                                                     style: textStyle(context,
-                                                        fontSize: 15,
+                                                        fontSize: 25,
                                                         color: colorBlack),
                                                   ),
                                                   const Icon(
@@ -655,8 +655,9 @@ class _CreateListState extends State<CreateList> {
                                                           .value,
                                                       hint: Text(
                                                         'เลือกทั้งหมด',
-                                                        style: TextStyle(
-                                                            fontSize: 15.0,
+                                                        style: textStyle(
+                                                            context,
+                                                            fontSize: 25,
                                                             color: colorGrey,
                                                             fontWeight:
                                                                 FontWeight
@@ -672,8 +673,9 @@ class _CreateListState extends State<CreateList> {
                                                           value: value!,
                                                           child: Text(
                                                             value,
-                                                            style: TextStyle(
-                                                                fontSize: 15.0,
+                                                            style: textStyle(
+                                                                context,
+                                                                fontSize: 25,
                                                                 color:
                                                                     colorBlack,
                                                                 fontWeight:
@@ -719,7 +721,7 @@ class _CreateListState extends State<CreateList> {
                                               'วันที่รับเรื่อง',
                                               style: textStyle(context,
                                                   color: colorBlack,
-                                                  fontSize: 15),
+                                                  fontSize: 25),
                                             )),
                                       ),
                                     ],
@@ -740,30 +742,30 @@ class _CreateListState extends State<CreateList> {
                                                 styleDatePicker:
                                                     MaterialRoundedDatePickerStyle(
                                                   textStyleCurrentDayOnCalendar:
-                                                      const TextStyle(
-                                                          fontSize: 20,
+                                                      textStyle(context,
+                                                          fontSize: 25,
                                                           color: Colors.black,
                                                           fontWeight:
                                                               FontWeight.bold),
                                                   textStyleDayOnCalendar:
-                                                      const TextStyle(
-                                                          fontSize: 20,
+                                                      textStyle(context,
+                                                          fontSize: 25,
                                                           color: Colors.black),
                                                   textStyleDayOnCalendarSelected:
-                                                      const TextStyle(
-                                                          fontSize: 20,
+                                                      textStyle(context,
+                                                          fontSize: 25,
                                                           color: Colors.white,
                                                           fontWeight:
                                                               FontWeight.bold),
                                                   textStyleDayOnCalendarDisabled:
-                                                      TextStyle(
-                                                          fontSize: 20,
+                                                      textStyle(context,
+                                                          fontSize: 25,
                                                           color: Colors.black
                                                               .withOpacity(
                                                                   0.1)),
                                                   textStyleMonthYearHeader:
-                                                      const TextStyle(
-                                                          fontSize: 20,
+                                                      textStyle(context,
+                                                          fontSize: 25,
                                                           color: Colors.black,
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -776,18 +778,18 @@ class _CreateListState extends State<CreateList> {
                                                   marginTopArrowNext: 16,
                                                   marginRightArrowNext: 32,
                                                   textStyleButtonAction:
-                                                      const TextStyle(
-                                                          fontSize: 20,
+                                                      textStyle(context,
+                                                          fontSize: 25,
                                                           color: Colors.black),
                                                   textStyleButtonPositive:
-                                                      const TextStyle(
-                                                          fontSize: 20,
+                                                      textStyle(context,
+                                                          fontSize: 25,
                                                           color: Colors.amber,
                                                           fontWeight:
                                                               FontWeight.bold),
                                                   textStyleButtonNegative:
-                                                      TextStyle(
-                                                          fontSize: 20,
+                                                      textStyle(context,
+                                                          fontSize: 25,
                                                           color: Colors.black45
                                                               .withOpacity(
                                                                   0.5)),
@@ -799,13 +801,13 @@ class _CreateListState extends State<CreateList> {
                                                 ),
                                                 styleYearPicker:
                                                     MaterialRoundedYearPickerStyle(
-                                                  textStyleYear:
-                                                      const TextStyle(
-                                                          fontSize: 30,
-                                                          color: Colors.black),
+                                                  textStyleYear: textStyle(
+                                                      context,
+                                                      fontSize: 25,
+                                                      color: Colors.black),
                                                   textStyleYearSelected:
-                                                      const TextStyle(
-                                                          fontSize: 40,
+                                                      textStyle(context,
+                                                          fontSize: 25,
                                                           color: Colors.black45,
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -845,7 +847,7 @@ class _CreateListState extends State<CreateList> {
                                                   Text(
                                                     contoller.date.value,
                                                     style: textStyle(context,
-                                                        fontSize: 15,
+                                                        fontSize: 25,
                                                         color: colorBlack),
                                                   ),
                                                   const Icon(
@@ -890,7 +892,7 @@ class _CreateListState extends State<CreateList> {
                                                     'สถานะของรายการ',
                                                     style: textStyle(context,
                                                         color: colorBlack,
-                                                        fontSize: 15),
+                                                        fontSize: 25),
                                                   )),
                                         ),
                                       ],
@@ -960,8 +962,9 @@ class _CreateListState extends State<CreateList> {
                                                             .value,
                                                         hint: Text(
                                                           'เลือกทั้งหมด',
-                                                          style: TextStyle(
-                                                              fontSize: 15.0,
+                                                          style: textStyle(
+                                                              context,
+                                                              fontSize: 25,
                                                               color: colorGrey,
                                                               fontWeight:
                                                                   FontWeight
@@ -977,9 +980,9 @@ class _CreateListState extends State<CreateList> {
                                                             value: value!,
                                                             child: Text(
                                                               value,
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                      13.0,
+                                                              style: textStyle(
+                                                                  context,
+                                                                  fontSize: 25,
                                                                   color:
                                                                       colorBlack,
                                                                   fontWeight:
@@ -1030,7 +1033,7 @@ class _CreateListState extends State<CreateList> {
                                               'หน่วยงานที่รับผิดชอบ',
                                               style: textStyle(context,
                                                   color: colorBlack,
-                                                  fontSize: 15),
+                                                  fontSize: 25),
                                             )),
                                       ),
                                       const SizedBox(
@@ -1048,7 +1051,7 @@ class _CreateListState extends State<CreateList> {
                                                   'สถานะหน่วยงานที่รับผิดชอบ',
                                                   style: textStyle(context,
                                                       color: colorBlack,
-                                                      fontSize: 15),
+                                                      fontSize: 25),
                                                 )),
                                       ),
                                     ],
@@ -1080,16 +1083,16 @@ class _CreateListState extends State<CreateList> {
                                             enabled: (isAdmin) ? true : false,
                                             controller:
                                                 contoller.responsible.value,
-                                            style: TextStyle(
-                                                fontSize: 15.0,
+                                            style: textStyle(context,
+                                                fontSize: 25,
                                                 color: colorBlack,
                                                 fontWeight: FontWeight.w400),
                                             decoration:
                                                 InputDecoration.collapsed(
                                               fillColor: colorWhite,
                                               hintText: "หน่วยงานที่รับผิดชอบ",
-                                              hintStyle: TextStyle(
-                                                  fontSize: 15.0,
+                                              hintStyle: textStyle(context,
+                                                  fontSize: 25,
                                                   color: colorGrey,
                                                   fontWeight: FontWeight.w400),
                                               filled: true,
@@ -1169,8 +1172,9 @@ class _CreateListState extends State<CreateList> {
                                                           .value,
                                                       hint: Text(
                                                         'เลือกทั้งหมด',
-                                                        style: TextStyle(
-                                                            fontSize: 15.0,
+                                                        style: textStyle(
+                                                            context,
+                                                            fontSize: 25,
                                                             color: colorGrey,
                                                             fontWeight:
                                                                 FontWeight
@@ -1186,8 +1190,9 @@ class _CreateListState extends State<CreateList> {
                                                           value: value!,
                                                           child: Text(
                                                             value,
-                                                            style: TextStyle(
-                                                                fontSize: 15.0,
+                                                            style: textStyle(
+                                                                context,
+                                                                fontSize: 25,
                                                                 color:
                                                                     colorBlack,
                                                                 fontWeight:
@@ -1233,7 +1238,7 @@ class _CreateListState extends State<CreateList> {
                                               'หน่วยงานที่รับผิดชอบ',
                                               style: textStyle(context,
                                                   color: colorBlack,
-                                                  fontSize: 15),
+                                                  fontSize: 25),
                                             )),
                                       ),
                                     ],
@@ -1265,16 +1270,16 @@ class _CreateListState extends State<CreateList> {
                                             enabled: (isAdmin) ? true : false,
                                             controller:
                                                 contoller.responsible.value,
-                                            style: TextStyle(
-                                                fontSize: 15.0,
+                                            style: textStyle(context,
+                                                fontSize: 25,
                                                 color: colorBlack,
                                                 fontWeight: FontWeight.w400),
                                             decoration:
                                                 InputDecoration.collapsed(
                                               fillColor: colorWhite,
                                               hintText: "หน่วยงานที่รับผิดชอบ",
-                                              hintStyle: TextStyle(
-                                                  fontSize: 15.0,
+                                              hintStyle: textStyle(context,
+                                                  fontSize: 25,
                                                   color: colorGrey,
                                                   fontWeight: FontWeight.w400),
                                               filled: true,
@@ -1321,7 +1326,7 @@ class _CreateListState extends State<CreateList> {
                                                     'สถานะหน่วยงานที่รับผิดชอบ',
                                                     style: textStyle(context,
                                                         color: colorBlack,
-                                                        fontSize: 15),
+                                                        fontSize: 25),
                                                   )),
                                         ),
                                       ],
@@ -1391,8 +1396,9 @@ class _CreateListState extends State<CreateList> {
                                                             .value,
                                                         hint: Text(
                                                           'เลือกทั้งหมด',
-                                                          style: TextStyle(
-                                                              fontSize: 15.0,
+                                                          style: textStyle(
+                                                              context,
+                                                              fontSize: 25,
                                                               color: colorGrey,
                                                               fontWeight:
                                                                   FontWeight
@@ -1408,9 +1414,9 @@ class _CreateListState extends State<CreateList> {
                                                             value: value!,
                                                             child: Text(
                                                               value,
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                      13.0,
+                                                              style: textStyle(
+                                                                  context,
+                                                                  fontSize: 25,
                                                                   color:
                                                                       colorBlack,
                                                                   fontWeight:
@@ -1462,7 +1468,7 @@ class _CreateListState extends State<CreateList> {
                                               'รับเรื่องจาก',
                                               style: textStyle(context,
                                                   color: colorBlack,
-                                                  fontSize: 15),
+                                                  fontSize: 25),
                                             )),
                                       ),
                                       const SizedBox(
@@ -1471,13 +1477,13 @@ class _CreateListState extends State<CreateList> {
                                       Expanded(
                                         flex: 5,
                                         child: Container(
-                                            alignment: Alignment.centerLeft,
-                                            // child: Text(
-                                            //   'ระดับความรุนแรง',
-                                            //   style: textStyle(context,
-                                            //       color: colorBlack,
-                                            //       fontSize: 15),
-                                            // )
+                                          alignment: Alignment.centerLeft,
+                                          // child: Text(
+                                          //   'ระดับความรุนแรง',
+                                          //   style: textStyle(context,
+                                          //       color: colorBlack,
+                                          //       fontSize: 15),
+                                          // )
                                         ),
                                       ),
                                     ],
@@ -1511,13 +1517,13 @@ class _CreateListState extends State<CreateList> {
                                                 contoller.createBy.value,
                                             style: textStyle(context,
                                                 color: colorBlack,
-                                                fontSize: 15),
+                                                fontSize: 25),
                                             decoration:
                                                 InputDecoration.collapsed(
                                               fillColor: colorWhite,
                                               hintText: "รับเรื่องจาก",
-                                              hintStyle: TextStyle(
-                                                  fontSize: 15.0,
+                                              hintStyle: textStyle(context,
+                                                  fontSize: 25,
                                                   color: colorGrey,
                                                   fontWeight: FontWeight.w400),
                                               filled: true,
@@ -1629,7 +1635,7 @@ class _CreateListState extends State<CreateList> {
                                               'รับเรื่องจาก',
                                               style: textStyle(context,
                                                   color: colorBlack,
-                                                  fontSize: 15),
+                                                  fontSize: 25),
                                             )),
                                       ),
                                     ],
@@ -1663,13 +1669,13 @@ class _CreateListState extends State<CreateList> {
                                                 contoller.createBy.value,
                                             style: textStyle(context,
                                                 color: colorBlack,
-                                                fontSize: 15),
+                                                fontSize: 25),
                                             decoration:
                                                 InputDecoration.collapsed(
                                               fillColor: colorWhite,
                                               hintText: "รับเรื่องจาก",
-                                              hintStyle: TextStyle(
-                                                  fontSize: 15.0,
+                                              hintStyle: textStyle(context,
+                                                  fontSize: 25,
                                                   color: colorGrey,
                                                   fontWeight: FontWeight.w400),
                                               filled: true,
@@ -1815,7 +1821,7 @@ class _CreateListState extends State<CreateList> {
                                               'หน่วยงานที่เกี่ยวข้อง',
                                               style: textStyle(context,
                                                   color: colorBlack,
-                                                  fontSize: 15),
+                                                  fontSize: 25),
                                             )),
                                       ),
                                       const SizedBox(
@@ -1833,7 +1839,7 @@ class _CreateListState extends State<CreateList> {
                                                   'สถานะหน่วยงานที่เกี่ยวข้อง',
                                                   style: textStyle(context,
                                                       color: colorBlack,
-                                                      fontSize: 15),
+                                                      fontSize: 25),
                                                 )),
                                       ),
                                     ],
@@ -1865,16 +1871,16 @@ class _CreateListState extends State<CreateList> {
                                             enabled: (isAdmin) ? true : false,
                                             controller:
                                                 contoller.relevant.value,
-                                            style: TextStyle(
-                                                fontSize: 15.0,
+                                            style: textStyle(context,
+                                                fontSize: 25,
                                                 color: colorBlack,
                                                 fontWeight: FontWeight.w400),
                                             decoration:
                                                 InputDecoration.collapsed(
                                               fillColor: colorWhite,
                                               hintText: "หน่วยงานที่เกี่ยวข้อง",
-                                              hintStyle: TextStyle(
-                                                  fontSize: 15.0,
+                                              hintStyle: textStyle(context,
+                                                  fontSize: 25,
                                                   color: colorGrey,
                                                   fontWeight: FontWeight.w400),
                                               filled: true,
@@ -1954,8 +1960,9 @@ class _CreateListState extends State<CreateList> {
                                                           .value,
                                                       hint: Text(
                                                         'เลือกทั้งหมด',
-                                                        style: TextStyle(
-                                                            fontSize: 15.0,
+                                                        style: textStyle(
+                                                            context,
+                                                            fontSize: 25,
                                                             color: colorGrey,
                                                             fontWeight:
                                                                 FontWeight
@@ -1971,8 +1978,9 @@ class _CreateListState extends State<CreateList> {
                                                           value: value!,
                                                           child: Text(
                                                             value,
-                                                            style: TextStyle(
-                                                                fontSize: 15.0,
+                                                            style: textStyle(
+                                                                context,
+                                                                fontSize: 25,
                                                                 color:
                                                                     colorBlack,
                                                                 fontWeight:
@@ -2018,7 +2026,7 @@ class _CreateListState extends State<CreateList> {
                                               'หน่วยงานที่เกี่ยวข้อง',
                                               style: textStyle(context,
                                                   color: colorBlack,
-                                                  fontSize: 15),
+                                                  fontSize: 25),
                                             )),
                                       ),
                                     ],
@@ -2050,16 +2058,16 @@ class _CreateListState extends State<CreateList> {
                                             enabled: (isAdmin) ? true : false,
                                             controller:
                                                 contoller.relevant.value,
-                                            style: TextStyle(
-                                                fontSize: 15.0,
+                                            style: textStyle(context,
+                                                fontSize: 25,
                                                 color: colorBlack,
                                                 fontWeight: FontWeight.w400),
                                             decoration:
                                                 InputDecoration.collapsed(
                                               fillColor: colorWhite,
                                               hintText: "หน่วยงานที่เกี่ยวข้อง",
-                                              hintStyle: TextStyle(
-                                                  fontSize: 15.0,
+                                              hintStyle: textStyle(context,
+                                                  fontSize: 25,
                                                   color: colorGrey,
                                                   fontWeight: FontWeight.w400),
                                               filled: true,
@@ -2106,7 +2114,7 @@ class _CreateListState extends State<CreateList> {
                                                     'สถานะหน่วยงานที่เกี่ยวข้อง',
                                                     style: textStyle(context,
                                                         color: colorBlack,
-                                                        fontSize: 15),
+                                                        fontSize: 25),
                                                   )),
                                         ),
                                       ],
@@ -2176,8 +2184,9 @@ class _CreateListState extends State<CreateList> {
                                                             .value,
                                                         hint: Text(
                                                           'เลือกทั้งหมด',
-                                                          style: TextStyle(
-                                                              fontSize: 15.0,
+                                                          style: textStyle(
+                                                              context,
+                                                              fontSize: 25,
                                                               color: colorGrey,
                                                               fontWeight:
                                                                   FontWeight
@@ -2193,9 +2202,9 @@ class _CreateListState extends State<CreateList> {
                                                             value: value!,
                                                             child: Text(
                                                               value,
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                      13.0,
+                                                              style: textStyle(
+                                                                  context,
+                                                                  fontSize: 25,
                                                                   color:
                                                                       colorBlack,
                                                                   fontWeight:
@@ -5526,7 +5535,7 @@ class _CreateListState extends State<CreateList> {
                                                     .freeFormDetailList![index]
                                                     .section!,
                                                 style: textStyle(context,
-                                                    fontSize: 15,
+                                                    fontSize: 25,
                                                     fontWeight: FontWeight.bold,
                                                     color: Colors.black),
                                               ),
@@ -5598,9 +5607,10 @@ class _CreateListState extends State<CreateList> {
                                                                     .value,
                                                                 hint: Text(
                                                                   'ตัวเลือก',
-                                                                  style: TextStyle(
+                                                                  style: textStyle(
+                                                                      context,
                                                                       fontSize:
-                                                                          13.0,
+                                                                          25,
                                                                       color:
                                                                           colorGrey,
                                                                       fontWeight:
@@ -5622,9 +5632,10 @@ class _CreateListState extends State<CreateList> {
                                                                         value!,
                                                                     child: Text(
                                                                       value,
-                                                                      style: TextStyle(
+                                                                      style: textStyle(
+                                                                          context,
                                                                           fontSize:
-                                                                              13.0,
+                                                                              25,
                                                                           color:
                                                                               colorBlack,
                                                                           fontWeight:
@@ -5711,7 +5722,7 @@ class _CreateListState extends State<CreateList> {
                                                             index]
                                                         .section!,
                                                     style: textStyle(context,
-                                                        fontSize: 15,
+                                                        fontSize: 25,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                         color: Colors.black),
@@ -5769,7 +5780,7 @@ class _CreateListState extends State<CreateList> {
                                                             .section!,
                                                         style: textStyle(
                                                             context,
-                                                            fontSize: 15,
+                                                            fontSize: 25,
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                             color:
@@ -5832,7 +5843,7 @@ class _CreateListState extends State<CreateList> {
                                                                         color: Colors
                                                                             .black,
                                                                         fontSize:
-                                                                            13),
+                                                                            25),
                                                                   )
                                                                 ],
                                                               ),
@@ -5880,7 +5891,7 @@ class _CreateListState extends State<CreateList> {
                                                                 .section!,
                                                             style: textStyle(
                                                                 context,
-                                                                fontSize: 15,
+                                                                fontSize: 25,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
@@ -5934,9 +5945,10 @@ class _CreateListState extends State<CreateList> {
                                                                             index]
                                                                         .textfield!
                                                                         .value,
-                                                                    style: TextStyle(
+                                                                    style: textStyle(
+                                                                        context,
                                                                         fontSize:
-                                                                            13.0,
+                                                                            25,
                                                                         color:
                                                                             colorBlack,
                                                                         fontWeight:
@@ -5953,9 +5965,10 @@ class _CreateListState extends State<CreateList> {
                                                                           .freeFormDetailList![
                                                                               index]
                                                                           .section!,
-                                                                      hintStyle: TextStyle(
+                                                                      hintStyle: textStyle(
+                                                                          context,
                                                                           fontSize:
-                                                                              13.0,
+                                                                              25,
                                                                           color:
                                                                               colorGrey,
                                                                           fontWeight:
@@ -6028,7 +6041,7 @@ class _CreateListState extends State<CreateList> {
                                                                 style: textStyle(
                                                                     context,
                                                                     fontSize:
-                                                                        14,
+                                                                        25,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .bold,
@@ -6130,7 +6143,7 @@ class _CreateListState extends State<CreateList> {
                                                                             color:
                                                                                 colorBlue,
                                                                             fontSize:
-                                                                                14),
+                                                                                25),
                                                                       ),
                                                                     ),
                                                                   ),
@@ -6176,7 +6189,7 @@ class _CreateListState extends State<CreateList> {
                                                                     style: textStyle(
                                                                         context,
                                                                         fontSize:
-                                                                            14,
+                                                                            25,
                                                                         fontWeight:
                                                                             FontWeight
                                                                                 .bold,
@@ -6228,7 +6241,7 @@ class _CreateListState extends State<CreateList> {
                                                                             contoller.listAnswer[index].file!.name!,
                                                                             style: textStyle(context,
                                                                                 color: colorGrey,
-                                                                                fontSize: 15),
+                                                                                fontSize: 25),
                                                                           )
                                                                         ],
                                                                       ),
@@ -6301,7 +6314,7 @@ class _CreateListState extends State<CreateList> {
                                                                             'เลือกไฟล์',
                                                                             style: textStyle(context,
                                                                                 color: colorBlue,
-                                                                                fontSize: 15),
+                                                                                fontSize: 25),
                                                                           ),
                                                                         ),
                                                                       ),
@@ -6436,8 +6449,9 @@ class _CreateListState extends State<CreateList> {
                                                         .collapsed(
                                                       fillColor: colorWhite,
                                                       hintText: "หัวข้อ",
-                                                      hintStyle: TextStyle(
-                                                          fontSize: 15.0,
+                                                      hintStyle: textStyle(
+                                                          context,
+                                                          fontSize: 25,
                                                           color: colorGrey,
                                                           fontWeight:
                                                               FontWeight.w400),
@@ -6494,8 +6508,8 @@ class _CreateListState extends State<CreateList> {
                                                 decoration: InputDecoration(
                                                   fillColor: colorWhite,
                                                   hintText: "กล่องข้อความ",
-                                                  hintStyle: TextStyle(
-                                                      fontSize: 15.0,
+                                                  hintStyle: textStyle(context,
+                                                      fontSize: 25,
                                                       color: colorGrey,
                                                       fontWeight:
                                                           FontWeight.w400),
@@ -6673,8 +6687,9 @@ class _CreateListState extends State<CreateList> {
                                                         .collapsed(
                                                       fillColor: colorWhite,
                                                       hintText: "หัวข้อ",
-                                                      hintStyle: TextStyle(
-                                                          fontSize: 15.0,
+                                                      hintStyle: textStyle(
+                                                          context,
+                                                          fontSize: 25,
                                                           color: colorGrey,
                                                           fontWeight:
                                                               FontWeight.w400),
@@ -6766,9 +6781,9 @@ class _CreateListState extends State<CreateList> {
                                                                   colorWhite,
                                                               hintText:
                                                                   "ตัวเลือก ${indexEvenList + 1}",
-                                                              hintStyle: TextStyle(
-                                                                  fontSize:
-                                                                      13.0,
+                                                              hintStyle: textStyle(
+                                                                  context,
+                                                                  fontSize: 25,
                                                                   color:
                                                                       colorGrey,
                                                                   fontWeight:
@@ -6902,8 +6917,9 @@ class _CreateListState extends State<CreateList> {
                                                         .collapsed(
                                                       fillColor: colorWhite,
                                                       hintText: "หัวข้อ",
-                                                      hintStyle: TextStyle(
-                                                          fontSize: 15.0,
+                                                      hintStyle: textStyle(
+                                                          context,
+                                                          fontSize: 25,
                                                           color: colorGrey,
                                                           fontWeight:
                                                               FontWeight.w400),
@@ -6997,9 +7013,9 @@ class _CreateListState extends State<CreateList> {
                                                                   colorWhite,
                                                               hintText:
                                                                   "ตัวเลือก ${indexEvenList + 1}",
-                                                              hintStyle: TextStyle(
-                                                                  fontSize:
-                                                                      13.0,
+                                                              hintStyle: textStyle(
+                                                                  context,
+                                                                  fontSize: 25,
                                                                   color:
                                                                       colorGrey,
                                                                   fontWeight:
@@ -7133,8 +7149,9 @@ class _CreateListState extends State<CreateList> {
                                                         .collapsed(
                                                       fillColor: colorWhite,
                                                       hintText: "หัวข้อ",
-                                                      hintStyle: TextStyle(
-                                                          fontSize: 15.0,
+                                                      hintStyle: textStyle(
+                                                          context,
+                                                          fontSize: 25,
                                                           color: colorGrey,
                                                           fontWeight:
                                                               FontWeight.w400),
@@ -7229,9 +7246,9 @@ class _CreateListState extends State<CreateList> {
                                                                   colorWhite,
                                                               hintText:
                                                                   "ตัวเลือก ${indexEvenList + 1}",
-                                                              hintStyle: TextStyle(
-                                                                  fontSize:
-                                                                      13.0,
+                                                              hintStyle: textStyle(
+                                                                  context,
+                                                                  fontSize: 25,
                                                                   color:
                                                                       colorGrey,
                                                                   fontWeight:
@@ -7367,8 +7384,9 @@ class _CreateListState extends State<CreateList> {
                                                         .collapsed(
                                                       fillColor: colorWhite,
                                                       hintText: "หัวข้อ",
-                                                      hintStyle: TextStyle(
-                                                          fontSize: 15.0,
+                                                      hintStyle: textStyle(
+                                                          context,
+                                                          fontSize: 25,
                                                           color: colorGrey,
                                                           fontWeight:
                                                               FontWeight.w400),
@@ -7436,7 +7454,7 @@ class _CreateListState extends State<CreateList> {
                                                     'เลือกรูป',
                                                     style: textStyle(context,
                                                         color: Colors.blue,
-                                                        fontSize: 15),
+                                                        fontSize: 25),
                                                   ),
                                                 )),
                                             const SizedBox(
@@ -7501,8 +7519,9 @@ class _CreateListState extends State<CreateList> {
                                                         .collapsed(
                                                       fillColor: colorWhite,
                                                       hintText: "หัวข้อ",
-                                                      hintStyle: TextStyle(
-                                                          fontSize: 15.0,
+                                                      hintStyle: textStyle(
+                                                          context,
+                                                          fontSize: 25,
                                                           color: colorGrey,
                                                           fontWeight:
                                                               FontWeight.w400),
@@ -7570,7 +7589,7 @@ class _CreateListState extends State<CreateList> {
                                                     'เลือกไฟล์',
                                                     style: textStyle(context,
                                                         color: Colors.blue,
-                                                        fontSize: 15),
+                                                        fontSize: 25),
                                                   ),
                                                 )),
                                             const SizedBox(
@@ -7680,7 +7699,7 @@ class _CreateListState extends State<CreateList> {
                                             'เพิ่มฟอร์ม',
                                             style: textStyle(context,
                                                 color: colorBlack,
-                                                fontSize: 15),
+                                                fontSize: 25),
                                           ),
                                         ],
                                       ),
@@ -7700,14 +7719,14 @@ class _CreateListState extends State<CreateList> {
                                                 "เลือกประเภท",
                                                 style: textStyle(context,
                                                     color: colorBlack,
-                                                    fontSize: 15),
+                                                    fontSize: 25),
                                               ),
                                               DropdownButton<String>(
                                                 hint: Text(
                                                   "เลือก",
                                                   style: textStyle(context,
                                                       color: colorBlack,
-                                                      fontSize: 15),
+                                                      fontSize: 25),
                                                 ),
                                                 value: contoller.selectedField
                                                             .value ==
@@ -7751,7 +7770,7 @@ class _CreateListState extends State<CreateList> {
                               child: Text(
                                 'พิกัดที่เกิดภัยพิบัติ',
                                 style: textStyle(context,
-                                    color: colorBlack, fontSize: 15),
+                                    color: colorBlack, fontSize: 25),
                               )),
                           Stack(
                             children: [
@@ -7795,7 +7814,8 @@ class _CreateListState extends State<CreateList> {
                                             .value
                                             .camera
                                             .center
-                                            .latitude.toStringAsFixed(6);
+                                            .latitude
+                                            .toStringAsFixed(6);
                                         contoller.lng.value.text = contoller
                                             .mapController
                                             .value
@@ -7852,8 +7872,8 @@ class _CreateListState extends State<CreateList> {
                                                       const Icon(Icons.search)),
                                               fillColor: colorWhite,
                                               hintText: "ค้นหา",
-                                              hintStyle: TextStyle(
-                                                  fontSize: 15.0,
+                                              hintStyle: textStyle(context,
+                                                  fontSize: 25,
                                                   color: colorGrey,
                                                   fontWeight: FontWeight.w400),
                                               filled: true,
@@ -7951,7 +7971,7 @@ class _CreateListState extends State<CreateList> {
                                         child: Text(
                                           'ที่อยู่',
                                           style: textStyle(context,
-                                              color: colorBlack, fontSize: 15),
+                                              color: colorBlack, fontSize: 25),
                                         )),
                                   ),
                                   SizedBox(
@@ -7964,7 +7984,7 @@ class _CreateListState extends State<CreateList> {
                                         child: Text(
                                           'เลือกสัญลักษณ์',
                                           style: textStyle(context,
-                                              color: colorBlack, fontSize: 15),
+                                              color: colorBlack, fontSize: 25),
                                         )),
                                   )
                                 ]),
@@ -7982,8 +8002,8 @@ class _CreateListState extends State<CreateList> {
                                           decoration: InputDecoration(
                                             fillColor: colorWhite,
                                             hintText: "ที่อยู่",
-                                            hintStyle: TextStyle(
-                                                fontSize: 15.0,
+                                            hintStyle: textStyle(context,
+                                                fontSize: 25,
                                                 color: colorGrey,
                                                 fontWeight: FontWeight.w400),
                                             filled: true,
@@ -8033,7 +8053,6 @@ class _CreateListState extends State<CreateList> {
                                                                             BoxDecoration(
                                                                           borderRadius:
                                                                               BorderRadius.circular(5),
-                                                                        
                                                                           color:
                                                                               Colors.white,
                                                                         ),
@@ -8060,8 +8079,8 @@ class _CreateListState extends State<CreateList> {
                                                                               mainAxisAlignment: MainAxisAlignment.center,
                                                                               children: [
                                                                                 InkWell(
-                                                                                  onTap:(){
-                                                                                    contoller.selectIcon.value=indexImage;
+                                                                                  onTap: () {
+                                                                                    contoller.selectIcon.value = indexImage;
                                                                                     Navigator.pop(context);
                                                                                   },
                                                                                   child: Container(
@@ -8083,30 +8102,30 @@ class _CreateListState extends State<CreateList> {
                                                                         ),
                                                                       ),
                                                                       Positioned(
-                                                                        right: -5,
-                                                                          top: -5,
+                                                                          right:
+                                                                              -5,
+                                                                          top:
+                                                                              -5,
                                                                           child:
                                                                               Container(
-                                                                        height:
-                                                                            40,
-                                                                        width:
-                                                                            40,
-                                                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(100)),
-                                                                        child:
-                                                                            InkWell(
-                                                                              onTap: (){
+                                                                            height:
+                                                                                40,
+                                                                            width:
+                                                                                40,
+                                                                            decoration:
+                                                                                BoxDecoration(borderRadius: BorderRadius.circular(100)),
+                                                                            child:
+                                                                                InkWell(
+                                                                              onTap: () {
                                                                                 Navigator.pop(context);
                                                                               },
                                                                               child: Icon(
-                                                                                                                                                        Icons
-                                                                                .clear,
-                                                                                                                                                        size:
-                                                                                30,
-                                                                                                                                                        color:
-                                                                                Colors.grey,
-                                                                                                                                                      ),
+                                                                                Icons.clear,
+                                                                                size: 30,
+                                                                                color: Colors.grey,
+                                                                              ),
                                                                             ),
-                                                                      ))
+                                                                          ))
                                                                     ],
                                                                   ),
                                                                 ),
@@ -8116,26 +8135,46 @@ class _CreateListState extends State<CreateList> {
                                               child: Container(
                                                 height: 50,
                                                 width: 110,
-                                                decoration: BoxDecoration(  border: Border.all(color: Colors.grey),borderRadius: BorderRadius.circular(5),    color: colorWhite,),
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors.grey),
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  color: colorWhite,
+                                                ),
                                                 child: Row(
                                                   children: [
-                                                    SizedBox(width: 10,),
-                                                  Container(
-                                                    height: 40,
-                                                    width: 40,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(100),
-                                                      color: Colors.black45
+                                                    SizedBox(
+                                                      width: 10,
                                                     ),
-                                                    child: SvgPicture.asset(
-                                                    listIconType[contoller.selectIcon.value],
-                                                  ),
-                                                      padding: EdgeInsets.all(5),
+                                                    Container(
+                                                      height: 40,
+                                                      width: 40,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      100),
+                                                          color:
+                                                              Colors.black45),
+                                                      child: SvgPicture.asset(
+                                                        listIconType[contoller
+                                                            .selectIcon.value],
                                                       ),
-                                                  Spacer(),
-                                                  Icon(Icons.arrow_drop_down,size: 20,color: Colors.grey,),
-                                                  SizedBox(width: 10,)
-                                                ],),
+                                                      padding:
+                                                          EdgeInsets.all(5),
+                                                    ),
+                                                    Spacer(),
+                                                    Icon(
+                                                      Icons.arrow_drop_down,
+                                                      size: 20,
+                                                      color: Colors.grey,
+                                                    ),
+                                                    SizedBox(
+                                                      width: 10,
+                                                    )
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -8162,7 +8201,7 @@ class _CreateListState extends State<CreateList> {
                                             'ละติจูด',
                                             style: textStyle(context,
                                                 color: colorBlack,
-                                                fontSize: 15),
+                                                fontSize: 25),
                                           )),
                                     ),
                                     const SizedBox(
@@ -8176,7 +8215,7 @@ class _CreateListState extends State<CreateList> {
                                             'ลองจิจูด',
                                             style: textStyle(context,
                                                 color: colorBlack,
-                                                fontSize: 15),
+                                                fontSize: 25),
                                           )),
                                     ),
                                   ],
@@ -8204,8 +8243,8 @@ class _CreateListState extends State<CreateList> {
                                           decoration: InputDecoration(
                                             fillColor: colorWhite,
                                             hintText: "ละติจูด",
-                                            hintStyle: TextStyle(
-                                                fontSize: 15.0,
+                                            hintStyle: textStyle(context,
+                                                fontSize: 25,
                                                 color: colorGrey,
                                                 fontWeight: FontWeight.w400),
                                             filled: true,
@@ -8244,8 +8283,8 @@ class _CreateListState extends State<CreateList> {
                                           decoration: InputDecoration(
                                             fillColor: colorWhite,
                                             hintText: "ลองจิจูด",
-                                            hintStyle: TextStyle(
-                                                fontSize: 15.0,
+                                            hintStyle: textStyle(context,
+                                                fontSize: 25,
                                                 color: colorGrey,
                                                 fontWeight: FontWeight.w400),
                                             filled: true,
@@ -8435,7 +8474,7 @@ class _CreateListState extends State<CreateList> {
                                         child: Text(
                                           'รายละเอียดเพิ่มเติม',
                                           style: textStyle(context,
-                                              color: colorBlack, fontSize: 15),
+                                              color: colorBlack, fontSize: 25),
                                         )),
                                   ),
                                 ]),
@@ -8461,8 +8500,8 @@ class _CreateListState extends State<CreateList> {
                                           decoration: InputDecoration.collapsed(
                                             fillColor: colorWhite,
                                             hintText: "รายละเอียดเพิ่มเติม",
-                                            hintStyle: TextStyle(
-                                                fontSize: 15.0,
+                                            hintStyle: textStyle(context,
+                                                fontSize: 25,
                                                 color: colorGrey,
                                                 fontWeight: FontWeight.w400),
                                             filled: true,
@@ -8484,7 +8523,7 @@ class _CreateListState extends State<CreateList> {
                               'อัพเดทสถานะการณ์รายงาน',
                               style: textStyle(context,
                                   color: colorBlack,
-                                  fontSize: 16,
+                                  fontSize: 25,
                                   fontWeight: FontWeight.bold),
                             ),
                           if (contoller.dataEditEvent.value.events != null)
@@ -8544,7 +8583,7 @@ class _CreateListState extends State<CreateList> {
                                                           style: textStyle(
                                                               context,
                                                               color: colorBlue,
-                                                              fontSize: 15),
+                                                              fontSize: 25),
                                                         ),
                                                       ),
                                                     ),
@@ -8598,7 +8637,7 @@ class _CreateListState extends State<CreateList> {
                                                           style: textStyle(
                                                               context,
                                                               color: colorBlue,
-                                                              fontSize: 15),
+                                                              fontSize: 25),
                                                         ),
                                                       ),
                                                     ),
@@ -8708,7 +8747,7 @@ class _CreateListState extends State<CreateList> {
                                                           style: textStyle(
                                                               context,
                                                               color: colorBlue,
-                                                              fontSize: 15),
+                                                              fontSize: 25),
                                                         ),
                                                       ),
                                                     ),
@@ -8760,7 +8799,7 @@ class _CreateListState extends State<CreateList> {
                                                           style: textStyle(
                                                               context,
                                                               color: colorBlue,
-                                                              fontSize: 15),
+                                                              fontSize: 25),
                                                         ),
                                                       ),
                                                     ),
@@ -8797,7 +8836,7 @@ class _CreateListState extends State<CreateList> {
                                                                   context,
                                                                   color:
                                                                       colorBlue,
-                                                                  fontSize: 15),
+                                                                  fontSize: 25),
                                                             ),
                                                             const SizedBox(
                                                               width: 5,
@@ -8858,7 +8897,7 @@ class _CreateListState extends State<CreateList> {
                                                   'รายละเอียดรายงาน',
                                                   style: textStyle(context,
                                                       color: colorBlack,
-                                                      fontSize: 15),
+                                                      fontSize: 25),
                                                 )),
                                           ),
                                         ]),
@@ -8888,8 +8927,9 @@ class _CreateListState extends State<CreateList> {
                                                     fillColor: colorWhite,
                                                     hintText:
                                                         "รายละเอียดรายงาน",
-                                                    hintStyle: TextStyle(
-                                                        fontSize: 15.0,
+                                                    hintStyle: textStyle(
+                                                        context,
+                                                        fontSize: 25,
                                                         color: colorGrey,
                                                         fontWeight:
                                                             FontWeight.w400),
@@ -8931,7 +8971,7 @@ class _CreateListState extends State<CreateList> {
                                           Text(
                                             'คำเตือน',
                                             style: textStyle(context,
-                                                fontSize: 18,
+                                                fontSize: 25,
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ],
@@ -8946,7 +8986,7 @@ class _CreateListState extends State<CreateList> {
                                             child: Text(
                                               'ยกเลิก',
                                               style: textStyle(context,
-                                                  fontSize: 15),
+                                                  fontSize: 25),
                                             )),
                                         InkWell(
                                             onTap: () async {
@@ -8956,7 +8996,7 @@ class _CreateListState extends State<CreateList> {
                                             child: Text(
                                               'ตกลง',
                                               style: textStyle(context,
-                                                  fontSize: 15),
+                                                  fontSize: 25),
                                             )),
                                       ],
                                     ),
@@ -8972,7 +9012,7 @@ class _CreateListState extends State<CreateList> {
                                   child: Text(
                                     'ยกเลิก',
                                     style: textStyle(context,
-                                        fontSize: 15,
+                                        fontSize: 25,
                                         fontWeight: FontWeight.bold,
                                         color: colorWhite),
                                   ),
@@ -8998,7 +9038,7 @@ class _CreateListState extends State<CreateList> {
                                   child: Text(
                                     'บันทึก',
                                     style: textStyle(context,
-                                        fontSize: 15,
+                                        fontSize: 25,
                                         fontWeight: FontWeight.bold,
                                         color: colorWhite),
                                   ),
@@ -9063,7 +9103,7 @@ class _CreateListState extends State<CreateList> {
             ),
             Text(
               contoller.listAnswer[index].checkbox!.listoption![i],
-              style: textStyle(context, color: Colors.black, fontSize: 15),
+              style: textStyle(context, color: Colors.black, fontSize: 25),
             )
           ],
         ),

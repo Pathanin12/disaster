@@ -35,7 +35,7 @@ class Detailz extends StatelessWidget {
                       Text(
                         contoller.pageName.value,
                         style: textStyle(context,
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                            fontSize: 30, fontWeight: FontWeight.bold),
                       ),
                       InkWell(
                         onTap: () async {
@@ -68,7 +68,7 @@ class Detailz extends StatelessWidget {
                               Text(
                                 'แก้ไขรายงาน',
                                 style: textStyle(context,
-                                    fontSize: 15, color: Colors.white),
+                                    fontSize: 25, color: Colors.white),
                               ),
                             ],
                           ),
@@ -89,7 +89,7 @@ class Detailz extends StatelessWidget {
                               child: Text(
                                 'ประเภทภัยพิบัติ',
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorBlack),
+                                    fontSize: 25, color: colorBlack),
                               ),
                             )),
                             const SizedBox(
@@ -100,7 +100,7 @@ class Detailz extends StatelessWidget {
                               child: Text(
                                 'ชื่อรายการ',
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorBlack),
+                                    fontSize: 25, color: colorBlack),
                               ),
                             ))
                           ],
@@ -118,7 +118,7 @@ class Detailz extends StatelessWidget {
                                     : contoller.category[contoller
                                         .dataEvent.value.events!.disasterType!],
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorGrey),
+                                    fontSize: 25, color: colorGrey),
                               ),
                             )),
                             const SizedBox(
@@ -132,7 +132,7 @@ class Detailz extends StatelessWidget {
                                     : contoller
                                         .dataEvent.value.events!.eventName!,
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorGrey),
+                                    fontSize: 25, color: colorGrey),
                               ),
                             )),
                           ],
@@ -147,7 +147,7 @@ class Detailz extends StatelessWidget {
                               child: Text(
                                 'วันที่รับเรื่อง',
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorBlack),
+                                    fontSize: 25, color: colorBlack),
                               ),
                             )),
                             const SizedBox(
@@ -158,7 +158,7 @@ class Detailz extends StatelessWidget {
                               child: Text(
                                 'รับเรื่องจาก',
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorBlack),
+                                    fontSize: 25, color: colorBlack),
                               ),
                             ))
                           ],
@@ -173,9 +173,9 @@ class Detailz extends StatelessWidget {
                               child: Text(
                                 (contoller.dataEvent.value.events == null)
                                     ? ''
-                                    : '${DateTime.parse(contoller.dataEvent.value.events!.datetime!).day} ${mountList[DateTime.parse(contoller.dataEvent.value.events!.datetime!).month-1]} ${DateTime.parse(contoller.dataEvent.value.events!.datetime!).year + 543}',
+                                    : '${DateTime.parse(contoller.dataEvent.value.events!.datetime!).day} ${mountList[DateTime.parse(contoller.dataEvent.value.events!.datetime!).month - 1]} ${DateTime.parse(contoller.dataEvent.value.events!.datetime!).year + 543}',
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorGrey),
+                                    fontSize: 25, color: colorGrey),
                               ),
                             )),
                             const SizedBox(
@@ -189,7 +189,7 @@ class Detailz extends StatelessWidget {
                                     : contoller
                                         .dataEvent.value.events!.receiveFrom!,
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorGrey),
+                                    fontSize: 25, color: colorGrey),
                               ),
                             )),
                           ],
@@ -204,7 +204,7 @@ class Detailz extends StatelessWidget {
                               child: Text(
                                 'หน่วยงานที่เกียวข้อง',
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorBlack),
+                                    fontSize: 25, color: colorBlack),
                               ),
                             )),
                             const SizedBox(
@@ -215,7 +215,7 @@ class Detailz extends StatelessWidget {
                               child: Text(
                                 'สถานะหน่วยงานที่เกี่ยวข้อง',
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorBlack),
+                                    fontSize: 25, color: colorBlack),
                               ),
                             ))
                           ],
@@ -233,7 +233,7 @@ class Detailz extends StatelessWidget {
                                     : contoller
                                         .dataEvent.value.events!.relatedAgency!,
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorGrey),
+                                    fontSize: 25, color: colorGrey),
                               ),
                             )),
                             const SizedBox(
@@ -247,7 +247,7 @@ class Detailz extends StatelessWidget {
                                     : contoller.StatusList[contoller.dataEvent
                                         .value.events!.statusRelatedAgency!],
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorGrey),
+                                    fontSize: 25, color: colorGrey),
                               ),
                             )),
                           ],
@@ -262,7 +262,7 @@ class Detailz extends StatelessWidget {
                               child: Text(
                                 'หน่วยงานที่รับผิดชอบ',
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorBlack),
+                                    fontSize: 25, color: colorBlack),
                               ),
                             )),
                             const SizedBox(
@@ -273,7 +273,7 @@ class Detailz extends StatelessWidget {
                               child: Text(
                                 'สถานะหน่วยงานที่รับผิดชอบ',
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorBlack),
+                                    fontSize: 25, color: colorBlack),
                               ),
                             ))
                           ],
@@ -292,7 +292,7 @@ class Detailz extends StatelessWidget {
                                             .responsibleAgency ??
                                         '',
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorGrey),
+                                    fontSize: 25, color: colorGrey),
                               ),
                             )),
                             const SizedBox(
@@ -306,7 +306,7 @@ class Detailz extends StatelessWidget {
                                     : contoller.StatusList[contoller
                                         .dataEvent.value.events!.statusAgency!],
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorGrey),
+                                    fontSize: 25, color: colorGrey),
                               ),
                             )),
                           ],
@@ -321,7 +321,7 @@ class Detailz extends StatelessWidget {
                               child: Text(
                                 'ผู้ประสบภัย',
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorBlack),
+                                    fontSize: 25, color: colorBlack),
                               ),
                             )),
                             const SizedBox(
@@ -332,7 +332,7 @@ class Detailz extends StatelessWidget {
                               child: Text(
                                 'ระดับความรุนแรง',
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorBlack),
+                                    fontSize: 25, color: colorBlack),
                               ),
                             ))
                           ],
@@ -349,7 +349,7 @@ class Detailz extends StatelessWidget {
                                     ? ''
                                     : 'ผู้เสียชีวิต ${contoller.dataEvent.value.events!.deceased!.total!} ราย เพศชาย ${contoller.dataEvent.value.events!.deceased!.male!} คน เพศหญิง ${contoller.dataEvent.value.events!.deceased!.feMale!} คน ไม่สามารถระบุเพศได้ ${contoller.dataEvent.value.events!.deceased!.unidentify!} คน\nผู้บาดเจ็บ ${contoller.dataEvent.value.events!.injured!.total!} ราย เพศชาย ${contoller.dataEvent.value.events!.injured!.male!} คน เพศหญิง ${contoller.dataEvent.value.events!.injured!.feMale!} คน ไม่สามารถระบุเพศได้ ${contoller.dataEvent.value.events!.injured!.unidentify!} คน',
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorGrey),
+                                    fontSize: 25, color: colorGrey),
                               ),
                             )),
                             const SizedBox(
@@ -370,7 +370,7 @@ class Detailz extends StatelessWidget {
                                             ? 'ปานกลาง'
                                             : 'รุนแรง',
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorGrey),
+                                    fontSize: 25, color: colorGrey),
                               ),
                             )),
                           ],
@@ -385,7 +385,7 @@ class Detailz extends StatelessWidget {
                               child: Text(
                                 'สถานะรายงาน',
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorBlack),
+                                    fontSize: 25, color: colorBlack),
                               ),
                             )),
                             const SizedBox(
@@ -407,7 +407,7 @@ class Detailz extends StatelessWidget {
                                     : contoller.StatusList[contoller
                                         .dataEvent.value.events!.statusItem!],
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorGrey),
+                                    fontSize: 25, color: colorGrey),
                               ),
                             )),
                             const SizedBox(
@@ -421,120 +421,135 @@ class Detailz extends StatelessWidget {
                         ),
                         Stack(
                           children: [
-                            if (contoller.dataEvent.value.events != null)  Container(
-                              height: 400,
-                              child: Center(
-                                  child: FlutterMap(
-                                mapController: contoller.mapController.value,
-                                options:  MapOptions(
-                                  initialCenter: LatLng(double.parse(contoller.dataEvent.value.events!.latitude!), double.parse(contoller.dataEvent.value.events!.latitude!)),
-                                  initialZoom: 14,
-                                  interactionOptions: InteractionOptions(
-                                      flags: InteractiveFlag.none),
-                                  // maxZoom: 17,
-                                  // minZoom: 10
-                                ),
-                                children: [
-                                  TileLayer(
-                                    urlTemplate:
-                                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                                    userAgentPackageName: 'com.example.app',
+                            if (contoller.dataEvent.value.events != null)
+                              Container(
+                                height: 400,
+                                child: Center(
+                                    child: FlutterMap(
+                                  mapController: contoller.mapController.value,
+                                  options: MapOptions(
+                                    initialCenter: LatLng(
+                                        double.parse(contoller
+                                            .dataEvent.value.events!.latitude!),
+                                        double.parse(contoller.dataEvent.value
+                                            .events!.latitude!)),
+                                    initialZoom: 14,
+                                    interactionOptions: InteractionOptions(
+                                        flags: InteractiveFlag.none),
+                                    // maxZoom: 17,
+                                    // minZoom: 10
                                   ),
-                                  if (contoller.dataEvent.value.events != null)
-                                    MarkerLayer(
-                                      markers: [
-                                        Marker(
-                                          point: LatLng(
-                                              double.parse(contoller.dataEvent
-                                                  .value.events!.latitude!),
-                                              double.parse(contoller.dataEvent
-                                                  .value.events!.longitude!)),
-                                          width: 80,
-                                          height: 80,
-                                          child: (contoller.dataEvent.value.events!.disasterType == 0 &&
-                                                  contoller.dataEvent.value
-                                                          .events!.statusItem ==
-                                                      0)
-                                              ? SvgPicture.asset(
-                                                  'assets/icons/svg/fire0.svg',
-                                                )
-                                              : (contoller.dataEvent.value.events!.disasterType == 0 &&
-                                                      contoller
-                                                              .dataEvent
-                                                              .value
-                                                              .events!
-                                                              .statusItem ==
-                                                          1)
-                                                  ? SvgPicture.asset(
-                                                      'assets/icons/svg/fire1.svg',
-                                                    )
-                                                  : (contoller.dataEvent.value.events!.disasterType == 0 &&
-                                                          contoller
-                                                                  .dataEvent
-                                                                  .value
-                                                                  .events!
-                                                                  .statusItem ==
-                                                              2)
-                                                      ? SvgPicture.asset(
-                                                          'assets/icons/svg/fire2.svg',
-                                                        )
-                                                      : (contoller
-                                                                      .dataEvent
-                                                                      .value
-                                                                      .events!
-                                                                      .disasterType ==
-                                                                  1 &&
-                                                              contoller
-                                                                      .dataEvent
-                                                                      .value
-                                                                      .events!
-                                                                      .statusItem ==
-                                                                  0)
-                                                          ? SvgPicture.asset(
-                                                              'assets/icons/svg/flood0.svg',
-                                                            )
-                                                          : (contoller.dataEvent.value.events!.disasterType == 1 && contoller.dataEvent.value.events!.statusItem == 1)
-                                                              ? SvgPicture.asset(
-                                                                  'assets/icons/svg/flood1.svg',
-                                                                )
-                                                              : (contoller.dataEvent.value.events!.disasterType == 1 && contoller.dataEvent.value.events!.statusItem == 2)
-                                                                  ? SvgPicture.asset(
-                                                                      'assets/icons/svg/flood2.svg',
-                                                                    )
-                                                                  : (contoller.dataEvent.value.events!.disasterType == 2 && contoller.dataEvent.value.events!.statusItem == 0)
-                                                                      ? SvgPicture.asset(
-                                                                          'assets/icons/svg/windstorm0.svg',
-                                                                        )
-                                                                      : (contoller.dataEvent.value.events!.disasterType == 2 && contoller.dataEvent.value.events!.statusItem == 1)
-                                                                          ? SvgPicture.asset(
-                                                                              'assets/icons/svg/windstorm1.svg',
-                                                                            )
-                                                                          : (contoller.dataEvent.value.events!.disasterType == 2 && contoller.dataEvent.value.events!.statusItem == 2)
-                                                                              ? SvgPicture.asset(
-                                                                                  'assets/icons/svg/windstorm2.svg',
-                                                                                )
-                                                                              : (contoller.dataEvent.value.events!.disasterType == 3 && contoller.dataEvent.value.events!.statusItem == 0)
-                                                                                  ? SvgPicture.asset(
-                                                                                      'assets/icons/svg/forestfire0.svg',
-                                                                                    )
-                                                                                  : (contoller.dataEvent.value.events!.disasterType == 3 && contoller.dataEvent.value.events!.statusItem == 1)
-                                                                                      ? SvgPicture.asset(
-                                                                                          'assets/icons/svg/forestfire1.svg',
-                                                                                        )
-                                                                                      : SvgPicture.asset(
-                                                                                          'assets/icons/svg/forestfire2.svg',
-                                                                                        ),
-                                        ),
-                                      ],
-                                    )
-                                ],
-                              )),
-                            ),
+                                  children: [
+                                    TileLayer(
+                                      urlTemplate:
+                                          'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                      userAgentPackageName: 'com.example.app',
+                                    ),
+                                    if (contoller.dataEvent.value.events !=
+                                        null)
+                                      MarkerLayer(
+                                        markers: [
+                                          Marker(
+                                            point: LatLng(
+                                                double.parse(contoller.dataEvent
+                                                    .value.events!.latitude!),
+                                                double.parse(contoller.dataEvent
+                                                    .value.events!.longitude!)),
+                                            width: 80,
+                                            height: 80,
+                                            child: (contoller
+                                                            .dataEvent
+                                                            .value
+                                                            .events!
+                                                            .disasterType ==
+                                                        0 &&
+                                                    contoller
+                                                            .dataEvent
+                                                            .value
+                                                            .events!
+                                                            .statusItem ==
+                                                        0)
+                                                ? SvgPicture.asset(
+                                                    'assets/icons/svg/fire0.svg',
+                                                  )
+                                                : (contoller
+                                                                .dataEvent
+                                                                .value
+                                                                .events!
+                                                                .disasterType ==
+                                                            0 &&
+                                                        contoller
+                                                                .dataEvent
+                                                                .value
+                                                                .events!
+                                                                .statusItem ==
+                                                            1)
+                                                    ? SvgPicture.asset(
+                                                        'assets/icons/svg/fire1.svg',
+                                                      )
+                                                    : (contoller
+                                                                    .dataEvent
+                                                                    .value
+                                                                    .events!
+                                                                    .disasterType ==
+                                                                0 &&
+                                                            contoller
+                                                                    .dataEvent
+                                                                    .value
+                                                                    .events!
+                                                                    .statusItem ==
+                                                                2)
+                                                        ? SvgPicture.asset(
+                                                            'assets/icons/svg/fire2.svg',
+                                                          )
+                                                        : (contoller.dataEvent.value.events!.disasterType == 1 && contoller.dataEvent.value.events!.statusItem == 0)
+                                                            ? SvgPicture.asset(
+                                                                'assets/icons/svg/flood0.svg',
+                                                              )
+                                                            : (contoller.dataEvent.value.events!.disasterType == 1 && contoller.dataEvent.value.events!.statusItem == 1)
+                                                                ? SvgPicture.asset(
+                                                                    'assets/icons/svg/flood1.svg',
+                                                                  )
+                                                                : (contoller.dataEvent.value.events!.disasterType == 1 && contoller.dataEvent.value.events!.statusItem == 2)
+                                                                    ? SvgPicture.asset(
+                                                                        'assets/icons/svg/flood2.svg',
+                                                                      )
+                                                                    : (contoller.dataEvent.value.events!.disasterType == 2 && contoller.dataEvent.value.events!.statusItem == 0)
+                                                                        ? SvgPicture.asset(
+                                                                            'assets/icons/svg/windstorm0.svg',
+                                                                          )
+                                                                        : (contoller.dataEvent.value.events!.disasterType == 2 && contoller.dataEvent.value.events!.statusItem == 1)
+                                                                            ? SvgPicture.asset(
+                                                                                'assets/icons/svg/windstorm1.svg',
+                                                                              )
+                                                                            : (contoller.dataEvent.value.events!.disasterType == 2 && contoller.dataEvent.value.events!.statusItem == 2)
+                                                                                ? SvgPicture.asset(
+                                                                                    'assets/icons/svg/windstorm2.svg',
+                                                                                  )
+                                                                                : (contoller.dataEvent.value.events!.disasterType == 3 && contoller.dataEvent.value.events!.statusItem == 0)
+                                                                                    ? SvgPicture.asset(
+                                                                                        'assets/icons/svg/forestfire0.svg',
+                                                                                      )
+                                                                                    : (contoller.dataEvent.value.events!.disasterType == 3 && contoller.dataEvent.value.events!.statusItem == 1)
+                                                                                        ? SvgPicture.asset(
+                                                                                            'assets/icons/svg/forestfire1.svg',
+                                                                                          )
+                                                                                        : SvgPicture.asset(
+                                                                                            'assets/icons/svg/forestfire2.svg',
+                                                                                          ),
+                                          ),
+                                        ],
+                                      )
+                                  ],
+                                )),
+                              ),
                             Positioned(
                                 top: 20,
                                 left: 20,
                                 child: Container(
-                                  height: (contoller.listSearchMap.isEmpty)?45:350,
+                                  height: (contoller.listSearchMap.isEmpty)
+                                      ? 45
+                                      : 350,
                                   width: 300,
                                   child: Column(
                                     children: [
@@ -561,8 +576,8 @@ class Detailz extends StatelessWidget {
                                                 child: Icon(Icons.search)),
                                             fillColor: colorWhite,
                                             hintText: "ค้นหา",
-                                            hintStyle: TextStyle(
-                                                fontSize: 15.0,
+                                            hintStyle: textStyle(context,
+                                                fontSize: 25,
                                                 color: colorGrey,
                                                 fontWeight: FontWeight.w400),
                                             filled: true,
@@ -580,7 +595,7 @@ class Detailz extends StatelessWidget {
                                       Container(
                                         height: 310,
                                         child: ListView.builder(
-                                         itemCount: contoller
+                                          itemCount: contoller
                                               .listSearchMap.value.length,
                                           itemBuilder: (context, index) =>
                                               InkWell(
@@ -633,7 +648,7 @@ class Detailz extends StatelessWidget {
                               child: Text(
                                 'ละติจูด',
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorBlack),
+                                    fontSize: 25, color: colorBlack),
                               ),
                             )),
                             const SizedBox(
@@ -644,7 +659,7 @@ class Detailz extends StatelessWidget {
                               child: Text(
                                 'ลองติจูด',
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorBlack),
+                                    fontSize: 25, color: colorBlack),
                               ),
                             ))
                           ],
@@ -662,7 +677,7 @@ class Detailz extends StatelessWidget {
                                     : contoller
                                         .dataEvent.value.events!.latitude!,
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorGrey),
+                                    fontSize: 25, color: colorGrey),
                               ),
                             )),
                             const SizedBox(
@@ -676,7 +691,7 @@ class Detailz extends StatelessWidget {
                                     : contoller
                                         .dataEvent.value.events!.longitude!,
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorGrey),
+                                    fontSize: 25, color: colorGrey),
                               ),
                             )),
                           ],
@@ -691,7 +706,7 @@ class Detailz extends StatelessWidget {
                               child: Text(
                                 'รูปที่อัพโหลด',
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorBlack),
+                                    fontSize: 25, color: colorBlack),
                               ),
                             )),
                             const SizedBox(
@@ -740,7 +755,7 @@ class Detailz extends StatelessWidget {
                               child: Text(
                                 'รายละเอียดเพิ่มเติม',
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorBlack),
+                                    fontSize: 25, color: colorBlack),
                               ),
                             )),
                             const SizedBox(
@@ -761,7 +776,7 @@ class Detailz extends StatelessWidget {
                                     ? ''
                                     : contoller.dataEvent.value.events!.note!,
                                 style: textStyle(context,
-                                    fontSize: 15, color: colorGrey),
+                                    fontSize: 25, color: colorGrey),
                               ),
                             )),
                           ],
