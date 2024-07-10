@@ -1,19 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:file_picker/file_picker.dart';
-import 'package:flutter/services.dart';
 import 'package:excel/excel.dart';
 
 import '../../model/getalleventmodel.dart';
 
-Future<void> createExcel(GetAllEventModel allEven,DateTime startDate,DateTime endDate,String type,String level,String province) async {
+Future<void> createExcel(GetAllEventModel allEven, DateTime startDate,
+    DateTime endDate, String type, String level, String province) async {
   var excel = Excel.createExcel();
-
-
-  String jsonString = await rootBundle.loadString('data/data.json');
-  final jsonResponse = jsonDecode(jsonString);
-  excel.delete('Sheet1');
   Sheet sheet = excel['Output'];
+  excel.delete('Sheet1');
 
   for (int i = 1; i <= 9; i++) {
     sheet.setColumnAutoFit(i);
@@ -56,17 +51,8 @@ Future<void> createExcel(GetAllEventModel allEven,DateTime startDate,DateTime en
     const TextCellValue(''),
     const TextCellValue('12 พฤษภาคม 2567 - 13 พฤษภาคม 2567'),
   ];
-  List<String> category = [
-    "อัคคีภัย",
-    "อุทกภัย",
-    "วาตภัย",
-    "ไฟป่า"
-  ];
-  List<String> status=[
-    "รับเรื่อง",
-    "กำลังดำเนินการ",
-    "เสร็จสิ้น"
-  ];
+  List<String> category = ["อัคคีภัย", "อุทกภัย", "วาตภัย", "ไฟป่า"];
+  List<String> status = ["รับเรื่อง", "กำลังดำเนินการ", "เสร็จสิ้น"];
 
   List<CellValue> dataList = [
     const TextCellValue('ลำดับที่'),
@@ -95,7 +81,7 @@ Future<void> createExcel(GetAllEventModel allEven,DateTime startDate,DateTime en
       TextCellValue(row.eventName.toString()),
       TextCellValue(category[row.disasterType!]),
       TextCellValue(row.datetime.toString()),
-      TextCellValue(row.responsibleAgency.toString()??''),
+      TextCellValue(row.responsibleAgency.toString() ?? ''),
       TextCellValue('${row.latitude},${row.longitude}'),
       TextCellValue(status[row.statusRelatedAgency!]),
       TextCellValue(row.relatedAgency!.toString()),
