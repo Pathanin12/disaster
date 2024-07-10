@@ -1625,7 +1625,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     const SizedBox(
                       height: 30,
                     ),
-                    Container(
+                   if(contoller.listStringName.isNotEmpty) Container(
                       padding:
                       const EdgeInsets.only(left: 20, right: 5),
                       width: 400,
@@ -1688,8 +1688,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   size: 24,
                                 )),
                             onChanged: (valueSelect) {
-                              print('dsdsdsdsdsdsdsdsd');
-                              print(valueSelect);
+                              // print('dsdsdsdsdsdsdsdsd');
+                              // print(valueSelect);
                               contoller.selectEventName.value =
                               valueSelect!;
                             },

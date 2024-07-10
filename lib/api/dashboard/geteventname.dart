@@ -12,7 +12,6 @@ import '../../model/getalleventmodel.dart';
 import '../../model/heatmapmodel.dart';
 
 Future<EvenNameModel> getEventNameApi(int? id) async {
-  print('>>>>>>>>>>>> $id');
   EvenNameModel? eventNameModel = EvenNameModel();
   try {
     await HttpRequest.LoginToken().then((token) async {

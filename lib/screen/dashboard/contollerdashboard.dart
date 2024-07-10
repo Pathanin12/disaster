@@ -269,9 +269,13 @@ var selectChartX='เพศ'.obs;
         listname.add(element.eventName!);
       }
     });
-  selectEventName.value=dataListEventName.value.eventList!.first.eventName!;
-  selectIDEventName.value=dataListEventName.value.eventList!.first.eventID!;
-  print(">>>><< ${selectIDEventName}");
+    listStringName.value=listname;
+    if(dataListEventName.value.eventList!.isNotEmpty){
+      selectEventName.value=dataListEventName.value.eventList!.first.eventName!;
+      selectIDEventName.value=dataListEventName.value.eventList!.first.eventID!;
+    }
+
+  // print(">>>><< ${selectIDEventName}");
   }
 
   Future<void> calChart()async{

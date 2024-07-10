@@ -459,13 +459,13 @@ class Detail extends StatelessWidget {
                               Expanded(child: Container()),
                             ],
                           ),
-                          if (contoller.dataEvent.value.events == null)
+                          if (contoller.dataEvent.value.events != null)
                             if (contoller.dataEvent.value.events!
                                 .freeFormDetailList!.isNotEmpty)
                               const SizedBox(
                                 width: 40,
                               ),
-                          if (contoller.dataEvent.value.events == null)
+                          if (contoller.dataEvent.value.events != null)
                             if (contoller.dataEvent.value.events!
                                 .freeFormDetailList!.isNotEmpty)
                               Container(
@@ -740,7 +740,7 @@ class Detail extends StatelessWidget {
                                                                           ),
                                                                           Text(
                                                                             contoller.dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![indexCheck].optionName ??
-                                                                                'cfdf',
+                                                                                '',
                                                                             style: textStyle(context,
                                                                                 fontSize: 25,
                                                                                 color: Colors.grey),
@@ -824,13 +824,13 @@ class Detail extends StatelessWidget {
                                   },
                                 ),
                               ),
-                          if (contoller.dataEvent.value.events == null)
+                          if (contoller.dataEvent.value.events != null)
                             if (contoller.dataEvent.value.events!
                                 .freeFormDetailList!.isNotEmpty)
                               const SizedBox(
                                 height: 40,
                               ),
-                          if (contoller.dataEvent.value.events == null)
+                          if (contoller.dataEvent.value.events != null)
                             if (contoller.dataEvent.value.events!
                                 .freeFormDetailList!.isNotEmpty)
                               ListView.builder(
@@ -1159,7 +1159,7 @@ class Detail extends StatelessWidget {
                                                                   style: textStyle(
                                                                       context,
                                                                       fontSize:
-                                                                          30,
+                                                                          25,
                                                                       color:
                                                                           colorBlack,
                                                                       fontWeight:
@@ -1609,56 +1609,51 @@ class Detail extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              InkWell(
-                                onTap: () {
-                                  contoller.IndexChart.value = 0;
-                                },
-                                child: Container(
-                                  width: 150,
-                                  child: Column(
-                                    children: [
-                                      Text('อัพเดทสถานการณ์รายงาน',
-                                          style: textStyle(context,
-                                              fontSize: 25,
-                                              color:
-                                                  (contoller.IndexChart.value ==
-                                                          0)
-                                                      ? colorAmber
-                                                      : colorBlack)),
-                                      if (contoller.IndexChart.value == 0)
-                                        Divider(
-                                          height: 3,
-                                          color: colorAmber,
-                                        )
-                                    ],
-                                  ),
+                              Container(
+
+                                child: Column(
+                                  children: [
+                                    Text('อัพเดทสถานการณ์รายงาน',
+                                        style: textStyle(context,
+                                            fontSize: 25,
+                                            color:
+                                                (contoller.IndexChart.value ==
+                                                        0)
+                                                    ? colorAmber
+                                                    : colorBlack)),
+                                    if (contoller.IndexChart.value == 0)
+                                      Divider(
+                                        height: 3,
+                                        color: colorAmber,
+                                      )
+                                  ],
                                 ),
                               ),
-                              InkWell(
-                                onTap: () {
-                                  contoller.IndexChart.value = 1;
-                                },
-                                child: Container(
-                                  width: 70,
-                                  child: Column(
-                                    children: [
-                                      Text('แผนภูมิแท่ง',
-                                          style: textStyle(context,
-                                              fontSize: 25,
-                                              color:
-                                                  (contoller.IndexChart.value ==
-                                                          1)
-                                                      ? colorAmber
-                                                      : colorBlack)),
-                                      if (contoller.IndexChart.value == 1)
-                                        Divider(
-                                          height: 3,
-                                          color: colorAmber,
-                                        )
-                                    ],
-                                  ),
-                                ),
-                              ),
+                              // InkWell(
+                              //   onTap: () {
+                              //     contoller.IndexChart.value = 1;
+                              //   },
+                              //   child: Container(
+                              //     width: 70,
+                              //     child: Column(
+                              //       children: [
+                              //         Text('แผนภูมิแท่ง',
+                              //             style: textStyle(context,
+                              //                 fontSize: 25,
+                              //                 color:
+                              //                     (contoller.IndexChart.value ==
+                              //                             1)
+                              //                         ? colorAmber
+                              //                         : colorBlack)),
+                              //         if (contoller.IndexChart.value == 1)
+                              //           Divider(
+                              //             height: 3,
+                              //             color: colorAmber,
+                              //           )
+                              //       ],
+                              //     ),
+                              //   ),
+                              // ),
                             ],
                           ),
                           if (contoller.IndexChart.value == 0)
@@ -1930,216 +1925,216 @@ class Detail extends StatelessWidget {
                                           ],
                                         )),
                               ),
-                          if (contoller.IndexChart.value == 1)
-                            Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: colorWhite),
-                                height: 450,
-                                child: Column(
-                                  children: [
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    Row(
-                                      children: [
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text('แกนY',
-                                            style: textStyle(context,
-                                                fontSize: 25,
-                                                color: colorBlack)),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Container(
-                                          padding: const EdgeInsets.only(
-                                              left: 20, right: 5),
-                                          width: 200,
-                                          height: 30,
-                                          decoration: BoxDecoration(
-                                              color: colorWhite,
-                                              border: Border.all(
-                                                color: Colors.black26,
-                                                width: 1,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(5)),
-                                          alignment: Alignment.center,
-                                          child: SizedBox(
-                                            width: double.infinity,
-                                            child: DropdownButtonHideUnderline(
-                                              child: DropdownButton2<String>(
-                                                dropdownStyleData:
-                                                    DropdownStyleData(
-                                                  maxHeight: 300,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                  ),
-                                                  scrollbarTheme:
-                                                      ScrollbarThemeData(
-                                                    radius:
-                                                        const Radius.circular(
-                                                            5),
-                                                    thickness:
-                                                        MaterialStateProperty
-                                                            .all<double>(6),
-                                                    thumbVisibility:
-                                                        MaterialStateProperty
-                                                            .all<bool>(true),
-                                                  ),
-                                                ),
-                                                autofocus: true,
-                                                isExpanded: true,
-                                                value: contoller
-                                                    .selectChartY.value,
-                                                hint: Text(
-                                                  'จำนวนผู้บาดเจ็บ',
-                                                  style: textStyle(context,
-                                                      fontSize: 25,
-                                                      color: colorGrey,
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                ),
-                                                items: contoller.listChartY.map<
-                                                        DropdownMenuItem<
-                                                            String>>(
-                                                    (String? value) {
-                                                  return DropdownMenuItem<
-                                                      String>(
-                                                    value: value!,
-                                                    child: Text(
-                                                      value,
-                                                      style: textStyle(context,
-                                                          fontSize: 25,
-                                                          color: colorGrey,
-                                                          fontWeight:
-                                                              FontWeight.w400),
-                                                    ),
-                                                  );
-                                                }).toList(),
-                                                iconStyleData:
-                                                    const IconStyleData(
-                                                        icon: Icon(
-                                                  Icons.keyboard_arrow_down,
-                                                  size: 24,
-                                                )),
-                                                onChanged: (valueSelect) {
-                                                  contoller.selectChartY.value =
-                                                      valueSelect!;
-                                                },
-                                              ),
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Row(
-                                      children: [
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text('แกนX',
-                                            style: textStyle(context,
-                                                fontSize: 25,
-                                                color: colorBlack)),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Container(
-                                          padding: const EdgeInsets.only(
-                                              left: 20, right: 5),
-                                          width: 200,
-                                          height: 30,
-                                          decoration: BoxDecoration(
-                                              color: colorWhite,
-                                              border: Border.all(
-                                                color: Colors.black26,
-                                                width: 1,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(5)),
-                                          alignment: Alignment.center,
-                                          child: SizedBox(
-                                            width: double.infinity,
-                                            child: DropdownButtonHideUnderline(
-                                              child: DropdownButton2<String>(
-                                                dropdownStyleData:
-                                                    DropdownStyleData(
-                                                  maxHeight: 300,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                  ),
-                                                  scrollbarTheme:
-                                                      ScrollbarThemeData(
-                                                    radius:
-                                                        const Radius.circular(
-                                                            5),
-                                                    thickness:
-                                                        MaterialStateProperty
-                                                            .all<double>(6),
-                                                    thumbVisibility:
-                                                        MaterialStateProperty
-                                                            .all<bool>(true),
-                                                  ),
-                                                ),
-                                                autofocus: true,
-                                                isExpanded: true,
-                                                value: contoller
-                                                    .selectChartX.value,
-                                                hint: Text(
-                                                  'เพศ',
-                                                  style: textStyle(context,
-                                                      fontSize: 25,
-                                                      color: colorGrey,
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                ),
-                                                items: contoller.listChartX.map<
-                                                        DropdownMenuItem<
-                                                            String>>(
-                                                    (String? value) {
-                                                  return DropdownMenuItem<
-                                                      String>(
-                                                    value: value!,
-                                                    child: Text(
-                                                      value,
-                                                      style: textStyle(context,
-                                                          fontSize: 25,
-                                                          color: colorGrey,
-                                                          fontWeight:
-                                                              FontWeight.w400),
-                                                    ),
-                                                  );
-                                                }).toList(),
-                                                iconStyleData:
-                                                    const IconStyleData(
-                                                        icon: Icon(
-                                                  Icons.keyboard_arrow_down,
-                                                  size: 24,
-                                                )),
-                                                onChanged: (valueSelect) {
-                                                  contoller.selectChartX.value =
-                                                      valueSelect!;
-                                                },
-                                              ),
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    if (contoller.dataEvent.value.graph != null)
-                                      contoller.chart(context)
-                                  ],
-                                )),
+                          // if (contoller.IndexChart.value == 1)
+                          //   Container(
+                          //       decoration: BoxDecoration(
+                          //           borderRadius: BorderRadius.circular(10),
+                          //           color: colorWhite),
+                          //       height: 450,
+                          //       child: Column(
+                          //         children: [
+                          //           const SizedBox(
+                          //             height: 20,
+                          //           ),
+                          //           Row(
+                          //             children: [
+                          //               const SizedBox(
+                          //                 width: 10,
+                          //               ),
+                          //               Text('แกนY',
+                          //                   style: textStyle(context,
+                          //                       fontSize: 25,
+                          //                       color: colorBlack)),
+                          //               const SizedBox(
+                          //                 width: 10,
+                          //               ),
+                          //               Container(
+                          //                 padding: const EdgeInsets.only(
+                          //                     left: 20, right: 5),
+                          //                 width: 200,
+                          //                 height: 30,
+                          //                 decoration: BoxDecoration(
+                          //                     color: colorWhite,
+                          //                     border: Border.all(
+                          //                       color: Colors.black26,
+                          //                       width: 1,
+                          //                     ),
+                          //                     borderRadius:
+                          //                         BorderRadius.circular(5)),
+                          //                 alignment: Alignment.center,
+                          //                 child: SizedBox(
+                          //                   width: double.infinity,
+                          //                   child: DropdownButtonHideUnderline(
+                          //                     child: DropdownButton2<String>(
+                          //                       dropdownStyleData:
+                          //                           DropdownStyleData(
+                          //                         maxHeight: 300,
+                          //                         decoration: BoxDecoration(
+                          //                           borderRadius:
+                          //                               BorderRadius.circular(
+                          //                                   5),
+                          //                         ),
+                          //                         scrollbarTheme:
+                          //                             ScrollbarThemeData(
+                          //                           radius:
+                          //                               const Radius.circular(
+                          //                                   5),
+                          //                           thickness:
+                          //                               MaterialStateProperty
+                          //                                   .all<double>(6),
+                          //                           thumbVisibility:
+                          //                               MaterialStateProperty
+                          //                                   .all<bool>(true),
+                          //                         ),
+                          //                       ),
+                          //                       autofocus: true,
+                          //                       isExpanded: true,
+                          //                       value: contoller
+                          //                           .selectChartY.value,
+                          //                       hint: Text(
+                          //                         'จำนวนผู้บาดเจ็บ',
+                          //                         style: textStyle(context,
+                          //                             fontSize: 25,
+                          //                             color: colorGrey,
+                          //                             fontWeight:
+                          //                                 FontWeight.w400),
+                          //                       ),
+                          //                       items: contoller.listChartY.map<
+                          //                               DropdownMenuItem<
+                          //                                   String>>(
+                          //                           (String? value) {
+                          //                         return DropdownMenuItem<
+                          //                             String>(
+                          //                           value: value!,
+                          //                           child: Text(
+                          //                             value,
+                          //                             style: textStyle(context,
+                          //                                 fontSize: 25,
+                          //                                 color: colorGrey,
+                          //                                 fontWeight:
+                          //                                     FontWeight.w400),
+                          //                           ),
+                          //                         );
+                          //                       }).toList(),
+                          //                       iconStyleData:
+                          //                           const IconStyleData(
+                          //                               icon: Icon(
+                          //                         Icons.keyboard_arrow_down,
+                          //                         size: 24,
+                          //                       )),
+                          //                       onChanged: (valueSelect) {
+                          //                         contoller.selectChartY.value =
+                          //                             valueSelect!;
+                          //                       },
+                          //                     ),
+                          //                   ),
+                          //                 ),
+                          //               )
+                          //             ],
+                          //           ),
+                          //           const SizedBox(
+                          //             height: 10,
+                          //           ),
+                          //           Row(
+                          //             children: [
+                          //               const SizedBox(
+                          //                 width: 10,
+                          //               ),
+                          //               Text('แกนX',
+                          //                   style: textStyle(context,
+                          //                       fontSize: 25,
+                          //                       color: colorBlack)),
+                          //               const SizedBox(
+                          //                 width: 10,
+                          //               ),
+                          //               Container(
+                          //                 padding: const EdgeInsets.only(
+                          //                     left: 20, right: 5),
+                          //                 width: 200,
+                          //                 height: 30,
+                          //                 decoration: BoxDecoration(
+                          //                     color: colorWhite,
+                          //                     border: Border.all(
+                          //                       color: Colors.black26,
+                          //                       width: 1,
+                          //                     ),
+                          //                     borderRadius:
+                          //                         BorderRadius.circular(5)),
+                          //                 alignment: Alignment.center,
+                          //                 child: SizedBox(
+                          //                   width: double.infinity,
+                          //                   child: DropdownButtonHideUnderline(
+                          //                     child: DropdownButton2<String>(
+                          //                       dropdownStyleData:
+                          //                           DropdownStyleData(
+                          //                         maxHeight: 300,
+                          //                         decoration: BoxDecoration(
+                          //                           borderRadius:
+                          //                               BorderRadius.circular(
+                          //                                   5),
+                          //                         ),
+                          //                         scrollbarTheme:
+                          //                             ScrollbarThemeData(
+                          //                           radius:
+                          //                               const Radius.circular(
+                          //                                   5),
+                          //                           thickness:
+                          //                               MaterialStateProperty
+                          //                                   .all<double>(6),
+                          //                           thumbVisibility:
+                          //                               MaterialStateProperty
+                          //                                   .all<bool>(true),
+                          //                         ),
+                          //                       ),
+                          //                       autofocus: true,
+                          //                       isExpanded: true,
+                          //                       value: contoller
+                          //                           .selectChartX.value,
+                          //                       hint: Text(
+                          //                         'เพศ',
+                          //                         style: textStyle(context,
+                          //                             fontSize: 25,
+                          //                             color: colorGrey,
+                          //                             fontWeight:
+                          //                                 FontWeight.w400),
+                          //                       ),
+                          //                       items: contoller.listChartX.map<
+                          //                               DropdownMenuItem<
+                          //                                   String>>(
+                          //                           (String? value) {
+                          //                         return DropdownMenuItem<
+                          //                             String>(
+                          //                           value: value!,
+                          //                           child: Text(
+                          //                             value,
+                          //                             style: textStyle(context,
+                          //                                 fontSize: 25,
+                          //                                 color: colorGrey,
+                          //                                 fontWeight:
+                          //                                     FontWeight.w400),
+                          //                           ),
+                          //                         );
+                          //                       }).toList(),
+                          //                       iconStyleData:
+                          //                           const IconStyleData(
+                          //                               icon: Icon(
+                          //                         Icons.keyboard_arrow_down,
+                          //                         size: 24,
+                          //                       )),
+                          //                       onChanged: (valueSelect) {
+                          //                         contoller.selectChartX.value =
+                          //                             valueSelect!;
+                          //                       },
+                          //                     ),
+                          //                   ),
+                          //                 ),
+                          //               )
+                          //             ],
+                          //           ),
+                          //           if (contoller.dataEvent.value.graph != null)
+                          //             contoller.chart(context)
+                          //         ],
+                          //       )),
                           SizedBox(
                             height: 20,
                           ),
@@ -2195,7 +2190,7 @@ class Detail extends StatelessWidget {
                                                           .name ??
                                                       'ไม่ระบุชื่อ',
                                                   style: textStyle(context,
-                                                      fontSize: 30,
+                                                      fontSize: 25,
                                                       color: colorBlack,
                                                       fontWeight:
                                                           FontWeight.bold)),

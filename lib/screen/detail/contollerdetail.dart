@@ -46,6 +46,7 @@ class ContollerDetail extends GetxController {
   Future<void> getEvent(String id) async {
     mapController = MapController().obs;
     dataEvent = EventByIDModel().obs;
+    print(id);
     dataEvent.value = await getEventByIDApi(Id: id);
     mapController.value.move(
         LatLng(double.parse(dataEvent.value.events!.latitude!),

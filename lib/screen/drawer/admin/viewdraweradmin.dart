@@ -58,7 +58,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
     // TODO: implement initState
     super.initState();
     // checkApiKey();
-    // checkUser();
+    checkUser();
     // getToken();
     // getToken();
     // // HttpRequest.signOutToken();

@@ -221,9 +221,7 @@ class ContollerMainReport extends GetxController {
       listDate.value = values;
     }
   }
-
   List<String> category = ["อัคคีภัย", "อุทกภัย", "วาตภัย", "ไฟป่า"];
-
   Future<void> setLocation() async {
     final LandingPageControllerAdmin landingPageController =
         Get.put(LandingPageControllerAdmin(), permanent: false);
@@ -355,7 +353,8 @@ class ContollerMainReport extends GetxController {
             startDate: listDate.first.toString().split(" ")[0],
             endDate: listDate.last.toString().split(" ")[0],
             searchEvent: searchEven.value.text.trim(),
-            level: (landingPageController.dataUser!.value.profile!.role == 1)
+            level:
+            (landingPageController.dataUser!.value.profile!.role == 1)
                 ? level.indexOf(selectLevel.toString())
                 : 1,
             provinceID:

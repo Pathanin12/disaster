@@ -54,7 +54,7 @@ class _CreateListState extends State<CreateList> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                              height: 20,
+                              height: 50,
                               child: Text(
                                   (contoller.dataEditEvent.value.events == null)
                                       ? 'สร้างรายการ'
@@ -8349,7 +8349,7 @@ class _CreateListState extends State<CreateList> {
                                                   'เลือกรูป',
                                                   style: textStyle(context,
                                                       color: colorBlue,
-                                                      fontSize: 15),
+                                                      fontSize: 25),
                                                 ),
                                               ),
                                             ),
@@ -8394,7 +8394,7 @@ class _CreateListState extends State<CreateList> {
                                                   'เลือกรูป',
                                                   style: textStyle(context,
                                                       color: colorBlue,
-                                                      fontSize: 15),
+                                                      fontSize: 25),
                                                 ),
                                               ),
                                             ),
