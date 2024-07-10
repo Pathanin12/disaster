@@ -10,6 +10,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../api/apiservice/createevenapi.dart';
@@ -43,13 +44,13 @@ class LandingPageAdmin extends StatefulWidget {
 enum SampleItem { itemOne }
 
 class _LandingPageAdminState extends State<LandingPageAdmin> {
-  final TextStyle unselectedLabelStyle = TextStyle(
-      color: Colors.white.withOpacity(0.5),
-      fontWeight: FontWeight.w500,
-      fontSize: 12);
+  // final TextStyle unselectedLabelStyle = TextStyle(
+  //     color: Colors.white.withOpacity(0.5),
+  //     fontWeight: FontWeight.w500,
+  //     fontSize: );
 
-  final TextStyle selectedLabelStyle = const TextStyle(
-      color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12);
+  // final TextStyle selectedLabelStyle = const TextStyle(
+  //     color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12);
   SampleItem? selectedItem;
 
   @override
@@ -57,7 +58,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
     // TODO: implement initState
     super.initState();
     // checkApiKey();
-    checkUser();
+    // checkUser();
     // getToken();
     // getToken();
     // // HttpRequest.signOutToken();
@@ -97,37 +98,38 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                 const SizedBox(
                   width: 10,
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.zero,
-                      height: 50,
-                      width: 50,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('assets/logo/logo.png'),
-                              fit: BoxFit.cover)),
-                    ),
-                  ],
+                Container(
+                  margin: EdgeInsets.zero,
+                  height: 55,
+                  width: 220,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/logo/logoooo.png'),
+                          fit: BoxFit.cover)),
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'กระทรวงมหาดไทย',
-                        style: textStyle(context,
-                            fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                      Text(
-                        'Ministry of Interior. Thailand',
-                        style: textStyle(context, fontSize: 14),
-                      ),
-                    ])
+                // const SizedBox(
+                //   width: 10,
+                // ),
+                // Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: [
+                //       Padding(
+                //         padding:  EdgeInsets.zero,
+                //         child: Text(
+                //           'กระทรวงมหาดไทย',
+                //           style: textStyle(context,
+                //               fontWeight: FontWeight.bold, fontSize: 30),
+                //         ),
+                //       ),
+                //       Padding(
+                //         padding:  EdgeInsets.zero,
+                //         child: Text(
+                //           'Ministry of Interior. Thailand',
+                //           style: textStyle(context, fontSize: 10),
+                //         ),
+                //       ),
+                //     ])
               ],
             ),
           ),
@@ -144,7 +146,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                               : landingPageController
                                       .dataUser!.value.profile!.name ??
                                   'Unknow',
-                          style: TextStyle(fontSize: 13)),
+                          style: textStyle(context,fontSize: 25)),
                       SizedBox(
                         width: 10,
                       ),
@@ -167,7 +169,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                             value: SampleItem.itemOne,
                             child: Text(
                               'ออกจากระบบ',
-                              style: TextStyle(fontSize: 13),
+                              style: TextStyle(fontSize: 25),
                             ),
                           ),
                         ],
@@ -189,7 +191,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
         //                 ? 'Unknow'
         //                 : landingPageController.dataUser!.value.profile!.name ??
         //                     'Unknow',
-        //             style: TextStyle(fontSize: 13)),
+        //             style: TextStyle(fontSize: 15)),
         //         SizedBox(
         //           width: 10,
         //         ),
@@ -210,7 +212,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
         //               value: SampleItem.itemOne,
         //               child: Text(
         //                 'ออกจากระบบ',
-        //                 style: TextStyle(fontSize: 13),
+        //                 style: TextStyle(fontSize: 15),
         //               ),
         //             ),
         //           ],
@@ -238,7 +240,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                                     .dataUser!.value.profile!.name ??
                                 'Unknow',
                         style: textStyle(context,
-                            fontSize: 14,
+                            fontSize: 25,
                             fontWeight: FontWeight.w400,
                             color: colorBlack),
                       ),
@@ -252,7 +254,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                       title: Text(
                         'แดชบอร์ด',
                         style: textStyle(context,
-                            fontSize: 16,
+                            fontSize: 25,
                             fontWeight: FontWeight.w200,
                             color: colorBlack),
                       ),
@@ -260,7 +262,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                         landingPageController.tabIndex(0);
                       },
                     ),
-                    ExpansionTile(
+                    ListTile(
                       leading: SvgPicture.asset(
                         color: colorBlack,
                         'assets/icons/svg/reportmain.svg',
@@ -268,109 +270,125 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                       title: Text(
                         'ดูรายงาน',
                         style: textStyle(context,
-                            fontSize: 16,
+                            fontSize: 25,
                             fontWeight: FontWeight.w200,
                             color: colorBlack),
                       ),
-                      onExpansionChanged: (value) {
-                        if (value) {
-                          landingPageController.tabIndex(1);
-                        }
+                      onTap: () {
+                        landingPageController.tabIndex(1);
                       },
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
-                          child: ListTile(
-                            leading: SvgPicture.asset(
-                              'assets/icons/svg/report1.svg',
-                            ),
-                            title: Text(
-                              'รายงานอัคคีภัย',
-                              style: textStyle(context,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w200,
-                                  color: colorBlack),
-                            ),
-                            onTap: () {
-                              landingPageController.tabIndex(2);
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
-                          child: ListTile(
-                            leading: SvgPicture.asset(
-                              'assets/icons/svg/report2.svg',
-                            ),
-                            title: Text(
-                              'รายงานอุทกภัย',
-                              style: textStyle(context,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w200,
-                                  color: colorBlack),
-                            ),
-                            onTap: () {
-                              landingPageController.tabIndex(3);
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
-                          child: ListTile(
-                            leading: SvgPicture.asset(
-                              'assets/icons/svg/report3.svg',
-                            ),
-                            title: Text(
-                              'รายงานวาตภัย',
-                              style: textStyle(context,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w200,
-                                  color: colorBlack),
-                            ),
-                            onTap: () {
-                              landingPageController.tabIndex(4);
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
-                          child: ListTile(
-                            leading: SvgPicture.asset(
-                              'assets/icons/svg/report4.svg',
-                            ),
-                            title: Text(
-                              'รายงานไฟป่า',
-                              style: textStyle(context,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w200,
-                                  color: colorBlack),
-                            ),
-                            onTap: () {
-                              landingPageController.tabIndex(5);
-                            },
-                          ),
-                        ),
-                      ],
                     ),
+                    // ExpansionTile(
+                    //   leading: SvgPicture.asset(
+                    //     color: colorBlack,
+                    //     'assets/icons/svg/reportmain.svg',
+                    //   ),
+                    //   title: Text(
+                    //     'ดูรายงาน',
+                    //     style: textStyle(context,
+                    //         fontSize: 30,
+                    //         fontWeight: FontWeight.w200,
+                    //         color: colorBlack),
+                    //   ),
+                    //   onExpansionChanged: (value) {
+                    //     if (value) {
+                    //       landingPageController.tabIndex(1);
+                    //     }
+                    //   },
+                    //   children: <Widget>[
+                    //     Padding(
+                    //       padding: const EdgeInsets.symmetric(horizontal: 8),
+                    //       child: ListTile(
+                    //         leading: SvgPicture.asset(
+                    //           'assets/icons/svg/report1.svg',
+                    //         ),
+                    //         title: Text(
+                    //           'รายงานอัคคีภัย',
+                    //           style: textStyle(context,
+                    //               fontSize: 30,
+                    //               fontWeight: FontWeight.w200,
+                    //               color: colorBlack),
+                    //         ),
+                    //         onTap: () {
+                    //           landingPageController.tabIndex(2);
+                    //         },
+                    //       ),
+                    //     ),
+                    //     Padding(
+                    //       padding: const EdgeInsets.symmetric(horizontal: 8),
+                    //       child: ListTile(
+                    //         leading: SvgPicture.asset(
+                    //           'assets/icons/svg/report2.svg',
+                    //         ),
+                    //         title: Text(
+                    //           'รายงานอุทกภัย',
+                    //           style: textStyle(context,
+                    //               fontSize: 30,
+                    //               fontWeight: FontWeight.w200,
+                    //               color: colorBlack),
+                    //         ),
+                    //         onTap: () {
+                    //           landingPageController.tabIndex(3);
+                    //         },
+                    //       ),
+                    //     ),
+                    //     Padding(
+                    //       padding: const EdgeInsets.symmetric(horizontal: 8),
+                    //       child: ListTile(
+                    //         leading: SvgPicture.asset(
+                    //           'assets/icons/svg/report3.svg',
+                    //         ),
+                    //         title: Text(
+                    //           'รายงานวาตภัย',
+                    //           style: textStyle(context,
+                    //               fontSize: 30,
+                    //               fontWeight: FontWeight.w200,
+                    //               color: colorBlack),
+                    //         ),
+                    //         onTap: () {
+                    //           landingPageController.tabIndex(4);
+                    //         },
+                    //       ),
+                    //     ),
+                    //     Padding(
+                    //       padding: const EdgeInsets.symmetric(horizontal: 8),
+                    //       child: ListTile(
+                    //         leading: SvgPicture.asset(
+                    //           'assets/icons/svg/report4.svg',
+                    //         ),
+                    //         title: Text(
+                    //           'รายงานไฟป่า',
+                    //           style: textStyle(context,
+                    //               fontSize: 30,
+                    //               fontWeight: FontWeight.w200,
+                    //               color: colorBlack),
+                    //         ),
+                    //         onTap: () {
+                    //           landingPageController.tabIndex(5);
+                    //         },
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                     if (isAdmin)
                       ListTile(
                         leading: Icon(
-                          CupertinoIcons.home,
+                          CupertinoIcons.list_bullet,
                           color: colorBlack,
                           size: 22,
                         ),
                         title: Text(
                           'สร้างรายการ',
                           style: textStyle(context,
-                              fontSize: 16,
+                              fontSize: 25,
                               fontWeight: FontWeight.w200,
                               color: colorBlack),
                         ),
                         onTap: () {
-                          landingPageController.tabIndex(6);
+                          landingPageController.tabIndex(2);
                         },
                       ),
-                    if (isAdmin)
+                    if (landingPageController.dataUser!.value.profile!=null) if (landingPageController.dataUser!.value.profile!.role==1)
                       ListTile(
                         leading: Icon(
                           Icons.supervised_user_circle,
@@ -380,12 +398,12 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                         title: Text(
                           'จัดการผู้ใช้งาน',
                           style: textStyle(context,
-                              fontSize: 16,
+                              fontSize: 25,
                               fontWeight: FontWeight.w200,
                               color: colorBlack),
                         ),
                         onTap: () {
-                          landingPageController.tabIndex(8);
+                          landingPageController.tabIndex(4);
                         },
                       ),
                     ListTile(
@@ -397,7 +415,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                       title: Text(
                         'ออกจากระบบ',
                         style: textStyle(context,
-                            fontSize: 16,
+                            fontSize: 25,
                             fontWeight: FontWeight.w200,
                             color: colorBlack),
                       ),
@@ -463,7 +481,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                                     Text(
                                       'แดชบอร์ด',
                                       style: textStyle(context,
-                                          fontSize: 16,
+                                          fontSize: 25,
                                           fontWeight: FontWeight.w200,
                                           color: (landingPageController
                                                       .tabIndex.value ==
@@ -507,7 +525,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                                     Text(
                                       'ดูรายงาน',
                                       style: textStyle(context,
-                                          fontSize: 16,
+                                          fontSize: 25,
                                           fontWeight: FontWeight.w200,
                                           color: (landingPageController
                                                       .tabIndex.value ==
@@ -519,195 +537,195 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                                 ),
                               ),
                             ),
-                            if (landingPageController.tabIndex.value > 0 &&
-                                landingPageController.tabIndex.value < 6)
-                              Column(children: [
-                                InkWell(
-                                  onTap: () {
-                                    landingPageController.tabIndex(2);
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.only(
-                                        left: 60, right: 10),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: (landingPageController
-                                                  .tabIndex.value ==
-                                              2)
-                                          ? Colors.amber
-                                          : Colors.transparent,
-                                    ),
-                                    height: 30,
-                                    child: Row(
-                                      children: [
-                                        SvgPicture.asset(
-                                          color: (landingPageController
-                                                      .tabIndex.value ==
-                                                  2)
-                                              ? Colors.white
-                                              : Color(0xfff5a607f),
-                                          'assets/icons/svg/report1.svg',
-                                        ),
-                                        const SizedBox(
-                                          width: 20,
-                                        ),
-                                        Text(
-                                          'รายงานอัคคีภัย',
-                                          style: textStyle(context,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w200,
-                                              color: (landingPageController
-                                                          .tabIndex.value ==
-                                                      2)
-                                                  ? Colors.white
-                                                  : Color(0xfff5a607f)),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    landingPageController.tabIndex(3);
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.only(
-                                        left: 60, right: 10),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: (landingPageController
-                                                  .tabIndex.value ==
-                                              3)
-                                          ? Colors.amber
-                                          : Colors.transparent,
-                                    ),
-                                    height: 30,
-                                    child: Row(
-                                      children: [
-                                        SvgPicture.asset(
-                                          color: (landingPageController
-                                                      .tabIndex.value ==
-                                                  3)
-                                              ? Colors.white
-                                              : Color(0xfff5a607f),
-                                          'assets/icons/svg/report2.svg',
-                                        ),
-                                        const SizedBox(
-                                          width: 20,
-                                        ),
-                                        Text(
-                                          'รายงานอุทกภัย',
-                                          style: textStyle(context,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w200,
-                                              color: (landingPageController
-                                                          .tabIndex.value ==
-                                                      3)
-                                                  ? Colors.white
-                                                  : Color(0xfff5a607f)),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    landingPageController.tabIndex(4);
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.only(
-                                        left: 60, right: 10),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: (landingPageController
-                                                  .tabIndex.value ==
-                                              4)
-                                          ? Colors.amber
-                                          : Colors.transparent,
-                                    ),
-                                    height: 30,
-                                    child: Row(
-                                      children: [
-                                        SvgPicture.asset(
-                                          color: (landingPageController
-                                                      .tabIndex.value ==
-                                                  4)
-                                              ? Colors.white
-                                              : Color(0xfff5a607f),
-                                          'assets/icons/svg/report3.svg',
-                                        ),
-                                        const SizedBox(
-                                          width: 20,
-                                        ),
-                                        Text(
-                                          'รายงานวาตภัย',
-                                          style: textStyle(context,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w200,
-                                              color: (landingPageController
-                                                          .tabIndex.value ==
-                                                      4)
-                                                  ? Colors.white
-                                                  : Color(0xfff5a607f)),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    landingPageController.tabIndex(5);
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: (landingPageController
-                                                  .tabIndex.value ==
-                                              5)
-                                          ? Colors.amber
-                                          : Colors.transparent,
-                                    ),
-                                    padding: const EdgeInsets.only(
-                                        left: 60, right: 10),
-                                    height: 30,
-                                    child: Row(
-                                      children: [
-                                        SvgPicture.asset(
-                                          color: (landingPageController
-                                                      .tabIndex.value ==
-                                                  5)
-                                              ? Colors.white
-                                              : Color(0xfff5a607f),
-                                          'assets/icons/svg/report4.svg',
-                                        ),
-                                        const SizedBox(
-                                          width: 20,
-                                        ),
-                                        Text(
-                                          'รายงานไฟป่า',
-                                          style: textStyle(context,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w200,
-                                              color: (landingPageController
-                                                          .tabIndex.value ==
-                                                      5)
-                                                  ? Colors.white
-                                                  : Color(0xfff5a607f)),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ]),
+                            // if (landingPageController.tabIndex.value > 0 &&
+                            //     landingPageController.tabIndex.value < 6)
+                            //   Column(children: [
+                            //     InkWell(
+                            //       onTap: () {
+                            //         landingPageController.tabIndex(2);
+                            //       },
+                            //       child: Container(
+                            //         padding: const EdgeInsets.only(
+                            //             left: 60, right: 10),
+                            //         decoration: BoxDecoration(
+                            //           borderRadius: BorderRadius.circular(10),
+                            //           color: (landingPageController
+                            //                       .tabIndex.value ==
+                            //                   2)
+                            //               ? Colors.amber
+                            //               : Colors.transparent,
+                            //         ),
+                            //         height: 30,
+                            //         child: Row(
+                            //           children: [
+                            //             SvgPicture.asset(
+                            //               color: (landingPageController
+                            //                           .tabIndex.value ==
+                            //                       2)
+                            //                   ? Colors.white
+                            //                   : Color(0xfff5a607f),
+                            //               'assets/icons/svg/report1.svg',
+                            //             ),
+                            //             const SizedBox(
+                            //               width: 20,
+                            //             ),
+                            //             Text(
+                            //               'รายงานอัคคีภัย',
+                            //               style: textStyle(context,
+                            //                   fontSize: 30,
+                            //                   fontWeight: FontWeight.w200,
+                            //                   color: (landingPageController
+                            //                               .tabIndex.value ==
+                            //                           2)
+                            //                       ? Colors.white
+                            //                       : Color(0xfff5a607f)),
+                            //             ),
+                            //           ],
+                            //         ),
+                            //       ),
+                            //     ),
+                            //     const SizedBox(
+                            //       height: 10,
+                            //     ),
+                            //     InkWell(
+                            //       onTap: () {
+                            //         landingPageController.tabIndex(3);
+                            //       },
+                            //       child: Container(
+                            //         padding: const EdgeInsets.only(
+                            //             left: 60, right: 10),
+                            //         decoration: BoxDecoration(
+                            //           borderRadius: BorderRadius.circular(10),
+                            //           color: (landingPageController
+                            //                       .tabIndex.value ==
+                            //                   3)
+                            //               ? Colors.amber
+                            //               : Colors.transparent,
+                            //         ),
+                            //         height: 30,
+                            //         child: Row(
+                            //           children: [
+                            //             SvgPicture.asset(
+                            //               color: (landingPageController
+                            //                           .tabIndex.value ==
+                            //                       3)
+                            //                   ? Colors.white
+                            //                   : Color(0xfff5a607f),
+                            //               'assets/icons/svg/report2.svg',
+                            //             ),
+                            //             const SizedBox(
+                            //               width: 20,
+                            //             ),
+                            //             Text(
+                            //               'รายงานอุทกภัย',
+                            //               style: textStyle(context,
+                            //                   fontSize: 30,
+                            //                   fontWeight: FontWeight.w200,
+                            //                   color: (landingPageController
+                            //                               .tabIndex.value ==
+                            //                           3)
+                            //                       ? Colors.white
+                            //                       : Color(0xfff5a607f)),
+                            //             ),
+                            //           ],
+                            //         ),
+                            //       ),
+                            //     ),
+                            //     const SizedBox(
+                            //       height: 10,
+                            //     ),
+                            //     InkWell(
+                            //       onTap: () {
+                            //         landingPageController.tabIndex(4);
+                            //       },
+                            //       child: Container(
+                            //         padding: const EdgeInsets.only(
+                            //             left: 60, right: 10),
+                            //         decoration: BoxDecoration(
+                            //           borderRadius: BorderRadius.circular(10),
+                            //           color: (landingPageController
+                            //                       .tabIndex.value ==
+                            //                   4)
+                            //               ? Colors.amber
+                            //               : Colors.transparent,
+                            //         ),
+                            //         height: 30,
+                            //         child: Row(
+                            //           children: [
+                            //             SvgPicture.asset(
+                            //               color: (landingPageController
+                            //                           .tabIndex.value ==
+                            //                       4)
+                            //                   ? Colors.white
+                            //                   : Color(0xfff5a607f),
+                            //               'assets/icons/svg/report3.svg',
+                            //             ),
+                            //             const SizedBox(
+                            //               width: 20,
+                            //             ),
+                            //             Text(
+                            //               'รายงานวาตภัย',
+                            //               style: textStyle(context,
+                            //                   fontSize: 30,
+                            //                   fontWeight: FontWeight.w200,
+                            //                   color: (landingPageController
+                            //                               .tabIndex.value ==
+                            //                           4)
+                            //                       ? Colors.white
+                            //                       : Color(0xfff5a607f)),
+                            //             ),
+                            //           ],
+                            //         ),
+                            //       ),
+                            //     ),
+                            //     const SizedBox(
+                            //       height: 10,
+                            //     ),
+                            //     InkWell(
+                            //       onTap: () {
+                            //         landingPageController.tabIndex(5);
+                            //       },
+                            //       child: Container(
+                            //         decoration: BoxDecoration(
+                            //           borderRadius: BorderRadius.circular(10),
+                            //           color: (landingPageController
+                            //                       .tabIndex.value ==
+                            //                   5)
+                            //               ? Colors.amber
+                            //               : Colors.transparent,
+                            //         ),
+                            //         padding: const EdgeInsets.only(
+                            //             left: 60, right: 10),
+                            //         height: 30,
+                            //         child: Row(
+                            //           children: [
+                            //             SvgPicture.asset(
+                            //               color: (landingPageController
+                            //                           .tabIndex.value ==
+                            //                       5)
+                            //                   ? Colors.white
+                            //                   : Color(0xfff5a607f),
+                            //               'assets/icons/svg/report4.svg',
+                            //             ),
+                            //             const SizedBox(
+                            //               width: 20,
+                            //             ),
+                            //             Text(
+                            //               'รายงานไฟป่า',
+                            //               style: textStyle(context,
+                            //                   fontSize: 30,
+                            //                   fontWeight: FontWeight.w200,
+                            //                   color: (landingPageController
+                            //                               .tabIndex.value ==
+                            //                           5)
+                            //                       ? Colors.white
+                            //                       : Color(0xfff5a607f)),
+                            //             ),
+                            //           ],
+                            //         ),
+                            //       ),
+                            //     ),
+                            //   ]),
                             // InkWell(
                             //   onTap: () {
                             //     landingPageController.tabIndex(9);
@@ -737,7 +755,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                             //         Text(
                             //           'รายงานอื่นๆ',
                             //           style: textStyle(context,
-                            //               fontSize: 16,
+                            //               fontSize: 30,
                             //               fontWeight: FontWeight.w200,
                             //               color:
                             //               (landingPageController.tabIndex.value ==
@@ -853,7 +871,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                             if (isAdmin)
                               InkWell(
                                 onTap: () {
-                                  landingPageController.tabIndex(6);
+                                  landingPageController.tabIndex(2);
                                 },
                                 child: Container(
                                   padding: const EdgeInsets.only(
@@ -862,7 +880,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                                     borderRadius: BorderRadius.circular(10),
                                     color:
                                         (landingPageController.tabIndex.value ==
-                                                6)
+                                                2)
                                             ? Colors.amber
                                             : Colors.transparent,
                                   ),
@@ -873,7 +891,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                                         CupertinoIcons.list_bullet,
                                         color: (landingPageController
                                                     .tabIndex.value ==
-                                                6)
+                                                2)
                                             ? Colors.white
                                             : Color(0xfff5a607f),
                                         size: 22,
@@ -884,11 +902,11 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                                       Text(
                                         'สร้างรายการ',
                                         style: textStyle(context,
-                                            fontSize: 16,
+                                            fontSize: 25,
                                             fontWeight: FontWeight.w200,
                                             color: (landingPageController
                                                         .tabIndex.value ==
-                                                    6)
+                                                    2)
                                                 ? Colors.white
                                                 : Color(0xfff5a607f)),
                                       ),
@@ -896,10 +914,10 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                                   ),
                                 ),
                               ),
-                            if (isAdmin)
+                            if (landingPageController.dataUser!.value.profile!=null) if (landingPageController.dataUser!.value.profile!.role==1)
                               InkWell(
                                 onTap: () {
-                                  landingPageController.tabIndex(8);
+                                  landingPageController.tabIndex(4);
                                 },
                                 child: Container(
                                   padding: const EdgeInsets.only(
@@ -908,7 +926,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                                     borderRadius: BorderRadius.circular(10),
                                     color:
                                         (landingPageController.tabIndex.value ==
-                                                8)
+                                                4)
                                             ? Colors.amber
                                             : Colors.transparent,
                                   ),
@@ -919,7 +937,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                                         Icons.supervised_user_circle,
                                         color: (landingPageController
                                                     .tabIndex.value ==
-                                                8)
+                                                4)
                                             ? Colors.white
                                             : Color(0xfff5a607f),
                                         size: 22,
@@ -930,11 +948,11 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                                       Text(
                                         'จัดการผู้ใช้งาน',
                                         style: textStyle(context,
-                                            fontSize: 16,
+                                            fontSize: 25,
                                             fontWeight: FontWeight.w200,
                                             color: (landingPageController
                                                         .tabIndex.value ==
-                                                    8)
+                                                    4)
                                                 ? Colors.white
                                                 : Color(0xfff5a607f)),
                                       ),
@@ -971,7 +989,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                             //         Text(
                             //           'สร้างรายการอื่นๆ',
                             //           style: textStyle(context,
-                            //               fontSize: 16,
+                            //               fontSize: 30,
                             //               fontWeight: FontWeight.w200,
                             //               color:
                             //                   (landingPageController.tabIndex.value ==
@@ -995,7 +1013,15 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                     )
                   : Container(),
               Expanded(
-                child: Container(
+                child:
+                // (landingPageController.dataUser!.value.profile==null)?Center(
+                //     child:
+                //     LoadingAnimationWidget
+                //         .inkDrop(
+                //       color: Colors.white,
+                //       size: 20,
+                //     )):
+                Container(
                   color: colorBackground,
                   height: MediaQuery.of(context).size.height,
                   width: 200,
@@ -1004,10 +1030,10 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                     children: [
                       DashBoardPage(),
                       MainReport(),
-                      FireReport(),
-                      FloodReport(),
-                      WineStormReport(),
-                      ForestFireReport(),
+                      // FireReport(),
+                      // FloodReport(),
+                      // WineStormReport(),
+                      // ForestFireReport(),
                       CreateList(),
                       Detail(),
                       SystemAdminPage(),

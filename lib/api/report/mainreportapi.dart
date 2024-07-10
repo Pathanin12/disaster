@@ -13,7 +13,7 @@ Future<GetAllEventModel> getAllDashBoardApi(
     {required String startDate,
     required String endDate,
     required int level,
-    required int disasterType,
+    required String searchEvent,
       required int statusAgency,
       required int statusItem,
       required int violence,
@@ -25,7 +25,7 @@ Future<GetAllEventModel> getAllDashBoardApi(
       Dio dio = Dio();
       final data = await dio.post('${url}GetAllEvent',
           data: {
-            "disasterType": disasterType,
+            "searchEvent": searchEvent,
             "datetimeStart": startDate,
             "datetimeEnd": endDate,
             "level": level,

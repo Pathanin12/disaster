@@ -73,7 +73,7 @@
 //                                             'ชื่อรายการ',
 //                                             style: textStyle(context,
 //                                                 color: colorBlack,
-//                                                 fontSize: 13),
+//                                                 fontSize: 15),
 //                                           )),
 //                                     ),
 //                                     const SizedBox(
@@ -91,14 +91,14 @@
 //                                         child: TextFormField(
 //                                           controller: contoller.nameCon.value,
 //                                           style: TextStyle(
-//                                               fontSize: 13.0,
+//                                               fontSize: 15.0,
 //                                               color: colorBlack,
 //                                               fontWeight: FontWeight.w400),
 //                                           decoration: InputDecoration(
 //                                             fillColor: colorWhite,
 //                                             hintText: "ชื่อรายการ",
 //                                             hintStyle: TextStyle(
-//                                                 fontSize: 13.0,
+//                                                 fontSize: 15.0,
 //                                                 color: colorGrey,
 //                                                 fontWeight: FontWeight.w400),
 //                                             filled: true,
@@ -140,7 +140,7 @@
 //                                             'วันที่รับเรื่อง',
 //                                             style: textStyle(context,
 //                                                 color: colorBlack,
-//                                                 fontSize: 13),
+//                                                 fontSize: 15),
 //                                           )),
 //                                     ),
 //                                     const SizedBox(
@@ -158,7 +158,7 @@
 //                                                 'สถานะของรายการ',
 //                                                 style: textStyle(context,
 //                                                     color: colorBlack,
-//                                                     fontSize: 13),
+//                                                     fontSize: 15),
 //                                               )),
 //                                     ),
 //                                   ],
@@ -274,7 +274,7 @@
 //                                                 Text(
 //                                                   contoller.date.value,
 //                                                   style: textStyle(context,
-//                                                       fontSize: 13,
+//                                                       fontSize: 15,
 //                                                       color: colorBlack),
 //                                                 ),
 //                                                 const Icon(
@@ -346,7 +346,7 @@
 //                                                     hint: Text(
 //                                                       'เลือกทั้งหมด',
 //                                                       style: TextStyle(
-//                                                           fontSize: 13.0,
+//                                                           fontSize: 15.0,
 //                                                           color: colorGrey,
 //                                                           fontWeight:
 //                                                               FontWeight.w400),
@@ -362,7 +362,7 @@
 //                                                         child: Text(
 //                                                           value,
 //                                                           style: TextStyle(
-//                                                               fontSize: 13.0,
+//                                                               fontSize: 15.0,
 //                                                               color: colorBlack,
 //                                                               fontWeight:
 //                                                                   FontWeight
@@ -409,7 +409,7 @@
 //                                             'หน่วยงานที่รับผิดชอบ',
 //                                             style: textStyle(context,
 //                                                 color: colorBlack,
-//                                                 fontSize: 13),
+//                                                 fontSize: 15),
 //                                           )),
 //                                     ),
 //                                     const SizedBox(
@@ -427,7 +427,7 @@
 //                                                 'สถานะหน่วยงานที่รับผิดชอบ',
 //                                                 style: textStyle(context,
 //                                                     color: colorBlack,
-//                                                     fontSize: 13),
+//                                                     fontSize: 15),
 //                                               )),
 //                                     ),
 //                                   ],
@@ -443,14 +443,14 @@
 //                                           controller:
 //                                               contoller.responsible.value,
 //                                           style: TextStyle(
-//                                               fontSize: 13.0,
+//                                               fontSize: 15.0,
 //                                               color: colorBlack,
 //                                               fontWeight: FontWeight.w400),
 //                                           decoration: InputDecoration(
 //                                             fillColor: colorWhite,
 //                                             hintText: "หน่วยงานที่รับผิดชอบ",
 //                                             hintStyle: TextStyle(
-//                                                 fontSize: 13.0,
+//                                                 fontSize: 15.0,
 //                                                 color: colorGrey,
 //                                                 fontWeight: FontWeight.w400),
 //                                             filled: true,
@@ -524,7 +524,7 @@
 //                                                     hint: Text(
 //                                                       'เลือกทั้งหมด',
 //                                                       style: TextStyle(
-//                                                           fontSize: 13.0,
+//                                                           fontSize: 15.0,
 //                                                           color: colorGrey,
 //                                                           fontWeight:
 //                                                               FontWeight.w400),
@@ -540,7 +540,7 @@
 //                                                         child: Text(
 //                                                           value,
 //                                                           style: TextStyle(
-//                                                               fontSize: 13.0,
+//                                                               fontSize: 15.0,
 //                                                               color: colorBlack,
 //                                                               fontWeight:
 //                                                                   FontWeight
@@ -597,7 +597,7 @@
 //                                                   .freeFormDetailList![index]
 //                                                   .section!,
 //                                               style: textStyle(context,
-//                                                   fontSize: 14,
+//                                                   fontSize: 15,
 //                                                   fontWeight: FontWeight.bold,
 //                                                   color: Colors.black),
 //                                             ),
@@ -778,7 +778,7 @@
 //                                                           index]
 //                                                       .section!,
 //                                                   style: textStyle(context,
-//                                                       fontSize: 14,
+//                                                       fontSize: 15,
 //                                                       fontWeight:
 //                                                           FontWeight.bold,
 //                                                       color: Colors.black),
@@ -833,7 +833,7 @@
 //                                                               index]
 //                                                           .section!,
 //                                                       style: textStyle(context,
-//                                                           fontSize: 14,
+//                                                           fontSize: 15,
 //                                                           fontWeight:
 //                                                               FontWeight.bold,
 //                                                           color: Colors.black),
@@ -941,7 +941,7 @@
 //                                                               .section!,
 //                                                           style: textStyle(
 //                                                               context,
-//                                                               fontSize: 14,
+//                                                               fontSize: 15,
 //                                                               fontWeight:
 //                                                                   FontWeight
 //                                                                       .bold,
@@ -1059,7 +1059,7 @@
 //                                                                   .section!,
 //                                                               style: textStyle(
 //                                                                   context,
-//                                                                   fontSize: 14,
+//                                                                   fontSize: 15,
 //                                                                   fontWeight:
 //                                                                       FontWeight
 //                                                                           .bold,
@@ -1208,7 +1208,7 @@
 //                                                                   .section!,
 //                                                               style: textStyle(
 //                                                                   context,
-//                                                                   fontSize: 14,
+//                                                                   fontSize: 15,
 //                                                                   fontWeight:
 //                                                                       FontWeight
 //                                                                           .bold,
@@ -1355,7 +1355,7 @@
 //                               child: Text(
 //                                 'พิกัดที่เกิดภัยพิบัติ',
 //                                 style: textStyle(context,
-//                                     color: colorBlack, fontSize: 13),
+//                                     color: colorBlack, fontSize: 15),
 //                               )),
 //                           Stack(
 //                             children: [
@@ -1434,7 +1434,7 @@
 //                                               fillColor: colorWhite,
 //                                               hintText: "ค้นหา",
 //                                               hintStyle: TextStyle(
-//                                                   fontSize: 13.0,
+//                                                   fontSize: 15.0,
 //                                                   color: colorGrey,
 //                                                   fontWeight: FontWeight.w400),
 //                                               filled: true,
@@ -1532,7 +1532,7 @@
 //                                         child: Text(
 //                                           'ที่อยู่',
 //                                           style: textStyle(context,
-//                                               color: colorBlack, fontSize: 13),
+//                                               color: colorBlack, fontSize: 15),
 //                                         )),
 //                                   ),
 //                                 ]),
@@ -1560,7 +1560,7 @@
 //                                             fillColor: colorWhite,
 //                                             hintText: "ที่อยู่",
 //                                             hintStyle: TextStyle(
-//                                                 fontSize: 13.0,
+//                                                 fontSize: 15.0,
 //                                                 color: colorGrey,
 //                                                 fontWeight: FontWeight.w400),
 //                                             filled: true,
@@ -1587,7 +1587,7 @@
 //                                             'ละติจูด',
 //                                             style: textStyle(context,
 //                                                 color: colorBlack,
-//                                                 fontSize: 13),
+//                                                 fontSize: 15),
 //                                           )),
 //                                     ),
 //                                     const SizedBox(
@@ -1601,7 +1601,7 @@
 //                                             'ลองจิจูด',
 //                                             style: textStyle(context,
 //                                                 color: colorBlack,
-//                                                 fontSize: 13),
+//                                                 fontSize: 15),
 //                                           )),
 //                                     ),
 //                                   ],
@@ -1630,7 +1630,7 @@
 //                                             fillColor: colorWhite,
 //                                             hintText: "ละติจูด",
 //                                             hintStyle: TextStyle(
-//                                                 fontSize: 13.0,
+//                                                 fontSize: 15.0,
 //                                                 color: colorGrey,
 //                                                 fontWeight: FontWeight.w400),
 //                                             filled: true,
@@ -1670,7 +1670,7 @@
 //                                             fillColor: colorWhite,
 //                                             hintText: "ลองจิจูด",
 //                                             hintStyle: TextStyle(
-//                                                 fontSize: 13.0,
+//                                                 fontSize: 15.0,
 //                                                 color: colorGrey,
 //                                                 fontWeight: FontWeight.w400),
 //                                             filled: true,
@@ -1747,7 +1747,7 @@
 //                                                   'เลือกรูป',
 //                                                   style: textStyle(context,
 //                                                       color: colorBlue,
-//                                                       fontSize: 13),
+//                                                       fontSize: 15),
 //                                                 ),
 //                                               ),
 //                                             ),
@@ -1792,7 +1792,7 @@
 //                                                   'เลือกรูป',
 //                                                   style: textStyle(context,
 //                                                       color: colorBlue,
-//                                                       fontSize: 13),
+//                                                       fontSize: 15),
 //                                                 ),
 //                                               ),
 //                                             ),
@@ -1886,7 +1886,7 @@
 //                                                   'เลือกไฟล์',
 //                                                   style: textStyle(context,
 //                                                       color: colorBlue,
-//                                                       fontSize: 13),
+//                                                       fontSize: 15),
 //                                                 ),
 //                                               ),
 //                                             ),
@@ -1931,7 +1931,7 @@
 //                                                   'เลือกไฟล์',
 //                                                   style: textStyle(context,
 //                                                       color: colorBlue,
-//                                                       fontSize: 13),
+//                                                       fontSize: 15),
 //                                                 ),
 //                                               ),
 //                                             ),
@@ -1953,7 +1953,7 @@
 //                                                       contoller.listConvertFileLog[index].imageName!,
 //                                                       style: textStyle(context,
 //                                                           color: colorBlue,
-//                                                           fontSize: 13),
+//                                                           fontSize: 15),
 //                                                     ),
 //                                                     SizedBox(width: 5,),
 //
@@ -2008,7 +2008,7 @@
 //                                               child: Text(
 //                                                 'รายละเอียดรายงาน',
 //                                                 style: textStyle(context,
-//                                                     color: colorBlack, fontSize: 13),
+//                                                     color: colorBlack, fontSize: 15),
 //                                               )),
 //                                         ),
 //                                       ]),
@@ -2035,7 +2035,7 @@
 //                                                   fillColor: colorWhite,
 //                                                   hintText: "รายละเอียดรายงาน",
 //                                                   hintStyle: TextStyle(
-//                                                       fontSize: 13.0,
+//                                                       fontSize: 15.0,
 //                                                       color: colorGrey,
 //                                                       fontWeight: FontWeight.w400),
 //                                                   filled: true,
@@ -2095,7 +2095,7 @@
 //                                             child: Text(
 //                                               'ยกเลิก',
 //                                               style: textStyle(context,
-//                                                   fontSize: 14),
+//                                                   fontSize: 15),
 //                                             )),
 //                                         InkWell(
 //                                             onTap: () async {
@@ -2105,7 +2105,7 @@
 //                                             child: Text(
 //                                               'ตกลง',
 //                                               style: textStyle(context,
-//                                                   fontSize: 14),
+//                                                   fontSize: 15),
 //                                             )),
 //                                       ],
 //                                     ),
@@ -2209,7 +2209,7 @@
 //             ),
 //             Text(
 //               contoller.listAnswer[index].checkbox!.listoption![i],
-//               style: textStyle(context, color: Colors.black, fontSize: 13),
+//               style: textStyle(context, color: Colors.black, fontSize: 15),
 //             )
 //           ],
 //         ),

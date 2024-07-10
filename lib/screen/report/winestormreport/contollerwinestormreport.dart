@@ -224,16 +224,16 @@ class ContollerWineStormReport extends GetxController {
   Future<void> setLocation() async {
     loadSearch.value = true;
 
-    allEvent.value = await getAllDashBoardApi(
-        startDate: listDate.first.toString().split(" ")[0],
-        endDate: listDate.last.toString().split(" ")[0],
-        disasterType: 2,
-        level: level.indexOf(selectLevel.toString()),
-        provinceID: selectProvince.value.id,
-        statusItem: StatusList.indexOf(selectStatusItem.value),
-        statusAgency: StatusList.indexOf(selectStatusAgency.value),
-        responsibleAgency: searchAgency.value.text,
-        violence: listViolence.indexOf(selectViolence.value));
+    // allEvent.value = await getAllDashBoardApi(
+    //     startDate: listDate.first.toString().split(" ")[0],
+    //     endDate: listDate.last.toString().split(" ")[0],
+    //     disasterType: 2,
+    //     level: level.indexOf(selectLevel.toString()),
+    //     provinceID: selectProvince.value.id,
+    //     statusItem: StatusList.indexOf(selectStatusItem.value),
+    //     statusAgency: StatusList.indexOf(selectStatusAgency.value),
+    //     responsibleAgency: searchAgency.value.text,
+    //     violence: listViolence.indexOf(selectViolence.value));
     updateMaxPage(allEvent.value);
     listWidgetMark = <Widget>[
       TileLayer(
@@ -259,7 +259,7 @@ class ContollerWineStormReport extends GetxController {
                     final ContollerDetail contollerEvent =
                         Get.put(ContollerDetail(), permanent: false);
                     contollerEvent.getEvent(element.eventID!);
-                    landingPageController.tabIndex.value = 7;
+                    // landingPageController.tabIndex.value = 7;
                   },
                   child: (element.disasterType == 0 && element.statusItem == 0)
                       ? SvgPicture.asset(
@@ -349,14 +349,14 @@ class ContollerWineStormReport extends GetxController {
                         Text(
                           '${element.province.toString()}',
                           style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.bold),
+                              fontSize: 15, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
                           height: 10,
                         ),
                         Text(
                           '${element.eventName.toString()}',
-                          style: TextStyle(fontSize: 14),
+                          style: TextStyle(fontSize: 15),
                         ),
                       ],
                     ),
@@ -515,7 +515,7 @@ class ContollerWineStormReport extends GetxController {
                                   child: Text(
                                     'ลำดับที่',
                                     style: textStyle(context,
-                                        fontSize: 14,
+                                        fontSize: 15,
                                         color: colorBlack),
                                   ),
                                 ),
@@ -527,7 +527,7 @@ class ContollerWineStormReport extends GetxController {
                                   child: Text(
                                     'ชื่อรายการ',
                                     style: textStyle(context,
-                                        fontSize: 14,
+                                        fontSize: 15,
                                         color: colorBlack),
                                   ),
                                 ),
@@ -539,7 +539,7 @@ class ContollerWineStormReport extends GetxController {
                                   child: Text(
                                     'ประเภท',
                                     style: textStyle(context,
-                                        fontSize: 14,
+                                        fontSize: 15,
                                         color: colorBlack),
                                   ),
                                 ),
@@ -551,7 +551,7 @@ class ContollerWineStormReport extends GetxController {
                                   child: Text(
                                     'วันที่รับเรื่อง',
                                     style: textStyle(context,
-                                        fontSize: 14,
+                                        fontSize: 15,
                                         color: colorBlack),
                                   ),
                                 ),
@@ -563,7 +563,7 @@ class ContollerWineStormReport extends GetxController {
                                   child: Text(
                                     'หน่วยงานที่รับผิดชอบ',
                                     style: textStyle(context,
-                                        fontSize: 14,
+                                        fontSize: 15,
                                         color: colorBlack),
                                   ),
                                 ),
@@ -575,7 +575,7 @@ class ContollerWineStormReport extends GetxController {
                                   child: Text(
                                     'ระดับความรุนแรง',
                                     style: textStyle(context,
-                                        fontSize: 14,
+                                        fontSize: 15,
                                         color: colorBlack),
                                   ),
                                 ),
@@ -587,7 +587,7 @@ class ContollerWineStormReport extends GetxController {
                                   child: Text(
                                     'พิกัด',
                                     style: textStyle(context,
-                                        fontSize: 14,
+                                        fontSize: 15,
                                         color: colorBlack),
                                   ),
                                 ),
@@ -599,7 +599,7 @@ class ContollerWineStormReport extends GetxController {
                                   child: Text(
                                     'สถานะหน่วยงาน',
                                     style: textStyle(context,
-                                        fontSize: 14,
+                                        fontSize: 15,
                                         color: colorBlack),
                                   ),
                                 ),
@@ -611,7 +611,7 @@ class ContollerWineStormReport extends GetxController {
                                   child: Text(
                                     'หน่วยงานที่เกี่ยวข้อง',
                                     style: textStyle(context,
-                                        fontSize: 14,
+                                        fontSize: 15,
                                         color: colorBlack),
                                   ),
                                 ),
@@ -623,7 +623,7 @@ class ContollerWineStormReport extends GetxController {
                                   child: Text(
                                     'สถานะของหน่วยงานที่เกี่ยวข้อง',
                                     style: textStyle(context,
-                                        fontSize: 14,
+                                        fontSize: 15,
                                         color: colorBlack),
                                   ),
                                 ),
@@ -635,7 +635,7 @@ class ContollerWineStormReport extends GetxController {
                                   child: Text(
                                     'สถานะของรายการ',
                                     style: textStyle(context,
-                                        fontSize: 14,
+                                        fontSize: 15,
                                         color: colorBlack),
                                   ),
                                 ),
@@ -668,7 +668,7 @@ class ContollerWineStormReport extends GetxController {
                                           child: Text(
                                             event[index].seq!.toString(),
                                             style: textStyle(context,
-                                                fontSize: 14,
+                                                fontSize: 15,
                                                 color: colorBlack),
                                           ),
                                         ),
@@ -680,7 +680,7 @@ class ContollerWineStormReport extends GetxController {
                                           child: Text(
                                             event[index].eventName!,
                                             style: textStyle(context,
-                                                fontSize: 14,
+                                                fontSize: 15,
                                                 color: colorBlack),
                                           ),
                                         ),
@@ -692,7 +692,7 @@ class ContollerWineStormReport extends GetxController {
                                           child: Text(
                                             category[event[index].disasterType!],
                                             style: textStyle(context,
-                                                fontSize: 14,
+                                                fontSize: 15,
                                                 color: colorBlack),
                                           ),
                                         ),
@@ -704,7 +704,7 @@ class ContollerWineStormReport extends GetxController {
                                           child: Text(
                                             '${DateTime.parse(event[index].datetime!).day} ${mountAbbreviation[DateTime.parse(event[index].datetime!).month - 1]} ${DateTime.parse(event[index].datetime!).year + 543}',
                                             style: textStyle(context,
-                                                fontSize: 14,
+                                                fontSize: 15,
                                                 color: colorBlack),
                                           ),
                                         ),
@@ -716,7 +716,7 @@ class ContollerWineStormReport extends GetxController {
                                           child: Text(
                                             event[index].responsibleAgency ?? '',
                                             style: textStyle(context,
-                                                fontSize: 14,
+                                                fontSize: 15,
                                                 color: colorBlack),
                                           ),
                                         ),
@@ -728,7 +728,7 @@ class ContollerWineStormReport extends GetxController {
                                           child: Text(
                                             listViolence[event[index].violence!],
                                             style: textStyle(context,
-                                                fontSize: 14,
+                                                fontSize: 15,
                                                 color: colorBlack),
                                           ),
                                         ),
@@ -740,7 +740,7 @@ class ContollerWineStormReport extends GetxController {
                                           child: Text(
                                             '${event[index].latitude!},${event[index].longitude!}',
                                             style: textStyle(context,
-                                                fontSize: 14,
+                                                fontSize: 15,
                                                 color: colorBlack),
                                           ),
                                         ),
@@ -758,7 +758,7 @@ class ContollerWineStormReport extends GetxController {
                                           child: Text(
                                             event[index].relatedAgency!,
                                             style: textStyle(context,
-                                                fontSize: 14,
+                                                fontSize: 15,
                                                 color: colorBlack),
                                           ),
                                         ),
@@ -836,7 +836,7 @@ class ContollerWineStormReport extends GetxController {
                                                                   Text(
                                                                     'คัดลอก',
                                                                     style: textStyle(context,
-                                                                        fontSize: 14,
+                                                                        fontSize: 15,
                                                                         color: colorWhite),
                                                                   ),
                                                                 ],
@@ -889,7 +889,7 @@ class ContollerWineStormReport extends GetxController {
                                                                   Text(
                                                                     'บันทึก',
                                                                     style: textStyle(context,
-                                                                        fontSize: 14,
+                                                                        fontSize: 15,
                                                                         color: colorWhite),
                                                                   ),
                                                                 ],
@@ -916,7 +916,7 @@ class ContollerWineStormReport extends GetxController {
                                             final ContollerDetail contollerEvent =
                                             Get.put(ContollerDetail(), permanent: false);
                                             contollerEvent.getEvent(event[index].eventID!);
-                                            landingPageController.tabIndex.value = 7;
+                                            // landingPageController.tabIndex.value = 7;
                                             // dialogEdit(context);
                                           },
                                           child: SizedBox(
@@ -968,7 +968,7 @@ class ContollerWineStormReport extends GetxController {
       //                 child: Text(
       //                   event[index].seq!.toString(),
       //                   style: textStyle(context,
-      //                       fontSize: 14,
+      //                       fontSize: 15,
       //                       color: colorBlack),
       //                 ),
       //               ),
@@ -980,7 +980,7 @@ class ContollerWineStormReport extends GetxController {
       //                 child: Text(
       //                   event[index].eventName!,
       //                   style: textStyle(context,
-      //                       fontSize: 14,
+      //                       fontSize: 15,
       //                       color: colorBlack),
       //                 ),
       //               ),
@@ -992,7 +992,7 @@ class ContollerWineStormReport extends GetxController {
       //                 child: Text(
       //                   category[event[index].disasterType!],
       //                   style: textStyle(context,
-      //                       fontSize: 14,
+      //                       fontSize: 15,
       //                       color: colorBlack),
       //                 ),
       //               ),
@@ -1004,7 +1004,7 @@ class ContollerWineStormReport extends GetxController {
       //                 child: Text(
       //                   '${DateTime.parse(event[index].datetime!).day} ${mountAbbreviation[DateTime.parse(event[index].datetime!).month - 1]} ${DateTime.parse(event[index].datetime!).year + 543}',
       //                   style: textStyle(context,
-      //                       fontSize: 14,
+      //                       fontSize: 15,
       //                       color: colorBlack),
       //                 ),
       //               ),
@@ -1016,7 +1016,7 @@ class ContollerWineStormReport extends GetxController {
       //                 child: Text(
       //                   event[index].responsibleAgency ?? '',
       //                   style: textStyle(context,
-      //                       fontSize: 14,
+      //                       fontSize: 15,
       //                       color: colorBlack),
       //                 ),
       //               ),
@@ -1028,7 +1028,7 @@ class ContollerWineStormReport extends GetxController {
       //                 child: Text(
       //                   listViolence[event[index].violence!],
       //                   style: textStyle(context,
-      //                       fontSize: 14,
+      //                       fontSize: 15,
       //                       color: colorBlack),
       //                 ),
       //               ),
@@ -1040,7 +1040,7 @@ class ContollerWineStormReport extends GetxController {
       //                 child: Text(
       //                   '${event[index].latitude!},${event[index].longitude!}',
       //                   style: textStyle(context,
-      //                       fontSize: 14,
+      //                       fontSize: 15,
       //                       color: colorBlack),
       //                 ),
       //               ),
@@ -1058,7 +1058,7 @@ class ContollerWineStormReport extends GetxController {
       //                 child: Text(
       //                   event[index].relatedAgency!,
       //                   style: textStyle(context,
-      //                       fontSize: 14,
+      //                       fontSize: 15,
       //                       color: colorBlack),
       //                 ),
       //               ),
@@ -1136,7 +1136,7 @@ class ContollerWineStormReport extends GetxController {
       //                                         Text(
       //                                           'คัดลอก',
       //                                           style: textStyle(context,
-      //                                               fontSize: 14,
+      //                                               fontSize: 15,
       //                                               color: colorWhite),
       //                                         ),
       //                                       ],
@@ -1189,7 +1189,7 @@ class ContollerWineStormReport extends GetxController {
       //                                         Text(
       //                                           'บันทึก',
       //                                           style: textStyle(context,
-      //                                               fontSize: 14,
+      //                                               fontSize: 15,
       //                                               color: colorWhite),
       //                                         ),
       //                                       ],

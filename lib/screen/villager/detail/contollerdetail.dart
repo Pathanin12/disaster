@@ -170,7 +170,7 @@ class ContollerDetailVillager extends GetxController {
                             child: Text(
                               'รายชื่อ',
                               style: textStyle(context,
-                                  fontSize: 18, fontWeight: FontWeight.bold),
+                                  fontSize: 30, fontWeight: FontWeight.bold),
                             ),),
                       ),
                       SizedBox(
@@ -188,7 +188,7 @@ class ContollerDetailVillager extends GetxController {
                                   child: Text(
                                     'ผู้เสียชีวิต',
                                     style: textStyle(context,
-                                        fontSize: 13,
+                                        fontSize: 26,
                                         fontWeight: FontWeight.bold),
                                   )),
                               ListView.builder(
@@ -205,7 +205,7 @@ class ContollerDetailVillager extends GetxController {
                                           '${index + 1}. ${dataEvent.value.events!.deceased!.deceaseList![index].name} เพศ ${listGender[dataEvent.value.events!.deceased!.deceaseList![index].sex!]} อายุ ${dataEvent.value.events!.deceased!.deceaseList![index].age} ปี',
                                           style: textStyle(
                                             context,
-                                            fontSize: 13,
+                                            fontSize: 26,
                                           ),
                                         )
                                       ],
@@ -221,7 +221,7 @@ class ContollerDetailVillager extends GetxController {
                                   child: Text(
                                     'ผู้ได้รับบาดเจ็บ',
                                     style: textStyle(context,
-                                        fontSize: 13,
+                                        fontSize: 26,
                                         fontWeight: FontWeight.bold),
                                   )),
                               ListView.builder(
@@ -238,7 +238,7 @@ class ContollerDetailVillager extends GetxController {
                                           '${index + 1}. ${dataEvent.value.events!.injured!.injureList![index].name} เพศ ${listGender[dataEvent.value.events!.injured!.injureList![index].sex!]} อายุ ${dataEvent.value.events!.injured!.injureList![index].age} ปี',
                                           style: textStyle(
                                             context,
-                                            fontSize: 13,
+                                            fontSize: 26,
                                           ),
                                         )
                                       ],
@@ -268,7 +268,7 @@ class ContollerDetailVillager extends GetxController {
                             child: Text(
                               'ปิด',
                               style: textStyle(context,
-                                  fontSize: 14, color: Colors.white),
+                                  fontSize: 26, color: Colors.white),
                             ),
                           ),
                         ),

@@ -13,6 +13,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_maps/maps.dart';
 import '../../service/config.dart';
 import '../../stye/font.dart';
+import '../drawer/admin/contollerdraweradmin.dart';
 import 'contollerdashboard.dart';
 
 class DashBoardPage extends StatefulWidget {
@@ -30,12 +31,15 @@ class _DashBoardPageState extends State<DashBoardPage> {
     final ContollerDashBoard contoller =
         Get.put(ContollerDashBoard(), permanent: false);
     contoller.mapController = MapController().obs;
+    contoller.heatMapController = MapController().obs;
   }
 
   @override
   Widget build(BuildContext context) {
     final ContollerDashBoard contoller =
         Get.put(ContollerDashBoard(), permanent: false);
+    final LandingPageControllerAdmin landingPageController =
+    Get.put(LandingPageControllerAdmin(), permanent: false);
     double screenWidth = MediaQuery.of(context).size.width;
     return ListView(
       children: [
@@ -49,7 +53,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     Container(
                         child: Text('แดชบอร์ด',
                             style: textStyle(context,
-                                fontSize: 16, fontWeight: FontWeight.bold))),
+                                fontSize: 30, fontWeight: FontWeight.bold))),
                     const SizedBox(
                       height: 20,
                     ),
@@ -62,19 +66,19 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   flex: 2,
                                   child: Container(
                                     alignment: Alignment.centerLeft,
-                                    height: 50,
+                                    height: 60,
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text('ประเภท',
+                                        Text('ค้นหา',
                                             style: textStyle(context,
-                                                fontSize: 13)),
+                                                fontSize: 25)),
                                         Container(
+
                                           padding: EdgeInsets.only(
-                                              left: screenWidth >= 900 ? 0 : 5,
-                                              right:
-                                                  screenWidth >= 900 ? 0 : 5),
+                                              left: 5,
+                                              right: 5),
                                           width: double.infinity,
                                           height: 30,
                                           decoration: BoxDecoration(
@@ -86,70 +90,18 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                               borderRadius:
                                                   BorderRadius.circular(5)),
                                           alignment: Alignment.center,
-                                          child: SizedBox(
-                                            width: double.infinity,
-                                            child: DropdownButtonHideUnderline(
-                                              child: DropdownButton2<String>(
-                                                dropdownStyleData:
-                                                    DropdownStyleData(
-                                                  maxHeight: 300,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                  ),
-                                                  scrollbarTheme:
-                                                      ScrollbarThemeData(
-                                                    radius:
-                                                        const Radius.circular(
-                                                            5),
-                                                    thickness:
-                                                        MaterialStateProperty
-                                                            .all<double>(6),
-                                                    thumbVisibility:
-                                                        MaterialStateProperty
-                                                            .all<bool>(true),
-                                                  ),
-                                                ),
-                                                autofocus: true,
-                                                value: contoller
-                                                    .selectCategory!.value,
-                                                hint: Text(
-                                                  'เลือกทั้งหมด',
-                                                  style: TextStyle(
-                                                      fontSize: 13.0,
-                                                      color: colorGrey,
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                ),
-                                                items: contoller.category.map<
-                                                        DropdownMenuItem<
-                                                            String>>(
-                                                    (String? value) {
-                                                  return DropdownMenuItem<
-                                                      String>(
-                                                    value: value!,
-                                                    child: Text(
-                                                      value,
-                                                      style: TextStyle(
-                                                          fontSize: 13.0,
-                                                          color: colorGrey,
-                                                          fontWeight:
-                                                              FontWeight.w400),
-                                                    ),
-                                                  );
-                                                }).toList(),
-                                                iconStyleData:
-                                                    const IconStyleData(
-                                                        icon: Icon(
-                                                  Icons.keyboard_arrow_down,
-                                                  size: 24,
-                                                )),
-                                                onChanged: (valueSelect) {
-                                                  contoller.selectCategory!
-                                                      .value = valueSelect!;
-                                                },
-                                              ),
+                                          child:TextFormField(
+                                            controller: contoller.searchEven.value,
+                                            autofocus: false,
+                                            decoration: InputDecoration.collapsed(
+                                              fillColor: colorWhite,
+                                              hintText: "ค้นหา",
+                                              hintStyle: textStyle(context,
+                                                  fontSize: 25.0,
+                                                  color: colorGrey,
+                                                  fontWeight: FontWeight.w400),
+                                              filled: true,
+
                                             ),
                                           ),
                                         ),
@@ -165,14 +117,14 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                 flex: 3,
                                 child: Container(
                                   alignment: Alignment.centerLeft,
-                                  height: 50,
+                                  height: 60,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text('ช่วงเวลา',
                                           style:
-                                              textStyle(context, fontSize: 13)),
+                                              textStyle(context, fontSize: 25)),
                                       Container(
                                         padding: EdgeInsets.only(
                                             left: screenWidth >= 900 ? 15 : 20,
@@ -219,9 +171,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                           FontWeight.bold,
                                                     ),
                                                     controlsTextStyle:
-                                                        const TextStyle(
+                                                         textStyle(context,
                                                       color: Colors.black,
-                                                      fontSize: 15,
+                                                      fontSize: 25,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                     ),
@@ -389,7 +341,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                         '${(contoller.listDate.value.isNotEmpty) ? (contoller.listDate.value.first == contoller.listDate.value.last) ? '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year}' : '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year} - ${contoller.listDate.value.last!.day} ${mountAbbreviation[contoller.listDate.value.last!.month - 1]} ${contoller.listDate.value.last!.year}' : ''}',
                                                         style: textStyle(
                                                             context,
-                                                            fontSize: 13))
+                                                            fontSize: 25))
                                                   ],
                                                 ),
                                               )),
@@ -406,14 +358,14 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                 flex: 2,
                                 child: Container(
                                   alignment: Alignment.centerLeft,
-                                  height: 50,
+                                  height: 60,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text('ระดับ',
                                           style:
-                                              textStyle(context, fontSize: 13)),
+                                              textStyle(context, fontSize: 25)),
                                       Container(
                                         padding: EdgeInsets.only(
                                             left: screenWidth >= 900 ? 0 : 5,
@@ -457,8 +409,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                   contoller.selectLevel!.value,
                                               hint: Text(
                                                 'เลือกทั้งหมด',
-                                                style: TextStyle(
-                                                    fontSize: 13.0,
+                                                style: textStyle(
+                                                  context,
+                                                    fontSize: 25.0,
                                                     color: colorGrey,
                                                     fontWeight:
                                                         FontWeight.w400),
@@ -470,8 +423,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                   value: value!,
                                                   child: Text(
                                                     value,
-                                                    style: TextStyle(
-                                                        fontSize: 13.0,
+                                                    style: textStyle(
+                                                      context,
+                                                        fontSize: 25.0,
                                                         color: colorGrey,
                                                         fontWeight:
                                                             FontWeight.w400),
@@ -485,6 +439,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                 size: 24,
                                               )),
                                               onChanged: (valueSelect) {
+                                                contoller.heatMapController = MapController().obs;
                                                 contoller.selectLevel!.value =
                                                     valueSelect!;
                                               },
@@ -504,14 +459,14 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   flex: 2,
                                   child: Container(
                                     alignment: Alignment.centerLeft,
-                                    height: 50,
+                                    height: 60,
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text('จังหวัด',
                                             style: textStyle(context,
-                                                fontSize: 13)),
+                                                fontSize: 25)),
                                         Container(
                                           padding: EdgeInsets.only(
                                               left: screenWidth >= 900 ? 0 : 5,
@@ -558,8 +513,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                     .selectProvince.value,
                                                 hint: Text(
                                                   'เลือกทั้งหมด',
-                                                  style: TextStyle(
-                                                      fontSize: 13.0,
+                                                  style: textStyle(context,
+                                                      fontSize: 25.0,
                                                       color: colorGrey,
                                                       fontWeight:
                                                           FontWeight.w400),
@@ -573,8 +528,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                     value: value!,
                                                     child: Text(
                                                       value.nameTh!,
-                                                      style: TextStyle(
-                                                          fontSize: 13.0,
+                                                      style: textStyle(
+                                                        context,
+                                                          fontSize: 25.0,
                                                           color: colorGrey,
                                                           fontWeight:
                                                               FontWeight.w400),
@@ -608,7 +564,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                 },
                                 child: Container(
                                   alignment: Alignment.center,
-                                  height: 40,
+                                  height: 45,
                                   width: 80,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15),
@@ -622,7 +578,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                       : Text(
                                           'ค้นหา',
                                           style: textStyle(context,
-                                              fontSize: 15,
+                                              fontSize: 25,
                                               fontWeight: FontWeight.bold,
                                               color: colorWhite),
                                         ),
@@ -645,17 +601,19 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                       flex: 2,
                                       child: Container(
                                         alignment: Alignment.centerLeft,
-                                        height: 50,
+                                        height: 60,
                                         child: Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
-                                            Text('ประเภท',
+                                            Text('ค้นหา',
                                                 style: textStyle(context,
-                                                    fontSize: 13)),
+                                                    fontSize: 25)),
                                             Container(
-                                              padding: const EdgeInsets.only(
-                                                  left: 20, right: 5),
+
+                                              padding: EdgeInsets.only(
+                                                  left: 5,
+                                                  right: 5),
                                               width: double.infinity,
                                               height: 30,
                                               decoration: BoxDecoration(
@@ -665,76 +623,21 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                     width: 1,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.circular(5)),
+                                                  BorderRadius.circular(5)),
                                               alignment: Alignment.center,
-                                              child: SizedBox(
-                                                width: double.infinity,
-                                                child:
-                                                    DropdownButtonHideUnderline(
-                                                  child:
-                                                      DropdownButton2<String>(
-                                                    dropdownStyleData:
-                                                        DropdownStyleData(
-                                                      maxHeight: 300,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5),
-                                                      ),
-                                                      scrollbarTheme:
-                                                          ScrollbarThemeData(
-                                                        radius: const Radius
-                                                            .circular(5),
-                                                        thickness:
-                                                            MaterialStateProperty
-                                                                .all<double>(6),
-                                                        thumbVisibility:
-                                                            MaterialStateProperty
-                                                                .all<bool>(
-                                                                    true),
-                                                      ),
-                                                    ),
-                                                    autofocus: true,
-                                                    value: contoller
-                                                        .selectCategory!.value,
-                                                    hint: Text(
-                                                      'เลือกทั้งหมด',
-                                                      style: TextStyle(
-                                                          fontSize: 13.0,
-                                                          color: colorGrey,
-                                                          fontWeight:
-                                                              FontWeight.w400),
-                                                    ),
-                                                    items: contoller.category
-                                                        .map<
-                                                                DropdownMenuItem<
-                                                                    String>>(
-                                                            (String? value) {
-                                                      return DropdownMenuItem<
-                                                          String>(
-                                                        value: value!,
-                                                        child: Text(
-                                                          value,
-                                                          style: TextStyle(
-                                                              fontSize: 13.0,
-                                                              color: colorGrey,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400),
-                                                        ),
-                                                      );
-                                                    }).toList(),
-                                                    iconStyleData:
-                                                        const IconStyleData(
-                                                            icon: Icon(
-                                                      Icons.keyboard_arrow_down,
-                                                      size: 24,
-                                                    )),
-                                                    onChanged: (valueSelect) {
-                                                      contoller.selectCategory!
-                                                          .value = valueSelect!;
-                                                    },
-                                                  ),
+                                              child:TextFormField(
+                                                controller: contoller.searchEven.value,
+                                                autofocus: false,
+                                                decoration: InputDecoration.collapsed(
+                                                  fillColor: colorWhite,
+                                                  hintText: "ค้นหา",
+                                                  hintStyle: textStyle(
+                                                    context,
+                                                      fontSize: 25.0,
+                                                      color: colorGrey,
+                                                      fontWeight: FontWeight.w400),
+                                                  filled: true,
+
                                                 ),
                                               ),
                                             ),
@@ -750,14 +653,14 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                     flex: 3,
                                     child: Container(
                                       alignment: Alignment.centerLeft,
-                                      height: 50,
+                                      height: 60,
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text('ช่วงเวลา',
                                               style: textStyle(context,
-                                                  fontSize: 13)),
+                                                  fontSize: 25)),
                                           Container(
                                             padding: const EdgeInsets.only(
                                                 left: 20, right: 5),
@@ -804,9 +707,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                               FontWeight.bold,
                                                         ),
                                                         controlsTextStyle:
-                                                            const TextStyle(
+                                                             textStyle(context,
                                                           color: Colors.black,
-                                                          fontSize: 15,
+                                                          fontSize: 25,
                                                           fontWeight:
                                                               FontWeight.bold,
                                                         ),
@@ -980,7 +883,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                             '${(contoller.listDate.value.isNotEmpty) ? (contoller.listDate.value.first == contoller.listDate.value.last) ? '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year}' : '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year} - ${contoller.listDate.value.last!.day} ${mountAbbreviation[contoller.listDate.value.last!.month - 1]} ${contoller.listDate.value.last!.year}' : ''}',
                                                             style: textStyle(
                                                                 context,
-                                                                fontSize: 13))
+                                                                fontSize: 25))
                                                       ],
                                                     ),
                                                   )),
@@ -1004,7 +907,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   //       children: [
                                   //         Text('ระดับ',
                                   //             style: textStyle(context,
-                                  //                 fontSize: 13)),
+                                  //                 fontSize: 20)),
                                   //         Container(
                                   //           padding: const EdgeInsets.only(
                                   //               left: 20, right: 5),
@@ -1051,7 +954,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   //                 hint: Text(
                                   //                   'เลือกทั้งหมด',
                                   //                   style: TextStyle(
-                                  //                       fontSize: 13.0,
+                                  //                       fontSize: 20.0,
                                   //                       color: colorGrey,
                                   //                       fontWeight:
                                   //                           FontWeight.w400),
@@ -1066,7 +969,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   //                     child: Text(
                                   //                       value,
                                   //                       style: TextStyle(
-                                  //                           fontSize: 13.0,
+                                  //                           fontSize: 20.0,
                                   //                           color: colorGrey,
                                   //                           fontWeight:
                                   //                               FontWeight
@@ -1107,7 +1010,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   //         children: [
                                   //           Text('จังหวัด',
                                   //               style: textStyle(context,
-                                  //                   fontSize: 13)),
+                                  //                   fontSize: 20)),
                                   //           Container(
                                   //             padding: const EdgeInsets.only(
                                   //                 left: 20, right: 5),
@@ -1155,7 +1058,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   //                   hint: Text(
                                   //                     'เลือกทั้งหมด',
                                   //                     style: TextStyle(
-                                  //                         fontSize: 13.0,
+                                  //                         fontSize: 20.0,
                                   //                         color: colorGrey,
                                   //                         fontWeight:
                                   //                             FontWeight.w400),
@@ -1170,7 +1073,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   //                       child: Text(
                                   //                         value.nameTh!,
                                   //                         style: TextStyle(
-                                  //                             fontSize: 13.0,
+                                  //                             fontSize: 20.0,
                                   //                             color: colorGrey,
                                   //                             fontWeight:
                                   //                                 FontWeight
@@ -1222,7 +1125,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   //         : Text(
                                   //             'ค้นหา',
                                   //             style: textStyle(context,
-                                  //                 fontSize: 15,
+                                  //                 fontSize: 20,
                                   //                 fontWeight: FontWeight.bold,
                                   //                 color: colorWhite),
                                   //           ),
@@ -1242,14 +1145,14 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                     flex: 2,
                                     child: Container(
                                       alignment: Alignment.centerLeft,
-                                      height: 50,
+                                      height: 60,
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text('ระดับ',
                                               style: textStyle(context,
-                                                  fontSize: 13)),
+                                                  fontSize: 25)),
                                           Container(
                                             padding: const EdgeInsets.only(
                                                 left: 20, right: 5),
@@ -1295,8 +1198,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                       .selectLevel!.value,
                                                   hint: Text(
                                                     'เลือกทั้งหมด',
-                                                    style: TextStyle(
-                                                        fontSize: 13.0,
+                                                    style: textStyle(context,
+                                                        fontSize: 25.0,
                                                         color: colorGrey,
                                                         fontWeight:
                                                             FontWeight.w400),
@@ -1310,8 +1213,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                       value: value!,
                                                       child: Text(
                                                         value,
-                                                        style: TextStyle(
-                                                            fontSize: 13.0,
+                                                        style: textStyle(context,
+                                                            fontSize: 25.0,
                                                             color: colorGrey,
                                                             fontWeight:
                                                                 FontWeight
@@ -1326,6 +1229,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                     size: 24,
                                                   )),
                                                   onChanged: (valueSelect) {
+                                                    contoller.heatMapController = MapController().obs;
                                                     contoller.selectLevel!
                                                         .value = valueSelect!;
                                                   },
@@ -1345,14 +1249,14 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                       flex: 2,
                                       child: Container(
                                         alignment: Alignment.centerLeft,
-                                        height: 50,
+                                        height: 60,
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text('จังหวัด',
                                                 style: textStyle(context,
-                                                    fontSize: 13)),
+                                                    fontSize: 25)),
                                             Container(
                                               padding: EdgeInsets.only(
                                                   left: screenWidth <= 515
@@ -1402,8 +1306,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                         .selectProvince.value,
                                                     hint: Text(
                                                       'เลือกทั้งหมด',
-                                                      style: TextStyle(
-                                                          fontSize: 13.0,
+                                                      style: textStyle(
+                                                        context,
+                                                          fontSize: 25.0,
                                                           color: colorGrey,
                                                           fontWeight:
                                                               FontWeight.w400),
@@ -1417,8 +1322,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                         value: value!,
                                                         child: Text(
                                                           value.nameTh!,
-                                                          style: TextStyle(
-                                                              fontSize: 13.0,
+                                                          style: textStyle(
+                                                            context,
+                                                              fontSize: 25.0,
                                                               color: colorGrey,
                                                               fontWeight:
                                                                   FontWeight
@@ -1453,7 +1359,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                     },
                                     child: Container(
                                       alignment: Alignment.center,
-                                      height: 40,
+                                      height: 45,
                                       width: 80,
                                       decoration: BoxDecoration(
                                           borderRadius:
@@ -1470,7 +1376,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                           : Text(
                                               'ค้นหา',
                                               style: textStyle(context,
-                                                  fontSize: 15,
+                                                  fontSize: 25,
                                                   fontWeight: FontWeight.bold,
                                                   color: colorWhite),
                                             ),
@@ -1488,7 +1394,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    // Text(contoller.data[1][0],style: textStyle(context,fontSize: 15,fontWeight: FontWeight.bold,color: colorBlack),),
+                    // Text(contoller.data[1][0],style: textStyle(context,fontSize: 20,fontWeight: FontWeight.bold,color: colorBlack),),
                     Container(
                       alignment: Alignment.centerLeft,
                       padding: const EdgeInsets.only(top: 15, bottom: 15),
@@ -1508,13 +1414,13 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   children: [
                                     Text('ทั้งหมด',
                                         style: textStyle(context,
-                                            fontSize: 13, color: colorBlack)),
+                                            fontSize: 25, color: colorBlack)),
                                     const SizedBox(
                                       height: 3,
                                     ),
                                     Text('${contoller.total.value}',
                                         style: textStyle(context,
-                                            fontSize: 20,
+                                            fontSize: 25,
                                             fontWeight: FontWeight.bold,
                                             color: colorBlack)),
                                   ],
@@ -1534,13 +1440,13 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   children: [
                                     Text('รอรับเรื่อง',
                                         style: textStyle(context,
-                                            fontSize: 13, color: colorBlack)),
+                                            fontSize: 25, color: colorBlack)),
                                     const SizedBox(
                                       height: 3,
                                     ),
                                     Text('${contoller.waiting.value}',
                                         style: textStyle(context,
-                                            fontSize: 20,
+                                            fontSize: 25,
                                             fontWeight: FontWeight.bold,
                                             color: colorAmber)),
                                   ],
@@ -1560,13 +1466,13 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   children: [
                                     Text('กำลังดำเนินการ',
                                         style: textStyle(context,
-                                            fontSize: 13, color: colorBlack)),
+                                            fontSize: 25, color: colorBlack)),
                                     const SizedBox(
                                       height: 3,
                                     ),
                                     Text('${contoller.progress.value}',
                                         style: textStyle(context,
-                                            fontSize: 20,
+                                            fontSize: 25,
                                             fontWeight: FontWeight.bold,
                                             color: colorRed)),
                                   ],
@@ -1585,13 +1491,13 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                 children: [
                                   Text('เสร็จสิ้น',
                                       style: textStyle(context,
-                                          fontSize: 13, color: colorBlack)),
+                                          fontSize: 25, color: colorBlack)),
                                   const SizedBox(
                                     height: 3,
                                   ),
                                   Text('${contoller.success.value}',
                                       style: textStyle(context,
-                                          fontSize: 20,
+                                          fontSize: 25,
                                           fontWeight: FontWeight.bold,
                                           color: colorGreen)),
                                 ],
@@ -1657,8 +1563,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                             child: Icon(Icons.search)),
                                         fillColor: colorWhite,
                                         hintText: "ค้นหา",
-                                        hintStyle: TextStyle(
-                                            fontSize: 13.0,
+                                        hintStyle: textStyle(context,
+                                            fontSize: 25.0,
                                             color: colorGrey,
                                             fontWeight: FontWeight.w400),
                                         filled: true,
@@ -1730,7 +1636,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                               children: [
                                 Text('อัคคีภัย',
                                     style: textStyle(context,
-                                        fontSize: 13,
+                                        fontSize: 25,
                                         color: (contoller.IndexChart.value == 0)
                                             ? colorAmber
                                             : colorBlack)),
@@ -1753,7 +1659,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                               children: [
                                 Text('อุทกภัย',
                                     style: textStyle(context,
-                                        fontSize: 13,
+                                        fontSize: 25,
                                         color: (contoller.IndexChart.value == 1)
                                             ? colorAmber
                                             : colorBlack)),
@@ -1776,7 +1682,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                               children: [
                                 Text('วาตภัย',
                                     style: textStyle(context,
-                                        fontSize: 13,
+                                        fontSize: 25,
                                         color: (contoller.IndexChart.value == 2)
                                             ? colorAmber
                                             : colorBlack)),
@@ -1799,7 +1705,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                               children: [
                                 Text('ไฟป่า',
                                     style: textStyle(context,
-                                        fontSize: 13,
+                                        fontSize: 25,
                                         color: (contoller.IndexChart.value == 3)
                                             ? colorAmber
                                             : colorBlack)),
@@ -1834,7 +1740,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                 ),
                                 Text('แกนY',
                                     style: textStyle(context,
-                                        fontSize: 13, color: colorBlack)),
+                                        fontSize: 25, color: colorBlack)),
                                 const SizedBox(
                                   width: 10,
                                 ),
@@ -1875,8 +1781,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                         value: contoller.selectChartY.value,
                                         hint: Text(
                                           'จำนวนผู้บาดเจ็บ',
-                                          style: TextStyle(
-                                              fontSize: 13.0,
+                                          style: textStyle(
+                                            context,
+                                              fontSize: 25.0,
                                               color: colorGrey,
                                               fontWeight: FontWeight.w400),
                                         ),
@@ -1887,8 +1794,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                             value: value!,
                                             child: Text(
                                               value,
-                                              style: TextStyle(
-                                                  fontSize: 13.0,
+                                              style: textStyle(context,
+                                                  fontSize: 25.0,
                                                   color: colorGrey,
                                                   fontWeight: FontWeight.w400),
                                             ),
@@ -1919,7 +1826,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                 ),
                                 Text('แกนX',
                                     style: textStyle(context,
-                                        fontSize: 13, color: colorBlack)),
+                                        fontSize: 25, color: colorBlack)),
                                 const SizedBox(
                                   width: 10,
                                 ),
@@ -1960,8 +1867,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                         value: contoller.selectChartX.value,
                                         hint: Text(
                                           'เพศ',
-                                          style: TextStyle(
-                                              fontSize: 13.0,
+                                          style: textStyle(
+                                            context,
+                                              fontSize: 25.0,
                                               color: colorGrey,
                                               fontWeight: FontWeight.w400),
                                         ),
@@ -1972,8 +1880,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                             value: value!,
                                             child: Text(
                                               value,
-                                              style: TextStyle(
-                                                  fontSize: 13.0,
+                                              style: textStyle(
+                                                context,
+                                                  fontSize: 25.0,
                                                   color: colorGrey,
                                                   fontWeight: FontWeight.w400),
                                             ),
@@ -1997,8 +1906,31 @@ class _DashBoardPageState extends State<DashBoardPage> {
                             if (contoller.dashboard.value.fire != null)
                               contoller.chart(context)
                           ],
-                        ))
+                        )),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                  (contoller.selectLevel!.value == 'ประเทศ')?Container(
+                     color: Colors.blue,
+                     height: 450,
+                     child: Center(
+                         child: FlutterMap(
+                             mapController: contoller.heatMapController.value,
+                            options: const MapOptions(
+                               keepAlive: true,
+                               interactionOptions: InteractionOptions(
+                                   flags: InteractiveFlag.none
+                               ),
+                               initialCenter:
+                               LatLng(12.8700, 100.9925),
+                               initialZoom: 5.2,
+                               // maxZoom: 17,
+                               // minZoom: 10
+                             ),
+                             children: contoller.listHeatMapWidgetMark)),
+                   ):SizedBox(),
                   ],
+
                 ))),
       ],
     );

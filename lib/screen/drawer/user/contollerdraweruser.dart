@@ -64,19 +64,19 @@ if((pathSegments[pathSegments.length-2]=='detail')){
                 title: Text(
                   'ผิดพลาด',
                   style:
-                      textStyle(Get.context!, fontSize: 14, color: colorBlack),
+                      textStyle(Get.context!, fontSize: 15, color: colorBlack),
                 ),
                 content: Text(
                   'มีข้อผิดพลาดเกิดขึ้น กรุณาลองใหม่อีกครั้ง',
                   style:
-                      textStyle(Get.context!, fontSize: 14, color: colorBlack),
+                      textStyle(Get.context!, fontSize: 15, color: colorBlack),
                 ),
                 actions: <Widget>[
                   ElevatedButton(
                     child: Text(
                       'ตกลง',
                       style: textStyle(Get.context!,
-                          fontSize: 14, color: colorBlack),
+                          fontSize: 15, color: colorBlack),
                     ),
                     onPressed: () {
                       Get.back();
@@ -94,19 +94,19 @@ if((pathSegments[pathSegments.length-2]=='detail')){
                 title: Text(
                   'ผิดพลาด',
                   style:
-                      textStyle(Get.context!, fontSize: 14, color: colorBlack),
+                      textStyle(Get.context!, fontSize: 15, color: colorBlack),
                 ),
                 content: Text(
                   'ไม่พบ EventID',
                   style:
-                      textStyle(Get.context!, fontSize: 14, color: colorBlack),
+                      textStyle(Get.context!, fontSize: 15, color: colorBlack),
                 ),
                 actions: <Widget>[
                   ElevatedButton(
                     child: Text(
                       'ตกลง',
                       style: textStyle(Get.context!,
-                          fontSize: 14, color: colorBlack),
+                          fontSize: 15, color: colorBlack),
                     ),
                     onPressed: () {
                       Get.back();
@@ -121,18 +121,18 @@ if((pathSegments[pathSegments.length-2]=='detail')){
             AlertDialog(
               title: Text(
                 'คำเตือน',
-                style: textStyle(Get.context!, fontSize: 14, color: colorBlack),
+                style: textStyle(Get.context!, fontSize: 15, color: colorBlack),
               ),
               content: Text(
                 'ไม่พบ QR code',
-                style: textStyle(Get.context!, fontSize: 14, color: colorBlack),
+                style: textStyle(Get.context!, fontSize: 15, color: colorBlack),
               ),
               actions: <Widget>[
                 ElevatedButton(
                   child: Text(
                     'ตกลง',
                     style: textStyle(Get.context!,
-                        fontSize: 14, color: colorBlack),
+                        fontSize: 15, color: colorBlack),
                   ),
                   onPressed: () {
                     Get.back();

@@ -57,7 +57,7 @@ class Detail extends StatelessWidget {
                                     LandingPageControllerAdmin(),
                                     permanent: false);
 
-                            landingPageController.tabIndex.value = 6;
+                            landingPageController.tabIndex.value = 2;
                             await contollerEdite
                                 .editEvent(contoller.dataEvent.value);
                             // landingPageController.tabIndex.value = 6;
@@ -81,7 +81,7 @@ class Detail extends StatelessWidget {
                                 Text(
                                   'แก้ไขรายงาน',
                                   style: textStyle(context,
-                                      fontSize: 13, color: Colors.white),
+                                      fontSize: 15, color: Colors.white),
                                 ),
                               ],
                             ),
@@ -97,12 +97,13 @@ class Detail extends StatelessWidget {
                         children: [
                           Row(
                             children: [
+
                               Expanded(
                                   child: Container(
                                 child: Text(
-                                  'ประเภทภัยพิบัติ',
+                                  'ชื่อรายการ',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               )),
                               const SizedBox(
@@ -110,12 +111,8 @@ class Detail extends StatelessWidget {
                               ),
                               Expanded(
                                   child: Container(
-                                child: Text(
-                                  'ชื่อรายการ',
-                                  style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
-                                ),
-                              ))
+                                  )),
+
                             ],
                           ),
                           const SizedBox(
@@ -123,20 +120,8 @@ class Detail extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              Expanded(
-                                  child: Container(
-                                child: Text(
-                                  (contoller.dataEvent.value.events == null)
-                                      ? ''
-                                      : contoller.category[contoller.dataEvent
-                                          .value.events!.disasterType!],
-                                  style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
-                                ),
-                              )),
-                              const SizedBox(
-                                width: 20,
-                              ),
+
+
                               Expanded(
                                   child: Container(
                                 child: Text(
@@ -145,9 +130,23 @@ class Detail extends StatelessWidget {
                                       : contoller
                                           .dataEvent.value.events!.eventName!,
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              Expanded(
+                                  child: Container(
+                                    // child: Text(
+                                    //   (contoller.dataEvent.value.events == null)
+                                    //       ? ''
+                                    //       : contoller.category[contoller.dataEvent
+                                    //       .value.events!.disasterType!],
+                                    //   style: textStyle(context,
+                                    //       fontSize: 15, color: colorGrey),
+                                    // ),
+                                  )),
                             ],
                           ),
                           const SizedBox(
@@ -160,7 +159,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   'วันที่รับเรื่อง',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               )),
                               const SizedBox(
@@ -171,7 +170,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   'รับเรื่องจาก',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               ))
                             ],
@@ -188,7 +187,7 @@ class Detail extends StatelessWidget {
                                       ? ''
                                       : '${DateTime.parse(contoller.dataEvent.value.events!.datetime!).day} ${mountList[DateTime.parse(contoller.dataEvent.value.events!.datetime!).month - 1]} ${DateTime.parse(contoller.dataEvent.value.events!.datetime!).year + 543}',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
                               const SizedBox(
@@ -202,7 +201,7 @@ class Detail extends StatelessWidget {
                                       : contoller
                                           .dataEvent.value.events!.receiveFrom!,
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
                             ],
@@ -217,7 +216,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   'หน่วยงานที่เกียวข้อง',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               )),
                               const SizedBox(
@@ -228,7 +227,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   'สถานะหน่วยงานที่เกี่ยวข้อง',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               ))
                             ],
@@ -246,7 +245,7 @@ class Detail extends StatelessWidget {
                                       : contoller.dataEvent.value.events!
                                           .relatedAgency!,
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
                               const SizedBox(
@@ -260,7 +259,7 @@ class Detail extends StatelessWidget {
                                       : contoller.StatusList[contoller.dataEvent
                                           .value.events!.statusRelatedAgency!],
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
                             ],
@@ -275,7 +274,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   'หน่วยงานที่รับผิดชอบ',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               )),
                               const SizedBox(
@@ -286,7 +285,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   'สถานะหน่วยงานที่รับผิดชอบ',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               ))
                             ],
@@ -305,7 +304,7 @@ class Detail extends StatelessWidget {
                                               .responsibleAgency ??
                                           '',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
                               const SizedBox(
@@ -319,7 +318,7 @@ class Detail extends StatelessWidget {
                                       : contoller.StatusList[contoller.dataEvent
                                           .value.events!.statusAgency!],
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
                             ],
@@ -327,107 +326,107 @@ class Detail extends StatelessWidget {
                           const SizedBox(
                             height: 30,
                           ),
-                          Row(
-                            children: [
-                              Expanded(
-                                  child: Container(
-                                child: Text(
-                                  'ผู้ประสบภัย',
-                                  style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
-                                ),
-                              )),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                              Expanded(
-                                  child: Container(
-                                child: Text(
-                                  'ระดับความรุนแรง',
-                                  style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
-                                ),
-                              ))
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            children: [
-                              Expanded(
-                                  child: Container(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(
-                                      (contoller.dataEvent.value.events == null)
-                                          ? ''
-                                          : 'ผู้เสียชีวิต ${contoller.dataEvent.value.events!.deceased!.total!} ราย เพศชาย ${contoller.dataEvent.value.events!.deceased!.male!} คน เพศหญิง ${contoller.dataEvent.value.events!.deceased!.feMale!} คน ไม่สามารถระบุเพศได้ ${contoller.dataEvent.value.events!.deceased!.unidentify!} คน',
-                                      style: textStyle(context,
-                                          fontSize: 13, color: colorGrey),
-                                    ),
-                                    Text(
-                                      (contoller.dataEvent.value.events == null)
-                                          ? ''
-                                          : 'ผู้บาดเจ็บ ${contoller.dataEvent.value.events!.injured!.total!} ราย เพศชาย ${contoller.dataEvent.value.events!.injured!.male!} คน เพศหญิง ${contoller.dataEvent.value.events!.injured!.feMale!} คน ไม่สามารถระบุเพศได้ ${contoller.dataEvent.value.events!.injured!.unidentify!} คน',
-                                      style: textStyle(context,
-                                          fontSize: 13, color: colorGrey),
-                                    ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        contoller.dialogListName(context);
-                                      },
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        height: 40,
-                                        width: 80,
-                                        decoration: BoxDecoration(
-                                            border:
-                                                Border.all(color: colorGrey),
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            color: colorWhite),
-                                        child: Text(
-                                          'ดูรายชื่อ',
-                                          style: textStyle(context,
-                                              fontSize: 13, color: colorBlue),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              )),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                              Expanded(
-                                  child: Container(
-                                child: Text(
-                                  (contoller.dataEvent.value.events == null)
-                                      ? ''
-                                      : (contoller.dataEvent.value.events!
-                                                  .violence ==
-                                              1)
-                                          ? 'เล็กน้อย'
-                                          : (contoller.dataEvent.value.events!
-                                                      .violence ==
-                                                  2)
-                                              ? 'ปานกลาง'
-                                              : 'รุนแรง',
-                                  style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
-                                ),
-                              )),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
+                          // Row(
+                          //   children: [
+                          //     Expanded(
+                          //         child: Container(
+                          //       child: Text(
+                          //         'ผู้ประสบภัย',
+                          //         style: textStyle(context,
+                          //             fontSize: 15, color: colorBlack),
+                          //       ),
+                          //     )),
+                          //     const SizedBox(
+                          //       width: 20,
+                          //     ),
+                          //     Expanded(
+                          //         child: Container(
+                          //       child: Text(
+                          //         'ระดับความรุนแรง',
+                          //         style: textStyle(context,
+                          //             fontSize: 15, color: colorBlack),
+                          //       ),
+                          //     ))
+                          //   ],
+                          // ),
+                          // const SizedBox(
+                          //   height: 10,
+                          // ),
+                          // Row(
+                          //   children: [
+                          //     Expanded(
+                          //         child: Container(
+                          //       child: Column(
+                          //         crossAxisAlignment: CrossAxisAlignment.start,
+                          //         mainAxisSize: MainAxisSize.min,
+                          //         children: [
+                          //           Text(
+                          //             (contoller.dataEvent.value.events == null)
+                          //                 ? ''
+                          //                 : 'ผู้เสียชีวิต ${contoller.dataEvent.value.events!.deceased!.total!} ราย เพศชาย ${contoller.dataEvent.value.events!.deceased!.male!} คน เพศหญิง ${contoller.dataEvent.value.events!.deceased!.feMale!} คน ไม่สามารถระบุเพศได้ ${contoller.dataEvent.value.events!.deceased!.unidentify!} คน',
+                          //             style: textStyle(context,
+                          //                 fontSize: 15, color: colorGrey),
+                          //           ),
+                          //           Text(
+                          //             (contoller.dataEvent.value.events == null)
+                          //                 ? ''
+                          //                 : 'ผู้บาดเจ็บ ${contoller.dataEvent.value.events!.injured!.total!} ราย เพศชาย ${contoller.dataEvent.value.events!.injured!.male!} คน เพศหญิง ${contoller.dataEvent.value.events!.injured!.feMale!} คน ไม่สามารถระบุเพศได้ ${contoller.dataEvent.value.events!.injured!.unidentify!} คน',
+                          //             style: textStyle(context,
+                          //                 fontSize: 15, color: colorGrey),
+                          //           ),
+                          //           SizedBox(
+                          //             height: 5,
+                          //           ),
+                          //           InkWell(
+                          //             onTap: () {
+                          //               contoller.dialogListName(context);
+                          //             },
+                          //             child: Container(
+                          //               alignment: Alignment.center,
+                          //               height: 40,
+                          //               width: 80,
+                          //               decoration: BoxDecoration(
+                          //                   border:
+                          //                       Border.all(color: colorGrey),
+                          //                   borderRadius:
+                          //                       BorderRadius.circular(5),
+                          //                   color: colorWhite),
+                          //               child: Text(
+                          //                 'ดูรายชื่อ',
+                          //                 style: textStyle(context,
+                          //                     fontSize: 15, color: colorBlue),
+                          //               ),
+                          //             ),
+                          //           )
+                          //         ],
+                          //       ),
+                          //     )),
+                          //     const SizedBox(
+                          //       width: 20,
+                          //     ),
+                          //     Expanded(
+                          //         child: Container(
+                          //       child: Text(
+                          //         (contoller.dataEvent.value.events == null)
+                          //             ? ''
+                          //             : (contoller.dataEvent.value.events!
+                          //                         .violence ==
+                          //                     1)
+                          //                 ? 'เล็กน้อย'
+                          //                 : (contoller.dataEvent.value.events!
+                          //                             .violence ==
+                          //                         2)
+                          //                     ? 'ปานกลาง'
+                          //                     : 'รุนแรง',
+                          //         style: textStyle(context,
+                          //             fontSize: 15, color: colorGrey),
+                          //       ),
+                          //     )),
+                          //   ],
+                          // ),
+                          // const SizedBox(
+                          //   height: 30,
+                          // ),
                           Row(
                             children: [
                               Expanded(
@@ -435,7 +434,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   'สถานะรายงาน',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               )),
                               const SizedBox(
@@ -457,7 +456,7 @@ class Detail extends StatelessWidget {
                                       : contoller.StatusList[contoller
                                           .dataEvent.value.events!.statusItem!],
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
                               const SizedBox(
@@ -466,10 +465,12 @@ class Detail extends StatelessWidget {
                               Expanded(child: Container()),
                             ],
                           ),
-                          const SizedBox(
+                         if(contoller.dataEvent.value.events == null) if(contoller.dataEvent.value.events!
+                              .freeFormDetailList!.isNotEmpty)   const SizedBox(
                             width: 40,
                           ),
-                         Container(
+                          if(contoller.dataEvent.value.events == null)  if(contoller.dataEvent.value.events!
+                            .freeFormDetailList!.isNotEmpty) Container(
                             padding: EdgeInsets.all(20),
                             child: ListView.builder(
                               physics: const NeverScrollableScrollPhysics(),
@@ -665,7 +666,7 @@ class Detail extends StatelessWidget {
                                                     children: [
                                                       Icon(Icons.check_box_outline_blank,size: 20,),
                                                       SizedBox(width: 20,),
-                                                      Text( contoller.dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![indexCheck].optionName??'cfdf',style: TextStyle(fontSize: 13,color: Colors.grey),),
+                                                      Text( contoller.dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![indexCheck].optionName??'cfdf',style: TextStyle(fontSize: 15,color: Colors.grey),),
                                                     ],
                                                   ));
                                             },
@@ -694,7 +695,7 @@ class Detail extends StatelessWidget {
                                                     children: [
                                                       Icon(Icons.radio_button_off,size: 20,),
                                                       SizedBox(width: 20,),
-                                                      Text( contoller.dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![indexCheck].optionName??'cfdf',style: TextStyle(fontSize: 13,color: Colors.grey),),
+                                                      Text( contoller.dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![indexCheck].optionName??'cfdf',style: TextStyle(fontSize: 15,color: Colors.grey),),
                                                     ],
                                                   ));
 
@@ -773,10 +774,12 @@ class Detail extends StatelessWidget {
                               },
                             ),
                           ),
-                          const SizedBox(
+                          if(contoller.dataEvent.value.events == null)if(contoller.dataEvent.value.events!
+                              .freeFormDetailList!.isNotEmpty)const SizedBox(
                             height: 40,
                           ),
-                          ListView.builder(
+                          if(contoller.dataEvent.value.events == null) if(contoller.dataEvent.value.events!
+                             .freeFormDetailList!.isNotEmpty) ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: contoller.dataEvent.value.events!
@@ -968,7 +971,7 @@ class Detail extends StatelessWidget {
                                                         '',
                                                     style: textStyle(
                                                         context,
-                                                        fontSize: 13,
+                                                        fontSize: 15,
                                                         color:
                                                         colorBlack)),
                                                 SizedBox(
@@ -1076,7 +1079,7 @@ class Detail extends StatelessWidget {
                                                             '',
                                                         style: textStyle(
                                                             context,
-                                                            fontSize: 13,
+                                                            fontSize: 15,
                                                             color:
                                                             colorBlack,
                                                             fontWeight:
@@ -1105,7 +1108,7 @@ class Detail extends StatelessWidget {
                                                         '',
                                                     style: textStyle(
                                                         context,
-                                                        fontSize: 13,
+                                                        fontSize: 15,
                                                         color:
                                                         colorBlack)),
                                                 SizedBox(
@@ -1187,86 +1190,24 @@ class Detail extends StatelessWidget {
                                                   );
                                                   //
                                                 },
-                                                child: (contoller
-                                                                .dataEvent
-                                                                .value
-                                                                .events!
-                                                                .disasterType ==
-                                                            0 &&
-                                                        contoller
-                                                                .dataEvent
-                                                                .value
-                                                                .events!
-                                                                .statusItem ==
-                                                            0)
-                                                    ? SvgPicture.asset(
-                                                        'assets/icons/svg/fire0.svg',
-                                                      )
-                                                    : (contoller
-                                                                    .dataEvent
-                                                                    .value
-                                                                    .events!
-                                                                    .disasterType ==
-                                                                0 &&
-                                                            contoller
-                                                                    .dataEvent
-                                                                    .value
-                                                                    .events!
-                                                                    .statusItem ==
-                                                                1)
-                                                        ? SvgPicture.asset(
-                                                            'assets/icons/svg/fire1.svg',
-                                                          )
-                                                        : (contoller
-                                                                        .dataEvent
-                                                                        .value
-                                                                        .events!
-                                                                        .disasterType ==
-                                                                    0 &&
-                                                                contoller
-                                                                        .dataEvent
-                                                                        .value
-                                                                        .events!
-                                                                        .statusItem ==
-                                                                    2)
-                                                            ? SvgPicture.asset(
-                                                                'assets/icons/svg/fire2.svg',
-                                                              )
-                                                            : (contoller.dataEvent.value.events!.disasterType == 1 && contoller.dataEvent.value.events!.statusItem == 0)
-                                                                ? SvgPicture.asset(
-                                                                    'assets/icons/svg/flood0.svg',
-                                                                  )
-                                                                : (contoller.dataEvent.value.events!.disasterType == 1 && contoller.dataEvent.value.events!.statusItem == 1)
-                                                                    ? SvgPicture.asset(
-                                                                        'assets/icons/svg/flood1.svg',
-                                                                      )
-                                                                    : (contoller.dataEvent.value.events!.disasterType == 1 && contoller.dataEvent.value.events!.statusItem == 2)
-                                                                        ? SvgPicture.asset(
-                                                                            'assets/icons/svg/flood2.svg',
-                                                                          )
-                                                                        : (contoller.dataEvent.value.events!.disasterType == 2 && contoller.dataEvent.value.events!.statusItem == 0)
-                                                                            ? SvgPicture.asset(
-                                                                                'assets/icons/svg/windstorm0.svg',
-                                                                              )
-                                                                            : (contoller.dataEvent.value.events!.disasterType == 2 && contoller.dataEvent.value.events!.statusItem == 1)
-                                                                                ? SvgPicture.asset(
-                                                                                    'assets/icons/svg/windstorm1.svg',
-                                                                                  )
-                                                                                : (contoller.dataEvent.value.events!.disasterType == 2 && contoller.dataEvent.value.events!.statusItem == 2)
-                                                                                    ? SvgPicture.asset(
-                                                                                        'assets/icons/svg/windstorm2.svg',
-                                                                                      )
-                                                                                    : (contoller.dataEvent.value.events!.disasterType == 3 && contoller.dataEvent.value.events!.statusItem == 0)
-                                                                                        ? SvgPicture.asset(
-                                                                                            'assets/icons/svg/forestfire0.svg',
-                                                                                          )
-                                                                                        : (contoller.dataEvent.value.events!.disasterType == 3 && contoller.dataEvent.value.events!.statusItem == 1)
-                                                                                            ? SvgPicture.asset(
-                                                                                                'assets/icons/svg/forestfire1.svg',
-                                                                                              )
-                                                                                            : SvgPicture.asset(
-                                                                                                'assets/icons/svg/forestfire2.svg',
-                                                                                              ),
+                                                child: Stack(
+                                                  children: [
+                                                    Center(
+                                                      child: SvgPicture.asset(
+                                                        'assets/icons/svg/fire0.svg',color:(contoller.dataEvent.value.events!.statusItem==0)?Colors.amber:(contoller.dataEvent.value.events!.statusItem==1)?Colors.red:Colors.green,
+                                                        width: 80,height: 80,
+                                                      ),
+                                                    ),
+                                                    Positioned(
+                                                        top:15,
+                                                        left: 25,
+                                                        child:  SvgPicture.asset(
+                                                          listIconType[contoller.dataEvent.value.events!.iconMap??0],
+                                                          width: 30,height: 30,
+                                                        ))
+
+                                                  ],
+                                                )
                                               )),
                                         ],
                                       )
@@ -1306,7 +1247,7 @@ class Detail extends StatelessWidget {
                                               fillColor: colorWhite,
                                               hintText: "ค้นหา",
                                               hintStyle: TextStyle(
-                                                  fontSize: 13.0,
+                                                  fontSize: 15.0,
                                                   color: colorGrey,
                                                   fontWeight: FontWeight.w400),
                                               filled: true,
@@ -1376,7 +1317,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   'ที่อยู่',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               )),
                             ],
@@ -1395,7 +1336,7 @@ class Detail extends StatelessWidget {
                                               .address ??
                                           '',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
                             ],
@@ -1413,7 +1354,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   'ละติจูด',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               )),
                               const SizedBox(
@@ -1424,7 +1365,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   'ลองติจูด',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               ))
                             ],
@@ -1442,7 +1383,7 @@ class Detail extends StatelessWidget {
                                       : contoller
                                           .dataEvent.value.events!.latitude!,
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
                               const SizedBox(
@@ -1456,7 +1397,7 @@ class Detail extends StatelessWidget {
                                       : contoller
                                           .dataEvent.value.events!.longitude!,
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
                             ],
@@ -1471,7 +1412,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   'รูปที่อัพโหลด',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               )),
                               const SizedBox(
@@ -1524,7 +1465,7 @@ class Detail extends StatelessWidget {
                                     child: Text(
                                       'รายละเอียดเพิ่มเติม',
                                       style: textStyle(context,
-                                          fontSize: 13, color: colorBlack),
+                                          fontSize: 15, color: colorBlack),
                                     ),
                                   )),
                                   const SizedBox(
@@ -1545,7 +1486,7 @@ class Detail extends StatelessWidget {
                                       ? ''
                                       : contoller.dataEvent.value.events!.note!,
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
                             ],
@@ -1566,7 +1507,7 @@ class Detail extends StatelessWidget {
                                     children: [
                                       Text('อัพเดทสถานการณ์รายงาน',
                                           style: textStyle(context,
-                                              fontSize: 13,
+                                              fontSize: 15,
                                               color:
                                                   (contoller.IndexChart.value ==
                                                           0)
@@ -1591,7 +1532,7 @@ class Detail extends StatelessWidget {
                                     children: [
                                       Text('แผนภูมิแท่ง',
                                           style: textStyle(context,
-                                              fontSize: 13,
+                                              fontSize: 15,
                                               color:
                                                   (contoller.IndexChart.value ==
                                                           1)
@@ -1630,7 +1571,7 @@ class Detail extends StatelessWidget {
                                               children: [
                                                 Text('ลำดับที่ ${index + 1}',
                                                     style: textStyle(context,
-                                                        fontSize: 13,
+                                                        fontSize: 15,
                                                         color: colorBlack)),
                                                 SizedBox(
                                                   width: 13,
@@ -1644,7 +1585,7 @@ class Detail extends StatelessWidget {
                                                             .name ??
                                                         '',
                                                     style: textStyle(context,
-                                                        fontSize: 13,
+                                                        fontSize: 15,
                                                         color: colorBlack,
                                                         fontWeight:
                                                             FontWeight.bold)),
@@ -1660,13 +1601,13 @@ class Detail extends StatelessWidget {
                                                             .userName ??
                                                         '',
                                                     style: textStyle(context,
-                                                        fontSize: 13,
+                                                        fontSize: 15,
                                                         color: colorBlack)),
                                                 Spacer(),
                                                 Text(
                                                     "${contoller.dataEvent.value.events!.logList![index].datetime!.split("T")[0]} ${contoller.dataEvent.value.events!.logList![index].datetime!.split("T")[1]}",
                                                     style: textStyle(context,
-                                                        fontSize: 13,
+                                                        fontSize: 15,
                                                         color: colorBlack)),
                                                 SizedBox(
                                                   width: 13,
@@ -1690,7 +1631,7 @@ class Detail extends StatelessWidget {
                                                     .join(" , ")
                                                     .toString(),
                                                 style: textStyle(context,
-                                                    fontSize: 13,
+                                                    fontSize: 15,
                                                     color: colorBlack)),
                                             SizedBox(
                                               width: 13,
@@ -1710,7 +1651,7 @@ class Detail extends StatelessWidget {
                                                         .reportDetail ??
                                                     '',
                                                 style: textStyle(context,
-                                                    fontSize: 13,
+                                                    fontSize: 15,
                                                     color: colorBlack)),
                                             SizedBox(
                                               width: 13,
@@ -1896,7 +1837,7 @@ class Detail extends StatelessWidget {
                                         ),
                                         Text('แกนY',
                                             style: textStyle(context,
-                                                fontSize: 13,
+                                                fontSize: 15,
                                                 color: colorBlack)),
                                         const SizedBox(
                                           width: 10,
@@ -1947,7 +1888,7 @@ class Detail extends StatelessWidget {
                                                 hint: Text(
                                                   'จำนวนผู้บาดเจ็บ',
                                                   style: TextStyle(
-                                                      fontSize: 13.0,
+                                                      fontSize: 15.0,
                                                       color: colorGrey,
                                                       fontWeight:
                                                           FontWeight.w400),
@@ -1962,7 +1903,7 @@ class Detail extends StatelessWidget {
                                                     child: Text(
                                                       value,
                                                       style: TextStyle(
-                                                          fontSize: 13.0,
+                                                          fontSize: 15.0,
                                                           color: colorGrey,
                                                           fontWeight:
                                                               FontWeight.w400),
@@ -1995,7 +1936,7 @@ class Detail extends StatelessWidget {
                                         ),
                                         Text('แกนX',
                                             style: textStyle(context,
-                                                fontSize: 13,
+                                                fontSize: 15,
                                                 color: colorBlack)),
                                         const SizedBox(
                                           width: 10,
@@ -2046,7 +1987,7 @@ class Detail extends StatelessWidget {
                                                 hint: Text(
                                                   'เพศ',
                                                   style: TextStyle(
-                                                      fontSize: 13.0,
+                                                      fontSize: 15.0,
                                                       color: colorGrey,
                                                       fontWeight:
                                                           FontWeight.w400),
@@ -2061,7 +2002,7 @@ class Detail extends StatelessWidget {
                                                     child: Text(
                                                       value,
                                                       style: TextStyle(
-                                                          fontSize: 13.0,
+                                                          fontSize: 15.0,
                                                           color: colorGrey,
                                                           fontWeight:
                                                               FontWeight.w400),
@@ -2128,7 +2069,7 @@ class Detail extends StatelessWidget {
                                             children: [
                                               Text('ลำดับที่ ${index + 1}',
                                                   style: textStyle(context,
-                                                      fontSize: 13,
+                                                      fontSize: 15,
                                                       color: colorBlack)),
                                               SizedBox(
                                                 width: 13,
@@ -2141,7 +2082,7 @@ class Detail extends StatelessWidget {
                                                           .name ??
                                                       'ไม่ระบุชื่อ',
                                                   style: textStyle(context,
-                                                      fontSize: 13,
+                                                      fontSize: 15,
                                                       color: colorBlack,
                                                       fontWeight:
                                                           FontWeight.bold)),
@@ -2152,7 +2093,7 @@ class Detail extends StatelessWidget {
                                               Text(
                                                   "${contoller.dataEvent.value.peopleNewList![index].createDatetime!.split("T")[0]} ${contoller.dataEvent.value.peopleNewList![index].createDatetime!.split("T")[1]}",
                                                   style: textStyle(context,
-                                                      fontSize: 13,
+                                                      fontSize: 15,
                                                       color: colorBlack)),
                                               SizedBox(
                                                 width: 13,
@@ -2170,7 +2111,7 @@ class Detail extends StatelessWidget {
                                                       .note ??
                                                   '',
                                               style: textStyle(context,
-                                                  fontSize: 13,
+                                                  fontSize: 15,
                                                   color: colorBlack)),
                                           SizedBox(
                                             width: 13,

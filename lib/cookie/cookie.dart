@@ -23,6 +23,7 @@ class CookieSP {
         await db.setString('role', user.profile!.role!.toString());
         await db.setString('refId', user.profile!.refId!);
         await db.setString('name', user.profile!.name!);
+        await db.setString('provinceName', user.profile!.provinceName!);
         await db.setString('createtime',DateTime.now().toString());
       }
       // else{delDataUser();}
@@ -37,17 +38,18 @@ class CookieSP {
   Future<List<ProfileSaveModel>?> loadAllDataSetting() async {
     var db = await openSP();
     List<ProfileSaveModel>? listResult = [];
-    String? username,createtime,name,role,refId;
+    String? username,createtime,name,role,refId,provinceName;
     try {
       username = db.getString('username');
     name = db.getString('name');
     role = db.getString('role');
     refId = db.getString('refId');
+      provinceName=db.getString('provinceName');
       createtime = db.getString('createtime');
 
       if (username != null&&DateTime.now().isBefore(DateTime.parse(createtime!).add(const Duration(days: 1)))) {
         listResult.add(ProfileSaveModel(
-            profile:ProfileSave(name: name,refId: refId,username: username,role: int.parse(role!))));
+            profile:ProfileSave(name: name,refId: refId,username: username,role: int.parse(role!),provinceName:provinceName )));
       }else{
         delDataUser();
       }
@@ -66,6 +68,7 @@ class CookieSP {
       await db.remove('role');
       await db.remove('refId');
       await db.remove('createtime');
+      await db.remove('provinceName');
 
       return true;
 

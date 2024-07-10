@@ -3,7 +3,6 @@ class ProfileModel {
   User? user;
 
   ProfileModel({this.success, this.user});
-
   ProfileModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     user = json['user'] != null ? new User.fromJson(json['user']) : null;
@@ -50,6 +49,7 @@ class Profile {
   String? roleCode;
   String? roleName;
   int? role;
+  String? provinceName;
 
   Profile(
       {this.code,
@@ -61,12 +61,13 @@ class Profile {
         this.usernameRef,
         this.organization,
         this.roleCode,
-        this.roleName,this.role});
+        this.roleName,this.role,this.provinceName});
 
   Profile.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     role = json['role'];
     email = json['email'];
+    provinceName = json['provinceName'];
     name = json['name'];
     refId = json['refId'];
     positionName = json['positionName'];
@@ -83,6 +84,7 @@ class Profile {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['code'] = this.code;
     data['role'] = this.role;
+    data['provinceName'] = this.provinceName;
     data['email'] = this.email;
     data['name'] = this.name;
     data['refId'] = this.refId;

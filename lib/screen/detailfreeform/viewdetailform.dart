@@ -78,7 +78,7 @@
 //                               Text(
 //                                 'แก้ไขรายงาน',
 //                                 style: textStyle(context,
-//                                     fontSize: 13, color: Colors.white),
+//                                     fontSize: 15, color: Colors.white),
 //                               ),
 //                             ],
 //                           ),
@@ -100,7 +100,7 @@
 //                               child: Text(
 //                                 'ชื่อรายการ',
 //                                 style: textStyle(context,
-//                                     fontSize: 13, color: colorBlack),
+//                                     fontSize: 15, color: colorBlack),
 //                               ),
 //                             ))
 //                           ],
@@ -118,7 +118,7 @@
 //                             //         : contoller.category[contoller
 //                             //             .dataEvent.value.events!.disasterType!],
 //                             //     style: textStyle(context,
-//                             //         fontSize: 13, color: colorGrey),
+//                             //         fontSize: 15, color: colorGrey),
 //                             //   ),
 //                             // )),
 //                             // const SizedBox(
@@ -132,7 +132,7 @@
 //                                     : contoller
 //                                         .dataEvent.value.events!.eventName!,
 //                                 style: textStyle(context,
-//                                     fontSize: 13, color: colorGrey),
+//                                     fontSize: 15, color: colorGrey),
 //                               ),
 //                             )),
 //                           ],
@@ -148,7 +148,7 @@
 //                               child: Text(
 //                                 'วันที่รับเรื่อง',
 //                                 style: textStyle(context,
-//                                     fontSize: 13, color: colorBlack),
+//                                     fontSize: 15, color: colorBlack),
 //                               ),
 //                             )),
 //                             const SizedBox(
@@ -160,7 +160,7 @@
 //                                   child: Text(
 //                                     'สถานะรายงาน',
 //                                     style: textStyle(context,
-//                                         fontSize: 13, color: colorBlack),
+//                                         fontSize: 15, color: colorBlack),
 //                                   ),
 //                                 )),
 //                           ],
@@ -178,7 +178,7 @@
 //                                     ? ''
 //                                     : '${DateTime.parse(contoller.dataEvent.value.events!.datetime!).day} ${mountList[DateTime.parse(contoller.dataEvent.value.events!.datetime!).month-1]} ${DateTime.parse(contoller.dataEvent.value.events!.datetime!).year + 543}',
 //                                 style: textStyle(context,
-//                                     fontSize: 13, color: colorGrey),
+//                                     fontSize: 15, color: colorGrey),
 //                               ),
 //                             )),
 //                             const SizedBox(
@@ -193,7 +193,7 @@
 //                                         : contoller.StatusList[contoller
 //                                         .dataEvent.value.events!.statusItem!],
 //                                     style: textStyle(context,
-//                                         fontSize: 13, color: colorGrey),
+//                                         fontSize: 15, color: colorGrey),
 //                                   ),
 //                                 )),
 //                           ],
@@ -208,7 +208,7 @@
 //                               child: Text(
 //                                 'หน่วยงานที่รับผิดชอบ',
 //                                 style: textStyle(context,
-//                                     fontSize: 13, color: colorBlack),
+//                                     fontSize: 15, color: colorBlack),
 //                               ),
 //                             )),
 //                             const SizedBox(
@@ -219,7 +219,7 @@
 //                               child: Text(
 //                                 'สถานะหน่วยงานที่รับผิดชอบ',
 //                                 style: textStyle(context,
-//                                     fontSize: 13, color: colorBlack),
+//                                     fontSize: 15, color: colorBlack),
 //                               ),
 //                             ))
 //                           ],
@@ -238,7 +238,7 @@
 //                                             .responsibleAgency ??
 //                                         '',
 //                                 style: textStyle(context,
-//                                     fontSize: 13, color: colorGrey),
+//                                     fontSize: 15, color: colorGrey),
 //                               ),
 //                             )),
 //                             const SizedBox(
@@ -252,7 +252,7 @@
 //                                     : contoller.StatusList[contoller
 //                                         .dataEvent.value.events!.statusAgency!],
 //                                 style: textStyle(context,
-//                                     fontSize: 13, color: colorGrey),
+//                                     fontSize: 15, color: colorGrey),
 //                               ),
 //                             )),
 //                           ],
@@ -421,7 +421,7 @@
 //                                           children: [
 //                                             Icon(CupertinoIcons.doc_text_fill,size: 20,),SizedBox(width: 10,),
 //                                             Text(contoller.dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![0].fileList![indexFile].fileName??'',
-//                                                 style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+//                                                 style: textStyle(context, fontSize: 15, color: colorBlack)),SizedBox(width: 13,),
 //                                             SizedBox(width: 10,),
 //                                             Icon(Icons.download,size: 20,)
 //                                           ],),
@@ -465,13 +465,13 @@
 //                                           Row(children: [
 //                                             Text(contoller
 //                                                 .dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![0].textboxList![indexText].name??'',
-//                                                 style: textStyle(context, fontSize: 13, color: colorBlack,fontWeight: FontWeight.bold)),SizedBox(width: 13,),
+//                                                 style: textStyle(context, fontSize: 15, color: colorBlack,fontWeight: FontWeight.bold)),SizedBox(width: 13,),
 //
 //                                           ],),
 //                                           SizedBox(height: 10,),
 //                                           Text(contoller
 //                                               .dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![0].textboxList![indexText].answer??'',
-//                                               style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+//                                               style: textStyle(context, fontSize: 15, color: colorBlack)),SizedBox(width: 13,),
 //
 //                                           SizedBox(height: 10,),
 //                                           Divider(height: 1,color: Colors.grey,)
@@ -580,7 +580,7 @@
 //                                             fillColor: colorWhite,
 //                                             hintText: "ค้นหา",
 //                                             hintStyle: TextStyle(
-//                                                 fontSize: 13.0,
+//                                                 fontSize: 15.0,
 //                                                 color: colorGrey,
 //                                                 fontWeight: FontWeight.w400),
 //                                             filled: true,
@@ -651,7 +651,7 @@
 //                                   child: Text(
 //                                     'ที่อยู่',
 //                                     style: textStyle(context,
-//                                         fontSize: 13, color: colorBlack),
+//                                         fontSize: 15, color: colorBlack),
 //                                   ),
 //                                 )),
 //                           ],
@@ -669,7 +669,7 @@
 //                                         : contoller
 //                                         .dataEvent.value.events!.address??'',
 //                                     style: textStyle(context,
-//                                         fontSize: 13, color: colorGrey),
+//                                         fontSize: 15, color: colorGrey),
 //                                   ),
 //                                 )),
 //
@@ -688,7 +688,7 @@
 //                               child: Text(
 //                                 'ละติจูด',
 //                                 style: textStyle(context,
-//                                     fontSize: 13, color: colorBlack),
+//                                     fontSize: 15, color: colorBlack),
 //                               ),
 //                             )),
 //                             const SizedBox(
@@ -699,7 +699,7 @@
 //                               child: Text(
 //                                 'ลองติจูด',
 //                                 style: textStyle(context,
-//                                     fontSize: 13, color: colorBlack),
+//                                     fontSize: 15, color: colorBlack),
 //                               ),
 //                             ))
 //                           ],
@@ -717,7 +717,7 @@
 //                                     : contoller
 //                                         .dataEvent.value.events!.latitude!,
 //                                 style: textStyle(context,
-//                                     fontSize: 13, color: colorGrey),
+//                                     fontSize: 15, color: colorGrey),
 //                               ),
 //                             )),
 //                             const SizedBox(
@@ -731,7 +731,7 @@
 //                                     : contoller
 //                                         .dataEvent.value.events!.longitude!,
 //                                 style: textStyle(context,
-//                                     fontSize: 13, color: colorGrey),
+//                                     fontSize: 15, color: colorGrey),
 //                               ),
 //                             )),
 //                           ],
@@ -766,24 +766,24 @@
 //                               SizedBox(height: 10,),
 //                               Row(children: [
 //                                 Text('ลำดับที่ ${index+1}',
-//                                     style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+//                                     style: textStyle(context, fontSize: 15, color: colorBlack)),SizedBox(width: 13,),
 //                                 Text(contoller
 //                                     .dataEvent.value.events!.logList![index].name??'',
-//                                     style: textStyle(context, fontSize: 13, color: colorBlack,fontWeight: FontWeight.bold)),SizedBox(width: 13,),
+//                                     style: textStyle(context, fontSize: 15, color: colorBlack,fontWeight: FontWeight.bold)),SizedBox(width: 13,),
 //                                 Text(contoller
 //                                     .dataEvent.value.events!.logList![index].userName??'',
-//                                     style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+//                                     style: textStyle(context, fontSize: 15, color: colorBlack)),SizedBox(width: 13,),
 //
 //                               ],),
 //                               SizedBox(height: 10,),
 //                               Text(contoller
 //                                   .dataEvent.value.events!.logList![index].logDetailList!.map((e) => e.header,).toList().join(" , ").toString(),
-//                                   style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+//                                   style: textStyle(context, fontSize: 15, color: colorBlack)),SizedBox(width: 13,),
 //                               SizedBox(height: 10,),
 //                                 SizedBox(height: 10,),
 //                                 Text(contoller
 //                                     .dataEvent.value.events!.logList![index].reportDetail??'',
-//                                     style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+//                                     style: textStyle(context, fontSize: 15, color: colorBlack)),SizedBox(width: 13,),
 //                                 SizedBox(height: 10,),
 //                               if(contoller
 //                                   .dataEvent.value.events!.logList![index].imageList!.isNotEmpty)Container(
@@ -851,7 +851,7 @@
 //                                               Icon(CupertinoIcons.doc_text_fill,size: 20,),SizedBox(width: 10,),
 //                                               Text(contoller
 //                                                   .dataEvent.value.events!.logList![index].fileList![0].fileName??'',
-//                                                   style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+//                                                   style: textStyle(context, fontSize: 15, color: colorBlack)),SizedBox(width: 13,),
 //                                               SizedBox(width: 10,),
 //                                               Icon(Icons.download,size: 20,)
 //                                             ],),
@@ -891,16 +891,16 @@
 //                                   SizedBox(height: 10,),
 //                                   Row(children: [
 //                                     Text('ลำดับที่ ${index+1}',
-//                                         style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+//                                         style: textStyle(context, fontSize: 15, color: colorBlack)),SizedBox(width: 13,),
 //                                     Text(contoller
 //                                         .dataEvent.value.peopleNewList![index].name??'ไม่ระบุชื่อ',
-//                                         style: textStyle(context, fontSize: 13, color: colorBlack,fontWeight: FontWeight.bold)),SizedBox(width: 13,),
+//                                         style: textStyle(context, fontSize: 15, color: colorBlack,fontWeight: FontWeight.bold)),SizedBox(width: 13,),
 //
 //                                   ],),
 //                                   SizedBox(height: 10,),
 //                                   Text(contoller
 //                                       .dataEvent.value.peopleNewList![index].note??'',
-//                                       style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+//                                       style: textStyle(context, fontSize: 15, color: colorBlack)),SizedBox(width: 13,),
 //                                   SizedBox(height: 10,),
 //                                   if(contoller
 //                                       .dataEvent.value.peopleNewList![index].imageNewsList!.isNotEmpty)Container(

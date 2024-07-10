@@ -361,7 +361,7 @@
 //                 child: Text(
 //                   'ตกลง',
 //                   style:
-//                   textStyle(context, fontSize: 14),
+//                   textStyle(context, fontSize: 15),
 //                 )),
 //           ],
 //         ),
@@ -431,7 +431,7 @@
 //   //               },
 //   //               child: Text(
 //   //                 'ตกลง',
-//   //                 style: textStyle(context, fontSize: 14),
+//   //                 style: textStyle(context, fontSize: 15),
 //   //               )),
 //   //         ],
 //   //       ),

@@ -8,6 +8,6 @@ TextStyle textStyle(BuildContext context,{double? fontSize,Color? color,FontWeig
     fontSize: fontSize??14,
     color: color??colorBlack,
     fontWeight: fontWeight,
-    fontFamily: fontFamily
+    fontFamily: "THSarabun"
   );
 }

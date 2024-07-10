@@ -34,7 +34,6 @@ Future<ProfileModel>checkProfile({required String apikey})async{
       if(data.statusCode==200){
         dataDashBoard = ProfileModel.fromJson(data.data);
       if(dataDashBoard!.success==true){
-
         if(dataDashBoard!.user!.profile!.role==3){
           isAdmin=false;
           isVillager = false;
@@ -43,6 +42,7 @@ Future<ProfileModel>checkProfile({required String apikey})async{
                   username: dataDashBoard!.user!.profile!.username,
                   refId: dataDashBoard!.user!.profile!.refId,
                 role: dataDashBoard!.user!.profile!.role,
+                provinceName: dataDashBoard!.user!.profile!.provinceName,
               )
           );
           CookieSP().insertDataUsers(user: ProfileSaveModel(
@@ -50,6 +50,7 @@ Future<ProfileModel>checkProfile({required String apikey})async{
                   username: dataDashBoard!.user!.profile!.username,
                   refId: dataDashBoard!.user!.profile!.refId,
                 role: dataDashBoard!.user!.profile!.role,
+                provinceName: dataDashBoard!.user!.profile!.provinceName,
               )
           ));
           Get.toNamed(RouterName.adminPage);
@@ -61,6 +62,7 @@ Future<ProfileModel>checkProfile({required String apikey})async{
                   username: dataDashBoard!.user!.profile!.username,
                   refId: dataDashBoard!.user!.profile!.refId,
                 role: dataDashBoard!.user!.profile!.role,
+                provinceName: dataDashBoard!.user!.profile!.provinceName,
               )
           );
           CookieSP().insertDataUsers(user: ProfileSaveModel(
@@ -68,6 +70,7 @@ Future<ProfileModel>checkProfile({required String apikey})async{
                   username: dataDashBoard!.user!.profile!.username,
                   refId: dataDashBoard!.user!.profile!.refId,
                 role: dataDashBoard!.user!.profile!.role,
+                provinceName: dataDashBoard!.user!.profile!.provinceName,
               )
           ));
           Get.toNamed(RouterName.adminPage);

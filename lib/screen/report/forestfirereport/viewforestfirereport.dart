@@ -101,7 +101,7 @@ class ForestFireReport extends StatelessWidget {
                                         fillColor: colorWhite,
                                         hintText: "ค้นหา",
                                         hintStyle: TextStyle(
-                                            fontSize: 13.0,
+                                            fontSize: 15.0,
                                             color: colorGrey,
                                             fontWeight: FontWeight.w400),
                                         filled: true,
@@ -189,7 +189,7 @@ class ForestFireReport extends StatelessWidget {
                                     //   Text(
                                     //     'วันนี้',
                                     //     style: TextStyle(
-                                    //         fontSize: 13.0,
+                                    //         fontSize: 15.0,
                                     //         color: colorGrey,
                                     //         fontWeight: FontWeight.w400),
                                     //   ),
@@ -219,7 +219,7 @@ class ForestFireReport extends StatelessWidget {
                                           children: [
                                             Text('ช่วงเวลา',
                                                 style: textStyle(context,
-                                                    fontSize: 13)),
+                                                    fontSize: 15)),
                                             Container(
                                               padding: const EdgeInsets.only(
                                                   left: 20, right: 5),
@@ -248,7 +248,7 @@ class ForestFireReport extends StatelessWidget {
                                                               '${(contoller.listDate.value.isNotEmpty) ? (contoller.listDate.value.first == contoller.listDate.value.last) ? '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year.toString().substring(2, 4)}' : '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year.toString().substring(2, 4)} - ${contoller.listDate.value.last!.day} ${mountAbbreviation[contoller.listDate.value.last!.month - 1]} ${contoller.listDate.value.last!.year.toString().substring(2, 4)}' : ''}',
                                                               style: textStyle(
                                                                   context,
-                                                                  fontSize: 13))
+                                                                  fontSize: 15))
                                                         ],
                                                       ),
                                                     )),
@@ -272,7 +272,7 @@ class ForestFireReport extends StatelessWidget {
                                           children: [
                                             Text('ระดับ',
                                                 style: textStyle(context,
-                                                    fontSize: 13)),
+                                                    fontSize: 15)),
                                             Container(
                                               width: double.infinity,
                                               height: 40,
@@ -318,7 +318,7 @@ class ForestFireReport extends StatelessWidget {
                                                     hint: Text(
                                                       'เลือกทั้งหมด',
                                                       style: TextStyle(
-                                                          fontSize: 13.0,
+                                                          fontSize: 15.0,
                                                           color: colorGrey,
                                                           fontWeight:
                                                               FontWeight.w400),
@@ -333,7 +333,7 @@ class ForestFireReport extends StatelessWidget {
                                                         child: Text(
                                                           value,
                                                           style: TextStyle(
-                                                              fontSize: 13.0,
+                                                              fontSize: 15.0,
                                                               color: colorGrey,
                                                               fontWeight:
                                                                   FontWeight
@@ -377,7 +377,7 @@ class ForestFireReport extends StatelessWidget {
                                             children: [
                                               Text('จังหวัด',
                                                   style: textStyle(context,
-                                                      fontSize: 13)),
+                                                      fontSize: 15)),
                                               Container(
                                                 width: double.infinity,
                                                 height: 40,
@@ -426,7 +426,7 @@ class ForestFireReport extends StatelessWidget {
                                                       hint: Text(
                                                         'เลือกทั้งหมด',
                                                         style: TextStyle(
-                                                            fontSize: 13.0,
+                                                            fontSize: 15.0,
                                                             color: colorGrey,
                                                             fontWeight:
                                                                 FontWeight
@@ -442,7 +442,7 @@ class ForestFireReport extends StatelessWidget {
                                                           child: Text(
                                                             value.nameTh!,
                                                             style: TextStyle(
-                                                                fontSize: 13.0,
+                                                                fontSize: 15.0,
                                                                 color:
                                                                     colorGrey,
                                                                 fontWeight:
@@ -485,7 +485,7 @@ class ForestFireReport extends StatelessWidget {
                                           children: [
                                             Text('ระดับความรุนแรง',
                                                 style: textStyle(context,
-                                                    fontSize: 13)),
+                                                    fontSize: 15)),
                                             Container(
                                               width: double.infinity,
                                               height: 40,
@@ -531,7 +531,7 @@ class ForestFireReport extends StatelessWidget {
                                                     hint: Text(
                                                       'เลือกทั้งหมด',
                                                       style: TextStyle(
-                                                          fontSize: 13.0,
+                                                          fontSize: 15.0,
                                                           color: colorGrey,
                                                           fontWeight:
                                                               FontWeight.w400),
@@ -548,7 +548,7 @@ class ForestFireReport extends StatelessWidget {
                                                         child: Text(
                                                           value,
                                                           style: TextStyle(
-                                                              fontSize: 13.0,
+                                                              fontSize: 15.0,
                                                               color: colorGrey,
                                                               fontWeight:
                                                                   FontWeight
@@ -599,7 +599,7 @@ class ForestFireReport extends StatelessWidget {
                                               children: [
                                                 Text('ช่วงเวลา',
                                                     style: textStyle(context,
-                                                        fontSize: 13)),
+                                                        fontSize: 15)),
                                                 Container(
                                                   padding:
                                                       const EdgeInsets.only(
@@ -661,7 +661,7 @@ class ForestFireReport extends StatelessWidget {
                                               children: [
                                                 Text('ระดับ',
                                                     style: textStyle(context,
-                                                        fontSize: 13)),
+                                                        fontSize: 15)),
                                                 Container(
                                                   width: double.infinity,
                                                   height: 40,
@@ -711,7 +711,7 @@ class ForestFireReport extends StatelessWidget {
                                                         hint: Text(
                                                           'เลือกทั้งหมด',
                                                           style: TextStyle(
-                                                              fontSize: 13.0,
+                                                              fontSize: 15.0,
                                                               color: colorGrey,
                                                               fontWeight:
                                                                   FontWeight
@@ -776,7 +776,7 @@ class ForestFireReport extends StatelessWidget {
                                                 children: [
                                                   Text('จังหวัด',
                                                       style: textStyle(context,
-                                                          fontSize: 13)),
+                                                          fontSize: 15)),
                                                   Container(
                                                     width: double.infinity,
                                                     height: 40,
@@ -829,7 +829,7 @@ class ForestFireReport extends StatelessWidget {
                                                           hint: Text(
                                                             'เลือกทั้งหมด',
                                                             style: TextStyle(
-                                                                fontSize: 13.0,
+                                                                fontSize: 15.0,
                                                                 color:
                                                                     colorGrey,
                                                                 fontWeight:
@@ -902,7 +902,7 @@ class ForestFireReport extends StatelessWidget {
                                               children: [
                                                 Text('ระดับความรุนแรง',
                                                     style: textStyle(context,
-                                                        fontSize: 13)),
+                                                        fontSize: 15)),
                                                 Container(
                                                   width: double.infinity,
                                                   height: 40,
@@ -953,7 +953,7 @@ class ForestFireReport extends StatelessWidget {
                                                         hint: Text(
                                                           'เลือกทั้งหมด',
                                                           style: TextStyle(
-                                                              fontSize: 13.0,
+                                                              fontSize: 15.0,
                                                               color: colorGrey,
                                                               fontWeight:
                                                                   FontWeight
@@ -1031,7 +1031,7 @@ class ForestFireReport extends StatelessWidget {
                                             children: [
                                               Text('หน่วยงาน',
                                                   style: textStyle(context,
-                                                      fontSize: 13)),
+                                                      fontSize: 15)),
                                               Container(
                                                 padding: EdgeInsets.only(
                                                     left: 5, right: 5),
@@ -1052,7 +1052,7 @@ class ForestFireReport extends StatelessWidget {
                                                   controller: contoller
                                                       .searchAgency.value,
                                                   style: TextStyle(
-                                                      fontSize: 13.0,
+                                                      fontSize: 15.0,
                                                       color: colorBlack,
                                                       fontWeight:
                                                           FontWeight.w400),
@@ -1061,7 +1061,7 @@ class ForestFireReport extends StatelessWidget {
                                                     fillColor: colorWhite,
                                                     hintText: "หน่วยงาน",
                                                     hintStyle: TextStyle(
-                                                        fontSize: 13.0,
+                                                        fontSize: 15.0,
                                                         color: colorGrey,
                                                         fontWeight:
                                                             FontWeight.w400),
@@ -1095,7 +1095,7 @@ class ForestFireReport extends StatelessWidget {
                                           children: [
                                             Text('สถานะของหน่วยงาน',
                                                 style: textStyle(context,
-                                                    fontSize: 13)),
+                                                    fontSize: 15)),
                                             Container(
                                               width: double.infinity,
                                               height: 40,
@@ -1150,7 +1150,7 @@ class ForestFireReport extends StatelessWidget {
                                                         child: Text(
                                                           value,
                                                           style: TextStyle(
-                                                              fontSize: 13.0,
+                                                              fontSize: 15.0,
                                                               color: colorGrey,
                                                               fontWeight:
                                                                   FontWeight
@@ -1191,7 +1191,7 @@ class ForestFireReport extends StatelessWidget {
                                           children: [
                                             Text('สถานะของรายการ',
                                                 style: textStyle(context,
-                                                    fontSize: 13)),
+                                                    fontSize: 15)),
                                             Container(
                                               padding: const EdgeInsets.only(
                                                   left: 20, right: 5),
@@ -1248,7 +1248,7 @@ class ForestFireReport extends StatelessWidget {
                                                         child: Text(
                                                           value,
                                                           style: TextStyle(
-                                                              fontSize: 13.0,
+                                                              fontSize: 15.0,
                                                               color: colorGrey,
                                                               fontWeight:
                                                                   FontWeight
@@ -1448,7 +1448,7 @@ class ForestFireReport extends StatelessWidget {
                                                 children: [
                                                   Text('หน่วยงาน',
                                                       style: textStyle(context,
-                                                          fontSize: 13)),
+                                                          fontSize: 15)),
                                                   Container(
                                                     padding: EdgeInsets.only(
                                                         left: 5, right: 5),
@@ -1471,7 +1471,7 @@ class ForestFireReport extends StatelessWidget {
                                                       controller: contoller
                                                           .searchAgency.value,
                                                       style: TextStyle(
-                                                          fontSize: 13.0,
+                                                          fontSize: 15.0,
                                                           color: colorBlack,
                                                           fontWeight:
                                                               FontWeight.w400),
@@ -1481,7 +1481,7 @@ class ForestFireReport extends StatelessWidget {
                                                         fillColor: colorWhite,
                                                         hintText: "หน่วยงาน",
                                                         hintStyle: TextStyle(
-                                                            fontSize: 13.0,
+                                                            fontSize: 15.0,
                                                             color: colorGrey,
                                                             fontWeight:
                                                                 FontWeight
@@ -1523,7 +1523,7 @@ class ForestFireReport extends StatelessWidget {
                                               children: [
                                                 Text('สถานะของหน่วยงาน',
                                                     style: textStyle(context,
-                                                        fontSize: 13)),
+                                                        fontSize: 15)),
                                                 Container(
                                                   width: double.infinity,
                                                   height: 40,
@@ -1634,7 +1634,7 @@ class ForestFireReport extends StatelessWidget {
                                               children: [
                                                 Text('สถานะของรายการ',
                                                     style: textStyle(context,
-                                                        fontSize: 13)),
+                                                        fontSize: 15)),
                                                 Container(
                                                   padding:
                                                       const EdgeInsets.only(

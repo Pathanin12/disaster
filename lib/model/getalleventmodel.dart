@@ -44,6 +44,7 @@ class EventList {
   String? longitude;
   String? province;
   String? note;
+  int? iconMap;
   bool? isActive;
   bool? isDelete;
 
@@ -65,10 +66,12 @@ class EventList {
         this.province,
         this.note,
         this.isActive,
+        this.iconMap,
         this.isDelete});
 
   EventList.fromJson(Map<String, dynamic> json) {
     eventID = json['eventID'];
+    iconMap = json['iconMap'];
     disasterType = json['disasterType'];
     eventName = json['eventName'];
     statusAgency = json['statusAgency'];
@@ -91,6 +94,7 @@ class EventList {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['eventID'] = this.eventID;
+    data['iconMap'] = this.iconMap;
     data['disasterType'] = this.disasterType;
     data['eventName'] = this.eventName;
     data['statusAgency'] = this.statusAgency;

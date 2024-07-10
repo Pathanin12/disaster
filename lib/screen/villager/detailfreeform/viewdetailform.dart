@@ -62,7 +62,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                               child: Text(
                                 'ชื่อรายการ',
                                 style: textStyle(context,
-                                    fontSize: 13, color: colorBlack),
+                                    fontSize: 15, color: colorBlack),
                               ),
                             ))
                           ],
@@ -80,7 +80,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                             //         : contoller.category[contoller
                             //             .dataEvent.value.events!.disasterType!],
                             //     style: textStyle(context,
-                            //         fontSize: 13, color: colorGrey),
+                            //         fontSize: 15, color: colorGrey),
                             //   ),
                             // )),
                             // const SizedBox(
@@ -94,7 +94,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                                     : contoller
                                         .dataEvent.value.events!.eventName!,
                                 style: textStyle(context,
-                                    fontSize: 13, color: colorGrey),
+                                    fontSize: 15, color: colorGrey),
                               ),
                             )),
                           ],
@@ -110,7 +110,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                               child: Text(
                                 'วันที่รับเรื่อง',
                                 style: textStyle(context,
-                                    fontSize: 13, color: colorBlack),
+                                    fontSize: 15, color: colorBlack),
                               ),
                             )),
                             const SizedBox(
@@ -122,7 +122,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                                   child: Text(
                                     'สถานะรายงาน',
                                     style: textStyle(context,
-                                        fontSize: 13, color: colorBlack),
+                                        fontSize: 15, color: colorBlack),
                                   ),
                                 )),
                           ],
@@ -140,7 +140,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                                     ? ''
                                     : '${DateTime.parse(contoller.dataEvent.value.events!.datetime!).day} ${mountList[DateTime.parse(contoller.dataEvent.value.events!.datetime!).month-1]} ${DateTime.parse(contoller.dataEvent.value.events!.datetime!).year + 543}',
                                 style: textStyle(context,
-                                    fontSize: 13, color: colorGrey),
+                                    fontSize: 15, color: colorGrey),
                               ),
                             )),
                             const SizedBox(
@@ -155,7 +155,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                                         : contoller.StatusList[contoller
                                         .dataEvent.value.events!.statusItem!],
                                     style: textStyle(context,
-                                        fontSize: 13, color: colorGrey),
+                                        fontSize: 15, color: colorGrey),
                                   ),
                                 )),
                           ],
@@ -170,7 +170,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                               child: Text(
                                 'หน่วยงานที่รับผิดชอบ',
                                 style: textStyle(context,
-                                    fontSize: 13, color: colorBlack),
+                                    fontSize: 15, color: colorBlack),
                               ),
                             )),
                             const SizedBox(
@@ -181,7 +181,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                               child: Text(
                                 'สถานะหน่วยงานที่รับผิดชอบ',
                                 style: textStyle(context,
-                                    fontSize: 13, color: colorBlack),
+                                    fontSize: 15, color: colorBlack),
                               ),
                             ))
                           ],
@@ -200,7 +200,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                                             .responsibleAgency ??
                                         '',
                                 style: textStyle(context,
-                                    fontSize: 13, color: colorGrey),
+                                    fontSize: 15, color: colorGrey),
                               ),
                             )),
                             const SizedBox(
@@ -214,7 +214,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                                     : contoller.StatusList[contoller
                                         .dataEvent.value.events!.statusAgency!],
                                 style: textStyle(context,
-                                    fontSize: 13, color: colorGrey),
+                                    fontSize: 15, color: colorGrey),
                               ),
                             )),
                           ],
@@ -373,13 +373,13 @@ class DetailFreeFormVillager extends StatelessWidget {
                                           Row(children: [
                                             Text(contoller
                                                 .dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![0].textboxList![indexText].name??'',
-                                                style: textStyle(context, fontSize: 13, color: colorBlack,fontWeight: FontWeight.bold)),SizedBox(width: 13,),
+                                                style: textStyle(context, fontSize: 15, color: colorBlack,fontWeight: FontWeight.bold)),SizedBox(width: 13,),
 
                                           ],),
                                           SizedBox(height: 10,),
                                           Text(contoller
                                               .dataEvent.value.events!.freeFormDetailList![index].freeFormSubDetailList![0].textboxList![indexText].answer??'',
-                                              style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+                                              style: textStyle(context, fontSize: 15, color: colorBlack)),SizedBox(width: 13,),
 
                                           SizedBox(height: 10,),
                                           Divider(height: 1,color: Colors.grey,)
@@ -488,7 +488,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                                             fillColor: colorWhite,
                                             hintText: "ค้นหา",
                                             hintStyle: TextStyle(
-                                                fontSize: 13.0,
+                                                fontSize: 15.0,
                                                 color: colorGrey,
                                                 fontWeight: FontWeight.w400),
                                             filled: true,
@@ -559,7 +559,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                                   child: Text(
                                     'ที่อยู่',
                                     style: textStyle(context,
-                                        fontSize: 13, color: colorBlack),
+                                        fontSize: 15, color: colorBlack),
                                   ),
                                 )),
                           ],
@@ -577,7 +577,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                                         : contoller
                                         .dataEvent.value.events!.address??'',
                                     style: textStyle(context,
-                                        fontSize: 13, color: colorGrey),
+                                        fontSize: 15, color: colorGrey),
                                   ),
                                 )),
 
@@ -596,7 +596,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                               child: Text(
                                 'ละติจูด',
                                 style: textStyle(context,
-                                    fontSize: 13, color: colorBlack),
+                                    fontSize: 15, color: colorBlack),
                               ),
                             )),
                             const SizedBox(
@@ -607,7 +607,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                               child: Text(
                                 'ลองติจูด',
                                 style: textStyle(context,
-                                    fontSize: 13, color: colorBlack),
+                                    fontSize: 15, color: colorBlack),
                               ),
                             ))
                           ],
@@ -625,7 +625,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                                     : contoller
                                         .dataEvent.value.events!.latitude!,
                                 style: textStyle(context,
-                                    fontSize: 13, color: colorGrey),
+                                    fontSize: 15, color: colorGrey),
                               ),
                             )),
                             const SizedBox(
@@ -639,7 +639,7 @@ class DetailFreeFormVillager extends StatelessWidget {
                                     : contoller
                                         .dataEvent.value.events!.longitude!,
                                 style: textStyle(context,
-                                    fontSize: 13, color: colorGrey),
+                                    fontSize: 15, color: colorGrey),
                               ),
                             )),
                           ],
@@ -698,16 +698,16 @@ class DetailFreeFormVillager extends StatelessWidget {
                                   SizedBox(height: 10,),
                                   Row(children: [
                                     Text('ลำดับที่ ${index+1}',
-                                        style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+                                        style: textStyle(context, fontSize: 15, color: colorBlack)),SizedBox(width: 13,),
                                     Text(contoller
                                         .dataEvent.value.peopleNewList![index].name??'ไม่ระบุชื่อ',
-                                        style: textStyle(context, fontSize: 13, color: colorBlack,fontWeight: FontWeight.bold)),SizedBox(width: 13,),
+                                        style: textStyle(context, fontSize: 15, color: colorBlack,fontWeight: FontWeight.bold)),SizedBox(width: 13,),
 
                                   ],),
                                   SizedBox(height: 10,),
                                   Text(contoller
                                       .dataEvent.value.peopleNewList![index].note??'',
-                                      style: textStyle(context, fontSize: 13, color: colorBlack)),SizedBox(width: 13,),
+                                      style: textStyle(context, fontSize: 15, color: colorBlack)),SizedBox(width: 13,),
                                   SizedBox(height: 10,),
                                   if(contoller
                                       .dataEvent.value.peopleNewList![index].imageNewsList!.isNotEmpty)Container(

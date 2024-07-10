@@ -1,6 +1,6 @@
 import '../model/profileusermodel.dart';
 
-String url = "https://disasterapi.aicard.work/API/";
+String url = "https://disastermoiapi.aicard.work/API/";
 String pathQR = 'https://disastermoi.aicard.work/#/Detail?id=';
 String pathQRfreeform = 'https://disasterweb.netlify.app/detailfreeform/';
 String urlApiKey = 'http://cloud-api.win-victor.com/api/integrate/auth/';
@@ -9,6 +9,44 @@ double lngDefault=99.3986862;
 bool isAdmin = true;
 bool isVillager = false;
 // ProfileSaveModel? dataUser;
+List<String> listIconType=[
+  "assets/icons/icon/icon1.svg",
+  "assets/icons/icon/icon2.svg",
+  "assets/icons/icon/icon3.svg",
+  "assets/icons/icon/icon4.svg",
+  "assets/icons/icon/icon5.svg",
+  "assets/icons/icon/icon6.svg",
+  "assets/icons/icon/icon7.svg",
+  "assets/icons/icon/icon8.svg",
+  "assets/icons/icon/icon9.svg",
+  "assets/icons/icon/icon10.svg",
+  "assets/icons/icon/icon11.svg",
+  "assets/icons/icon/icon12.svg",
+  "assets/icons/icon/icon13.svg",
+  "assets/icons/icon/icon14.svg",
+  "assets/icons/icon/icon15.svg",
+  "assets/icons/icon/icon16.svg",
+  "assets/icons/icon/icon17.svg",
+  "assets/icons/icon/icon18.svg",
+  "assets/icons/icon/icon19.svg",
+  "assets/icons/icon/icon20.svg",
+  "assets/icons/icon/icon21.svg",
+  "assets/icons/icon/icon22.svg",
+  "assets/icons/icon/icon23.svg",
+  "assets/icons/icon/icon24.svg",
+  "assets/icons/icon/icon25.svg",
+  "assets/icons/icon/icon26.svg",
+  "assets/icons/icon/icon27.svg",
+  "assets/icons/icon/icon28.svg",
+  "assets/icons/icon/icon29.svg",
+  "assets/icons/icon/icon30.svg",
+  "assets/icons/icon/icon31.svg",
+  "assets/icons/icon/icon32.svg",
+  "assets/icons/icon/icon33.svg",
+  "assets/icons/icon/icon34.svg",
+  "assets/icons/icon/icon35.svg",
+  "assets/icons/icon/icon36.svg",
+];
 
 List<Province> provinceList = [
   {

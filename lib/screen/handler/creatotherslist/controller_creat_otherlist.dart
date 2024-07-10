@@ -433,7 +433,7 @@
 //                 },
 //                 child: Text(
 //                   'ตกลง',
-//                   style: textStyle(context, fontSize: 14),
+//                   style: textStyle(context, fontSize: 15),
 //                 )),
 //           ],
 //         ),

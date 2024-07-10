@@ -1,3 +1,4 @@
+import 'package:disaster/api/map/heatmapapi.dart';
 import 'package:disaster/model/dashboardmodel.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,6 +13,7 @@ import 'package:syncfusion_flutter_maps/maps.dart';
 
 import '../../api/dashboardapi.dart';
 import '../../api/map/searchmap.dart';
+import '../../model/heatmapmodel.dart';
 import '../../model/searchmap.dart';
 import '../../service/config.dart';
 import '../../stye/colors.dart';
@@ -21,6 +23,7 @@ class ContollerDashBoard extends GetxController {
   RxInt Index = 0.obs;
   RxInt IndexChart = 0.obs;
   var loadSearch = false.obs;
+  var dataHeatMap=HeatMapModel().obs;
   var listDate = <DateTime?>[
     DateTime.now(),
     DateTime.now(),
@@ -59,7 +62,9 @@ class ContollerDashBoard extends GetxController {
   // var listCartForestFireAgeAndDie=<Widget>[].obs;
   // var listCartForestFireAgeAndInj=<Widget>[].obs;
   var mapController = MapController().obs;
+  var heatMapController = MapController().obs;
   var search = TextEditingController().obs;
+  var searchEven = TextEditingController().obs;
   var listSearchMap=<SearchMapModel>[].obs;
   searchMap(String data)async{
     listSearchMap.value=await searchMapApi(data);
@@ -69,6 +74,14 @@ class ContollerDashBoard extends GetxController {
     TileLayer(
       urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
       userAgentPackageName: 'com.example.app',
+
+    ),
+  ].obs;
+  var listHeatMapWidgetMark = <Widget>[
+    TileLayer(
+      urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+      userAgentPackageName: 'com.example.app',
+
     ),
   ].obs;
   List<String> category = [
@@ -256,12 +269,12 @@ var selectChartX='เพศ'.obs;
         urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
         userAgentPackageName: 'com.example.app',
       ),
+
     ].obs;
     total.value = dashboard.value.dashBoardList!.length.toString();
     success.value = dashboard.value.statusSuccess.toString();
     progress.value = dashboard.value.statusInProgress.toString();
     waiting.value = dashboard.value.statusWaiting.toString();
-
     for (var element in dashboard.value.dashBoardList!) {
       Widget widget = MarkerLayer(
         markers: [
@@ -270,37 +283,65 @@ var selectChartX='เพศ'.obs;
                 double.parse(element.longitude!)),
             width: 80,
             height: 80,
-            child: (element.disasterType==0&&element.statusItem==0)?SvgPicture.asset(
-              'assets/icons/svg/fire0.svg',
-            ):(element.disasterType==0&&element.statusItem==1)?SvgPicture.asset(
-              'assets/icons/svg/fire1.svg',
-            ):(element.disasterType==0&&element.statusItem==2)?SvgPicture.asset(
-              'assets/icons/svg/fire2.svg',
-            ):(element.disasterType==1&&element.statusItem==0)?SvgPicture.asset(
-              'assets/icons/svg/flood0.svg',
-            ):(element.disasterType==1&&element.statusItem==1)?SvgPicture.asset(
-              'assets/icons/svg/flood1.svg',
-            ):(element.disasterType==1&&element.statusItem==2)?SvgPicture.asset(
-              'assets/icons/svg/flood2.svg',
-            ):(element.disasterType==2&&element.statusItem==0)?SvgPicture.asset(
-              'assets/icons/svg/windstorm0.svg',
-            ):(element.disasterType==2&&element.statusItem==1)?SvgPicture.asset(
-              'assets/icons/svg/windstorm1.svg',
-            ):(element.disasterType==2&&element.statusItem==2)?SvgPicture.asset(
-              'assets/icons/svg/windstorm2.svg',
-            ):(element.disasterType==3&&element.statusItem==0)?SvgPicture.asset(
-              'assets/icons/svg/forestfire0.svg',
-            ):(element.disasterType==3&&element.statusItem==1)?SvgPicture.asset(
-              'assets/icons/svg/forestfire1.svg',
-            ):SvgPicture.asset(
-              'assets/icons/svg/forestfire2.svg',
-            ),
+            child:Stack(
+              children: [
+                Center(
+                  child: SvgPicture.asset(
+                    'assets/icons/svg/fire0.svg',color:(element.statusItem==0)?Colors.amber:(element.statusItem==1)?Colors.red:Colors.green,
+                    width: 80,height: 80,
+                  ),
+                ),
+                Positioned(
+                    top:15,
+                    left: 25,
+                    child:  SvgPicture.asset(
+                      listIconType[element.iconMap??0],
+                      width: 30,height: 30,
+                    ))
+              ],
+            )
           ),
         ],
       );
       listWidgetMark.add(widget);
     }
     loadSearch.value = false;
+  }
+  Future<void> setHeatMap()async{
+    dataHeatMap.value =await getHeatMapApi();
+    listHeatMapWidgetMark = <Widget>[
+      TileLayer(
+        urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+        userAgentPackageName: 'com.example.app',
+      ),
+    ].obs;
+    print('??????');
+print(dataHeatMap.value.provincesList!.length);
+  dataHeatMap.value.provincesList!.forEach((element) {
+    Widget widget = MarkerLayer(
+      markers: [
+        Marker(
+            point: LatLng(double.parse(element.lat!),
+                double.parse(element.lng!)),
+            width: 20,
+            height: 20,
+            child:Center(
+              child: Container(
+                height: 20,
+                width: 20,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: (element.amount!>10)?const Color(0xfffd97875).withOpacity(0.8):(element.amount!>5)?const Color(0xfffF8C2BF).withOpacity(0.8):(element.amount!>2)?const Color(0xfffF7D773).withOpacity(0.8):const Color(0xfffD7D7D4).withOpacity(0.8)
+                ),
+              ),
+            ),
+        ),
+      ],
+    );
+    if(element.amount! >0){
+      listHeatMapWidgetMark.add(widget);
+    }
+  });
   }
 
   Future<void> calChart()async{
@@ -314,6 +355,7 @@ var selectChartX='เพศ'.obs;
   void onInit() {
     super.onInit();
     setLocation();
+    setHeatMap();
   }
 
   @override

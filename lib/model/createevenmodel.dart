@@ -1,6 +1,6 @@
 class CreateEven {
   String? eventID;
-  int? disasterType;
+  // int? disasterType;
   String? eventName;
   int? statusAgency;
   int? statusRelatedAgency;
@@ -9,7 +9,7 @@ class CreateEven {
   String? relatedAgency;
   String? responsibleAgency;
   String? receiveFrom;
-  int? violence;
+  // int? violence;
   String? latitude;
   String? longitude;
   String? address;
@@ -20,27 +20,29 @@ class CreateEven {
   String? note;
   String? createBy;
   bool? isActive;
+  int? iconMap;
   bool? isDelete;
   List<ImageList>? imageList;
   List<ImageDeleteList>? imageDeleteList;
-  Deceased? deceased;
-  Injured? injured;
+  // Deceased? deceased;
+  // Injured? injured;
   List<FreeFormDetailList>? freeFormDetailList;
   List<FreeFormAnswerList>? freeFormAnswerList;
   UpdateBy? updateBy;
 
   CreateEven(
       {this.eventID,
-        this.disasterType,
+        // this.disasterType,
         this.eventName,
         this.statusAgency,
         this.statusRelatedAgency,
+        this.iconMap,
         this.statusItem,
         this.datetime,
         this.relatedAgency,
         this.responsibleAgency,
         this.receiveFrom,
-        this.violence,
+        // this.violence,
         this.latitude,
         this.longitude,
         this.address,
@@ -54,15 +56,16 @@ class CreateEven {
         this.isDelete,
         this.imageList,
         this.imageDeleteList,
-        this.deceased,
-        this.injured,
+        // this.deceased,
+        // this.injured,
         this.freeFormDetailList,
         this.freeFormAnswerList,
         this.updateBy});
 
   CreateEven.fromJson(Map<String, dynamic> json) {
     eventID = json['eventID'];
-    disasterType = json['disasterType'];
+    // disasterType = json['disasterType'];
+    iconMap = json['iconMap'];
     eventName = json['eventName'];
     statusAgency = json['statusAgency'];
     statusRelatedAgency = json['statusRelatedAgency'];
@@ -71,7 +74,7 @@ class CreateEven {
     relatedAgency = json['relatedAgency'];
     responsibleAgency = json['responsibleAgency'];
     receiveFrom = json['receiveFrom'];
-    violence = json['violence'];
+    // violence = json['violence'];
     latitude = json['latitude'];
     longitude = json['longitude'];
     address = json['address'];
@@ -95,11 +98,11 @@ class CreateEven {
         imageDeleteList!.add(new ImageDeleteList.fromJson(v));
       });
     }
-    deceased = json['deceased'] != null
-        ? new Deceased.fromJson(json['deceased'])
-        : null;
-    injured =
-    json['injured'] != null ? new Injured.fromJson(json['injured']) : null;
+    // deceased = json['deceased'] != null
+    //     ? new Deceased.fromJson(json['deceased'])
+    //     : null;
+    // injured =
+    // json['injured'] != null ? new Injured.fromJson(json['injured']) : null;
     if (json['freeFormDetailList'] != null) {
       freeFormDetailList = <FreeFormDetailList>[];
       json['freeFormDetailList'].forEach((v) {
@@ -120,7 +123,8 @@ class CreateEven {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['eventID'] = this.eventID;
-    data['disasterType'] = this.disasterType;
+    // data['disasterType'] = this.disasterType;
+    data['iconMap'] = this.iconMap;
     data['eventName'] = this.eventName;
     data['statusAgency'] = this.statusAgency;
     data['statusRelatedAgency'] = this.statusRelatedAgency;
@@ -129,7 +133,7 @@ class CreateEven {
     data['relatedAgency'] = this.relatedAgency;
     data['responsibleAgency'] = this.responsibleAgency;
     data['receiveFrom'] = this.receiveFrom;
-    data['violence'] = this.violence;
+    // data['violence'] = this.violence;
     data['latitude'] = this.latitude;
     data['longitude'] = this.longitude;
     data['address'] = this.address;
@@ -148,12 +152,12 @@ class CreateEven {
       data['imageDeleteList'] =
           this.imageDeleteList!.map((v) => v.toJson()).toList();
     }
-    if (this.deceased != null) {
-      data['deceased'] = this.deceased!.toJson();
-    }
-    if (this.injured != null) {
-      data['injured'] = this.injured!.toJson();
-    }
+    // if (this.deceased != null) {
+    //   data['deceased'] = this.deceased!.toJson();
+    // }
+    // if (this.injured != null) {
+    //   data['injured'] = this.injured!.toJson();
+    // }
     if (this.freeFormDetailList != null) {
       data['freeFormDetailList'] =
           this.freeFormDetailList!.map((v) => v.toJson()).toList();

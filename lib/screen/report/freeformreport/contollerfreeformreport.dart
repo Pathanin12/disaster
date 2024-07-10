@@ -515,7 +515,7 @@
 //                                           Text(
 //                                             'คัดลอก',
 //                                             style: textStyle(context,
-//                                                 fontSize: 14,
+//                                                 fontSize: 15,
 //                                                 color: colorWhite),
 //                                           ),
 //                                         ],
@@ -567,7 +567,7 @@
 //                                           Text(
 //                                             'บันทึก',
 //                                             style: textStyle(context,
-//                                                 fontSize: 14,
+//                                                 fontSize: 15,
 //                                                 color: colorWhite),
 //                                           ),
 //                                         ],

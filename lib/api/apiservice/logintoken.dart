@@ -8,6 +8,7 @@ import '../../service/config.dart';
 
 Future<void>getToken()async{
 try{
+
   SharedPreferences prefs = await SharedPreferences.getInstance();
     if(prefs.getString("Expire")!=null) {
       if(DateTime.now().isAfter(DateTime.parse(prefs.getString("Expire")!))) {
@@ -28,6 +29,7 @@ try{
         }
       }
     }else{
+
       Dio dio =Dio();
       var request = await dio.post('${url}Token',data: {
         "username": "aisoft",
@@ -35,13 +37,13 @@ try{
       },options: Options(headers: {
         'Content-Type': 'application/json',
       }));
-
+      print(request.data);
       if (request.statusCode == 200) {
         var data = request.data;
         LoginToKen token = LoginToKen.fromJson(data);
         prefs.setString("userData", token.accessToken!);
         prefs.setString('Expire', token.expires.toString());
-        print("TOKENAPI ${ prefs.getString("userData")}");
+
       }
 
     }

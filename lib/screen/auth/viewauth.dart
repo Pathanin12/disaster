@@ -27,26 +27,27 @@ class AuthPage extends StatelessWidget {
                 alignment: Alignment.center,
                 height: 200,
                 width: 200,
-               child:SvgPicture.asset(
-                 'assets/icons/iconlocation.svg',
+               child:Image.asset(
+                 'assets/icons/iconapp.png',
                  fit: BoxFit.cover,
                ) ,
               ),
             ],
           ),
+          SizedBox(height: 20,),
           Center(
               child: LoadingAnimationWidget.inkDrop(
                 color: Colors.white,
                 size: 50,
               )),
-          SizedBox(height: 20,),
-          InkWell(
-              onTap: ()async{
-                await Clipboard.setData(
-                    ClipboardData(
-                        text: contoller.r.value));
-              },
-              child: Text(contoller.r.value,style: TextStyle(fontSize: 13),))
+          // SizedBox(height: 20,),
+          // InkWell(
+          //     onTap: ()async{
+          //       await Clipboard.setData(
+          //           ClipboardData(
+          //               text: contoller.r.value));
+          //     },
+          //     child: Text(contoller.r.value,style: TextStyle(fontSize: 15),))
         ],
       )
     );

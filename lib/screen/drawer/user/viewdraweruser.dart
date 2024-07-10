@@ -93,7 +93,7 @@ class _LandingPageUserState extends State<LandingPageUser> {
                       ),
                       Text(
                         'Ministry of Interior. Thailand',
-                        style: textStyle(context, fontSize: 14),
+                        style: textStyle(context, fontSize: 15),
                       ),
                     ])
               ],
@@ -112,7 +112,7 @@ class _LandingPageUserState extends State<LandingPageUser> {
                 value: 'Upload',
                 child: Text(
                   'อัพโหลด',
-                  style: textStyle(context, fontSize: 14),
+                  style: textStyle(context, fontSize: 15),
                 ),
               ),
             ],

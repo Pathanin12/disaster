@@ -50,7 +50,7 @@
 //             crossAxisAlignment: pw.CrossAxisAlignment.end,
 //             children: [
 //               pw.Text('รายงานสาธารณภัย',
-//                   style: pw.TextStyle(font: ttf, fontSize: 14)),
+//                   style: pw.TextStyle(font: ttf, fontSize: 15)),
 //               pw.Text('ประเภท : ${type} ${(level!='จังหวัด')?'ระดับ : ประเทศ':'จังหวัด : ${province}'}',
 //                   style: pw.TextStyle(font: ttf, fontSize: 12)),
 //               pw.Text((startDate==endDate)?'${startDate.day} ${mountList[startDate.month-1]} ${startDate.year+543}':'${startDate.day} ${mountList[startDate.month-1]} ${startDate.year+543} - ${endDate.day} ${mountList[endDate.month-1]} ${endDate.year+543} ',

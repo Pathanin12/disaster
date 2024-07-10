@@ -75,7 +75,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                       ),
                       Text(
                         'Ministry of Interior. Thailand',
-                        style: textStyle(context, fontSize: 14),
+                        style: textStyle(context, fontSize: 15),
                       ),
                     ])
               ],
@@ -114,25 +114,29 @@ class _DetailVillagerState extends State<DetailVillager> {
                     children: [
                       Row(
                         children: [
-                          Expanded(
-                              child: Container(
-                                child: Text(
-                                  'ประเภทภัยพิบัติ',
-                                  style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
-                                ),
-                              )),
-                          const SizedBox(
-                            width: 20,
-                          ),
+
+
                           Expanded(
                               child: Container(
                                 child: Text(
                                   'ชื่อรายการ',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
-                              ))
+                              ),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Expanded(
+                              child: Container(
+                                // child: Text(
+                                //   'ประเภทภัยพิบัติ',
+                                //   style: textStyle(context,
+                                //       fontSize: 15, color: colorBlack),
+                                // ),
+                              )),
+
                         ],
                       ),
                       const SizedBox(
@@ -140,20 +144,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                       ),
                       Row(
                         children: [
-                          Expanded(
-                              child: Container(
-                                child: Text(
-                                  (contoller.dataEvent.value.events == null)
-                                      ? ''
-                                      : contoller.category[contoller
-                                      .dataEvent.value.events!.disasterType!],
-                                  style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
-                                ),
-                              )),
-                          const SizedBox(
-                            width: 20,
-                          ),
+
                           Expanded(
                               child: Container(
                                 child: Text(
@@ -162,9 +153,24 @@ class _DetailVillagerState extends State<DetailVillager> {
                                       : contoller
                                       .dataEvent.value.events!.eventName!,
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Expanded(
+                              child: Container(
+                                // child: Text(
+                                //   (contoller.dataEvent.value.events == null)
+                                //       ? ''
+                                //       : contoller.category[contoller
+                                //       .dataEvent.value.events!.disasterType!],
+                                //   style: textStyle(context,
+                                //       fontSize: 15, color: colorGrey),
+                                // ),
+                              )),
+
                         ],
                       ),
                       const SizedBox(
@@ -177,7 +183,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                 child: Text(
                                   'วันที่รับเรื่อง',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               )),
                           const SizedBox(
@@ -188,7 +194,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                 child: Text(
                                   'รับเรื่องจาก',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               ))
                         ],
@@ -205,7 +211,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                       ? ''
                                       : '${DateTime.parse(contoller.dataEvent.value.events!.datetime!).day} ${mountList[DateTime.parse(contoller.dataEvent.value.events!.datetime!).month-1]} ${DateTime.parse(contoller.dataEvent.value.events!.datetime!).year + 543}',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
                           const SizedBox(
@@ -219,7 +225,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                       : contoller
                                       .dataEvent.value.events!.receiveFrom!,
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
                         ],
@@ -234,7 +240,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                 child: Text(
                                   'หน่วยงานที่เกียวข้อง',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               )),
                           const SizedBox(
@@ -245,7 +251,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                 child: Text(
                                   'สถานะหน่วยงานที่เกี่ยวข้อง',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               ))
                         ],
@@ -263,7 +269,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                       : contoller
                                       .dataEvent.value.events!.relatedAgency!,
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
                           const SizedBox(
@@ -277,7 +283,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                       : contoller.StatusList[contoller.dataEvent
                                       .value.events!.statusRelatedAgency!],
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
                         ],
@@ -292,7 +298,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                 child: Text(
                                   'หน่วยงานที่รับผิดชอบ',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               )),
                           const SizedBox(
@@ -303,7 +309,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                 child: Text(
                                   'สถานะหน่วยงานที่รับผิดชอบ',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               ))
                         ],
@@ -322,7 +328,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                       .responsibleAgency ??
                                       '',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
                           const SizedBox(
@@ -336,7 +342,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                       : contoller.StatusList[contoller
                                       .dataEvent.value.events!.statusAgency!],
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
                         ],
@@ -344,103 +350,103 @@ class _DetailVillagerState extends State<DetailVillager> {
                       const SizedBox(
                         height: 30,
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                              child: Container(
-                                child: Text(
-                                  'ผู้ประสบภัย',
-                                  style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
-                                ),
-                              )),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Expanded(
-                              child: Container(
-                                child: Text(
-                                  'ระดับความรุนแรง',
-                                  style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
-                                ),
-                              ))
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                              child: Container(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(
-                                      (contoller.dataEvent.value.events == null)
-                                          ? ''
-                                          : 'ผู้เสียชีวิต ${contoller.dataEvent.value.events!.deceased!.total!} ราย เพศชาย ${contoller.dataEvent.value.events!.deceased!.male!} คน เพศหญิง ${contoller.dataEvent.value.events!.deceased!.feMale!} คน ไม่สามารถระบุเพศได้ ${contoller.dataEvent.value.events!.deceased!.unidentify!} คน',
-                                      style: textStyle(context,
-                                          fontSize: 13, color: colorGrey),
-                                    ),
-                                    Text(
-                                      (contoller.dataEvent.value.events == null)
-                                          ? ''
-                                          : 'ผู้บาดเจ็บ ${contoller.dataEvent.value.events!.injured!.total!} ราย เพศชาย ${contoller.dataEvent.value.events!.injured!.male!} คน เพศหญิง ${contoller.dataEvent.value.events!.injured!.feMale!} คน ไม่สามารถระบุเพศได้ ${contoller.dataEvent.value.events!.injured!.unidentify!} คน',
-                                      style: textStyle(context,
-                                          fontSize: 13, color: colorGrey),
-                                    ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        contoller.dialogListName(context);
-                                      },
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        height: 40,
-                                        width: 80,
-                                        decoration: BoxDecoration(
-                                            border: Border.all(color: colorGrey),
-                                            borderRadius:
-                                            BorderRadius.circular(5),
-                                            color: colorWhite),
-                                        child: Text(
-                                          'ดูรายชื่อ',
-                                          style: textStyle(context,
-                                              fontSize: 13, color: colorBlue),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              )),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Expanded(
-                              child: Container(
-                                child: Text(
-                                  (contoller.dataEvent.value.events == null)
-                                      ? ''
-                                      : (contoller.dataEvent.value.events!
-                                      .violence ==
-                                      1)
-                                      ? 'เล็กน้อย'
-                                      : (contoller.dataEvent.value.events!
-                                      .violence ==
-                                      2)
-                                      ? 'ปานกลาง'
-                                      : 'รุนแรง',
-                                  style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
-                                ),
-                              )),
-                        ],
-                      ),
+                      // Row(
+                      //   children: [
+                      //     Expanded(
+                      //         child: Container(
+                      //           child: Text(
+                      //             'ผู้ประสบภัย',
+                      //             style: textStyle(context,
+                      //                 fontSize: 15, color: colorBlack),
+                      //           ),
+                      //         )),
+                      //     const SizedBox(
+                      //       width: 20,
+                      //     ),
+                      //     Expanded(
+                      //         child: Container(
+                      //           child: Text(
+                      //             'ระดับความรุนแรง',
+                      //             style: textStyle(context,
+                      //                 fontSize: 15, color: colorBlack),
+                      //           ),
+                      //         ))
+                      //   ],
+                      // ),
+                      // const SizedBox(
+                      //   height: 10,
+                      // ),
+                      // Row(
+                      //   children: [
+                      //     Expanded(
+                      //         child: Container(
+                      //           child: Column(
+                      //             crossAxisAlignment: CrossAxisAlignment.start,
+                      //             mainAxisSize: MainAxisSize.min,
+                      //             children: [
+                      //               Text(
+                      //                 (contoller.dataEvent.value.events == null)
+                      //                     ? ''
+                      //                     : 'ผู้เสียชีวิต ${contoller.dataEvent.value.events!.deceased!.total!} ราย เพศชาย ${contoller.dataEvent.value.events!.deceased!.male!} คน เพศหญิง ${contoller.dataEvent.value.events!.deceased!.feMale!} คน ไม่สามารถระบุเพศได้ ${contoller.dataEvent.value.events!.deceased!.unidentify!} คน',
+                      //                 style: textStyle(context,
+                      //                     fontSize: 15, color: colorGrey),
+                      //               ),
+                      //               Text(
+                      //                 (contoller.dataEvent.value.events == null)
+                      //                     ? ''
+                      //                     : 'ผู้บาดเจ็บ ${contoller.dataEvent.value.events!.injured!.total!} ราย เพศชาย ${contoller.dataEvent.value.events!.injured!.male!} คน เพศหญิง ${contoller.dataEvent.value.events!.injured!.feMale!} คน ไม่สามารถระบุเพศได้ ${contoller.dataEvent.value.events!.injured!.unidentify!} คน',
+                      //                 style: textStyle(context,
+                      //                     fontSize: 15, color: colorGrey),
+                      //               ),
+                      //               // SizedBox(
+                      //               //   height: 5,
+                      //               // ),
+                      //               // InkWell(
+                      //               //   onTap: () {
+                      //               //     contoller.dialogListName(context);
+                      //               //   },
+                      //               //   child: Container(
+                      //               //     alignment: Alignment.center,
+                      //               //     height: 40,
+                      //               //     width: 80,
+                      //               //     decoration: BoxDecoration(
+                      //               //         border: Border.all(color: colorGrey),
+                      //               //         borderRadius:
+                      //               //         BorderRadius.circular(5),
+                      //               //         color: colorWhite),
+                      //               //     child: Text(
+                      //               //       'ดูรายชื่อ',
+                      //               //       style: textStyle(context,
+                      //               //           fontSize: 15, color: colorBlue),
+                      //               //     ),
+                      //               //   ),
+                      //               // )
+                      //             ],
+                      //           ),
+                      //         )),
+                      //     const SizedBox(
+                      //       width: 20,
+                      //     ),
+                      //     Expanded(
+                      //         child: Container(
+                      //           child: Text(
+                      //             (contoller.dataEvent.value.events == null)
+                      //                 ? ''
+                      //                 : (contoller.dataEvent.value.events!
+                      //                 .violence ==
+                      //                 1)
+                      //                 ? 'เล็กน้อย'
+                      //                 : (contoller.dataEvent.value.events!
+                      //                 .violence ==
+                      //                 2)
+                      //                 ? 'ปานกลาง'
+                      //                 : 'รุนแรง',
+                      //             style: textStyle(context,
+                      //                 fontSize: 15, color: colorGrey),
+                      //           ),
+                      //         )),
+                      //   ],
+                      // ),
                       const SizedBox(
                         height: 30,
                       ),
@@ -451,7 +457,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                 child: Text(
                                   'สถานะรายงาน',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               )),
                           const SizedBox(
@@ -473,7 +479,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                       : contoller.StatusList[contoller
                                       .dataEvent.value.events!.statusItem!],
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
                           const SizedBox(
@@ -529,79 +535,24 @@ class _DetailVillagerState extends State<DetailVillager> {
                                                       .value.events!.longitude!},17z?hl=th&entry=ttu"),
                                                 );
                                                 //
-                                              },child: (contoller.dataEvent.value.events!.disasterType == 0 &&
-                                                  contoller.dataEvent.value
-                                                      .events!.statusItem ==
-                                                      0)
-                                                  ? SvgPicture.asset(
-                                                'assets/icons/svg/fire0.svg',
-                                              )
-                                                  : (contoller.dataEvent.value.events!.disasterType == 0 &&
-                                                  contoller
-                                                      .dataEvent
-                                                      .value
-                                                      .events!
-                                                      .statusItem ==
-                                                      1)
-                                                  ? SvgPicture.asset(
-                                                'assets/icons/svg/fire1.svg',
-                                              )
-                                                  : (contoller.dataEvent.value.events!.disasterType == 0 &&
-                                                  contoller
-                                                      .dataEvent
-                                                      .value
-                                                      .events!
-                                                      .statusItem ==
-                                                      2)
-                                                  ? SvgPicture.asset(
-                                                'assets/icons/svg/fire2.svg',
-                                              )
-                                                  : (contoller
-                                                  .dataEvent
-                                                  .value
-                                                  .events!
-                                                  .disasterType ==
-                                                  1 &&
-                                                  contoller
-                                                      .dataEvent
-                                                      .value
-                                                      .events!
-                                                      .statusItem ==
-                                                      0)
-                                                  ? SvgPicture.asset(
-                                                'assets/icons/svg/flood0.svg',
-                                              )
-                                                  : (contoller.dataEvent.value.events!.disasterType == 1 && contoller.dataEvent.value.events!.statusItem == 1)
-                                                  ? SvgPicture.asset(
-                                                'assets/icons/svg/flood1.svg',
-                                              )
-                                                  : (contoller.dataEvent.value.events!.disasterType == 1 && contoller.dataEvent.value.events!.statusItem == 2)
-                                                  ? SvgPicture.asset(
-                                                'assets/icons/svg/flood2.svg',
-                                              )
-                                                  : (contoller.dataEvent.value.events!.disasterType == 2 && contoller.dataEvent.value.events!.statusItem == 0)
-                                                  ? SvgPicture.asset(
-                                                'assets/icons/svg/windstorm0.svg',
-                                              )
-                                                  : (contoller.dataEvent.value.events!.disasterType == 2 && contoller.dataEvent.value.events!.statusItem == 1)
-                                                  ? SvgPicture.asset(
-                                                'assets/icons/svg/windstorm1.svg',
-                                              )
-                                                  : (contoller.dataEvent.value.events!.disasterType == 2 && contoller.dataEvent.value.events!.statusItem == 2)
-                                                  ? SvgPicture.asset(
-                                                'assets/icons/svg/windstorm2.svg',
-                                              )
-                                                  : (contoller.dataEvent.value.events!.disasterType == 3 && contoller.dataEvent.value.events!.statusItem == 0)
-                                                  ? SvgPicture.asset(
-                                                'assets/icons/svg/forestfire0.svg',
-                                              )
-                                                  : (contoller.dataEvent.value.events!.disasterType == 3 && contoller.dataEvent.value.events!.statusItem == 1)
-                                                  ? SvgPicture.asset(
-                                                'assets/icons/svg/forestfire1.svg',
-                                              )
-                                                  : SvgPicture.asset(
-                                                'assets/icons/svg/forestfire2.svg',
-                                              ),)
+                                              },child:Stack(
+                                                children: [
+                                                  Center(
+                                                    child: SvgPicture.asset(
+                                                      'assets/icons/svg/fire0.svg',color:(contoller.dataEvent.value.events!.statusItem==0)?Colors.amber:(contoller.dataEvent.value.events!.statusItem==1)?Colors.red:Colors.green,
+                                                      width: 80,height: 80,
+                                                    ),
+                                                  ),
+                                                  Positioned(
+                                                      top:15,
+                                                      left: 25,
+                                                      child:  SvgPicture.asset(
+                                                        listIconType[contoller.dataEvent.value.events!.iconMap??0],
+                                                        width: 30,height: 30,
+                                                      ))
+
+                                                ],
+                                              ))
                                           ),
                                         ],
                                       )
@@ -640,7 +591,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                           fillColor: colorWhite,
                                           hintText: "ค้นหา",
                                           hintStyle: TextStyle(
-                                              fontSize: 13.0,
+                                              fontSize: 15.0,
                                               color: colorGrey,
                                               fontWeight: FontWeight.w400),
                                           filled: true,
@@ -711,7 +662,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                 child: Text(
                                   'ที่อยู่',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               )),
                         ],
@@ -730,7 +681,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                       .dataEvent.value.events!.address ??
                                       '',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
                         ],
@@ -748,7 +699,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                 child: Text(
                                   'ละติจูด',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               )),
                           const SizedBox(
@@ -759,7 +710,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                 child: Text(
                                   'ลองติจูด',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               ))
                         ],
@@ -777,7 +728,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                       : contoller
                                       .dataEvent.value.events!.latitude!,
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
                           const SizedBox(
@@ -791,7 +742,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                       : contoller
                                       .dataEvent.value.events!.longitude!,
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
                         ],
@@ -806,7 +757,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                 child: Text(
                                   'รูปที่อัพโหลด',
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorBlack),
+                                      fontSize: 15, color: colorBlack),
                                 ),
                               )),
                           const SizedBox(
@@ -858,7 +809,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                     child: Text(
                                       'รายละเอียดเพิ่มเติม',
                                       style: textStyle(context,
-                                          fontSize: 13, color: colorBlack),
+                                          fontSize: 15, color: colorBlack),
                                     ),
                                   )),
                               const SizedBox(
@@ -879,7 +830,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                       ? ''
                                       : contoller.dataEvent.value.events!.note!,
                                   style: textStyle(context,
-                                      fontSize: 13, color: colorGrey),
+                                      fontSize: 15, color: colorGrey),
                                 ),
                               )),
                         ],
@@ -947,7 +898,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                     children: [
                                       Text('ลำดับที่ ${index + 1}',
                                           style: textStyle(context,
-                                              fontSize: 13,
+                                              fontSize: 15,
                                               color: colorBlack)),
                                       SizedBox(
                                         width: 13,
@@ -960,7 +911,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                               .name ??
                                               'ไม่ระบุชื่อ',
                                           style: textStyle(context,
-                                              fontSize: 13,
+                                              fontSize: 15,
                                               color: colorBlack,
                                               fontWeight:
                                               FontWeight.bold)),
@@ -971,7 +922,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                       Text(
                                           "${contoller.dataEvent.value.peopleNewList![index].createDatetime!.split("T")[0]} ${contoller.dataEvent.value.peopleNewList![index].createDatetime!.split("T")[1]}",
                                           style: textStyle(context,
-                                              fontSize: 13,
+                                              fontSize: 15,
                                               color: colorBlack)),
                                       SizedBox(
                                         width: 13,
@@ -989,7 +940,7 @@ class _DetailVillagerState extends State<DetailVillager> {
                                           .note ??
                                           '',
                                       style: textStyle(context,
-                                          fontSize: 13,
+                                          fontSize: 15,
                                           color: colorBlack)),
                                   SizedBox(
                                     width: 13,

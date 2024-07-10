@@ -35,6 +35,7 @@ class ProfileSave {
   int? role;
   String? roleCode;
   String? roleName;
+  String? provinceName;
 
   ProfileSave(
       {this.code,
@@ -47,12 +48,14 @@ class ProfileSave {
         this.usernameRef,
         this.organization,
         this.roleCode,
-        this.roleName});
+        this.roleName,
+      this.provinceName});
 
   ProfileSave.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     role = json['role'];
     email = json['email'];
+    provinceName = json['provinceName'];
     name = json['name'];
     refId = json['refId'];
     positionName = json['positionName'];
@@ -70,6 +73,7 @@ class ProfileSave {
     data['code'] = this.code;
     data['role'] = this.role;
     data['email'] = this.email;
+    data['provinceName'] = this.provinceName;
     data['name'] = this.name;
     data['refId'] = this.refId;
     data['positionName'] = this.positionName;

@@ -14,6 +14,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker_web/image_picker_web.dart';
+import 'package:just_the_tooltip/just_the_tooltip.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:number_paginator/number_paginator.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -34,27 +35,29 @@ import '../drawer/admin/contollerdraweradmin.dart';
 class ContollerCreateList extends GetxController {
   var mapController = MapController().obs;
   var dataEditEvent= edit.EventByIDModel().obs;
+  final tooltipController = JustTheController();
   final formKey = GlobalKey<FormState>();
+  var selectIcon=0.obs;
   addressModel locationAddress = addressModel();
   var selectedField = ''.obs;
   var listForm = <ListFormModel>[].obs;
   var showDropdown = false.obs;
-  var listStringNameDeleteDie =<String>[].obs;
-  var listStringNameDeleteInjured =<String>[].obs;
-  var listDataIDUserDie=<String>[].obs;
+  // var listStringNameDeleteDie =<String>[].obs;
+  // var listStringNameDeleteInjured =<String>[].obs;
+  // var listDataIDUserDie=<String>[].obs;
   var listAnswer = <answer.ListAnswerModel>[].obs;
-  var listDataIDUserInjured=<String>[].obs;
-  var listDataDeleteIDUserInjured=<RemoveDeceasedList>[].obs;
-  var listDataDeleteIDUserDie=<RemoveDeceasedList>[].obs;
+  // var listDataIDUserInjured=<String>[].obs;
+  // var listDataDeleteIDUserInjured=<RemoveDeceasedList>[].obs;
+  // var listDataDeleteIDUserDie=<RemoveDeceasedList>[].obs;
   // String? imageFile;
 
-  var listTextNameDie=<TextEditingController>[].obs;
-  var listTextAgeDie=<TextEditingController>[].obs;
-  var listGenderDie=<RxString>[].obs;
-
-  var listTextNameInjured=<TextEditingController>[].obs;
-  var listTextAgeInjured=<TextEditingController>[].obs;
-  var listGenderInjured=<RxString>[].obs;
+  // var listTextNameDie=<TextEditingController>[].obs;
+  // var listTextAgeDie=<TextEditingController>[].obs;
+  // var listGenderDie=<RxString>[].obs;
+  //
+  // var listTextNameInjured=<TextEditingController>[].obs;
+  // var listTextAgeInjured=<TextEditingController>[].obs;
+  // var listGenderInjured=<RxString>[].obs;
 
   // var listImage = <Uint8List>[].obs;
   var listConvertImage = <edit.ImageList>[].obs;
@@ -69,18 +72,17 @@ class ContollerCreateList extends GetxController {
       remarkReport = TextEditingController().obs,
       lng = TextEditingController().obs,
       responsible = TextEditingController().obs,
-      die = TextEditingController(text: '0').obs,
+      // die = TextEditingController(text: '0').obs,
       relevant = TextEditingController().obs,
-      mandie = TextEditingController(text: '0').obs,
-      womenDie = TextEditingController(text: '0').obs,
-      unGenderDie = TextEditingController(text: '0').obs,
-      injured = TextEditingController(text: '0').obs,
-      manInjured = TextEditingController(text: '0').obs,
-      womenInjured = TextEditingController(text: '0').obs,
-      unGenderInjured = TextEditingController(text: '0').obs,
+      // mandie = TextEditingController(text: '0').obs,
+      // womenDie = TextEditingController(text: '0').obs,
+      // unGenderDie = TextEditingController(text: '0').obs,
+      // injured = TextEditingController(text: '0').obs,
+      // manInjured = TextEditingController(text: '0').obs,
+      // womenInjured = TextEditingController(text: '0').obs,
+      // unGenderInjured = TextEditingController(text: '0').obs,
       remark = TextEditingController().obs,
       search = TextEditingController().obs;
-  var radio = 0.obs;
   var listSearchMap=<SearchMapModel>[].obs;
   final NumberPaginatorController controllerNumPage =
   NumberPaginatorController();
@@ -100,21 +102,21 @@ class ContollerCreateList extends GetxController {
     dataEditEvent.value=data;
     nameCon.value.text = data.events!.eventName??'';
     createBy.value.text = data.events!.receiveFrom??'';
-    lat.value.text = data.events!.latitude!;
-    unGenderDie.value.text=data.events!.deceased!.unidentify.toString()??'';
-    lng.value.text = data.events!.longitude!;
+    lat.value.text = double.parse(data.events!.latitude!).toStringAsFixed(6);
+    // unGenderDie.value.text=data.events!.deceased!.unidentify.toString()??'';
+    lng.value.text = double.parse(data.events!.longitude!).toStringAsFixed(6);
     responsible.value.text = data.events!.responsibleAgency??'';
-    die.value.text = data.events!.deceased!.total!.toString()??'';
+    // die.value.text = data.events!.deceased!.total!.toString()??'';
     relevant.value.text = data.events!.relatedAgency??'';
-    mandie.value.text = data.events!.deceased!.male.toString()??'';
-    womenDie.value.text = data.events!.deceased!.feMale.toString()??'';
-    injured.value.text = data.events!.injured!.total.toString()??'';
-    manInjured.value.text = data.events!.injured!.male.toString()??'';
-    womenInjured.value.text = data.events!.injured!.feMale.toString()??'';
-    unGenderInjured.value.text = data.events!.injured!.unidentify.toString()??'';
+    // mandie.value.text = data.events!.deceased!.male.toString()??'';
+    // womenDie.value.text = data.events!.deceased!.feMale.toString()??'';
+    // injured.value.text = data.events!.injured!.total.toString()??'';
+    // manInjured.value.text = data.events!.injured!.male.toString()??'';
+    // womenInjured.value.text = data.events!.injured!.feMale.toString()??'';
+    // unGenderInjured.value.text = data.events!.injured!.unidentify.toString()??'';
     remark.value.text = data.events!.note??'';
     if(isAdmin)listConvertImage.value = data.events!.imageList!;
-    radio.value = data.events!.violence??1;
+    // radio.value = data.events!.violence??1;
     date.value = data.events!.datetime!;
     // listImage.value.clear();
     selectCategory!.value = category[data.events!.disasterType!];
@@ -124,18 +126,18 @@ class ContollerCreateList extends GetxController {
     address.value.text= data.events!.address.toString()??'';
 
 
-    for(int i=0;i< data.events!.deceased!.deceaseList!.length;i++){
-      listGenderDie.add(listGender[data.events!.deceased!.deceaseList![i].sex!].obs);
-      listTextAgeDie.add(TextEditingController(text:data.events!.deceased!.deceaseList![i].age.toString() ));
-      listTextNameDie.add(TextEditingController(text: data.events!.deceased!.deceaseList![i].name.toString()));
-      listDataIDUserDie.add(data.events!.deceased!.deceaseList![i].id??'');
-    }
-    for(int i=0;i< data.events!.injured!.injureList!.length;i++){
-      listGenderInjured.add(listGender[data.events!.injured!.injureList![i].sex!].obs);
-      listTextAgeInjured.add(TextEditingController(text:data.events!.injured!.injureList![i].age.toString() ));
-      listTextNameInjured.add(TextEditingController(text: data.events!.injured!.injureList![i].name.toString()));
-      listDataIDUserInjured.add(data.events!.injured!.injureList![i].id??'');
-    }
+    // for(int i=0;i< data.events!.deceased!.deceaseList!.length;i++){
+    //   // listGenderDie.add(listGender[data.events!.deceased!.deceaseList![i].sex!].obs);
+    //   // listTextAgeDie.add(TextEditingController(text:data.events!.deceased!.deceaseList![i].age.toString() ));
+    //   // listTextNameDie.add(TextEditingController(text: data.events!.deceased!.deceaseList![i].name.toString()));
+    //   listDataIDUserDie.add(data.events!.deceased!.deceaseList![i].id??'');
+    // }
+    // for(int i=0;i< data.events!.injured!.injureList!.length;i++){
+    //   listGenderInjured.add(listGender[data.events!.injured!.injureList![i].sex!].obs);
+    //   listTextAgeInjured.add(TextEditingController(text:data.events!.injured!.injureList![i].age.toString() ));
+    //   listTextNameInjured.add(TextEditingController(text: data.events!.injured!.injureList![i].name.toString()));
+    //   listDataIDUserInjured.add(data.events!.injured!.injureList![i].id??'');
+    // }
     for (var element in data.events!.freeFormDetailList!) {
       if (element.types == 0) {
         listAnswer.add(answer.ListAnswerModel(
@@ -184,55 +186,56 @@ class ContollerCreateList extends GetxController {
         LatLng(double.parse(lat.value.text), double.parse(lng.value.text)), 16);
   }
 
-  UpdateListGenderDie(String gender, int index){
-    listGenderDie[index].value=gender;
-  }
+  // UpdateListGenderDie(String gender, int index){
+  //   listGenderDie[index].value=gender;
+  // }
 
 
-  addDataDie(){
-    listTextAgeDie.add(TextEditingController());
-    listGenderDie.add('ไม่ระบุ'.obs);
-    listTextNameDie.add(TextEditingController());
-    listDataIDUserDie.add('new');
-
-  }
-  UpdateListGenderInjured(String gender, int index){
-    listGenderInjured[index].value=gender;
-  }
-  addDataInjured(){
-    listTextAgeInjured.add(TextEditingController());
-    listGenderInjured.add('ไม่ระบุ'.obs);
-    listTextNameInjured.add(TextEditingController());
-    listDataIDUserInjured.add('new');
-
-  }
+  // addDataDie(){
+  //   listTextAgeDie.add(TextEditingController());
+  //   listGenderDie.add('ไม่ระบุ'.obs);
+  //   listTextNameDie.add(TextEditingController());
+  //   listDataIDUserDie.add('new');
+  //
+  // }
+  // UpdateListGenderInjured(String gender, int index){
+  //   listGenderInjured[index].value=gender;
+  // }
+  // addDataInjured(){
+  //   listTextAgeInjured.add(TextEditingController());
+  //   listGenderInjured.add('ไม่ระบุ'.obs);
+  //   listTextNameInjured.add(TextEditingController());
+  //   listDataIDUserInjured.add('new');
+  //
+  // }
   clearData() async {
     nameCon.value.text = '';
     createBy.value.text = '';
-    lat.value.text = "18.3170581";
-    lng.value.text = "99.3986862";
+    lat.value.text = "18.317058";
+    lng.value.text = "99.398686";
     responsible.value.text = '';
-    die.value.text = '0';
+    // die.value.text = '0';
+    selectIcon.value=0;
     relevant.value.text = '';
-    mandie.value.text = '0';
-    womenDie.value.text = '0';
-    unGenderDie.value.text = '0';
-    injured.value.text = '0';
-    manInjured.value.text = '0';
-    womenInjured.value.text = '0';
-    unGenderInjured.value.text = '0';
+    // mandie.value.text = '0';
+    // womenDie.value.text = '0';
+    // unGenderDie.value.text = '0';
+    // injured.value.text = '0';
+    // manInjured.value.text = '0';
+    // womenInjured.value.text = '0';
+    // unGenderInjured.value.text = '0';
     search.value.text='';
     locationAddress = addressModel();
     remark.value.text = '';
-    radio.value = 0;
+    // radio.value = 0;
     date.value = DateTime.now().toString().split(" ")[0];
     listDeleteImage.clear();
     listConvertImageLog.clear();
     listConvertFileLog.clear();
     listAnswer.clear();
     listForm.clear();
-    listStringNameDeleteInjured.clear();
-    listStringNameDeleteDie.clear();
+    // listStringNameDeleteInjured.clear();
+    // listStringNameDeleteDie.clear();
     remarkReport.value.text='';
     // listImage.value.clear();
     listConvertImage.clear();
@@ -244,19 +247,19 @@ class ContollerCreateList extends GetxController {
     // mapController.value.move(
     //     LatLng(latDefault, lngDefault), 16);
     dataEditEvent= edit.EventByIDModel().obs;
-    listTextNameDie.clear();
-    listTextAgeDie.clear();
-    listGenderDie.clear();
-    listTextNameInjured.clear();
-    listTextNameDie.clear();
-    listDataIDUserInjured.clear();
-    listDataIDUserDie.clear();
+    // listTextNameDie.clear();
+    // listTextAgeDie.clear();
+    // listGenderDie.clear();
+    // listTextNameInjured.clear();
+    // listTextNameDie.clear();
+    // listDataIDUserInjured.clear();
+    // listDataIDUserDie.clear();
     listSearchMap.clear();
-    listDataDeleteIDUserDie.clear();
-    listDataDeleteIDUserInjured.clear();
-    listTextNameInjured.clear();
-    listTextAgeInjured.clear();
-    listGenderInjured.clear();
+    // listDataDeleteIDUserDie.clear();
+    // listDataDeleteIDUserInjured.clear();
+    // listTextNameInjured.clear();
+    // listTextAgeInjured.clear();
+    // listGenderInjured.clear();
 
   }
 
@@ -355,10 +358,10 @@ class ContollerCreateList extends GetxController {
           listLog.add(LogList(header: 'รับเรื่องจาก',
               description:createBy.value.text.trim()));
         }
-        if(radio.value!=dataEditEvent.value.events!.violence){
-          listLog.add(LogList(header: 'ระดับความรุนแรง',
-              description:radio.value.toString()));
-        }
+        // if(radio.value!=dataEditEvent.value.events!.violence){
+        //   listLog.add(LogList(header: 'ระดับความรุนแรง',
+        //       description:radio.value.toString()));
+        // }
         if(lat.value.text.trim()!=dataEditEvent.value.events!.latitude||lng.value.text.trim()!=dataEditEvent.value.events!.longitude){
           listLog.add(LogList(header: 'แก้ไขจุดพิกัด',
               description:'${lat.value.text.trim()},${lng.value.text.trim()}'));
@@ -453,37 +456,38 @@ class ContollerCreateList extends GetxController {
           }
         }
       }
-      for(int i=0;i<listDataIDUserDie.length;i++){
-          if(listDataIDUserDie[i]=='new'){
-            listDataDie.add(DeceaseList(
-                name: listTextNameDie[i].text,
-                age: int.parse(listTextAgeDie[i].text),
-                sex: listGender.indexOf(listGenderDie[i].value)
-            ));
-          }
-      }
-      for(int i=0;i<listDataIDUserInjured.length;i++){
-          if(listDataIDUserInjured[i]=='new'){
-            listDataInjured.add(DeceaseList(
-                name: listTextNameInjured[i].text,
-                age: int.parse(listTextAgeInjured[i].text),
-                sex: listGender.indexOf(listGenderInjured[i].value)
-            ));
-          }
-      }
+      // for(int i=0;i<listDataIDUserDie.length;i++){
+      //     if(listDataIDUserDie[i]=='new'){
+      //       listDataDie.add(DeceaseList(
+      //           name: listTextNameDie[i].text,
+      //           age: int.parse(listTextAgeDie[i].text),
+      //           sex: listGender.indexOf(listGenderDie[i].value)
+      //       ));
+      //     }
+      // }
+      // for(int i=0;i<listDataIDUserInjured.length;i++){
+      //     if(listDataIDUserInjured[i]=='new'){
+      //       listDataInjured.add(DeceaseList(
+      //           name: listTextNameInjured[i].text,
+      //           age: int.parse(listTextAgeInjured[i].text),
+      //           sex: listGender.indexOf(listGenderInjured[i].value)
+      //       ));
+      //     }
+      // }
       CreateEven even = CreateEven(
           eventID: uuid,
           isDelete: false,
           isActive: true,
           // createBy: createBy.value.text,
           datetime: date.value,
+          iconMap: selectIcon.value,
           eventName: nameCon.value.text.trim(),
-          disasterType: category.indexOf(selectCategory.toString()),
+          // disasterType: category.indexOf(selectCategory.toString()),
           longitude: lng.value.text.trim(),
           latitude: lat.value.text.trim(),
           note: remark.value.text.trim(),
           province: location.province,
-          violence: radio.value,
+          // violence: radio.value,
           relatedAgency: relevant.value.text.trim(),
           imageList: listImageBase64,
           address: address.value.text.trim(),
@@ -495,23 +499,23 @@ class ContollerCreateList extends GetxController {
           createBy: (dataEditEvent.value.events!=null)?null:landingPageController.dataUser!.value.profile!.name,
           imageDeleteList: listDeleteImage,
           receiveFrom: createBy.value.text.trim(),
-          deceased: Deceased(
-              total: int.parse(die.value.text.trim()),
-              feMale: int.parse(womenDie.value.text.trim()),
-              male: int.parse(mandie.value.text.trim()),
-              unidentify: int.parse(unGenderDie.value.text.trim()),
-              deceaseList: listDataDie,
-              removeDeceasedList: listDataDeleteIDUserDie
-          ),
-          injured: Injured(
-              unidentify: int.parse(unGenderInjured.value.text.trim()),
-              male: int.parse(manInjured.value.text.trim()),
-              feMale: int.parse(womenInjured.value.text.trim()),
-              total: int.parse(injured.value.text.trim()),
-              removeInjuredList: listDataDeleteIDUserInjured,
-
-              injureList:  listDataInjured
-          ),
+          // deceased: Deceased(
+          //     total: int.parse(die.value.text.trim()),
+          //     feMale: int.parse(womenDie.value.text.trim()),
+          //     male: int.parse(mandie.value.text.trim()),
+          //     unidentify: int.parse(unGenderDie.value.text.trim()),
+          //     deceaseList: listDataDie,
+          //     removeDeceasedList: listDataDeleteIDUserDie
+          // ),
+          // injured: Injured(
+          //     unidentify: int.parse(unGenderInjured.value.text.trim()),
+          //     male: int.parse(manInjured.value.text.trim()),
+          //     feMale: int.parse(womenInjured.value.text.trim()),
+          //     total: int.parse(injured.value.text.trim()),
+          //     removeInjuredList: listDataDeleteIDUserInjured,
+          //
+          //     injureList:  listDataInjured
+          // ),
           statusRelatedAgency: StatusResponsible.indexOf(selectStatusrelevant!.value),
           statusAgency:
           Statusrelevant.indexOf(selectStatusResponsible!.value),
@@ -530,7 +534,7 @@ class ContollerCreateList extends GetxController {
               Text(
                 'บันทึกสำเร็จ',
                 style:
-                textStyle(context, fontSize: 18, fontWeight: FontWeight.bold),
+                textStyle(context, fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -547,7 +551,7 @@ class ContollerCreateList extends GetxController {
                 child: Text(
                   'ตกลง',
                   style:
-                  textStyle(context, fontSize: 14),
+                  textStyle(context, fontSize: 26),
                 )),
           ],
         ),

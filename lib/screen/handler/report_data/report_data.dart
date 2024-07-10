@@ -103,7 +103,7 @@
 //                                             'ชื่อรายการ',
 //                                             style: textStyle(context,
 //                                                 color: colorBlack,
-//                                                 fontSize: 13),
+//                                                 fontSize: 15),
 //                                           )),
 //                                     ),
 //                                     const SizedBox(
@@ -121,7 +121,7 @@
 //                                           child: Text(
 //                                         'ไฟไหม้บ้านเรือนประชาชน',
 //                                         style: textStyle(context,
-//                                             color: colorGrey, fontSize: 13),
+//                                             color: colorGrey, fontSize: 15),
 //                                       )),
 //                                     ),
 //                                     const SizedBox(
@@ -150,7 +150,7 @@
 //                                             'วันที่รับเรื่อง',
 //                                             style: textStyle(context,
 //                                                 color: colorBlack,
-//                                                 fontSize: 13),
+//                                                 fontSize: 15),
 //                                           )),
 //                                     ),
 //                                     const SizedBox(
@@ -164,7 +164,7 @@
 //                                             'สถานะของรายการ',
 //                                             style: textStyle(context,
 //                                                 color: colorBlack,
-//                                                 fontSize: 13),
+//                                                 fontSize: 15),
 //                                           )),
 //                                     ),
 //                                   ],
@@ -179,7 +179,7 @@
 //                                           child: Text(
 //                                         '5 มิ.ย. 67',
 //                                         style: textStyle(context,
-//                                             color: colorGrey, fontSize: 13),
+//                                             color: colorGrey, fontSize: 15),
 //                                       )),
 //                                     ),
 //                                     const SizedBox(
@@ -193,7 +193,7 @@
 //                                           child: Text(
 //                                         'กำลังดำเนินการ',
 //                                         style: textStyle(context,
-//                                             color: colorGrey, fontSize: 13),
+//                                             color: colorGrey, fontSize: 15),
 //                                       )),
 //                                     ),
 //                                   ],
@@ -219,7 +219,7 @@
 //                                             'หน่วยงานที่รับผิดชอบ',
 //                                             style: textStyle(context,
 //                                                 color: colorBlack,
-//                                                 fontSize: 13),
+//                                                 fontSize: 15),
 //                                           )),
 //                                     ),
 //                                     const SizedBox(
@@ -233,7 +233,7 @@
 //                                             'สถานะหน่วยงาน',
 //                                             style: textStyle(context,
 //                                                 color: colorBlack,
-//                                                 fontSize: 13),
+//                                                 fontSize: 15),
 //                                           )),
 //                                     ),
 //                                   ],
@@ -248,7 +248,7 @@
 //                                           child: Text(
 //                                         'เทศบาลนครปากเกร็ด',
 //                                         style: textStyle(context,
-//                                             color: colorGrey, fontSize: 13),
+//                                             color: colorGrey, fontSize: 15),
 //                                       )),
 //                                     ),
 //                                     const SizedBox(
@@ -262,7 +262,7 @@
 //                                           child: Text(
 //                                         'รับเรื่อง',
 //                                         style: textStyle(context,
-//                                             color: colorGrey, fontSize: 13),
+//                                             color: colorGrey, fontSize: 15),
 //                                       )),
 //                                     ),
 //                                   ],
@@ -287,7 +287,7 @@
 //                                             'รายละเอียดเหตุการณ์ไฟไหม้',
 //                                             style: textStyle(context,
 //                                                 color: colorBlack,
-//                                                 fontSize: 13),
+//                                                 fontSize: 15),
 //                                           )),
 //                                     ),
 //                                     const SizedBox(
@@ -305,7 +305,7 @@
 //                                           child: Text(
 //                                         'วันที่ 3 มิถุนายน 2567 เวลา 09.30 น. ได้รับแจ้งเหตุเพลิงไหม้ที่บ้าน คูเดื้อ ตำบลเกาะเกร็ด อำเภอ ปากเกร็ด จังหวัดนนทบุรี โดยเพลงไหม้ดังกล่าวำให้บ้านเรือนได้รับความเสียหายทั้งหลัง จำนวน 1 หลัง และเสียหายบางส่วน จำนวน 2 หลัง 1 วันที่ 3 มิถุนายน 2567 เวลา 09.30 น. ได้รับแจ้งเหตุเพลิงไหม้ที่บ้าน คูเดื้อ ตำบลเกาะเกร็ด อำเภอ ปากเกร็ด จังหวัดนนทบุรี โดยเพลงไหม้ดังกล่าวำให้บ้านเรือนได้รับความเสียหายทั้งหลัง จำนวน 1 หลัง และเสียหายบางส่วน จำนวน 2 หลัง 1',
 //                                         style: textStyle(context,
-//                                             color: colorGrey, fontSize: 13),
+//                                             color: colorGrey, fontSize: 15),
 //                                       )),
 //                                     ),
 //                                     const SizedBox(
@@ -392,7 +392,7 @@
 //                                             'ความต้องการเร่งด่วน',
 //                                             style: textStyle(context,
 //                                                 color: colorBlack,
-//                                                 fontSize: 13),
+//                                                 fontSize: 15),
 //                                           )),
 //                                     ),
 //                                     const SizedBox(
@@ -431,7 +431,7 @@
 //                                             'ความต้องการเร่งด่วน',
 //                                             style: textStyle(context,
 //                                                 color: colorBlack,
-//                                                 fontSize: 13),
+//                                                 fontSize: 15),
 //                                           )),
 //                                     ),
 //                                     const SizedBox(
@@ -462,7 +462,7 @@
 //                               child: Text(
 //                                 'พิกัดที่เกิดภัยพิบัติ',
 //                                 style: textStyle(context,
-//                                     color: colorBlack, fontSize: 13),
+//                                     color: colorBlack, fontSize: 15),
 //                               )),
 //                           Stack(
 //                             children: [
@@ -536,7 +536,7 @@
 //                                               fillColor: colorWhite,
 //                                               hintText: "ค้นหา",
 //                                               hintStyle: TextStyle(
-//                                                   fontSize: 13.0,
+//                                                   fontSize: 15.0,
 //                                                   color: colorGrey,
 //                                                   fontWeight: FontWeight.w400),
 //                                               filled: true,
@@ -636,7 +636,7 @@
 //                                             'ที่อยู่',
 //                                             style: textStyle(context,
 //                                                 color: colorBlack,
-//                                                 fontSize: 13),
+//                                                 fontSize: 15),
 //                                           )),
 //                                     ),
 //                                     const SizedBox(
@@ -654,7 +654,7 @@
 //                                           child: Text(
 //                                         'บ้านคูเดื้อ ตำบลเกาะเกร็ด อำเภอปากเกร็ด จังหวัดนนทบุรี',
 //                                         style: textStyle(context,
-//                                             color: colorGrey, fontSize: 13),
+//                                             color: colorGrey, fontSize: 15),
 //                                       )),
 //                                     ),
 //                                     const SizedBox(
@@ -680,7 +680,7 @@
 //                                             'ละติจูด',
 //                                             style: textStyle(context,
 //                                                 color: colorBlack,
-//                                                 fontSize: 13),
+//                                                 fontSize: 15),
 //                                           )),
 //                                     ),
 //                                     const SizedBox(
@@ -694,7 +694,7 @@
 //                                             'ลองจิจูด',
 //                                             style: textStyle(context,
 //                                                 color: colorBlack,
-//                                                 fontSize: 13),
+//                                                 fontSize: 15),
 //                                           )),
 //                                     ),
 //                                   ],
@@ -709,7 +709,7 @@
 //                                           child: Text(
 //                                         '13.908722',
 //                                         style: textStyle(context,
-//                                             color: colorGrey, fontSize: 13),
+//                                             color: colorGrey, fontSize: 15),
 //                                       )),
 //                                     ),
 //                                     const SizedBox(
@@ -723,7 +723,7 @@
 //                                           child: Text(
 //                                         '101.133695',
 //                                         style: textStyle(context,
-//                                             color: colorGrey, fontSize: 13),
+//                                             color: colorGrey, fontSize: 15),
 //                                       )),
 //                                     ),
 //                                   ],

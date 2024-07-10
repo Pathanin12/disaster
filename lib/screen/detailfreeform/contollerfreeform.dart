@@ -178,7 +178,7 @@
 //   //                                 child: Text(
 //   //                                   'ผู้เสียชีวิต',
 //   //                                   style: textStyle(context,
-//   //                                       fontSize: 13,
+//   //                                       fontSize: 15,
 //   //                                       fontWeight: FontWeight.bold),
 //   //                                 )),
 //   //                             ListView.builder(
@@ -194,7 +194,7 @@
 //   //                                         '${index + 1}. ${dataEvent.value.events!.deceased!.deceaseList![index].name} เพศ ${dataEvent.value.events!.deceased!.deceaseList![index].sex} อายุ ${dataEvent.value.events!.deceased!.deceaseList![index].age} ปี',
 //   //                                         style: textStyle(
 //   //                                           context,
-//   //                                           fontSize: 13,
+//   //                                           fontSize: 15,
 //   //                                         ),
 //   //                                       )
 //   //                                     ],
@@ -210,7 +210,7 @@
 //   //                                 child: Text(
 //   //                                   'ผู้ได้รับบาดเจ็บ',
 //   //                                   style: textStyle(context,
-//   //                                       fontSize: 13,
+//   //                                       fontSize: 15,
 //   //                                       fontWeight: FontWeight.bold),
 //   //                                 )),
 //   //                             ListView.builder(
@@ -226,7 +226,7 @@
 //   //                                         '${index + 1}. ${dataEvent.value.events!.injured!.injureList![index].name} เพศ ${dataEvent.value.events!.injured!.injureList![index].sex} อายุ ${dataEvent.value.events!.injured!.injureList![index].age} ปี',
 //   //                                         style: textStyle(
 //   //                                           context,
-//   //                                           fontSize: 13,
+//   //                                           fontSize: 15,
 //   //                                         ),
 //   //                                       )
 //   //                                     ],
@@ -256,7 +256,7 @@
 //   //                           child: Text(
 //   //                             'ปิด',
 //   //                             style: textStyle(context,
-//   //                                 fontSize: 14, color: Colors.white),
+//   //                                 fontSize: 15, color: Colors.white),
 //   //                           ),
 //   //                         ),
 //   //                       ),

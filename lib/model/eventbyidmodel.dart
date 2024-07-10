@@ -50,6 +50,7 @@ class Events {
   int? violence;
   String? latitude;
   String? longitude;
+  int? iconMap;
   String? address;
   String? tambon;
   String? amphure;
@@ -73,6 +74,7 @@ class Events {
         this.statusRelatedAgency,
         this.statusItem,
         this.datetime,
+        this.iconMap,
         this.relatedAgency,
         this.responsibleAgency,
         this.receiveFrom,
@@ -96,6 +98,7 @@ class Events {
 
   Events.fromJson(Map<String, dynamic> json) {
     eventID = json['eventID'];
+    iconMap = json['iconMap'];
     disasterType = json['disasterType'];
     eventName = json['eventName'];
     statusAgency = json['statusAgency'];
@@ -145,6 +148,7 @@ class Events {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['eventID'] = this.eventID;
+    data['iconMap'] = this.iconMap;
     data['disasterType'] = this.disasterType;
     data['eventName'] = this.eventName;
     data['statusAgency'] = this.statusAgency;

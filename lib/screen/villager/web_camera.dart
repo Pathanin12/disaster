@@ -56,7 +56,7 @@ class _WebCameraState extends State<WebCamera> {
         'Error: $error',
         style: textStyle(
           context,
-          fontSize: 14,
+          fontSize: 15,
         ),
       ));
     }
@@ -66,7 +66,7 @@ class _WebCameraState extends State<WebCamera> {
         'Camera access not granted yet.',
         style: textStyle(
           context,
-          fontSize: 14,
+          fontSize: 15,
         ),
       ));
     }
@@ -76,7 +76,7 @@ class _WebCameraState extends State<WebCamera> {
         'Reading cameras',
         style: textStyle(
           context,
-          fontSize: 14,
+          fontSize: 15,
         ),
       ));
     }
@@ -137,7 +137,7 @@ class _CameraViewState extends State<CameraView> {
           'Initializing error: $error\nCamera list:',
           style: textStyle(
             context,
-            fontSize: 14,
+            fontSize: 15,
           ),
         ),
       );
@@ -148,7 +148,7 @@ class _CameraViewState extends State<CameraView> {
         'Loading controller...',
         style: textStyle(
           context,
-          fontSize: 14,
+          fontSize: 15,
         ),
       ));
     }
@@ -158,7 +158,7 @@ class _CameraViewState extends State<CameraView> {
         'Initializing camera...',
         style: textStyle(
           context,
-          fontSize: 14,
+          fontSize: 15,
         ),
       ));
     }
@@ -180,7 +180,7 @@ class _CameraViewState extends State<CameraView> {
                   'Devices',
                   style: textStyle(
                     context,
-                    fontSize: 14,
+                    fontSize: 15,
                   ),
                 )),
             Material(
@@ -211,7 +211,7 @@ class _CameraViewState extends State<CameraView> {
                       '${value.name}: ${value.lensDirection}',
                       style: textStyle(
                         context,
-                        fontSize: 14,
+                        fontSize: 15,
                       ),
                     ),
                   );

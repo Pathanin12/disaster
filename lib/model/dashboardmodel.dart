@@ -82,12 +82,14 @@ class DashBoardList {
   String? latitude;
   String? longitude;
   String? province;
+  int? iconMap;
   Deceased? deceased;
   Deceased? injured;
 
   DashBoardList(
       {this.eventID,
         this.disasterType,
+        this.iconMap,
         this.statusAgency,
         this.statusRelatedAgency,
         this.statusItem,
@@ -102,6 +104,7 @@ class DashBoardList {
 
   DashBoardList.fromJson(Map<String, dynamic> json) {
     eventID = json['eventID'];
+    iconMap = json['iconMap'];
     disasterType = json['disasterType'];
     statusAgency = json['statusAgency'];
     statusRelatedAgency = json['statusRelatedAgency'];
@@ -122,6 +125,7 @@ class DashBoardList {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['eventID'] = this.eventID;
+    data['iconMap'] = this.iconMap;
     data['disasterType'] = this.disasterType;
     data['statusAgency'] = this.statusAgency;
     data['statusRelatedAgency'] = this.statusRelatedAgency;

@@ -5,7 +5,7 @@ import '../../model/systemmodel.dart';
 import '../../service/config.dart';
 import '../apiservice/dio/http.dart';
 
-Future<void>updateAdmin({required String id,required bool status})async{
+Future<void>updateAdmin({required String id,required bool status,required int role})async{
 
   try{
 
@@ -14,7 +14,8 @@ Future<void>updateAdmin({required String id,required bool status})async{
       Dio dio=Dio();
       final data = await dio.post('${url}UpdateUser',data: {
         "userID":id,
-        "isAccept": status
+        "isAccept": status,
+        "role": role
       },
           options: Options(headers:{"Authorization":"Bearer $token"})
       );
