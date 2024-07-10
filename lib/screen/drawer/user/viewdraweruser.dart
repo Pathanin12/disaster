@@ -112,7 +112,7 @@ class _LandingPageUserState extends State<LandingPageUser> {
                 value: 'Upload',
                 child: Text(
                   'อัพโหลด',
-                  style: textStyle(context, fontSize: 15),
+                  style: textStyle(context, fontSize: 25),
                 ),
               ),
             ],

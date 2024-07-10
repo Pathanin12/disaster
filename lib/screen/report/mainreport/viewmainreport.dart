@@ -216,7 +216,7 @@ class MainReport extends StatelessWidget {
                                       flex: 4,
                                       child: Container(
                                         alignment: Alignment.centerLeft,
-                                        height: 65,
+                                        height: 90,
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -269,7 +269,7 @@ class MainReport extends StatelessWidget {
                                       flex: 4,
                                       child: Container(
                                         alignment: Alignment.centerLeft,
-                                        height: 65,
+                                        height: 90,
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -482,12 +482,15 @@ class MainReport extends StatelessWidget {
                                       width: 5,
                                     ),
                                     // ระดับความรุนแรง
+
                                     Expanded(
                                       flex: 4,
                                       child: Container(
-                                        alignment: Alignment.centerLeft,
-                                        height: 65,
+                                        height: 90,
+                                        color: colorWhite,
                                         child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
@@ -495,36 +498,46 @@ class MainReport extends StatelessWidget {
                                                 style: textStyle(context,
                                                     fontSize: 25)),
                                             Container(
-                                              width: double.infinity,
-                                              height: 40,
+                                              padding: EdgeInsets.only(
+                                                  left: 5, right: 5),
                                               decoration: BoxDecoration(
-                                                  color: colorWhite,
-                                                  border: Border.all(
-                                                    color: Colors.black26,
-                                                    width: 1,
-                                                  ),
                                                   borderRadius:
-                                                      BorderRadius.circular(5)),
-                                              alignment: Alignment.center,
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: TextFormField(
-                                                  controller: contoller
-                                                      .searchEven.value,
-                                                  autofocus: false,
-                                                  decoration:
-                                                      InputDecoration.collapsed(
-                                                    fillColor: colorWhite,
-                                                    hintText: "ค้นหา",
-                                                    hintStyle: textStyle(
-                                                        context,
-                                                        fontSize: 25,
-                                                        color: colorGrey,
-                                                        fontWeight:
-                                                            FontWeight.w400),
-                                                    filled: true,
-                                                  ),
+                                                      BorderRadius.circular(5),
+                                                  border: Border.all(
+                                                      color: Colors
+                                                          .grey.shade500)),
+                                              alignment: Alignment.centerLeft,
+                                              height: 40,
+                                              child: TextFormField(
+                                                maxLines: 1,
+                                                scrollPadding: EdgeInsets.zero,
+                                                textAlign: TextAlign.justify,
+                                                controller:
+                                                    contoller.searchEven.value,
+                                                style: textStyle(context,
+                                                    fontSize: 25,
+                                                    color: colorBlack,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                                decoration:
+                                                    InputDecoration.collapsed(
+                                                  fillColor: colorWhite,
+                                                  hintText: "ค้นหา",
+                                                  hintStyle: textStyle(context,
+                                                      fontSize: 25,
+                                                      color: colorGrey,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                  filled: true,
+                                                  // enabledBorder: OutlineInputBorder(borderSide: BorderSide(
+                                                  //   color: Colors.grey.shade500,
+                                                  //   width: 1,
+                                                  // ), ),
+                                                  // border: OutlineInputBorder(
+                                                  //
+                                                  //   borderRadius:
+                                                  //   BorderRadius.circular(5),
+                                                  // ),
                                                 ),
                                               ),
                                             ),
@@ -550,7 +563,7 @@ class MainReport extends StatelessWidget {
                                           flex: 4,
                                           child: Container(
                                             alignment: Alignment.centerLeft,
-                                            height: 65,
+                                            height: 90,
                                             child: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
@@ -916,9 +929,11 @@ class MainReport extends StatelessWidget {
                                         Expanded(
                                           flex: 4,
                                           child: Container(
-                                            alignment: Alignment.centerLeft,
-                                            height: 65,
+                                            height: 90,
+                                            color: colorWhite,
                                             child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
@@ -926,40 +941,51 @@ class MainReport extends StatelessWidget {
                                                     style: textStyle(context,
                                                         fontSize: 25)),
                                                 Container(
-                                                  width: double.infinity,
-                                                  height: 40,
+                                                  padding: EdgeInsets.only(
+                                                      left: 5, right: 5),
                                                   decoration: BoxDecoration(
-                                                      color: colorWhite,
-                                                      border: Border.all(
-                                                        color: Colors.black26,
-                                                        width: 1,
-                                                      ),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              5)),
-                                                  alignment: Alignment.center,
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            8.0),
-                                                    child: TextFormField(
-                                                      controller: contoller
-                                                          .searchEven.value,
-                                                      autofocus: false,
-                                                      decoration:
-                                                          InputDecoration
-                                                              .collapsed(
-                                                        fillColor: colorWhite,
-                                                        hintText: "ค้นหา",
-                                                        hintStyle: textStyle(
-                                                            context,
-                                                            fontSize: 25,
-                                                            color: colorGrey,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w400),
-                                                        filled: true,
-                                                      ),
+                                                              5),
+                                                      border: Border.all(
+                                                          color: Colors
+                                                              .grey.shade500)),
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  height: 40,
+                                                  child: TextFormField(
+                                                    maxLines: 1,
+                                                    scrollPadding:
+                                                        EdgeInsets.zero,
+                                                    textAlign:
+                                                        TextAlign.justify,
+                                                    controller: contoller
+                                                        .searchEven.value,
+                                                    style: textStyle(context,
+                                                        fontSize: 25,
+                                                        color: colorBlack,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                    decoration: InputDecoration
+                                                        .collapsed(
+                                                      fillColor: colorWhite,
+                                                      hintText: "ค้นหา",
+                                                      hintStyle: textStyle(
+                                                          context,
+                                                          fontSize: 25,
+                                                          color: colorGrey,
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                      filled: true,
+                                                      // enabledBorder: OutlineInputBorder(borderSide: BorderSide(
+                                                      //   color: Colors.grey.shade500,
+                                                      //   width: 1,
+                                                      // ), ),
+                                                      // border: OutlineInputBorder(
+                                                      //
+                                                      //   borderRadius:
+                                                      //   BorderRadius.circular(5),
+                                                      // ),
                                                     ),
                                                   ),
                                                 ),
@@ -982,7 +1008,7 @@ class MainReport extends StatelessWidget {
                                     Expanded(
                                         flex: 4,
                                         child: Container(
-                                          height: 65,
+                                          height: 90,
                                           color: colorWhite,
                                           child: Column(
                                             mainAxisAlignment:
@@ -1050,7 +1076,7 @@ class MainReport extends StatelessWidget {
                                       flex: 4,
                                       child: Container(
                                         alignment: Alignment.centerLeft,
-                                        height: 65,
+                                        height: 90,
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -1147,7 +1173,7 @@ class MainReport extends StatelessWidget {
                                       flex: 4,
                                       child: Container(
                                         alignment: Alignment.centerLeft,
-                                        height: 65,
+                                        height: 90,
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -1402,7 +1428,7 @@ class MainReport extends StatelessWidget {
                                         Expanded(
                                             flex: 4,
                                             child: Container(
-                                              height: 65,
+                                              height: 90,
                                               color: colorWhite,
                                               child: Column(
                                                 mainAxisAlignment:
@@ -1481,7 +1507,7 @@ class MainReport extends StatelessWidget {
                                           flex: 4,
                                           child: Container(
                                             alignment: Alignment.centerLeft,
-                                            height: 65,
+                                            height: 90,
                                             child: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
@@ -1592,7 +1618,7 @@ class MainReport extends StatelessWidget {
                                           flex: 4,
                                           child: Container(
                                             alignment: Alignment.centerLeft,
-                                            height: 65,
+                                            height: 90,
                                             child: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
@@ -1698,7 +1724,7 @@ class MainReport extends StatelessWidget {
                                       ],
                                     ),
                                     SizedBox(
-                                      height: 10,
+                                      height: 20,
                                     ),
                                     Row(
                                       crossAxisAlignment:

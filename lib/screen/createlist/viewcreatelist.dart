@@ -67,7 +67,6 @@ class _CreateListState extends State<CreateList> {
                           ),
                           if (MediaQuery.of(context).size.width > 899)
                             Container(
-                              height: 65,
                               child: Column(
                                 children: [
                                   Row(
@@ -102,7 +101,6 @@ class _CreateListState extends State<CreateList> {
                                           padding: const EdgeInsets.only(
                                               left: 10, right: 10),
                                           alignment: Alignment.centerLeft,
-                                          height: 40,
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(5),
@@ -339,7 +337,6 @@ class _CreateListState extends State<CreateList> {
                             ),
                           if (MediaQuery.of(context).size.width < 900)
                             Container(
-                              height: 65,
                               child: Column(
                                 children: [
                                   Row(
@@ -365,7 +362,6 @@ class _CreateListState extends State<CreateList> {
                                           padding: const EdgeInsets.only(
                                               left: 10, right: 10),
                                           alignment: Alignment.centerLeft,
-                                          height: 40,
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(5),
@@ -420,7 +416,6 @@ class _CreateListState extends State<CreateList> {
 
                           if (MediaQuery.of(context).size.width > 899)
                             Container(
-                              height: 65,
                               child: Column(
                                 children: [
                                   Row(
@@ -708,7 +703,6 @@ class _CreateListState extends State<CreateList> {
                             ),
                           if (MediaQuery.of(context).size.width < 900)
                             Container(
-                              height: 65,
                               child: Column(
                                 children: [
                                   Row(
@@ -874,7 +868,6 @@ class _CreateListState extends State<CreateList> {
                           if (MediaQuery.of(context).size.width < 900)
                             if (contoller.dataEditEvent.value.events != null)
                               Container(
-                                height: 65,
                                 child: Column(
                                   children: [
                                     Row(
@@ -1020,7 +1013,6 @@ class _CreateListState extends State<CreateList> {
 
                           if (MediaQuery.of(context).size.width > 899)
                             Container(
-                              height: 65,
                               child: Column(
                                 children: [
                                   Row(
@@ -1064,7 +1056,6 @@ class _CreateListState extends State<CreateList> {
                                           padding: const EdgeInsets.only(
                                               left: 10, right: 10),
                                           alignment: Alignment.centerLeft,
-                                          height: 40,
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(5),
@@ -1225,7 +1216,6 @@ class _CreateListState extends State<CreateList> {
                             ),
                           if (MediaQuery.of(context).size.width < 900)
                             Container(
-                              height: 65,
                               child: Column(
                                 children: [
                                   Row(
@@ -1251,7 +1241,6 @@ class _CreateListState extends State<CreateList> {
                                           padding: const EdgeInsets.only(
                                               left: 10, right: 10),
                                           alignment: Alignment.centerLeft,
-                                          height: 40,
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(5),
@@ -1308,7 +1297,6 @@ class _CreateListState extends State<CreateList> {
                           if (MediaQuery.of(context).size.width < 900)
                             if (contoller.dataEditEvent.value.events != null)
                               Container(
-                                height: 65,
                                 child: Column(
                                   children: [
                                     Row(
@@ -1455,7 +1443,6 @@ class _CreateListState extends State<CreateList> {
 
                           if (MediaQuery.of(context).size.width > 899)
                             Container(
-                              height: 65,
                               child: Column(
                                 children: [
                                   Row(
@@ -1496,7 +1483,6 @@ class _CreateListState extends State<CreateList> {
                                           padding: const EdgeInsets.only(
                                               left: 10, right: 10),
                                           alignment: Alignment.centerLeft,
-                                          height: 40,
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(5),
@@ -1622,7 +1608,6 @@ class _CreateListState extends State<CreateList> {
                             ),
                           if (MediaQuery.of(context).size.width < 900)
                             Container(
-                              height: 65,
                               child: Column(
                                 children: [
                                   Row(
@@ -1648,7 +1633,6 @@ class _CreateListState extends State<CreateList> {
                                           padding: const EdgeInsets.only(
                                               left: 10, right: 10),
                                           alignment: Alignment.centerLeft,
-                                          height: 40,
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(5),
@@ -1808,7 +1792,6 @@ class _CreateListState extends State<CreateList> {
 
                           if (MediaQuery.of(context).size.width > 899)
                             Container(
-                              height: 65,
                               child: Column(
                                 children: [
                                   Row(
@@ -1852,7 +1835,6 @@ class _CreateListState extends State<CreateList> {
                                           padding: const EdgeInsets.only(
                                               left: 10, right: 10),
                                           alignment: Alignment.centerLeft,
-                                          height: 40,
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(5),
@@ -2013,7 +1995,6 @@ class _CreateListState extends State<CreateList> {
                             ),
                           if (MediaQuery.of(context).size.width < 900)
                             Container(
-                              height: 65,
                               child: Column(
                                 children: [
                                   Row(
@@ -2039,7 +2020,6 @@ class _CreateListState extends State<CreateList> {
                                           padding: const EdgeInsets.only(
                                               left: 10, right: 10),
                                           alignment: Alignment.centerLeft,
-                                          height: 40,
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(5),
@@ -2096,7 +2076,6 @@ class _CreateListState extends State<CreateList> {
                           if (MediaQuery.of(context).size.width < 900)
                             if (contoller.dataEditEvent.value.events != null)
                               Container(
-                                height: 65,
                                 child: Column(
                                   children: [
                                     Row(
@@ -7960,7 +7939,6 @@ class _CreateListState extends State<CreateList> {
                             height: 20,
                           ),
                           Container(
-                            height: 125,
                             child: Column(
                               children: [
                                 Row(children: [
@@ -7993,7 +7971,6 @@ class _CreateListState extends State<CreateList> {
                                     Expanded(
                                       flex: 5,
                                       child: Container(
-                                        height: 100,
                                         color: colorWhite,
                                         child: TextFormField(
                                           enabled: false,
@@ -8188,7 +8165,6 @@ class _CreateListState extends State<CreateList> {
                             height: 30,
                           ),
                           Container(
-                            height: 65,
                             child: Column(
                               children: [
                                 Row(
@@ -8463,7 +8439,6 @@ class _CreateListState extends State<CreateList> {
                             height: 20,
                           ),
                           Container(
-                            height: 185,
                             child: Column(
                               children: [
                                 Row(children: [

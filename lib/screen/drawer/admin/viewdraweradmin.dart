@@ -146,7 +146,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                               : landingPageController
                                       .dataUser!.value.profile!.name ??
                                   'Unknow',
-                          style: textStyle(context,fontSize: 25)),
+                          style: textStyle(context, fontSize: 25)),
                       SizedBox(
                         width: 10,
                       ),
@@ -165,11 +165,11 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                         },
                         itemBuilder: (BuildContext context) =>
                             <PopupMenuEntry<SampleItem>>[
-                          const PopupMenuItem<SampleItem>(
+                          PopupMenuItem<SampleItem>(
                             value: SampleItem.itemOne,
                             child: Text(
                               'ออกจากระบบ',
-                              style: TextStyle(fontSize: 25),
+                              style: textStyle(context, fontSize: 25),
                             ),
                           ),
                         ],
@@ -388,24 +388,26 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                           landingPageController.tabIndex(2);
                         },
                       ),
-                    if (landingPageController.dataUser!.value.profile!=null) if (landingPageController.dataUser!.value.profile!.role==1)
-                      ListTile(
-                        leading: Icon(
-                          Icons.supervised_user_circle,
-                          color: colorBlack,
-                          size: 22,
+                    if (landingPageController.dataUser!.value.profile != null)
+                      if (landingPageController.dataUser!.value.profile!.role ==
+                          1)
+                        ListTile(
+                          leading: Icon(
+                            Icons.supervised_user_circle,
+                            color: colorBlack,
+                            size: 22,
+                          ),
+                          title: Text(
+                            'จัดการผู้ใช้งาน',
+                            style: textStyle(context,
+                                fontSize: 25,
+                                fontWeight: FontWeight.w200,
+                                color: colorBlack),
+                          ),
+                          onTap: () {
+                            landingPageController.tabIndex(4);
+                          },
                         ),
-                        title: Text(
-                          'จัดการผู้ใช้งาน',
-                          style: textStyle(context,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w200,
-                              color: colorBlack),
-                        ),
-                        onTap: () {
-                          landingPageController.tabIndex(4);
-                        },
-                      ),
                     ListTile(
                       leading: Icon(
                         CupertinoIcons.square_arrow_right,
@@ -914,52 +916,56 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                                   ),
                                 ),
                               ),
-                            if (landingPageController.dataUser!.value.profile!=null) if (landingPageController.dataUser!.value.profile!.role==1)
-                              InkWell(
-                                onTap: () {
-                                  landingPageController.tabIndex(4);
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.only(
-                                      left: 35, right: 10),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color:
-                                        (landingPageController.tabIndex.value ==
-                                                4)
-                                            ? Colors.amber
-                                            : Colors.transparent,
-                                  ),
-                                  height: 40,
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.supervised_user_circle,
-                                        color: (landingPageController
-                                                    .tabIndex.value ==
-                                                4)
-                                            ? Colors.white
-                                            : Color(0xfff5a607f),
-                                        size: 22,
-                                      ),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      Text(
-                                        'จัดการผู้ใช้งาน',
-                                        style: textStyle(context,
-                                            fontSize: 25,
-                                            fontWeight: FontWeight.w200,
-                                            color: (landingPageController
-                                                        .tabIndex.value ==
-                                                    4)
-                                                ? Colors.white
-                                                : Color(0xfff5a607f)),
-                                      ),
-                                    ],
+                            if (landingPageController.dataUser!.value.profile !=
+                                null)
+                              if (landingPageController
+                                      .dataUser!.value.profile!.role ==
+                                  1)
+                                InkWell(
+                                  onTap: () {
+                                    landingPageController.tabIndex(4);
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.only(
+                                        left: 35, right: 10),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: (landingPageController
+                                                  .tabIndex.value ==
+                                              4)
+                                          ? Colors.amber
+                                          : Colors.transparent,
+                                    ),
+                                    height: 40,
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.supervised_user_circle,
+                                          color: (landingPageController
+                                                      .tabIndex.value ==
+                                                  4)
+                                              ? Colors.white
+                                              : Color(0xfff5a607f),
+                                          size: 22,
+                                        ),
+                                        const SizedBox(
+                                          width: 20,
+                                        ),
+                                        Text(
+                                          'จัดการผู้ใช้งาน',
+                                          style: textStyle(context,
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.w200,
+                                              color: (landingPageController
+                                                          .tabIndex.value ==
+                                                      4)
+                                                  ? Colors.white
+                                                  : Color(0xfff5a607f)),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
                             // if(isAdmin) InkWell(
                             //   onTap: () {
                             //     landingPageController.tabIndex(8);
@@ -1012,38 +1018,61 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
                       color: Colors.black12,
                     )
                   : Container(),
+              // Expanded(
+              //   child: Container(
+              //     color: colorBackground,
+              //     height: MediaQuery.of(context).size.height,
+              //     width: 200,
+              //     child: IndexedStack(
+              //       index: landingPageController.tabIndex.value,
+              //       children: [
+              //         DashBoardPage(),
+              //         MainReport(),
+              //         // FireReport(),
+              //         // FloodReport(),
+              //         // WineStormReport(),
+              //         // ForestFireReport(),
+              //         CreateList(),
+              //         Detail(),
+              //         SystemAdminPage(),
+              //         // CreateListOthers(),
+              //         // FreeFormReport(),
+              //         // DetailFreeForm(),
+              //         // EditListFreeFormOthers(),
+              //       ],
+              //     ),
+              //   ),
+              // ),
               Expanded(
-                child:
-                (landingPageController.dataUser!.value.profile==null)?Center(
-                    child:
-                    LoadingAnimationWidget
-                        .inkDrop(
-                      color: Colors.white,
-                      size: 20,
-                    )):
-                Container(
-                  color: colorBackground,
-                  height: MediaQuery.of(context).size.height,
-                  width: 200,
-                  child: IndexedStack(
-                    index: landingPageController.tabIndex.value,
-                    children: [
-                      DashBoardPage(),
-                      MainReport(),
-                      // FireReport(),
-                      // FloodReport(),
-                      // WineStormReport(),
-                      // ForestFireReport(),
-                      CreateList(),
-                      Detail(),
-                      SystemAdminPage(),
-                      // CreateListOthers(),
-                      // FreeFormReport(),
-                      // DetailFreeForm(),
-                      // EditListFreeFormOthers(),
-                    ],
-                  ),
-                ),
+                child: (landingPageController.dataUser!.value.profile == null)
+                    ? Center(
+                        child: LoadingAnimationWidget.inkDrop(
+                        color: Colors.white,
+                        size: 20,
+                      ))
+                    : Container(
+                        color: colorBackground,
+                        height: MediaQuery.of(context).size.height,
+                        width: 200,
+                        child: IndexedStack(
+                          index: landingPageController.tabIndex.value,
+                          children: [
+                            DashBoardPage(),
+                            MainReport(),
+                            // FireReport(),
+                            // FloodReport(),
+                            // WineStormReport(),
+                            // ForestFireReport(),
+                            CreateList(),
+                            Detail(),
+                            SystemAdminPage(),
+                            // CreateListOthers(),
+                            // FreeFormReport(),
+                            // DetailFreeForm(),
+                            // EditListFreeFormOthers(),
+                          ],
+                        ),
+                      ),
               ),
             ],
           )),

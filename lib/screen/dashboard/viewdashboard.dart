@@ -39,7 +39,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
     final ContollerDashBoard contoller =
         Get.put(ContollerDashBoard(), permanent: false);
     final LandingPageControllerAdmin landingPageController =
-    Get.put(LandingPageControllerAdmin(), permanent: false);
+        Get.put(LandingPageControllerAdmin(), permanent: false);
     double screenWidth = MediaQuery.of(context).size.width;
     return ListView(
       children: [
@@ -57,7 +57,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    screenWidth >= 900
+                    screenWidth >= 1105
                         ? Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
@@ -66,7 +66,6 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   flex: 2,
                                   child: Container(
                                     alignment: Alignment.centerLeft,
-                                    height: 60,
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -75,10 +74,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                             style: textStyle(context,
                                                 fontSize: 25)),
                                         Container(
-
                                           padding: EdgeInsets.only(
-                                              left: 5,
-                                              right: 5),
+                                              left: 5, right: 5),
                                           width: double.infinity,
                                           height: 30,
                                           decoration: BoxDecoration(
@@ -90,10 +87,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                               borderRadius:
                                                   BorderRadius.circular(5)),
                                           alignment: Alignment.center,
-                                          child:TextFormField(
-                                            controller: contoller.searchEven.value,
+                                          child: TextFormField(
+                                            controller:
+                                                contoller.searchEven.value,
                                             autofocus: false,
-                                            decoration: InputDecoration.collapsed(
+                                            decoration:
+                                                InputDecoration.collapsed(
                                               fillColor: colorWhite,
                                               hintText: "ค้นหา",
                                               hintStyle: textStyle(context,
@@ -101,7 +100,6 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                   color: colorGrey,
                                                   fontWeight: FontWeight.w400),
                                               filled: true,
-
                                             ),
                                           ),
                                         ),
@@ -117,7 +115,6 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                 flex: 3,
                                 child: Container(
                                   alignment: Alignment.centerLeft,
-                                  height: 60,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -171,7 +168,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                           FontWeight.bold,
                                                     ),
                                                     controlsTextStyle:
-                                                         textStyle(context,
+                                                        textStyle(
+                                                      context,
                                                       color: Colors.black,
                                                       fontSize: 25,
                                                       fontWeight:
@@ -358,7 +356,6 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                 flex: 2,
                                 child: Container(
                                   alignment: Alignment.centerLeft,
-                                  height: 60,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -409,8 +406,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                   contoller.selectLevel!.value,
                                               hint: Text(
                                                 'เลือกทั้งหมด',
-                                                style: textStyle(
-                                                  context,
+                                                style: textStyle(context,
                                                     fontSize: 25.0,
                                                     color: colorGrey,
                                                     fontWeight:
@@ -423,8 +419,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                   value: value!,
                                                   child: Text(
                                                     value,
-                                                    style: textStyle(
-                                                      context,
+                                                    style: textStyle(context,
                                                         fontSize: 25.0,
                                                         color: colorGrey,
                                                         fontWeight:
@@ -439,7 +434,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                 size: 24,
                                               )),
                                               onChanged: (valueSelect) {
-                                                contoller.heatMapController = MapController().obs;
+                                                contoller.heatMapController =
+                                                    MapController().obs;
                                                 contoller.selectLevel!.value =
                                                     valueSelect!;
                                               },
@@ -459,7 +455,6 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   flex: 2,
                                   child: Container(
                                     alignment: Alignment.centerLeft,
-                                    height: 60,
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -528,8 +523,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                     value: value!,
                                                     child: Text(
                                                       value.nameTh!,
-                                                      style: textStyle(
-                                                        context,
+                                                      style: textStyle(context,
                                                           fontSize: 25.0,
                                                           color: colorGrey,
                                                           fontWeight:
@@ -601,19 +595,16 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                       flex: 2,
                                       child: Container(
                                         alignment: Alignment.centerLeft,
-                                        height: 65,
                                         child: Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Text('ค้นหา',
                                                 style: textStyle(context,
                                                     fontSize: 25)),
                                             Container(
-
                                               padding: EdgeInsets.only(
-                                                  left: 5,
-                                                  right: 5),
+                                                  left: 5, right: 5),
                                               width: double.infinity,
                                               height: 30,
                                               decoration: BoxDecoration(
@@ -623,21 +614,22 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                     width: 1,
                                                   ),
                                                   borderRadius:
-                                                  BorderRadius.circular(5)),
+                                                      BorderRadius.circular(5)),
                                               alignment: Alignment.center,
-                                              child:TextFormField(
-                                                controller: contoller.searchEven.value,
+                                              child: TextFormField(
+                                                controller:
+                                                    contoller.searchEven.value,
                                                 autofocus: false,
-                                                decoration: InputDecoration.collapsed(
+                                                decoration:
+                                                    InputDecoration.collapsed(
                                                   fillColor: colorWhite,
                                                   hintText: "ค้นหา",
-                                                  hintStyle: textStyle(
-                                                    context,
+                                                  hintStyle: textStyle(context,
                                                       fontSize: 25.0,
                                                       color: colorGrey,
-                                                      fontWeight: FontWeight.w400),
+                                                      fontWeight:
+                                                          FontWeight.w400),
                                                   filled: true,
-
                                                 ),
                                               ),
                                             ),
@@ -646,253 +638,253 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(
-                                    width: 20,
-                                  ),
-                                  Expanded(
-                                    flex: 3,
-                                    child: Container(
-                                      alignment: Alignment.centerLeft,
-                                      height: 60,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text('ช่วงเวลา',
-                                              style: textStyle(context,
-                                                  fontSize: 25)),
-                                          Container(
-                                            padding: const EdgeInsets.only(
-                                                left: 20, right: 5),
-                                            width: double.infinity,
-                                            height: 30,
-                                            decoration: BoxDecoration(
-                                                color: colorWhite,
-                                                border: Border.all(
-                                                  color: Colors.black26,
-                                                  width: 1,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(5)),
-                                            alignment: Alignment.center,
-                                            child: SizedBox(
-                                              width: double.infinity,
-                                              child: InkWell(
-                                                  onTap: () async {
-                                                    final values =
-                                                        await showCalendarDatePicker2Dialog(
-                                                      context: context,
-                                                      config:
-                                                          CalendarDatePicker2WithActionButtonsConfig(
-                                                        calendarViewScrollPhysics:
-                                                            const NeverScrollableScrollPhysics(),
-                                                        dayTextStyle: textStyle(
-                                                            context,
-                                                            color: Colors.black,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w700),
-                                                        calendarType:
-                                                            CalendarDatePicker2Type
-                                                                .range,
-                                                        selectedDayHighlightColor:
-                                                            Colors.amber,
-                                                        closeDialogOnCancelTapped:
-                                                            true,
-                                                        firstDayOfWeek: 1,
-                                                        weekdayLabelTextStyle:
-                                                            const TextStyle(
-                                                          color: Colors.black87,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                        controlsTextStyle:
-                                                             textStyle(context,
-                                                          color: Colors.black,
-                                                          fontSize: 25,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                        centerAlignModePicker:
-                                                            true,
-                                                        customModePickerIcon:
-                                                            const SizedBox(),
-                                                        selectedDayTextStyle:
-                                                            TextStyle(
-                                                                color: Colors
-                                                                    .grey[500],
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                        dayTextStylePredicate: (
-                                                            {required date}) {
-                                                          TextStyle? textStyle;
-                                                          if (date.weekday ==
-                                                                  DateTime
-                                                                      .saturday ||
-                                                              date.weekday ==
-                                                                  DateTime
-                                                                      .sunday) {
-                                                            textStyle = TextStyle(
-                                                                color: Colors
-                                                                    .grey[500],
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600);
-                                                          }
-                                                          if (DateUtils
-                                                              .isSameDay(
-                                                                  date,
-                                                                  DateTime(2021,
-                                                                      1, 25))) {
-                                                            textStyle = TextStyle(
-                                                                color: Colors
-                                                                    .grey[500],
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600);
-                                                          }
-                                                          return textStyle;
-                                                        },
-                                                        dayBuilder: ({
-                                                          required date,
-                                                          textStyle,
-                                                          decoration,
-                                                          isSelected,
-                                                          isDisabled,
-                                                          isToday,
-                                                        }) {
-                                                          Widget? dayWidget;
-                                                          if (date.day % 3 ==
-                                                                  0 &&
-                                                              date.day % 9 !=
-                                                                  0) {
-                                                            dayWidget =
-                                                                Container(
-                                                              decoration:
-                                                                  decoration,
-                                                              child: Center(
-                                                                child: Stack(
-                                                                  alignment:
-                                                                      AlignmentDirectional
-                                                                          .center,
-                                                                  children: [
-                                                                    Text(
-                                                                      MaterialLocalizations.of(
-                                                                              context)
-                                                                          .formatDecimal(
-                                                                              date.day),
-                                                                      style:
-                                                                          textStyle,
-                                                                    ),
-                                                                    // Padding(
-                                                                    //   padding: const EdgeInsets.only(top: 27.5),
-                                                                    //   child: Container(
-                                                                    //     height: 4,
-                                                                    //     width: 4,
-                                                                    //     decoration: BoxDecoration(
-                                                                    //       borderRadius: BorderRadius.circular(5),
-                                                                    //       color: isSelected == true
-                                                                    //           ? Colors.white
-                                                                    //           : Colors.grey[500],
-                                                                    //     ),
-                                                                    //   ),
-                                                                    // ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            );
-                                                          }
-                                                          return dayWidget;
-                                                        },
-                                                        yearBuilder: ({
-                                                          required year,
-                                                          decoration,
-                                                          isCurrentYear,
-                                                          isDisabled,
-                                                          isSelected,
-                                                          textStyle,
-                                                        }) {
-                                                          return Center(
-                                                            child: Container(
-                                                              decoration:
-                                                                  decoration,
-                                                              height: 36,
-                                                              width: 72,
-                                                              child: Center(
-                                                                child:
-                                                                    Semantics(
-                                                                  selected:
-                                                                      isSelected,
-                                                                  button: true,
-                                                                  child: Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Text(
-                                                                        '${year}',
-                                                                        style:
-                                                                            textStyle,
-                                                                      ),
-                                                                      if (isCurrentYear ==
-                                                                          true)
-                                                                        Container(
-                                                                          padding: const EdgeInsets
-                                                                              .all(
-                                                                              5),
-                                                                          margin: const EdgeInsets
-                                                                              .only(
-                                                                              left: 5),
-                                                                          decoration:
-                                                                              const BoxDecoration(
-                                                                            shape:
-                                                                                BoxShape.circle,
-                                                                            color:
-                                                                                Colors.black26,
-                                                                          ),
-                                                                        ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          );
-                                                        },
-                                                      ),
-                                                      dialogSize:
-                                                          const Size(400, 450),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              15),
-                                                      value: contoller
-                                                          .listDate.value,
-                                                      dialogBackgroundColor:
-                                                          Colors.white,
-                                                    );
-                                                    if (values != null) {
-                                                      // ignore: avoid_print
-                                                      contoller.listDate.value =
-                                                          values;
-                                                    }
-                                                  },
-                                                  child: Container(
-                                                    child: Row(
-                                                      children: [
-                                                        Text(
-                                                            '${(contoller.listDate.value.isNotEmpty) ? (contoller.listDate.value.first == contoller.listDate.value.last) ? '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year}' : '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year} - ${contoller.listDate.value.last!.day} ${mountAbbreviation[contoller.listDate.value.last!.month - 1]} ${contoller.listDate.value.last!.year}' : ''}',
-                                                            style: textStyle(
-                                                                context,
-                                                                fontSize: 25))
-                                                      ],
-                                                    ),
-                                                  )),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
+                                  // const SizedBox(
+                                  //   width: 20,
+                                  // ),
+                                  // Expanded(
+                                  //   flex: 3,
+                                  //   child: Container(
+                                  //     alignment: Alignment.centerLeft,
+                                  //     child: Column(
+                                  //       crossAxisAlignment:
+                                  //           CrossAxisAlignment.start,
+                                  //       children: [
+                                  //         Text('ช่วงเวลา',
+                                  //             style: textStyle(context,
+                                  //                 fontSize: 25)),
+                                  //         Container(
+                                  //           padding: const EdgeInsets.only(
+                                  //               left: 20, right: 5),
+                                  //           width: double.infinity,
+                                  //           height: 30,
+                                  //           decoration: BoxDecoration(
+                                  //               color: colorWhite,
+                                  //               border: Border.all(
+                                  //                 color: Colors.black26,
+                                  //                 width: 1,
+                                  //               ),
+                                  //               borderRadius:
+                                  //                   BorderRadius.circular(5)),
+                                  //           alignment: Alignment.center,
+                                  //           child: SizedBox(
+                                  //             width: double.infinity,
+                                  //             child: InkWell(
+                                  //                 onTap: () async {
+                                  //                   final values =
+                                  //                       await showCalendarDatePicker2Dialog(
+                                  //                     context: context,
+                                  //                     config:
+                                  //                         CalendarDatePicker2WithActionButtonsConfig(
+                                  //                       calendarViewScrollPhysics:
+                                  //                           const NeverScrollableScrollPhysics(),
+                                  //                       dayTextStyle: textStyle(
+                                  //                           context,
+                                  //                           color: Colors.black,
+                                  //                           fontWeight:
+                                  //                               FontWeight
+                                  //                                   .w700),
+                                  //                       calendarType:
+                                  //                           CalendarDatePicker2Type
+                                  //                               .range,
+                                  //                       selectedDayHighlightColor:
+                                  //                           Colors.amber,
+                                  //                       closeDialogOnCancelTapped:
+                                  //                           true,
+                                  //                       firstDayOfWeek: 1,
+                                  //                       weekdayLabelTextStyle:
+                                  //                           const TextStyle(
+                                  //                         color: Colors.black87,
+                                  //                         fontWeight:
+                                  //                             FontWeight.bold,
+                                  //                       ),
+                                  //                       controlsTextStyle:
+                                  //                           textStyle(
+                                  //                         context,
+                                  //                         color: Colors.black,
+                                  //                         fontSize: 25,
+                                  //                         fontWeight:
+                                  //                             FontWeight.bold,
+                                  //                       ),
+                                  //                       centerAlignModePicker:
+                                  //                           true,
+                                  //                       customModePickerIcon:
+                                  //                           const SizedBox(),
+                                  //                       selectedDayTextStyle:
+                                  //                           TextStyle(
+                                  //                               color: Colors
+                                  //                                   .grey[500],
+                                  //                               fontWeight:
+                                  //                                   FontWeight
+                                  //                                       .w600),
+                                  //                       dayTextStylePredicate: (
+                                  //                           {required date}) {
+                                  //                         TextStyle? textStyle;
+                                  //                         if (date.weekday ==
+                                  //                                 DateTime
+                                  //                                     .saturday ||
+                                  //                             date.weekday ==
+                                  //                                 DateTime
+                                  //                                     .sunday) {
+                                  //                           textStyle = TextStyle(
+                                  //                               color: Colors
+                                  //                                   .grey[500],
+                                  //                               fontWeight:
+                                  //                                   FontWeight
+                                  //                                       .w600);
+                                  //                         }
+                                  //                         if (DateUtils
+                                  //                             .isSameDay(
+                                  //                                 date,
+                                  //                                 DateTime(2021,
+                                  //                                     1, 25))) {
+                                  //                           textStyle = TextStyle(
+                                  //                               color: Colors
+                                  //                                   .grey[500],
+                                  //                               fontWeight:
+                                  //                                   FontWeight
+                                  //                                       .w600);
+                                  //                         }
+                                  //                         return textStyle;
+                                  //                       },
+                                  //                       dayBuilder: ({
+                                  //                         required date,
+                                  //                         textStyle,
+                                  //                         decoration,
+                                  //                         isSelected,
+                                  //                         isDisabled,
+                                  //                         isToday,
+                                  //                       }) {
+                                  //                         Widget? dayWidget;
+                                  //                         if (date.day % 3 ==
+                                  //                                 0 &&
+                                  //                             date.day % 9 !=
+                                  //                                 0) {
+                                  //                           dayWidget =
+                                  //                               Container(
+                                  //                             decoration:
+                                  //                                 decoration,
+                                  //                             child: Center(
+                                  //                               child: Stack(
+                                  //                                 alignment:
+                                  //                                     AlignmentDirectional
+                                  //                                         .center,
+                                  //                                 children: [
+                                  //                                   Text(
+                                  //                                     MaterialLocalizations.of(
+                                  //                                             context)
+                                  //                                         .formatDecimal(
+                                  //                                             date.day),
+                                  //                                     style:
+                                  //                                         textStyle,
+                                  //                                   ),
+                                  //                                   // Padding(
+                                  //                                   //   padding: const EdgeInsets.only(top: 27.5),
+                                  //                                   //   child: Container(
+                                  //                                   //     height: 4,
+                                  //                                   //     width: 4,
+                                  //                                   //     decoration: BoxDecoration(
+                                  //                                   //       borderRadius: BorderRadius.circular(5),
+                                  //                                   //       color: isSelected == true
+                                  //                                   //           ? Colors.white
+                                  //                                   //           : Colors.grey[500],
+                                  //                                   //     ),
+                                  //                                   //   ),
+                                  //                                   // ),
+                                  //                                 ],
+                                  //                               ),
+                                  //                             ),
+                                  //                           );
+                                  //                         }
+                                  //                         return dayWidget;
+                                  //                       },
+                                  //                       yearBuilder: ({
+                                  //                         required year,
+                                  //                         decoration,
+                                  //                         isCurrentYear,
+                                  //                         isDisabled,
+                                  //                         isSelected,
+                                  //                         textStyle,
+                                  //                       }) {
+                                  //                         return Center(
+                                  //                           child: Container(
+                                  //                             decoration:
+                                  //                                 decoration,
+                                  //                             height: 36,
+                                  //                             width: 72,
+                                  //                             child: Center(
+                                  //                               child:
+                                  //                                   Semantics(
+                                  //                                 selected:
+                                  //                                     isSelected,
+                                  //                                 button: true,
+                                  //                                 child: Row(
+                                  //                                   mainAxisAlignment:
+                                  //                                       MainAxisAlignment
+                                  //                                           .center,
+                                  //                                   children: [
+                                  //                                     Text(
+                                  //                                       '${year}',
+                                  //                                       style:
+                                  //                                           textStyle,
+                                  //                                     ),
+                                  //                                     if (isCurrentYear ==
+                                  //                                         true)
+                                  //                                       Container(
+                                  //                                         padding: const EdgeInsets
+                                  //                                             .all(
+                                  //                                             5),
+                                  //                                         margin: const EdgeInsets
+                                  //                                             .only(
+                                  //                                             left: 5),
+                                  //                                         decoration:
+                                  //                                             const BoxDecoration(
+                                  //                                           shape:
+                                  //                                               BoxShape.circle,
+                                  //                                           color:
+                                  //                                               Colors.black26,
+                                  //                                         ),
+                                  //                                       ),
+                                  //                                   ],
+                                  //                                 ),
+                                  //                               ),
+                                  //                             ),
+                                  //                           ),
+                                  //                         );
+                                  //                       },
+                                  //                     ),
+                                  //                     dialogSize:
+                                  //                         const Size(400, 450),
+                                  //                     borderRadius:
+                                  //                         BorderRadius.circular(
+                                  //                             15),
+                                  //                     value: contoller
+                                  //                         .listDate.value,
+                                  //                     dialogBackgroundColor:
+                                  //                         Colors.white,
+                                  //                   );
+                                  //                   if (values != null) {
+                                  //                     // ignore: avoid_print
+                                  //                     contoller.listDate.value =
+                                  //                         values;
+                                  //                   }
+                                  //                 },
+                                  //                 child: Container(
+                                  //                   child: Row(
+                                  //                     children: [
+                                  //                       Text(
+                                  //                           '${(contoller.listDate.value.isNotEmpty) ? (contoller.listDate.value.first == contoller.listDate.value.last) ? '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year}' : '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year} - ${contoller.listDate.value.last!.day} ${mountAbbreviation[contoller.listDate.value.last!.month - 1]} ${contoller.listDate.value.last!.year}' : ''}',
+                                  //                           style: textStyle(
+                                  //                               context,
+                                  //                               fontSize: 25))
+                                  //                     ],
+                                  //                   ),
+                                  //                 )),
+                                  //           ),
+                                  //         ),
+                                  //       ],
+                                  //     ),
+                                  //   ),
+                                  // ),
                                   // const SizedBox(
                                   //   width: 20,
                                   // ),
@@ -1139,13 +1131,264 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                 ],
                               ),
                               Row(
+                                children: [
+                                  Expanded(
+                                    flex: 3,
+                                    child: Container(
+                                      alignment: Alignment.centerLeft,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text('ช่วงเวลา',
+                                              style: textStyle(context,
+                                                  fontSize: 25)),
+                                          Container(
+                                            padding: EdgeInsets.only(
+                                                left: screenWidth >= 900
+                                                    ? 15
+                                                    : 20,
+                                                right:
+                                                    screenWidth >= 900 ? 0 : 5),
+                                            width: double.infinity,
+                                            height: 30,
+                                            decoration: BoxDecoration(
+                                                color: colorWhite,
+                                                border: Border.all(
+                                                  color: Colors.black26,
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(5)),
+                                            alignment: Alignment.center,
+                                            child: SizedBox(
+                                              width: double.infinity,
+                                              child: InkWell(
+                                                  onTap: () async {
+                                                    final values =
+                                                        await showCalendarDatePicker2Dialog(
+                                                      context: context,
+                                                      config:
+                                                          CalendarDatePicker2WithActionButtonsConfig(
+                                                        calendarViewScrollPhysics:
+                                                            const NeverScrollableScrollPhysics(),
+                                                        dayTextStyle: textStyle(
+                                                            context,
+                                                            color: Colors.black,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w700),
+                                                        calendarType:
+                                                            CalendarDatePicker2Type
+                                                                .range,
+                                                        selectedDayHighlightColor:
+                                                            Colors.amber,
+                                                        closeDialogOnCancelTapped:
+                                                            true,
+                                                        firstDayOfWeek: 1,
+                                                        weekdayLabelTextStyle:
+                                                            const TextStyle(
+                                                          color: Colors.black87,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                        controlsTextStyle:
+                                                            textStyle(
+                                                          context,
+                                                          color: Colors.black,
+                                                          fontSize: 25,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                        centerAlignModePicker:
+                                                            true,
+                                                        customModePickerIcon:
+                                                            const SizedBox(),
+                                                        selectedDayTextStyle:
+                                                            TextStyle(
+                                                                color: Colors
+                                                                    .grey[500],
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600),
+                                                        dayTextStylePredicate: (
+                                                            {required date}) {
+                                                          TextStyle? textStyle;
+                                                          if (date.weekday ==
+                                                                  DateTime
+                                                                      .saturday ||
+                                                              date.weekday ==
+                                                                  DateTime
+                                                                      .sunday) {
+                                                            textStyle = TextStyle(
+                                                                color: Colors
+                                                                    .grey[500],
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600);
+                                                          }
+                                                          if (DateUtils
+                                                              .isSameDay(
+                                                                  date,
+                                                                  DateTime(2021,
+                                                                      1, 25))) {
+                                                            textStyle = TextStyle(
+                                                                color: Colors
+                                                                    .grey[500],
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600);
+                                                          }
+                                                          return textStyle;
+                                                        },
+                                                        dayBuilder: ({
+                                                          required date,
+                                                          textStyle,
+                                                          decoration,
+                                                          isSelected,
+                                                          isDisabled,
+                                                          isToday,
+                                                        }) {
+                                                          Widget? dayWidget;
+                                                          if (date.day % 3 ==
+                                                                  0 &&
+                                                              date.day % 9 !=
+                                                                  0) {
+                                                            dayWidget =
+                                                                Container(
+                                                              decoration:
+                                                                  decoration,
+                                                              child: Center(
+                                                                child: Stack(
+                                                                  alignment:
+                                                                      AlignmentDirectional
+                                                                          .center,
+                                                                  children: [
+                                                                    Text(
+                                                                      MaterialLocalizations.of(
+                                                                              context)
+                                                                          .formatDecimal(
+                                                                              date.day),
+                                                                      style:
+                                                                          textStyle,
+                                                                    ),
+                                                                    // Padding(
+                                                                    //   padding: const EdgeInsets.only(top: 27.5),
+                                                                    //   child: Container(
+                                                                    //     height: 4,
+                                                                    //     width: 4,
+                                                                    //     decoration: BoxDecoration(
+                                                                    //       borderRadius: BorderRadius.circular(5),
+                                                                    //       color: isSelected == true
+                                                                    //           ? Colors.white
+                                                                    //           : Colors.grey[500],
+                                                                    //     ),
+                                                                    //   ),
+                                                                    // ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                          return dayWidget;
+                                                        },
+                                                        yearBuilder: ({
+                                                          required year,
+                                                          decoration,
+                                                          isCurrentYear,
+                                                          isDisabled,
+                                                          isSelected,
+                                                          textStyle,
+                                                        }) {
+                                                          return Center(
+                                                            child: Container(
+                                                              decoration:
+                                                                  decoration,
+                                                              height: 36,
+                                                              width: 72,
+                                                              child: Center(
+                                                                child:
+                                                                    Semantics(
+                                                                  selected:
+                                                                      isSelected,
+                                                                  button: true,
+                                                                  child: Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .center,
+                                                                    children: [
+                                                                      Text(
+                                                                        '${year}',
+                                                                        style:
+                                                                            textStyle,
+                                                                      ),
+                                                                      if (isCurrentYear ==
+                                                                          true)
+                                                                        Container(
+                                                                          padding: const EdgeInsets
+                                                                              .all(
+                                                                              5),
+                                                                          margin: const EdgeInsets
+                                                                              .only(
+                                                                              left: 5),
+                                                                          decoration:
+                                                                              const BoxDecoration(
+                                                                            shape:
+                                                                                BoxShape.circle,
+                                                                            color:
+                                                                                Colors.black26,
+                                                                          ),
+                                                                        ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ),
+                                                      dialogSize:
+                                                          const Size(400, 450),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15),
+                                                      value: contoller
+                                                          .listDate.value,
+                                                      dialogBackgroundColor:
+                                                          Colors.white,
+                                                    );
+                                                    if (values != null) {
+                                                      // ignore: avoid_print
+                                                      contoller.listDate.value =
+                                                          values;
+                                                    }
+                                                  },
+                                                  child: Container(
+                                                    child: Row(
+                                                      children: [
+                                                        Text(
+                                                            '${(contoller.listDate.value.isNotEmpty) ? (contoller.listDate.value.first == contoller.listDate.value.last) ? '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year}' : '${contoller.listDate.value.first!.day} ${mountAbbreviation[contoller.listDate.value.first!.month - 1]} ${contoller.listDate.value.first!.year} - ${contoller.listDate.value.last!.day} ${mountAbbreviation[contoller.listDate.value.last!.month - 1]} ${contoller.listDate.value.last!.year}' : ''}',
+                                                            style: textStyle(
+                                                                context,
+                                                                fontSize: 25))
+                                                      ],
+                                                    ),
+                                                  )),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Expanded(
                                     flex: 2,
                                     child: Container(
                                       alignment: Alignment.centerLeft,
-                                      height: 60,
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -1213,7 +1456,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                       value: value!,
                                                       child: Text(
                                                         value,
-                                                        style: textStyle(context,
+                                                        style: textStyle(
+                                                            context,
                                                             fontSize: 25.0,
                                                             color: colorGrey,
                                                             fontWeight:
@@ -1229,7 +1473,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                     size: 24,
                                                   )),
                                                   onChanged: (valueSelect) {
-                                                    contoller.heatMapController = MapController().obs;
+                                                    contoller
+                                                            .heatMapController =
+                                                        MapController().obs;
                                                     contoller.selectLevel!
                                                         .value = valueSelect!;
                                                   },
@@ -1241,15 +1487,129 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(
-                                    width: 20,
-                                  ),
+
+                                  // if (contoller.selectLevel!.value == 'จังหวัด')
+                                  //   Expanded(
+                                  //     flex: 2,
+                                  //     child: Container(
+                                  //       alignment: Alignment.centerLeft,
+                                  //       child: Column(
+                                  //         crossAxisAlignment:
+                                  //             CrossAxisAlignment.start,
+                                  //         children: [
+                                  //           Text('จังหวัด',
+                                  //               style: textStyle(context,
+                                  //                   fontSize: 25)),
+                                  //           Container(
+                                  //             padding: EdgeInsets.only(
+                                  //                 left: screenWidth <= 515
+                                  //                     ? 10
+                                  //                     : 20,
+                                  //                 right: 5),
+                                  //             width: double.infinity,
+                                  //             height: 30,
+                                  //             decoration: BoxDecoration(
+                                  //                 color: colorWhite,
+                                  //                 border: Border.all(
+                                  //                   color: Colors.black26,
+                                  //                   width: 1,
+                                  //                 ),
+                                  //                 borderRadius:
+                                  //                     BorderRadius.circular(5)),
+                                  //             alignment: Alignment.center,
+                                  //             child: SizedBox(
+                                  //               width: double.infinity,
+                                  //               child:
+                                  //                   DropdownButtonHideUnderline(
+                                  //                 child:
+                                  //                     DropdownButton2<Province>(
+                                  //                   dropdownStyleData:
+                                  //                       DropdownStyleData(
+                                  //                     maxHeight: 300,
+                                  //                     decoration: BoxDecoration(
+                                  //                       borderRadius:
+                                  //                           BorderRadius
+                                  //                               .circular(5),
+                                  //                     ),
+                                  //                     scrollbarTheme:
+                                  //                         ScrollbarThemeData(
+                                  //                       radius: const Radius
+                                  //                           .circular(5),
+                                  //                       thickness:
+                                  //                           MaterialStateProperty
+                                  //                               .all<double>(6),
+                                  //                       thumbVisibility:
+                                  //                           MaterialStateProperty
+                                  //                               .all<bool>(
+                                  //                                   true),
+                                  //                     ),
+                                  //                   ),
+                                  //                   autofocus: true,
+                                  //                   value: contoller
+                                  //                       .selectProvince.value,
+                                  //                   hint: Text(
+                                  //                     'เลือกทั้งหมด',
+                                  //                     style: textStyle(context,
+                                  //                         fontSize: 25.0,
+                                  //                         color: colorGrey,
+                                  //                         fontWeight:
+                                  //                             FontWeight.w400),
+                                  //                   ),
+                                  //                   items: provinceList.map<
+                                  //                           DropdownMenuItem<
+                                  //                               Province>>(
+                                  //                       (Province? value) {
+                                  //                     return DropdownMenuItem<
+                                  //                         Province>(
+                                  //                       value: value!,
+                                  //                       child: Text(
+                                  //                         value.nameTh!,
+                                  //                         style: textStyle(
+                                  //                             context,
+                                  //                             fontSize: 25.0,
+                                  //                             color: colorGrey,
+                                  //                             fontWeight:
+                                  //                                 FontWeight
+                                  //                                     .w400),
+                                  //                       ),
+                                  //                     );
+                                  //                   }).toList(),
+                                  //                   iconStyleData:
+                                  //                       const IconStyleData(
+                                  //                           icon: Icon(
+                                  //                     Icons.keyboard_arrow_down,
+                                  //                     size: 24,
+                                  //                   )),
+                                  //                   onChanged: (valueSelect) {
+                                  //                     contoller.selectProvince
+                                  //                         .value = valueSelect!;
+                                  //                   },
+                                  //                 ),
+                                  //               ),
+                                  //             ),
+                                  //           ),
+                                  //         ],
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // const SizedBox(
+                                  //   width: 20,
+                                  // ),
+                                  // if (contoller.selectLevel!.value != 'จังหวัด')
+                                  //   const Expanded(
+                                  //     flex: 2,
+                                  //     child: SizedBox(),
+                                  //   ),
+                                ],
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
                                   if (contoller.selectLevel!.value == 'จังหวัด')
                                     Expanded(
                                       flex: 2,
                                       child: Container(
                                         alignment: Alignment.centerLeft,
-                                        height: 60,
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -1306,8 +1666,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                         .selectProvince.value,
                                                     hint: Text(
                                                       'เลือกทั้งหมด',
-                                                      style: textStyle(
-                                                        context,
+                                                      style: textStyle(context,
                                                           fontSize: 25.0,
                                                           color: colorGrey,
                                                           fontWeight:
@@ -1323,7 +1682,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                                         child: Text(
                                                           value.nameTh!,
                                                           style: textStyle(
-                                                            context,
+                                                              context,
                                                               fontSize: 25.0,
                                                               color: colorGrey,
                                                               fontWeight:
@@ -1350,9 +1709,14 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                         ),
                                       ),
                                     ),
-                                  const SizedBox(
-                                    width: 20,
-                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
                                   InkWell(
                                     onTap: () {
                                       contoller.setLocation();
@@ -1382,13 +1746,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                             ),
                                     ),
                                   ),
-                                  if (contoller.selectLevel!.value != 'จังหวัด')
-                                    const Expanded(
-                                      flex: 2,
-                                      child: SizedBox(),
-                                    ),
                                 ],
-                              ),
+                              )
                             ],
                           ),
                     const SizedBox(
@@ -1402,7 +1761,6 @@ class _DashBoardPageState extends State<DashBoardPage> {
                         borderRadius: BorderRadius.circular(5),
                         color: colorWhite,
                       ),
-                      height: 105,
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -1414,7 +1772,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   children: [
                                     Text('ทั้งหมด',
                                         style: textStyle(context,
-                                            fontSize: 25, color: colorBlack)),
+                                            fontSize: screenWidth <= 390
+                                                ? 18
+                                                : screenWidth <= 500
+                                                    ? 20
+                                                    : 25,
+                                            color: colorBlack)),
                                     const SizedBox(
                                       height: 3,
                                     ),
@@ -1440,7 +1803,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   children: [
                                     Text('รอรับเรื่อง',
                                         style: textStyle(context,
-                                            fontSize: 25, color: colorBlack)),
+                                            fontSize: screenWidth <= 390
+                                                ? 18
+                                                : screenWidth <= 500
+                                                    ? 20
+                                                    : 25,
+                                            color: colorBlack)),
                                     const SizedBox(
                                       height: 3,
                                     ),
@@ -1466,7 +1834,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   children: [
                                     Text('กำลังดำเนินการ',
                                         style: textStyle(context,
-                                            fontSize: 25, color: colorBlack)),
+                                            fontSize: screenWidth <= 390
+                                                ? 18
+                                                : screenWidth <= 500
+                                                    ? 20
+                                                    : 25,
+                                            color: colorBlack)),
                                     const SizedBox(
                                       height: 3,
                                     ),
@@ -1491,7 +1864,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                 children: [
                                   Text('เสร็จสิ้น',
                                       style: textStyle(context,
-                                          fontSize: 25, color: colorBlack)),
+                                          fontSize: screenWidth <= 390
+                                              ? 18
+                                              : screenWidth <= 500
+                                                  ? 20
+                                                  : 25,
+                                          color: colorBlack)),
                                   const SizedBox(
                                     height: 3,
                                   ),
@@ -1536,7 +1914,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
                             top: 20,
                             left: 20,
                             child: Container(
-                              height: (contoller.listSearchMap.isEmpty)?45:350,
+                              height:
+                                  (contoller.listSearchMap.isEmpty) ? 45 : 350,
                               width: 300,
                               child: Column(
                                 children: [
@@ -1583,7 +1962,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                                   Container(
                                     height: 310,
                                     child: ListView.builder(
-                                    itemCount:
+                                      itemCount:
                                           contoller.listSearchMap.value.length,
                                       itemBuilder: (context, index) => InkWell(
                                         onTap: () {
@@ -1625,104 +2004,104 @@ class _DashBoardPageState extends State<DashBoardPage> {
                     const SizedBox(
                       height: 30,
                     ),
-                   // if(contoller.listStringName.isNotEmpty) Container(
-                   //    padding:
-                   //    const EdgeInsets.only(left: 20, right: 5),
-                   //    width: 400,
-                   //    height: 30,
-                   //    decoration: BoxDecoration(
-                   //        color: colorWhite,
-                   //        border: Border.all(
-                   //          color: Colors.black26,
-                   //          width: 1,
-                   //        ),
-                   //        borderRadius: BorderRadius.circular(5)),
-                   //    alignment: Alignment.center,
-                   //    child: SizedBox(
-                   //      width: double.infinity,
-                   //      child: DropdownButtonHideUnderline(
-                   //        child: DropdownButton2<String>(
-                   //          dropdownStyleData: DropdownStyleData(
-                   //            maxHeight: 300,
-                   //            decoration: BoxDecoration(
-                   //              borderRadius:
-                   //              BorderRadius.circular(5),
-                   //            ),
-                   //            scrollbarTheme: ScrollbarThemeData(
-                   //              radius: const Radius.circular(5),
-                   //              thickness: MaterialStateProperty
-                   //                  .all<double>(6),
-                   //              thumbVisibility:
-                   //              MaterialStateProperty.all<bool>(
-                   //                  true),
-                   //            ),
-                   //          ),
-                   //          autofocus: true,
-                   //          isExpanded: true,
-                   //          value: contoller.selectEventName.value,
-                   //          hint: Text(
-                   //            'เลือกชื่อรายการ',
-                   //            style: textStyle(
-                   //                context,
-                   //                fontSize: 25.0,
-                   //                color: colorGrey,
-                   //                fontWeight: FontWeight.w400),
-                   //          ),
-                   //          items: contoller.listStringName
-                   //              .map<DropdownMenuItem<String>>(
-                   //                  (String? value) {
-                   //                return DropdownMenuItem<String>(
-                   //                  value: value!,
-                   //                  child: Text(
-                   //                    value,
-                   //                    style: textStyle(context,
-                   //                        fontSize: 25.0,
-                   //                        color: colorGrey,
-                   //                        fontWeight: FontWeight.w400),
-                   //                  ),
-                   //                );
-                   //              }).toList(),
-                   //          iconStyleData: const IconStyleData(
-                   //              icon: Icon(
-                   //                Icons.keyboard_arrow_down,
-                   //                size: 24,
-                   //              )),
-                   //          onChanged: (valueSelect) {
-                   //            // print('dsdsdsdsdsdsdsdsd');
-                   //            // print(valueSelect);
-                   //            contoller.selectEventName.value =
-                   //            valueSelect!;
-                   //          },
-                   //        ),
-                   //      ),
-                   //    ),
-                   //  ),
+                    // if(contoller.listStringName.isNotEmpty) Container(
+                    //    padding:
+                    //    const EdgeInsets.only(left: 20, right: 5),
+                    //    width: 400,
+                    //    height: 30,
+                    //    decoration: BoxDecoration(
+                    //        color: colorWhite,
+                    //        border: Border.all(
+                    //          color: Colors.black26,
+                    //          width: 1,
+                    //        ),
+                    //        borderRadius: BorderRadius.circular(5)),
+                    //    alignment: Alignment.center,
+                    //    child: SizedBox(
+                    //      width: double.infinity,
+                    //      child: DropdownButtonHideUnderline(
+                    //        child: DropdownButton2<String>(
+                    //          dropdownStyleData: DropdownStyleData(
+                    //            maxHeight: 300,
+                    //            decoration: BoxDecoration(
+                    //              borderRadius:
+                    //              BorderRadius.circular(5),
+                    //            ),
+                    //            scrollbarTheme: ScrollbarThemeData(
+                    //              radius: const Radius.circular(5),
+                    //              thickness: MaterialStateProperty
+                    //                  .all<double>(6),
+                    //              thumbVisibility:
+                    //              MaterialStateProperty.all<bool>(
+                    //                  true),
+                    //            ),
+                    //          ),
+                    //          autofocus: true,
+                    //          isExpanded: true,
+                    //          value: contoller.selectEventName.value,
+                    //          hint: Text(
+                    //            'เลือกชื่อรายการ',
+                    //            style: textStyle(
+                    //                context,
+                    //                fontSize: 25.0,
+                    //                color: colorGrey,
+                    //                fontWeight: FontWeight.w400),
+                    //          ),
+                    //          items: contoller.listStringName
+                    //              .map<DropdownMenuItem<String>>(
+                    //                  (String? value) {
+                    //                return DropdownMenuItem<String>(
+                    //                  value: value!,
+                    //                  child: Text(
+                    //                    value,
+                    //                    style: textStyle(context,
+                    //                        fontSize: 25.0,
+                    //                        color: colorGrey,
+                    //                        fontWeight: FontWeight.w400),
+                    //                  ),
+                    //                );
+                    //              }).toList(),
+                    //          iconStyleData: const IconStyleData(
+                    //              icon: Icon(
+                    //                Icons.keyboard_arrow_down,
+                    //                size: 24,
+                    //              )),
+                    //          onChanged: (valueSelect) {
+                    //            // print('dsdsdsdsdsdsdsdsd');
+                    //            // print(valueSelect);
+                    //            contoller.selectEventName.value =
+                    //            valueSelect!;
+                    //          },
+                    //        ),
+                    //      ),
+                    //    ),
+                    //  ),
                     // if (contoller.dashboard.value.fire != null)
                     //   contoller.chart(context),
                     const SizedBox(
                       height: 20,
                     ),
-                  (contoller.selectLevel!.value == 'ประเทศ')?Container(
-                     color: Colors.blue,
-                     height: 450,
-                     child: Center(
-                         child: FlutterMap(
-                             mapController: contoller.heatMapController.value,
-                            options: const MapOptions(
-                               keepAlive: true,
-                               interactionOptions: InteractionOptions(
-                                   flags: InteractiveFlag.none
-                               ),
-                               initialCenter:
-                               LatLng(12.8700, 100.9925),
-                               initialZoom: 5.2,
-                               // maxZoom: 17,
-                               // minZoom: 10
-                             ),
-                             children: contoller.listHeatMapWidgetMark)),
-                   ):SizedBox(),
+                    (contoller.selectLevel!.value == 'ประเทศ')
+                        ? Container(
+                            color: Colors.blue,
+                            height: 450,
+                            child: Center(
+                                child: FlutterMap(
+                                    mapController:
+                                        contoller.heatMapController.value,
+                                    options: const MapOptions(
+                                      keepAlive: true,
+                                      interactionOptions: InteractionOptions(
+                                          flags: InteractiveFlag.none),
+                                      initialCenter: LatLng(12.8700, 100.9925),
+                                      initialZoom: 5.2,
+                                      // maxZoom: 17,
+                                      // minZoom: 10
+                                    ),
+                                    children: contoller.listHeatMapWidgetMark)),
+                          )
+                        : SizedBox(),
                   ],
-
                 ))),
       ],
     );
