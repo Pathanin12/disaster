@@ -408,25 +408,29 @@ class ContollerCreateList extends GetxController {
             List<FreeFormAnswerDetailList> list = [];
             listAnswer[i].checkbox!.valueID!.forEach((element) {
               list.add(FreeFormAnswerDetailList(id: element));
-            });
-            listAnswerDetail.add(FreeFormAnswerList(
-                id: dataEditEvent.value.events!.freeFormDetailList![i].id,
-                image: "",
-                file: "",
-                fileName: "",
-                answer: "",
-                freeFormAnswerDetailList: list));
+                        });
+            if(list.isNotEmpty) {
+              listAnswerDetail.add(FreeFormAnswerList(
+                  id: dataEditEvent.value.events!.freeFormDetailList![i].id,
+                  image: "",
+                  file: "",
+                  fileName: "",
+                  answer: "",
+                  freeFormAnswerDetailList: list));
+            }
           } else if (dataEditEvent.value.events!.freeFormDetailList![i].types ==
               2) {
-            listAnswerDetail.add(FreeFormAnswerList(
-                id: dataEditEvent.value.events!.freeFormDetailList![i].id,
-                image: "",
-                file: "",
-                fileName: "",
-                answer: "",
-                freeFormAnswerDetailList: [
-                  FreeFormAnswerDetailList(id: listAnswer[i].radio!.valueID)
-                ]));
+            if(listAnswer[i].radio!.valueID!=null) {
+              listAnswerDetail.add(FreeFormAnswerList(
+                  id: dataEditEvent.value.events!.freeFormDetailList![i].id,
+                  image: "",
+                  file: "",
+                  fileName: "",
+                  answer: "",
+                  freeFormAnswerDetailList: [
+                    FreeFormAnswerDetailList(id: listAnswer[i].radio!.valueID)
+                  ]));
+            }
           } else if (dataEditEvent.value.events!.freeFormDetailList![i].types ==
               3) {
             listAnswerDetail.add(FreeFormAnswerList(
