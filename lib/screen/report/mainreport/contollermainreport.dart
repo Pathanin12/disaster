@@ -221,6 +221,7 @@ class ContollerMainReport extends GetxController {
       listDate.value = values;
     }
   }
+
   List<String> category = ["อัคคีภัย", "อุทกภัย", "วาตภัย", "ไฟป่า"];
   Future<void> setLocation() async {
     final LandingPageControllerAdmin landingPageController =
@@ -232,8 +233,7 @@ class ContollerMainReport extends GetxController {
           startDate: listDate.first.toString().split(" ")[0],
           endDate: listDate.last.toString().split(" ")[0],
           searchEvent: searchEven.value.text.trim(),
-          level:
-          (landingPageController.dataUser!.value.profile!.role == 1)
+          level: (landingPageController.dataUser!.value.profile!.role == 1)
               ? level.indexOf(selectLevel.toString())
               : 1,
           provinceID: (landingPageController.dataUser!.value.profile!.role == 1)
@@ -356,20 +356,19 @@ class ContollerMainReport extends GetxController {
             startDate: listDate.first.toString().split(" ")[0],
             endDate: listDate.last.toString().split(" ")[0],
             searchEvent: searchEven.value.text.trim(),
-            level:
-            (landingPageController.dataUser!.value.profile!.role == 1)
+            level: (landingPageController.dataUser!.value.profile!.role == 1)
                 ? level.indexOf(selectLevel.toString())
                 : 1,
             provinceID:
-            (landingPageController.dataUser!.value.profile!.role == 1)
-                ? selectProvince.value.id
-                : provinceList
-                .where((element) =>
-            element.nameTh ==
-                landingPageController
-                    .dataUser!.value.profile!.provinceName)
-                .toList()[0]
-                .id,
+                (landingPageController.dataUser!.value.profile!.role == 1)
+                    ? selectProvince.value.id
+                    : provinceList
+                        .where((element) =>
+                            element.nameTh ==
+                            landingPageController
+                                .dataUser!.value.profile!.provinceName)
+                        .toList()[0]
+                        .id,
             statusItem: StatusList.indexOf(selectStatusItem.value),
             statusAgency: StatusList.indexOf(selectStatusAgency.value),
             responsibleAgency: searchAgency.value.text,
@@ -398,10 +397,10 @@ class ContollerMainReport extends GetxController {
                     child: InkWell(
                       onTap: () {
                         final LandingPageControllerAdmin landingPageController =
-                        Get.put(LandingPageControllerAdmin(),
-                            permanent: false);
+                            Get.put(LandingPageControllerAdmin(),
+                                permanent: false);
                         final ContollerDetail contollerEvent =
-                        Get.put(ContollerDetail(), permanent: false);
+                            Get.put(ContollerDetail(), permanent: false);
                         contollerEvent.getEvent(element.eventID!);
                         landingPageController.tabIndex.value = 3;
                       },
@@ -413,8 +412,8 @@ class ContollerMainReport extends GetxController {
                               color: (element.statusItem == 0)
                                   ? Colors.amber
                                   : (element.statusItem == 1)
-                                  ? Colors.red
-                                  : Colors.green,
+                                      ? Colors.red
+                                      : Colors.green,
                               width: 80,
                               height: 80,
                             ),
@@ -609,7 +608,7 @@ class ContollerMainReport extends GetxController {
                         children: [
                           Container(
                             width: 1800,
-                            height: 50,
+                            height: 65,
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
