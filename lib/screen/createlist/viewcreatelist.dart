@@ -7747,7 +7747,7 @@ class _CreateListState extends State<CreateList> {
                               height: 40,
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                'พิกัดที่เกิดภัยพิบัติ',
+                                'พิกัด(บน Map)',
                                 style: textStyle(context,
                                     color: colorBlack, fontSize: 25),
                               )),
@@ -7765,11 +7765,11 @@ class _CreateListState extends State<CreateList> {
                                           double.parse((contoller
                                                   .lat.value.text.isNotEmpty)
                                               ? contoller.lat.value.text
-                                              : "18.317058"),
+                                              : "13.732514"),
                                           double.parse((contoller
                                                   .lng.value.text.isNotEmpty)
                                               ? contoller.lng.value.text
-                                              : "99.398686")),
+                                              : "100.481309")),
                                       initialZoom: 14,
                                       interactionOptions: InteractionOptions(
                                         flags: (isAdmin)

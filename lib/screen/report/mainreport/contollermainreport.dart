@@ -759,7 +759,7 @@ class ContollerMainReport extends GetxController {
                                         Expanded(
                                           flex: 1,
                                           child: Text(
-                                            '${DateTime.parse(event[index].datetime!).day} ${mountAbbreviation[DateTime.parse(event[index].datetime!).month - 1]} ${DateTime.parse(event[index].datetime!).year + 543}',
+                                            '${DateTime.parse(event[index].datetime!).day} ${mountAbbreviation[DateTime.parse(event[index].datetime!).month - 1]} ${DateTime.parse(event[index].datetime!).year}',
                                             style: textStyle(context,
                                                 fontSize: 25,
                                                 color: colorBlack),

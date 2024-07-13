@@ -207,8 +207,8 @@ class ContollerCreateList extends GetxController {
   clearData() async {
     nameCon.value.text = '';
     createBy.value.text = '';
-    lat.value.text = "18.317058";
-    lng.value.text = "99.398686";
+    lat.value.text = "13.732514";
+    lng.value.text = "100.481309";
     responsible.value.text = '';
     // die.value.text = '0';
     selectIcon.value = 0;

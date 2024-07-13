@@ -2082,24 +2082,85 @@ class _DashBoardPageState extends State<DashBoardPage> {
                       height: 20,
                     ),
                     (contoller.selectLevel!.value == 'ประเทศ')
-                        ? Container(
-                            color: Colors.blue,
-                            height: 450,
-                            child: Center(
-                                child: FlutterMap(
-                                    mapController:
-                                        contoller.heatMapController.value,
-                                    options: const MapOptions(
-                                      keepAlive: true,
-                                      interactionOptions: InteractionOptions(
-                                          flags: InteractiveFlag.none),
-                                      initialCenter: LatLng(12.8700, 100.9925),
-                                      initialZoom: 5.2,
-                                      // maxZoom: 17,
-                                      // minZoom: 10
-                                    ),
-                                    children: contoller.listHeatMapWidgetMark)),
-                          )
+                        ? Stack(
+                          children: [
+                            Container(
+                                color: Colors.blue,
+                                height: 450,
+                                child: Center(
+                                    child: FlutterMap(
+                                        mapController:
+                                            contoller.heatMapController.value,
+                                        options: const MapOptions(
+                                          keepAlive: true,
+                                          interactionOptions: InteractionOptions(
+                                              flags: InteractiveFlag.none),
+                                          initialCenter: LatLng(12.8700, 100.9925),
+                                          initialZoom: 5.2,
+                                          // maxZoom: 17,
+                                          // minZoom: 10
+                                        ),
+                                        children: contoller.listHeatMapWidgetMark)),
+                              ),
+                            Positioned(
+                                bottom: 10,left: 10,
+
+                                child: Container(
+                                  padding: EdgeInsets.all(5),
+                                  color: Colors.white,
+                                  width: 220,
+                                  height: 200,
+                                  child:Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          SizedBox(width: 30,),
+                                          Text(
+                                            'อัตราการสร้างรายงาน',style: textStyle(context,fontSize: 25,color: Colors.grey),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Container(width: 20,height: 20,color: Color(0xfffD7D7D4),),
+                                          SizedBox(width: 5,),
+                                          Text(
+                                            'น้อยกว่า 100',style: textStyle(context,fontSize: 25,color: Colors.grey),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Container(width: 20,height: 20,color: Color(0xfffF7D773),),
+                                          SizedBox(width: 5,),
+                                          Text(
+                                            '100 - 499',style: textStyle(context,fontSize: 25,color: Colors.grey),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Container(width: 20,height: 20,color: Color(0xfffF8C2BF),),
+                                          SizedBox(width: 5,),
+                                          Text(
+                                            '500 - 999',style: textStyle(context,fontSize: 25,color: Colors.grey),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Container(width: 20,height: 20,color: Color(0xfffD97875),),
+                                          SizedBox(width: 5,),
+                                          Text(
+                                            'มากกว่า 1000',style: textStyle(context,fontSize: 25,color: Colors.grey),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ))
+                          ],
+                        )
                         : SizedBox(),
                   ],
                 ))),

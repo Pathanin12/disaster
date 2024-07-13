@@ -1353,7 +1353,7 @@
 //                               height: 40,
 //                               alignment: Alignment.centerLeft,
 //                               child: Text(
-//                                 'พิกัดที่เกิดภัยพิบัติ',
+//                                 'พิกัด(บน Map)',
 //                                 style: textStyle(context,
 //                                     color: colorBlack, fontSize: 15),
 //                               )),

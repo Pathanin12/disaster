@@ -179,7 +179,7 @@ class Detail extends StatelessWidget {
                                 child: Text(
                                   (contoller.dataEvent.value.events == null)
                                       ? ''
-                                      : '${DateTime.parse(contoller.dataEvent.value.events!.datetime!).day} ${mountList[DateTime.parse(contoller.dataEvent.value.events!.datetime!).month - 1]} ${DateTime.parse(contoller.dataEvent.value.events!.datetime!).year + 543}',
+                                      : '${DateTime.parse(contoller.dataEvent.value.events!.datetime!).day} ${mountList[DateTime.parse(contoller.dataEvent.value.events!.datetime!).month - 1]} ${DateTime.parse(contoller.dataEvent.value.events!.datetime!).year}',
                                   style: textStyle(context,
                                       fontSize: 25, color: colorGrey),
                                 ),
